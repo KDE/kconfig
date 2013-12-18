@@ -22,81 +22,83 @@
 
 #include <kconfigdata.h>
 
-QDebug operator<<(QDebug dbg, const KEntryKey& key)
+QDebug operator<<(QDebug dbg, const KEntryKey &key)
 {
-   dbg.nospace() << "[" << key.mGroup << ", " << key.mKey << (key.bLocal?" localized":"") <<
-       (key.bDefault?" default":"") << (key.bRaw?" raw":"") << "]";
-   return dbg.space();
+    dbg.nospace() << "[" << key.mGroup << ", " << key.mKey << (key.bLocal ? " localized" : "") <<
+                  (key.bDefault ? " default" : "") << (key.bRaw ? " raw" : "") << "]";
+    return dbg.space();
 }
 
-QDebug operator<<(QDebug dbg, const KEntry& entry)
+QDebug operator<<(QDebug dbg, const KEntry &entry)
 {
-   dbg.nospace() << "[" << entry.mValue << (entry.bDirty?" dirty":"") <<
-       (entry.bGlobal?" global":"") << (entry.bImmutable?" immutable":"") <<
-       (entry.bDeleted?" deleted":"") << (entry.bReverted?" reverted":"") <<
-       (entry.bExpand?" expand":"") << "]";
+    dbg.nospace() << "[" << entry.mValue << (entry.bDirty ? " dirty" : "") <<
+                  (entry.bGlobal ? " global" : "") << (entry.bImmutable ? " immutable" : "") <<
+                  (entry.bDeleted ? " deleted" : "") << (entry.bReverted ? " reverted" : "") <<
+                  (entry.bExpand ? " expand" : "") << "]";
 
-   return dbg.space();
+    return dbg.space();
 }
 
-QMap< KEntryKey, KEntry >::Iterator KEntryMap::findExactEntry(const QByteArray& group, const QByteArray& key, KEntryMap::SearchFlags flags)
+QMap< KEntryKey, KEntry >::Iterator KEntryMap::findExactEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
 {
-    KEntryKey theKey(group, key, bool(flags&SearchLocalized), bool(flags&SearchDefaults));
+    KEntryKey theKey(group, key, bool(flags & SearchLocalized), bool(flags & SearchDefaults));
     return find(theKey);
 }
 
-QMap< KEntryKey, KEntry >::Iterator KEntryMap::findEntry(const QByteArray& group, const QByteArray& key, KEntryMap::SearchFlags flags)
+QMap< KEntryKey, KEntry >::Iterator KEntryMap::findEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
 {
-    KEntryKey theKey(group, key, false, bool(flags&SearchDefaults));
+    KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
 
     // try the localized key first
-    if (flags&SearchLocalized) {
+    if (flags & SearchLocalized) {
         theKey.bLocal = true;
 
         Iterator it = find(theKey);
-        if (it != end())
+        if (it != end()) {
             return it;
+        }
 
         theKey.bLocal = false;
     }
     return find(theKey);
 }
 
-QMap< KEntryKey, KEntry >::ConstIterator KEntryMap::findEntry(const QByteArray& group, const QByteArray& key, KEntryMap::SearchFlags flags) const
+QMap< KEntryKey, KEntry >::ConstIterator KEntryMap::findEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags) const
 {
-    KEntryKey theKey(group, key, false, bool(flags&SearchDefaults));
+    KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
 
     // try the localized key first
-    if (flags&SearchLocalized) {
+    if (flags & SearchLocalized) {
         theKey.bLocal = true;
 
         ConstIterator it = find(theKey);
-        if (it != constEnd())
+        if (it != constEnd()) {
             return it;
+        }
 
         theKey.bLocal = false;
     }
     return find(theKey);
 }
 
-bool KEntryMap::setEntry(const QByteArray& group, const QByteArray& key, const QByteArray& value, KEntryMap::EntryOptions options)
+bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const QByteArray &value, KEntryMap::EntryOptions options)
 {
     KEntryKey k;
     KEntry e;
     bool newKey = false;
 
-    const Iterator it = findExactEntry(group, key, SearchFlags(options>>16));
+    const Iterator it = findExactEntry(group, key, SearchFlags(options >> 16));
 
     if (key.isEmpty()) { // inserting a group marker
         k.mGroup = group;
-        e.bImmutable = (options&EntryImmutable);
-        if (options&EntryDeleted) {
+        e.bImmutable = (options & EntryImmutable);
+        if (options & EntryDeleted) {
             qWarning("Internal KConfig error: cannot mark groups as deleted");
         }
-        if(it == end()) {
+        if (it == end()) {
             insert(k, e);
             return true;
-        } else if(it.value() == e) {
+        } else if (it.value() == e) {
             return false;
         }
 
@@ -104,10 +106,10 @@ bool KEntryMap::setEntry(const QByteArray& group, const QByteArray& key, const Q
         return true;
     }
 
-
     if (it != end()) {
-        if (it->bImmutable)
-            return false; // we cannot change this entry. Inherits group immutability.
+        if (it->bImmutable) {
+            return false;    // we cannot change this entry. Inherits group immutability.
+        }
         k = it.key();
         e = *it;
         //qDebug() << "found existing entry for key" << k;
@@ -115,39 +117,39 @@ bool KEntryMap::setEntry(const QByteArray& group, const QByteArray& key, const Q
         // make sure the group marker is in the map
         KEntryMap const *that = this;
         ConstIterator cit = that->findEntry(group);
-        if (cit == constEnd())
+        if (cit == constEnd()) {
             insert(KEntryKey(group), KEntry());
-        else if (cit->bImmutable)
-            return false; // this group is immutable, so we cannot change this entry.
+        } else if (cit->bImmutable) {
+            return false;    // this group is immutable, so we cannot change this entry.
+        }
 
         k = KEntryKey(group, key);
         newKey = true;
     }
 
     // set these here, since we may be changing the type of key from the one we found
-    k.bLocal = (options&EntryLocalized);
-    k.bDefault = (options&EntryDefault);
-    k.bRaw = (options&EntryRawKey);
+    k.bLocal = (options & EntryLocalized);
+    k.bDefault = (options & EntryDefault);
+    k.bRaw = (options & EntryRawKey);
 
     e.mValue = value;
-    e.bDirty = e.bDirty || (options&EntryDirty);
-    e.bGlobal = (options&EntryGlobal);  //we can't use || here, because changes to entries in
+    e.bDirty = e.bDirty || (options & EntryDirty);
+    e.bGlobal = (options & EntryGlobal); //we can't use || here, because changes to entries in
     //kdeglobals would be written to kdeglobals instead
     //of the local config file, regardless of the globals flag
-    e.bImmutable = e.bImmutable || (options&EntryImmutable);
-    if (value.isNull())
-        e.bDeleted = e.bDeleted || (options&EntryDeleted);
-    else
-        e.bDeleted = false; // setting a value to a previously deleted entry
-    e.bExpand = (options&EntryExpansion);
+    e.bImmutable = e.bImmutable || (options & EntryImmutable);
+    if (value.isNull()) {
+        e.bDeleted = e.bDeleted || (options & EntryDeleted);
+    } else {
+        e.bDeleted = false;    // setting a value to a previously deleted entry
+    }
+    e.bExpand = (options & EntryExpansion);
     e.bReverted = false;
 
-    if(newKey)
-    {
+    if (newKey) {
         //qDebug() << "inserting" << k << "=" << value;
         insert(k, e);
-        if(k.bDefault)
-        {
+        if (k.bDefault) {
             k.bDefault = false;
             //qDebug() << "also inserting" << k << "=" << value;
             insert(k, e);
@@ -156,12 +158,10 @@ bool KEntryMap::setEntry(const QByteArray& group, const QByteArray& key, const Q
         return true;
     } else {
 //                KEntry e2 = it.value();
-        if(it.value() != e)
-        {
+        if (it.value() != e) {
             //qDebug() << "changing" << k << "from" << e.mValue << "to" << value;
             it.value() = e;
-            if(k.bDefault)
-            {
+            if (k.bDefault) {
                 KEntryKey nonDefaultKey(k);
                 nonDefaultKey.bDefault = false;
                 insert(nonDefaultKey, e);
@@ -206,30 +206,33 @@ bool KEntryMap::setEntry(const QByteArray& group, const QByteArray& key, const Q
     }
 }
 
-QString KEntryMap::getEntry(const QByteArray& group, const QByteArray& key, const QString& defaultValue, KEntryMap::SearchFlags flags, bool* expand) const
+QString KEntryMap::getEntry(const QByteArray &group, const QByteArray &key, const QString &defaultValue, KEntryMap::SearchFlags flags, bool *expand) const
 {
     const ConstIterator it = findEntry(group, key, flags);
     QString theValue = defaultValue;
 
     if (it != constEnd() && !it->bDeleted) {
         if (!it->mValue.isNull()) {
-            const QByteArray data=it->mValue;
+            const QByteArray data = it->mValue;
             theValue = QString::fromUtf8(data.constData(), data.length());
-            if (expand)
+            if (expand) {
                 *expand = it->bExpand;
+            }
         }
     }
 
     return theValue;
 }
 
-bool KEntryMap::hasEntry(const QByteArray& group, const QByteArray& key, KEntryMap::SearchFlags flags) const
+bool KEntryMap::hasEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags) const
 {
     const ConstIterator it = findEntry(group, key, flags);
-    if (it == constEnd())
+    if (it == constEnd()) {
         return false;
-    if (it->bDeleted)
+    }
+    if (it->bDeleted) {
         return false;
+    }
     if (key.isNull()) { // looking for group marker
         return it->mValue.isNull();
     }
@@ -237,7 +240,7 @@ bool KEntryMap::hasEntry(const QByteArray& group, const QByteArray& key, KEntryM
     return true;
 }
 
-bool KEntryMap::getEntryOption(const QMap< KEntryKey, KEntry >::ConstIterator& it, KEntryMap::EntryOption option) const
+bool KEntryMap::getEntryOption(const QMap< KEntryKey, KEntry >::ConstIterator &it, KEntryMap::EntryOption option) const
 {
     if (it != constEnd()) {
         switch (option) {
@@ -286,7 +289,7 @@ void KEntryMap::setEntryOption(QMap< KEntryKey, KEntry >::Iterator it, KEntryMap
     }
 }
 
-bool KEntryMap::revertEntry(const QByteArray& group, const QByteArray& key, KEntryMap::SearchFlags flags)
+bool KEntryMap::revertEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
 {
     Q_ASSERT((flags & KEntryMap::SearchDefaults) == 0);
     Iterator entry = findEntry(group, key, flags);

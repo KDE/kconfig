@@ -24,13 +24,14 @@
 #include <QScreen>
 #include <QWindow>
 
-static const char* s_initialSizePropertyName = "_kconfig_initial_size";
-static const char* s_initialScreenSizePropertyName = "_kconfig_initial_screen_size";
+static const char *s_initialSizePropertyName = "_kconfig_initial_size";
+static const char *s_initialScreenSizePropertyName = "_kconfig_initial_screen_size";
 
 void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options)
 {
-    if (!window)
+    if (!window) {
         return;
+    }
     const QRect desk = window->screen()->geometry();
 
     const QSize sizeToSave = window->size();
@@ -41,25 +42,27 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
     if (!isMaximized) {
         const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
         const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
-	const bool sizeValid = defaultSize.isValid() && defaultScreenSize.isValid();
-	if (!sizeValid || (sizeValid && (defaultSize != sizeToSave || defaultScreenSize != desk.size()))) {
-	    const QString wString(QString::fromLatin1("Width %1").arg(desk.width()));
-	    const QString hString(QString::fromLatin1("Height %1").arg(desk.height()));
-	    config.writeEntry(wString, sizeToSave.width(), options);
-	    config.writeEntry(hString, sizeToSave.height(), options);
+        const bool sizeValid = defaultSize.isValid() && defaultScreenSize.isValid();
+        if (!sizeValid || (sizeValid && (defaultSize != sizeToSave || defaultScreenSize != desk.size()))) {
+            const QString wString(QString::fromLatin1("Width %1").arg(desk.width()));
+            const QString hString(QString::fromLatin1("Height %1").arg(desk.height()));
+            config.writeEntry(wString, sizeToSave.width(), options);
+            config.writeEntry(hString, sizeToSave.height(), options);
         }
     }
-    if ( (isMaximized == false) && !config.hasDefault(screenMaximizedString) )
+    if ((isMaximized == false) && !config.hasDefault(screenMaximizedString)) {
         config.revertToDefault(screenMaximizedString);
-    else
+    } else {
         config.writeEntry(screenMaximizedString, isMaximized, options);
+    }
 
 }
 
-void KWindowConfig::restoreWindowSize(QWindow* window, const KConfigGroup& config)
+void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &config)
 {
-    if (!window)
+    if (!window) {
         return;
+    }
 
     const QRect desk = window->screen()->geometry();
 

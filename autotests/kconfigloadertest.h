@@ -56,8 +56,8 @@ private Q_SLOTS:
     void ulongLongDefaultValue();
 
 private:
-    KConfigLoader* cl;
-    QFile* configFile;
+    KConfigLoader *cl;
+    QFile *configFile;
 };
 
 #endif

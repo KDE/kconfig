@@ -41,8 +41,7 @@ public:
     /**
      * Flags to control write entry
      */
-    enum WriteConfigFlag
-    {
+    enum WriteConfigFlag {
         Persistent = 0x01,
         /**<
          * Save this entry when saving the config object.
@@ -56,11 +55,11 @@ public:
         /**<
          * Add the locale tag to the key when writing it.
          */
-        Normal=Persistent
-        /**<
-         * Save the entry to the application specific config file without
-         * a locale tag. This is the default.
-         */
+        Normal = Persistent
+                 /**<
+                  * Save the entry to the application specific config file without
+                  * a locale tag. This is the default.
+                  */
 
     };
     Q_DECLARE_FLAGS(WriteConfigFlags, WriteConfigFlag)
@@ -154,31 +153,29 @@ public:
 
     /**
      * Can changes be made to the entries in @p aGroup?
-     * 
+     *
      * @param aGroup The group to check for immutability.
      * @return @c false if the entries in @p aGroup can be modified.
      */
-    bool isGroupImmutable(const QByteArray& aGroup) const;
-    bool isGroupImmutable(const QString& aGroup) const;
+    bool isGroupImmutable(const QByteArray &aGroup) const;
+    bool isGroupImmutable(const QString &aGroup) const;
     bool isGroupImmutable(const char *aGroup) const;
 
 protected:
     KConfigBase();
 
     virtual bool hasGroupImpl(const QByteArray &group) const = 0;
-    virtual KConfigGroup groupImpl( const QByteArray &b) = 0;
+    virtual KConfigGroup groupImpl(const QByteArray &b) = 0;
     virtual const KConfigGroup groupImpl(const QByteArray &b) const = 0;
     virtual void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal) = 0;
-    virtual bool isGroupImmutableImpl(const QByteArray& aGroup) const = 0;
+    virtual bool isGroupImmutableImpl(const QByteArray &aGroup) const = 0;
 
     /** Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.
      */
-    virtual void virtual_hook( int id, void* data );
+    virtual void virtual_hook(int id, void *data);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigBase::WriteConfigFlags)
-
-
 
 #endif // KCONFIG_H

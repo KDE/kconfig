@@ -29,30 +29,30 @@ class QWindow;
 
 namespace KWindowConfig
 {
-    /**
-     * Saves the window's size dependent on the screen dimension either to the
-     * global or application config file.
-     *
-     * @note the group must be set before calling
-     *
-     * @param window The window to save size.
-     * @param config The config group to read from.
-     * @param options passed to KConfigGroup::writeEntry()
-     * @since 5.0
-     */
-    KCONFIGGUI_EXPORT void saveWindowSize( const QWindow* window, KConfigGroup& config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal );
+/**
+ * Saves the window's size dependent on the screen dimension either to the
+ * global or application config file.
+ *
+ * @note the group must be set before calling
+ *
+ * @param window The window to save size.
+ * @param config The config group to read from.
+ * @param options passed to KConfigGroup::writeEntry()
+ * @since 5.0
+ */
+KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
-    /**
-     * Restores the dialog's size from the configuration according to
-     * the screen size.
-     *
-     * @note the group must be set before calling
-     *
-     * @param dialog The dialog to restore size.
-     * @param config The config group to read from.
-     * @since 5.0.
-     */
-    KCONFIGGUI_EXPORT void restoreWindowSize( QWindow* window,  const KConfigGroup& config );
+/**
+ * Restores the dialog's size from the configuration according to
+ * the screen size.
+ *
+ * @note the group must be set before calling
+ *
+ * @param dialog The dialog to restore size.
+ * @param config The config group to read from.
+ * @since 5.0.
+ */
+KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window,  const KConfigGroup &config);
 }
 
 #endif // KWINDOWCONFIG_H

@@ -37,10 +37,10 @@
 #include <unistd.h> // gethostname
 #endif
 
-KCONFIGGROUP_DECLARE_ENUM_QOBJECT(KConfigTest,Testing)
-KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(KConfigTest,Flags)
+KCONFIGGROUP_DECLARE_ENUM_QOBJECT(KConfigTest, Testing)
+KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(KConfigTest, Flags)
 
-QTEST_MAIN( KConfigTest )
+QTEST_MAIN(KConfigTest)
 
 #define BOOLENTRY1 true
 #define BOOLENTRY2 false
@@ -78,135 +78,133 @@ QTEST_MAIN( KConfigTest )
 
 void KConfigTest::initTestCase()
 {
-  // ensure we don't use files in the real config directory
-  QStandardPaths::setTestModeEnabled(true);
-  QString testConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+    // ensure we don't use files in the real config directory
+    QStandardPaths::setTestModeEnabled(true);
+    QString testConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
 
-  // to make sure all files from a previous failed run are deleted
-  cleanupTestCase();
+    // to make sure all files from a previous failed run are deleted
+    cleanupTestCase();
 
+    KConfig sc("kconfigtest");
 
-  KConfig sc( "kconfigtest" );
+    KConfigGroup cg(&sc, "AAA");
+    cg.writeEntry("stringEntry1", STRINGENTRY1,
+                  KConfig::Persistent | KConfig::Global);
+    cg.deleteEntry("stringEntry2", KConfig::Global);
 
-  KConfigGroup cg(&sc, "AAA");
-  cg.writeEntry("stringEntry1", STRINGENTRY1,
-                KConfig::Persistent|KConfig::Global);
-  cg.deleteEntry("stringEntry2", KConfig::Global);
+    cg = KConfigGroup(&sc, "Hello");
+    cg.writeEntry("boolEntry1", BOOLENTRY1);
+    cg.writeEntry("boolEntry2", BOOLENTRY2);
 
-  cg = KConfigGroup(&sc, "Hello");
-  cg.writeEntry( "boolEntry1", BOOLENTRY1 );
-  cg.writeEntry( "boolEntry2", BOOLENTRY2 );
+    QByteArray data(UTF8BITENTRY);
+    QCOMPARE(data.size(), 12);   // the source file is in utf8
+    QCOMPARE(QString::fromUtf8(data).length(), 9);
+    cg.writeEntry("Test", data);
+    cg.writeEntry("bytearrayEntry", BYTEARRAYENTRY);
+    cg.writeEntry(ESCAPEKEY, ESCAPEENTRY);
+    cg.writeEntry("emptyEntry", "");
+    cg.writeEntry("stringEntry1", STRINGENTRY1);
+    cg.writeEntry("stringEntry2", STRINGENTRY2);
+    cg.writeEntry("stringEntry3", STRINGENTRY3);
+    cg.writeEntry("stringEntry4", STRINGENTRY4);
+    cg.writeEntry("stringEntry5", STRINGENTRY5);
+    cg.writeEntry("urlEntry1", QUrl("http://qt-project.org"));
+    cg.writeEntry("keywith=equalsign", STRINGENTRY1);
+    cg.deleteEntry("stringEntry5");
+    cg.deleteEntry("stringEntry6");   // deleting a nonexistent entry
+    cg.writeEntry("byteArrayEntry1", QByteArray(STRINGENTRY1),
+                  KConfig::Global | KConfig::Persistent);
+    cg.writeEntry("doubleEntry1", DOUBLEENTRY);
+    cg.writeEntry("floatEntry1", FLOATENTRY);
 
-  QByteArray data( UTF8BITENTRY );
-  QCOMPARE( data.size(), 12 ); // the source file is in utf8
-  QCOMPARE( QString::fromUtf8(data).length(), 9 );
-  cg.writeEntry ("Test", data);
-  cg.writeEntry( "bytearrayEntry", BYTEARRAYENTRY );
-  cg.writeEntry( ESCAPEKEY, ESCAPEENTRY );
-  cg.writeEntry( "emptyEntry", "");
-  cg.writeEntry( "stringEntry1", STRINGENTRY1 );
-  cg.writeEntry( "stringEntry2", STRINGENTRY2 );
-  cg.writeEntry( "stringEntry3", STRINGENTRY3 );
-  cg.writeEntry( "stringEntry4", STRINGENTRY4 );
-  cg.writeEntry( "stringEntry5", STRINGENTRY5 );
-  cg.writeEntry( "urlEntry1", QUrl("http://qt-project.org") );
-  cg.writeEntry( "keywith=equalsign", STRINGENTRY1 );
-  cg.deleteEntry( "stringEntry5" );
-  cg.deleteEntry( "stringEntry6" ); // deleting a nonexistent entry
-  cg.writeEntry( "byteArrayEntry1", QByteArray( STRINGENTRY1 ),
-                 KConfig::Global|KConfig::Persistent );
-  cg.writeEntry( "doubleEntry1", DOUBLEENTRY );
-  cg.writeEntry( "floatEntry1", FLOATENTRY );
+    sc.deleteGroup("deleteMe"); // deleting a nonexistent group
 
-  sc.deleteGroup("deleteMe"); // deleting a nonexistent group
+    cg = KConfigGroup(&sc, "Complex Types");
+    cg.writeEntry("rectEntry", RECTENTRY);
+    cg.writeEntry("pointEntry", POINTENTRY);
+    cg.writeEntry("sizeEntry", SIZEENTRY);
+    cg.writeEntry("dateTimeEntry", DATETIMEENTRY);
+    cg.writeEntry("dateEntry", DATETIMEENTRY.date());
 
-  cg = KConfigGroup(&sc, "Complex Types");
-  cg.writeEntry( "rectEntry", RECTENTRY );
-  cg.writeEntry( "pointEntry", POINTENTRY );
-  cg.writeEntry( "sizeEntry", SIZEENTRY );
-  cg.writeEntry( "dateTimeEntry", DATETIMEENTRY );
-  cg.writeEntry( "dateEntry", DATETIMEENTRY.date() );
+    KConfigGroup ct = cg;
+    cg = KConfigGroup(&ct, "Nested Group 1");
+    cg.writeEntry("stringentry1", STRINGENTRY1);
 
-  KConfigGroup ct = cg;
-  cg = KConfigGroup(&ct, "Nested Group 1");
-  cg.writeEntry("stringentry1", STRINGENTRY1);
+    cg = KConfigGroup(&ct, "Nested Group 2");
+    cg.writeEntry("stringEntry2", STRINGENTRY2);
 
-  cg = KConfigGroup(&ct, "Nested Group 2");
-  cg.writeEntry( "stringEntry2", STRINGENTRY2 );
+    cg = KConfigGroup(&cg, "Nested Group 2.1");
+    cg.writeEntry("stringEntry3", STRINGENTRY3);
 
-  cg = KConfigGroup(&cg, "Nested Group 2.1");
-  cg.writeEntry( "stringEntry3", STRINGENTRY3 );
+    cg = KConfigGroup(&ct, "Nested Group 3");
+    cg.writeEntry("stringEntry3", STRINGENTRY3);
 
-  cg = KConfigGroup(&ct, "Nested Group 3");
-  cg.writeEntry( "stringEntry3", STRINGENTRY3 );
+    cg = KConfigGroup(&sc, "List Types");
+    cg.writeEntry("listOfIntsEntry1", INTLISTENTRY1);
+    cg.writeEntry("listOfByteArraysEntry1", BYTEARRAYLISTENTRY1);
+    cg.writeEntry("stringListEntry", STRINGLISTENTRY);
+    cg.writeEntry("stringListEmptyEntry", STRINGLISTEMPTYENTRY);
+    cg.writeEntry("stringListJustEmptyElement", STRINGLISTJUSTEMPTYELEMENT);
+    cg.writeEntry("stringListEmptyTrailingElement", STRINGLISTEMPTYTRAINLINGELEMENT);
+    cg.writeEntry("stringListEscapeOddEntry", STRINGLISTESCAPEODDENTRY);
+    cg.writeEntry("stringListEscapeEvenEntry", STRINGLISTESCAPEEVENENTRY);
+    cg.writeEntry("stringListEscapeCommaEntry", STRINGLISTESCAPECOMMAENTRY);
+    cg.writeEntry("variantListEntry", VARIANTLISTENTRY);
 
-  cg = KConfigGroup(&sc, "List Types" );
-  cg.writeEntry( "listOfIntsEntry1", INTLISTENTRY1 );
-  cg.writeEntry( "listOfByteArraysEntry1", BYTEARRAYLISTENTRY1 );
-  cg.writeEntry( "stringListEntry", STRINGLISTENTRY );
-  cg.writeEntry( "stringListEmptyEntry", STRINGLISTEMPTYENTRY );
-  cg.writeEntry( "stringListJustEmptyElement", STRINGLISTJUSTEMPTYELEMENT );
-  cg.writeEntry( "stringListEmptyTrailingElement", STRINGLISTEMPTYTRAINLINGELEMENT );
-  cg.writeEntry( "stringListEscapeOddEntry", STRINGLISTESCAPEODDENTRY );
-  cg.writeEntry( "stringListEscapeEvenEntry", STRINGLISTESCAPEEVENENTRY );
-  cg.writeEntry( "stringListEscapeCommaEntry", STRINGLISTESCAPECOMMAENTRY );
-  cg.writeEntry( "variantListEntry", VARIANTLISTENTRY );
+    cg = KConfigGroup(&sc, "Path Type");
+    cg.writePathEntry("homepath", HOMEPATH);
+    cg.writePathEntry("homepathescape", HOMEPATHESCAPE);
 
-  cg = KConfigGroup(&sc, "Path Type" );
-  cg.writePathEntry( "homepath", HOMEPATH );
-  cg.writePathEntry( "homepathescape", HOMEPATHESCAPE );
+    cg = KConfigGroup(&sc, "Enum Types");
+    writeEntry(cg, "enum-10", Tens);
+    writeEntry(cg, "enum-100", Hundreds);
+    writeEntry(cg, "flags-bit0", Flags(bit0));
+    writeEntry(cg, "flags-bit0-bit1", Flags(bit0 | bit1));
 
-  cg = KConfigGroup(&sc, "Enum Types" );
-  writeEntry( cg, "enum-10", Tens );
-  writeEntry( cg, "enum-100", Hundreds );
-  writeEntry( cg, "flags-bit0", Flags(bit0));
-  writeEntry( cg, "flags-bit0-bit1", Flags(bit0|bit1) );
+    cg = KConfigGroup(&sc, "ParentGroup");
+    KConfigGroup cg1(&cg, "SubGroup1");
+    cg1.writeEntry("somestring", "somevalue");
+    cg.writeEntry("parentgrpstring", "somevalue");
+    KConfigGroup cg2(&cg, "SubGroup2");
+    cg2.writeEntry("substring", "somevalue");
+    KConfigGroup cg3(&cg, "SubGroup/3");
+    cg3.writeEntry("sub3string", "somevalue");
 
-  cg = KConfigGroup(&sc, "ParentGroup" );
-  KConfigGroup cg1(&cg, "SubGroup1" );
-  cg1.writeEntry( "somestring", "somevalue" );
-  cg.writeEntry( "parentgrpstring", "somevalue" );
-  KConfigGroup cg2(&cg, "SubGroup2" );
-  cg2.writeEntry( "substring", "somevalue" );
-  KConfigGroup cg3(&cg, "SubGroup/3");
-  cg3.writeEntry( "sub3string", "somevalue" );
+    QVERIFY(sc.isDirty());
+    QVERIFY(sc.sync());
+    QVERIFY(!sc.isDirty());
 
-  QVERIFY(sc.isDirty());
-  QVERIFY(sc.sync());
-  QVERIFY(!sc.isDirty());
+    QVERIFY2(QFile::exists(testConfigDir + QStringLiteral("/kconfigtest")),
+             qPrintable(testConfigDir + QStringLiteral("/kconfigtest must exist")));
+    QVERIFY2(QFile::exists(testConfigDir + QStringLiteral("/kdeglobals")),
+             qPrintable(testConfigDir + QStringLiteral("/kdeglobals must exist")));
 
-  QVERIFY2(QFile::exists(testConfigDir + QStringLiteral("/kconfigtest")),
-    qPrintable(testConfigDir + QStringLiteral("/kconfigtest must exist")));
-  QVERIFY2(QFile::exists(testConfigDir + QStringLiteral("/kdeglobals")),
-    qPrintable(testConfigDir + QStringLiteral("/kdeglobals must exist")));
+    KConfig sc1("kdebugrc", KConfig::SimpleConfig);
+    KConfigGroup sg0(&sc1, "0");
+    sg0.writeEntry("AbortFatal", false);
+    sg0.writeEntry("WarnOutput", 0);
+    sg0.writeEntry("FatalOutput", 0);
+    QVERIFY(sc1.sync());
 
+    //Setup stuff to test KConfig::addConfigSources()
+    KConfig devcfg("specificrc");
+    KConfigGroup devonlygrp(&devcfg, "Specific Only Group");
+    devonlygrp.writeEntry("ExistingEntry", "DevValue");
+    KConfigGroup devandbasegrp(&devcfg, "Shared Group");
+    devandbasegrp.writeEntry("SomeSharedEntry", "DevValue");
+    devandbasegrp.writeEntry("SomeSpecificOnlyEntry", "DevValue");
+    QVERIFY(devcfg.sync());
+    KConfig basecfg("baserc");
+    KConfigGroup basegrp(&basecfg, "Base Only Group");
+    basegrp.writeEntry("ExistingEntry", "BaseValue");
+    KConfigGroup baseanddevgrp(&basecfg, "Shared Group");
+    baseanddevgrp.writeEntry("SomeSharedEntry", "BaseValue");
+    baseanddevgrp.writeEntry("SomeBaseOnlyEntry", "BaseValue");
+    QVERIFY(basecfg.sync());
 
-  KConfig sc1("kdebugrc", KConfig::SimpleConfig);
-  KConfigGroup sg0(&sc1, "0");
-  sg0.writeEntry("AbortFatal", false);
-  sg0.writeEntry("WarnOutput", 0);
-  sg0.writeEntry("FatalOutput", 0);
-  QVERIFY(sc1.sync());
-
-  //Setup stuff to test KConfig::addConfigSources()
-  KConfig devcfg("specificrc");
-  KConfigGroup devonlygrp(&devcfg, "Specific Only Group");
-  devonlygrp.writeEntry("ExistingEntry", "DevValue");
-  KConfigGroup devandbasegrp(&devcfg, "Shared Group");
-  devandbasegrp.writeEntry("SomeSharedEntry", "DevValue");
-  devandbasegrp.writeEntry("SomeSpecificOnlyEntry", "DevValue");
-  QVERIFY(devcfg.sync());
-  KConfig basecfg("baserc");
-  KConfigGroup basegrp(&basecfg, "Base Only Group");
-  basegrp.writeEntry("ExistingEntry", "BaseValue");
-  KConfigGroup baseanddevgrp(&basecfg, "Shared Group");
-  baseanddevgrp.writeEntry("SomeSharedEntry", "BaseValue");
-  baseanddevgrp.writeEntry("SomeBaseOnlyEntry", "BaseValue");
-  QVERIFY(basecfg.sync());
-
-  KConfig gecfg("groupescapetest", KConfig::SimpleConfig);
-  cg = KConfigGroup(&gecfg, DOLLARGROUP);
-  cg.writeEntry( "entry", "doesntmatter" );
+    KConfig gecfg("groupescapetest", KConfig::SimpleConfig);
+    cg = KConfigGroup(&gecfg, DOLLARGROUP);
+    cg.writeEntry("entry", "doesntmatter");
 
 }
 
@@ -220,24 +218,24 @@ void KConfigTest::cleanupTestCase()
     QVERIFY(!localConfig.exists());
 }
 
-
-static QList<QByteArray> readLinesFrom(const QString& path)
+static QList<QByteArray> readLinesFrom(const QString &path)
 {
     QFile file(path);
-    const bool opened = file.open(QIODevice::ReadOnly|QIODevice::Text);
+    const bool opened = file.open(QIODevice::ReadOnly | QIODevice::Text);
     Q_ASSERT(opened);
     Q_UNUSED(opened);
     QList<QByteArray> lines;
     QByteArray line;
     do {
         line = file.readLine();
-        if (!line.isEmpty())
+        if (!line.isEmpty()) {
             lines.append(line);
-    } while(!line.isEmpty());
+        }
+    } while (!line.isEmpty());
     return lines;
 }
 
-static QList<QByteArray> readLines(const char* fileName = "kconfigtest")
+static QList<QByteArray> readLines(const char *fileName = "kconfigtest")
 {
     const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + '/' + fileName;
     Q_ASSERT(!path.isEmpty());
@@ -247,23 +245,23 @@ static QList<QByteArray> readLines(const char* fileName = "kconfigtest")
 // see also testDefaults, which tests reverting with a defaults (global) file available
 void KConfigTest::testDirtyAfterRevert()
 {
-  KConfig sc( "kconfigtest_revert" );
+    KConfig sc("kconfigtest_revert");
 
-  KConfigGroup cg(&sc, "Hello");
-  cg.revertToDefault( "does_not_exist" );
-  QVERIFY(!sc.isDirty());
-  cg.writeEntry("Test", "Correct");
-  QVERIFY(sc.isDirty());
-  sc.sync();
-  QVERIFY(!sc.isDirty());
+    KConfigGroup cg(&sc, "Hello");
+    cg.revertToDefault("does_not_exist");
+    QVERIFY(!sc.isDirty());
+    cg.writeEntry("Test", "Correct");
+    QVERIFY(sc.isDirty());
+    sc.sync();
+    QVERIFY(!sc.isDirty());
 
-  cg.revertToDefault("Test");
-  QVERIFY(sc.isDirty());
-  QVERIFY(sc.sync());
-  QVERIFY(!sc.isDirty());
+    cg.revertToDefault("Test");
+    QVERIFY(sc.isDirty());
+    QVERIFY(sc.sync());
+    QVERIFY(!sc.isDirty());
 
-  cg.revertToDefault("Test");
-  QVERIFY(!sc.isDirty());
+    cg.revertToDefault("Test");
+    QVERIFY(!sc.isDirty());
 }
 
 void KConfigTest::testRevertAllEntries()
@@ -271,21 +269,21 @@ void KConfigTest::testRevertAllEntries()
     // this tests the case were we revert (delete) all entries in a file,
     // leaving a blank file
     {
-        KConfig sc( "konfigtest2", KConfig::SimpleConfig );
-        KConfigGroup cg( &sc, "Hello" );
-        cg.writeEntry( "Test", "Correct" );
+        KConfig sc("konfigtest2", KConfig::SimpleConfig);
+        KConfigGroup cg(&sc, "Hello");
+        cg.writeEntry("Test", "Correct");
     }
 
     {
-        KConfig sc( "konfigtest2", KConfig::SimpleConfig );
-        KConfigGroup cg( &sc, "Hello" );
-        QCOMPARE( cg.readEntry( "Test", "Default" ), QString("Correct") );
-        cg.revertToDefault( "Test" );
+        KConfig sc("konfigtest2", KConfig::SimpleConfig);
+        KConfigGroup cg(&sc, "Hello");
+        QCOMPARE(cg.readEntry("Test", "Default"), QString("Correct"));
+        cg.revertToDefault("Test");
     }
 
-    KConfig sc( "konfigtest2", KConfig::SimpleConfig );
-    KConfigGroup cg( &sc, "Hello" );
-    QCOMPARE( cg.readEntry( "Test", "Default" ), QString("Default") );
+    KConfig sc("konfigtest2", KConfig::SimpleConfig);
+    KConfigGroup cg(&sc, "Hello");
+    QCOMPARE(cg.readEntry("Test", "Default"), QString("Default"));
 }
 
 void KConfigTest::testSimple()
@@ -294,49 +292,49 @@ void KConfigTest::testSimple()
     const QStringList kdeglobals = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("kdeglobals"));
     QVERIFY(!kdeglobals.isEmpty());
 
-  KConfig sc2( "kconfigtest" );
-  QCOMPARE(sc2.name(), QString("kconfigtest"));
+    KConfig sc2("kconfigtest");
+    QCOMPARE(sc2.name(), QString("kconfigtest"));
 
-  // make sure groupList() isn't returning something it shouldn't
-  Q_FOREACH(const QString& group, sc2.groupList()) {
-      QVERIFY(!group.isEmpty() && group != "<default>");
-      QVERIFY(!group.contains(QChar(0x1d)));
-  }
+    // make sure groupList() isn't returning something it shouldn't
+    Q_FOREACH (const QString &group, sc2.groupList()) {
+        QVERIFY(!group.isEmpty() && group != "<default>");
+        QVERIFY(!group.contains(QChar(0x1d)));
+    }
 
-  KConfigGroup sc3( &sc2, "AAA");
+    KConfigGroup sc3(&sc2, "AAA");
 
-  QVERIFY( sc3.hasKey( "stringEntry1" ) ); // from kdeglobals
-  QVERIFY( !sc3.isEntryImmutable("stringEntry1") );
-  QCOMPARE( sc3.readEntry( "stringEntry1" ), QString( STRINGENTRY1 ) );
+    QVERIFY(sc3.hasKey("stringEntry1"));     // from kdeglobals
+    QVERIFY(!sc3.isEntryImmutable("stringEntry1"));
+    QCOMPARE(sc3.readEntry("stringEntry1"), QString(STRINGENTRY1));
 
-  QVERIFY( !sc3.hasKey( "stringEntry2" ) );
-  QCOMPARE( sc3.readEntry( "stringEntry2", QString("bla") ), QString( "bla" ) );
+    QVERIFY(!sc3.hasKey("stringEntry2"));
+    QCOMPARE(sc3.readEntry("stringEntry2", QString("bla")), QString("bla"));
 
-  QVERIFY( !sc3.hasDefault( "stringEntry1" ) );
+    QVERIFY(!sc3.hasDefault("stringEntry1"));
 
-  sc3 = KConfigGroup(&sc2, "Hello");
-  QCOMPARE( sc3.readEntry( "Test", QByteArray() ), QByteArray( UTF8BITENTRY ) );
-  QCOMPARE( sc3.readEntry( "bytearrayEntry", QByteArray() ), BYTEARRAYENTRY );
-  QCOMPARE( sc3.readEntry( ESCAPEKEY ), QString( ESCAPEENTRY ) );
-  QCOMPARE( sc3.readEntry( "Test", QString() ), QString::fromUtf8( UTF8BITENTRY ) );
-  QCOMPARE( sc3.readEntry( "emptyEntry"/*, QString("Fietsbel")*/), QString("") );
-  QCOMPARE( sc3.readEntry("emptyEntry", QString("Fietsbel")).isEmpty(), true );
-  QCOMPARE( sc3.readEntry( "stringEntry1" ), QString( STRINGENTRY1 ) );
-  QCOMPARE( sc3.readEntry( "stringEntry2" ), QString( STRINGENTRY2 ) );
-  QCOMPARE( sc3.readEntry( "stringEntry3" ), QString( STRINGENTRY3 ) );
-  QCOMPARE( sc3.readEntry( "stringEntry4" ), QString( STRINGENTRY4 ) );
-  QVERIFY( !sc3.hasKey( "stringEntry5" ) );
-  QCOMPARE( sc3.readEntry( "stringEntry5", QString("test") ), QString( "test" ) );
-  QVERIFY( !sc3.hasKey( "stringEntry6" ) );
-  QCOMPARE( sc3.readEntry( "stringEntry6", QString("foo") ), QString( "foo" ) );
-  QCOMPARE( sc3.readEntry( "urlEntry1", QUrl() ), QUrl("http://qt-project.org") );
-  QCOMPARE( sc3.readEntry( "boolEntry1", BOOLENTRY1 ), BOOLENTRY1 );
-  QCOMPARE( sc3.readEntry( "boolEntry2", false ), BOOLENTRY2 );
-  QCOMPARE( sc3.readEntry("keywith=equalsign", QString("wrong")), QString(STRINGENTRY1));
-  QCOMPARE( sc3.readEntry( "byteArrayEntry1", QByteArray() ),
-            QByteArray( STRINGENTRY1 ) );
-  QCOMPARE( sc3.readEntry( "doubleEntry1", 0.0 ), DOUBLEENTRY );
-  QCOMPARE( sc3.readEntry( "floatEntry1", 0.0f ), FLOATENTRY );
+    sc3 = KConfigGroup(&sc2, "Hello");
+    QCOMPARE(sc3.readEntry("Test", QByteArray()), QByteArray(UTF8BITENTRY));
+    QCOMPARE(sc3.readEntry("bytearrayEntry", QByteArray()), BYTEARRAYENTRY);
+    QCOMPARE(sc3.readEntry(ESCAPEKEY), QString(ESCAPEENTRY));
+    QCOMPARE(sc3.readEntry("Test", QString()), QString::fromUtf8(UTF8BITENTRY));
+    QCOMPARE(sc3.readEntry("emptyEntry"/*, QString("Fietsbel")*/), QString(""));
+    QCOMPARE(sc3.readEntry("emptyEntry", QString("Fietsbel")).isEmpty(), true);
+    QCOMPARE(sc3.readEntry("stringEntry1"), QString(STRINGENTRY1));
+    QCOMPARE(sc3.readEntry("stringEntry2"), QString(STRINGENTRY2));
+    QCOMPARE(sc3.readEntry("stringEntry3"), QString(STRINGENTRY3));
+    QCOMPARE(sc3.readEntry("stringEntry4"), QString(STRINGENTRY4));
+    QVERIFY(!sc3.hasKey("stringEntry5"));
+    QCOMPARE(sc3.readEntry("stringEntry5", QString("test")), QString("test"));
+    QVERIFY(!sc3.hasKey("stringEntry6"));
+    QCOMPARE(sc3.readEntry("stringEntry6", QString("foo")), QString("foo"));
+    QCOMPARE(sc3.readEntry("urlEntry1", QUrl()), QUrl("http://qt-project.org"));
+    QCOMPARE(sc3.readEntry("boolEntry1", BOOLENTRY1), BOOLENTRY1);
+    QCOMPARE(sc3.readEntry("boolEntry2", false), BOOLENTRY2);
+    QCOMPARE(sc3.readEntry("keywith=equalsign", QString("wrong")), QString(STRINGENTRY1));
+    QCOMPARE(sc3.readEntry("byteArrayEntry1", QByteArray()),
+             QByteArray(STRINGENTRY1));
+    QCOMPARE(sc3.readEntry("doubleEntry1", 0.0), DOUBLEENTRY);
+    QCOMPARE(sc3.readEntry("floatEntry1", 0.0f), FLOATENTRY);
 }
 
 void KConfigTest::testDefaults()
@@ -396,14 +394,14 @@ void KConfigTest::testLocale()
     KConfigGroup group = config.group("Hello");
     group.writeEntry("stringEntry1", Untranslated);
     config.setLocale("fr");
-    group.writeEntry("stringEntry1", Translated, KConfig::Localized|KConfig::Persistent);
+    group.writeEntry("stringEntry1", Translated, KConfig::Localized | KConfig::Persistent);
     QVERIFY(config.sync());
 
     QCOMPARE(group.readEntry("stringEntry1", QString()), Translated);
     QCOMPARE(group.readEntryUntranslated("stringEntry1"), Untranslated);
 
     config.setLocale("C"); // strings written in the "C" locale are written as nonlocalized
-    group.writeEntry("stringEntry1", Untranslated, KConfig::Localized|KConfig::Persistent);
+    group.writeEntry("stringEntry1", Untranslated, KConfig::Localized | KConfig::Persistent);
     QVERIFY(config.sync());
 
     QCOMPARE(group.readEntry("stringEntry1", QString()), Untranslated);
@@ -413,7 +411,7 @@ void KConfigTest::testEncoding()
 {
     QString groupstr = QString::fromUtf8("UTF-8:\xc3\xb6l");
 
-    KConfig c( "kconfigtestencodings" );
+    KConfig c("kconfigtestencodings");
     KConfigGroup cg(&c, groupstr);
     cg.writeEntry("key", "value");
     QVERIFY(c.sync());
@@ -422,7 +420,7 @@ void KConfigTest::testEncoding()
     QCOMPARE(lines.count(), 2);
     QCOMPARE(lines.first(), QByteArray("[UTF-8:\xc3\xb6l]\n"));
 
-    KConfig c2( "kconfigtestencodings" );
+    KConfig c2("kconfigtestencodings");
     KConfigGroup cg2(&c2, groupstr);
     QVERIFY(cg2.readEntry("key") == QByteArray("value"));
 
@@ -431,137 +429,137 @@ void KConfigTest::testEncoding()
 
 void KConfigTest::testLists()
 {
-  KConfig sc2( "kconfigtest" );
-  KConfigGroup sc3(&sc2, "List Types");
+    KConfig sc2("kconfigtest");
+    KConfigGroup sc3(&sc2, "List Types");
 
-  QCOMPARE( sc3.readEntry( QString("stringListEntry"), QStringList()),
-            STRINGLISTENTRY );
+    QCOMPARE(sc3.readEntry(QString("stringListEntry"), QStringList()),
+             STRINGLISTENTRY);
 
-  QCOMPARE( sc3.readEntry( QString("stringListEmptyEntry"), QStringList("wrong") ),
-            STRINGLISTEMPTYENTRY );
+    QCOMPARE(sc3.readEntry(QString("stringListEmptyEntry"), QStringList("wrong")),
+             STRINGLISTEMPTYENTRY);
 
-  QCOMPARE( sc3.readEntry( QString("stringListJustEmptyElement"), QStringList() ),
-            STRINGLISTJUSTEMPTYELEMENT );
+    QCOMPARE(sc3.readEntry(QString("stringListJustEmptyElement"), QStringList()),
+             STRINGLISTJUSTEMPTYELEMENT);
 
-  QCOMPARE( sc3.readEntry( QString("stringListEmptyTrailingElement"), QStringList() ),
-            STRINGLISTEMPTYTRAINLINGELEMENT );
+    QCOMPARE(sc3.readEntry(QString("stringListEmptyTrailingElement"), QStringList()),
+             STRINGLISTEMPTYTRAINLINGELEMENT);
 
-  QCOMPARE( sc3.readEntry( QString("stringListEscapeOddEntry"), QStringList()),
-            STRINGLISTESCAPEODDENTRY );
+    QCOMPARE(sc3.readEntry(QString("stringListEscapeOddEntry"), QStringList()),
+             STRINGLISTESCAPEODDENTRY);
 
-  QCOMPARE( sc3.readEntry( QString("stringListEscapeEvenEntry"), QStringList()),
-            STRINGLISTESCAPEEVENENTRY );
+    QCOMPARE(sc3.readEntry(QString("stringListEscapeEvenEntry"), QStringList()),
+             STRINGLISTESCAPEEVENENTRY);
 
-  QCOMPARE( sc3.readEntry( QString("stringListEscapeCommaEntry"), QStringList()),
-            STRINGLISTESCAPECOMMAENTRY );
+    QCOMPARE(sc3.readEntry(QString("stringListEscapeCommaEntry"), QStringList()),
+             STRINGLISTESCAPECOMMAENTRY);
 
-  QCOMPARE( sc3.readEntry( "listOfIntsEntry1" ), QString::fromLatin1( "1,2,3,4" ) );
-  QList<int> expectedIntList = INTLISTENTRY1;
-  QVERIFY( sc3.readEntry( "listOfIntsEntry1", QList<int>() ) == expectedIntList );
+    QCOMPARE(sc3.readEntry("listOfIntsEntry1"), QString::fromLatin1("1,2,3,4"));
+    QList<int> expectedIntList = INTLISTENTRY1;
+    QVERIFY(sc3.readEntry("listOfIntsEntry1", QList<int>()) == expectedIntList);
 
-  QCOMPARE( QVariant(sc3.readEntry( "variantListEntry", VARIANTLISTENTRY )).toStringList(),
-            QVariant(VARIANTLISTENTRY).toStringList() );
+    QCOMPARE(QVariant(sc3.readEntry("variantListEntry", VARIANTLISTENTRY)).toStringList(),
+             QVariant(VARIANTLISTENTRY).toStringList());
 
-  QCOMPARE( sc3.readEntry( "listOfByteArraysEntry1", QList<QByteArray>()), BYTEARRAYLISTENTRY1 );
+    QCOMPARE(sc3.readEntry("listOfByteArraysEntry1", QList<QByteArray>()), BYTEARRAYLISTENTRY1);
 }
 
 void KConfigTest::testPath()
 {
-  KConfig sc2( "kconfigtest" );
-  KConfigGroup sc3(&sc2, "Path Type");
-  QCOMPARE( sc3.readPathEntry( "homepath", QString() ), HOMEPATH );
-  QCOMPARE( sc3.readPathEntry( "homepathescape", QString() ), HOMEPATHESCAPE );
-  QCOMPARE( sc3.entryMap()["homepath"], HOMEPATH );
+    KConfig sc2("kconfigtest");
+    KConfigGroup sc3(&sc2, "Path Type");
+    QCOMPARE(sc3.readPathEntry("homepath", QString()), HOMEPATH);
+    QCOMPARE(sc3.readPathEntry("homepathescape", QString()), HOMEPATHESCAPE);
+    QCOMPARE(sc3.entryMap()["homepath"], HOMEPATH);
 
-  {
-      QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/pathtest");
-      file.open(QIODevice::WriteOnly|QIODevice::Text);
-      QTextStream out(&file);
-      out.setCodec("UTF-8");
-      out << "[Test Group]" << endl
-              << "homePath=$HOME/foo" << endl
-              << "homePath2=file://$HOME/foo" << endl
-              << "withBraces[$e]=file://${HOME}/foo" << endl
-              << "URL[$e]=file://${HOME}/foo" << endl
-              << "hostname[$e]=$(hostname)" << endl
-              << "noeol=foo"; // no EOL
-  }
-  KConfig cf2("pathtest");
-  KConfigGroup group = cf2.group("Test Group");
-  QVERIFY(group.hasKey("homePath"));
-  QCOMPARE(group.readPathEntry("homePath", QString()), HOMEPATH);
-  QVERIFY(group.hasKey("homePath2"));
-  QCOMPARE(group.readPathEntry("homePath2", QString()), QString("file://" + HOMEPATH) );
-  QVERIFY(group.hasKey("withBraces"));
-  QCOMPARE(group.readPathEntry("withBraces", QString()), QString("file://" + HOMEPATH) );
-  QVERIFY(group.hasKey("URL"));
-  QCOMPARE(group.readEntry("URL", QString()), QString("file://" + HOMEPATH) );
+    {
+        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/pathtest");
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream out(&file);
+        out.setCodec("UTF-8");
+        out << "[Test Group]" << endl
+            << "homePath=$HOME/foo" << endl
+            << "homePath2=file://$HOME/foo" << endl
+            << "withBraces[$e]=file://${HOME}/foo" << endl
+            << "URL[$e]=file://${HOME}/foo" << endl
+            << "hostname[$e]=$(hostname)" << endl
+            << "noeol=foo"; // no EOL
+    }
+    KConfig cf2("pathtest");
+    KConfigGroup group = cf2.group("Test Group");
+    QVERIFY(group.hasKey("homePath"));
+    QCOMPARE(group.readPathEntry("homePath", QString()), HOMEPATH);
+    QVERIFY(group.hasKey("homePath2"));
+    QCOMPARE(group.readPathEntry("homePath2", QString()), QString("file://" + HOMEPATH));
+    QVERIFY(group.hasKey("withBraces"));
+    QCOMPARE(group.readPathEntry("withBraces", QString()), QString("file://" + HOMEPATH));
+    QVERIFY(group.hasKey("URL"));
+    QCOMPARE(group.readEntry("URL", QString()), QString("file://" + HOMEPATH));
 #if !defined(Q_OS_WIN32) && !defined(Q_OS_MAC)
-  // I don't know if this will work on windows
-  // This test hangs on OS X
-  QVERIFY(group.hasKey("hostname"));
-  char hostname[256];
-  QVERIFY(::gethostname(hostname, sizeof(hostname)) == 0);
-  QCOMPARE(group.readEntry("hostname", QString()), QString::fromLatin1(hostname));
+    // I don't know if this will work on windows
+    // This test hangs on OS X
+    QVERIFY(group.hasKey("hostname"));
+    char hostname[256];
+    QVERIFY(::gethostname(hostname, sizeof(hostname)) == 0);
+    QCOMPARE(group.readEntry("hostname", QString()), QString::fromLatin1(hostname));
 #endif
-  QVERIFY(group.hasKey("noeol"));
-  QCOMPARE(group.readEntry("noeol", QString()), QString("foo"));
+    QVERIFY(group.hasKey("noeol"));
+    QCOMPARE(group.readEntry("noeol", QString()), QString("foo"));
 }
 
 void KConfigTest::testPersistenceOfExpandFlagForPath()
 {
-  // This test checks that a path entry starting with $HOME is still flagged
-  // with the expand flag after the config was altered without rewriting the
-  // path entry.
+    // This test checks that a path entry starting with $HOME is still flagged
+    // with the expand flag after the config was altered without rewriting the
+    // path entry.
 
-  // 1st step: Open the config, add a new dummy entry and then sync the config
-  // back to the storage.
-  {
-  KConfig sc2( "kconfigtest" );
-  KConfigGroup sc3(&sc2, "Path Type");
-  sc3.writeEntry( "dummy", "dummy" );
-  QVERIFY(sc2.sync());
-  }
+    // 1st step: Open the config, add a new dummy entry and then sync the config
+    // back to the storage.
+    {
+        KConfig sc2("kconfigtest");
+        KConfigGroup sc3(&sc2, "Path Type");
+        sc3.writeEntry("dummy", "dummy");
+        QVERIFY(sc2.sync());
+    }
 
-  // 2nd step: Call testPath() again. Rewriting the config must not break
-  // the testPath() test.
-  testPath();
+    // 2nd step: Call testPath() again. Rewriting the config must not break
+    // the testPath() test.
+    testPath();
 }
 
 void KConfigTest::testComplex()
 {
-  KConfig sc2( "kconfigtest" );
-  KConfigGroup sc3(&sc2, "Complex Types");
+    KConfig sc2("kconfigtest");
+    KConfigGroup sc3(&sc2, "Complex Types");
 
-  QCOMPARE( sc3.readEntry( "pointEntry", QPoint() ), POINTENTRY );
-  QCOMPARE( sc3.readEntry( "sizeEntry", SIZEENTRY ), SIZEENTRY);
-  QCOMPARE( sc3.readEntry( "rectEntry", QRect(1,2,3,4) ), RECTENTRY );
-  QCOMPARE( sc3.readEntry( "dateTimeEntry", QDateTime() ).toString(Qt::ISODate),
-            DATETIMEENTRY.toString(Qt::ISODate) );
-  QCOMPARE( sc3.readEntry( "dateEntry", QDate() ).toString(Qt::ISODate),
-            DATETIMEENTRY.date().toString(Qt::ISODate) );
-  QCOMPARE( sc3.readEntry( "dateTimeEntry", QDate() ), DATETIMEENTRY.date() );
+    QCOMPARE(sc3.readEntry("pointEntry", QPoint()), POINTENTRY);
+    QCOMPARE(sc3.readEntry("sizeEntry", SIZEENTRY), SIZEENTRY);
+    QCOMPARE(sc3.readEntry("rectEntry", QRect(1, 2, 3, 4)), RECTENTRY);
+    QCOMPARE(sc3.readEntry("dateTimeEntry", QDateTime()).toString(Qt::ISODate),
+             DATETIMEENTRY.toString(Qt::ISODate));
+    QCOMPARE(sc3.readEntry("dateEntry", QDate()).toString(Qt::ISODate),
+             DATETIMEENTRY.date().toString(Qt::ISODate));
+    QCOMPARE(sc3.readEntry("dateTimeEntry", QDate()), DATETIMEENTRY.date());
 }
 
 void KConfigTest::testEnums()
 {
-  KConfig sc("kconfigtest");
-  KConfigGroup sc3(&sc, "Enum Types" );
+    KConfig sc("kconfigtest");
+    KConfigGroup sc3(&sc, "Enum Types");
 
-  QCOMPARE( sc3.readEntry( "enum-10" ), QString("Tens"));
-  QVERIFY( readEntry( sc3, "enum-100", Ones) != Ones);
-  QVERIFY( readEntry( sc3, "enum-100", Ones) != Tens);
+    QCOMPARE(sc3.readEntry("enum-10"), QString("Tens"));
+    QVERIFY(readEntry(sc3, "enum-100", Ones) != Ones);
+    QVERIFY(readEntry(sc3, "enum-100", Ones) != Tens);
 
-  QCOMPARE( sc3.readEntry( "flags-bit0" ), QString("bit0"));
-  QVERIFY( readEntry( sc3, "flags-bit0", Flags() ) == bit0 );
+    QCOMPARE(sc3.readEntry("flags-bit0"), QString("bit0"));
+    QVERIFY(readEntry(sc3, "flags-bit0", Flags()) == bit0);
 
-  int eid = staticMetaObject.indexOfEnumerator( "Flags" );
-  QVERIFY( eid != -1 );
-  QMetaEnum me = staticMetaObject.enumerator( eid );
-  Flags bitfield = bit0|bit1;
+    int eid = staticMetaObject.indexOfEnumerator("Flags");
+    QVERIFY(eid != -1);
+    QMetaEnum me = staticMetaObject.enumerator(eid);
+    Flags bitfield = bit0 | bit1;
 
-  QCOMPARE( sc3.readEntry( "flags-bit0-bit1" ), QString( me.valueToKeys(bitfield) ) );
-  QVERIFY( readEntry( sc3, "flags-bit0-bit1", Flags() ) == bitfield );
+    QCOMPARE(sc3.readEntry("flags-bit0-bit1"), QString(me.valueToKeys(bitfield)));
+    QVERIFY(readEntry(sc3, "flags-bit0-bit1", Flags()) == bitfield);
 }
 
 void KConfigTest::testEntryMap()
@@ -580,8 +578,8 @@ void KConfigTest::testEntryMap()
     QCOMPARE(entryMap.value("bytearrayEntry"), QString::fromUtf8(BYTEARRAYENTRY));
     QCOMPARE(entryMap.value("emptyEntry"), QString());
     QVERIFY(entryMap.contains("emptyEntry"));
-    QCOMPARE(entryMap.value("boolEntry1"), QString(BOOLENTRY1?"true":"false"));
-    QCOMPARE(entryMap.value("boolEntry2"), QString(BOOLENTRY2?"true":"false"));
+    QCOMPARE(entryMap.value("boolEntry1"), QString(BOOLENTRY1 ? "true" : "false"));
+    QCOMPARE(entryMap.value("boolEntry2"), QString(BOOLENTRY2 ? "true" : "false"));
     QCOMPARE(entryMap.value("keywith=equalsign"), QString(STRINGENTRY1));
     QCOMPARE(entryMap.value("byteArrayEntry1"), QString(STRINGENTRY1));
     QCOMPARE(entryMap.value("doubleEntry1"), QString::number(DOUBLEENTRY, 'g', 15));
@@ -590,74 +588,74 @@ void KConfigTest::testEntryMap()
 
 void KConfigTest::testInvalid()
 {
-  KConfig sc( "kconfigtest" );
+    KConfig sc("kconfigtest");
 
-  // all of these should print a message to the kdebug.dbg file
-  KConfigGroup sc3(&sc, "Invalid Types" );
-  sc3.writeEntry( "badList", VARIANTLISTENTRY2 );
+    // all of these should print a message to the kdebug.dbg file
+    KConfigGroup sc3(&sc, "Invalid Types");
+    sc3.writeEntry("badList", VARIANTLISTENTRY2);
 
-  QList<int> list;
+    QList<int> list;
 
-  // 1 element list
-  list << 1;
-  sc3.writeEntry( QString("badList"), list);
+    // 1 element list
+    list << 1;
+    sc3.writeEntry(QString("badList"), list);
 
-  QVERIFY( sc3.readEntry( "badList", QPoint() ) == QPoint() );
-  QVERIFY( sc3.readEntry( "badList", QRect() ) == QRect() );
-  QVERIFY( sc3.readEntry( "badList", QSize() ) == QSize() );
-  QVERIFY( sc3.readEntry( "badList", QDate() ) == QDate() );
-  QVERIFY( sc3.readEntry( "badList", QDateTime() ) == QDateTime() );
+    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
+    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
+    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
+    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
-  // 2 element list
-  list << 2;
-  sc3.writeEntry( "badList", list);
+    // 2 element list
+    list << 2;
+    sc3.writeEntry("badList", list);
 
-  QVERIFY( sc3.readEntry( "badList", QRect() ) == QRect() );
-  QVERIFY( sc3.readEntry( "badList", QDate() ) == QDate() );
-  QVERIFY( sc3.readEntry( "badList", QDateTime() ) == QDateTime() );
+    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
+    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
-  // 3 element list
-  list << 303;
-  sc3.writeEntry( "badList", list);
+    // 3 element list
+    list << 303;
+    sc3.writeEntry("badList", list);
 
-  QVERIFY( sc3.readEntry( "badList", QPoint() ) == QPoint() );
-  QVERIFY( sc3.readEntry( "badList", QRect() ) == QRect() );
-  QVERIFY( sc3.readEntry( "badList", QSize() ) == QSize() );
-  QVERIFY( sc3.readEntry( "badList", QDate() ) == QDate() ); // out of bounds
-  QVERIFY( sc3.readEntry( "badList", QDateTime() ) == QDateTime() );
+    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
+    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
+    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
+    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());     // out of bounds
+    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
-  // 4 element list
-  list << 4;
-  sc3.writeEntry( "badList", list );
+    // 4 element list
+    list << 4;
+    sc3.writeEntry("badList", list);
 
-  QVERIFY( sc3.readEntry( "badList", QPoint() ) == QPoint() );
-  QVERIFY( sc3.readEntry( "badList", QSize() ) == QSize() );
-  QVERIFY( sc3.readEntry( "badList", QDate() ) == QDate() );
-  QVERIFY( sc3.readEntry( "badList", QDateTime() ) == QDateTime() );
+    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
+    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
+    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
-  // 5 element list
-  list[2] = 3;
-  list << 5;
-  sc3.writeEntry( "badList", list);
+    // 5 element list
+    list[2] = 3;
+    list << 5;
+    sc3.writeEntry("badList", list);
 
-  QVERIFY( sc3.readEntry( "badList", QPoint() ) == QPoint() );
-  QVERIFY( sc3.readEntry( "badList", QRect() ) == QRect() );
-  QVERIFY( sc3.readEntry( "badList", QSize() ) == QSize() );
-  QVERIFY( sc3.readEntry( "badList", QDate() ) == QDate() );
-  QVERIFY( sc3.readEntry( "badList", QDateTime() ) == QDateTime() );
+    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
+    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
+    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
+    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
-  // 6 element list
-  list << 6;
-  sc3.writeEntry( "badList", list);
+    // 6 element list
+    list << 6;
+    sc3.writeEntry("badList", list);
 
-  QVERIFY( sc3.readEntry( "badList", QPoint() ) == QPoint() );
-  QVERIFY( sc3.readEntry( "badList", QRect() ) == QRect() );
-  QVERIFY( sc3.readEntry( "badList", QSize() ) == QSize() );
+    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
+    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
+    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
 }
 
 void KConfigTest::testChangeGroup()
 {
-    KConfig sc( "kconfigtest" );
+    KConfig sc("kconfigtest");
     KConfigGroup sc3(&sc, "Hello");
     QCOMPARE(sc3.name(), QString("Hello"));
     KConfigGroup newGroup(sc3);
@@ -687,7 +685,7 @@ void KConfigTest::testChangeGroup()
 // Simple test for deleteEntry
 void KConfigTest::testDeleteEntry()
 {
-    const char* configFile = "kconfigdeletetest";
+    const char *configFile = "kconfigdeletetest";
     {
         KConfig conf(configFile);
         conf.group("Hello").writeEntry("DelKey", "ToBeDeleted");
@@ -700,80 +698,82 @@ void KConfigTest::testDeleteEntry()
     KConfigGroup group(&sc, "Hello");
 
     group.deleteEntry("DelKey");
-    QCOMPARE( group.readEntry("DelKey", QString("Fietsbel")), QString("Fietsbel") );
+    QCOMPARE(group.readEntry("DelKey", QString("Fietsbel")), QString("Fietsbel"));
 
     QVERIFY(group.sync());
     Q_ASSERT(!readLines(configFile).contains("DelKey=ToBeDeleted\n"));
-    QCOMPARE( group.readEntry("DelKey", QString("still deleted")), QString("still deleted") );
+    QCOMPARE(group.readEntry("DelKey", QString("still deleted")), QString("still deleted"));
 }
 
 void KConfigTest::testDelete()
 {
-  KConfig sc( "kconfigtest" );
+    KConfig sc("kconfigtest");
 
-  KConfigGroup ct(&sc, "Complex Types");
+    KConfigGroup ct(&sc, "Complex Types");
 
-  // First delete a nested group
-  KConfigGroup delgr(&ct, "Nested Group 3");
-  QVERIFY(delgr.exists());
-  QVERIFY(ct.hasGroup("Nested Group 3"));
-  delgr.deleteGroup();
-  QVERIFY(!delgr.exists());
-  QVERIFY(!ct.hasGroup("Nested Group 3"));
-  QVERIFY(ct.groupList().contains("Nested Group 3"));
+    // First delete a nested group
+    KConfigGroup delgr(&ct, "Nested Group 3");
+    QVERIFY(delgr.exists());
+    QVERIFY(ct.hasGroup("Nested Group 3"));
+    delgr.deleteGroup();
+    QVERIFY(!delgr.exists());
+    QVERIFY(!ct.hasGroup("Nested Group 3"));
+    QVERIFY(ct.groupList().contains("Nested Group 3"));
 
-  KConfigGroup ng(&ct, "Nested Group 2");
-  QVERIFY(sc.hasGroup("Complex Types"));
-  QVERIFY(!sc.hasGroup("Does not exist"));
-  sc.deleteGroup("Complex Types");
-  QCOMPARE(sc.group("Complex Types").keyList().count(), 0);
-  QVERIFY(!sc.hasGroup("Complex Types")); // #192266
-  QVERIFY(!sc.group("Complex Types").exists());
-  QVERIFY(!ct.hasGroup("Nested Group 1"));
+    KConfigGroup ng(&ct, "Nested Group 2");
+    QVERIFY(sc.hasGroup("Complex Types"));
+    QVERIFY(!sc.hasGroup("Does not exist"));
+    sc.deleteGroup("Complex Types");
+    QCOMPARE(sc.group("Complex Types").keyList().count(), 0);
+    QVERIFY(!sc.hasGroup("Complex Types")); // #192266
+    QVERIFY(!sc.group("Complex Types").exists());
+    QVERIFY(!ct.hasGroup("Nested Group 1"));
 
-  QCOMPARE(ct.group("Nested Group 1").keyList().count(), 0);
-  QCOMPARE(ct.group("Nested Group 2").keyList().count(), 0);
-  QCOMPARE(ng.group("Nested Group 2.1").keyList().count(), 0);
+    QCOMPARE(ct.group("Nested Group 1").keyList().count(), 0);
+    QCOMPARE(ct.group("Nested Group 2").keyList().count(), 0);
+    QCOMPARE(ng.group("Nested Group 2.1").keyList().count(), 0);
 
-  KConfigGroup cg(&sc , "AAA" );
-  cg.deleteGroup();
-  QVERIFY( sc.entryMap("Complex Types").isEmpty() );
-  QVERIFY( sc.entryMap("AAA").isEmpty() );
-  QVERIFY( !sc.entryMap("Hello").isEmpty() ); //not deleted group
-  QVERIFY( sc.entryMap("FooBar").isEmpty() ); //inexistant group
+    KConfigGroup cg(&sc, "AAA");
+    cg.deleteGroup();
+    QVERIFY(sc.entryMap("Complex Types").isEmpty());
+    QVERIFY(sc.entryMap("AAA").isEmpty());
+    QVERIFY(!sc.entryMap("Hello").isEmpty());   //not deleted group
+    QVERIFY(sc.entryMap("FooBar").isEmpty());   //inexistant group
 
-  QVERIFY(cg.sync());
-  // Check what happens on disk
-  const QList<QByteArray> lines = readLines();
-  //qDebug() << lines;
-  QVERIFY(!lines.contains("[Complex Types]\n"));
-  QVERIFY(!lines.contains("[Complex Types][Nested Group 1]\n"));
-  QVERIFY(!lines.contains("[Complex Types][Nested Group 2]\n"));
-  QVERIFY(!lines.contains("[Complex Types][Nested Group 2.1]\n"));
-  QVERIFY(!lines.contains("[AAA]\n"));
-  QVERIFY(lines.contains("[Hello]\n")); // a group that was not deleted
+    QVERIFY(cg.sync());
+    // Check what happens on disk
+    const QList<QByteArray> lines = readLines();
+    //qDebug() << lines;
+    QVERIFY(!lines.contains("[Complex Types]\n"));
+    QVERIFY(!lines.contains("[Complex Types][Nested Group 1]\n"));
+    QVERIFY(!lines.contains("[Complex Types][Nested Group 2]\n"));
+    QVERIFY(!lines.contains("[Complex Types][Nested Group 2.1]\n"));
+    QVERIFY(!lines.contains("[AAA]\n"));
+    QVERIFY(lines.contains("[Hello]\n")); // a group that was not deleted
 
-  // test for entries that are marked as deleted when there is no default
-  KConfig cf("kconfigtest", KConfig::SimpleConfig); // make sure there are no defaults
-  cg = cf.group("Portable Devices");
-  cg.writeEntry("devices|manual|(null)", "whatever");
-  cg.writeEntry("devices|manual|/mnt/ipod", "/mnt/ipod");
-  QVERIFY(cf.sync());
+    // test for entries that are marked as deleted when there is no default
+    KConfig cf("kconfigtest", KConfig::SimpleConfig); // make sure there are no defaults
+    cg = cf.group("Portable Devices");
+    cg.writeEntry("devices|manual|(null)", "whatever");
+    cg.writeEntry("devices|manual|/mnt/ipod", "/mnt/ipod");
+    QVERIFY(cf.sync());
 
-  int count=0;
-  Q_FOREACH(const QByteArray& item, readLines())
-      if (item.startsWith("devices|")) // krazy:exclude=strings
-          count++;
-  QCOMPARE(count, 2);
-  cg.deleteEntry("devices|manual|/mnt/ipod");
-  QVERIFY(cf.sync());
-  Q_FOREACH(const QByteArray& item, readLines())
-      QVERIFY(!item.contains("ipod"));
+    int count = 0;
+    Q_FOREACH (const QByteArray &item, readLines())
+        if (item.startsWith("devices|")) { // krazy:exclude=strings
+            count++;
+        }
+    QCOMPARE(count, 2);
+    cg.deleteEntry("devices|manual|/mnt/ipod");
+    QVERIFY(cf.sync());
+    Q_FOREACH (const QByteArray &item, readLines()) {
+        QVERIFY(!item.contains("ipod"));
+    }
 }
 
 void KConfigTest::testDefaultGroup()
 {
-    KConfig sc( "kconfigtest" );
+    KConfig sc("kconfigtest");
     KConfigGroup defaultGroup(&sc, "<default>");
     QCOMPARE(defaultGroup.name(), QString("<default>"));
     QVERIFY(!defaultGroup.exists());
@@ -804,7 +804,7 @@ void KConfigTest::testDefaultGroup()
     QCOMPARE(lines.first(), QByteArray("TestKey=defaultGroup\n"));
 
     // Now that the group exists make sure it isn't returned from groupList()
-    Q_FOREACH(const QString& group, sc.groupList()) {
+    Q_FOREACH (const QString &group, sc.groupList()) {
         QVERIFY(!group.isEmpty() && group != "<default>");
     }
 
@@ -818,7 +818,7 @@ void KConfigTest::testDefaultGroup()
 
 void KConfigTest::testEmptyGroup()
 {
-    KConfig sc( "kconfigtest" );
+    KConfig sc("kconfigtest");
     KConfigGroup emptyGroup(&sc, "");
     QCOMPARE(emptyGroup.name(), QString("<default>")); // confusing, heh?
     QVERIFY(!emptyGroup.exists());
@@ -849,7 +849,7 @@ void KConfigTest::testEmptyGroup()
     QCOMPARE(lines.first(), QByteArray("TestKey=emptyGroup\n"));
 
     // Now that the group exists make sure it isn't returned from groupList()
-    Q_FOREACH(const QString& group, sc.groupList()) {
+    Q_FOREACH (const QString &group, sc.groupList()) {
         QVERIFY(!group.isEmpty() && group != "<default>");
     }
     emptyGroup.deleteGroup();
@@ -872,7 +872,7 @@ void KConfigTest::testCascadingWithLocale()
     const QString globalConfigDir = globalDir.path();
     QVERIFY(QDir().mkpath(globalConfigDir));
     QFile global(globalConfigDir + "/foo.desktop");
-    QVERIFY(global.open(QIODevice::WriteOnly|QIODevice::Text));
+    QVERIFY(global.open(QIODevice::WriteOnly | QIODevice::Text));
     QTextStream globalOut(&global);
     globalOut << "[Group]" << endl
               << "FromGlobal=true" << endl
@@ -886,7 +886,7 @@ void KConfigTest::testCascadingWithLocale()
     const QString middleConfigDir = middleDir.path();
     QVERIFY(QDir().mkpath(middleConfigDir));
     QFile local(middleConfigDir + "/foo.desktop");
-    QVERIFY(local.open(QIODevice::WriteOnly|QIODevice::Text));
+    QVERIFY(local.open(QIODevice::WriteOnly | QIODevice::Text));
     QTextStream out(&local);
     out << "[Group]" << endl
         << "FromLocal=true" << endl
@@ -917,18 +917,19 @@ void KConfigTest::testMerge()
     cg.writeEntry("entry", " random entry");
     cg.writeEntry("another entry", "blah blah blah");
 
-    { // simulate writing by another process
+    {
+        // simulate writing by another process
         QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/mergetest");
-        file.open(QIODevice::WriteOnly|QIODevice::Text);
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
         out << "[Merged Group]" << endl
-                << "entry1=Testing" << endl
-                << "entry2=More Testing" << endl
-                << "[some group]" << endl
-                << "entry[fr]=French" << endl
-                << "entry[es]=Spanish" << endl
-                << "entry[de]=German" << endl;
+            << "entry1=Testing" << endl
+            << "entry2=More Testing" << endl
+            << "[some group]" << endl
+            << "entry[fr]=French" << endl
+            << "entry[es]=Spanish" << endl
+            << "entry[de]=German" << endl;
     }
     QVERIFY(config.sync());
 
@@ -936,18 +937,18 @@ void KConfigTest::testMerge()
         QList<QByteArray> lines;
         // this is what the file should look like
         lines << "[Merged Group]\n"
-                << "entry1=Testing\n"
-                << "entry2=More Testing\n"
-                << "\n"
-                << "[some group]\n"
-                << "another entry=blah blah blah\n"
-                << "entry=\\srandom entry\n"
-                << "entry[de]=German\n"
-                << "entry[es]=Spanish\n"
-                << "entry[fr]=French\n";
+              << "entry1=Testing\n"
+              << "entry2=More Testing\n"
+              << "\n"
+              << "[some group]\n"
+              << "another entry=blah blah blah\n"
+              << "entry=\\srandom entry\n"
+              << "entry[de]=German\n"
+              << "entry[es]=Spanish\n"
+              << "entry[fr]=French\n";
         QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/mergetest");
-        file.open(QIODevice::ReadOnly|QIODevice::Text);
-        Q_FOREACH (const QByteArray& line, lines) {
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        Q_FOREACH (const QByteArray &line, lines) {
             QCOMPARE(line, file.readLine());
         }
     }
@@ -957,11 +958,11 @@ void KConfigTest::testImmutable()
 {
     {
         QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/immutabletest");
-        file.open(QIODevice::WriteOnly|QIODevice::Text);
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
         out << "[$i]" << endl
-                << "entry1=Testing" << endl
+            << "entry1=Testing" << endl
             << "[group][$i]" << endl
             << "[group][subgroup][$i]" << endl;
     }
@@ -982,7 +983,7 @@ void KConfigTest::testOptionOrder()
 {
     {
         QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/doubleattrtest");
-        file.open(QIODevice::WriteOnly|QIODevice::Text);
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
         out << "[group3]" << endl
@@ -993,12 +994,12 @@ void KConfigTest::testOptionOrder()
     config.setLocale("de_DE");
     KConfigGroup cg3 = config.group("group3");
     QVERIFY(!cg3.isImmutable());
-    QCOMPARE(cg3.readEntry("entry2",""), QString("t2"));
+    QCOMPARE(cg3.readEntry("entry2", ""), QString("t2"));
     QVERIFY(cg3.isEntryImmutable("entry2"));
     config.setLocale("C");
-    QCOMPARE(cg3.readEntry("entry2",""), QString("unlocalized"));
+    QCOMPARE(cg3.readEntry("entry2", ""), QString("unlocalized"));
     QVERIFY(!cg3.isEntryImmutable("entry2"));
-    cg3.writeEntry("entry2","modified");
+    cg3.writeEntry("entry2", "modified");
     QVERIFY(config.sync());
 
     {
@@ -1009,37 +1010,36 @@ void KConfigTest::testOptionOrder()
               << "entry2[de_DE][$i]=t2\n";
 
         QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/doubleattrtest");
-        file.open(QIODevice::ReadOnly|QIODevice::Text);
-        Q_FOREACH (const QByteArray& line, lines) {
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        Q_FOREACH (const QByteArray &line, lines) {
             QCOMPARE(line, file.readLine());
         }
     }
 }
 
-
 void KConfigTest::testGroupEscape()
 {
     KConfig config("groupescapetest", KConfig::SimpleConfig);
-    QVERIFY( config.group(DOLLARGROUP).exists() );
+    QVERIFY(config.group(DOLLARGROUP).exists());
 }
 
 void KConfigTest::testSubGroup()
 {
-    KConfig sc( "kconfigtest" );
-    KConfigGroup cg( &sc, "ParentGroup" );
-    QCOMPARE(cg.readEntry( "parentgrpstring", ""), QString("somevalue") );
-    KConfigGroup subcg1( &cg, "SubGroup1");
+    KConfig sc("kconfigtest");
+    KConfigGroup cg(&sc, "ParentGroup");
+    QCOMPARE(cg.readEntry("parentgrpstring", ""), QString("somevalue"));
+    KConfigGroup subcg1(&cg, "SubGroup1");
     QCOMPARE(subcg1.name(), QString("SubGroup1"));
-    QCOMPARE(subcg1.readEntry( "somestring", ""), QString("somevalue") );
-    KConfigGroup subcg2( &cg, "SubGroup2");
+    QCOMPARE(subcg1.readEntry("somestring", ""), QString("somevalue"));
+    KConfigGroup subcg2(&cg, "SubGroup2");
     QCOMPARE(subcg2.name(), QString("SubGroup2"));
-    QCOMPARE(subcg2.readEntry( "substring", ""), QString("somevalue") );
-    KConfigGroup subcg3( &cg, "SubGroup/3");
-    QCOMPARE(subcg3.readEntry( "sub3string", ""), QString("somevalue") );
+    QCOMPARE(subcg2.readEntry("substring", ""), QString("somevalue"));
+    KConfigGroup subcg3(&cg, "SubGroup/3");
+    QCOMPARE(subcg3.readEntry("sub3string", ""), QString("somevalue"));
     QCOMPARE(subcg3.name(), QString("SubGroup/3"));
-    KConfigGroup rcg( &sc, "" );
-    KConfigGroup srcg( &rcg, "ParentGroup" );
-    QCOMPARE(srcg.readEntry( "parentgrpstring", ""), QString("somevalue") );
+    KConfigGroup rcg(&sc, "");
+    KConfigGroup srcg(&rcg, "ParentGroup");
+    QCOMPARE(srcg.readEntry("parentgrpstring", ""), QString("somevalue"));
 
     QStringList groupList = cg.groupList();
     groupList.sort(); // comes from QSet, so order is undefined
@@ -1058,13 +1058,13 @@ void KConfigTest::testSubGroup()
     // shows up in groupList of sc
     KConfigGroup neg(&sc, "NoEntryGroup");
     KConfigGroup negsub1(&neg, "NEG Child1");
-                 negsub1.writeEntry( "entry", "somevalue" );
+    negsub1.writeEntry("entry", "somevalue");
     KConfigGroup negsub2(&neg, "NEG Child2");
     KConfigGroup negsub3(&neg, "NEG Child3");
     KConfigGroup negsub31(&negsub3, "NEG Child3-1");
     KConfigGroup negsub4(&neg, "NEG Child4");
     KConfigGroup negsub41(&negsub4, "NEG Child4-1");
-                 negsub41.writeEntry( "entry", "somevalue" );
+    negsub41.writeEntry("entry", "somevalue");
 
     // A group exists if it has content
     QVERIFY(negsub1.exists());
@@ -1090,11 +1090,11 @@ void KConfigTest::testSubGroup()
     QCOMPARE(groups, QStringList() << "NEG Child1" << "NEG Child4");
 
     // make sure groupList() isn't returning something it shouldn't
-    Q_FOREACH(const QString& group, sc.groupList()) {
-      QVERIFY(!group.isEmpty() && group != "<default>");
-      QVERIFY(!group.contains(QChar(0x1d)));
-      QVERIFY(!group.contains("subgroup"));
-      QVERIFY(!group.contains("SubGroup"));
+    Q_FOREACH (const QString &group, sc.groupList()) {
+        QVERIFY(!group.isEmpty() && group != "<default>");
+        QVERIFY(!group.contains(QChar(0x1d)));
+        QVERIFY(!group.contains("subgroup"));
+        QVERIFY(!group.contains("SubGroup"));
     }
 
     QVERIFY(sc.sync());
@@ -1119,9 +1119,9 @@ void KConfigTest::testAddConfigSources()
     QCOMPARE(specificgrp.readEntry("ExistingEntry", ""), QString("DevValue"));
 
     KConfigGroup sharedgrp(&cf, "Shared Group");
-    QCOMPARE(sharedgrp.readEntry("SomeSpecificOnlyEntry",""), QString("DevValue"));
-    QCOMPARE(sharedgrp.readEntry("SomeBaseOnlyEntry",""), QString("BaseValue"));
-    QCOMPARE(sharedgrp.readEntry("SomeSharedEntry",""), QString("DevValue"));
+    QCOMPARE(sharedgrp.readEntry("SomeSpecificOnlyEntry", ""), QString("DevValue"));
+    QCOMPARE(sharedgrp.readEntry("SomeBaseOnlyEntry", ""), QString("BaseValue"));
+    QCOMPARE(sharedgrp.readEntry("SomeSharedEntry", ""), QString("DevValue"));
 
     KConfigGroup basegrp(&cf, "Base Only Group");
     QCOMPARE(basegrp.readEntry("ExistingEntry", ""), QString("BaseValue"));
@@ -1236,7 +1236,7 @@ void KConfigTest::testReparent()
     QCOMPARE(group.entryMap(), originalMap);
 }
 
-static void ageTimeStamp(const QString& path, int nsec)
+static void ageTimeStamp(const QString &path, int nsec)
 {
 #ifdef Q_OS_UNIX
     QDateTime mtime = QFileInfo(path).lastModified().addSecs(-nsec);
@@ -1278,7 +1278,7 @@ void KConfigTest::testWriteOnSync()
     // Should not rewrite the local config file.
     KConfigGroup cgGlobal(&sc, "Globals");
     cgGlobal.writeEntry("someGlobalString", "whatever",
-                        KConfig::Persistent|KConfig::Global);
+                        KConfig::Persistent | KConfig::Global);
     QVERIFY(sc.sync());
 
     // Verify that the timestamp of local config file didn't change.
@@ -1343,7 +1343,6 @@ void KConfigTest::testDirtyOnEqualOverdo()
     cgLocal.writeEntry("someKey", val2);
     QCOMPARE(cgLocal.readEntry("someKey", defvalr), val2);
 }
-
 
 void KConfigTest::testCreateDir()
 {
@@ -1435,7 +1434,6 @@ void KConfigTest::testLocaleConfig()
     // Clean up after the testcase
     QFile::remove(file);
 }
-
 
 void KConfigTest::testDeleteWhenLocalized()
 {
@@ -1565,7 +1563,6 @@ void KConfigTest::testDeleteWhenLocalized()
     QFile::remove(file);
 }
 
-
 void KConfigTest::testKdeGlobals()
 {
     {
@@ -1629,6 +1626,7 @@ void KConfigTest::testThreads()
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     //futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     //futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);
-    Q_FOREACH(QFuture<void> f, futures) // krazy:exclude=foreach
+    Q_FOREACH (QFuture<void> f, futures) { // krazy:exclude=foreach
         f.waitForFinished();
+    }
 }

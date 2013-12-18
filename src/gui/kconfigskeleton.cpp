@@ -23,36 +23,35 @@
 
 #include <kcoreconfigskeleton_p.h>
 
-KConfigSkeleton::KConfigSkeleton(const QString &configname, QObject* parent)
-  : KCoreConfigSkeleton(configname, parent)
+KConfigSkeleton::KConfigSkeleton(const QString &configname, QObject *parent)
+    : KCoreConfigSkeleton(configname, parent)
 {
 }
 
-KConfigSkeleton::KConfigSkeleton(KSharedConfig::Ptr pConfig, QObject* parent)
-  : KCoreConfigSkeleton(pConfig, parent)
+KConfigSkeleton::KConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
+    : KCoreConfigSkeleton(pConfig, parent)
 {
 }
 
-
-KConfigSkeleton::ItemColor::ItemColor( const QString &_group, const QString &_key,
-                                  QColor &reference,
-                                  const QColor &defaultValue )
-  : KConfigSkeletonGenericItem<QColor>( _group, _key, reference, defaultValue )
+KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key,
+                                      QColor &reference,
+                                      const QColor &defaultValue)
+    : KConfigSkeletonGenericItem<QColor>(_group, _key, reference, defaultValue)
 {
 }
 
-void KConfigSkeleton::ItemColor::readConfig( KConfig *config )
+void KConfigSkeleton::ItemColor::readConfig(KConfig *config)
 {
-  KConfigGroup cg(config, mGroup );
-  mReference = cg.readEntry( mKey, mDefault );
-  mLoadedValue = mReference;
+    KConfigGroup cg(config, mGroup);
+    mReference = cg.readEntry(mKey, mDefault);
+    mLoadedValue = mReference;
 
-  readImmutability( cg );
+    readImmutability(cg);
 }
 
-void KConfigSkeleton::ItemColor::setProperty(const QVariant & p)
+void KConfigSkeleton::ItemColor::setProperty(const QVariant &p)
 {
-  mReference = qvariant_cast<QColor>(p);
+    mReference = qvariant_cast<QColor>(p);
 }
 
 bool KConfigSkeleton::ItemColor::isEqual(const QVariant &v) const
@@ -62,29 +61,28 @@ bool KConfigSkeleton::ItemColor::isEqual(const QVariant &v) const
 
 QVariant KConfigSkeleton::ItemColor::property() const
 {
-  return QVariant(mReference);
+    return QVariant(mReference);
 }
 
-
-KConfigSkeleton::ItemFont::ItemFont( const QString &_group, const QString &_key,
-                                QFont &reference,
-                                const QFont &defaultValue )
-  : KConfigSkeletonGenericItem<QFont>( _group, _key, reference, defaultValue )
+KConfigSkeleton::ItemFont::ItemFont(const QString &_group, const QString &_key,
+                                    QFont &reference,
+                                    const QFont &defaultValue)
+    : KConfigSkeletonGenericItem<QFont>(_group, _key, reference, defaultValue)
 {
 }
 
-void KConfigSkeleton::ItemFont::readConfig( KConfig *config )
+void KConfigSkeleton::ItemFont::readConfig(KConfig *config)
 {
-  KConfigGroup cg(config, mGroup );
-  mReference = cg.readEntry( mKey, mDefault );
-  mLoadedValue = mReference;
+    KConfigGroup cg(config, mGroup);
+    mReference = cg.readEntry(mKey, mDefault);
+    mLoadedValue = mReference;
 
-  readImmutability( cg );
+    readImmutability(cg);
 }
 
-void KConfigSkeleton::ItemFont::setProperty(const QVariant & p)
+void KConfigSkeleton::ItemFont::setProperty(const QVariant &p)
 {
-  mReference = qvariant_cast<QFont>(p);
+    mReference = qvariant_cast<QFont>(p);
 }
 
 bool KConfigSkeleton::ItemFont::isEqual(const QVariant &v) const
@@ -94,28 +92,26 @@ bool KConfigSkeleton::ItemFont::isEqual(const QVariant &v) const
 
 QVariant KConfigSkeleton::ItemFont::property() const
 {
-  return QVariant(mReference);
+    return QVariant(mReference);
 }
 
-
-KConfigSkeleton::ItemColor *KConfigSkeleton::addItemColor( const QString &name, QColor &reference,
-                                    const QColor &defaultValue, const QString &key )
+KConfigSkeleton::ItemColor *KConfigSkeleton::addItemColor(const QString &name, QColor &reference,
+        const QColor &defaultValue, const QString &key)
 {
-  KConfigSkeleton::ItemColor *item;
-  item = new KConfigSkeleton::ItemColor( d->mCurrentGroup, key.isNull() ? name : key,
-                                         reference, defaultValue );
-  addItem( item, name );
-  return item;
+    KConfigSkeleton::ItemColor *item;
+    item = new KConfigSkeleton::ItemColor(d->mCurrentGroup, key.isNull() ? name : key,
+                                          reference, defaultValue);
+    addItem(item, name);
+    return item;
 }
 
-KConfigSkeleton::ItemFont *KConfigSkeleton::addItemFont( const QString &name, QFont &reference,
-                                   const QFont &defaultValue, const QString &key )
+KConfigSkeleton::ItemFont *KConfigSkeleton::addItemFont(const QString &name, QFont &reference,
+        const QFont &defaultValue, const QString &key)
 {
-  KConfigSkeleton::ItemFont *item;
-  item = new KConfigSkeleton::ItemFont( d->mCurrentGroup, key.isNull() ? name : key,
-                                        reference, defaultValue );
-  addItem( item, name );
-  return item;
+    KConfigSkeleton::ItemFont *item;
+    item = new KConfigSkeleton::ItemFont(d->mCurrentGroup, key.isNull() ? name : key,
+                                         reference, defaultValue);
+    addItem(item, name);
+    return item;
 }
-
 

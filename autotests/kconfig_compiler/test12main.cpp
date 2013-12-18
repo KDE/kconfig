@@ -20,9 +20,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include "test12.h"
 
-int main( int, char** )
+int main(int, char **)
 {
-  Test12 *t = new Test12();
-  delete t;
-  return 0;
+    Test12 *t = new Test12();
+    delete t;
+    return 0;
 }

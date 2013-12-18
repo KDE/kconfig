@@ -23,23 +23,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <QGuiApplication>
 #include <QDebug>
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
-  QGuiApplication app(argc, argv);
-  Q_UNUSED(app);
-  Test9 *t = new Test9( QString(), QString() );
+    QGuiApplication app(argc, argv);
+    Q_UNUSED(app);
+    Test9 *t = new Test9(QString(), QString());
 
-  QStringList myPathsList2 = t->myPathsList2();
-  qWarning() << myPathsList2;
+    QStringList myPathsList2 = t->myPathsList2();
+    qWarning() << myPathsList2;
 
-  // add another path
-  QStringList newlist;
-  myPathsList2 << QDir::homePath() + QString::fromLatin1("/.kde");
-  qWarning() << myPathsList2;
+    // add another path
+    QStringList newlist;
+    myPathsList2 << QDir::homePath() + QString::fromLatin1("/.kde");
+    qWarning() << myPathsList2;
 
-  t->setMyPathsList2(myPathsList2);
-  qWarning() << t->myPathsList2();
+    t->setMyPathsList2(myPathsList2);
+    qWarning() << t->myPathsList2();
 
-  delete t;
-  return 0;
+    delete t;
+    return 0;
 }

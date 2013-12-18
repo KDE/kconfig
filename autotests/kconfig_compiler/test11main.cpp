@@ -22,13 +22,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "test11a.h"
 #include <QGuiApplication>
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
-  QGuiApplication app(argc, argv);
-  Q_UNUSED(app);
-  Test11 *t = new Test11();
-  Test11a *t2 = new Test11a();
-  delete t;
-  delete t2;
-  return 0;
+    QGuiApplication app(argc, argv);
+    Q_UNUSED(app);
+    Test11 *t = new Test11();
+    Test11a *t2 = new Test11a();
+    delete t;
+    delete t2;
+    return 0;
 }

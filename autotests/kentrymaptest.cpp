@@ -22,14 +22,13 @@
 #include <QtTest>
 #include "kconfigdata.h"
 
-
 const QByteArray group1("A Group");
 const QByteArray key1("A Key");
 const QByteArray key2("Another Key");
 const QByteArray value1("A value");
 const QByteArray value2("A different value");
 
-QTEST_MAIN( KEntryMapTest )
+QTEST_MAIN(KEntryMapTest)
 
 void KEntryMapTest::testKeyOrder()
 {
@@ -142,7 +141,7 @@ void KEntryMapTest::testDelete()
     map.setEntry(group1, key2, value2, EntryDefault);
     QCOMPARE(map.size(), 5);
 
-    map.setEntry(group1, key2, QByteArray(), EntryDeleted|EntryDirty);
+    map.setEntry(group1, key2, QByteArray(), EntryDeleted | EntryDirty);
     QCOMPARE(map.size(), 5); // entry should still be in map, so it can override merged entries later
     QCOMPARE(map.findEntry(group1, key2)->mValue, QByteArray());
 }
@@ -193,9 +192,9 @@ void KEntryMapTest::testLocale()
 
     QCOMPARE(map.findEntry(group1, key1, SearchLocalized)->mValue, translated); // has localized value now
     QVERIFY(map.findEntry(group1, key1, SearchLocalized)->mValue != map.findEntry(group1, key1)->mValue);
-    QCOMPARE(map.findEntry(group1, key1, SearchDefaults|SearchLocalized)->mValue, untranslated); // default should still be untranslated
+    QCOMPARE(map.findEntry(group1, key1, SearchDefaults | SearchLocalized)->mValue, untranslated); // default should still be untranslated
 
-    map.setEntry(group1, key1, translatedDefault, EntryDefault|EntryLocalized);
+    map.setEntry(group1, key1, translatedDefault, EntryDefault | EntryLocalized);
     QCOMPARE(map.findEntry(group1, key1, SearchLocalized)->mValue, translatedDefault);
     map.setEntry(group1, key1, translated, EntryLocalized); // set the translated entry to a different locale
     QCOMPARE(map.findEntry(group1, key1, SearchLocalized)->mValue, translated);

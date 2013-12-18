@@ -26,11 +26,10 @@
 
 class KConfigGroup;
 
-struct KConfigGroupGui
-{
-    typedef bool (*kReadEntryGui)(const QByteArray& data, const char* key, const QVariant &input,
+struct KConfigGroupGui {
+    typedef bool (*kReadEntryGui)(const QByteArray &data, const char *key, const QVariant &input,
                                   QVariant &output);
-    typedef bool (*kWriteEntryGui)(KConfigGroup *, const char* key, const QVariant &input,
+    typedef bool (*kWriteEntryGui)(KConfigGroup *, const char *key, const QVariant &input,
                                    KConfigGroup::WriteConfigFlags flags);
 
     kReadEntryGui readEntryGui;

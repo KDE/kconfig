@@ -40,7 +40,7 @@
 class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData //krazy:exclude=dpointer (only for refcounting)
 {
 public:
-  typedef QExplicitlySharedDataPointer<KSharedConfig> Ptr;
+    typedef QExplicitlySharedDataPointer<KSharedConfig> Ptr;
 
 public:
     /**
@@ -67,7 +67,7 @@ public:
      *
      * @sa KConfig
      */
-    static KSharedConfig::Ptr openConfig(const QString& fileName = QString(),
+    static KSharedConfig::Ptr openConfig(const QString &fileName = QString(),
                                          OpenFlags mode = FullConfig,
                                          QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
@@ -75,10 +75,10 @@ public:
 
 private:
     Q_DISABLE_COPY(KSharedConfig)
-    virtual KConfigGroup groupImpl(const QByteArray& aGroup);
-    virtual const KConfigGroup groupImpl(const QByteArray& aGroup) const;
+    virtual KConfigGroup groupImpl(const QByteArray &aGroup);
+    virtual const KConfigGroup groupImpl(const QByteArray &aGroup) const;
 
-    KSharedConfig(const QString& file, OpenFlags mode,
+    KSharedConfig(const QString &file, OpenFlags mode,
                   QStandardPaths::StandardLocation resourceType);
 
 };

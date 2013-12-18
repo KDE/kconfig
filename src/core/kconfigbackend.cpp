@@ -42,22 +42,21 @@ public:
     QDateTime lastModified;
     QString localFileName;
 
-    static QString whatSystem(const QString& /*fileName*/)
+    static QString whatSystem(const QString & /*fileName*/)
     {
         return QLatin1String("INI");
     }
 };
 
-
-void KConfigBackend::registerMappings(const KEntryMap& /*entryMap*/)
+void KConfigBackend::registerMappings(const KEntryMap & /*entryMap*/)
 {
 }
 
-BackendPtr KConfigBackend::create(const QString& file, const QString& sys)
+BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 {
     //qDebug() << "creating a backend for file" << file << "with system" << sys;
     const QString system = (sys.isEmpty() ? Private::whatSystem(file) : sys);
-    KConfigBackend* backend = 0;
+    KConfigBackend *backend = 0;
 
 #if 0 // TODO port to Qt5 plugin loading
     if (system.compare(QLatin1String("INI"), Qt::CaseInsensitive) != 0) {
@@ -65,7 +64,7 @@ BackendPtr KConfigBackend::create(const QString& file, const QString& sys)
         KService::List offers = KServiceTypeTrader::self()->query(QLatin1String("KConfigBackend"), constraint);
 
         //qDebug() << "found" << offers.count() << "offers for KConfigBackend plugins with name" << system;
-        foreach (const KService::Ptr& offer, offers) {
+        foreach (const KService::Ptr &offer, offers) {
             backend = offer->createInstance<KConfigBackend>(0);
             if (backend) {
                 //qDebug() << "successfully created a backend for" << system;
@@ -83,7 +82,7 @@ BackendPtr KConfigBackend::create(const QString& file, const QString& sys)
 }
 
 KConfigBackend::KConfigBackend()
- : d(new Private)
+    : d(new Private)
 {
 }
 
@@ -97,7 +96,7 @@ QDateTime KConfigBackend::lastModified() const
     return d->lastModified;
 }
 
-void KConfigBackend::setLastModified(const QDateTime& dt)
+void KConfigBackend::setLastModified(const QDateTime &dt)
 {
     d->lastModified = dt;
 }
@@ -117,7 +116,7 @@ QString KConfigBackend::filePath() const
     return d->localFileName;
 }
 
-void KConfigBackend::setLocalFilePath(const QString& file)
+void KConfigBackend::setLocalFilePath(const QString &file)
 {
     d->localFileName = file;
 }

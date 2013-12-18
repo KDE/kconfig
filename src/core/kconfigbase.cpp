@@ -41,32 +41,32 @@ bool KConfigBase::hasGroup(const QByteArray &group) const
     return hasGroupImpl(group);
 }
 
-KConfigGroup KConfigBase::group( const QByteArray &b)
+KConfigGroup KConfigBase::group(const QByteArray &b)
 {
     return groupImpl(b);
 }
 
-KConfigGroup KConfigBase::group( const QString &str)
+KConfigGroup KConfigBase::group(const QString &str)
 {
     return groupImpl(str.toUtf8());
 }
 
-KConfigGroup KConfigBase::group( const char *str)
+KConfigGroup KConfigBase::group(const char *str)
 {
     return groupImpl(QByteArray(str));
 }
 
-const KConfigGroup KConfigBase::group( const QByteArray &b ) const
+const KConfigGroup KConfigBase::group(const QByteArray &b) const
 {
     return groupImpl(b);
 }
 
-const KConfigGroup KConfigBase::group( const QString &s ) const
+const KConfigGroup KConfigBase::group(const QString &s) const
 {
     return groupImpl(s.toUtf8());
 }
 
-const KConfigGroup KConfigBase::group( const char *s ) const
+const KConfigGroup KConfigBase::group(const char *s) const
 {
     return groupImpl(QByteArray(s));
 }
@@ -86,16 +86,15 @@ void KConfigBase::deleteGroup(const char *group, WriteConfigFlags flags)
     deleteGroupImpl(QByteArray(group), flags);
 }
 
-bool KConfigBase::isGroupImmutable(const QByteArray& aGroup) const
+bool KConfigBase::isGroupImmutable(const QByteArray &aGroup) const
 {
     return isGroupImmutableImpl(aGroup);
 }
 
-bool KConfigBase::isGroupImmutable(const QString& aGroup) const
+bool KConfigBase::isGroupImmutable(const QString &aGroup) const
 {
     return isGroupImmutableImpl(aGroup.toUtf8());
 }
-
 
 bool KConfigBase::isGroupImmutable(const char *aGroup) const
 {
@@ -108,5 +107,5 @@ KConfigBase::~KConfigBase()
 KConfigBase::KConfigBase()
 {}
 
-void KConfigBase::virtual_hook(int , void *)
+void KConfigBase::virtual_hook(int, void *)
 {}

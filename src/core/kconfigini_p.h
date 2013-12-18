@@ -40,21 +40,21 @@ public:
     KConfigIniBackend();
     ~KConfigIniBackend();
 
-    ParseInfo parseConfig(const QByteArray& locale,
-                          KEntryMap& entryMap,
+    ParseInfo parseConfig(const QByteArray &locale,
+                          KEntryMap &entryMap,
                           ParseOptions options);
-    ParseInfo parseConfig(const QByteArray& locale,
-                          KEntryMap& entryMap,
+    ParseInfo parseConfig(const QByteArray &locale,
+                          KEntryMap &entryMap,
                           ParseOptions options,
                           bool merging);
-    bool writeConfig(const QByteArray& locale, KEntryMap& entryMap,
+    bool writeConfig(const QByteArray &locale, KEntryMap &entryMap,
                      WriteOptions options);
 
     bool isWritable() const;
     QString nonWritableErrorMessage() const;
     KConfigBase::AccessMode accessMode() const;
     void createEnclosing();
-    void setFilePath(const QString& path);
+    void setFilePath(const QString &path);
     bool lock();
     void unlock();
     bool isLocked() const;
@@ -68,13 +68,13 @@ protected:
     };
     // Warning: this modifies data in-place. Other BufferFragment objects referencing the same buffer
     // fragment will get their data modified too.
-    static void printableToString(BufferFragment* aString, const QFile& file, int line);
-    static QByteArray stringToPrintable(const QByteArray& aString, StringType type);
-    static char charFromHex(const char *str, const QFile& file, int line);
-    static QString warningProlog(const QFile& file, int line);
+    static void printableToString(BufferFragment *aString, const QFile &file, int line);
+    static QByteArray stringToPrintable(const QByteArray &aString, StringType type);
+    static char charFromHex(const char *str, const QFile &file, int line);
+    static QString warningProlog(const QFile &file, int line);
 
-    void writeEntries(const QByteArray& locale, QIODevice& file, const KEntryMap& map);
-    void writeEntries(const QByteArray& locale, QIODevice& file, const KEntryMap& map,
+    void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map);
+    void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map,
                       bool defaultGroup, bool &firstEntry);
 };
 

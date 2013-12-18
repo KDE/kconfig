@@ -102,8 +102,8 @@ protected:
     int m_lineCount;
 };
 
-KonfUpdate::KonfUpdate(QCommandLineParser * parser)
-        : m_textStream(0), m_file(0)
+KonfUpdate::KonfUpdate(QCommandLineParser *parser)
+    : m_textStream(0), m_file(0)
 {
     bool updateAll = false;
     m_oldConfig1 = 0;
@@ -130,8 +130,9 @@ KonfUpdate::KonfUpdate(QCommandLineParser * parser)
     } else if (parser->positionalArguments().count()) {
         updateFiles += parser->positionalArguments();
     } else {
-        if (cg.readEntry("autoUpdateDisabled", false))
+        if (cg.readEntry("autoUpdateDisabled", false)) {
             return;
+        }
         updateFiles = findUpdateFiles(true);
         updateAll = true;
     }
@@ -162,7 +163,7 @@ KonfUpdate::~KonfUpdate()
     delete m_textStream;
 }
 
-QTextStream & operator<<(QTextStream & stream, const QStringList & lst)
+QTextStream &operator<<(QTextStream &stream, const QStringList &lst)
 {
     stream << lst.join(", ");
     return stream;
@@ -200,9 +201,9 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
     QStringList result;
 
     const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "kconf_update", QStandardPaths::LocateDirectory);
-    Q_FOREACH(const QString& dir, dirs) {
+    Q_FOREACH (const QString &dir, dirs) {
         const QStringList fileNames = QDir(dir).entryList(QStringList() << QStringLiteral("*.upd"));
-        Q_FOREACH(const QString& fileName, fileNames) {
+        Q_FOREACH (const QString &fileName, fileNames) {
             const QString file = dir + '/' + fileName;
             QFileInfo info(file);
 
@@ -364,8 +365,6 @@ bool KonfUpdate::updateFile(const QString &filename)
     cg.sync();
     return true;
 }
-
-
 
 void KonfUpdate::gotId(const QString &_id)
 {
@@ -551,7 +550,6 @@ void KonfUpdate::gotRemoveGroup(const QString &_group)
     log() << m_currentFilename << ": RemoveGroup removes group " << m_oldFile << ":" << m_oldGroup << endl;
 }
 
-
 void KonfUpdate::gotKey(const QString &_key)
 {
     QString oldKey, newKey;
@@ -584,8 +582,9 @@ void KonfUpdate::copyOrMoveKey(const QStringList &srcGroupPath, const QString &s
     }
 
     KConfigGroup srcCg = KConfigUtils::openGroup(m_oldConfig1, srcGroupPath);
-    if (!srcCg.hasKey(srcKey))
+    if (!srcCg.hasKey(srcKey)) {
         return;
+    }
     QString value = srcCg.readEntry(srcKey, QString());
     log() << m_currentFilename << ": Updating " << m_newFileName << ":" << dstCg.name() << ":" << dstKey << " to '" << value << "'" << endl;
     dstCg.writeEntry(dstKey, value);
@@ -596,8 +595,8 @@ void KonfUpdate::copyOrMoveKey(const QStringList &srcGroupPath, const QString &s
 
     // Delete old entry
     if (m_oldConfig2 == m_newConfig
-        && srcGroupPath == dstGroupPath
-        && srcKey == dstKey) {
+            && srcGroupPath == dstGroupPath
+            && srcKey == dstKey) {
         return; // Don't delete!
     }
     KConfigGroup srcCg2 = KConfigUtils::openGroup(m_oldConfig2, srcGroupPath);
@@ -610,12 +609,12 @@ void KonfUpdate::copyOrMoveGroup(const QStringList &srcGroupPath, const QStringL
     KConfigGroup cg = KConfigUtils::openGroup(m_oldConfig1, srcGroupPath);
 
     // Keys
-    Q_FOREACH(const QString &key, cg.keyList()) {
+    Q_FOREACH (const QString &key, cg.keyList()) {
         copyOrMoveKey(srcGroupPath, key, dstGroupPath, key);
     }
 
     // Subgroups
-    Q_FOREACH(const QString &group, cg.groupList()) {
+    Q_FOREACH (const QString &group, cg.groupList()) {
         QStringList groupPath = QStringList() << group;
         copyOrMoveGroup(srcGroupPath + groupPath, dstGroupPath + groupPath);
     }
@@ -711,7 +710,7 @@ void KonfUpdate::copyGroup(const KConfigGroup &cg1, KConfigGroup &cg2)
     }
 
     // Copy subgroups
-    Q_FOREACH(const QString &group, cg1.groupList()) {
+    Q_FOREACH (const QString &group, cg1.groupList()) {
         copyGroup(&cg1, group, &cg2, group);
     }
 }
@@ -732,14 +731,11 @@ void KonfUpdate::gotScript(const QString &_script)
         interpreter = _script.mid(i + 1).trimmed();
     }
 
-
     if (script.isEmpty()) {
         logFileError() << "Script fails to specify filename";
         m_skip = true;
         return;
     }
-
-
 
     QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kconf_update/" + script);
     if (path.isEmpty()) {
@@ -747,8 +743,9 @@ void KonfUpdate::gotScript(const QString &_script)
             // KDE4: this was looking into locate("lib", "kconf_update_bin/"). But QStandardPaths doesn't know the lib dirs.
             // Let's look in the install prefix and in PATH.
             path = CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/" + script;
-            if (QFile::exists(path))
+            if (QFile::exists(path)) {
                 path = QStandardPaths::findExecutable(script);
+            }
         }
 
         if (path.isEmpty()) {
@@ -808,23 +805,20 @@ void KonfUpdate::gotScript(const QString &_script)
 #ifndef _WIN32_WCE
         result = system(QFile::encodeName(QString("%1 < %2 > %3 2> %4").arg(cmd, scriptIn.fileName(), scriptOut.fileName(), scriptErr.fileName())).constData());
 #else
-        QString path_ = QDir::convertSeparators ( QFileInfo ( cmd ).absoluteFilePath() );
-        QString file_ = QFileInfo ( cmd ).fileName();
+        QString path_ = QDir::convertSeparators(QFileInfo(cmd).absoluteFilePath());
+        QString file_ = QFileInfo(cmd).fileName();
         SHELLEXECUTEINFO execInfo;
-        memset ( &execInfo,0,sizeof ( execInfo ) );
-        execInfo.cbSize = sizeof ( execInfo );
+        memset(&execInfo, 0, sizeof(execInfo));
+        execInfo.cbSize = sizeof(execInfo);
         execInfo.fMask =  SEE_MASK_FLAG_NO_UI;
         execInfo.lpVerb = L"open";
         execInfo.lpFile = (LPCWSTR) path_.utf16();
         execInfo.lpDirectory = (LPCWSTR) file_.utf16();
-        execInfo.lpParameters = (LPCWSTR) QString(" < %1 > %2 2> %3").arg( scriptIn.fileName(), scriptOut.fileName(), scriptErr.fileName()).utf16();
-        result = ShellExecuteEx ( &execInfo );
-        if (result != 0)
-        {
+        execInfo.lpParameters = (LPCWSTR) QString(" < %1 > %2 2> %3").arg(scriptIn.fileName(), scriptOut.fileName(), scriptErr.fileName()).utf16();
+        result = ShellExecuteEx(&execInfo);
+        if (result != 0) {
             result = 0;
-        }
-        else
-        {
+        } else {
             result = -1;
         }
 #endif
@@ -833,23 +827,20 @@ void KonfUpdate::gotScript(const QString &_script)
 #ifndef _WIN32_WCE
         result = system(QFile::encodeName(QString("%1 2> %2").arg(cmd, scriptErr.fileName())).constData());
 #else
-        QString path_ = QDir::convertSeparators ( QFileInfo ( cmd ).absoluteFilePath() );
-        QString file_ = QFileInfo ( cmd ).fileName();
+        QString path_ = QDir::convertSeparators(QFileInfo(cmd).absoluteFilePath());
+        QString file_ = QFileInfo(cmd).fileName();
         SHELLEXECUTEINFO execInfo;
-        memset ( &execInfo,0,sizeof ( execInfo ) );
-        execInfo.cbSize = sizeof ( execInfo );
+        memset(&execInfo, 0, sizeof(execInfo));
+        execInfo.cbSize = sizeof(execInfo);
         execInfo.fMask =  SEE_MASK_FLAG_NO_UI;
         execInfo.lpVerb = L"open";
         execInfo.lpFile = (LPCWSTR) path_.utf16();
         execInfo.lpDirectory = (LPCWSTR) file_.utf16();
-        execInfo.lpParameters = (LPCWSTR) QString(" 2> %1").arg( scriptErr.fileName()).utf16();
-        result = ShellExecuteEx ( &execInfo );
-        if (result != 0)
-        {
+        execInfo.lpParameters = (LPCWSTR) QString(" 2> %1").arg(scriptErr.fileName()).utf16();
+        result = ShellExecuteEx(&execInfo);
+        if (result != 0) {
             result = 0;
-        }
-        else
-        {
+        } else {
             result = -1;
         }
 #endif
@@ -932,7 +923,7 @@ void KonfUpdate::gotScript(const QString &_script)
         KConfigGroup dstCg = KConfigUtils::openGroup(m_newConfig, m_newGroup);
         copyGroup(srcCg, dstCg);
     }
-    Q_FOREACH(const QString &group, scriptOutConfig.groupList()) {
+    Q_FOREACH (const QString &group, scriptOutConfig.groupList()) {
         copyGroup(&scriptOutConfig, group, m_newConfig, group);
     }
 }
@@ -943,7 +934,6 @@ void KonfUpdate::resetOptions()
     m_bOverwrite = false;
     m_arguments.clear();
 }
-
 
 int main(int argc, char **argv)
 {

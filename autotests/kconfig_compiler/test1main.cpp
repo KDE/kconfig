@@ -21,11 +21,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "test1.h"
 #include <QGuiApplication>
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
-  QGuiApplication app(argc, argv);
-  Q_UNUSED(app);
-  Test1 *t = new Test1( QString(), QString() );
-  delete t;
-  return 0;
+    QGuiApplication app(argc, argv);
+    Q_UNUSED(app);
+    Test1 *t = new Test1(QString(), QString());
+    delete t;
+    return 0;
 }

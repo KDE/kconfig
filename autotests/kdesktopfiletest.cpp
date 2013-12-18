@@ -23,20 +23,20 @@
 
 #include <QtTest>
 
-QTEST_MAIN( KDesktopFileTest )
+QTEST_MAIN(KDesktopFileTest)
 
 void KDesktopFileTest::testRead()
 {
     QTemporaryFile file("testReadXXXXXX.desktop");
-    QVERIFY( file.open() );
+    QVERIFY(file.open());
     const QString fileName = file.fileName();
-    QTextStream ts( &file );
+    QTextStream ts(&file);
     ts <<
-        "[Desktop Entry]\n"
-        "Type=Application\n"
-        "Name=My Application\n"
-        "Icon=foo\n"
-        "\n";
+       "[Desktop Entry]\n"
+       "Type=Application\n"
+       "Name=My Application\n"
+       "Icon=foo\n"
+       "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     QVERIFY(KDesktopFile::isDesktopFile(fileName));
@@ -52,13 +52,13 @@ void KDesktopFileTest::testRead()
 void KDesktopFileTest::testSuccessfulTryExec()
 {
     QTemporaryFile file;
-    QVERIFY( file.open() );
+    QVERIFY(file.open());
     const QString fileName = file.fileName();
-    QTextStream ts( &file );
+    QTextStream ts(&file);
     ts <<
-        "[Desktop Entry]\n"
-        "TryExec=whoami\n"
-        "\n";
+       "[Desktop Entry]\n"
+       "TryExec=whoami\n"
+       "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
@@ -68,13 +68,13 @@ void KDesktopFileTest::testSuccessfulTryExec()
 void KDesktopFileTest::testUnsuccessfulTryExec()
 {
     QTemporaryFile file;
-    QVERIFY( file.open() );
+    QVERIFY(file.open());
     const QString fileName = file.fileName();
-    QTextStream ts( &file );
+    QTextStream ts(&file);
     ts <<
-        "[Desktop Entry]\n"
-        "TryExec=/does/not/exist\n"
-        "\n";
+       "[Desktop Entry]\n"
+       "TryExec=/does/not/exist\n"
+       "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
@@ -84,15 +84,15 @@ void KDesktopFileTest::testUnsuccessfulTryExec()
 void KDesktopFileTest::testActionGroup()
 {
     QTemporaryFile file;
-    QVERIFY( file.open() );
+    QVERIFY(file.open());
     const QString fileName = file.fileName();
-    QTextStream ts( &file );
+    QTextStream ts(&file);
     ts <<
-        "[Desktop Entry]\n"
-        "Actions=encrypt;\n"
-        "[Desktop Action encrypt]\n"
-        "Name=Encrypt file\n"
-        "\n";
+       "[Desktop Entry]\n"
+       "Actions=encrypt;\n"
+       "[Desktop Action encrypt]\n"
+       "Name=Encrypt file\n"
+       "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
@@ -109,15 +109,15 @@ void KDesktopFileTest::testActionGroup()
 void KDesktopFileTest::testIsAuthorizedDesktopFile()
 {
     QTemporaryFile file("testAuthXXXXXX.desktop");
-    QVERIFY( file.open() );
+    QVERIFY(file.open());
     const QString fileName = file.fileName();
-    QTextStream ts( &file );
+    QTextStream ts(&file);
     ts <<
-        "[Desktop Entry]\n"
-        "Type=Application\n"
-        "Name=My Application\n"
-        "Exec=kfoo\n"
-        "\n";
+       "[Desktop Entry]\n"
+       "Type=Application\n"
+       "Name=My Application\n"
+       "Exec=kfoo\n"
+       "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     QVERIFY(!KDesktopFile::isAuthorizedDesktopFile(fileName));

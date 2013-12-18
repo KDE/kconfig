@@ -22,11 +22,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "test_dpointer.h"
 #include <QGuiApplication>
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
-  QGuiApplication app(argc, argv);
-  Q_UNUSED(app);
-  TestDPointer *t = TestDPointer::self();
-  delete t;
-  return 0;
+    QGuiApplication app(argc, argv);
+    Q_UNUSED(app);
+    TestDPointer *t = TestDPointer::self();
+    delete t;
+    return 0;
 }

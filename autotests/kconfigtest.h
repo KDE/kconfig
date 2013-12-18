@@ -28,8 +28,8 @@ class KConfigTest : public QObject
     Q_FLAGS(Flags)
 
 public:
-    enum Testing { Ones=1, Tens=10, Hundreds=100};
-    enum bits { bit0=1, bit1=2, bit2=4, bit3=8 };
+    enum Testing { Ones = 1, Tens = 10, Hundreds = 100};
+    enum bits { bit0 = 1, bit1 = 2, bit2 = 4, bit3 = 8 };
     Q_DECLARE_FLAGS(Flags, bits)
 
 private Q_SLOTS:

@@ -32,38 +32,37 @@
  * map/dict/list config node entry.
  * @internal
  */
-struct KEntry
-{
-  /** Constructor. @internal */
-  KEntry()
-    : mValue(), bDirty(false),
-      bGlobal(false), bImmutable(false), bDeleted(false), bExpand(false), bReverted(false) {}
-  /** @internal */
-  QByteArray mValue;
-  /**
-   * Must the entry be written back to disk?
-   */
-  bool    bDirty :1;
-  /**
-   * Entry should be written to the global config file
-   */
-  bool    bGlobal:1;
-  /**
-   * Entry can not be modified.
-   */
-  bool    bImmutable:1;
-  /**
-   * Entry has been deleted.
-   */
-  bool    bDeleted:1;
-  /**
-   * Whether to apply dollar expansion or not.
-   */
-  bool    bExpand:1;
-  /**
-   * Entry has been reverted to its default value (from a more global file).
-   */
-  bool    bReverted:1;
+struct KEntry {
+    /** Constructor. @internal */
+    KEntry()
+        : mValue(), bDirty(false),
+          bGlobal(false), bImmutable(false), bDeleted(false), bExpand(false), bReverted(false) {}
+    /** @internal */
+    QByteArray mValue;
+    /**
+     * Must the entry be written back to disk?
+     */
+    bool    bDirty : 1;
+    /**
+     * Entry should be written to the global config file
+     */
+    bool    bGlobal: 1;
+    /**
+     * Entry can not be modified.
+     */
+    bool    bImmutable: 1;
+    /**
+     * Entry has been deleted.
+     */
+    bool    bDeleted: 1;
+    /**
+     * Whether to apply dollar expansion or not.
+     */
+    bool    bExpand: 1;
+    /**
+     * Entry has been reverted to its default value (from a more global file).
+     */
+    bool    bReverted: 1;
 };
 
 // These operators are used to check whether an entry which is about
@@ -86,34 +85,35 @@ inline bool operator !=(const KEntry &k1, const KEntry &k2)
  * to which it belongs.
  * @internal
  */
-struct KEntryKey
-{
-  /** Constructor. @internal */
-  KEntryKey(const QByteArray& _group = QByteArray(),
-	    const QByteArray& _key = QByteArray(), bool isLocalized=false, bool isDefault=false)
-      : mGroup(_group), mKey(_key), bLocal(isLocalized), bDefault(isDefault), bRaw(false)
-      { ; }
-  /**
-   * The "group" to which this EntryKey belongs
-   */
-  QByteArray mGroup;
-  /**
-   * The _actual_ key of the entry in question
-   */
-  QByteArray mKey;
-  /**
-   * Entry is localised or not
-   */
-  bool    bLocal  :1;
-  /**
-   * Entry indicates if this is a default value.
-   */
-  bool    bDefault:1;
-  /** @internal
-   * Key is a raw unprocessed key.
-   * @warning this should only be set during merging, never for normal use.
-   */
-  bool    bRaw:1;
+struct KEntryKey {
+    /** Constructor. @internal */
+    KEntryKey(const QByteArray &_group = QByteArray(),
+              const QByteArray &_key = QByteArray(), bool isLocalized = false, bool isDefault = false)
+        : mGroup(_group), mKey(_key), bLocal(isLocalized), bDefault(isDefault), bRaw(false)
+    {
+        ;
+    }
+    /**
+     * The "group" to which this EntryKey belongs
+     */
+    QByteArray mGroup;
+    /**
+     * The _actual_ key of the entry in question
+     */
+    QByteArray mKey;
+    /**
+     * Entry is localised or not
+     */
+    bool    bLocal  : 1;
+    /**
+     * Entry indicates if this is a default value.
+     */
+    bool    bDefault: 1;
+    /** @internal
+     * Key is a raw unprocessed key.
+     * @warning this should only be set during merging, never for normal use.
+     */
+    bool    bRaw: 1;
 };
 
 /**
@@ -133,14 +133,14 @@ inline bool operator <(const KEntryKey &k1, const KEntryKey &k2)
         return result < 0;
     }
 
-    if (k1.bLocal != k2.bLocal)
+    if (k1.bLocal != k2.bLocal) {
         return k1.bLocal;
+    }
     return (!k1.bDefault && k2.bDefault);
 }
 
-
-QDebug operator<<(QDebug dbg, const KEntryKey& key);
-QDebug operator<<(QDebug dbg, const KEntry& entry);
+QDebug operator<<(QDebug dbg, const KEntryKey &key);
+QDebug operator<<(QDebug dbg, const KEntry &entry);
 
 /**
  * \relates KEntry
@@ -151,69 +151,69 @@ QDebug operator<<(QDebug dbg, const KEntry& entry);
  */
 class KEntryMap : public QMap<KEntryKey, KEntry>
 {
-    public:
-        enum SearchFlag {
-            SearchDefaults=1,
-            SearchLocalized=2
-        };
-        Q_DECLARE_FLAGS(SearchFlags, SearchFlag)
+public:
+    enum SearchFlag {
+        SearchDefaults = 1,
+        SearchLocalized = 2
+    };
+    Q_DECLARE_FLAGS(SearchFlags, SearchFlag)
 
-        enum EntryOption {
-            EntryDirty=1,
-            EntryGlobal=2,
-            EntryImmutable=4,
-            EntryDeleted=8,
-            EntryExpansion=16,
-            EntryRawKey=32,
-            EntryDefault=(SearchDefaults<<16),
-            EntryLocalized=(SearchLocalized<<16)
-        };
-        Q_DECLARE_FLAGS(EntryOptions, EntryOption)
+    enum EntryOption {
+        EntryDirty = 1,
+        EntryGlobal = 2,
+        EntryImmutable = 4,
+        EntryDeleted = 8,
+        EntryExpansion = 16,
+        EntryRawKey = 32,
+        EntryDefault = (SearchDefaults << 16),
+        EntryLocalized = (SearchLocalized << 16)
+    };
+    Q_DECLARE_FLAGS(EntryOptions, EntryOption)
 
-        Iterator findExactEntry(const QByteArray& group, const QByteArray& key = QByteArray(),
-                           SearchFlags flags = SearchFlags());
+    Iterator findExactEntry(const QByteArray &group, const QByteArray &key = QByteArray(),
+                            SearchFlags flags = SearchFlags());
 
-        Iterator findEntry(const QByteArray& group, const QByteArray& key = QByteArray(),
-                           SearchFlags flags = SearchFlags());
+    Iterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(),
+                       SearchFlags flags = SearchFlags());
 
-        ConstIterator findEntry(const QByteArray& group, const QByteArray& key = QByteArray(),
-                                SearchFlags flags = SearchFlags()) const;
+    ConstIterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(),
+                            SearchFlags flags = SearchFlags()) const;
 
-        /**
-         * Returns true if the entry gets dirtied or false in other case
-         */
-        bool setEntry(const QByteArray& group, const QByteArray& key,
-                      const QByteArray& value, EntryOptions options);
+    /**
+     * Returns true if the entry gets dirtied or false in other case
+     */
+    bool setEntry(const QByteArray &group, const QByteArray &key,
+                  const QByteArray &value, EntryOptions options);
 
-        void setEntry(const QByteArray& group, const QByteArray& key,
-                      const QString & value, EntryOptions options)
-        {
-            setEntry(group, key, value.toUtf8(), options);
-        }
+    void setEntry(const QByteArray &group, const QByteArray &key,
+                  const QString &value, EntryOptions options)
+    {
+        setEntry(group, key, value.toUtf8(), options);
+    }
 
-        QString getEntry(const QByteArray& group, const QByteArray& key,
-                         const QString & defaultValue = QString(),
-                         SearchFlags flags = SearchFlags(),
-                         bool * expand=0) const;
+    QString getEntry(const QByteArray &group, const QByteArray &key,
+                     const QString &defaultValue = QString(),
+                     SearchFlags flags = SearchFlags(),
+                     bool *expand = 0) const;
 
-        bool hasEntry(const QByteArray& group, const QByteArray& key = QByteArray(),
-                      SearchFlags flags = SearchFlags()) const;
+    bool hasEntry(const QByteArray &group, const QByteArray &key = QByteArray(),
+                  SearchFlags flags = SearchFlags()) const;
 
-        bool getEntryOption(const ConstIterator& it, EntryOption option) const;
-        bool getEntryOption(const QByteArray& group, const QByteArray& key,
-                            SearchFlags flags, EntryOption option) const
-        {
-            return getEntryOption(findEntry(group, key, flags), option);
-        }
+    bool getEntryOption(const ConstIterator &it, EntryOption option) const;
+    bool getEntryOption(const QByteArray &group, const QByteArray &key,
+                        SearchFlags flags, EntryOption option) const
+    {
+        return getEntryOption(findEntry(group, key, flags), option);
+    }
 
-        void setEntryOption(Iterator it, EntryOption option, bool bf);
-        void setEntryOption(const QByteArray& group, const QByteArray& key, SearchFlags flags,
-                            EntryOption option, bool bf)
-        {
-            setEntryOption(findEntry(group, key, flags), option, bf);
-        }
+    void setEntryOption(Iterator it, EntryOption option, bool bf);
+    void setEntryOption(const QByteArray &group, const QByteArray &key, SearchFlags flags,
+                        EntryOption option, bool bf)
+    {
+        setEntryOption(findEntry(group, key, flags), option, bf);
+    }
 
-        bool revertEntry(const QByteArray& group, const QByteArray& key, SearchFlags flags=SearchFlags());
+    bool revertEntry(const QByteArray &group, const QByteArray &key, SearchFlags flags = SearchFlags());
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::SearchFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)

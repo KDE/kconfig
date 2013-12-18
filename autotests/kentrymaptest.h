@@ -32,17 +32,17 @@ public:
     typedef KEntryMap::SearchFlags SearchFlags;
 
     typedef KEntryMap::SearchFlag SearchFlag;
-    static const SearchFlag SearchLocalized=KEntryMap::SearchLocalized;
-    static const SearchFlag SearchDefaults=KEntryMap::SearchDefaults;
+    static const SearchFlag SearchLocalized = KEntryMap::SearchLocalized;
+    static const SearchFlag SearchDefaults = KEntryMap::SearchDefaults;
 
     typedef KEntryMap::EntryOption EntryOption;
-    static const EntryOption EntryDirty=KEntryMap::EntryDirty;
-    static const EntryOption EntryGlobal=KEntryMap::EntryGlobal;
-    static const EntryOption EntryImmutable=KEntryMap::EntryImmutable;
-    static const EntryOption EntryDeleted=KEntryMap::EntryDeleted;
-    static const EntryOption EntryExpansion=KEntryMap::EntryExpansion;
-    static const EntryOption EntryDefault=KEntryMap::EntryDefault;
-    static const EntryOption EntryLocalized=KEntryMap::EntryLocalized;
+    static const EntryOption EntryDirty = KEntryMap::EntryDirty;
+    static const EntryOption EntryGlobal = KEntryMap::EntryGlobal;
+    static const EntryOption EntryImmutable = KEntryMap::EntryImmutable;
+    static const EntryOption EntryDeleted = KEntryMap::EntryDeleted;
+    static const EntryOption EntryExpansion = KEntryMap::EntryExpansion;
+    static const EntryOption EntryDefault = KEntryMap::EntryDefault;
+    static const EntryOption EntryLocalized = KEntryMap::EntryLocalized;
 private Q_SLOTS:
     void testKeyOrder();
     void testSimple();

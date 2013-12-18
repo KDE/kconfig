@@ -30,29 +30,29 @@ class KConfig;
 
 namespace KConfigGui
 {
-    /**
-     * Returns the application session config object.
-     *
-     * @return A pointer to the application's instance specific
-     * KConfig object.
-     * @see KConfig
-     */
-    KCONFIGGUI_EXPORT KConfig* sessionConfig();
+/**
+ * Returns the application session config object.
+ *
+ * @return A pointer to the application's instance specific
+ * KConfig object.
+ * @see KConfig
+ */
+KCONFIGGUI_EXPORT KConfig *sessionConfig();
 
-    /**
-     * Indicates if a session config has been created for that application
-     * (ie. if sessionConfig() got called at least once)
-     *
-     * @return true if a sessionConfig object was created, false otherwise
-     */
-    KCONFIGGUI_EXPORT bool hasSessionConfig();
+/**
+ * Indicates if a session config has been created for that application
+ * (ie. if sessionConfig() got called at least once)
+ *
+ * @return true if a sessionConfig object was created, false otherwise
+ */
+KCONFIGGUI_EXPORT bool hasSessionConfig();
 
-    /**
-     * Returns the name of the application session
-     *
-     * @return the application session name
-     */
-    KCONFIGGUI_EXPORT QString sessionConfigName();
+/**
+ * Returns the name of the application session
+ *
+ * @return the application session name
+ */
+KCONFIGGUI_EXPORT QString sessionConfigName();
 }
 
 #endif // KCONFIGGUI_H

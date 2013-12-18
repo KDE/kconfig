@@ -34,5 +34,4 @@ private Q_SLOTS:
     void testFindStdAccel();
 };
 
-
 #endif

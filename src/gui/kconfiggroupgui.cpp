@@ -35,7 +35,7 @@
  * @returns true if something was handled (even if output was set to clear or default)
  *          or false if nothing was handled (e.g., Core type)
  */
-static bool readEntryGui(const QByteArray& data, const char* key, const QVariant &input,
+static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input,
                          QVariant &output)
 {
     const QString errString = QString::fromLatin1("\"%1\" - conversion from \"%3\" to %2 failed")
@@ -60,8 +60,9 @@ static bool readEntryGui(const QByteArray& data, const char* key, const QVariant
         } else if (!data.contains(',')) {
             QColor col;
             col.setNamedColor(QString::fromUtf8(data.constData(), data.length()));
-            if (!col.isValid())
+            if (!col.isValid()) {
                 qCritical() << qPrintable(errString);
+            }
             output = col;
             return true;
         } else {
@@ -75,7 +76,7 @@ static bool readEntryGui(const QByteArray& data, const char* key, const QVariant
 
             int temp[4];
             // bounds check components
-            for(int i = 0; i < count; i++) {
+            for (int i = 0; i < count; i++) {
                 bool ok;
                 const int j = temp[i] = list.at(i).toInt(&ok);
                 if (!ok) { // failed to convert to int
@@ -88,28 +89,31 @@ static bool readEntryGui(const QByteArray& data, const char* key, const QVariant
                     };
                     const QString boundsError = QLatin1String(" (bounds error: %1 component %2)");
                     qCritical() << qPrintable(errString)
-                             << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0? QLatin1String("< 0"): QLatin1String("> 255")));
+                                << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0 ? QLatin1String("< 0") : QLatin1String("> 255")));
                     return true; // return default
                 }
             }
             QColor aColor(temp[0], temp[1], temp[2]);
-            if (count == 4)
+            if (count == 4) {
                 aColor.setAlpha(temp[3]);
+            }
 
-            if (aColor.isValid())
+            if (aColor.isValid()) {
                 output = aColor;
-            else
+            } else {
                 qCritical() << qPrintable(errString);
+            }
             return true;
         }
     }
 
     case QVariant::Font: {
         QVariant tmp = QString::fromUtf8(data.constData(), data.length());
-        if (tmp.convert(QVariant::Font))
+        if (tmp.convert(QVariant::Font)) {
             output = tmp;
-        else
+        } else {
             qCritical() << qPrintable(errString);
+        }
         return true;
     }
     case QVariant::Pixmap:
@@ -122,7 +126,7 @@ static bool readEntryGui(const QByteArray& data, const char* key, const QVariant
     case QVariant::Cursor:
     case QVariant::SizePolicy:
     case QVariant::Pen:
-        // we may want to handle these in the future
+    // we may want to handle these in the future
 
     default:
         break;
@@ -137,7 +141,7 @@ static bool readEntryGui(const QByteArray& data, const char* key, const QVariant
  * @returns true if something was handled (even if an empty value was written)
  *          or false if nothing was handled (e.g., Core type)
  */
-static bool writeEntryGui(KConfigGroup *cg, const char* key, const QVariant &prop,
+static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop,
                           KConfigGroup::WriteConfigFlags pFlags)
 {
     switch (prop.type()) {
@@ -153,14 +157,15 @@ static bool writeEntryGui(KConfigGroup *cg, const char* key, const QVariant &pro
         list.insert(0, rColor.red());
         list.insert(1, rColor.green());
         list.insert(2, rColor.blue());
-        if (rColor.alpha() != 255)
+        if (rColor.alpha() != 255) {
             list.insert(3, rColor.alpha());
+        }
 
-        cg->writeEntry( key, list, pFlags );
+        cg->writeEntry(key, list, pFlags);
         return true;
     }
     case QVariant::Font:
-        cg->writeEntry( key, prop.toString().toUtf8(), pFlags );
+        cg->writeEntry(key, prop.toString().toUtf8(), pFlags);
         return true;
 
     case QVariant::Pixmap:

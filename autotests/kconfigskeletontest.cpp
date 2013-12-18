@@ -23,9 +23,7 @@
 #include <QFont>
 #include <QtTest/QtTestGui>
 
-
-QTEST_MAIN( KConfigSkeletonTest)
-
+QTEST_MAIN(KConfigSkeletonTest)
 
 #define DEFAULT_SETTING1 false
 #define DEFAULT_SETTING2 QColor(1,2,3)
@@ -60,14 +58,14 @@ void KConfigSkeletonTest::testSimple()
     mMyFont = WRITE_SETTING3;
     mMyString = WRITE_SETTING4;
 
-    writeConfig ();
+    writeConfig();
 
     mMyBool = false;
     mMyColor = QColor();
     mMyString.clear();
     mMyFont = QFont();
 
-    readConfig ();
+    readConfig();
 
     QCOMPARE(mMyBool, WRITE_SETTING1);
     QCOMPARE(mMyColor, WRITE_SETTING2);
@@ -98,7 +96,7 @@ void KConfigSkeletonTest::testClear()
 
 void KConfigSkeletonTest::testDefaults()
 {
-    setDefaults ();
+    setDefaults();
 
     QCOMPARE(mMyBool, DEFAULT_SETTING1);
     QCOMPARE(mMyColor, DEFAULT_SETTING2);
@@ -107,5 +105,4 @@ void KConfigSkeletonTest::testDefaults()
 
     writeConfig();
 }
-
 

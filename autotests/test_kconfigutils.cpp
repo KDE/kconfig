@@ -36,28 +36,28 @@ void TestKConfigUtils::testParseGroupString_data()
     QTest::addColumn<bool>("expectedOk");
 
     QTest::newRow("simple-group")
-        << " group  "
-        << (QStringList() << "group")
-        << true
-        ;
+            << " group  "
+            << (QStringList() << "group")
+            << true
+            ;
 
     QTest::newRow("sub-group")
-        << "[group][sub]"
-        << (QStringList() << "group" << "sub")
-        << true
-        ;
+            << "[group][sub]"
+            << (QStringList() << "group" << "sub")
+            << true
+            ;
 
     QTest::newRow("crazy-sub-group")
-        << "[a\\ttab\\x5d[and some hex esc\\x61pe]"
-        << (QStringList() << "a\ttab" << "and some hex escape")
-        << true
-        ;
+            << "[a\\ttab\\x5d[and some hex esc\\x61pe]"
+            << (QStringList() << "a\ttab" << "and some hex escape")
+            << true
+            ;
 
     QTest::newRow("missing-closing-brace")
-        << "[group][sub"
-        << QStringList()
-        << false
-        ;
+            << "[group][sub"
+            << QStringList()
+            << false
+            ;
 }
 
 void TestKConfigUtils::testParseGroupString()
@@ -86,46 +86,46 @@ void TestKConfigUtils::testUnescapeString_data()
     QTest::addColumn<bool>("expectedOk");
 
     QTest::newRow("plain")
-        << "Some text"
-        << "Some text"
-        << true
-        ;
+            << "Some text"
+            << "Some text"
+            << true
+            ;
 
     QTest::newRow("single-char-escapes")
-        << "01\\s23\\t45\\n67\\r89\\\\"
-        << "01 23\t45\n67\r89\\"
-        << true
-        ;
+            << "01\\s23\\t45\\n67\\r89\\\\"
+            << "01 23\t45\n67\r89\\"
+            << true
+            ;
 
     QTest::newRow("hex-escapes")
-        << "kd\\x65"
-        << "kde"
-        << true
-        ;
+            << "kd\\x65"
+            << "kde"
+            << true
+            ;
 
     QTest::newRow("unfinished-hex-escape")
-        << "kd\\x6"
-        << ""
-        << false
-        ;
+            << "kd\\x6"
+            << ""
+            << false
+            ;
 
     QTest::newRow("invalid-hex-escape")
-        << "kd\\xzz"
-        << ""
-        << false
-        ;
+            << "kd\\xzz"
+            << ""
+            << false
+            ;
 
     QTest::newRow("invalid-escape-sequence")
-        << "Foo\\a"
-        << ""
-        << false
-        ;
+            << "Foo\\a"
+            << ""
+            << false
+            ;
 
     QTest::newRow("unfinished-escape-sequence")
-        << "Foo\\"
-        << ""
-        << false
-        ;
+            << "Foo\\"
+            << ""
+            << false
+            ;
 }
 
 void TestKConfigUtils::testUnescapeString()

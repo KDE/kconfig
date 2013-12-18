@@ -25,12 +25,13 @@
 
 #include <kconfig.h>
 
-static KConfig* s_sessionConfig = 0;
+static KConfig *s_sessionConfig = 0;
 
-KConfig* KConfigGui::sessionConfig()
+KConfig *KConfigGui::sessionConfig()
 {
-    if (!s_sessionConfig) // create an instance specific config object
-        s_sessionConfig = new KConfig( sessionConfigName(), KConfig::SimpleConfig );
+    if (!s_sessionConfig) { // create an instance specific config object
+        s_sessionConfig = new KConfig(sessionConfigName(), KConfig::SimpleConfig);
+    }
     return s_sessionConfig;
 }
 

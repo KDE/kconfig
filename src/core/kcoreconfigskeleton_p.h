@@ -27,25 +27,24 @@
 class KCoreConfigSkeleton::Private
 {
 public:
-  Private()
-    : mCurrentGroup( QLatin1String("No Group") ), mUseDefaults( false )
-  {}
-  ~Private()
-  {
-    KConfigSkeletonItem::List::ConstIterator it;
-    for( it = mItems.constBegin(); it != mItems.constEnd(); ++it )
+    Private()
+        : mCurrentGroup(QLatin1String("No Group")), mUseDefaults(false)
+    {}
+    ~Private()
     {
-      delete *it;
+        KConfigSkeletonItem::List::ConstIterator it;
+        for (it = mItems.constBegin(); it != mItems.constEnd(); ++it) {
+            delete *it;
+        }
     }
-  }
-  QString mCurrentGroup;
+    QString mCurrentGroup;
 
-  KSharedConfig::Ptr mConfig; // pointer to KConfig object
+    KSharedConfig::Ptr mConfig; // pointer to KConfig object
 
-  KConfigSkeletonItem::List mItems;
-  KConfigSkeletonItem::Dict mItemDict;
+    KConfigSkeletonItem::List mItems;
+    KConfigSkeletonItem::Dict mItemDict;
 
-  bool mUseDefaults;
+    bool mUseDefaults;
 };
 
 class KConfigSkeletonItemPrivate

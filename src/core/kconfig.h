@@ -95,7 +95,7 @@ public:
         SimpleConfig    = 0x00, ///< Just a single config file.
         NoCascade       = IncludeGlobals, ///< Include user's globals, but omit system settings.
         NoGlobals       = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
-        FullConfig      = IncludeGlobals|CascadeConfig ///< Fully-fledged config, including globals and cascading to system settings
+        FullConfig      = IncludeGlobals | CascadeConfig ///< Fully-fledged config, including globals and cascading to system settings
     };
     Q_DECLARE_FLAGS(OpenFlags, OpenFlag)
 
@@ -127,7 +127,7 @@ public:
      *
      * @sa KSharedConfig::openConfig(const QString&, OpenFlags, const char*)
      */
-    explicit KConfig(const QString& file = QString(), OpenFlags mode = FullConfig,
+    explicit KConfig(const QString &file = QString(), OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     /**
@@ -142,7 +142,7 @@ public:
      *
      * @since 4.1
      */
-    KConfig(const QString& file, const QString& backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+    KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     virtual ~KConfig();
 
@@ -210,7 +210,7 @@ public:
      *
      * @return @p config if it was set, otherwise a new KConfig object
      */
-    KConfig* copyTo(const QString &file, KConfig *config = 0) const;
+    KConfig *copyTo(const QString &file, KConfig *config = 0) const;
 
     /**
      * Ensures that the configuration file contains a certain update.
@@ -283,7 +283,7 @@ public:
      *         effect (eg: @p aLocale was already the current locale for this
      *         object)
      */
-    bool setLocale(const QString& aLocale);
+    bool setLocale(const QString &aLocale);
     /// @}
 
     /// @{ defaults
@@ -350,20 +350,20 @@ public:
      *         The returned map may be empty if the group is empty, or not found.
      * @see   QMap
      */
-    QMap<QString, QString> entryMap(const QString &aGroup=QString()) const;
+    QMap<QString, QString> entryMap(const QString &aGroup = QString()) const;
 
     /**
      * Sets the name of the application config file.
      * @since 5.0
      */
-    static void setMainConfigName(const QString& str);
+    static void setMainConfigName(const QString &str);
 
 protected:
     virtual bool hasGroupImpl(const QByteArray &group) const;
-    virtual KConfigGroup groupImpl( const QByteArray &b);
+    virtual KConfigGroup groupImpl(const QByteArray &b);
     virtual const KConfigGroup groupImpl(const QByteArray &b) const;
     virtual void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal);
-    virtual bool isGroupImmutableImpl(const QByteArray& aGroup) const;
+    virtual bool isGroupImmutableImpl(const QByteArray &aGroup) const;
 
     friend class KConfigGroup;
     friend class KConfigGroupPrivate;
@@ -372,7 +372,7 @@ protected:
     /** Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.
      */
-    virtual void virtual_hook( int id, void* data );
+    virtual void virtual_hook(int id, void *data);
 
     KConfigPrivate *const d_ptr;
 
@@ -381,7 +381,7 @@ protected:
 private:
     friend class KConfigTest;
 
-    QStringList keyList(const QString& aGroup=QString()) const;
+    QStringList keyList(const QString &aGroup = QString()) const;
 
     /**
      * @internal for KSharedConfig. Could be made public if needed, though.
@@ -392,6 +392,6 @@ private:
 
     Q_DECLARE_PRIVATE(KConfig)
 };
-Q_DECLARE_OPERATORS_FOR_FLAGS( KConfig::OpenFlags )
+Q_DECLARE_OPERATORS_FOR_FLAGS(KConfig::OpenFlags)
 
 #endif // KCONFIG_H

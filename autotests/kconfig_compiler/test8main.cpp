@@ -23,14 +23,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "test8b.h"
 #include <QGuiApplication>
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
-  QGuiApplication app(argc, argv);
-  Q_UNUSED(app);
-  Test8a *config1 = new Test8a( KSharedConfig::openConfig( QString() ) );
-  Test8a *config2 = new Test8a();
-  Test8b::self();
-  delete config1;
-  delete config2;
-  return 0;
+    QGuiApplication app(argc, argv);
+    Q_UNUSED(app);
+    Test8a *config1 = new Test8a(KSharedConfig::openConfig(QString()));
+    Test8a *config2 = new Test8a();
+    Test8b::self();
+    delete config1;
+    delete config2;
+    return 0;
 }

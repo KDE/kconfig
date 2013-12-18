@@ -170,7 +170,7 @@ protected:
     bool usrWriteConfig();
 
 private:
-    ConfigLoaderPrivate * const d;
+    ConfigLoaderPrivate *const d;
 };
 
 #endif //multiple inclusion guard

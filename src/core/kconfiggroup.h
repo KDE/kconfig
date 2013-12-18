@@ -135,11 +135,11 @@ public:
     /**
      * Return the config object that this group belongs to
      */
-    KConfig* config();
+    KConfig *config();
     /**
      * Return the config object that this group belongs to
      */
-    const KConfig* config() const;
+    const KConfig *config() const;
 
     /**
      * Changes the group of the object
@@ -243,12 +243,16 @@ public:
      * @see writeEntry(), deleteEntry(), hasKey()
      */
     template <typename T>
-        inline T readEntry(const QString &key, const T &aDefault) const
-            { return readCheck(key.toUtf8().constData(), aDefault); }
+    inline T readEntry(const QString &key, const T &aDefault) const
+    {
+        return readCheck(key.toUtf8().constData(), aDefault);
+    }
     /** Overload for readEntry(const QString&, const T&) const */
     template <typename T>
-        inline T readEntry(const char *key, const T &aDefault) const
-            { return readCheck(key, aDefault); }
+    inline T readEntry(const char *key, const T &aDefault) const
+    {
+        return readCheck(key, aDefault);
+    }
 
     /**
      * Reads the value of an entry specified by @p key in the current group
@@ -318,12 +322,16 @@ public:
      * @see readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
-        inline QList<T> readEntry(const QString &key, const QList<T> &aDefault) const
-            { return readListCheck(key.toUtf8().constData(), aDefault); }
+    inline QList<T> readEntry(const QString &key, const QList<T> &aDefault) const
+    {
+        return readListCheck(key.toUtf8().constData(), aDefault);
+    }
     /** Overload for readEntry(const QString&, const QList<T>&) */
     template<typename T>
-        inline QList<T> readEntry(const char *key, const QList<T> &aDefault) const
-            { return readListCheck(key, aDefault); }
+    inline QList<T> readEntry(const char *key, const QList<T> &aDefault) const
+    {
+        return readListCheck(key, aDefault);
+    }
 
     /**
      * Reads a list of strings from the config object, following XDG
@@ -420,12 +428,16 @@ public:
 
     /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     template <typename T>
-        inline void writeEntry(const char *key, const T &value, WriteConfigFlags pFlags = Normal)
-            { writeCheck( key, value, pFlags ); }
+    inline void writeEntry(const char *key, const T &value, WriteConfigFlags pFlags = Normal)
+    {
+        writeCheck(key, value, pFlags);
+    }
     /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     template <typename T>
-        inline void writeEntry(const QString &key, const T &value, WriteConfigFlags pFlags = Normal)
-            { writeCheck( key.toUtf8().constData(), value, pFlags ); }
+    inline void writeEntry(const QString &key, const T &value, WriteConfigFlags pFlags = Normal)
+    {
+        writeCheck(key.toUtf8().constData(), value, pFlags);
+    }
 
     /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     void writeEntry(const QString &key, const QStringList &value,
@@ -443,12 +455,16 @@ public:
 
     /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     template <typename T>
-        inline void writeEntry(const QString &key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
-            { writeListCheck( key.toUtf8().constData(), value, pFlags ); }
+    inline void writeEntry(const QString &key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
+    {
+        writeListCheck(key.toUtf8().constData(), value, pFlags);
+    }
     /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     template <typename T>
-        inline void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
-            { writeListCheck( key, value, pFlags ); }
+    inline void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
+    {
+        writeListCheck(key, value, pFlags);
+    }
 
     /**
      * Writes a list of strings to the config object, following XDG
@@ -576,7 +592,7 @@ public:
      */
     void revertToDefault(const QString &key);
     /** Overload for revertToDefault(const QString&) */
-    void revertToDefault(const char* key);
+    void revertToDefault(const char *key);
 
     /**
      * Whether a default is specified for an entry in either the
@@ -657,8 +673,8 @@ private:
 };
 
 #define KCONFIGGROUP_ENUMERATOR_ERROR(ENUM) \
-"The Qt MetaObject system does not seem to know about \"" ENUM \
-"\" please use Q_ENUMS or Q_FLAGS to register it."
+    "The Qt MetaObject system does not seem to know about \"" ENUM \
+    "\" please use Q_ENUMS or Q_FLAGS to register it."
 
 /**
  * To add support for your own enums in KConfig, you can declare them with Q_ENUMS()
@@ -672,74 +688,75 @@ private:
  *
  */
 #define KCONFIGGROUP_DECLARE_ENUM_QOBJECT(Class, Enum)                     \
-inline Class::Enum readEntry(const KConfigGroup& group, const char* key, const Class::Enum& def) \
-{                                                                          \
-const QMetaObject* M_obj = &Class::staticMetaObject;                       \
-const int M_index = M_obj->indexOfEnumerator(#Enum);                       \
-if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Enum));            \
-const QMetaEnum M_enum = M_obj->enumerator(M_index);                       \
-const QByteArray M_data = group.readEntry(key, QByteArray(M_enum.valueToKey(def)));\
-return static_cast<Class::Enum>(M_enum.keyToValue(M_data.constData()));    \
-}                                                                          \
-inline void writeEntry(KConfigGroup& group, const char* key, const Class::Enum& value, KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)\
-{                                                                          \
-const QMetaObject* M_obj = &Class::staticMetaObject;                       \
-const int M_index = M_obj->indexOfEnumerator(#Enum);                       \
-if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Enum));            \
-const QMetaEnum M_enum = M_obj->enumerator(M_index);                       \
-group.writeEntry(key, QByteArray(M_enum.valueToKey(value)), flags);        \
-}
+    inline Class::Enum readEntry(const KConfigGroup& group, const char* key, const Class::Enum& def) \
+    {                                                                          \
+        const QMetaObject* M_obj = &Class::staticMetaObject;                       \
+        const int M_index = M_obj->indexOfEnumerator(#Enum);                       \
+        if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Enum));            \
+        const QMetaEnum M_enum = M_obj->enumerator(M_index);                       \
+        const QByteArray M_data = group.readEntry(key, QByteArray(M_enum.valueToKey(def)));\
+        return static_cast<Class::Enum>(M_enum.keyToValue(M_data.constData()));    \
+    }                                                                          \
+    inline void writeEntry(KConfigGroup& group, const char* key, const Class::Enum& value, KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)\
+    {                                                                          \
+        const QMetaObject* M_obj = &Class::staticMetaObject;                       \
+        const int M_index = M_obj->indexOfEnumerator(#Enum);                       \
+        if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Enum));            \
+        const QMetaEnum M_enum = M_obj->enumerator(M_index);                       \
+        group.writeEntry(key, QByteArray(M_enum.valueToKey(value)), flags);        \
+    }
 
 /**
  * Similar to KCONFIGGROUP_DECLARE_ENUM_QOBJECT but for flags declared with Q_FLAGS()
  * (where multiple values can be set at the same time)
  */
 #define KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(Class, Flags)                    \
-inline Class::Flags readEntry(const KConfigGroup& group, const char* key, const Class::Flags& def) \
-{                                                                           \
-const QMetaObject* M_obj = &Class::staticMetaObject;                        \
-const int M_index = M_obj->indexOfEnumerator(#Flags);                       \
-if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Flags));            \
-const QMetaEnum M_enum = M_obj->enumerator(M_index);                        \
-const QByteArray M_data = group.readEntry(key, QByteArray(M_enum.valueToKeys(def)));\
-return static_cast<Class::Flags>(M_enum.keysToValue(M_data.constData()));   \
-}                                                                           \
-inline void writeEntry(KConfigGroup& group, const char* key, const Class::Flags& value, KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)\
-{                                                                           \
-const QMetaObject* M_obj = &Class::staticMetaObject;                        \
-const int M_index = M_obj->indexOfEnumerator(#Flags);                       \
-if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Flags));            \
-const QMetaEnum M_enum = M_obj->enumerator(M_index);                        \
-group.writeEntry(key, QByteArray(M_enum.valueToKeys(value)), flags);        \
-}
+    inline Class::Flags readEntry(const KConfigGroup& group, const char* key, const Class::Flags& def) \
+    {                                                                           \
+        const QMetaObject* M_obj = &Class::staticMetaObject;                        \
+        const int M_index = M_obj->indexOfEnumerator(#Flags);                       \
+        if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Flags));            \
+        const QMetaEnum M_enum = M_obj->enumerator(M_index);                        \
+        const QByteArray M_data = group.readEntry(key, QByteArray(M_enum.valueToKeys(def)));\
+        return static_cast<Class::Flags>(M_enum.keysToValue(M_data.constData()));   \
+    }                                                                           \
+    inline void writeEntry(KConfigGroup& group, const char* key, const Class::Flags& value, KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)\
+    {                                                                           \
+        const QMetaObject* M_obj = &Class::staticMetaObject;                        \
+        const int M_index = M_obj->indexOfEnumerator(#Flags);                       \
+        if(M_index == -1) qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Flags));            \
+        const QMetaEnum M_enum = M_obj->enumerator(M_index);                        \
+        group.writeEntry(key, QByteArray(M_enum.valueToKeys(value)), flags);        \
+    }
 
 #include "conversion_check.h"
 
 template <typename T>
 T KConfigGroup::readCheck(const char *key, const T &defaultValue) const
 {
-  ConversionCheck::to_QVariant<T>();
-  return qvariant_cast<T>(readEntry(key, qVariantFromValue(defaultValue)));
+    ConversionCheck::to_QVariant<T>();
+    return qvariant_cast<T>(readEntry(key, qVariantFromValue(defaultValue)));
 }
 
 template <typename T>
 QList<T> KConfigGroup::readListCheck(const char *key, const QList<T> &defaultValue) const
 {
-  ConversionCheck::to_QVariant<T>();
-  ConversionCheck::to_QString<T>();
+    ConversionCheck::to_QVariant<T>();
+    ConversionCheck::to_QString<T>();
 
-  QVariantList data;
+    QVariantList data;
 
-  Q_FOREACH(const T& value, defaultValue)
-    data.append(qVariantFromValue(value));
+    Q_FOREACH (const T &value, defaultValue) {
+        data.append(qVariantFromValue(value));
+    }
 
-  QList<T> list;
-  Q_FOREACH (const QVariant &value, readEntry<QVariantList>(key, data)) {
-    Q_ASSERT(value.canConvert<T>());
-    list.append(qvariant_cast<T>(value));
-  }
+    QList<T> list;
+    Q_FOREACH (const QVariant &value, readEntry<QVariantList>(key, data)) {
+        Q_ASSERT(value.canConvert<T>());
+        list.append(qvariant_cast<T>(value));
+    }
 
-  return list;
+    return list;
 }
 
 template <typename T>
@@ -754,14 +771,14 @@ template <typename T>
 void KConfigGroup::writeListCheck(const char *key, const QList<T> &list,
                                   WriteConfigFlags pFlags)
 {
-  ConversionCheck::to_QVariant<T>();
-  ConversionCheck::to_QString<T>();
-  QVariantList data;
-  Q_FOREACH(const T &value, list) {
-    data.append(qVariantFromValue(value));
-  }
+    ConversionCheck::to_QVariant<T>();
+    ConversionCheck::to_QString<T>();
+    QVariantList data;
+    Q_FOREACH (const T &value, list) {
+        data.append(qVariantFromValue(value));
+    }
 
-  writeEntry(key, data, pFlags);
+    writeEntry(key, data, pFlags);
 }
 
 #endif // KCONFIGGROUP_H

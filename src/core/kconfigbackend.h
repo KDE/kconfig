@@ -61,8 +61,8 @@ public:
      * @param system        the configuration system to use
      * @return a KConfigBackend object to be used with KConfig
      */
-    static QExplicitlySharedDataPointer<KConfigBackend> create(const QString& fileName = QString(),
-                                             const QString& system = QString());
+    static QExplicitlySharedDataPointer<KConfigBackend> create(const QString &fileName = QString(),
+            const QString &system = QString());
 
     /**
      * Registers mappings from directories/files to configuration systems
@@ -74,7 +74,7 @@ public:
      *
      * @param entryMap the KEntryMap to build the mappings from
      */
-    static void registerMappings(const KEntryMap& entryMap);
+    static void registerMappings(const KEntryMap &entryMap);
 
     /** Destroys the backend */
     virtual ~KConfigBackend();
@@ -110,8 +110,8 @@ public:
      * @param options @see ParseOptions
      * @return @see ParseInfo
      */
-    virtual ParseInfo parseConfig(const QByteArray& locale,
-                                  KEntryMap& pWriteBackMap,
+    virtual ParseInfo parseConfig(const QByteArray &locale,
+                                  KEntryMap &pWriteBackMap,
                                   ParseOptions options = ParseOptions()) = 0;
 
     /**
@@ -123,7 +123,7 @@ public:
      *
      * @return @c true if the write was successful, @c false if writing the configuration failed
      */
-    virtual bool writeConfig(const QByteArray& locale, KEntryMap& entryMap,
+    virtual bool writeConfig(const QByteArray &locale, KEntryMap &entryMap,
                              WriteOptions options) = 0;
 
     /**
@@ -163,7 +163,7 @@ public:
      *
      * @param path the absolute file path
      */
-    virtual void setFilePath(const QString& path) = 0;
+    virtual void setFilePath(const QString &path) = 0;
 
     /**
      * Lock the file
@@ -189,9 +189,9 @@ public:
 
 protected:
     KConfigBackend();
-    void setLastModified(const QDateTime& dt);
+    void setLastModified(const QDateTime &dt);
     void setSize(qint64 sz);
-    void setLocalFilePath(const QString& file);
+    void setLocalFilePath(const QString &file);
 
 private:
     class Private;
@@ -205,7 +205,6 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigBackend::WriteOptions)
  * Register a KConfig backend when it is contained in a loadable module
  */
 #define K_EXPORT_KCONFIGBACKEND(libname, classname) \
-K_PLUGIN_FACTORY(factory, registerPlugin<classname>();)
-
+    K_PLUGIN_FACTORY(factory, registerPlugin<classname>();)
 
 #endif // KCONFIGBACKEND_H

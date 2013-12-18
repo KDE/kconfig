@@ -47,11 +47,11 @@ KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk re
 QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 {
     return QString::fromLatin1("KConfigIni: In file %2, line %1: ")
-            .arg(line).arg(file.fileName());
+           .arg(line).arg(file.fileName());
 }
 
 KConfigIniBackend::KConfigIniBackend()
- : KConfigBackend(), lockFile(NULL)
+    : KConfigBackend(), lockFile(NULL)
 {
 }
 
@@ -60,8 +60,8 @@ KConfigIniBackend::~KConfigIniBackend()
 }
 
 KConfigBackend::ParseInfo
-        KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entryMap,
-                                       ParseOptions options)
+KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap,
+                               ParseOptions options)
 {
     return parseConfig(currentLocale, entryMap, options, false);
 }
@@ -69,20 +69,22 @@ KConfigBackend::ParseInfo
 // merging==true is the merging that happens at the beginning of writeConfig:
 // merge changes in the on-disk file with the changes in the KConfig object.
 KConfigBackend::ParseInfo
-KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entryMap,
+KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap,
                                ParseOptions options, bool merging)
 {
-    if (filePath().isEmpty() || !QFile::exists(filePath()))
+    if (filePath().isEmpty() || !QFile::exists(filePath())) {
         return ParseOk;
+    }
 
-    bool bDefault = options&ParseDefaults;
-    bool allowExecutableValues = options&ParseExpansions;
+    bool bDefault = options & ParseDefaults;
+    bool allowExecutableValues = options & ParseExpansions;
 
     QByteArray currentGroup("<default>");
 
     QFile file(filePath());
-    if (!file.open(QIODevice::ReadOnly|QIODevice::Text))
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return ParseOpenError;
+    }
 
     QList<QByteArray> immutableGroups;
 
@@ -104,8 +106,9 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
         lineNo++;
 
         // skip empty lines and lines beginning with '#'
-        if (line.isEmpty() || line.at(0) == '#')
+        if (line.isEmpty() || line.at(0) == '#') {
             continue;
+        }
 
         if (line.at(0) == '[') { // found a group
             groupOptionImmutable = fileOptionImmutable;
@@ -120,22 +123,23 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
                         // XXX maybe reset the current group here?
                         goto next_line;
                     }
-                    if (line.at(end) == ']')
+                    if (line.at(end) == ']') {
                         break;
+                    }
                     end++;
                 }
                 if (end + 1 == line.length() && start + 2 == end &&
-                    line.at(start) == '$' && line.at(start + 1) == 'i')
-                {
-                    if (newGroup.isEmpty())
+                        line.at(start) == '$' && line.at(start + 1) == 'i') {
+                    if (newGroup.isEmpty()) {
                         fileOptionImmutable = !kde_kiosk_exception;
-                    else
+                    } else {
                         groupOptionImmutable = !kde_kiosk_exception;
-                }
-                else {
-                    if (!newGroup.isEmpty())
+                    }
+                } else {
+                    if (!newGroup.isEmpty()) {
                         newGroup += '\x1d';
-                    BufferFragment namePart=line.mid(start, end - start);
+                    }
+                    BufferFragment namePart = line.mid(start, end - start);
                     printableToString(&namePart, file, lineNo);
                     newGroup += namePart.toByteArray();
                 }
@@ -144,16 +148,20 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
 
             groupSkip = entryMap.getEntryOption(currentGroup, 0, 0, KEntryMap::EntryImmutable);
 
-            if (groupSkip && !bDefault)
+            if (groupSkip && !bDefault) {
                 continue;
+            }
 
             if (groupOptionImmutable)
                 // Do not make the groups immutable until the entries from
                 // this file have been added.
+            {
                 immutableGroups.append(currentGroup);
+            }
         } else {
-            if (groupSkip && !bDefault)
-                continue; // skip entry
+            if (groupSkip && !bDefault) {
+                continue;    // skip entry
+            }
 
             BufferFragment aKey;
             int eqpos = line.indexOf('=');
@@ -171,9 +179,10 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
                 continue;
             }
 
-            KEntryMap::EntryOptions entryOptions=0;
-            if (groupOptionImmutable)
+            KEntryMap::EntryOptions entryOptions = 0;
+            if (groupOptionImmutable) {
                 entryOptions |= KEntryMap::EntryImmutable;
+            }
 
             BufferFragment locale;
             int start;
@@ -181,39 +190,41 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
                 int end = aKey.indexOf(']', start);
                 if (end < 0) {
                     qWarning() << warningProlog(file, lineNo)
-                            << "Invalid entry (missing ']')";
+                               << "Invalid entry (missing ']')";
                     goto next_line;
                 } else if (end > start + 1 && aKey.at(start + 1) == '$') { // found option(s)
                     int i = start + 2;
                     while (i < end) {
                         switch (aKey.at(i)) {
-                            case 'i':
-                                if (!kde_kiosk_exception)
-                                    entryOptions |= KEntryMap::EntryImmutable;
-                                break;
-                            case 'e':
-                                if (allowExecutableValues)
-                                    entryOptions |= KEntryMap::EntryExpansion;
-                                break;
-                            case 'd':
-                                entryOptions |= KEntryMap::EntryDeleted;
-                                aKey = aKey.left(start);
-                                printableToString(&aKey, file, lineNo);
-                                entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);
-                                goto next_line;
-                            default:
-                                break;
+                        case 'i':
+                            if (!kde_kiosk_exception) {
+                                entryOptions |= KEntryMap::EntryImmutable;
+                            }
+                            break;
+                        case 'e':
+                            if (allowExecutableValues) {
+                                entryOptions |= KEntryMap::EntryExpansion;
+                            }
+                            break;
+                        case 'd':
+                            entryOptions |= KEntryMap::EntryDeleted;
+                            aKey = aKey.left(start);
+                            printableToString(&aKey, file, lineNo);
+                            entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);
+                            goto next_line;
+                        default:
+                            break;
                         }
                         i++;
                     }
                 } else { // found a locale
                     if (!locale.isNull()) {
                         qWarning() << warningProlog(file, lineNo)
-                                << "Invalid entry (second locale!?)";
+                                   << "Invalid entry (second locale!?)";
                         goto next_line;
                     }
 
-                    locale = aKey.mid(start + 1,end - start - 1);
+                    locale = aKey.mid(start + 1, end - start - 1);
                 }
                 aKey.truncate(start);
             }
@@ -226,23 +237,28 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
                 if (locale != currentLocale) {
                     // backward compatibility. C == en_US
                     if (locale.at(0) != 'C' || currentLocale != "en_US") {
-                        if (merging)
+                        if (merging) {
                             entryOptions |= KEntryMap::EntryRawKey;
-                        else
-                            goto next_line; // skip this entry if we're not merging
+                        } else {
+                            goto next_line;    // skip this entry if we're not merging
+                        }
                     }
                 }
             }
 
-            if (!(entryOptions & KEntryMap::EntryRawKey))
+            if (!(entryOptions & KEntryMap::EntryRawKey)) {
                 printableToString(&aKey, file, lineNo);
+            }
 
-            if (options&ParseGlobal)
+            if (options & ParseGlobal) {
                 entryOptions |= KEntryMap::EntryGlobal;
-            if (bDefault)
+            }
+            if (bDefault) {
                 entryOptions |= KEntryMap::EntryDefault;
-            if (!locale.isNull())
+            }
+            if (!locale.isNull()) {
                 entryOptions |= KEntryMap::EntryLocalized;
+            }
             printableToString(&line, file, lineNo);
             if (entryOptions & KEntryMap::EntryRawKey) {
                 QByteArray rawKey;
@@ -254,30 +270,31 @@ KConfigIniBackend::parseConfig(const QByteArray& currentLocale, KEntryMap& entry
                 entryMap.setEntry(currentGroup, aKey.toByteArray(), line.toByteArray(), entryOptions);
             }
         }
-next_line:
+    next_line:
         continue;
     }
 
     // now make sure immutable groups are marked immutable
-    Q_FOREACH(const QByteArray& group, immutableGroups) {
+    Q_FOREACH (const QByteArray &group, immutableGroups) {
         entryMap.setEntry(group, QByteArray(), QByteArray(), KEntryMap::EntryImmutable);
     }
 
     return fileOptionImmutable ? ParseImmutable : ParseOk;
 }
 
-void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file,
-                                     const KEntryMap& map, bool defaultGroup, bool &firstEntry)
+void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file,
+                                     const KEntryMap &map, bool defaultGroup, bool &firstEntry)
 {
     QByteArray currentGroup;
     bool groupIsImmutable = false;
     const KEntryMapConstIterator end = map.constEnd();
     for (KEntryMapConstIterator it = map.constBegin(); it != end; ++it) {
-        const KEntryKey& key = it.key();
+        const KEntryKey &key = it.key();
 
         // Either process the default group or all others
-        if ((key.mGroup != "<default>") == defaultGroup)
-            continue; // skip
+        if ((key.mGroup != "<default>") == defaultGroup) {
+            continue;    // skip
+        }
 
         // the only thing we care about groups is, is it immutable?
         if (key.mKey.isNull()) {
@@ -285,10 +302,11 @@ void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file,
             continue; // skip
         }
 
-        const KEntry& currentEntry = *it;
+        const KEntry &currentEntry = *it;
         if (!defaultGroup && currentGroup != key.mGroup) {
-            if (!firstEntry)
+            if (!firstEntry) {
                 file.putChar('\n');
+            }
             currentGroup = key.mGroup;
             for (int start = 0, end;; start = end + 1) {
                 file.putChar('[');
@@ -298,13 +316,14 @@ void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file,
                     if (currentGroup.at(start) == '$' && cgl - start <= 10) {
                         for (int i = start + 1; i < cgl; i++) {
                             char c = currentGroup.at(i);
-                            if (c < 'a' || c > 'z')
+                            if (c < 'a' || c > 'z') {
                                 goto nope;
+                            }
                         }
                         file.write("\\x24");
                         start++;
                     }
-                  nope:
+                nope:
                     file.write(stringToPrintable(currentGroup.mid(start), GroupString));
                     file.putChar(']');
                     if (groupIsImmutable) {
@@ -322,9 +341,9 @@ void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file,
         firstEntry = false;
         // it is data for a group
 
-        if (key.bRaw) // unprocessed key with attached locale from merge
+        if (key.bRaw) { // unprocessed key with attached locale from merge
             file.write(key.mKey);
-        else {
+        } else {
             file.write(stringToPrintable(key.mKey, KeyString)); // Key
             if (key.bLocal && locale != "C") { // 'C' locale == untranslated
                 file.putChar('[');
@@ -333,17 +352,20 @@ void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file,
             }
         }
         if (currentEntry.bDeleted) {
-            if (currentEntry.bImmutable)
-                file.write("[$di]", 5); // Deleted + immutable
-            else
-                file.write("[$d]", 4); // Deleted
+            if (currentEntry.bImmutable) {
+                file.write("[$di]", 5);    // Deleted + immutable
+            } else {
+                file.write("[$d]", 4);    // Deleted
+            }
         } else {
             if (currentEntry.bImmutable || currentEntry.bExpand) {
                 file.write("[$", 2);
-                if (currentEntry.bImmutable)
+                if (currentEntry.bImmutable) {
                     file.putChar('i');
-                if (currentEntry.bExpand)
+                }
+                if (currentEntry.bExpand) {
                     file.putChar('e');
+                }
                 file.putChar(']');
             }
             file.putChar('=');
@@ -353,7 +375,7 @@ void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file,
     }
 }
 
-void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file, const KEntryMap& map)
+void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map)
 {
     bool firstEntry = true;
 
@@ -364,7 +386,7 @@ void KConfigIniBackend::writeEntries(const QByteArray& locale, QIODevice& file, 
     writeEntries(locale, file, map, false, firstEntry);
 }
 
-bool KConfigIniBackend::writeConfig(const QByteArray& locale, KEntryMap& entryMap,
+bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMap,
                                     WriteOptions options)
 {
     Q_ASSERT(!filePath().isEmpty());
@@ -376,19 +398,22 @@ bool KConfigIniBackend::writeConfig(const QByteArray& locale, KEntryMap& entryMa
     // Store the result into writeMap.
     {
         ParseOptions opts = ParseExpansions;
-        if (bGlobal)
+        if (bGlobal) {
             opts |= ParseGlobal;
+        }
         ParseInfo info = parseConfig(locale, writeMap, opts, true);
-        if (info != ParseOk) // either there was an error or the file became immutable
+        if (info != ParseOk) { // either there was an error or the file became immutable
             return false;
+        }
     }
 
     const KEntryMapIterator end = entryMap.end();
-    for (KEntryMapIterator it=entryMap.begin(); it != end; ++it) {
-        if (!it.key().mKey.isEmpty() && !it->bDirty) // not dirty, doesn't overwrite entry in writeMap. skips default entries, too.
+    for (KEntryMapIterator it = entryMap.begin(); it != end; ++it) {
+        if (!it.key().mKey.isEmpty() && !it->bDirty) { // not dirty, doesn't overwrite entry in writeMap. skips default entries, too.
             continue;
+        }
 
-        const KEntryKey& key = it.key();
+        const KEntryKey &key = it.key();
 
         // only write entries that have the same "globality" as the file
         if (it->bGlobal == bGlobal) {
@@ -419,19 +444,15 @@ bool KConfigIniBackend::writeConfig(const QByteArray& locale, KEntryMap& entryMa
     bool createNew = true;
 
     QFileInfo fi(filePath());
-    if (fi.exists())
-    {
+    if (fi.exists()) {
 #ifdef Q_OS_WIN
         //TODO: getuid does not exist on windows, use GetSecurityInfo and GetTokenInformation instead
         createNew = false;
 #else
-        if (fi.ownerId() == ::getuid())
-        {
+        if (fi.ownerId() == ::getuid()) {
             // Preserve file mode if file exists and is owned by user.
             fileMode = fi.permissions();
-        }
-        else
-        {
+        } else {
             // File is not owned by user:
             // Don't create new file but write to existing file instead.
             createNew = false;
@@ -490,9 +511,9 @@ bool KConfigIniBackend::writeConfig(const QByteArray& locale, KEntryMap& entryMa
         f.close();
         fclose(fp);
 #else
-        QFile f( filePath() );
+        QFile f(filePath());
         // XXX This is broken - it DOES create the file if it is suddenly gone.
-        if (!f.open( QIODevice::WriteOnly | QIODevice::Truncate )) {
+        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
             return false;
         }
         f.setTextModeEnabled(true);
@@ -501,7 +522,6 @@ bool KConfigIniBackend::writeConfig(const QByteArray& locale, KEntryMap& entryMa
     }
     return true;
 }
-
 
 bool KConfigIniBackend::isWritable() const
 {
@@ -537,18 +557,20 @@ QString KConfigIniBackend::nonWritableErrorMessage() const
 void KConfigIniBackend::createEnclosing()
 {
     const QString file = filePath();
-    if (file.isEmpty())
-        return; // nothing to do
+    if (file.isEmpty()) {
+        return;    // nothing to do
+    }
 
     // Create the containing dir, maybe it wasn't there
     QDir dir;
     dir.mkpath(QFileInfo(file).absolutePath());
 }
 
-void KConfigIniBackend::setFilePath(const QString& file)
+void KConfigIniBackend::setFilePath(const QString &file)
 {
-    if (file.isEmpty())
+    if (file.isEmpty()) {
         return;
+    }
 
     Q_ASSERT(QDir::isAbsolutePath(file));
 
@@ -568,11 +590,13 @@ void KConfigIniBackend::setFilePath(const QString& file)
 
 KConfigBase::AccessMode KConfigIniBackend::accessMode() const
 {
-    if (filePath().isEmpty())
+    if (filePath().isEmpty()) {
         return KConfigBase::NoAccess;
+    }
 
-    if (isWritable())
+    if (isWritable()) {
         return KConfigBase::ReadWrite;
+    }
 
     return KConfigBase::ReadOnly;
 }
@@ -608,15 +632,16 @@ bool KConfigIniBackend::isLocked() const
     return lockFile && lockFile->isLocked();
 }
 
-QByteArray KConfigIniBackend::stringToPrintable(const QByteArray& aString, StringType type)
+QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, StringType type)
 {
     static const char nibbleLookup[] = {
         '0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
     };
 
-    if (aString.isEmpty())
+    if (aString.isEmpty()) {
         return aString;
+    }
     const int l = aString.length();
 
     QByteArray result; // Guesstimated that it's good to avoid data() initialization for a length of l*4
@@ -635,47 +660,48 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray& aString, Strin
 
     for (; i < l; ++i/*, r++*/) {
         switch (s[i]) {
-            default:
+        default:
             // The \n, \t, \r cases (all < 32) are handled below; we can ignore them here
-                if (((unsigned char)s[i]) < 32)
-                    goto doEscape;
+            if (((unsigned char)s[i]) < 32) {
+                goto doEscape;
+            }
+            *data++ = s[i];
+            break;
+        case '\n':
+            *data++ = '\\';
+            *data++ = 'n';
+            break;
+        case '\t':
+            *data++ = '\\';
+            *data++ = 't';
+            break;
+        case '\r':
+            *data++ = '\\';
+            *data++ = 'r';
+            break;
+        case '\\':
+            *data++ = '\\';
+            *data++ = '\\';
+            break;
+        case '=':
+            if (type != KeyString) {
                 *data++ = s[i];
                 break;
-            case '\n':
-                *data++ = '\\';
-                *data++ = 'n';
-                break;
-            case '\t':
-                *data++ = '\\';
-                *data++ = 't';
-                break;
-            case '\r':
-                *data++ = '\\';
-                *data++ = 'r';
-                break;
-            case '\\':
-                *data++ = '\\';
-                *data++ = '\\';
-                break;
-            case '=':
-                if (type != KeyString) {
-                    *data++ = s[i];
-                    break;
-                }
-                goto doEscape;
-            case '[':
-            case ']':
+            }
+            goto doEscape;
+        case '[':
+        case ']':
             // Above chars are OK to put in *value* strings as plaintext
-                if (type == ValueString) {
-                    *data++ = s[i];
-                    break;
-                }
-        doEscape:
-                *data++ = '\\';
-                *data++ = 'x';
-                *data++ = nibbleLookup[((unsigned char)s[i]) >> 4];
-                *data++ = nibbleLookup[((unsigned char)s[i]) & 0x0f];
+            if (type == ValueString) {
+                *data++ = s[i];
                 break;
+            }
+        doEscape:
+            *data++ = '\\';
+            *data++ = 'x';
+            *data++ = nibbleLookup[((unsigned char)s[i]) >> 4];
+            *data++ = nibbleLookup[((unsigned char)s[i]) & 0x0f];
+            break;
         }
     }
     *data = 0;
@@ -690,7 +716,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray& aString, Strin
     return result;
 }
 
-char KConfigIniBackend::charFromHex(const char *str, const QFile& file, int line)
+char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line)
 {
     unsigned char ret = 0;
     for (int i = 0; i < 2; i++) {
@@ -707,25 +733,26 @@ char KConfigIniBackend::charFromHex(const char *str, const QFile& file, int line
             QByteArray e(str, 2);
             e.prepend("\\x");
             qWarning() << warningProlog(file, line) << "Invalid hex character " << c
-                    << " in \\x<nn>-type escape sequence \"" << e.constData() << "\".";
+                       << " in \\x<nn>-type escape sequence \"" << e.constData() << "\".";
             return 'x';
         }
     }
     return char(ret);
 }
 
-void KConfigIniBackend::printableToString(BufferFragment* aString, const QFile& file, int line)
+void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &file, int line)
 {
-    if (aString->isEmpty() || aString->indexOf('\\')==-1)
+    if (aString->isEmpty() || aString->indexOf('\\') == -1) {
         return;
+    }
     aString->trim();
     int l = aString->length();
     char *r = aString->data();
-    char *str=r;
+    char *str = r;
 
-    for(int i = 0; i < l; i++, r++) {
-        if (str[i]!= '\\') {
-            *r=str[i];
+    for (int i = 0; i < l; i++, r++) {
+        if (str[i] != '\\') {
+            *r = str[i];
         } else {
             // Probable escape sequence
             i++;
@@ -734,35 +761,35 @@ void KConfigIniBackend::printableToString(BufferFragment* aString, const QFile& 
                 break;
             }
 
-            switch(str[i]) {
-                case 's':
-                    *r = ' ';
-                    break;
-                case 't':
-                    *r = '\t';
-                    break;
-                case 'n':
-                    *r = '\n';
-                    break;
-                case 'r':
-                    *r = '\r';
-                    break;
-                case '\\':
-                    *r = '\\';
-                    break;
-                case 'x':
-                    if (i + 2 < l) {
-                        *r = charFromHex(str + i + 1, file, line);
-                        i += 2;
-                    } else {
-                        *r = 'x';
-                        i = l - 1;
-                    }
-                    break;
-                default:
-                    *r = '\\';
-                    qWarning() << warningProlog(file, line)
-                               << QString::fromLatin1("Invalid escape sequence \"\\%1\".").arg(str[i]);
+            switch (str[i]) {
+            case 's':
+                *r = ' ';
+                break;
+            case 't':
+                *r = '\t';
+                break;
+            case 'n':
+                *r = '\n';
+                break;
+            case 'r':
+                *r = '\r';
+                break;
+            case '\\':
+                *r = '\\';
+                break;
+            case 'x':
+                if (i + 2 < l) {
+                    *r = charFromHex(str + i + 1, file, line);
+                    i += 2;
+                } else {
+                    *r = 'x';
+                    i = l - 1;
+                }
+                break;
+            default:
+                *r = '\\';
+                qWarning() << warningProlog(file, line)
+                           << QString::fromLatin1("Invalid escape sequence \"\\%1\".").arg(str[i]);
             }
         }
     }

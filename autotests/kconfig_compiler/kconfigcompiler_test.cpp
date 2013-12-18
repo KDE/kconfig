@@ -25,32 +25,30 @@
 // QT5 TODO QTEST_GUILESS_MAIN(KConfigCompiler_Test)
 QTEST_MAIN(KConfigCompiler_Test)
 
-typedef const char * CompilerTestSet[];
+typedef const char *CompilerTestSet[];
 
-static CompilerTestSet testCases =
-{
-	"test1.cpp", "test1.h",
-	"test2.cpp", "test2.h",
-	"test3.cpp", "test3.h",
-	"test3a.cpp", "test3a.h",
-	"test4.cpp", "test4.h",
-	"test5.cpp", "test5.h",
-	"test6.cpp", "test6.h",
-	"test7.cpp", "test7.h",
-	"test8a.cpp", "test8a.h",
-	"test8b.cpp", "test8b.h",
-	"test9.h", "test9.cpp",
-	"test10.h", "test10.cpp",
-	"test11.h", "test11.cpp",
-	"test11a.h", "test11a.cpp",
-	"test12.h", "test12.cpp",
-	"test_dpointer.cpp", "test_dpointer.h",
-	"test_signal.cpp", "test_signal.h",
-	NULL
+static CompilerTestSet testCases = {
+    "test1.cpp", "test1.h",
+    "test2.cpp", "test2.h",
+    "test3.cpp", "test3.h",
+    "test3a.cpp", "test3a.h",
+    "test4.cpp", "test4.h",
+    "test5.cpp", "test5.h",
+    "test6.cpp", "test6.h",
+    "test7.cpp", "test7.h",
+    "test8a.cpp", "test8a.h",
+    "test8b.cpp", "test8b.h",
+    "test9.h", "test9.cpp",
+    "test10.h", "test10.cpp",
+    "test11.h", "test11.cpp",
+    "test11a.h", "test11a.cpp",
+    "test12.h", "test12.cpp",
+    "test_dpointer.cpp", "test_dpointer.h",
+    "test_signal.cpp", "test_signal.h",
+    NULL
 };
 
-static CompilerTestSet testCasesToRun =
-{
+static CompilerTestSet testCasesToRun = {
     "test1",
     "test2",
     "test3",
@@ -70,11 +68,10 @@ static CompilerTestSet testCasesToRun =
 };
 
 #if 0
-static CompilerTestSet willFailCases =
-{
-	// where is that QDir coming from?
-	//"test9.cpp", NULL
-	NULL
+static CompilerTestSet willFailCases = {
+    // where is that QDir coming from?
+    //"test9.cpp", NULL
+    NULL
 };
 #endif
 
@@ -152,7 +149,6 @@ void KConfigCompiler_Test::testRunning()
     QCOMPARE((int)process.error(), (int)QProcess::UnknownError);
     QCOMPARE(process.exitCode(), 0);
 }
-
 
 void KConfigCompiler_Test::appendFileDiff(const QString &oldFile, const QString &newFile)
 {

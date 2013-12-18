@@ -34,7 +34,6 @@ private Q_SLOTS:
     void testNoKdeHome();
 };
 
-
 void KConfigNoKdeHomeTest::testNoKdeHome()
 {
     QStandardPaths::setTestModeEnabled(true);

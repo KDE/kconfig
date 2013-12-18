@@ -27,7 +27,7 @@
 
 void _k_globalMainConfigSync();
 
-class GlobalSharedConfigList : public QList<KSharedConfig*>
+class GlobalSharedConfigList : public QList<KSharedConfig *>
 {
 public:
     GlobalSharedConfigList()
@@ -44,19 +44,18 @@ public:
     KSharedConfigPtr mainConfig;
 };
 
-
 Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList)
 
 void _k_globalMainConfigSync()
 {
-    if (globalSharedConfigList->mainConfig)
+    if (globalSharedConfigList->mainConfig) {
         globalSharedConfigList->mainConfig->sync();
+    }
 }
 
-
-KSharedConfigPtr KSharedConfig::openConfig(const QString& _fileName,
-                                           OpenFlags flags,
-                                           QStandardPaths::StandardLocation resType)
+KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
+        OpenFlags flags,
+        QStandardPaths::StandardLocation resType)
 {
     QString fileName(_fileName);
     GlobalSharedConfigList *list = globalSharedConfigList();
@@ -66,10 +65,10 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString& _fileName,
     }
 
     if (list) {
-        for(QList<KSharedConfig*>::ConstIterator it = list->constBegin(); it != list->constEnd(); ++it) {
-            if ( (*it)->name() == fileName &&
-                 (*it)->d_ptr->openFlags == flags &&
-                 (*it)->locationType() == resType
+        for (QList<KSharedConfig *>::ConstIterator it = list->constBegin(); it != list->constEnd(); ++it) {
+            if ((*it)->name() == fileName &&
+                    (*it)->d_ptr->openFlags == flags &&
+                    (*it)->locationType() == resType
 //                 (*it)->backEnd()->type() == backEnd
                ) {
                 return KSharedConfigPtr(*it);
@@ -85,15 +84,15 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString& _fileName,
             userWarned = true;
             QByteArray readOnly = qgetenv("KDE_HOME_READONLY");
             if (readOnly.isEmpty() && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
-                if (ptr->group("General").readEntry(QLatin1String("warn_unwritable_config"), true))
+                if (ptr->group("General").readEntry(QLatin1String("warn_unwritable_config"), true)) {
                     ptr->isConfigWritable(true);
+                }
             }
         }
     }
 
     return ptr;
 }
-
 
 KSharedConfig::KSharedConfig(const QString &fileName,
                              OpenFlags flags,
@@ -105,18 +104,19 @@ KSharedConfig::KSharedConfig(const QString &fileName,
 
 KSharedConfig::~KSharedConfig()
 {
-    if (!globalSharedConfigList.isDestroyed())
+    if (!globalSharedConfigList.isDestroyed()) {
         globalSharedConfigList()->removeAll(this);
+    }
 }
 
 KConfigGroup KSharedConfig::groupImpl(const QByteArray &groupName)
 {
     KSharedConfigPtr ptr(this);
-    return KConfigGroup( ptr, groupName.constData());
+    return KConfigGroup(ptr, groupName.constData());
 }
 
 const KConfigGroup KSharedConfig::groupImpl(const QByteArray &groupName) const
 {
-    const KSharedConfigPtr ptr(const_cast<KSharedConfig*>(this));
-    return KConfigGroup( ptr, groupName.constData());
+    const KSharedConfigPtr ptr(const_cast<KSharedConfig *>(this));
+    return KConfigGroup(ptr, groupName.constData());
 }
