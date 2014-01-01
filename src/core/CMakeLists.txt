@@ -19,15 +19,11 @@ add_library(KF5ConfigCore ${libkconfigcore_SRCS})
 generate_export_header(KF5ConfigCore BASE_NAME KConfigCore)
 add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
 
+target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kconfigcore>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigCore>")
+
 target_link_libraries(KF5ConfigCore PUBLIC Qt5::Core)
 if(WIN32)
     target_link_libraries(KF5ConfigCore PRIVATE ${KDEWIN_LIBRARIES})
-endif()
-
-if(IS_ABSOLUTE "${INCLUDE_INSTALL_DIR}")
-  target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>" )
-else()
-  target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${INCLUDE_INSTALL_DIR}>" )
 endif()
 
 set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION_STRING}
@@ -35,19 +31,27 @@ set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION_STRIN
                                                EXPORT_NAME ConfigCore
 )
 
+ecm_generate_headers(
+  KAuthorized
+  KConfig
+  KConfigBackend
+  KConfigBase
+  KConfigGroup
+  KDesktopFile
+  KSharedConfig
+  KCoreConfigSkeleton
+  KEMailSettings
+  ConversionCheck
+
+  MODULE_NAME KConfigCore
+  REQUIRED_HEADERS KConfigCore_HEADERS
+)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+
 install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-install( FILES
-   ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
-   conversion_check.h
-   kconfig.h
-   #kconfigbackend.h re-enable post-API review and implementation (4.2?)
-   kconfigbase.h
-   kconfiggroup.h
-   kdesktopfile.h
-   ksharedconfig.h
-   kcoreconfigskeleton.h
-   kauthorized.h
-   kemailsettings.h
-   DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
+  ${KConfigCore_HEADERS}
+  DESTINATION ${INCLUDE_INSTALL_DIR}/kconfigcore COMPONENT Devel
 )

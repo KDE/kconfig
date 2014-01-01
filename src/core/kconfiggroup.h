@@ -729,7 +729,7 @@ private:
         group.writeEntry(key, QByteArray(M_enum.valueToKeys(value)), flags);        \
     }
 
-#include "conversion_check.h"
+#include "conversioncheck.h"
 
 template <typename T>
 T KConfigGroup::readCheck(const char *key, const T &defaultValue) const

@@ -15,27 +15,30 @@ add_library(KF5ConfigGui ${libkconfiggui_SRCS})
 generate_export_header(KF5ConfigGui BASE_NAME KConfigGui)
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
 
-target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
+target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kconfiggui>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigGui>")
 
-if(IS_ABSOLUTE "${INCLUDE_INSTALL_DIR}")
-  target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>" )
-else()
-  target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/${INCLUDE_INSTALL_DIR}>" )
-endif()
+target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
 
 set_target_properties(KF5ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION_STRING}
                                               SOVERSION ${KCONFIG_SOVERSION}
                                               EXPORT_NAME ConfigGui
 )
 
+ecm_generate_headers(
+  KConfigGui
+  KConfigLoader
+  KConfigSkeleton
+  KStandardShortcut
+  KWindowConfig
+
+  MODULE_NAME KConfigGui REQUIRED_HEADERS KConfigGui_HEADERS
+)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KConfigGui DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+
 install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-install( FILES
-   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
-   kconfiggui.h
-   kconfigloader.h
-   kconfigskeleton.h
-   kstandardshortcut.h
-   kwindowconfig.h
-   DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
+  ${KConfigGui_HEADERS}
+  DESTINATION ${INCLUDE_INSTALL_DIR}/kconfiggui COMPONENT Devel
 )

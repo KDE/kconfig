@@ -219,7 +219,7 @@ static QString formatError(int expected, int got)
 QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault)
 {
     // if a type handler is added here you must add a QVConversions definition
-    // to conversion_check.h, or ConversionCheck::to_QVariant will not allow
+    // to conversioncheck.h, or ConversionCheck::to_QVariant will not allow
     // readEntry<T> to convert to QVariant.
     switch (aDefault.type()) {
     case QVariant::Invalid:
@@ -938,7 +938,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
 
     QByteArray data;
     // if a type handler is added here you must add a QVConversions definition
-    // to conversion_check.h, or ConversionCheck::to_QVariant will not allow
+    // to conversioncheck.h, or ConversionCheck::to_QVariant will not allow
     // writeEntry<T> to convert to QVariant.
     switch (value.type()) {
     case QVariant::Invalid:
