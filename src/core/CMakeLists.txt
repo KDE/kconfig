@@ -19,7 +19,7 @@ add_library(KF5ConfigCore ${libkconfigcore_SRCS})
 generate_export_header(KF5ConfigCore BASE_NAME KConfigCore)
 add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
 
-target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kconfigcore>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigCore>")
+target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigCore>")
 
 target_link_libraries(KF5ConfigCore PUBLIC Qt5::Core)
 if(WIN32)
@@ -53,5 +53,5 @@ install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
   ${KConfigCore_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/kconfigcore COMPONENT Devel
+  DESTINATION ${INCLUDE_INSTALL_DIR}/KConfigCore COMPONENT Devel
 )
