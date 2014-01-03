@@ -15,7 +15,7 @@ add_library(KF5ConfigGui ${libkconfiggui_SRCS})
 generate_export_header(KF5ConfigGui BASE_NAME KConfigGui)
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
 
-target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kconfiggui>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigGui>")
+target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigGui>")
 
 target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
 
@@ -40,5 +40,5 @@ install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_A
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/kconfiggui COMPONENT Devel
+  DESTINATION ${INCLUDE_INSTALL_DIR}/KConfigGui COMPONENT Devel
 )
