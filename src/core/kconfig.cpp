@@ -74,9 +74,9 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 
         etc_kderc =
 #ifdef Q_OS_WIN
-            QFile::decodeName(qgetenv("WINDIR") + "/kde4rc");
+            QFile::decodeName(qgetenv("WINDIR") + "/kde5rc");
 #else
-            QLatin1String("/etc/kde4rc");
+            QLatin1String("/etc/kde5rc");
 #endif
         if (!QFileInfo(etc_kderc).isReadable()) {
             etc_kderc.clear();
@@ -89,9 +89,9 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(etc_kderc, QLatin1String("INI"));
 //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseDefaults);
 //        }
-//        const QString kde4rc(QDir::home().filePath(".kde4rc"));
-//        if (KStandardDirs::checkAccess(kde4rc, R_OK)) {
-//            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde4rc, QLatin1String("INI"));
+//        const QString kde5rc(QDir::home().filePath(".kde5rc"));
+//        if (KStandardDirs::checkAccess(kde5rc, R_OK)) {
+//            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde5rc, QLatin1String("INI"));
 //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseOptions());
 //        }
 //        KConfigBackend::registerMappings(tmp);
