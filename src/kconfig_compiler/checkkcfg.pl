@@ -15,12 +15,12 @@ $file_cpp = "$filebase.cpp";
 
 $kcfgc = $file . "c";
 
-$cmd = "./kconfig_compiler $file $kcfgc";
+$cmd = "./kconfig_compiler_kf5 $file $kcfgc";
 
 #print "CMD $cmd\n";
 
 if ( system( $cmd ) != 0 ) {
-  print STDERR "Unable to run kconfig_compiler\n";
+  print STDERR "Unable to run kconfig_compiler_kf5\n";
   exit 1;
 }
 
