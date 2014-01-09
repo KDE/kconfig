@@ -1,12 +1,12 @@
 
-#test5.cpp test5.h: $(srcdir)/test5.kcfg ../kconfig_compiler $(srcdir)/test5.kcfgc
-#	../kconfig_compiler $(srcdir)/test5.kcfg $(srcdir)/test5.kcfgc
+#test5.cpp test5.h: $(srcdir)/test5.kcfg ../kconfig_compiler_kf5 $(srcdir)/test5.kcfgc
+#	../kconfig_compiler_kf5 $(srcdir)/test5.kcfg $(srcdir)/test5.kcfgc
 
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
    add_custom_command(
       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h
       COMMAND ${KConfig_KCFGC_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfg ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
-      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfg ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc kconfig_compiler)
+      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfg ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc kconfig_compiler_kf5)
 
 #   set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
    qt5_generate_moc(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.moc )
