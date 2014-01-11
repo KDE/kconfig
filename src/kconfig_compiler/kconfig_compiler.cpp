@@ -35,66 +35,19 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QStringList>
 
+#include <qcommandlineparser.h>
+#include <qcommandlineoption.h>
+
 #include <ostream>
 #include <iostream>
 #include <stdlib.h>
+
+#include "../../kconfig_version.h"
 
 namespace
 {
 QTextStream cout(stdout);
 QTextStream cerr(stderr);
-}
-
-static void parseArgs(const QStringList &args, QString &directory, QString &file1, QString &file2)
-{
-    int fileCount = 0;
-    directory = QChar::fromLatin1('.');
-
-    for (int i = 1; i < args.count(); ++i) {
-        if (args.at(i) == QLatin1String("-d") ||  args.at(i) == QLatin1String("--directory")) {
-            if (i + 1 > args.count()) {
-                cerr << args.at(i) << " needs an argument" << endl;
-                exit(1);
-            }
-            directory = args.at(++i);
-        } else if (args.at(i).startsWith(QLatin1String("-d"))) {
-            directory = args.at(i).mid(2);
-        } else if (args.at(i) == QLatin1String("--help") || args.at(i) == QLatin1String("-h")) {
-            cout << "Options:" << endl;
-            cout << "  -L --license              Display software license" << endl;
-            cout << "  -d, --directory <dir>     Directory to generate files in [.]" << endl;
-            cout << "  -h, --help                Display this help" << endl;
-            cout << endl;
-            cout << "Arguments:" << endl;
-            cout << "      file.kcfg                 Input kcfg XML file" << endl;
-            cout << "      file.kcfgc                Code generation options file" << endl;
-            exit(0);
-        } else if (args.at(i) == QLatin1String("--license") || args.at(i) == QLatin1String("-L")) {
-            cout << "Copyright 2003 Cornelius Schumacher, Waldo Bastian, Zack Rusin," << endl;
-            cout << "    Reinhold Kainhofer, Duncan Mac-Vicar P., Harald Fernengel" << endl;
-            cout << "This program comes with ABSOLUTELY NO WARRANTY." << endl;
-            cout << "You may redistribute copies of this program" << endl;
-            cout << "under the terms of the GNU Library Public License." << endl;
-            cout << "For more information about these matters, see the file named COPYING." << endl;
-            exit(0);
-        } else if (args.at(i).startsWith(QLatin1Char('-'))) {
-            cerr << "Unknown option: " << args.at(i) << endl;
-            exit(1);
-        } else if (fileCount == 0) {
-            file1 = args.at(i);
-            ++fileCount;
-        } else if (fileCount == 1) {
-            file2 = args.at(i);
-            ++fileCount;
-        } else {
-            cerr << "Too many arguments" << endl;
-            exit(1);
-        }
-    }
-    if (fileCount < 2) {
-        cerr << "Too few arguments" << endl;
-        exit(1);
-    }
 }
 
 QStringList allNames;
@@ -1545,13 +1498,54 @@ void endNamespaces(const QString &p_ns, QTextStream &p_out)
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
+    app.setApplicationName("kconfig_compiler");
+    app.setApplicationVersion(KCONFIG_VERSION_STRING);
 
     validNameRegexp = new QRegExp("[a-zA-Z_][a-zA-Z0-9_]*");
 
-    QString directoryName, inputFilename, codegenFilename;
-    parseArgs(app.arguments(), directoryName, inputFilename, codegenFilename);
+    QString inputFilename, codegenFilename;
 
-    QString baseDir = directoryName;
+    QCommandLineParser parser;
+
+    parser.addPositionalArgument("file.kcfg", "Input kcfg XML file");
+    parser.addPositionalArgument("file.kcfgc", "Code generation options file");
+
+    QCommandLineOption targetDirectoryOption(QStringList() << "d" << "directory",
+            QCoreApplication::translate("main", "Directory to generate files in [.]"),
+            QCoreApplication::translate("main", "directory"), QStringLiteral("."));
+    parser.addOption(targetDirectoryOption);
+
+    QCommandLineOption licenseOption (QStringList() << "l" << "license", QCoreApplication::translate("main", "Display software license."));
+    parser.addOption (licenseOption);
+
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.process(app);
+
+    if (parser.isSet(licenseOption)) {
+	cout << "Copyright 2003 Cornelius Schumacher, Waldo Bastian, Zack Rusin," << endl;
+        cout << "    Reinhold Kainhofer, Duncan Mac-Vicar P., Harald Fernengel" << endl;
+        cout << "This program comes with ABSOLUTELY NO WARRANTY." << endl;
+        cout << "You may redistribute copies of this program" << endl;
+        cout << "under the terms of the GNU Library Public License." << endl;
+        cout << "For more information about these matters, see the file named COPYING." << endl;
+        return 0;
+    }
+
+    const QStringList args = parser.positionalArguments();
+    if (args.count() < 2) {
+	cerr << "Too few arguments." << endl;
+	return 1;
+    }
+    if (args.count() > 2) {
+	cerr << "Too many arguments." << endl;
+	return 1;
+    }
+    inputFilename = args.at(0);
+    codegenFilename = args.at(1);
+
+    QString baseDir = parser.value(targetDirectoryOption);
+
 #ifdef Q_OS_WIN
     if (!baseDir.endsWith('/') && !baseDir.endsWith('\\'))
 #else
