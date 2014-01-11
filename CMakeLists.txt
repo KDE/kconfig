@@ -7,7 +7,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 set(QT_REQUIRED_VERSION 5.2.0)
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Xml Test Concurrent)
+find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Gui Xml)
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings)
 include(KDECMakeSettings)
