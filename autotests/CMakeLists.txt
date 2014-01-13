@@ -3,7 +3,12 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 include(ECMMarkAsTest)
 
-find_package(Qt5 5.2.0 CONFIG REQUIRED Concurrent Test Widgets)
+find_package(Qt5Test ${QT_REQUIRED_VERSION} CONFIG QUIET)
+
+if(NOT Qt5Test_FOUND)
+    message(STATUS "Qt5Test not found, autotests will not be built.")
+    return()
+endif()
 
 macro(KCONFIGCORE_UNIT_TESTS)
    foreach(_testname ${ARGN})
