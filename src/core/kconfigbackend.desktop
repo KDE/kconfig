@@ -3,5 +3,8 @@ Type=ServiceType
 X-KDE-ServiceType=KConfigBackend
 
 Comment=Storage backend for KConfig
+Comment[pt_BR]=Infraestrutura de armazenamento para o KConfig
+Comment[sk]=Úložiskový backend pre KConfig
+Comment[uk]=Модуль зберігання даних для KConfig
 Comment[x-test]=xxStorage backend for KConfigxx
 
