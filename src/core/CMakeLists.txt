@@ -55,3 +55,7 @@ install(FILES
   ${KConfigCore_HEADERS}
   DESTINATION ${INCLUDE_INSTALL_DIR}/KConfigCore COMPONENT Devel
 )
+
+include(ECMGeneratePriFile)
+ecm_generate_pri_file(BASE_NAME KConfigCore LIB_NAME KF5ConfigCore DEPS "core" FILENAME_VAR PRI_FILENAME)
+install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

@@ -42,3 +42,7 @@ install(FILES
   ${KConfigGui_HEADERS}
   DESTINATION ${INCLUDE_INSTALL_DIR}/KConfigGui COMPONENT Devel
 )
+
+include(ECMGeneratePriFile)
+ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME)
+install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
