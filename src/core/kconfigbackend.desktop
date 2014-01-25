@@ -3,4 +3,5 @@ Type=ServiceType
 X-KDE-ServiceType=KConfigBackend
 
 Comment=Storage backend for KConfig
+Comment[x-test]=xxStorage backend for KConfigxx
 
