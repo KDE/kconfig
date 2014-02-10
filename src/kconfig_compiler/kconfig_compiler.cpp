@@ -1110,7 +1110,7 @@ QString defaultValue(const QString &t)
         return "false";
     } else if (type == "double") {
         return "0.0";
-    } else if (type == "datedime") {
+    } else if (type == "datetime") {
         return "QDateTime()";
     } else if (type == "longlong") {
         return "0";
