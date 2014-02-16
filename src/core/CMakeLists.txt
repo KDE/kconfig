@@ -31,7 +31,8 @@ set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION_STRIN
                                                EXPORT_NAME ConfigCore
 )
 
-ecm_generate_headers(
+ecm_generate_headers(KConfigCore_HEADERS
+  HEADER_NAMES
   KAuthorized
   KConfig
   KConfigBackend
@@ -43,10 +44,8 @@ ecm_generate_headers(
   KEMailSettings
   ConversionCheck
 
-  MODULE_NAME KConfigCore
   REQUIRED_HEADERS KConfigCore_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 

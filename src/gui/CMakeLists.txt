@@ -24,16 +24,16 @@ set_target_properties(KF5ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION_STRING
                                               EXPORT_NAME ConfigGui
 )
 
-ecm_generate_headers(
+ecm_generate_headers(KConfigGui_HEADERS
+  HEADER_NAMES
   KConfigGui
   KConfigLoader
   KConfigSkeleton
   KStandardShortcut
   KWindowConfig
 
-  MODULE_NAME KConfigGui REQUIRED_HEADERS KConfigGui_HEADERS
+   REQUIRED_HEADERS KConfigGui_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KConfigGui DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
