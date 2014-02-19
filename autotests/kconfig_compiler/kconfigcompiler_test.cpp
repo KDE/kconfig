@@ -78,11 +78,8 @@ static CompilerTestSet willFailCases = {
 void KConfigCompiler_Test::initTestCase()
 {
     m_diffExe = QStandardPaths::findExecutable("diff");
-    if (!m_diffExe.isEmpty()) {
-        m_diff.setFileName(QDir::currentPath() + QLatin1String("/kconfigcompiler_test_differences.diff"));
-        if (m_diff.exists()) {
-            m_diff.remove();
-        }
+    if (m_diffExe.isEmpty()) {
+        qDebug() << "diff command not found, detailed info on comparison failure will not be available.";
     }
 }
 
@@ -155,11 +152,6 @@ void KConfigCompiler_Test::appendFileDiff(const QString &oldFile, const QString 
     if (m_diffExe.isEmpty()) {
         return;
     }
-    if (!m_diff.isOpen()) {
-        if (!m_diff.open(QIODevice::WriteOnly)) {
-            return;
-        }
-    }
 
     QStringList args;
     args << "-u";
@@ -172,6 +164,6 @@ void KConfigCompiler_Test::appendFileDiff(const QString &oldFile, const QString 
     process.waitForFinished();
     if (process.exitCode() == 1) {
         QByteArray out = process.readAllStandardOutput();
-        m_diff.write(out);
+        qDebug() << '\n' << out;
     }
 }

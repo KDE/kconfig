@@ -35,7 +35,6 @@ private:
     void appendFileDiff(const QString &oldFile, const QString &newFile);
 
     QString m_diffExe;
-    QFile m_diff;
 };
 
 #endif
