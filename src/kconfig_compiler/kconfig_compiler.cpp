@@ -1152,12 +1152,17 @@ static QString itemDeclaration(const CfgEntry *e, const CfgConfig &cfg)
         return QString();
     }
 
+    QString type;
+    if (!e->signalList().isEmpty()) {
+        type = "KConfigCompilerSignallingItem";
+    } else {
+        type = cfg.inherits + "::Item" + itemType(e->type());
+    }
+
     QString fCap = e->name();
     fCap[0] = fCap[0].toUpper();
-    return "  " + cfg.inherits + "::Item" + itemType(e->type()) +
-           "  *item" + fCap +
-           ((!e->param().isEmpty()) ? (QString("[%1]").arg(e->paramMax() + 1)) : QString()) +
-           ";\n";
+    return "  " + type + "  *item" + fCap +
+            ( (!e->param().isEmpty())?(QString("[%1]").arg(e->paramMax()+1)) : QString()) + ";\n";
 }
 
 // returns the name of an item variable
@@ -1192,24 +1197,41 @@ static QString itemPath(const CfgEntry *e, const CfgConfig &cfg)
     return result;
 }
 
-QString newItem(const QString &type, const QString &name, const QString &key,
-                const QString &defaultValue, const CfgConfig &cfg, const QString &param = QString())
-{
-    QString t = "new " + cfg.inherits + "::Item" + itemType(type) +
-                "( currentGroup(), " + key + ", " + varPath(name, cfg) + param;
-    if (type == "Enum") {
-        t += ", values" + name;
+QString newItem(const CfgEntry* entry, const QString &key, const QString& defaultValue,
+                const CfgConfig &cfg, const QString &param = QString()) {
+
+    QList<Signal> sigs = entry->signalList();
+    QString t;
+    if (!sigs.isEmpty()) {
+        t += "new KConfigCompilerSignallingItem(";
+    }
+    t += "new "+ cfg.inherits + "::Item" + itemType(entry->type()) + "( currentGroup(), "
+            + key + ", " + varPath( entry->name(), cfg ) + param;
+
+    if (entry->type() == "Enum") {
+        t += ", values" + entry->name();
     }
     if (!defaultValue.isEmpty()) {
         t += ", ";
-        if (type == "String") {
+        if (entry->type() == "String") {
             t += defaultValue;
         } else {
             t += defaultValue;
         }
     }
-    t += " );";
+    t += " )";
 
+    if (!sigs.isEmpty()) {
+        t += ", this, notifyFunction, ";
+        //append the signal flags
+        for (int i = 0; i < sigs.size(); ++i) {
+            if (i != 0)
+                t += " | ";
+            t += signalEnumName(sigs[i].name);
+        }
+        t += ")";
+    }
+    t += ";";
     return t;
 }
 
@@ -2019,6 +2041,10 @@ int main(int argc, char **argv)
             h << ");" << endl;
         }
         h << endl;
+
+        h << "  private:" << endl;
+        h << "    void itemChanged(quint64 flags);" << endl;
+        h << endl;
     }
 
     h << "  protected:" << endl;
@@ -2185,7 +2211,10 @@ int main(int argc, char **argv)
         }
         cpp << endl << "    // items" << endl;
         for (itEntry = entries.constBegin(); itEntry != entries.constEnd(); ++itEntry) {
-            cpp << "    " + cfg.inherits + "::Item" << itemType((*itEntry)->type()) << " *" << itemVar(*itEntry, cfg);
+            const QString declType = (*itEntry)->signalList().isEmpty()
+                    ? QString(cfg.inherits + "::Item" + itemType((*itEntry)->type()))
+                    : "KConfigCompilerSignallingItem";
+            cpp << "    " << declType << " *" << itemVar( *itEntry, cfg );
             if (!(*itEntry)->param().isEmpty()) {
                 cpp << QString("[%1]").arg((*itEntry)->paramMax() + 1);
             }
@@ -2302,6 +2331,14 @@ int main(int argc, char **argv)
 
     group.clear();
 
+    if (hasSignals) {
+        // this cast to base-class pointer-to-member is valid C++
+        // http://stackoverflow.com/questions/4272909/is-it-safe-to-upcast-a-method-pointer-and-use-it-with-base-class-pointer/
+        cpp << "  KConfigCompilerSignallingItem::NotifyFunction notifyFunction ="
+            << " static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&"
+            << cfg.className << "::itemChanged);" << endl << endl;
+    }
+
     for (itEntry = entries.constBegin(); itEntry != entries.constEnd(); ++itEntry) {
         if ((*itEntry)->group() != group) {
             if (!group.isEmpty()) {
@@ -2353,7 +2390,7 @@ int main(int argc, char **argv)
         if ((*itEntry)->param().isEmpty()) {
             // Normal case
             cpp << "  " << itemPath(*itEntry, cfg) << " = "
-                << newItem((*itEntry)->type(), (*itEntry)->name(), key, (*itEntry)->defaultValue(), cfg) << endl;
+                << newItem((*itEntry), key, (*itEntry)->defaultValue(), cfg) << endl;
 
             if (!(*itEntry)->minValue().isEmpty()) {
                 cpp << "  " << itemPath(*itEntry, cfg) << "->setMinValue(" << (*itEntry)->minValue() << ");" << endl;
@@ -2388,8 +2425,7 @@ int main(int argc, char **argv)
                 }
 
                 cpp << "  " << itemVarStr << " = "
-                    << newItem((*itEntry)->type(), (*itEntry)->name(), paramString(key, *itEntry, i), defaultStr, cfg,  QString("[%1]").arg(i))
-                    << endl;
+                    << newItem((*itEntry), paramString(key, *itEntry, i), defaultStr, cfg, QString("[%1]").arg(i)) << endl;
 
                 if (cfg.setUserTexts) {
                     cpp << userTextsFunctions(*itEntry, cfg, itemVarStr, (*itEntry)->paramName());
@@ -2537,10 +2573,13 @@ int main(int argc, char **argv)
         cpp << "  " << varPath("settingsChanged", cfg) << " = 0;" << endl;
         cpp << "  return true;" << endl;
         cpp << "}" << endl;
-    }
 
-    // Add includemoc if they are signals defined.
-    if (hasSignals) {
+        cpp << endl;
+        cpp << "void " << cfg.className << "::" << "itemChanged(quint64 flags) {" << endl;
+        cpp << "  " << varPath("settingsChanged", cfg) << " |= flags;" << endl;
+        cpp << "}" << endl;
+
+        // Add includemoc if they are signals defined.
         cpp << endl;
         cpp << "#include \"" << mocFileName << "\"" << endl;
         cpp << endl;

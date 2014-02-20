@@ -304,6 +304,57 @@ protected:
 };
 
 /**
+ * \class KConfigSkeletonChangeNotifyingItem kcoreconfigskeleton.h <KConfigSkeletonChangeNotifyingItem>
+ *
+ * @author Alex Richardson
+ * @see KConfigSkeletonItem
+ *
+ *
+ * This class wraps a @ref KConfigSkeletonItem and invokes a function whenever the value changes.
+ * That function must take one quint64 parameter. Whenever the property value of the wrapped KConfigSkeletonItem
+ * changes this function will be invoked with the stored user data passed in the constructor.
+ * It does not call a function with the new value since this class is designed solely for the kconfig_compiler generated
+ * code and is therefore probably not suited for any other usecases.
+ */
+class KCONFIGCORE_EXPORT KConfigCompilerSignallingItem : public KConfigSkeletonItem
+{
+public:
+    typedef void (QObject::* NotifyFunction)(quint64 arg);
+    /**
+    * Constructor.
+    *
+    * @param item the KConfigSkeletonItem to wrap
+    * @param targetFunction the method to invoke whenever the value of @p item changes
+    * @param object The object on which the method is invoked.
+    * @param userData This data will be passed to @p targetFunction on every property change
+    */
+    KConfigCompilerSignallingItem(KConfigSkeletonItem *item, QObject* object,
+            NotifyFunction targetFunction, quint64 userData);
+    virtual ~KConfigCompilerSignallingItem();
+
+    virtual void readConfig(KConfig *) Q_DECL_OVERRIDE;
+    virtual void writeConfig(KConfig *) Q_DECL_OVERRIDE;
+    virtual void readDefault(KConfig *) Q_DECL_OVERRIDE;
+    virtual void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
+    virtual bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
+    virtual QVariant property() const Q_DECL_OVERRIDE;
+    virtual void setDefault() Q_DECL_OVERRIDE;
+    virtual void swapDefault() Q_DECL_OVERRIDE;
+private:
+    inline void invokeNotifyFunction()
+    {
+        // call the pointer to member function using the strange ->* operator
+        (mObject->*mTargetFunction)(mUserData);
+    }
+private:
+    QScopedPointer<KConfigSkeletonItem> mItem;
+    NotifyFunction mTargetFunction;
+    QObject* mObject;
+    quint64 mUserData;
+};
+
+
+/**
  * \class KCoreConfigSkeleton kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @short Class for handling preferences settings for an application.

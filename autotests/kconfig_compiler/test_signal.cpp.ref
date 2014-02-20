@@ -30,19 +30,21 @@ TestSignal::TestSignal(  )
 {
   Q_ASSERT(!s_globalTestSignal()->q);
   s_globalTestSignal()->q = this;
+  KConfigCompilerSignallingItem::NotifyFunction notifyFunction = static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&TestSignal::itemChanged);
+
   setCurrentGroup( QLatin1String( "Appearance" ) );
 
-  KConfigSkeleton::ItemString  *itemEmoticonTheme;
-  itemEmoticonTheme = new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "emoticonTheme" ), mEmoticonTheme, QLatin1String( "Default" ) );
+  KConfigCompilerSignallingItem  *itemEmoticonTheme;
+  itemEmoticonTheme = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "emoticonTheme" ), mEmoticonTheme, QLatin1String( "Default" ) ), this, notifyFunction, signalEmoticonSettingsChanged);
   addItem( itemEmoticonTheme, QLatin1String( "emoticonTheme" ) );
-  KConfigSkeleton::ItemBool  *itemUseEmoticon;
-  itemUseEmoticon = new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "useEmoticon" ), mUseEmoticon, true );
+  KConfigCompilerSignallingItem  *itemUseEmoticon;
+  itemUseEmoticon = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "useEmoticon" ), mUseEmoticon, true ), this, notifyFunction, signalEmoticonSettingsChanged);
   addItem( itemUseEmoticon, QLatin1String( "useEmoticon" ) );
-  KConfigSkeleton::ItemBool  *itemEmoticonRequireSpace;
-  itemEmoticonRequireSpace = new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "emoticonRequireSpace" ), mEmoticonRequireSpace, true );
+  KConfigCompilerSignallingItem  *itemEmoticonRequireSpace;
+  itemEmoticonRequireSpace = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "emoticonRequireSpace" ), mEmoticonRequireSpace, true ), this, notifyFunction, signalEmoticonSettingsChanged);
   addItem( itemEmoticonRequireSpace, QLatin1String( "emoticonRequireSpace" ) );
-  KConfigSkeleton::ItemString  *itemStylePath;
-  itemStylePath = new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "stylePath" ), mStylePath );
+  KConfigCompilerSignallingItem  *itemStylePath;
+  itemStylePath = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "stylePath" ), mStylePath ), this, notifyFunction, signalStyleChanged);
   addItem( itemStylePath, QLatin1String( "stylePath" ) );
   KConfigSkeleton::ItemString  *itemStyleCSSVariant;
   itemStyleCSSVariant = new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "styleVariant" ), mStyleCSSVariant );
@@ -67,6 +69,10 @@ bool TestSignal::usrWriteConfig()
 
   mSettingsChanged = 0;
   return true;
+}
+
+void TestSignal::itemChanged(quint64 flags) {
+  mSettingsChanged |= flags;
 }
 
 #include "test_signal.moc"

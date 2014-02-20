@@ -1339,3 +1339,77 @@ KConfigSkeletonItem *KCoreConfigSkeleton::findItem(const QString &name) const
     return d->mItemDict.value(name);
 }
 
+KConfigCompilerSignallingItem::KConfigCompilerSignallingItem(KConfigSkeletonItem* item, QObject* object,
+        KConfigCompilerSignallingItem::NotifyFunction targetFunction, quint64 userData)
+    : KConfigSkeletonItem(item->group(), item->key()), mItem(item), mTargetFunction(targetFunction),
+    mObject(object), mUserData(userData)
+{
+    Q_ASSERT(mTargetFunction);
+    Q_ASSERT(mItem);
+    Q_ASSERT(mObject);
+}
+
+KConfigCompilerSignallingItem::~KConfigCompilerSignallingItem()
+{
+}
+
+bool KConfigCompilerSignallingItem::isEqual(const QVariant& p) const
+{
+    return mItem->isEqual(p);
+}
+
+QVariant KConfigCompilerSignallingItem::property() const
+{
+    return mItem->property();
+}
+
+void KConfigCompilerSignallingItem::readConfig(KConfig* c)
+{
+    QVariant oldValue = mItem->property();
+    mItem->readConfig(c);
+    //readConfig() changes mIsImmutable, update it here as well
+    KConfigGroup cg(c, mGroup );
+    readImmutability(cg);
+    if (!mItem->isEqual(oldValue)) {
+        invokeNotifyFunction();
+    }
+}
+
+void KConfigCompilerSignallingItem::readDefault(KConfig* c)
+{
+    mItem->readDefault(c);
+    //readDefault() changes mIsImmutable, update it here as well
+    KConfigGroup cg(c, mGroup );
+    readImmutability(cg);
+}
+
+void KConfigCompilerSignallingItem::writeConfig(KConfig* c)
+{
+    mItem->writeConfig(c);
+}
+
+void KConfigCompilerSignallingItem::setDefault()
+{
+    QVariant oldValue = mItem->property();
+    mItem->setDefault();
+    if (!mItem->isEqual(oldValue)) {
+        invokeNotifyFunction();
+    }
+}
+
+void KConfigCompilerSignallingItem::setProperty(const QVariant& p)
+{
+    if (!mItem->isEqual(p)) {
+        mItem->setProperty(p);
+        invokeNotifyFunction();
+    }
+}
+
+void KConfigCompilerSignallingItem::swapDefault()
+{
+    QVariant oldValue = mItem->property();
+    mItem->swapDefault();
+    if (!mItem->isEqual(oldValue)) {
+        invokeNotifyFunction();
+    }
+}

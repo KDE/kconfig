@@ -3,14 +3,19 @@
 #	../kconfig_compiler_kf5 $(srcdir)/test5.kcfg $(srcdir)/test5.kcfgc
 
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
+   cmake_parse_arguments(ARG "" "KCFG" "" ${ARGN} )
+   set(_kcfgFile ${ARG_KCFG})
+   if (NOT _kcfgFile)
+      set(_kcfgFile "${_testName}.kcfg")
+   endif()
    add_custom_command(
       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h
-      COMMAND ${KConfig_KCFGC_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfg ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
-      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfg ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc kconfig_compiler_kf5)
+      COMMAND ${KConfig_KCFGC_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
+      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc kconfig_compiler_kf5)
 
-#   set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
+   # set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
    qt5_generate_moc(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.moc )
-# do not run automoc on the generated file
+   # do not run automoc on the generated file
    set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp PROPERTIES SKIP_AUTOMOC TRUE)
    set( ${_srcs} ${${_srcs}} ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h )
 
@@ -194,6 +199,18 @@ gen_kcfg_test_source(test_signal test_signal_SRCS)
 add_executable(test_signal ${test_signal_SRCS})
 ecm_mark_as_test(test_signal)
 target_link_libraries(test_signal KF5::ConfigGui)
+
+########### next target ###############
+
+set(kconfigcompiler_test_signals_SRCS kconfigcompiler_test_signals.cpp)
+gen_kcfg_test_source(signals_test_singleton kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
+gen_kcfg_test_source(signals_test_no_singleton kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
+gen_kcfg_test_source(signals_test_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
+gen_kcfg_test_source(signals_test_no_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
+add_executable(kconfigcompiler_test_signals ${kconfigcompiler_test_signals_SRCS})
+ecm_mark_as_test(kconfigcompiler_test_signals)
+target_link_libraries(kconfigcompiler_test_signals Qt5::Test KF5::ConfigGui)
+add_test(kconfig-kconfigcompiler-signals kconfigcompiler_test_signals)
 
 ########### next target ###############
 

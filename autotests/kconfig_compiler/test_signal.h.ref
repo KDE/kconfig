@@ -132,6 +132,9 @@ class TestSignal : public KConfigSkeleton
     */
     void styleChanged(const QString & stylePath, const QString & StyleCSSVariant);
 
+  private:
+    void itemChanged(quint64 flags);
+
   protected:
     TestSignal();
     friend class TestSignalHelper;
