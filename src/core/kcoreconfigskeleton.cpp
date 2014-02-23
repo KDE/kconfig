@@ -1022,6 +1022,11 @@ const KConfig *KCoreConfigSkeleton::config() const
     return d->mConfig.data();
 }
 
+KSharedConfig::Ptr KCoreConfigSkeleton::sharedConfig() const
+{
+    return d->mConfig;
+}
+
 void KCoreConfigSkeleton::setSharedConfig(KSharedConfig::Ptr pConfig)
 {
     d->mConfig = pConfig;

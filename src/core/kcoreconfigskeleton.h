@@ -1339,6 +1339,12 @@ public:
     const KConfig *config() const;
 
     /**
+     * Return the @ref KConfig object used for reading and writing the settings.
+     * @since 5.0
+     */
+    KSharedConfig::Ptr sharedConfig() const;
+
+    /**
      * Set the @ref KSharedConfig object used for reading and writing the settings.
      */
     void setSharedConfig(KSharedConfig::Ptr pConfig);
