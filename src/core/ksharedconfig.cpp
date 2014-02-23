@@ -64,6 +64,13 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
         fileName = KConfig::mainConfigName();
     }
 
+    static bool wasTestModeEnabled = false;
+    if (!wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
+        wasTestModeEnabled = true;
+        list->clear();
+        list->mainConfig = Q_NULLPTR;
+    }
+
     if (list) {
         for (QList<KSharedConfig *>::ConstIterator it = list->constBegin(); it != list->constEnd(); ++it) {
             if ((*it)->name() == fileName &&
