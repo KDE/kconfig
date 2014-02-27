@@ -19,9 +19,6 @@
   Boston, MA 02110-1301, USA.
 */
 
-// Qt5 TODO: re-enable. No point in doing it before, it breaks on QString::fromUtf8(QByteArray), which exists in qt5.
-#undef QT_NO_CAST_FROM_BYTEARRAY
-
 #include "kdesktopfile.h"
 
 #ifndef Q_OS_WIN
