@@ -570,7 +570,7 @@ void KConfigPrivate::changeFileName(const QString &name)
         if (wantDefaults()) { // accessing default app-specific config "appnamerc"
             fileName = KConfig::mainConfigName();
             file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
-        } else if (wantGlobals()) { // accessing "kdeglobals" - XXX used anywhere?
+        } else if (wantGlobals()) { // accessing "kdeglobals" by specifying no filename and NoCascade - XXX used anywhere?
             resourceType = QStandardPaths::GenericConfigLocation;
             fileName = QLatin1String("kdeglobals");
             file = sGlobalFileName;
