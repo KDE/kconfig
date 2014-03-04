@@ -259,8 +259,10 @@ KConfig::KConfig(const QString &file, OpenFlags mode,
 {
     d_ptr->changeFileName(file); // set the local file name
 
-    // read initial information off disk
-    reparseConfiguration();
+    if ((mode & DelayedParsing) == 0) {
+        // read initial information off disk
+        reparseConfiguration();
+    }
 }
 
 KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)

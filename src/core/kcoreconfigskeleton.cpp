@@ -986,7 +986,7 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *par
 {
     //qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
 
-    d->mConfig = KSharedConfig::openConfig(configname);
+    d->mConfig = KSharedConfig::openConfig(configname, KConfig::FullConfig | KConfig::DelayedParsing);
 }
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
