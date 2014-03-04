@@ -76,16 +76,25 @@ QTEST_MAIN(KConfigTest)
 #define HOMEPATHESCAPE QString(QDir::homePath()+"/foo/$HOME")
 #define DOLLARGROUP "$i"
 
+#define TEST_SUBDIR "kconfigtest_subdir/"
+
+static inline QString testConfigDir() {
+    return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/" TEST_SUBDIR;
+}
+
+static inline QString kdeGlobalsPath() {
+    return testConfigDir() + "../kdeglobals";
+}
+
 void KConfigTest::initTestCase()
 {
     // ensure we don't use files in the real config directory
     QStandardPaths::setTestModeEnabled(true);
-    QString testConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
 
     // to make sure all files from a previous failed run are deleted
     cleanupTestCase();
 
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
 
     KConfigGroup cg(&sc, "AAA");
     cg.writeEntry("stringEntry1", STRINGENTRY1,
@@ -174,12 +183,12 @@ void KConfigTest::initTestCase()
     QVERIFY(sc.sync());
     QVERIFY(!sc.isDirty());
 
-    QVERIFY2(QFile::exists(testConfigDir + QStringLiteral("/kconfigtest")),
-             qPrintable(testConfigDir + QStringLiteral("/kconfigtest must exist")));
-    QVERIFY2(QFile::exists(testConfigDir + QStringLiteral("/kdeglobals")),
-             qPrintable(testConfigDir + QStringLiteral("/kdeglobals must exist")));
+    QVERIFY2(QFile::exists(testConfigDir() + QStringLiteral("/kconfigtest")),
+             qPrintable(testConfigDir() + QStringLiteral("/kconfigtest must exist")));
+    QVERIFY2(QFile::exists(kdeGlobalsPath()),
+             qPrintable(kdeGlobalsPath() + QStringLiteral(" must exist")));
 
-    KConfig sc1("kdebugrc", KConfig::SimpleConfig);
+    KConfig sc1(TEST_SUBDIR "kdebugrc", KConfig::SimpleConfig);
     KConfigGroup sg0(&sc1, "0");
     sg0.writeEntry("AbortFatal", false);
     sg0.writeEntry("WarnOutput", 0);
@@ -187,14 +196,14 @@ void KConfigTest::initTestCase()
     QVERIFY(sc1.sync());
 
     //Setup stuff to test KConfig::addConfigSources()
-    KConfig devcfg("specificrc");
+    KConfig devcfg(TEST_SUBDIR "specificrc");
     KConfigGroup devonlygrp(&devcfg, "Specific Only Group");
     devonlygrp.writeEntry("ExistingEntry", "DevValue");
     KConfigGroup devandbasegrp(&devcfg, "Shared Group");
     devandbasegrp.writeEntry("SomeSharedEntry", "DevValue");
     devandbasegrp.writeEntry("SomeSpecificOnlyEntry", "DevValue");
     QVERIFY(devcfg.sync());
-    KConfig basecfg("baserc");
+    KConfig basecfg(TEST_SUBDIR "baserc");
     KConfigGroup basegrp(&basecfg, "Base Only Group");
     basegrp.writeEntry("ExistingEntry", "BaseValue");
     KConfigGroup baseanddevgrp(&basecfg, "Shared Group");
@@ -202,7 +211,7 @@ void KConfigTest::initTestCase()
     baseanddevgrp.writeEntry("SomeBaseOnlyEntry", "BaseValue");
     QVERIFY(basecfg.sync());
 
-    KConfig gecfg("groupescapetest", KConfig::SimpleConfig);
+    KConfig gecfg(TEST_SUBDIR "groupescapetest", KConfig::SimpleConfig);
     cg = KConfigGroup(&gecfg, DOLLARGROUP);
     cg.writeEntry("entry", "doesntmatter");
 
@@ -211,20 +220,27 @@ void KConfigTest::initTestCase()
 void KConfigTest::cleanupTestCase()
 {
     //ensure we don't delete the real directory
-    QStandardPaths::setTestModeEnabled(true);
-    QDir localConfig(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation));
+    QDir localConfig(testConfigDir());
     //qDebug() << "Erasing" << localConfig;
-    localConfig.removeRecursively();
+    if (localConfig.exists()) {
+        QVERIFY(localConfig.removeRecursively());
+    }
     QVERIFY(!localConfig.exists());
+    if (QFile::exists(kdeGlobalsPath())) {
+        QVERIFY(QFile::remove(kdeGlobalsPath()));
+    }
+
 }
 
 static QList<QByteArray> readLinesFrom(const QString &path)
 {
     QFile file(path);
     const bool opened = file.open(QIODevice::ReadOnly | QIODevice::Text);
-    Q_ASSERT(opened);
-    Q_UNUSED(opened);
     QList<QByteArray> lines;
+    if (!opened) {
+        QWARN(qPrintable(QLatin1String("Failed to open ") + path));
+        return lines;
+    }
     QByteArray line;
     do {
         line = file.readLine();
@@ -235,17 +251,17 @@ static QList<QByteArray> readLinesFrom(const QString &path)
     return lines;
 }
 
-static QList<QByteArray> readLines(const char *fileName = "kconfigtest")
+static QList<QByteArray> readLines(const char *fileName = TEST_SUBDIR "kconfigtest")
 {
-    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + '/' + fileName;
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
     Q_ASSERT(!path.isEmpty());
-    return readLinesFrom(path);
+    return readLinesFrom(path + '/' + fileName);
 }
 
 // see also testDefaults, which tests reverting with a defaults (global) file available
 void KConfigTest::testDirtyAfterRevert()
 {
-    KConfig sc("kconfigtest_revert");
+    KConfig sc(TEST_SUBDIR "kconfigtest_revert");
 
     KConfigGroup cg(&sc, "Hello");
     cg.revertToDefault("does_not_exist");
@@ -269,19 +285,19 @@ void KConfigTest::testRevertAllEntries()
     // this tests the case were we revert (delete) all entries in a file,
     // leaving a blank file
     {
-        KConfig sc("konfigtest2", KConfig::SimpleConfig);
+        KConfig sc(TEST_SUBDIR "konfigtest2", KConfig::SimpleConfig);
         KConfigGroup cg(&sc, "Hello");
         cg.writeEntry("Test", "Correct");
     }
 
     {
-        KConfig sc("konfigtest2", KConfig::SimpleConfig);
+        KConfig sc(TEST_SUBDIR "konfigtest2", KConfig::SimpleConfig);
         KConfigGroup cg(&sc, "Hello");
         QCOMPARE(cg.readEntry("Test", "Default"), QString("Correct"));
         cg.revertToDefault("Test");
     }
 
-    KConfig sc("konfigtest2", KConfig::SimpleConfig);
+    KConfig sc(TEST_SUBDIR "konfigtest2", KConfig::SimpleConfig);
     KConfigGroup cg(&sc, "Hello");
     QCOMPARE(cg.readEntry("Test", "Default"), QString("Default"));
 }
@@ -292,8 +308,8 @@ void KConfigTest::testSimple()
     const QStringList kdeglobals = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("kdeglobals"));
     QVERIFY(!kdeglobals.isEmpty());
 
-    KConfig sc2("kconfigtest");
-    QCOMPARE(sc2.name(), QString("kconfigtest"));
+    KConfig sc2(TEST_SUBDIR "kconfigtest");
+    QCOMPARE(sc2.name(), QString(TEST_SUBDIR "kconfigtest"));
 
     // make sure groupList() isn't returning something it shouldn't
     Q_FOREACH (const QString &group, sc2.groupList()) {
@@ -339,8 +355,8 @@ void KConfigTest::testSimple()
 
 void KConfigTest::testDefaults()
 {
-    KConfig config("defaulttest", KConfig::NoGlobals);
-    const QString defaultsFile = "defaulttest.defaults";
+    KConfig config(TEST_SUBDIR "defaulttest", KConfig::NoGlobals);
+    const QString defaultsFile = TEST_SUBDIR "defaulttest.defaults";
     KConfig defaults(defaultsFile, KConfig::SimpleConfig);
 
     const QString Default("Default");
@@ -378,7 +394,7 @@ void KConfigTest::testDefaults()
     group.sync();
 
     // Check that everything is OK on disk, too
-    KConfig reader("defaulttest", KConfig::NoGlobals);
+    KConfig reader(TEST_SUBDIR "defaulttest", KConfig::NoGlobals);
     reader.addConfigSources(QStringList() << QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + '/' + defaultsFile);
     KConfigGroup readerGroup = reader.group("any group");
     QCOMPARE(readerGroup.readEntry("entry1", QString()), Default);
@@ -387,7 +403,7 @@ void KConfigTest::testDefaults()
 
 void KConfigTest::testLocale()
 {
-    KConfig config("kconfigtest.locales", KConfig::SimpleConfig);
+    KConfig config(TEST_SUBDIR "kconfigtest.locales", KConfig::SimpleConfig);
     const QString Translated(TRANSLATEDSTRINGENTRY1);
     const QString Untranslated(STRINGENTRY1);
 
@@ -411,16 +427,16 @@ void KConfigTest::testEncoding()
 {
     QString groupstr = QString::fromUtf8("UTF-8:\xc3\xb6l");
 
-    KConfig c("kconfigtestencodings");
+    KConfig c(TEST_SUBDIR "kconfigtestencodings");
     KConfigGroup cg(&c, groupstr);
     cg.writeEntry("key", "value");
     QVERIFY(c.sync());
 
-    QList<QByteArray> lines = readLines("kconfigtestencodings");
+    QList<QByteArray> lines = readLines(TEST_SUBDIR "kconfigtestencodings");
     QCOMPARE(lines.count(), 2);
     QCOMPARE(lines.first(), QByteArray("[UTF-8:\xc3\xb6l]\n"));
 
-    KConfig c2("kconfigtestencodings");
+    KConfig c2(TEST_SUBDIR "kconfigtestencodings");
     KConfigGroup cg2(&c2, groupstr);
     QVERIFY(cg2.readEntry("key") == QByteArray("value"));
 
@@ -429,7 +445,7 @@ void KConfigTest::testEncoding()
 
 void KConfigTest::testLists()
 {
-    KConfig sc2("kconfigtest");
+    KConfig sc2(TEST_SUBDIR "kconfigtest");
     KConfigGroup sc3(&sc2, "List Types");
 
     QCOMPARE(sc3.readEntry(QString("stringListEntry"), QStringList()),
@@ -465,14 +481,14 @@ void KConfigTest::testLists()
 
 void KConfigTest::testPath()
 {
-    KConfig sc2("kconfigtest");
+    KConfig sc2(TEST_SUBDIR "kconfigtest");
     KConfigGroup sc3(&sc2, "Path Type");
     QCOMPARE(sc3.readPathEntry("homepath", QString()), HOMEPATH);
     QCOMPARE(sc3.readPathEntry("homepathescape", QString()), HOMEPATHESCAPE);
     QCOMPARE(sc3.entryMap()["homepath"], HOMEPATH);
 
     {
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/pathtest");
+        QFile file(testConfigDir() + "/pathtest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
@@ -484,7 +500,7 @@ void KConfigTest::testPath()
             << "hostname[$e]=$(hostname)" << endl
             << "noeol=foo"; // no EOL
     }
-    KConfig cf2("pathtest");
+    KConfig cf2(TEST_SUBDIR "pathtest");
     KConfigGroup group = cf2.group("Test Group");
     QVERIFY(group.hasKey("homePath"));
     QCOMPARE(group.readPathEntry("homePath", QString()), HOMEPATH);
@@ -515,7 +531,7 @@ void KConfigTest::testPersistenceOfExpandFlagForPath()
     // 1st step: Open the config, add a new dummy entry and then sync the config
     // back to the storage.
     {
-        KConfig sc2("kconfigtest");
+        KConfig sc2(TEST_SUBDIR "kconfigtest");
         KConfigGroup sc3(&sc2, "Path Type");
         sc3.writeEntry("dummy", "dummy");
         QVERIFY(sc2.sync());
@@ -528,7 +544,7 @@ void KConfigTest::testPersistenceOfExpandFlagForPath()
 
 void KConfigTest::testComplex()
 {
-    KConfig sc2("kconfigtest");
+    KConfig sc2(TEST_SUBDIR "kconfigtest");
     KConfigGroup sc3(&sc2, "Complex Types");
 
     QCOMPARE(sc3.readEntry("pointEntry", QPoint()), POINTENTRY);
@@ -543,7 +559,7 @@ void KConfigTest::testComplex()
 
 void KConfigTest::testEnums()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup sc3(&sc, "Enum Types");
 
     QCOMPARE(sc3.readEntry("enum-10"), QString("Tens"));
@@ -564,7 +580,7 @@ void KConfigTest::testEnums()
 
 void KConfigTest::testEntryMap()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup cg(&sc, "Hello");
     QMap<QString, QString> entryMap = cg.entryMap();
     qDebug() << entryMap.keys();
@@ -588,7 +604,7 @@ void KConfigTest::testEntryMap()
 
 void KConfigTest::testInvalid()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
 
     // all of these should print a message to the kdebug.dbg file
     KConfigGroup sc3(&sc, "Invalid Types");
@@ -655,7 +671,7 @@ void KConfigTest::testInvalid()
 
 void KConfigTest::testChangeGroup()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup sc3(&sc, "Hello");
     QCOMPARE(sc3.name(), QString("Hello"));
     KConfigGroup newGroup(sc3);
@@ -685,7 +701,7 @@ void KConfigTest::testChangeGroup()
 // Simple test for deleteEntry
 void KConfigTest::testDeleteEntry()
 {
-    const char *configFile = "kconfigdeletetest";
+    const char *configFile = TEST_SUBDIR "kconfigdeletetest";
     {
         KConfig conf(configFile);
         conf.group("Hello").writeEntry("DelKey", "ToBeDeleted");
@@ -707,7 +723,7 @@ void KConfigTest::testDeleteEntry()
 
 void KConfigTest::testDelete()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
 
     KConfigGroup ct(&sc, "Complex Types");
 
@@ -752,7 +768,7 @@ void KConfigTest::testDelete()
     QVERIFY(lines.contains("[Hello]\n")); // a group that was not deleted
 
     // test for entries that are marked as deleted when there is no default
-    KConfig cf("kconfigtest", KConfig::SimpleConfig); // make sure there are no defaults
+    KConfig cf(TEST_SUBDIR "kconfigtest", KConfig::SimpleConfig); // make sure there are no defaults
     cg = cf.group("Portable Devices");
     cg.writeEntry("devices|manual|(null)", "whatever");
     cg.writeEntry("devices|manual|/mnt/ipod", "/mnt/ipod");
@@ -773,7 +789,7 @@ void KConfigTest::testDelete()
 
 void KConfigTest::testDefaultGroup()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup defaultGroup(&sc, "<default>");
     QCOMPARE(defaultGroup.name(), QString("<default>"));
     QVERIFY(!defaultGroup.exists());
@@ -784,7 +800,7 @@ void KConfigTest::testDefaultGroup()
 
     {
         // Test reading it
-        KConfig sc2("kconfigtest");
+        KConfig sc2(TEST_SUBDIR "kconfigtest");
         KConfigGroup defaultGroup2(&sc2, "<default>");
         QCOMPARE(defaultGroup2.name(), QString("<default>"));
         QVERIFY(defaultGroup2.exists());
@@ -792,7 +808,7 @@ void KConfigTest::testDefaultGroup()
     }
     {
         // Test reading it
-        KConfig sc2("kconfigtest");
+        KConfig sc2(TEST_SUBDIR "kconfigtest");
         KConfigGroup emptyGroup(&sc2, "");
         QCOMPARE(emptyGroup.name(), QString("<default>"));
         QVERIFY(emptyGroup.exists());
@@ -818,7 +834,7 @@ void KConfigTest::testDefaultGroup()
 
 void KConfigTest::testEmptyGroup()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup emptyGroup(&sc, "");
     QCOMPARE(emptyGroup.name(), QString("<default>")); // confusing, heh?
     QVERIFY(!emptyGroup.exists());
@@ -829,7 +845,7 @@ void KConfigTest::testEmptyGroup()
 
     {
         // Test reading it
-        KConfig sc2("kconfigtest");
+        KConfig sc2(TEST_SUBDIR "kconfigtest");
         KConfigGroup defaultGroup(&sc2, "<default>");
         QCOMPARE(defaultGroup.name(), QString("<default>"));
         QVERIFY(defaultGroup.exists());
@@ -837,7 +853,7 @@ void KConfigTest::testEmptyGroup()
     }
     {
         // Test reading it
-        KConfig sc2("kconfigtest");
+        KConfig sc2(TEST_SUBDIR "kconfigtest");
         KConfigGroup emptyGroup2(&sc2, "");
         QCOMPARE(emptyGroup2.name(), QString("<default>"));
         QVERIFY(emptyGroup2.exists());
@@ -869,9 +885,9 @@ void KConfigTest::testCascadingWithLocale()
     QTemporaryDir globalDir;
     qputenv("XDG_CONFIG_DIRS", qPrintable(middleDir.path() + QString(":") + globalDir.path()));
 
-    const QString globalConfigDir = globalDir.path();
+    const QString globalConfigDir = globalDir.path() + "/" TEST_SUBDIR;
     QVERIFY(QDir().mkpath(globalConfigDir));
-    QFile global(globalConfigDir + "/foo.desktop");
+    QFile global(globalConfigDir + "foo.desktop");
     QVERIFY(global.open(QIODevice::WriteOnly | QIODevice::Text));
     QTextStream globalOut(&global);
     globalOut << "[Group]" << endl
@@ -883,9 +899,9 @@ void KConfigTest::testCascadingWithLocale()
               << "Other[fr]=Global_FR" << endl;
     global.close();
 
-    const QString middleConfigDir = middleDir.path();
+    const QString middleConfigDir = middleDir.path() + "/" TEST_SUBDIR;
     QVERIFY(QDir().mkpath(middleConfigDir));
-    QFile local(middleConfigDir + "/foo.desktop");
+    QFile local(middleConfigDir + "foo.desktop");
     QVERIFY(local.open(QIODevice::WriteOnly | QIODevice::Text));
     QTextStream out(&local);
     out << "[Group]" << endl
@@ -896,7 +912,7 @@ void KConfigTest::testCascadingWithLocale()
         << "Other=English Only" << endl;
     local.close();
 
-    KConfig config("foo.desktop");
+    KConfig config(TEST_SUBDIR "foo.desktop");
     KConfigGroup group = config.group("Group");
     QCOMPARE(group.readEntry("FromGlobal"), QString("true"));
     QCOMPARE(group.readEntry("FromLocal"), QString("true"));
@@ -911,7 +927,7 @@ void KConfigTest::testCascadingWithLocale()
 
 void KConfigTest::testMerge()
 {
-    KConfig config("mergetest", KConfig::SimpleConfig);
+    KConfig config(TEST_SUBDIR "mergetest", KConfig::SimpleConfig);
 
     KConfigGroup cg = config.group("some group");
     cg.writeEntry("entry", " random entry");
@@ -919,7 +935,7 @@ void KConfigTest::testMerge()
 
     {
         // simulate writing by another process
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/mergetest");
+        QFile file(testConfigDir() + "/mergetest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
@@ -946,7 +962,7 @@ void KConfigTest::testMerge()
               << "entry[de]=German\n"
               << "entry[es]=Spanish\n"
               << "entry[fr]=French\n";
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/mergetest");
+        QFile file(testConfigDir() + "/mergetest");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
         Q_FOREACH (const QByteArray &line, lines) {
             QCOMPARE(line, file.readLine());
@@ -957,7 +973,7 @@ void KConfigTest::testMerge()
 void KConfigTest::testImmutable()
 {
     {
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/immutabletest");
+        QFile file(testConfigDir() + "/immutabletest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
@@ -967,7 +983,7 @@ void KConfigTest::testImmutable()
             << "[group][subgroup][$i]" << endl;
     }
 
-    KConfig config("immutabletest", KConfig::SimpleConfig);
+    KConfig config(TEST_SUBDIR "immutabletest", KConfig::SimpleConfig);
     QVERIFY(config.isGroupImmutable(QByteArray()));
     KConfigGroup cg = config.group(QByteArray());
     QVERIFY(cg.isEntryImmutable("entry1"));
@@ -982,7 +998,7 @@ void KConfigTest::testImmutable()
 void KConfigTest::testOptionOrder()
 {
     {
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/doubleattrtest");
+        QFile file(testConfigDir() + "/doubleattrtest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
@@ -990,7 +1006,7 @@ void KConfigTest::testOptionOrder()
             << "entry2=unlocalized" << endl
             << "entry2[$i][de_DE]=t2" << endl;
     }
-    KConfig config("doubleattrtest", KConfig::SimpleConfig);
+    KConfig config(TEST_SUBDIR "doubleattrtest", KConfig::SimpleConfig);
     config.setLocale("de_DE");
     KConfigGroup cg3 = config.group("group3");
     QVERIFY(!cg3.isImmutable());
@@ -1009,7 +1025,7 @@ void KConfigTest::testOptionOrder()
               << "entry2=modified\n"
               << "entry2[de_DE][$i]=t2\n";
 
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/doubleattrtest");
+        QFile file(testConfigDir() + "/doubleattrtest");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
         Q_FOREACH (const QByteArray &line, lines) {
             QCOMPARE(line, file.readLine());
@@ -1019,13 +1035,13 @@ void KConfigTest::testOptionOrder()
 
 void KConfigTest::testGroupEscape()
 {
-    KConfig config("groupescapetest", KConfig::SimpleConfig);
+    KConfig config(TEST_SUBDIR "groupescapetest", KConfig::SimpleConfig);
     QVERIFY(config.group(DOLLARGROUP).exists());
 }
 
 void KConfigTest::testSubGroup()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup cg(&sc, "ParentGroup");
     QCOMPARE(cg.readEntry("parentgrpstring", ""), QString("somevalue"));
     KConfigGroup subcg1(&cg, "SubGroup1");
@@ -1110,9 +1126,9 @@ void KConfigTest::testSubGroup()
 
 void KConfigTest::testAddConfigSources()
 {
-    KConfig cf("specificrc");
+    KConfig cf(TEST_SUBDIR "specificrc");
 
-    cf.addConfigSources(QStringList() << QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/baserc");
+    cf.addConfigSources(QStringList() << testConfigDir() + "/baserc");
     cf.reparseConfiguration();
 
     KConfigGroup specificgrp(&cf, "Specific Only Group");
@@ -1132,7 +1148,7 @@ void KConfigTest::testAddConfigSources()
 
     QVERIFY(cf.sync());
 
-    KConfig plaincfg("specificrc");
+    KConfig plaincfg(TEST_SUBDIR "specificrc");
 
     KConfigGroup newgrp2(&plaincfg, "New Group");
     QCOMPARE(newgrp2.readEntry("New Entry", ""), QString("SomeValue"));
@@ -1143,14 +1159,14 @@ void KConfigTest::testAddConfigSources()
 
 void KConfigTest::testGroupCopyTo()
 {
-    KConfig cf1("kconfigtest");
+    KConfig cf1(TEST_SUBDIR "kconfigtest");
     KConfigGroup original = cf1.group("Enum Types");
 
     KConfigGroup copy = cf1.group("Enum Types Copy");
     original.copyTo(&copy); // copy from one group to another
     QCOMPARE(copy.entryMap(), original.entryMap());
 
-    KConfig cf2("copy_of_kconfigtest", KConfig::SimpleConfig);
+    KConfig cf2(TEST_SUBDIR "copy_of_kconfigtest", KConfig::SimpleConfig);
     QVERIFY(!cf2.hasGroup(original.name()));
     QVERIFY(!cf2.hasGroup(copy.name()));
 
@@ -1163,17 +1179,17 @@ void KConfigTest::testGroupCopyTo()
 
 void KConfigTest::testConfigCopyToSync()
 {
-    KConfig cf1("kconfigtest");
+    KConfig cf1(TEST_SUBDIR "kconfigtest");
     // Prepare source file
     KConfigGroup group(&cf1, "CopyToTest");
     group.writeEntry("Type", "Test");
     QVERIFY(cf1.sync());
 
     // Copy to "destination"
-    const QString destination = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kconfigcopytotest";
+    const QString destination = testConfigDir() + "/kconfigcopytotest";
     QFile::remove(destination);
 
-    KConfig cf2("kconfigcopytotest");
+    KConfig cf2(TEST_SUBDIR "kconfigcopytotest");
     KConfigGroup group2(&cf2, "CopyToTest");
 
     group.copyTo(&group2);
@@ -1187,7 +1203,7 @@ void KConfigTest::testConfigCopyToSync()
 
 void KConfigTest::testConfigCopyTo()
 {
-    KConfig cf1("kconfigtest");
+    KConfig cf1(TEST_SUBDIR "kconfigtest");
     {
         // Prepare source file
         KConfigGroup group(&cf1, "CopyToTest");
@@ -1197,7 +1213,7 @@ void KConfigTest::testConfigCopyTo()
 
     {
         // Copy to "destination"
-        const QString destination = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kconfigcopytotest";
+        const QString destination = testConfigDir() + "/kconfigcopytotest";
         QFile::remove(destination);
         KConfig cf2;
         cf1.copyTo(destination, &cf2);
@@ -1209,7 +1225,7 @@ void KConfigTest::testConfigCopyTo()
     }
 
     // Check copied config file on disk
-    KConfig cf3("kconfigcopytotest");
+    KConfig cf3(TEST_SUBDIR "kconfigcopytotest");
     KConfigGroup group3(&cf3, "CopyToTest");
     QString testVal = group3.readEntry("Type");
     QCOMPARE(testVal, QString("Test"));
@@ -1217,7 +1233,7 @@ void KConfigTest::testConfigCopyTo()
 
 void KConfigTest::testReparent()
 {
-    KConfig cf("kconfigtest");
+    KConfig cf(TEST_SUBDIR "kconfigtest");
     const QString name("Enum Types");
     KConfigGroup group = cf.group(name);
     const QMap<QString, QString> originalMap = group.entryMap();
@@ -1252,10 +1268,10 @@ static void ageTimeStamp(const QString &path, int nsec)
 void KConfigTest::testWriteOnSync()
 {
     QDateTime oldStamp, newStamp;
-    KConfig sc("kconfigtest", KConfig::IncludeGlobals);
+    KConfig sc(TEST_SUBDIR "kconfigtest", KConfig::IncludeGlobals);
 
     // Age the timestamp of global config file a few sec, and collect it.
-    QString globFile = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kdeglobals";
+    QString globFile = kdeGlobalsPath();
     ageTimeStamp(globFile, 2); // age 2 sec
     oldStamp = QFileInfo(globFile).lastModified();
 
@@ -1270,7 +1286,7 @@ void KConfigTest::testWriteOnSync()
     QCOMPARE(newStamp, oldStamp);
 
     // Age the timestamp of local config file a few sec, and collect it.
-    QString locFile = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kconfigtest";
+    QString locFile = testConfigDir() + "/kconfigtest";
     ageTimeStamp(locFile, 2); // age 2 sec
     oldStamp = QFileInfo(locFile).lastModified();
 
@@ -1288,13 +1304,13 @@ void KConfigTest::testWriteOnSync()
 
 void KConfigTest::testFailOnReadOnlyFileSync()
 {
-    KConfig sc("kconfigfailonreadonlytest");
+    KConfig sc(TEST_SUBDIR "kconfigfailonreadonlytest");
     KConfigGroup cgLocal(&sc, "Locals");
 
     cgLocal.writeEntry("someLocalString", "whatever");
     QVERIFY(cgLocal.sync());
 
-    QFile f(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + '/' + sc.name());
+    QFile f(testConfigDir() + "kconfigfailonreadonlytest");
     QVERIFY(f.exists());
     QVERIFY(f.setPermissions(QFileDevice::ReadOwner));
 
@@ -1308,7 +1324,7 @@ void KConfigTest::testFailOnReadOnlyFileSync()
 void KConfigTest::testDirtyOnEqual()
 {
     QDateTime oldStamp, newStamp;
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
 
     // Initialize value
     KConfigGroup cgLocal(&sc, "random");
@@ -1316,7 +1332,7 @@ void KConfigTest::testDirtyOnEqual()
     QVERIFY(sc.sync());
 
     // Age the timestamp of local config file a few sec, and collect it.
-    QString locFile = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kconfigtest";
+    QString locFile = testConfigDir() + "/kconfigtest";
     ageTimeStamp(locFile, 2); // age 2 sec
     oldStamp = QFileInfo(locFile).lastModified();
 
@@ -1336,7 +1352,7 @@ void KConfigTest::testDirtyOnEqualOverdo()
     QByteArray val2("\0""two", 4);
     QByteArray defvalr;
 
-    KConfig sc("kconfigtest");
+    KConfig sc(TEST_SUBDIR "kconfigtest");
     KConfigGroup cgLocal(&sc, "random");
     cgLocal.writeEntry("someKey", val1);
     QCOMPARE(cgLocal.readEntry("someKey", defvalr), val1);
@@ -1368,7 +1384,7 @@ void KConfigTest::testSyncOnExit()
     // Often, the KGlobalPrivate global static's destructor ends up calling ~KConfig ->
     // KConfig::sync ... and if that code triggers KGlobal code again then things could crash.
     // So here's a test for modifying KSharedConfig::openConfig() and not syncing, the process exit will sync.
-    KConfigGroup grp(KSharedConfig::openConfig(), "syncOnExit");
+    KConfigGroup grp(KSharedConfig::openConfig(TEST_SUBDIR "syncOnExitRc"), "syncOnExit");
     grp.writeEntry("key", "value");
 }
 
@@ -1377,7 +1393,7 @@ void KConfigTest::testSharedConfig()
     // Can I use a KConfigGroup even after the KSharedConfigPtr goes out of scope?
     KConfigGroup myConfigGroup;
     {
-        KSharedConfigPtr config = KSharedConfig::openConfig("kconfigtest");
+        KSharedConfigPtr config = KSharedConfig::openConfig(TEST_SUBDIR "kconfigtest");
         myConfigGroup = KConfigGroup(config, "Hello");
     }
     QCOMPARE(myConfigGroup.readEntry("stringEntry1"), QString(STRINGENTRY1));
@@ -1387,7 +1403,7 @@ void KConfigTest::testLocaleConfig()
 {
     // Initialize the testdata
     QDir dir;
-    QString subdir = QDir::home().canonicalPath() + "/.kde-unit-test/";
+    QString subdir = testConfigDir();
     dir.mkpath(subdir);
     QString file = subdir + "/localized.test";
     QFile::remove(file);
