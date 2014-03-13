@@ -1,6 +1,6 @@
 
-find_package(Qt5Gui ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE)
-find_package(Qt5Xml ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE)
+find_package(Qt5Gui ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
+find_package(Qt5Xml ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
 set(libkconfiggui_SRCS
    kconfiggui.cpp
