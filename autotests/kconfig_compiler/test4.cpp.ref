@@ -18,7 +18,7 @@ Test4 *Test4::self()
 {
   if (!s_globalTest4()->q) {
     new Test4;
-    s_globalTest4()->q->readConfig();
+    s_globalTest4()->q->read();
   }
 
   return s_globalTest4()->q;

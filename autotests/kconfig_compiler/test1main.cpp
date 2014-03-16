@@ -20,12 +20,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include "test1.h"
 #include <QGuiApplication>
+#include <KConfig>
+#include <KConfigGroup>
 
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
+
+    {
+        KConfig initialConfig(QLatin1String("examplerc"));
+        KConfigGroup group = initialConfig.group(QLatin1String("MyOptions"));
+        group.writeEntry(QLatin1String("MyString"), QStringLiteral("The String"));
+    }
     Test1 *t = new Test1(QString(), QString());
+
+    bool ok = t->myString() == QLatin1String("The String");
+
     delete t;
-    return 0;
+    return ok ? 0 : 1;
 }

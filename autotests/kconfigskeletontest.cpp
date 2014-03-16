@@ -65,13 +65,12 @@ void KConfigSkeletonTest::testSimple()
     mMyString.clear();
     mMyFont = QFont();
 
-    readConfig();
+    read();
 
     QCOMPARE(mMyBool, WRITE_SETTING1);
     QCOMPARE(mMyColor, WRITE_SETTING2);
     QCOMPARE(mMyFont, WRITE_SETTING3);
     QCOMPARE(mMyString, WRITE_SETTING4);
-
 }
 
 void KConfigSkeletonTest::testRemoveItem()

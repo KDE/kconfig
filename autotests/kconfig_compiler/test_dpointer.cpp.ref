@@ -57,7 +57,7 @@ TestDPointer *TestDPointer::self()
 {
   if (!s_globalTestDPointer()->q) {
     new TestDPointer;
-    s_globalTestDPointer()->q->readConfig();
+    s_globalTestDPointer()->q->read();
   }
 
   return s_globalTestDPointer()->q;

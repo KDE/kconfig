@@ -1041,6 +1041,18 @@ public:
     virtual void readConfig();
 
     /**
+     * Read preferences from the KConfig object.
+     * This method assumes that the KConfig object was previously loaded,
+     * i.e. it uses the in-memory values from KConfig without reloading from disk.
+     *
+     * This method calls usrReadConfig() after reading the settings of the
+     * registered items from the KConfig. You can overridde usrReadConfig()
+     * in derived classes if you have special requirements.
+     * @since 5.0
+     */
+    void read();
+
+    /**
      * Set the config file group for subsequent addItem() calls. It is valid
      * until setCurrentGroup() is called with a new argument. Call this before
      * you add any items. The default value is "No Group".

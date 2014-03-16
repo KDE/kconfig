@@ -21,12 +21,26 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "test4.h"
 #include <QGuiApplication>
+#include <QStandardPaths>
+#include <QFile>
 
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
+    {
+        KConfig initialConfig(QLatin1String("test4rc"));
+        KConfigGroup group = initialConfig.group(QLatin1String("Foo"));
+        group.writeEntry(QLatin1String("foo bar"), QStringLiteral("Value"));
+    }
     Test4 *t = Test4::self();
+    bool ok = QFile::exists(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/test4rc");
+    if (!ok) {
+        qWarning() << "config file was not created!";
+    }
+    if (t->fooBar() != QStringLiteral("Value")) {
+        qWarning() << "wrong value for foo bar:" << t->fooBar();
+    }
     delete t;
-    return 0;
+    return ok ? 0 : 1;
 }

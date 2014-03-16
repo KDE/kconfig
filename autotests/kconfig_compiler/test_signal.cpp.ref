@@ -18,7 +18,7 @@ TestSignal *TestSignal::self()
 {
   if (!s_globalTestSignal()->q) {
     new TestSignal;
-    s_globalTestSignal()->q->readConfig();
+    s_globalTestSignal()->q->read();
   }
 
   return s_globalTestSignal()->q;

@@ -18,7 +18,7 @@ Test5 *Test5::self()
 {
   if (!s_globalTest5()->q) {
     new Test5;
-    s_globalTest5()->q->readConfig();
+    s_globalTest5()->q->read();
   }
 
   return s_globalTest5()->q;

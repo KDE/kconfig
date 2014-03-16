@@ -2249,7 +2249,7 @@ int main(int argc, char **argv)
         } else {
             cpp << "  if (!s_global" << cfg.className << "()->q) {" << endl;
             cpp << "    new " << cfg.className << ';' << endl;
-            cpp << "    s_global" << cfg.className << "()->q->readConfig();" << endl;
+            cpp << "    s_global" << cfg.className << "()->q->read();" << endl;
             cpp << "  }" << endl << endl;
         }
         cpp << "  return s_global" << cfg.className << "()->q;" << endl;
@@ -2263,7 +2263,7 @@ int main(int argc, char **argv)
             cpp << "     return;" << endl;
             cpp << "  }" << endl;
             cpp << "  new " << cfg.className << "(cfgfilename);" << endl;
-            cpp << "  s_global" << cfg.className << "()->q->readConfig();" << endl;
+            cpp << "  s_global" << cfg.className << "()->q->read();" << endl;
             cpp << "}" << endl << endl;
         }
     }

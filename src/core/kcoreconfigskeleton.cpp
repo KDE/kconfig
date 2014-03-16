@@ -986,7 +986,7 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *par
 {
     //qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
 
-    d->mConfig = KSharedConfig::openConfig(configname, KConfig::FullConfig | KConfig::DelayedParsing);
+    d->mConfig = KSharedConfig::openConfig(configname, KConfig::FullConfig);
 }
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
@@ -1065,6 +1065,11 @@ void KCoreConfigSkeleton::readConfig()
 {
     // qDebug();
     d->mConfig->reparseConfiguration();
+    read();
+}
+
+void KCoreConfigSkeleton::read()
+{
     KConfigSkeletonItem::List::ConstIterator it;
     for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
         (*it)->readConfig(d->mConfig.data());
