@@ -1063,7 +1063,6 @@ void KCoreConfigSkeleton::setDefaults()
 
 void KCoreConfigSkeleton::readConfig()
 {
-    // qDebug();
     d->mConfig->reparseConfiguration();
     read();
 }
