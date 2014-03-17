@@ -1035,10 +1035,8 @@ public:
      * This method calls usrReadConfig() after reading the settings of the
      * registered items from the KConfig. You can overridde usrReadConfig()
      * in derived classes if you have special requirements.
-     * If you need more fine-grained control of storing the settings from
-     * the registered items you can override readConfig() in a derived class.
      */
-    virtual void readConfig();
+    void readConfig(); // KDE5 TODO rename to load()
 
     /**
      * Read preferences from the KConfig object.
