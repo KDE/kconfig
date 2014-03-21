@@ -95,11 +95,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 //        mappingsRegistered = true;
 //    }
 
-#if 0 // KDE4 code
-    setLocale(KLocale::global()->language());
-#else
     setLocale(QLocale::system().name());
-#endif
 }
 
 bool KConfigPrivate::lockLocal()
@@ -178,18 +174,6 @@ QString KConfigPrivate::expandString(const QString &value)
             QString cmd = aValue.mid(nDollarPos + 2, nEndPos - nDollarPos - 3);
 
             QString result;
-#if 0 // Removed in KDE Frameworks 5. No such concept anymore. Just set your PATH.
-            QByteArray oldpath = qgetenv("PATH");
-            QByteArray newpath;
-            if (KComponentData::hasMainComponent()) {
-                newpath = QFile::encodeName(KGlobal::dirs()->resourceDirs("exe").join(QChar::fromLatin1(KPATH_SEPARATOR)));
-                if (!newpath.isEmpty() && !oldpath.isEmpty()) {
-                    newpath += KPATH_SEPARATOR;
-                }
-            }
-            newpath += oldpath;
-            qputenv("PATH", newpath);
-#endif
 
 // FIXME: wince does not have pipes
 #ifndef _WIN32_WCE
@@ -199,9 +183,6 @@ QString KConfigPrivate::expandString(const QString &value)
                 result = ts.readAll().trimmed();
                 pclose(fs);
             }
-#endif
-#if 0 // Removed in KDE Frameworks 5, see above.
-            qputenv("PATH", oldpath);
 #endif
             aValue.replace(nDollarPos, nEndPos - nDollarPos, result);
             nDollarPos += result.length();
@@ -502,11 +483,7 @@ void KConfig::checkUpdate(const QString &id, const QString &updateFile)
     const QString cfg_id = updateFile + QLatin1Char(':') + id;
     const QStringList ids = cg.readEntry("update_info", QStringList());
     if (!ids.contains(cfg_id)) {
-#if 0
-        KToolInvocation::kdeinitExecWait(QString::fromLatin1("kconf_update"), QStringList() << QString::fromLatin1("--check") << updateFile);
-#else
         QProcess::execute(QString::fromLatin1("kconf_update"), QStringList() << QString::fromLatin1("--check") << updateFile);
-#endif
         reparseConfiguration();
     }
 }
