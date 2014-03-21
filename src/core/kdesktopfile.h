@@ -87,11 +87,10 @@ public:
      * the KIOSK framework can be used to activate certain restrictions.
      * See README.kiosk for more information.
      *
-     * Note: Since KDE 4.3, there are more restrictions on authorized
-     * desktop files to prevent users from inadvertently running trojan
-     * desktop files.  Your application launchers should have the executable
-     * bit set to prevent issues.  To see if a restriction is due to
-     * KIOSK, see KAuthorized.
+     * Note that desktop files that are not in a standard location (as
+     * specified by XDG_DATA_DIRS) must have their executable bit set
+     * to be authorized, regardless of KIOSK settings, to prevent users
+     * from inadvertently running trojan desktop files.
      *
      * @param path the file to check
      * @return true if the user is authorized to run the file
