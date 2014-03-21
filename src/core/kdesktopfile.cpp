@@ -202,8 +202,10 @@ QString KDesktopFile::readGenericName() const
 QString KDesktopFile::readPath() const
 {
     Q_D(const KDesktopFile);
-    // NOT readPathEntry, it is not XDG-compliant. Path entries written by
-    // KDE4 will be still treated as such, though.
+    // NOT readPathEntry, it is not XDG-compliant: it performs
+    // various expansions, like $HOME.  Note that the expansion
+    // behaviour still happens if the "e" flag is set, maintaining
+    // backwards compatibility.
     return d->desktopGroup.readEntry("Path", QString());
 }
 
