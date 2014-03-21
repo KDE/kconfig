@@ -740,8 +740,6 @@ void KonfUpdate::gotScript(const QString &_script)
     QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kconf_update/" + script);
     if (path.isEmpty()) {
         if (interpreter.isEmpty()) {
-            // KDE4: this was looking into locate("lib", "kconf_update_bin/"). But QStandardPaths doesn't know the lib dirs.
-            // Let's look in the install prefix and in PATH.
             path = CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/" + script;
             if (QFile::exists(path)) {
                 path = QStandardPaths::findExecutable(script);

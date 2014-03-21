@@ -10,6 +10,4 @@ find_package(Qt5Xml 5.2.0 REQUIRED NO_MODULE)
 
 target_link_libraries(kconfig_compiler_kf5 Qt5::Xml)
 
-# "export" this target too so we can use the LOCATION property of the imported target in
-# FindKDE4Internal.cmake to get the full path to the installed executable instead of using FIND_PROGRAM(), Alex
 install(TARGETS kconfig_compiler_kf5 EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS} )
