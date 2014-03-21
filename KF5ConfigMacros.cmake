@@ -69,7 +69,7 @@ macro (KCONFIG_ADD_KCFG_FILES _sources )
                           COMMAND KF5::kconfig_compiler_kf5
                           ARGS ${_kcfg_FILE} ${_tmp_FILE} -d ${CMAKE_CURRENT_BINARY_DIR}/${_rel_PATH}
                           MAIN_DEPENDENCY ${_tmp_FILE}
-                          DEPENDS ${_kcfg_FILE} ${_KDE4_KCONFIG_COMPILER_DEP} )
+                          DEPENDS ${_kcfg_FILE})
 
        if(_kcfg_generatemoc)
           qt5_generate_moc(${_header_FILE} ${_moc_FILE} )
