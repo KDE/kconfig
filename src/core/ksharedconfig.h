@@ -63,7 +63,7 @@ public:
      * @param mode         how global settings should affect the configuration
      *                     options exposed by this KConfig object
      * @param resourceType The standard directory to look for the configuration
-     *                     file in (see KStandardDirs)
+     *                     file in (see QStandardPaths)
      *
      * @sa KConfig
      */
