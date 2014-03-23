@@ -66,7 +66,7 @@ macro (KCONFIG_ADD_KCFG_FILES _sources )
 
        # the command for creating the source file from the kcfg file
        add_custom_command(OUTPUT ${_header_FILE} ${_src_FILE}
-                          COMMAND KF5::kconfig_compiler_kf5
+                          COMMAND KF5::kconfig_compiler
                           ARGS ${_kcfg_FILE} ${_tmp_FILE} -d ${CMAKE_CURRENT_BINARY_DIR}/${_rel_PATH}
                           MAIN_DEPENDENCY ${_tmp_FILE}
                           DEPENDS ${_kcfg_FILE})

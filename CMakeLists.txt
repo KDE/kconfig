@@ -25,10 +25,6 @@ ecm_setup_version(${KF5_VERSION} VARIABLE_PREFIX KCONFIG
                         SOVERSION 5)
 
 
-# Needed for the tests or examples to build correctly
-set(KConfig_KCFGC_EXECUTABLE kconfig_compiler_kf5)
-include(KF5ConfigMacros.cmake)
-
 add_subdirectory(src)
 add_subdirectory(autotests)
 

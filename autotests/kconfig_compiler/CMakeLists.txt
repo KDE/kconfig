@@ -1,7 +1,4 @@
 
-#test5.cpp test5.h: $(srcdir)/test5.kcfg ../kconfig_compiler_kf5 $(srcdir)/test5.kcfgc
-#	../kconfig_compiler_kf5 $(srcdir)/test5.kcfg $(srcdir)/test5.kcfgc
-
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
    cmake_parse_arguments(ARG "" "KCFG" "" ${ARGN} )
    set(_kcfgFile ${ARG_KCFG})
@@ -10,8 +7,8 @@ macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
    endif()
    add_custom_command(
       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h
-      COMMAND ${KConfig_KCFGC_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
-      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc kconfig_compiler_kf5)
+      COMMAND KF5::kconfig_compiler ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
+      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc KF5::kconfig_compiler)
 
    # set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
    qt5_generate_moc(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.moc )
