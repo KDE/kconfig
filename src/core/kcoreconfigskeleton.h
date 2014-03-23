@@ -1036,7 +1036,18 @@ public:
      * registered items from the KConfig. You can overridde usrReadConfig()
      * in derived classes if you have special requirements.
      */
-    void readConfig(); // KDE5 TODO rename to load()
+    void load();
+
+#ifndef KCONFIGCORE_NO_DEPRECATED
+    /**
+     * @deprecated since 5.0, call load() instead (to reload from disk) or just read()
+     * if the underlying KConfig object is already up-to-date.
+     */
+    KCONFIGCORE_DEPRECATED void readConfig()
+    {
+        load();
+    }
+#endif
 
     /**
      * Read preferences from the KConfig object.

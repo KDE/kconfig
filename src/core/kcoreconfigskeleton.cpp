@@ -1061,7 +1061,7 @@ void KCoreConfigSkeleton::setDefaults()
     usrSetDefaults();
 }
 
-void KCoreConfigSkeleton::readConfig()
+void KCoreConfigSkeleton::load()
 {
     d->mConfig->reparseConfiguration();
     read();
@@ -1091,7 +1091,7 @@ bool KCoreConfigSkeleton::writeConfig()
         if (!d->mConfig->sync()) {
             return false;
         }
-        readConfig();
+        load();
         emit configChanged();
     }
     return true;
