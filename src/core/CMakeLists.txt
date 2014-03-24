@@ -19,6 +19,11 @@ add_library(KF5ConfigCore ${libkconfigcore_SRCS})
 generate_export_header(KF5ConfigCore BASE_NAME KConfigCore)
 add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
 
+target_compile_definitions(KF5ConfigCore
+    PRIVATE
+        KCONF_UPDATE_INSTALL_LOCATION="${CMAKE_INSTALL_PREFIX}/${LIBEXEC_INSTALL_DIR}/$<TARGET_FILE_NAME:KF5::kconf_update>"
+)
+
 target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigCore>")
 
 target_link_libraries(KF5ConfigCore PUBLIC Qt5::Core)
