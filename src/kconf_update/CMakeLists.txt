@@ -12,6 +12,9 @@ set(kconf_update_SRCS
     )
 
 add_executable(kconf_update ${kconf_update_SRCS})
+add_executable(KF5::kconf_update ALIAS kconf_update)
 target_link_libraries(kconf_update Qt5::Core KF5::ConfigCore)
 
-install(TARGETS kconf_update DESTINATION ${LIBEXEC_INSTALL_DIR})
+# Although this is mostly an internal binary (hence installing it in
+# LIBEXEC_INSTALL_DIR), it is used by kded, and so we export its location
+install(TARGETS kconf_update EXPORT KF5ConfigTargets DESTINATION ${LIBEXEC_INSTALL_DIR})
