@@ -1022,7 +1022,7 @@ public:
     /**
      * Set all registered items to their default values.
      * This method calls usrSetDefaults() after setting the defaults for the
-     * registered items. You can overridde usrSetDefaults() in derived classes
+     * registered items. You can override usrSetDefaults() in derived classes
      * if you have special requirements.
      * If you need more fine-grained control of setting the default values of
      * the registered items you can override setDefaults() in a derived class.
@@ -1033,7 +1033,7 @@ public:
      * Read preferences from config file. All registered items are set to the
      * values read from disk.
      * This method calls usrRead() after reading the settings of the
-     * registered items from the KConfig. You can overridde usrRead()
+     * registered items from the KConfig. You can override usrRead()
      * in derived classes if you have special requirements.
      */
     void load();
@@ -1055,7 +1055,7 @@ public:
      * i.e. it uses the in-memory values from KConfig without reloading from disk.
      *
      * This method calls usrRead() after reading the settings of the
-     * registered items from the KConfig. You can overridde usrRead()
+     * registered items from the KConfig. You can override usrRead()
      * in derived classes if you have special requirements.
      * @since 5.0
      */
@@ -1417,7 +1417,7 @@ public Q_SLOTS:
      * Write preferences to config file. The values of all registered items are
      * written to disk.
      * This method calls usrWriteConfig() after writing the settings from the
-     * registered items to the KConfig. You can overridde usrWriteConfig()
+     * registered items to the KConfig. You can override usrWriteConfig()
      * in derived classes if you have special requirements.
      */
     bool save();
