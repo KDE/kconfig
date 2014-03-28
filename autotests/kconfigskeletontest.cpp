@@ -58,7 +58,7 @@ void KConfigSkeletonTest::testSimple()
     mMyFont = WRITE_SETTING3;
     mMyString = WRITE_SETTING4;
 
-    writeConfig();
+    save();
 
     mMyBool = false;
     mMyColor = QColor();
@@ -102,6 +102,6 @@ void KConfigSkeletonTest::testDefaults()
     QCOMPARE(mMyFont, DEFAULT_SETTING3);
     QCOMPARE(mMyString, DEFAULT_SETTING4);
 
-    writeConfig();
+    save();
 }
 

@@ -1073,17 +1073,17 @@ void KCoreConfigSkeleton::read()
     for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
         (*it)->readConfig(d->mConfig.data());
     }
-    usrReadConfig();
+    usrRead();
 }
 
-bool KCoreConfigSkeleton::writeConfig()
+bool KCoreConfigSkeleton::save()
 {
     //qDebug();
     KConfigSkeletonItem::List::ConstIterator it;
     for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
         (*it)->writeConfig(d->mConfig.data());
     }
-    if (!usrWriteConfig()) {
+    if (!usrSave()) {
         return false;
     }
 
@@ -1091,7 +1091,6 @@ bool KCoreConfigSkeleton::writeConfig()
         if (!d->mConfig->sync()) {
             return false;
         }
-        load();
         emit configChanged();
     }
     return true;
@@ -1106,8 +1105,24 @@ void KCoreConfigSkeleton::usrSetDefaults()
 {
 }
 
+void KCoreConfigSkeleton::usrRead()
+{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+	usrReadConfig();
+#pragma GCC diagnostic pop
+}
+
 void KCoreConfigSkeleton::usrReadConfig()
 {
+}
+
+bool KCoreConfigSkeleton::usrSave()
+{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    return usrWriteConfig();
+#pragma GCC diagnostic pop
 }
 
 bool KCoreConfigSkeleton::usrWriteConfig()

@@ -108,8 +108,8 @@ public:
      * Register an item of type QColor.
      *
      * @param name Name used to identify this setting. Names must be unique.
-     * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * @param reference Pointer to the variable, which is set by read()
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -123,8 +123,8 @@ public:
      * Register an item of type QFont.
      *
      * @param name Name used to identify this setting. Names must be unique.
-     * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * @param reference Pointer to the variable, which is set by read()
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.

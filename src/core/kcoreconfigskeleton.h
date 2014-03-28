@@ -394,14 +394,14 @@ private:
  * singleton for global access from all over the application without passing
  * references to the KCoreConfigSkeleton object around.
  *
- * You can write the data to the configuration file by calling @ref writeConfig()
+ * You can write the data to the configuration file by calling @ref save()
  * and read the data from the configuration file by calling @ref readConfig().
  * If you want to watch for config changes, use @ref configChanged() signal.
  *
  * If you have items, which are not covered by the existing addItem() functions
  * you can add customized code for reading, writing and default setting by
- * implementing the functions @ref usrUseDefaults(), @ref usrReadConfig() and
- * @ref usrWriteConfig().
+ * implementing the functions @ref usrUseDefaults(), @ref usrRead() and
+ * @ref usrSave().
  *
  * Internally preferences settings are stored in instances of subclasses of
  * @ref KConfigSkeletonItem. You can also add KConfigSkeletonItem subclasses
@@ -1032,8 +1032,8 @@ public:
     /**
      * Read preferences from config file. All registered items are set to the
      * values read from disk.
-     * This method calls usrReadConfig() after reading the settings of the
-     * registered items from the KConfig. You can overridde usrReadConfig()
+     * This method calls usrRead() after reading the settings of the
+     * registered items from the KConfig. You can overridde usrRead()
      * in derived classes if you have special requirements.
      */
     void load();
@@ -1054,8 +1054,8 @@ public:
      * This method assumes that the KConfig object was previously loaded,
      * i.e. it uses the in-memory values from KConfig without reloading from disk.
      *
-     * This method calls usrReadConfig() after reading the settings of the
-     * registered items from the KConfig. You can overridde usrReadConfig()
+     * This method calls usrRead() after reading the settings of the
+     * registered items from the KConfig. You can overridde usrRead()
      * in derived classes if you have special requirements.
      * @since 5.0
      */
@@ -1089,7 +1089,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1106,7 +1106,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1123,7 +1123,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1140,7 +1140,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1154,7 +1154,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1169,7 +1169,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1183,7 +1183,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1198,7 +1198,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1223,7 +1223,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1248,7 +1248,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1263,7 +1263,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1278,7 +1278,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1293,7 +1293,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1308,7 +1308,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1323,7 +1323,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1338,7 +1338,7 @@ public:
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
-     * calls and read by writeConfig() calls.
+     * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
      * @param key Key used in config file. If key is null, name is used as key.
@@ -1419,10 +1419,18 @@ public Q_SLOTS:
      * This method calls usrWriteConfig() after writing the settings from the
      * registered items to the KConfig. You can overridde usrWriteConfig()
      * in derived classes if you have special requirements.
-     * If you need more fine-grained control of storing the settings from
-     * the registered items you can override writeConfig() in a derived class.
      */
-    virtual bool writeConfig();
+    bool save();
+
+#ifndef KCONFIGCORE_NO_DEPRECATED
+    /**
+     * @deprecated since 5.0, call save() instead.
+     */
+    KCONFIGCORE_DEPRECATED void writeConfig()
+    {
+        save();
+    }
+#endif
 
 Q_SIGNALS:
     /**
@@ -1451,16 +1459,28 @@ protected:
     /**
      * Perform the actual reading of the configuration file.
      * Override in derived classes to read special config values.
-     * Called from @ref readConfig()
+     * Called from @ref read()
      */
-    virtual void usrReadConfig();
+    virtual void usrRead();
 
     /**
      * Perform the actual writing of the configuration file.
      * Override in derived classes to write special config values.
      * Called from @ref writeConfig()
      */
-    virtual bool usrWriteConfig();
+    virtual bool usrSave();
+
+   /**
+     * @deprecated since 5.0, override usrRead instead.  This method is still called from usrRead
+     * for compatibility.
+     */
+    KCONFIGCORE_DEPRECATED virtual void usrReadConfig();
+
+   /**
+     * @deprecated since 5.0, override usrSave instead.  This method is still called from usrSave
+     * for compatibility.
+     */
+    KCONFIGCORE_DEPRECATED virtual bool usrWriteConfig();
 
 private:
     class Private;

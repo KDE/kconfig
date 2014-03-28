@@ -114,7 +114,7 @@ void KConfigCompiler_Test_Signals::testSetters()
 
     // make sure we are in the default state
     params.obj->setDefaults();
-    params.obj->writeConfig();
+    params.obj->save();
 
     QList<QVariant> args;
     QSignalSpy spy(params.obj, signal);
@@ -127,8 +127,8 @@ void KConfigCompiler_Test_Signals::testSetters()
     QVERIFY(changedValue != params.getter());
     params.setter(changedValue);
     QCOMPARE(params.getter(), changedValue);
-    QCOMPARE(spy.count(), 0); //should have no change yet, only after writeConfig()
-    params.obj->writeConfig();
+    QCOMPARE(spy.count(), 0); //should have no change yet, only after save()
+    params.obj->save();
     QCOMPARE(spy.count(), 1);
     args = spy.takeFirst();
     QCOMPARE(args.size(), 1);
@@ -142,8 +142,8 @@ void KConfigCompiler_Test_Signals::testSetters()
     QCOMPARE(params.getter(), params.defaultGetter());
     QCOMPARE(params.getter(), defaultValue);
 
-    QCOMPARE(spy.count(), 0); //should have no change yet, only after writeConfig()
-    params.obj->writeConfig();
+    QCOMPARE(spy.count(), 0); //should have no change yet, only after save()
+    params.obj->save();
     //TODO: This currently fails since setDefaults() does not yet cause emitting a signal
     QCOMPARE(spy.count(), 1);
     args = spy.takeFirst();
@@ -171,7 +171,7 @@ void KConfigCompiler_Test_Signals::testSetProperty()
     const QString defaultValue = QStringLiteral("default");
     const QString newValue = QStringLiteral("changed");
     obj->setDefaults();
-    obj->writeConfig();
+    obj->save();
 
     KConfigSkeletonItem* item = obj->findItem(propertyName);
     QVERIFY2(item, "Item must exist");
@@ -186,9 +186,9 @@ void KConfigCompiler_Test_Signals::testSetProperty()
     QVERIFY(!item->isEqual(newValue));
 
     item->setProperty(newValue); //change value now
-    //should have no change yet, only after writeConfig()
+    //should have no change yet, only after save()
     QCOMPARE(spy.count(), 0);
-    obj->writeConfig();
+    obj->save();
     //now check for the signal emissions
     QCOMPARE(spy.count(), 1);
     QList<QVariant> args = spy.takeFirst();
@@ -199,9 +199,9 @@ void KConfigCompiler_Test_Signals::testSetProperty()
     QVERIFY(!item->isEqual(defaultValue));
     item->setDefault();
     QVERIFY(item->isEqual(defaultValue));
-    //should have no change yet, only after writeConfig()
+    //should have no change yet, only after save()
     QCOMPARE(spy.count(), 0);
-    obj->writeConfig();
+    obj->save();
     //now check for the signal emissions
     QCOMPARE(spy.count(), 1);
     args = spy.takeFirst();
