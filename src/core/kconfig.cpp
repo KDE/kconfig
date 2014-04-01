@@ -26,7 +26,7 @@
 #include <cstdlib>
 #include <fcntl.h>
 
-#ifdef Q_OS_WIN
+#ifdef _MSC_VER
 static inline FILE *popen(const char *cmd, const char *mode)
 {
     return _popen(cmd, mode);
