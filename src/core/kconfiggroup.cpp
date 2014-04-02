@@ -802,7 +802,6 @@ QStringList KConfigGroup::readXdgListEntry(const char *key, const QStringList &a
         }
     }
     if (!val.isEmpty()) {
-        qWarning() << "List entry" << key << "in" << config()->name() << "is not compliant with XDG standard (missing trailing semicolon).";
         value.append(val);
     }
     return value;
