@@ -340,7 +340,10 @@ static void initUrlActionRestrictions()
 
 namespace KAuthorized
 {
-// Called by KAuthorized::allowUrlAction in KIO
+/**
+ * Helper for KAuthorized::allowUrlAction in KIO
+ * @private
+ */
 KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl &_baseURL, const QUrl &_destURL)
 {
     MY_D
@@ -359,7 +362,10 @@ KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl
                                      _destURL.scheme(), _destURL.host(), destPath, true));
 }
 
-// Called by KAuthorized::authorizeUrlAction in KIO
+/**
+ * Helper for KAuthorized::authorizeUrlAction in KIO
+ * @private
+ */
 KCONFIGCORE_EXPORT bool authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QUrl &_destURL, const QString &baseClass, const QString &destClass)
 {
     MY_D

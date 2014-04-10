@@ -9,10 +9,13 @@ KConfigCore and KConfigGui.
 
 KConfigCore provides access to the configuration files themselves. It features:
 
-- centralized definition: define your configuration in an XML file and use
-`kconfig_compiler` to generate classes to read and write configuration entries.
-
-- lock-down (kiosk) support.
+- Code generation: describe your configuration in an XML file, and use
+  `kconfig_compiler to generate classes that read and write configuration
+  entries.
+- Cascading configuration files (global settings overridden by local settings).
+- Optional shell expansion support (see [docs/options.md](@ref options)).
+- The ability to lock down configuration options (see
+  [docs/options.md](@ref options)).
 
 KConfigGui provides a way to hook widgets to the configuration so that they are
 automatically initialized from the configuration and automatically propagate
@@ -22,5 +25,5 @@ their changes to their respective configuration files.
 
 - Home page: <https://projects.kde.org/projects/frameworks/kconfig>
 - Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: #kde-devel on Freenode
+- IRC channel: \#kde-devel on Freenode
 - Git repository: <https://projects.kde.org/projects/frameworks/kconfig/repository>
