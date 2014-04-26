@@ -13,4 +13,4 @@ find_package(Qt5Xml 5.2.0 REQUIRED NO_MODULE)
 
 target_link_libraries(kconfig_compiler Qt5::Xml)
 
-install(TARGETS kconfig_compiler EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kconfig_compiler EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})

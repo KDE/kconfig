@@ -24,7 +24,7 @@ target_compile_definitions(KF5ConfigCore
         KCONF_UPDATE_INSTALL_LOCATION="${CMAKE_INSTALL_PREFIX}/${LIBEXEC_INSTALL_DIR}/$<TARGET_FILE_NAME:KF5::kconf_update>"
 )
 
-target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigCore>")
+target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KConfigCore>")
 
 target_link_libraries(KF5ConfigCore PUBLIC Qt5::Core)
 if(WIN32)
@@ -52,12 +52,12 @@ ecm_generate_headers(KConfigCore_HEADERS
   REQUIRED_HEADERS KConfigCore_HEADERS
 )
 
-install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
   ${KConfigCore_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KConfigCore COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KConfigCore COMPONENT Devel
 )
 
 include(ECMGeneratePriFile)

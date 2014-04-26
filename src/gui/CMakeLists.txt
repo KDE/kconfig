@@ -15,7 +15,7 @@ add_library(KF5ConfigGui ${libkconfiggui_SRCS})
 generate_export_header(KF5ConfigGui BASE_NAME KConfigGui)
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
 
-target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KConfigGui>")
+target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KConfigGui>")
 
 target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
 
@@ -35,12 +35,12 @@ ecm_generate_headers(KConfigGui_HEADERS
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
-install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KConfigGui COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KConfigGui COMPONENT Devel
 )
 
 include(ECMGeneratePriFile)
