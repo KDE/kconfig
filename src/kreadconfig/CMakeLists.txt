@@ -1,15 +1,15 @@
-add_executable(kreadconfig kreadconfig.cpp)
-ecm_mark_nongui_executable(kreadconfig)
+add_executable(kreadconfig5 kreadconfig.cpp)
+ecm_mark_nongui_executable(kreadconfig5)
 
-target_link_libraries(kreadconfig KF5::ConfigCore)
+target_link_libraries(kreadconfig5 KF5::ConfigCore)
 
-install(TARGETS kreadconfig ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kreadconfig5 ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 
-add_executable(kwriteconfig kwriteconfig.cpp)
-ecm_mark_nongui_executable(kwriteconfig)
+add_executable(kwriteconfig5 kwriteconfig.cpp)
+ecm_mark_nongui_executable(kwriteconfig5)
 
-target_link_libraries(kwriteconfig KF5::ConfigCore)
+target_link_libraries(kwriteconfig5 KF5::ConfigCore)
 
-install(TARGETS kwriteconfig ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kwriteconfig5 ${INSTALL_TARGETS_DEFAULT_ARGS})
