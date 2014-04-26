@@ -133,7 +133,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
             return true;
         }
     }
-    const QString servicesDir = QLatin1String("kde5/services/"); // KGlobal::dirs()->xdgDataRelativePath("services")
+    const QString servicesDir = QLatin1String("kservices5/"); // KGlobal::dirs()->xdgDataRelativePath("services")
     Q_FOREACH (const QString &xdgDataPrefix, QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
         if (QDir(xdgDataPrefix).exists()) {
             const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
