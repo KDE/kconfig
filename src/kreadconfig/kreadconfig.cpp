@@ -45,39 +45,27 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KSharedConfig>
-#include <KAboutData>
-#include <KLocalizedString>
 #include <QCommandLineParser>
 #include <stdio.h>
 
 int main(int argc, char **argv)
 {
 	QCoreApplication app(argc, argv);
-	KAboutData aboutData("kreadconfig", 0, i18n("KReadConfig"),
-		"1.0.1",
-		i18n("Read KConfig entries - for use in shell scripts"),
-		KAboutData::License_GPL,
-		i18n("(c) 2001 Red Hat, Inc."));
-	aboutData.addAuthor(i18n("Bernhard Rosenkraenzer"), QString(), "bero@redhat.com");
-
-	KAboutData::setApplicationData(aboutData);
 
 	QCommandLineParser parser;
-	parser.addOption(QCommandLineOption("file", i18n("Use <file> instead of global config"), "file"));
-	parser.addOption(QCommandLineOption("group", i18n("Group to look in. Use repeatedly for nested groups."), "group", "KDE"));
-	parser.addOption(QCommandLineOption("key", i18n("Key to look for"), "key"));
-	parser.addOption(QCommandLineOption("default", i18n("Default value"), "value"));
-	parser.addOption(QCommandLineOption("type", i18n("Type of variable"), "type"));
+    parser.addOption(QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
+    parser.addOption(QCommandLineOption(QStringLiteral("group"), QCoreApplication::translate("main", "Group to look in. Use repeatedly for nested groups."), QStringLiteral("group"), QStringLiteral("KDE")));
+    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
+    parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
+    parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
 
-	aboutData.setupCommandLine(&parser);
 	parser.process(app);
-	aboutData.processCommandLine(&parser);
 
-	QStringList groups=parser.values("group");
-	QString key=parser.value("key");
-	QString file=parser.value("file");
-	QString dflt=parser.value("default");
-	QString type=parser.value("type").toLower();
+    QStringList groups=parser.values(QStringLiteral("group"));
+    QString key=parser.value(QStringLiteral("key"));
+    QString file=parser.value(QStringLiteral("file"));
+    QString dflt=parser.value(QStringLiteral("default"));
+    QString type=parser.value(QStringLiteral("type")).toLower();
 
 	if (parser.positionalArguments().isEmpty()) {
 		parser.showHelp(1);
@@ -94,22 +82,22 @@ int main(int argc, char **argv)
 		konfig = new KConfig( file, KConfig::NoGlobals );
 		configMustDeleted=true;
 	}
-	KConfigGroup cfgGroup = konfig->group("");
+	KConfigGroup cfgGroup = konfig->group(QString());
 	foreach (const QString &grp, groups)
 		cfgGroup = cfgGroup.group(grp);
-	if(type=="bool") {
+    if(type==QStringLiteral("bool")) {
 		dflt=dflt.toLower();
-		bool def=(dflt=="true" || dflt=="on" || dflt=="yes" || dflt=="1");
+        bool def=(dflt==QStringLiteral("true") || dflt==QStringLiteral("on") || dflt==QStringLiteral("yes") || dflt==QStringLiteral("1"));
 		bool retValue = !cfgGroup.readEntry(key, def);
 		if ( configMustDeleted )
 			delete konfig;
 		return retValue;
-	} else if((type=="num") || (type=="int")) {
+    } else if((type==QStringLiteral("num")) || (type==QStringLiteral("int"))) {
 		int retValue = cfgGroup.readEntry(key, dflt.toInt());
 		if ( configMustDeleted )
 			delete konfig;
 		return retValue;
-	} else if (type=="path"){
+    } else if (type==QStringLiteral("path")){
 		fprintf(stdout, "%s\n", cfgGroup.readPathEntry(key, dflt).toLocal8Bit().data());
 		if ( configMustDeleted )
 			delete konfig;

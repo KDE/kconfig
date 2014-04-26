@@ -16,6 +16,7 @@ include(FeatureSummary)
 include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
+include(ECMMarkNonGuiExecutable)
 
 set(KF5_VERSION "4.98.0") # handled by release scripts
 

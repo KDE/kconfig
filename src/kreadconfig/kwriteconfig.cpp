@@ -23,69 +23,56 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <stdio.h>
-#include <KAboutData>
-#include <KLocalizedString>
 #include <QCoreApplication>
 #include <QCommandLineParser>
 
 int main(int argc, char **argv)
 {
-	QCoreApplication app(argc, argv);
-	KAboutData aboutData("kwriteconfig", 0, i18n("KWriteConfig"),
-		"1.0.0",
-		i18n("Write KConfig entries - for use in shell scripts"),
-		KAboutData::License_GPL,
-		i18n("(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"));
-	aboutData.addAuthor("Luís Pedro Coelho", QString(), "luis_pedro@netcabo.pt");
-	aboutData.addAuthor("Bernhard Rosenkraenzer", i18n("Wrote kreadconfig on which this is based"), "bero@redhat.com");
+    QCoreApplication app(argc, argv);
 
-	KAboutData::setApplicationData(aboutData);
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addOption(QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
+    parser.addOption(QCommandLineOption(QStringLiteral("group"), QCoreApplication::translate("main", "Group to look in. Use repeatedly for nested groups."), QStringLiteral("group"), QStringLiteral("KDE")));
+    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
+    parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"), QStringLiteral("type")));
+    parser.addPositionalArgument(QStringLiteral("value"), QCoreApplication::translate("main",  "The value to write. Mandatory, on a shell use '' for empty" ));
 
-	QCommandLineParser parser;
-	parser.addHelpOption();
-	parser.addOption(QCommandLineOption("file", i18n("Use <file> instead of global config"), "file"));
-	parser.addOption(QCommandLineOption("group", i18n("Group to look in. Use repeatedly for nested groups."), "group", "KDE"));
-	parser.addOption(QCommandLineOption("key <key>", i18n("Key to look for")));
-	parser.addOption(QCommandLineOption("type <type>", i18n("Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string")));
-	parser.addPositionalArgument("value", i18n( "The value to write. Mandatory, on a shell use '' for empty" ));
+    parser.process(app);
 
-	aboutData.setupCommandLine(&parser);
-	parser.process(app);
-	aboutData.processCommandLine(&parser);
-
-	QStringList groups=parser.values("group");
-	QString key=parser.value("key");
-	QString file=parser.value("file");
-	QString type=parser.value("type").toLower();
+    QStringList groups=parser.values(QStringLiteral("group"));
+    QString key=parser.value(QStringLiteral("key"));
+    QString file=parser.value(QStringLiteral("file"));
+    QString type=parser.value(QStringLiteral("type")).toLower();
 
 
-	if (parser.positionalArguments().isEmpty()) {
-		parser.showHelp(1);
-	}
-	QByteArray value = parser.positionalArguments().first().toLocal8Bit();
+    if (parser.positionalArguments().isEmpty()) {
+        parser.showHelp(1);
+    }
+    QString value = parser.positionalArguments().first();
 
-	KConfig *konfig;
-	if (file.isEmpty())
-	konfig = new KConfig(QString::fromLatin1( "kdeglobals"), KConfig::NoGlobals );
-	else
-	konfig = new KConfig( file, KConfig::NoGlobals );
+    KConfig *konfig;
+    if (file.isEmpty())
+        konfig = new KConfig(QStringLiteral( "kdeglobals"), KConfig::NoGlobals );
+    else
+        konfig = new KConfig( file, KConfig::NoGlobals );
 
-		KConfigGroup cfgGroup = konfig->group("");
-		foreach (const QString &grp, groups)
-			cfgGroup = cfgGroup.group(grp);
-	if ( konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable( key ) ) return 2;
+    KConfigGroup cfgGroup = konfig->group(QString());
+    foreach (const QString &grp, groups)
+        cfgGroup = cfgGroup.group(grp);
+    if ( konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable( key ) ) return 2;
 
-	if(type=="bool") {
-		// For symmetry with kreadconfig we accept a wider range of values as true than Qt
-		bool boolvalue=(value=="true" || value=="on" || value=="yes" || value=="1");
-		cfgGroup.writeEntry( key, boolvalue );
-	} else if (type=="path") {
-		cfgGroup.writePathEntry( key, QString::fromLocal8Bit( value ) );
-	} else {
-		cfgGroup.writeEntry( key, QString::fromLocal8Bit( value ) );
-	}
-	konfig->sync();
-		delete konfig;
-	return 0;
+    if(type==QStringLiteral("bool")) {
+        // For symmetry with kreadconfig we accept a wider range of values as true than Qt
+        bool boolvalue=(value==QStringLiteral("true") || value==QStringLiteral("on") || value==QStringLiteral("yes") || value==QStringLiteral("1"));
+        cfgGroup.writeEntry( key, boolvalue );
+    } else if (type==QStringLiteral("path")) {
+        cfgGroup.writePathEntry( key, value );
+    } else {
+        cfgGroup.writeEntry( key, value );
+    }
+    konfig->sync();
+    delete konfig;
+    return 0;
 }
 
