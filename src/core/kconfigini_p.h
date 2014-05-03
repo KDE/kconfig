@@ -31,6 +31,7 @@ class QIODevice;
 
 class KConfigIniBackend : public KConfigBackend
 {
+Q_OBJECT
 private:
     class BufferFragment;
 
