@@ -1,0 +1,147 @@
+# translation of kwriteconfig.po to Bengali
+# Deepayan Sarkar <deepayan.sarkar@gmail.com>, 2004, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2012-07-12 14:43+0530\n"
+"Last-Translator: Deepayan Sarkar <deepayan.sarkar@gmail.com>\n"
+"Language-Team: Bengali <kde-translation@bengalinux.org>\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kconfig.cpp:854
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kconfigini.cpp:554
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:256
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:259
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:943
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:945
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:946
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:56
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:35
+#, fuzzy
+#| msgid "Use <file> instead of global config"
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "গ্লোবাল কনফিগ-এর পরিবর্তে <file> ব্যবহার করো"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:57
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:36
+#, fuzzy
+#| msgid "Group to look in. Use repeatedly for nested groups."
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "যে যে গ্রুপ-এ দেখা হবে। একাধিক স্তরে গ্রুপ থাকলে একাধিকবার ব্যবহার করুন।"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:58
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:37
+#, fuzzy
+#| msgid "Key to look for"
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "যে কী (Key) খোঁজা হবে "
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:38
+#, fuzzy
+#| msgid ""
+#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
+#| "a string"
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"ভেরিয়েবল-এর টাইপ। বুলিয়ান-এর জন্য \"bool\" ব্যবহার করুন, বাকি সব string হিসাবে "
+"গণ্য হবে"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:39
+#, fuzzy
+#| msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "যে মানটি লেখা হবে। দেওয়া প্রয়োজন। শেল-এ ফাঁকা রাখতে '' ব্যবহার করুন"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "কে-রাইট-কনফিগ"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "কনফিগ এন্ট্রি লেখে - শেল স্ক্রিপ্ট-এ ব্যবহারের জন্য"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "kreadconfig লিখেছেন, যার ভিত্তিতে এই প্রোগ্রামটি লেখা"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "Luís Pedro Coelho"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
+
+#~ msgid "Group to look in"
+#~ msgstr "যে গ্রুপ-এ খোঁজা হবে"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "দীপায়ন সরকার"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "deepayan@bengalinux.org"
