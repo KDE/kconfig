@@ -1,0 +1,136 @@
+# Translation of kwriteconfig.po into Serbian.
+# Marko Rosic <roske@kde.org.yu>, 2003.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2007, 2008.
+# Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2010-01-21 13:06+0100\n"
+"Last-Translator: Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr@ijekavianlatin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kconfig.cpp:854
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kconfigini.cpp:554
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:256
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:259
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:943
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:945
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:946
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:56
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:35
+#, fuzzy
+#| msgid "Use <file> instead of global config"
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Zadati fajl umjesto globalnog podešavanja"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:57
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:36
+#, fuzzy
+#| msgid "Group to look in. Use repeatedly for nested groups."
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Grupa u kojoj se traži. Ponavljajte za ugniježđene grupe."
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:58
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:37
+#, fuzzy
+#| msgid "Key to look for"
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Ključ koji se traži"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr ""
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:38
+#, fuzzy
+#| msgid ""
+#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
+#| "a string"
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Tip promjenljive. Zadajte <icode>bool</icode> za logičke, u suprotnom se "
+"uzima kao <icode>string</icode> (niska)"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:39
+#, fuzzy
+#| msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Vrijednost koja se upisuje; obavezno zadajte '' za praznu"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "Upis stavki KConfiga — za upotrebu u skriptama"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "© 2001, RedHat i Luis Pedro Koeljo"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "napisao kreadconfig na kojoj je ovo zasnovano"
