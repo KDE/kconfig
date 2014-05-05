@@ -534,14 +534,8 @@ QString KConfig::mainConfigName()
         return globalName;
     }
 
-    QString fileName;
-    const QString domain = QCoreApplication::organizationDomain();
-    if (!domain.isEmpty()) {
-        fileName = domain + QLatin1Char('/');
-    }
-
-    fileName += QCoreApplication::applicationName() + QLatin1String("rc");
-    return fileName;
+    QString appName = QCoreApplication::applicationName();
+    return appName + QLatin1String("rc");
 }
 
 void KConfigPrivate::changeFileName(const QString &name)
