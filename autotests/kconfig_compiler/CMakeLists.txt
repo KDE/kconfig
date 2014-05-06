@@ -204,19 +204,18 @@ gen_kcfg_test_source(signals_test_singleton kconfigcompiler_test_signals_SRCS KC
 gen_kcfg_test_source(signals_test_no_singleton kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
 gen_kcfg_test_source(signals_test_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
 gen_kcfg_test_source(signals_test_no_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
-add_executable(kconfigcompiler_test_signals ${kconfigcompiler_test_signals_SRCS})
-ecm_mark_as_test(kconfigcompiler_test_signals)
-target_link_libraries(kconfigcompiler_test_signals Qt5::Test KF5::ConfigGui)
-add_test(kconfig-kconfigcompiler-signals kconfigcompiler_test_signals)
+
+ecm_add_test(${kconfigcompiler_test_signals_SRCS}
+    TEST_NAME kconfigcompiler-signals-test
+    LINK_LIBRARIES Qt5::Test KF5::ConfigGui
+)
 
 ########### next target ###############
 
-set(kconfigcompiler_test_SRCS kconfigcompiler_test.cpp )
-add_executable(kconfigcompiler_test ${kconfigcompiler_test_SRCS})
-ecm_mark_as_test(kconfigcompiler_test)
-add_test(kconfig-kconfigcompiler kconfigcompiler_test)
-
-target_link_libraries(kconfigcompiler_test Qt5::Test )
+ecm_add_test(kconfigcompiler_test.cpp
+    TEST_NAME kconfigcompiler-basic-test
+    LINK_LIBRARIES Qt5::Test
+)
 
 ########### install files ###############
 
