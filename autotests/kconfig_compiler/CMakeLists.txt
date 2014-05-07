@@ -23,6 +23,10 @@ macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc KF5::kconfig_compiler)
 
    # set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
+   qt5_generate_moc(${KCFG_OUTPUT_DIR}/${_testName}.h ${KCFG_OUTPUT_DIR}/${_testName}.moc )
+   # do not run automoc on the generated file
+   set_source_files_properties(${KCFG_OUTPUT_DIR}/${_testName}.cpp PROPERTIES SKIP_AUTOMOC TRUE)
+
    set( ${_srcs} ${${_srcs}} ${KCFG_OUTPUT_DIR}/${_testName}.cpp)
    set_property(SOURCE ${KCFG_OUTPUT_DIR}/${_testName}.cpp APPEND PROPERTY OBJECT_DEPENDS ${KCFG_OUTPUT_DIR}/${_testName}.moc )
 endmacro(GEN_KCFG_TEST_SOURCE)
