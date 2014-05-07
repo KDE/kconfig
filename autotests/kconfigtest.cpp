@@ -1630,16 +1630,21 @@ void KConfigTest::testNewlines()
 {
     // test that kconfig always uses the native line endings
     QTemporaryFile file;
-    file.open();
+    QVERIFY(file.open());
+    qWarning() << file.fileName();
     KConfig anonConfig(file.fileName(), KConfig::SimpleConfig);
     KConfigGroup general(&anonConfig, "General");
     general.writeEntry("Foo", "Bar");
     general.writeEntry("Bar", "Foo");
     anonConfig.sync();
+    file.flush();
+    file.close();
+    QFile readFile(file.fileName());
+    QVERIFY(readFile.open(QFile::ReadOnly));
 #ifndef Q_OS_WIN
-    QCOMPARE(file.readAll(), QByteArrayLiteral("[General]\nBar=Foo\nFoo=Bar\n"));
+    QCOMPARE(readFile.readAll(), QByteArrayLiteral("[General]\nBar=Foo\nFoo=Bar\n"));
 #else
-    QCOMPARE(file.readAll(), QByteArrayLiteral("[General]\r\nBar=Foo\r\nFoo=Bar\r\n"));
+    QCOMPARE(readFile.readAll(), QByteArrayLiteral("[General]\r\nBar=Foo\r\nFoo=Bar\r\n"));
 #endif
 
 }
