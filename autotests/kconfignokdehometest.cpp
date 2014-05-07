@@ -39,7 +39,7 @@ void KConfigNoKdeHomeTest::testNoKdeHome()
     QStandardPaths::setTestModeEnabled(true);
     QString configPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
     QDir configDir(configPath);
-    configDir.removeRecursively();
+    QVERIFY(configDir.removeRecursively());
     QVERIFY(!QFile::exists(configPath));
 
     // Do what kf5-config does, and ensure the config directory doesn't get created (#233892)
@@ -52,7 +52,8 @@ void KConfigNoKdeHomeTest::testNoKdeHome()
     group.writeEntry("Key", "Value");
     group.sync();
     QVERIFY(QFile::exists(configPath));
-    QVERIFY(QFile::exists(configPath + QStringLiteral("/kconfignokdehometestrc")));
+    const QString rcFile = QCoreApplication::applicationName() + QStringLiteral("rc");
+    QVERIFY(QFile::exists(configPath + QLatin1Char('/') + rcFile));
 
     // Cleanup
     configDir.removeRecursively();
