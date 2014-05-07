@@ -49,7 +49,12 @@ static QString readFile(const QString &path)
     bool ok = file.open(QIODevice::ReadOnly);
     Q_UNUSED(ok) // silence warnings
     Q_ASSERT(ok);
-    return QString::fromUtf8(file.readAll());
+    QString ret = QString::fromUtf8(file.readAll());
+#ifdef Q_OS_WIN
+    // KConfig always writes files with the native line ending, the test comparison uses \n
+    ret.replace("\r\n", "\n");
+#endif
+    return ret;
 }
 
 static QTemporaryFile *writeUpdFile(const QString &content)
@@ -65,9 +70,8 @@ static QTemporaryFile *writeUpdFile(const QString &content)
 
 static void runKConfUpdate(const QString &updPath)
 {
-    QString exePath = KCONF_UPDATE_BINARY_DIR "/kconf_update";
-    QVERIFY(QFile::exists(exePath));
-    QProcess::execute(exePath, QStringList() << "--debug" << updPath);
+    QVERIFY(QFile::exists(KCONF_UPDATE_EXECUTABLE));
+    QCOMPARE(0, QProcess::execute(KCONF_UPDATE_EXECUTABLE, QStringList() << "--debug" << updPath));
 }
 
 void TestKConfUpdate::test_data()
@@ -265,6 +269,7 @@ void TestKConfUpdate::test()
     QFile::remove(newConfPath);
 
     writeFile(oldConfPath, oldConfContent);
+    QCOMPARE(readFile(oldConfPath), oldConfContent);
     QSharedPointer<QTemporaryFile> updFile(writeUpdFile(updContent));
     runKConfUpdate(updFile->fileName());
 
@@ -285,6 +290,12 @@ void TestKConfUpdate::test()
 
 void TestKConfUpdate::testScript_data()
 {
+#ifdef Q_OS_WIN
+    // add sh.exe and sed.exe to PATH on Windows
+    // uncomment and adapt path to run all tests
+    // qputenv("PATH", qgetenv("PATH") + ";C:\\kde\\msys\\bin");
+#endif
+
     QTest::addColumn<QString>("updContent");
     QTest::addColumn<QString>("updScript");
     QTest::addColumn<QString>("oldConfContent");
@@ -474,7 +485,10 @@ void TestKConfUpdate::testScript_data()
             "new=value3\n"
             ;
 
-    QTest::newRow("filter")
+    if (QStandardPaths::findExecutable("sed").isEmpty()) {
+        qWarning("sed executable not found, cannot run all tests!");
+    } else {
+        QTest::newRow("filter")
             <<
             "File=testrc\n"
             "Script=test.sh,sh\n"
@@ -519,10 +533,16 @@ void TestKConfUpdate::testScript_data()
             "changed=VALUE\n"
             "unchanged=value\n"
             ;
+    }
 }
 
 void TestKConfUpdate::testScript()
 {
+    if (QStandardPaths::findExecutable("sh").isEmpty()) {
+        QSKIP("Could not find sh executable, cannot run test");
+        return;
+    }
+
     QFETCH(QString, updContent);
     QFETCH(QString, updScript);
     QFETCH(QString, oldConfContent);
@@ -537,9 +557,11 @@ void TestKConfUpdate::testScript()
     QVERIFY(QDir().mkpath(scriptDir));
     QString scriptPath = scriptDir + "/test.sh";
     writeFile(scriptPath, updScript);
+    QCOMPARE(readFile(scriptPath), updScript);
 
     QString confPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + "testrc";
     writeFile(confPath, oldConfContent);
+    QCOMPARE(readFile(confPath), oldConfContent);
 
     runKConfUpdate(updFile->fileName());
 

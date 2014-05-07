@@ -174,6 +174,7 @@ QTextStream &
 KonfUpdate::log()
 {
     if (!m_textStream) {
+#if 0
         QString dir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + "kconf_update/log";
         QDir().mkpath(dir);
         QString file = dir + "/update.log";
@@ -184,6 +185,8 @@ KonfUpdate::log()
             // Error
             m_textStream = new QTextStream(stderr, QIODevice::WriteOnly);
         }
+#endif
+        m_textStream = new QTextStream(stderr, QIODevice::WriteOnly);
     }
 
     (*m_textStream) << QDateTime::currentDateTime().toString(Qt::ISODate) << " ";
