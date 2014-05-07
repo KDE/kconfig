@@ -75,6 +75,7 @@ private Q_SLOTS:
     void testLocaleConfig();
     void testDirtyAfterRevert();
     void testKdeGlobals();
+    void testNewlines();
 
     void testThreads();
 
