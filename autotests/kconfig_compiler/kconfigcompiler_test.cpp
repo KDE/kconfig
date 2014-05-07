@@ -100,11 +100,11 @@ void KConfigCompiler_Test::testBaselineComparison()
     QFile fileRef(QFINDTESTDATA(testName + QLatin1String(".ref")));
 
     if (!file.open(QIODevice::ReadOnly)) {
-        qWarning() << "Failed to open" << file.fileName();
+        qWarning() << "Failed to open" << file.fileName() << "(" << testName << ")";
         QFAIL("Can't open file for comparison");
     }
     if (!fileRef.open(QIODevice::ReadOnly)) {
-        qWarning() << "Failed to open" << fileRef.fileName();
+        qWarning() << "Failed to open" << fileRef.fileName() << "(" << testName << ".ref )";
         QFAIL("Can't open file for comparison");
     }
     QString content = file.readAll();

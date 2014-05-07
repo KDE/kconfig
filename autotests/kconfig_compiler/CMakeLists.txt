@@ -1,4 +1,15 @@
 
+# On Windows we have to generate the .h and .cpp inside ${CMAKE_BINARY_DIR}/bin because
+# otherwise QFINDTESTDATA will not be able to locate them.
+if(WIN32)
+    set(KCFG_OUTPUT_DIR "${CMAKE_BINARY_DIR}/bin")
+else()
+    set(KCFG_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+endif()
+
+# make sure the generated headers can be found
+include_directories(${KCFG_OUTPUT_DIR})
+
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
    cmake_parse_arguments(ARG "" "KCFG" "" ${ARGN} )
    set(_kcfgFile ${ARG_KCFG})
@@ -6,17 +17,14 @@ macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
       set(_kcfgFile "${_testName}.kcfg")
    endif()
    add_custom_command(
-      OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h
+      OUTPUT ${KCFG_OUTPUT_DIR}/${_testName}.cpp ${KCFG_OUTPUT_DIR}/${_testName}.h
       COMMAND KF5::kconfig_compiler ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
+      WORKING_DIRECTORY ${KCFG_OUTPUT_DIR}
       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc KF5::kconfig_compiler)
 
    # set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
-   qt5_generate_moc(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.moc )
-   # do not run automoc on the generated file
-   set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp PROPERTIES SKIP_AUTOMOC TRUE)
-   set( ${_srcs} ${${_srcs}} ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h )
-
-   set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.cpp APPEND PROPERTY OBJECT_DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${_testName}.moc )
+   set( ${_srcs} ${${_srcs}} ${KCFG_OUTPUT_DIR}/${_testName}.cpp)
+   set_property(SOURCE ${KCFG_OUTPUT_DIR}/${_testName}.cpp APPEND PROPERTY OBJECT_DEPENDS ${KCFG_OUTPUT_DIR}/${_testName}.moc )
 endmacro(GEN_KCFG_TEST_SOURCE)
 
 include(ECMMarkAsTest)
