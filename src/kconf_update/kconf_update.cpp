@@ -28,6 +28,7 @@
 #include <QTemporaryFile>
 #include <QCoreApplication>
 #include <QtCore/QDir>
+#include <QProcess>
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
@@ -763,7 +764,13 @@ void KonfUpdate::gotScript(const QString &_script)
     if (interpreter.isEmpty()) {
         cmd = path;
     } else {
-        cmd = interpreter + ' ' + path;
+        QString interpreterPath = QStandardPaths::findExecutable(interpreter);
+        if (interpreterPath.isEmpty()) {
+            logFileError() << "Cannot find interpreter '" << interpreter << "'." << endl;
+            m_skip = true;
+            return;
+        }
+        cmd = interpreterPath + ' ' + path;
     }
 
     if (!m_arguments.isNull()) {
@@ -775,10 +782,12 @@ void KonfUpdate::gotScript(const QString &_script)
     scriptIn.open();
     QTemporaryFile scriptOut;
     scriptOut.open();
-    QTemporaryFile scriptErr;
-    scriptErr.open();
 
     int result;
+    QProcess proc;
+    proc.setProcessChannelMode(QProcess::SeparateChannels);
+    proc.setStandardInputFile(scriptIn.fileName());
+    proc.setStandardOutputFile(scriptOut.fileName());
     if (m_oldConfig1) {
         if (m_debug) {
             scriptIn.setAutoRemove(false);
@@ -800,66 +809,40 @@ void KonfUpdate::gotScript(const QString &_script)
             copyGroup(cg1, cg2);
         }
         cfg.sync();
-#ifndef _WIN32_WCE
-        result = system(QFile::encodeName(QString("%1 < %2 > %3 2> %4").arg(cmd, scriptIn.fileName(), scriptOut.fileName(), scriptErr.fileName())).constData());
-#else
-        QString path_ = QDir::convertSeparators(QFileInfo(cmd).absoluteFilePath());
-        QString file_ = QFileInfo(cmd).fileName();
-        SHELLEXECUTEINFO execInfo;
-        memset(&execInfo, 0, sizeof(execInfo));
-        execInfo.cbSize = sizeof(execInfo);
-        execInfo.fMask =  SEE_MASK_FLAG_NO_UI;
-        execInfo.lpVerb = L"open";
-        execInfo.lpFile = (LPCWSTR) path_.utf16();
-        execInfo.lpDirectory = (LPCWSTR) file_.utf16();
-        execInfo.lpParameters = (LPCWSTR) QString(" < %1 > %2 2> %3").arg(scriptIn.fileName(), scriptOut.fileName(), scriptErr.fileName()).utf16();
-        result = ShellExecuteEx(&execInfo);
-        if (result != 0) {
-            result = 0;
-        } else {
-            result = -1;
-        }
-#endif
-    } else {
-        // No config file
-#ifndef _WIN32_WCE
-        result = system(QFile::encodeName(QString("%1 2> %2").arg(cmd, scriptErr.fileName())).constData());
-#else
-        QString path_ = QDir::convertSeparators(QFileInfo(cmd).absoluteFilePath());
-        QString file_ = QFileInfo(cmd).fileName();
-        SHELLEXECUTEINFO execInfo;
-        memset(&execInfo, 0, sizeof(execInfo));
-        execInfo.cbSize = sizeof(execInfo);
-        execInfo.fMask =  SEE_MASK_FLAG_NO_UI;
-        execInfo.lpVerb = L"open";
-        execInfo.lpFile = (LPCWSTR) path_.utf16();
-        execInfo.lpDirectory = (LPCWSTR) file_.utf16();
-        execInfo.lpParameters = (LPCWSTR) QString(" 2> %1").arg(scriptErr.fileName()).utf16();
-        result = ShellExecuteEx(&execInfo);
-        if (result != 0) {
-            result = 0;
-        } else {
-            result = -1;
-        }
-#endif
     }
+    if (m_debug) {
+        log() << "About to run " << cmd << endl;
+        QFile scriptFile(path);
+        if (scriptFile.open(QIODevice::ReadOnly)) {
+            log() << "Script contents is:" << endl << scriptFile.readAll() << endl;
+        }
+    }
+    proc.start(cmd);
+    if (!proc.waitForFinished(60000)) {
+        logFileError() << "update script did not terminate within 60 seconds: " << cmd << endl;
+        m_skip = true;
+        return;
+    }
+    result = proc.exitCode();
 
     // Copy script stderr to log file
     {
-        QFile output(scriptErr.fileName());
-        if (output.open(QIODevice::ReadOnly)) {
-            QTextStream ts(&output);
-            ts.setCodec(QTextCodec::codecForName("UTF-8"));
-            while (!ts.atEnd()) {
-                QString line = ts.readLine();
-                log() << "[Script] " << line << endl;
-            }
+        QTextStream ts(proc.readAllStandardError());
+        ts.setCodec(QTextCodec::codecForName("UTF-8"));
+        while (!ts.atEnd()) {
+            QString line = ts.readLine();
+            log() << "[Script] " << line << endl;
         }
     }
+    proc.close();
 
     if (result) {
         log() << m_currentFilename << ": !! An error occurred while running '" << cmd << "'" << endl;
         return;
+    }
+
+    if (m_debug) {
+        log() << "Successfully ran " << cmd << endl;
     }
 
     if (!m_oldConfig1) {
@@ -869,6 +852,10 @@ void KonfUpdate::gotScript(const QString &_script)
     if (m_debug) {
         scriptOut.setAutoRemove(false);
         log() << "Script output stored in " << scriptOut.fileName() << endl;
+        QFile output(scriptOut.fileName());
+        if (output.open(QIODevice::ReadOnly)) {
+            log() << "Script output is:" << endl << output.readAll() << endl;
+        }
     }
 
     // Deleting old entries

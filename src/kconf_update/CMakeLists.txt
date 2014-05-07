@@ -14,6 +14,8 @@ set(kconf_update_SRCS
 add_executable(kconf_update ${kconf_update_SRCS})
 add_executable(KF5::kconf_update ALIAS kconf_update)
 target_link_libraries(kconf_update Qt5::Core KF5::ConfigCore)
+include(ECMMarkNonGuiExecutable)
+ecm_mark_nongui_executable(kconf_update)
 
 # Although this is mostly an internal binary (hence installing it in
 # KF5_LIBEXEC_INSTALL_DIR), it is used by kded, and so we export its location
