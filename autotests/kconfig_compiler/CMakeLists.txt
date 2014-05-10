@@ -218,14 +218,14 @@ gen_kcfg_test_source(signals_test_singleton_dpointer kconfigcompiler_test_signal
 gen_kcfg_test_source(signals_test_no_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
 
 ecm_add_test(${kconfigcompiler_test_signals_SRCS}
-    TEST_NAME signals-test NAME_PREFIX "kconfigcompiler-"
+    TEST_NAME kconfigcompiler-signals-test
     LINK_LIBRARIES Qt5::Test KF5::ConfigGui
 )
 
 ########### next target ###############
 
 ecm_add_test(kconfigcompiler_test.cpp
-    TEST_NAME basic-test NAME_PREFIX "kconfigcompiler-"
+    TEST_NAME kconfigcompiler-basic-test
     LINK_LIBRARIES Qt5::Test
 )
 
