@@ -79,7 +79,7 @@ bool ConfigLoaderHandler::startElement(const QString &namespaceURI, const QStrin
                 group = d->baseGroup + QStringLiteral("\x1d") + group;
             }
         }
-        m_currentGroup = group;
+
         if (m_config) {
             m_config->setCurrentGroup(group);
         }
@@ -139,11 +139,6 @@ void ConfigLoaderHandler::setKey(const QString &key)
 QString ConfigLoaderHandler::type() const
 {
     return m_type;
-}
-
-QString ConfigLoaderHandler::currentGroup() const
-{
-    return m_currentGroup;
 }
 
 QString ConfigLoaderHandler::defaultValue() const
