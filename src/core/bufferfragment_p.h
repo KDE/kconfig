@@ -21,6 +21,8 @@
 #ifndef BUFFERFRAGMENT_H
 #define BUFFERFRAGMENT_H
 
+#include "kconfigini_p.h"
+
 #define bf_isspace(str) ((str == ' ') || (str == '\t') || (str == '\r'))
 
 // This class provides wrapper around fragment of existing buffer (array of bytes).
