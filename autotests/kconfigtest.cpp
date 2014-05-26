@@ -165,10 +165,10 @@ void KConfigTest::initTestCase()
     cg.writePathEntry("homepathescape", HOMEPATHESCAPE);
 
     cg = KConfigGroup(&sc, "Enum Types");
-    writeEntry(cg, "enum-10", Tens);
-    writeEntry(cg, "enum-100", Hundreds);
-    writeEntry(cg, "flags-bit0", Flags(bit0));
-    writeEntry(cg, "flags-bit0-bit1", Flags(bit0 | bit1));
+    cg.writeEntry("enum-10", Tens);
+    cg.writeEntry("enum-100", Hundreds);
+    cg.writeEntry("flags-bit0", Flags(bit0));
+    cg.writeEntry("flags-bit0-bit1", Flags(bit0 | bit1));
 
     cg = KConfigGroup(&sc, "ParentGroup");
     KConfigGroup cg1(&cg, "SubGroup1");
@@ -563,11 +563,11 @@ void KConfigTest::testEnums()
     KConfigGroup sc3(&sc, "Enum Types");
 
     QCOMPARE(sc3.readEntry("enum-10"), QString("Tens"));
-    QVERIFY(readEntry(sc3, "enum-100", Ones) != Ones);
-    QVERIFY(readEntry(sc3, "enum-100", Ones) != Tens);
+    QVERIFY(sc3.readEntry("enum-100", Ones) != Ones);
+    QVERIFY(sc3.readEntry("enum-100", Ones) != Tens);
 
     QCOMPARE(sc3.readEntry("flags-bit0"), QString("bit0"));
-    QVERIFY(readEntry(sc3, "flags-bit0", Flags()) == bit0);
+    QVERIFY(sc3.readEntry("flags-bit0", Flags()) == bit0);
 
     int eid = staticMetaObject.indexOfEnumerator("Flags");
     QVERIFY(eid != -1);
@@ -575,7 +575,7 @@ void KConfigTest::testEnums()
     Flags bitfield = bit0 | bit1;
 
     QCOMPARE(sc3.readEntry("flags-bit0-bit1"), QString(me.valueToKeys(bitfield)));
-    QVERIFY(readEntry(sc3, "flags-bit0-bit1", Flags()) == bitfield);
+    QVERIFY(sc3.readEntry("flags-bit0-bit1", Flags()) == bitfield);
 }
 
 void KConfigTest::testEntryMap()
