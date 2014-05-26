@@ -218,39 +218,39 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     // if a type handler is added here you must add a QVConversions definition
     // to conversioncheck.h, or ConversionCheck::to_QVariant will not allow
     // readEntry<T> to convert to QVariant.
-    switch (aDefault.type()) {
-    case QVariant::Invalid:
+    switch (static_cast<QMetaType::Type>(aDefault.type())) {
+    case QMetaType::UnknownType:
         return QVariant();
-    case QVariant::String:
+    case QMetaType::QString:
         // this should return the raw string not the dollar expanded string.
         // imho if processed string is wanted should call
         // readEntry(key, QString) not readEntry(key, QVariant)
         return QString::fromUtf8(value);
-    case QVariant::List:
-    case QVariant::StringList:
+    case QMetaType::QVariantList:
+    case QMetaType::QStringList:
         return KConfigGroupPrivate::deserializeList(QString::fromUtf8(value));
-    case QVariant::ByteArray:
+    case QMetaType::QByteArray:
         return value;
-    case QVariant::Bool: {
+    case QMetaType::Bool: {
         const QByteArray lower(value.toLower());
         if (lower == "false" || lower == "no" || lower == "off" || lower == "0") {
             return false;
         }
         return true;
     }
-    case QVariant::Double:
+    case QMetaType::Double:
     case QMetaType::Float:
-    case QVariant::Int:
-    case QVariant::UInt:
-    case QVariant::LongLong:
-    case QVariant::ULongLong: {
+    case QMetaType::Int:
+    case QMetaType::UInt:
+    case QMetaType::LongLong:
+    case QMetaType::ULongLong: {
         QVariant tmp = value;
         if (!tmp.convert(aDefault.type())) {
             tmp = aDefault;
         }
         return tmp;
     }
-    case QVariant::Point: {
+    case QMetaType::QPoint: {
         const QList<int> list = asIntList(value);
 
         if (list.count() != 2) {
@@ -260,7 +260,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return QPoint(list.at(0), list.at(1));
     }
-    case QVariant::PointF: {
+    case QMetaType::QPointF: {
         const QList<qreal> list = asRealList(value);
 
         if (list.count() != 2) {
@@ -270,7 +270,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return QPointF(list.at(0), list.at(1));
     }
-    case QVariant::Rect: {
+    case QMetaType::QRect: {
         const QList<int> list = asIntList(value);
 
         if (list.count() != 4) {
@@ -285,7 +285,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return rect;
     }
-    case QVariant::RectF: {
+    case QMetaType::QRectF: {
         const QList<qreal> list = asRealList(value);
 
         if (list.count() != 4) {
@@ -300,7 +300,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return rect;
     }
-    case QVariant::Size: {
+    case QMetaType::QSize: {
         const QList<int> list = asIntList(value);
 
         if (list.count() != 2) {
@@ -315,7 +315,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return size;
     }
-    case QVariant::SizeF: {
+    case QMetaType::QSizeF: {
         const QList<qreal> list = asRealList(value);
 
         if (list.count() != 2) {
@@ -330,7 +330,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return size;
     }
-    case QVariant::DateTime: {
+    case QMetaType::QDateTime: {
         const QList<int> list = asIntList(value);
         if (list.count() != 6) {
             qWarning() << errString(pKey, value, aDefault)
@@ -346,7 +346,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return dt;
     }
-    case QVariant::Date: {
+    case QMetaType::QDate: {
         QList<int> list = asIntList(value);
         if (list.count() == 6) {
             list = list.mid(0, 3);    // don't break config files that stored QDate as QDateTime
@@ -363,14 +363,14 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return date;
     }
-    case QVariant::Color:
-    case QVariant::Font:
+    case QMetaType::QColor:
+    case QMetaType::QFont:
         qWarning() << "KConfigGroup::readEntry was passed GUI type '"
                    << aDefault.typeName()
                    << "' but kdeui isn't linked! If it is linked to your program, "
                    "this is a platform bug. Please inform the KDE developers";
         break;
-    case QVariant::Url:
+    case QMetaType::QUrl:
         return QUrl(QString::fromUtf8(value));
 
     default:
@@ -936,31 +936,31 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
     // if a type handler is added here you must add a QVConversions definition
     // to conversioncheck.h, or ConversionCheck::to_QVariant will not allow
     // writeEntry<T> to convert to QVariant.
-    switch (value.type()) {
-    case QVariant::Invalid:
+    switch (static_cast<QMetaType::Type>(value.type())) {
+    case QMetaType::UnknownType:
         data = "";
         break;
-    case QVariant::ByteArray:
+    case QMetaType::QByteArray:
         data = value.toByteArray();
         break;
-    case QVariant::String:
-    case QVariant::Int:
-    case QVariant::UInt:
-    case QVariant::Double:
+    case QMetaType::QString:
+    case QMetaType::Int:
+    case QMetaType::UInt:
+    case QMetaType::Double:
     case QMetaType::Float:
-    case QVariant::Bool:
-    case QVariant::LongLong:
-    case QVariant::ULongLong:
+    case QMetaType::Bool:
+    case QMetaType::LongLong:
+    case QMetaType::ULongLong:
         data = value.toString().toUtf8();
         break;
-    case QVariant::List:
-        if (!value.canConvert(QVariant::StringList))
+    case QMetaType::QVariantList:
+        if (!value.canConvert(QMetaType::QStringList))
             qWarning() << "not all types in \"" << key << "\" can convert to QString,"
                        " information will be lost";
-    case QVariant::StringList:
+    case QMetaType::QStringList:
         writeEntry(key, value.toList(), flags);
         return;
-    case QVariant::Point: {
+    case QMetaType::QPoint: {
         QVariantList list;
         const QPoint rPoint = value.toPoint();
         list.insert(0, rPoint.x());
@@ -969,7 +969,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::PointF: {
+    case QMetaType::QPointF: {
         QVariantList list;
         const QPointF point = value.toPointF();
         list.insert(0, point.x());
@@ -978,7 +978,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::Rect: {
+    case QMetaType::QRect: {
         QVariantList list;
         const QRect rRect = value.toRect();
         list.insert(0, rRect.left());
@@ -989,7 +989,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::RectF: {
+    case QMetaType::QRectF: {
         QVariantList list;
         const QRectF rRectF = value.toRectF();
         list.insert(0, rRectF.left());
@@ -1000,7 +1000,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::Size: {
+    case QMetaType::QSize: {
         QVariantList list;
         const QSize rSize = value.toSize();
         list.insert(0, rSize.width());
@@ -1009,7 +1009,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::SizeF: {
+    case QMetaType::QSizeF: {
         QVariantList list;
         const QSizeF rSizeF = value.toSizeF();
         list.insert(0, rSizeF.width());
@@ -1018,7 +1018,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::Date: {
+    case QMetaType::QDate: {
         QVariantList list;
         const QDate date = value.toDate();
 
@@ -1029,7 +1029,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, list, flags);
         return;
     }
-    case QVariant::DateTime: {
+    case QMetaType::QDateTime: {
         QVariantList list;
         const QDateTime rDateTime = value.toDateTime();
 
@@ -1048,14 +1048,14 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         return;
     }
 
-    case QVariant::Color:
-    case QVariant::Font:
+    case QMetaType::QColor:
+    case QMetaType::QFont:
         qWarning() << "KConfigGroup::writeEntry was passed GUI type '"
                    << value.typeName()
                    << "' but kdeui isn't linked! If it is linked to your program, this is a platform bug. "
                    "Please inform the KDE developers";
         break;
-    case QVariant::Url:
+    case QMetaType::QUrl:
         data = QUrl(value.toUrl()).toString().toUtf8();
         break;
     default:
