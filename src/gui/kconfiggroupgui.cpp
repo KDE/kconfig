@@ -47,8 +47,8 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
     // set in case of failure
     output = input;
 
-    switch (input.type()) {
-    case QVariant::Color: {
+    switch (static_cast<QMetaType::Type>(input.type())) {
+    case QMetaType::QColor: {
         if (data.isEmpty() || data == "invalid") {
             output = QColor();  // return what was stored
             return true;
@@ -107,25 +107,25 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
         }
     }
 
-    case QVariant::Font: {
+    case QMetaType::QFont: {
         QVariant tmp = QString::fromUtf8(data.constData(), data.length());
-        if (tmp.convert(QVariant::Font)) {
+        if (tmp.convert(QMetaType::QFont)) {
             output = tmp;
         } else {
             qCritical() << qPrintable(errString);
         }
         return true;
     }
-    case QVariant::Pixmap:
-    case QVariant::Image:
-    case QVariant::Brush:
-    case QVariant::Palette:
-    case QVariant::Icon:
-    case QVariant::Region:
-    case QVariant::Bitmap:
-    case QVariant::Cursor:
-    case QVariant::SizePolicy:
-    case QVariant::Pen:
+    case QMetaType::QPixmap:
+    case QMetaType::QImage:
+    case QMetaType::QBrush:
+    case QMetaType::QPalette:
+    case QMetaType::QIcon:
+    case QMetaType::QRegion:
+    case QMetaType::QBitmap:
+    case QMetaType::QCursor:
+    case QMetaType::QSizePolicy:
+    case QMetaType::QPen:
     // we may want to handle these in the future
 
     default:
@@ -144,8 +144,8 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
 static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop,
                           KConfigGroup::WriteConfigFlags pFlags)
 {
-    switch (prop.type()) {
-    case QVariant::Color: {
+    switch (static_cast<QMetaType::Type>(prop.type())) {
+    case QMetaType::QColor: {
         const QColor rColor = prop.value<QColor>();
 
         if (!rColor.isValid()) {
@@ -164,20 +164,20 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
         cg->writeEntry(key, list, pFlags);
         return true;
     }
-    case QVariant::Font:
+    case QMetaType::QFont:
         cg->writeEntry(key, prop.toString().toUtf8(), pFlags);
         return true;
 
-    case QVariant::Pixmap:
-    case QVariant::Image:
-    case QVariant::Brush:
-    case QVariant::Palette:
-    case QVariant::Icon:
-    case QVariant::Region:
-    case QVariant::Bitmap:
-    case QVariant::Cursor:
-    case QVariant::SizePolicy:
-    case QVariant::Pen:
+    case QMetaType::QPixmap:
+    case QMetaType::QImage:
+    case QMetaType::QBrush:
+    case QMetaType::QPalette:
+    case QMetaType::QIcon:
+    case QMetaType::QRegion:
+    case QMetaType::QBitmap:
+    case QMetaType::QCursor:
+    case QMetaType::QSizePolicy:
+    case QMetaType::QPen:
         // we may want to handle one of these in the future
         break;
 
