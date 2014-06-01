@@ -1,0 +1,132 @@
+# translation of kwriteconfig.po to 
+# translation of kwriteconfig.po to Tamil
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Vasee Vaseeharan <vasee@ieee.org>, 2004.
+# Ambalam <tamilpc@ambalam.com>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2004-08-09 05:06-0800\n"
+"Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
+"Language-Team:  <tamilpc@ambalam.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: core/kconfig.cpp:854
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr ""
+
+#: core/kconfigini.cpp:554
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr ""
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:935
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:936
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+#, fuzzy
+#| msgid "Use <file> instead of global config"
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "உலகமயமான வடிவமைக்கு பதிலாக <file> ஐப் பயன்படுத்தவும்"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+#, fuzzy
+#| msgid "Key to look for"
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "பார்ப்பதற்கான விசை"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
+#, fuzzy
+#| msgid ""
+#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
+#| "a string"
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"தொகுதிகளின் வகை. பூலியனுக்கு \"bool\"ஐ பயன்படுத்து, இல்லை என்றால் தொடர்ச்சியாக "
+"பார்க்கப்படும்."
+
+#: kreadconfig/kwriteconfig.cpp:39
+#, fuzzy
+#| msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "எழுதுவதற்கான மதிப்பு. ஷெல்லில் \"காலி இடத்திற்கான\" கட்டளையைச் சார்ந்தது."
+
+#~ msgid "KWriteConfig"
+#~ msgstr "கேஎழுதுவடிவமைப்பு"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "கேவடிவமைப்பு உள்ளீடுகளை எழுது - உறையகம் ஸ்கிரிப்ட்டில் பயண்படுத்த. "
+
+#~ msgid "Group to look in"
+#~ msgstr "உள்ளே பார்ப்பதற்கான குழு"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "zhateam"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "tamilpc@ambalam.com"

@@ -1,0 +1,139 @@
+# Thomas Diehl <thd@kde.org>, 2003.
+# Thomas Reitelbach <tr@erdfunkstelle.de>, 2006, 2007, 2008.
+# Frederik Schwarzer <schwarzer@kde.org>, 2012.
+# Burkhard Lück <lueck@hube-lueck.de>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2014-05-06 21:37+0200\n"
+"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: core/kconfig.cpp:854
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Bitte nehmen Sie Kontakt mit Ihrer Systemverwaltung auf."
+
+#: core/kconfigini.cpp:554
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Die Einrichtungsdatei „%1“ lässt sich nicht speichern.\n"
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Standard"
+
+#: kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+"KDE-Dienstprogramm für die Aktualisierung von Benutzer-Konfigurationsdateien"
+
+#: kconf_update/kconf_update.cpp:935
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Skriptausgaben speichern"
+
+#: kconf_update/kconf_update.cpp:936
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+"Überprüfen Sie, ob die Konfigurationsdatei selbst aktualisiert werden muss"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Ordner, in dem die Dateien generiert werden [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr "Ordner"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Zeigt die Software-Lizenz an."
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "<file> statt globaler Konfigurationsdatei verwenden"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+"Zu durchsuchende Gruppe. Mehrfach verwenden zur Suche in verschachtelten "
+"Gruppen."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Zu suchender Schlüssel"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "Standardwert"
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Art der Variable"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Art der Variable. Verwenden Sie „bool“ für den booleschen Typ. Anderenfalls "
+"wird sie als Zeichenfolge (string) behandelt."
+
+#: kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr ""
+"Zu schreibender Wert. Zwingend erforderlich. Bei Shells bitte '' verwenden, "
+"um „leer“ vorzugeben."
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "KConfig-Einträge schreiben – Zur Verwendung in Shell-Skripten"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "© 2001 Red Hat, Inc. & Luís Pedro Coelho"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "Hat kreadconfig entwickelt, auf dem KWriteConfig basiert"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "Luís Pedro Coelho"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
+
+#~ msgid "Group to look in"
+#~ msgstr "Zu durchsuchende Gruppe"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Thomas Diehl"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "thd@kde.org"

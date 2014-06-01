@@ -1,0 +1,124 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# g.sora <g.sora@tiscali.it>, 2010.
+# Giovanni Sora <g.sora@tioscali.it>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2014-05-14 11:26+0200\n"
+"Last-Translator: Giovanni Sora <g.sora@tioscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: core/kconfig.cpp:854
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Pro favor, tu continge tu administrator de systema"
+
+#: core/kconfigini.cpp:554
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "File de configuration \"%1\" non pote scriber se.\n"
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Predefinite"
+
+#: kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "Instrumento KDE pro actualisar le files de configuration del usator"
+
+#: kconf_update/kconf_update.cpp:935
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Mantene le resultatos de exitos ex le scripts"
+
+#: kconf_update/kconf_update.cpp:936
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Controla si le mesme file de configuration debe esser actualisate"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Directorio pro generar files in [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr "directorio"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Monstra licentia de software."
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Usa <file> in vice de config global"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+"Gruppo de guardar internemente. Usa repetitemente per gruppos annidate."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Clave per cercar"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "Valor predefinite"
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Typo de variabile"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Typo de variabile. Usa \"bool\" per un boolean, alteremente il es tractate "
+"como un catena"
+
+#: kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Le valor de scriber. Obligatori usar in un shell \" per vacue"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "Entratas de Write KConfig - per uso in scripts de shell"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "Il scribeva kreadconfig sur le qual isto es basate"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "Luís Pedro Coelho"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"

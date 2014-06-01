@@ -1,0 +1,110 @@
+# Translation of kconfig5_qt.po into Serbian.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kconfig5_qt\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2014-05-19 22:29+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr@ijekavian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: qtrich\n"
+"X-Environment: kde\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kconfig.cpp:854
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Обратите се систем-администратору."
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kconfigini.cpp:554
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Не може се писати у поставни фајл „%1“.\n"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:256
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:259
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Подразумевано"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "КДЕ‑ова алатка за ажурирање корисничких поставних фајлова"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:935
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Задржи излазне резултате из скрипти"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconf_update/kconf_update.cpp:936
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Провјери да ли са̑м поставни фајл захтијева ажурирање"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Фасцикла у којој се стварају фајлови [.]"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr "фасцикла"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Прикажи лиценцу софтвера"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:56
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Користи овај фајл умјесто глобалне поставе"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:57
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Група у којој се тражи. Понављајте за угнијежђене групе."
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:58
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Кључ који треба потражити"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "Подразумијевана вредност"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Тип промјенљиве"
+
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Тип промјенљиве. Задајте „bool“ за логичке, у супротном се узима као "
+"„string“ (ниска)"
+
+# rewrite-msgid: /on a shell//
+#: ../../home/scripty/prod/git-unstable/frameworks_kconfig/src/kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Вриједност која се уписује. Обавезно, задајте '' за празну"
