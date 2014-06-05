@@ -95,7 +95,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 //        mappingsRegistered = true;
 //    }
 
-    setLocale(QLocale::system().name());
+    setLocale(QLocale().name().split(QStringLiteral("_")).at(0));
 }
 
 bool KConfigPrivate::lockLocal()
