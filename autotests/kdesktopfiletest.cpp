@@ -16,6 +16,7 @@
  *  Boston, MA 02110-1301, USA.
  */
 #include "kdesktopfiletest.h"
+#include "helper.h"
 #include <kconfiggroup.h>
 #include <qtemporaryfile.h>
 
@@ -47,6 +48,35 @@ void KDesktopFileTest::testRead()
     QCOMPARE(df.readIcon(), QString::fromLatin1("foo"));
     QVERIFY(!df.hasLinkType());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
+}
+
+void KDesktopFileTest::testReadLocalized()
+{
+    QTemporaryFile file("testReadLocalizedXXXXXX.desktop");
+    QVERIFY(file.open());
+    const QString fileName = file.fileName();
+    QTextStream ts(&file);
+    ts <<
+       "[Desktop Entry]\n"
+       "Type=Application\n"
+       "Name=My Application\n"
+       "Name[de]=Meine Anwendung\n"
+       "Icon=foo\n"
+       "\n";
+    file.close();
+    QVERIFY(QFile::exists(fileName));
+    QVERIFY(KDesktopFile::isDesktopFile(fileName));
+
+    DefaultLocale defaultLocale;
+    // set language to German for which we have a translation
+    QLocale::setDefault(QLocale(QLocale::German));
+    KDesktopFile df(fileName);
+    QCOMPARE(df.readName(), QString::fromLatin1("Meine Anwendung"));
+
+    // set language to French for which we don't have a translation
+    QLocale::setDefault(QLocale(QLocale::French));
+    KDesktopFile df2(fileName);
+    QCOMPARE(df2.readName(), QString::fromLatin1("My Application"));
 }
 
 void KDesktopFileTest::testSuccessfulTryExec()

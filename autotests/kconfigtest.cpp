@@ -21,6 +21,7 @@
 #undef QT_NO_CAST_FROM_BYTEARRAY
 
 #include "kconfigtest.h"
+#include "helper.h"
 
 #include <QtTest/QtTest>
 #include <qtemporarydir.h>
@@ -927,6 +928,8 @@ void KConfigTest::testCascadingWithLocale()
 
 void KConfigTest::testMerge()
 {
+    DefaultLocale defaultLocale;
+    QLocale::setDefault(QLocale::c());
     KConfig config(TEST_SUBDIR "mergetest", KConfig::SimpleConfig);
 
     KConfigGroup cg = config.group("some group");
