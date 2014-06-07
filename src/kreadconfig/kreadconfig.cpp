@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     QString dflt=parser.value(QStringLiteral("default"));
     QString type=parser.value(QStringLiteral("type")).toLower();
 
-	if (parser.positionalArguments().isEmpty()) {
+    if (key.isNull() || !parser.positionalArguments().isEmpty()) {
 		parser.showHelp(1);
 	}
 
