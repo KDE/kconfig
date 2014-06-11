@@ -16,18 +16,6 @@ if(NOT Qt5Concurrent_FOUND)
     return()
 endif()
 
-ecm_add_tests(
-   kconfignokdehometest.cpp
-   kconfigtest.cpp
-   kdesktopfiletest.cpp
-   ksharedconfigtest.cpp
-   test_kconf_update.cpp
-   NAME_PREFIX kconfigcore-
-   LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent
-)
-
-target_include_directories(kconfigcore-test_kconf_update PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../src/kconf_update)
-
 # compile KEntryMap into the test since it's not exported
 set(kentrymaptest_SRCS kentrymaptest.cpp ../src/core/kconfigdata.cpp)
 ecm_add_test(${kentrymaptest_SRCS}
@@ -42,6 +30,18 @@ ecm_add_test(${test_kconfigutils_SRCS}
   LINK_LIBRARIES KF5::ConfigCore Qt5::Test
 )
 target_include_directories(kconfigcore-test_kconfigutils PRIVATE ../src/kconf_update)
+
+ecm_add_tests(
+   kconfignokdehometest.cpp
+   kconfigtest.cpp
+   kdesktopfiletest.cpp
+   ksharedconfigtest.cpp
+   test_kconf_update.cpp
+   NAME_PREFIX kconfigcore-
+   LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent
+)
+
+target_include_directories(kconfigcore-test_kconf_update PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../src/kconf_update)
 
 ecm_add_tests(
    kconfigguitest.cpp
