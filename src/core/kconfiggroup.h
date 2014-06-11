@@ -88,7 +88,7 @@ public:
     KConfigGroup(const KSharedConfigPtr &master, const char *group);
 
     /**
-     * Creates a read-only copy of a read-only group.
+     * Creates a copy of a group.
      */
     KConfigGroup(const KConfigGroup &);
     KConfigGroup &operator=(const KConfigGroup &);
@@ -280,9 +280,9 @@ public:
     QString readEntry(const char *key, const QString &aDefault) const;
 
     /** Overload for readEntry(const QString&, const QString&) */
-    QString readEntry(const QString &key, const char *aDefault = 0) const;
+    QString readEntry(const QString &key, const char *aDefault = Q_NULLPTR) const;
     /** Overload for readEntry(const QString&, const QString&) */
-    QString readEntry(const char *key, const char *aDefault = 0) const;
+    QString readEntry(const char *key, const char *aDefault = Q_NULLPTR) const;
 
     /**
      * @copydoc readEntry(const char*, const QStringList&) const

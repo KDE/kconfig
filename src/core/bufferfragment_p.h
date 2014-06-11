@@ -40,7 +40,7 @@ class KConfigIniBackend::BufferFragment
 
 public:
 
-    BufferFragment() : d(0), len(0)
+    BufferFragment() : d(Q_NULLPTR), len(0)
     {
     }
 
@@ -103,7 +103,7 @@ public:
 
     bool isEmpty() const
     {
-        return (len == 0);
+        return !len;
     }
 
     BufferFragment left(unsigned int size) const
@@ -127,7 +127,7 @@ public:
 
     bool isNull() const
     {
-        return (d == 0);
+        return !d;
     }
 
     BufferFragment mid(unsigned int pos, int length = -1) const

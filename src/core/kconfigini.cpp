@@ -51,7 +51,7 @@ QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 }
 
 KConfigIniBackend::KConfigIniBackend()
-    : KConfigBackend(), lockFile(NULL)
+    : KConfigBackend(), lockFile(Q_NULLPTR)
 {
 }
 
@@ -617,7 +617,7 @@ void KConfigIniBackend::unlock()
 {
     lockFile->unlock();
     delete lockFile;
-    lockFile = NULL;
+    lockFile = Q_NULLPTR;
 }
 
 bool KConfigIniBackend::isLocked() const

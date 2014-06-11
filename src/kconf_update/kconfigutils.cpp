@@ -33,16 +33,13 @@ bool hasGroup(KConfig *config, const QStringList &lst)
     return group.exists();
 }
 
-KConfigGroup openGroup(KConfig *config, const QStringList &_lst)
+KConfigGroup openGroup(KConfig *config, const QStringList &lst)
 {
-    if (_lst.isEmpty()) {
-        return KConfigGroup(config, QString());
+    KConfigGroup cg = config->group("");
+
+    foreach (auto i, lst) {
+        cg = cg.group(i);
     }
-
-    QStringList lst = _lst;
-
-    KConfigGroup cg;
-    for (cg = KConfigGroup(config, lst.takeFirst()); !lst.isEmpty(); cg = KConfigGroup(&cg, lst.takeFirst())) {}
     return cg;
 }
 
@@ -61,14 +58,14 @@ QStringList parseGroupString(const QString &_str, bool *ok, QString *error)
 
     if (!str.endsWith(']')) {
         *ok = false;
-        *error = QString("Missing closing ']' in %1").arg(_str);
+        *error = QStringLiteral("Missing closing ']' in %1").arg(_str);
         return QStringList();
     }
     // trim outer brackets
     str.chop(1);
     str.remove(0, 1);
 
-    return str.split("][");
+    return str.split(QStringLiteral("]["));
 }
 
 QString unescapeString(const QString &src, bool *ok, QString *error)
@@ -83,7 +80,7 @@ QString unescapeString(const QString &src, bool *ok, QString *error)
             ++pos;
             if (pos == length) {
                 *ok = false;
-                *error = QString("Unfinished escape sequence in %1").arg(src);
+                *error = QStringLiteral("Unfinished escape sequence in %1").arg(src);
                 return QString();
             }
             ch = src.at(pos);
@@ -104,17 +101,17 @@ QString unescapeString(const QString &src, bool *ok, QString *error)
                         dst += QChar::fromLatin1(value);
                         pos += 2;
                     } else {
-                        *error = QString("Invalid hex escape sequence at column %1 in %2").arg(pos).arg(src);
+                        *error = QStringLiteral("Invalid hex escape sequence at column %1 in %2").arg(pos).arg(src);
                         return QString();
                     }
                 } else {
                     *ok = false;
-                    *error = QString("Unfinished hex escape sequence at column %1 in %2").arg(pos).arg(src);
+                    *error = QStringLiteral("Unfinished hex escape sequence at column %1 in %2").arg(pos).arg(src);
                     return QString();
                 }
             } else {
                 *ok = false;
-                *error = QString("Invalid escape sequence at column %1 in %2").arg(pos).arg(src);
+                *error = QStringLiteral("Invalid escape sequence at column %1 in %2").arg(pos).arg(src);
                 return QString();
             }
         }

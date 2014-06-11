@@ -45,7 +45,7 @@ static CompilerTestSet testCases = {
     "test12.h", "test12.cpp",
     "test_dpointer.cpp", "test_dpointer.h",
     "test_signal.cpp", "test_signal.h",
-    NULL
+    Q_NULLPTR
 };
 
 static CompilerTestSet testCasesToRun = {
@@ -64,7 +64,7 @@ static CompilerTestSet testCasesToRun = {
     "test12",
     "test_dpointer",
     "test_signal",
-    0
+    Q_NULLPTR
 };
 
 #if 0

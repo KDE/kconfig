@@ -526,7 +526,7 @@ public:
     public:
         /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemProperty(const QString &_group, const QString &_key,
-                     QVariant &reference, const QVariant &defaultValue = 0);
+                     QVariant &reference, const QVariant &defaultValue = QVariant());
 
         void readConfig(KConfig *config);
         void setProperty(const QVariant &p);
@@ -1004,7 +1004,7 @@ public:
      *                   config file as returned by KSharedConfig::openConfig() is used
      * @param parent the parent object (see QObject documentation)
      */
-    explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = 0);
+    explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = Q_NULLPTR);
 
     /**
      * Constructor.
@@ -1012,7 +1012,7 @@ public:
      * @param config configuration object to use
      * @param parent the parent object (see QObject documentation)
      */
-    explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = 0);
+    explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = Q_NULLPTR);
 
     /**
      * Destructor

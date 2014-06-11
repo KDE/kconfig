@@ -25,7 +25,7 @@
 
 #include <kconfig.h>
 
-static KConfig *s_sessionConfig = 0;
+static KConfig *s_sessionConfig = Q_NULLPTR;
 
 KConfig *KConfigGui::sessionConfig()
 {
@@ -37,7 +37,7 @@ KConfig *KConfigGui::sessionConfig()
 
 bool KConfigGui::hasSessionConfig()
 {
-    return s_sessionConfig != 0;
+    return s_sessionConfig != Q_NULLPTR;
 }
 
 QString KConfigGui::sessionConfigName()

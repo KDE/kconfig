@@ -202,7 +202,7 @@ static QList<qreal> asRealList(const QByteArray &string)
 
 static QString errString(const char *pKey, const QByteArray &value, const QVariant &aDefault)
 {
-    return QString::fromLatin1("\"%1\" - conversion of \"%3\" to %2 failed")
+    return QStringLiteral("\"%1\" - conversion of \"%3\" to %2 failed")
            .arg(QString::fromLatin1(pKey))
            .arg(QString::fromLatin1(QVariant::typeToName(aDefault.type())))
            .arg(QString::fromLatin1(value));
@@ -210,7 +210,7 @@ static QString errString(const char *pKey, const QByteArray &value, const QVaria
 
 static QString formatError(int expected, int got)
 {
-    return QString::fromLatin1(" (wrong format: expected %1 items, got %2)").arg(expected).arg(got);
+    return QStringLiteral(" (wrong format: expected %1 items, got %2)").arg(expected).arg(got);
 }
 
 QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault)
@@ -400,11 +400,11 @@ static bool cleanHomeDirPath(QString &path, const QString &homeDir)
     int len = homeDir.length();
     // replace by "$HOME" if possible
     if (len && (path.length() == len || path[len] == QLatin1Char('/'))) {
-        path.replace(0, len, QString::fromLatin1("$HOME"));
+        path.replace(0, len, QStringLiteral("$HOME"));
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 static QString translatePath(QString path)   // krazy:exclude=passbyvalue
@@ -448,19 +448,19 @@ static QString translatePath(QString path)   // krazy:exclude=passbyvalue
     }
 
     if (startsWithFile) {
-        path.prepend(QString::fromLatin1("file://"));
+        path.prepend(QStringLiteral("file://"));
     }
 
     return path;
 }
 
-KConfigGroup::KConfigGroup() : d(0)
+KConfigGroup::KConfigGroup() : d()
 {
 }
 
 bool KConfigGroup::isValid() const
 {
-    return 0 != d.constData();
+    return bool(d);
 }
 
 KConfigGroupGui _kde_internal_KConfigGroupGui;
@@ -519,13 +519,13 @@ KConfigGroup &KConfigGroup::operator=(const KConfigGroup &rhs)
 }
 
 KConfigGroup::KConfigGroup(const KConfigGroup &rhs)
-    : KConfigBase(), d(rhs.d)
+    : d(rhs.d)
 {
 }
 
 KConfigGroup::~KConfigGroup()
 {
-    d = 0;
+    d.reset();
 }
 
 KConfigGroup KConfigGroup::groupImpl(const QByteArray &aGroup)
@@ -1094,7 +1094,7 @@ void KConfigGroup::writeXdgListEntry(const char *key, const QStringList &list, W
     const QStringList::ConstIterator end = list.constEnd();
     for (; it != end; ++it) {
         QString val(*it);
-        val.replace(QLatin1Char('\\'), QLatin1String("\\\\")).replace(QLatin1Char(';'), QLatin1String("\\;"));
+        val.replace(QLatin1Char('\\'), QStringLiteral("\\\\")).replace(QLatin1Char(';'), QStringLiteral("\\;"));
         value += val;
         value += QLatin1Char(';');
     }
@@ -1254,7 +1254,7 @@ bool KConfigGroup::isGroupImmutableImpl(const QByteArray &b) const
 void KConfigGroup::copyTo(KConfigBase *other, WriteConfigFlags pFlags) const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::copyTo", "accessing an invalid group");
-    Q_ASSERT(other != 0);
+    Q_ASSERT(other != Q_NULLPTR);
 
     if (KConfigGroup *otherGroup = dynamic_cast<KConfigGroup *>(other)) {
         config()->d_func()->copyGroup(d->fullName(), otherGroup->d->fullName(), otherGroup, pFlags);
@@ -1271,7 +1271,7 @@ void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
     Q_ASSERT_X(isValid(), "KConfigGroup::reparent", "accessing an invalid group");
     Q_ASSERT_X(!d->bConst, "KConfigGroup::reparent", "reparenting a read-only group");
     Q_ASSERT_X(!d->bImmutable, "KConfigGroup::reparent", "reparenting an immutable group");
-    Q_ASSERT(parent != 0);
+    Q_ASSERT(parent != Q_NULLPTR);
 
     KConfigGroup oldGroup(*this);
 

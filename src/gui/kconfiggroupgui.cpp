@@ -38,11 +38,11 @@
 static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input,
                          QVariant &output)
 {
-    const QString errString = QString::fromLatin1("\"%1\" - conversion from \"%3\" to %2 failed")
+    const QString errString = QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
                               .arg(QLatin1String(key))
                               .arg(QLatin1String(QVariant::typeToName(input.type())))
                               .arg(QLatin1String(data.constData()));
-    const QString formatError = QString::fromLatin1(" (wrong format: expected '%1' items, read '%2')");
+    const QString formatError = QStringLiteral(" (wrong format: expected '%1' items, read '%2')");
 
     // set in case of failure
     output = input;
@@ -70,7 +70,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             const int count = list.count();
 
             if (count != 3 && count != 4) {
-                qCritical() << qPrintable(errString) << qPrintable(formatError.arg(QLatin1String("3' or '4")).arg(count));
+                qCritical() << qPrintable(errString) << qPrintable(formatError.arg(QStringLiteral("3' or '4")).arg(count));
                 return true;    // return default
             }
 
@@ -84,12 +84,12 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
                     return true; // return default
                 }
                 if (j < 0 || j > 255) {
-                    static const char *const components[6] = {
+                    static const char *const components[] = {
                         "red", "green", "blue", "alpha"
                     };
-                    const QString boundsError = QLatin1String(" (bounds error: %1 component %2)");
+                    const QString boundsError = QStringLiteral(" (bounds error: %1 component %2)");
                     qCritical() << qPrintable(errString)
-                                << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0 ? QLatin1String("< 0") : QLatin1String("> 255")));
+                                << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0 ? QStringLiteral("< 0") : QStringLiteral("> 255")));
                     return true; // return default
                 }
             }

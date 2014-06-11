@@ -76,7 +76,7 @@ bool ConfigLoaderHandler::startElement(const QString &namespaceURI, const QStrin
         } else {
             d->groups.append(group);
             if (!d->baseGroup.isEmpty()) {
-                group = d->baseGroup + QStringLiteral("\x1d") + group;
+                group = d->baseGroup + QLatin1Char('\x1d') + group;
             }
         }
 
@@ -194,9 +194,9 @@ void ConfigLoaderHandler::addItem()
         m_name = m_key;
     }
 
-    m_name.remove(QStringLiteral(" "));
+    m_name.remove(QLatin1Char(' '));
 
-    KConfigSkeletonItem *item = 0;
+    KConfigSkeletonItem *item = Q_NULLPTR;
 
     if (m_type == QStringLiteral("bool")) {
         bool defaultValue = m_default.toLower() == QStringLiteral("true");
@@ -239,7 +239,7 @@ void ConfigLoaderHandler::addItem()
     } else if (m_type == QStringLiteral("stringlist")) {
         //FIXME: the split() is naive and will break on lists with ,'s in them
         item = m_config->addItemStringList(m_name, *d->newStringList(),
-                                           m_default.split(QStringLiteral(",")), m_key);
+                                           m_default.split(QLatin1Char(',')), m_key);
     } else if (m_type == QStringLiteral("uint")) {
         KConfigSkeleton::ItemUInt *uintItem =
             m_config->addItemUInt(m_name, *d->newUint(), m_default.toUInt(), m_key);
@@ -269,7 +269,7 @@ void ConfigLoaderHandler::addItem()
         }
         item = doubleItem;
     } else if (m_type == QStringLiteral("intlist")) {
-        QStringList tmpList = m_default.split(QStringLiteral(","));
+        QStringList tmpList = m_default.split(QLatin1Char(','));
         QList<int> defaultList;
         foreach (const QString &tmp, tmpList) {
             defaultList.append(tmp.toInt());
@@ -292,7 +292,7 @@ void ConfigLoaderHandler::addItem()
         */
     } else if (m_type == QStringLiteral("point")) {
         QPoint defaultPoint;
-        QStringList tmpList = m_default.split(QStringLiteral(","));
+        QStringList tmpList = m_default.split(QLatin1Char(','));
         if (tmpList.size() >= 2) {
             defaultPoint.setX(tmpList[0].toInt());
             defaultPoint.setY(tmpList[1].toInt());
@@ -300,7 +300,7 @@ void ConfigLoaderHandler::addItem()
         item = m_config->addItemPoint(m_name, *d->newPoint(), defaultPoint, m_key);
     } else if (m_type == QStringLiteral("rect")) {
         QRect defaultRect;
-        QStringList tmpList = m_default.split(QStringLiteral(","));
+        QStringList tmpList = m_default.split(QLatin1Char(','));
         if (tmpList.size() >= 4) {
             defaultRect.setCoords(tmpList[0].toInt(), tmpList[1].toInt(),
                                   tmpList[2].toInt(), tmpList[3].toInt());
@@ -308,7 +308,7 @@ void ConfigLoaderHandler::addItem()
         item = m_config->addItemRect(m_name, *d->newRect(), defaultRect, m_key);
     } else if (m_type == QStringLiteral("size")) {
         QSize defaultSize;
-        QStringList tmpList = m_default.split(QStringLiteral(","));
+        QStringList tmpList = m_default.split(QLatin1Char(','));
         if (tmpList.size() >= 2) {
             defaultSize.setWidth(tmpList[0].toInt());
             defaultSize.setHeight(tmpList[1].toInt());
@@ -382,7 +382,7 @@ KConfigLoader::KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject
     KConfigGroup group = config.parent();
     d->baseGroup = config.name();
     while (group.isValid() && group.name() != QStringLiteral("<default>")) {
-        d->baseGroup = group.name() + QStringLiteral("\x1d") + d->baseGroup;
+        d->baseGroup = group.name() + QLatin1Char('\x1d') + d->baseGroup;
         group = group.parent();
     }
     d->parse(this, xml);
@@ -427,10 +427,8 @@ QStringList KConfigLoader::groupList() const
 bool KConfigLoader::usrWriteConfig()
 {
     if (d->saveDefaults) {
-        KConfigSkeletonItem::List itemList = items();
-        for (int i = 0; i < itemList.size(); i++) {
-            KConfigGroup cg(config(), itemList.at(i)->group());
-            cg.writeEntry(itemList.at(i)->key(), "");
+        foreach (const auto& item, items()) {
+            config()->group(item->group()).writeEntry(item->key(), "");
         }
     }
     return true;

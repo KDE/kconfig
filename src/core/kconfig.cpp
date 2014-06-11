@@ -56,7 +56,7 @@ bool KConfigPrivate::mappingsRegistered = false;
 
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
                                QStandardPaths::StandardLocation resourceType)
-    : openFlags(flags), resourceType(resourceType), mBackend(0),
+    : openFlags(flags), resourceType(resourceType), mBackend(Q_NULLPTR),
       bDynamicBackend(true),  bDirty(false), bReadDefaults(false),
       bFileImmutable(false), bForceGlobal(false), bSuppressGlobal(false),
       configState(KConfigBase::NoAccess)

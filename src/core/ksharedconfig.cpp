@@ -72,13 +72,13 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
     }
 
     if (list) {
-        for (QList<KSharedConfig *>::ConstIterator it = list->constBegin(); it != list->constEnd(); ++it) {
-            if ((*it)->name() == fileName &&
-                    (*it)->d_ptr->openFlags == flags &&
-                    (*it)->locationType() == resType
-//                 (*it)->backEnd()->type() == backEnd
+        foreach (auto cfg, *static_cast<const GlobalSharedConfigList*>(list)) {
+            if (cfg->name() == fileName &&
+                    cfg->d_ptr->openFlags == flags &&
+                    cfg->locationType() == resType
+//                    cfg->backend()->type() == backend
                ) {
-                return KSharedConfigPtr(*it);
+                return KSharedConfigPtr(cfg);
             }
         }
     }

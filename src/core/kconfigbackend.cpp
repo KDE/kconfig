@@ -56,7 +56,7 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 {
     //qDebug() << "creating a backend for file" << file << "with system" << sys;
     const QString system = (sys.isEmpty() ? Private::whatSystem(file) : sys);
-    KConfigBackend *backend = 0;
+    KConfigBackend *backend = Q_NULLPTR;
 
 #if 0 // TODO port to Qt5 plugin loading
     if (system.compare(QLatin1String("INI"), Qt::CaseInsensitive) != 0) {
@@ -65,7 +65,7 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 
         //qDebug() << "found" << offers.count() << "offers for KConfigBackend plugins with name" << system;
         foreach (const KService::Ptr &offer, offers) {
-            backend = offer->createInstance<KConfigBackend>(0);
+            backend = offer->createInstance<KConfigBackend>(Q_NULLPTR);
             if (backend) {
                 //qDebug() << "successfully created a backend for" << system;
                 backend->setFilePath(file);
