@@ -85,6 +85,8 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
         return ParseOk;
     }
 
+    const QByteArray currentLanguage = currentLocale.split('_').first();
+
     bool bDefault = options & ParseDefaults;
     bool allowExecutableValues = options & ParseExpansions;
 
@@ -251,7 +253,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
             }
             printableToString(&aKey, file, lineNo);
             if (!locale.isEmpty()) {
-                if (locale != currentLocale) {
+                if (locale != currentLocale && locale != currentLanguage) {
                     // backward compatibility. C == en_US
                     if (locale.at(0) != 'C' || currentLocale != "en_US") {
                         if (merging) {
@@ -275,6 +277,9 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
             }
             if (!locale.isNull()) {
                 entryOptions |= KEntryMap::EntryLocalized;
+                if (locale.indexOf('_') != -1) {
+                    entryOptions |= KEntryMap::EntryLocalizedCountry;
+                }
             }
             printableToString(&line, file, lineNo);
             if (entryOptions & KEntryMap::EntryRawKey) {

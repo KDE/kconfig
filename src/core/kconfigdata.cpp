@@ -145,6 +145,11 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
     }
     e.bExpand = (options & EntryExpansion);
     e.bReverted = false;
+    if (options & EntryLocalized) {
+        e.bLocalizedCountry = (options & EntryLocalizedCountry);
+    } else {
+        e.bLocalizedCountry = false;
+    }
 
     if (newKey) {
         //qDebug() << "inserting" << k << "=" << value;
@@ -158,6 +163,14 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
         return true;
     } else {
 //                KEntry e2 = it.value();
+        if (options & EntryLocalized) {
+            // fast exit checks for cases where the existing entry is more specific
+            const KEntry &e2 = it.value();
+            if (e2.bLocalizedCountry && !e.bLocalizedCountry) {
+                // lang_COUNTRY > lang
+                return false;
+            }
+        }
         if (it.value() != e) {
             //qDebug() << "changing" << k << "from" << e.mValue << "to" << value;
             it.value() = e;

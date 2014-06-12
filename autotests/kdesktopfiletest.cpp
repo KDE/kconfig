@@ -50,6 +50,29 @@ void KDesktopFileTest::testRead()
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
 }
 
+void KDesktopFileTest::testReadLocalized_data()
+{
+    QTest::addColumn<QLocale>("locale");
+    QTest::addColumn<QString>("translation");
+
+    const QString german = QStringLiteral("Meine Anwendung");
+    const QString swiss  = QStringLiteral("Mein Anwendungsli");
+
+    QTest::newRow("de")           << QLocale(QLocale::German)                << german;
+    QTest::newRow("de_DE")        << QLocale(QStringLiteral("de_DE"))        << german;
+    QTest::newRow("de_DE@bayern") << QLocale(QStringLiteral("de_DE@bayern")) << german;
+    QTest::newRow("de@bayern")    << QLocale(QStringLiteral("de@bayern"))    << german;
+    QTest::newRow("de@freiburg")  << QLocale(QStringLiteral("de@freiburg"))  << QStringLiteral("Mein Anwendungsle");
+    // For CH we have a special translation
+    QTest::newRow("de_CH")      << QLocale(QLocale::German, QLocale::Switzerland) << swiss;
+    QTest::newRow("de_CH@bern") << QLocale(QStringLiteral("de_CH@bern"))          << swiss;
+    // Austria should fall back to "de"
+    QTest::newRow("de_AT")       << QLocale(QLocale::German, QLocale::QLocale::Austria) << german;
+    QTest::newRow("de_AT@tirol") << QLocale(QStringLiteral("de_AT@tirol"))              << german;
+    // no translation for French
+    QTest::newRow("fr") << QLocale(QLocale::French) << QStringLiteral("My Application");
+}
+
 void KDesktopFileTest::testReadLocalized()
 {
     QTemporaryFile file("testReadLocalizedXXXXXX.desktop");
@@ -61,6 +84,8 @@ void KDesktopFileTest::testReadLocalized()
        "Type=Application\n"
        "Name=My Application\n"
        "Name[de]=Meine Anwendung\n"
+       "Name[de@freiburg]=Mein Anwendungsle\n"
+       "Name[de_CH]=Mein Anwendungsli\n"
        "Icon=foo\n"
        "\n";
     file.close();
@@ -68,15 +93,13 @@ void KDesktopFileTest::testReadLocalized()
     QVERIFY(KDesktopFile::isDesktopFile(fileName));
 
     DefaultLocale defaultLocale;
-    // set language to German for which we have a translation
-    QLocale::setDefault(QLocale(QLocale::German));
-    KDesktopFile df(fileName);
-    QCOMPARE(df.readName(), QString::fromLatin1("Meine Anwendung"));
 
-    // set language to French for which we don't have a translation
-    QLocale::setDefault(QLocale(QLocale::French));
-    KDesktopFile df2(fileName);
-    QCOMPARE(df2.readName(), QString::fromLatin1("My Application"));
+    QFETCH(QLocale, locale);
+    QLocale::setDefault(locale);
+    KDesktopFile df(fileName);
+
+    QEXPECT_FAIL("de@freiburg", "QLocale doesn't support modifiers", Continue);
+    QTEST(df.readName(), "translation");
 }
 
 void KDesktopFileTest::testSuccessfulTryExec()

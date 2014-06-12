@@ -36,7 +36,8 @@ struct KEntry {
     /** Constructor. @internal */
     KEntry()
         : mValue(), bDirty(false),
-          bGlobal(false), bImmutable(false), bDeleted(false), bExpand(false), bReverted(false) {}
+          bGlobal(false), bImmutable(false), bDeleted(false), bExpand(false), bReverted(false),
+          bLocalizedCountry(false) {}
     /** @internal */
     QByteArray mValue;
     /**
@@ -63,6 +64,11 @@ struct KEntry {
      * Entry has been reverted to its default value (from a more global file).
      */
     bool    bReverted: 1;
+    /**
+     * Entry is for a localized key. If @c false the value references just language e.g. "de",
+     * if @c true the value references language and country, e.g. "de_DE".
+     **/
+    bool    bLocalizedCountry: 1;
 };
 
 // These operators are used to check whether an entry which is about
@@ -165,6 +171,7 @@ public:
         EntryDeleted = 8,
         EntryExpansion = 16,
         EntryRawKey = 32,
+        EntryLocalizedCountry = 64,
         EntryDefault = (SearchDefaults << 16),
         EntryLocalized = (SearchLocalized << 16)
     };

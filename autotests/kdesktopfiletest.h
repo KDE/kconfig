@@ -26,6 +26,7 @@ class KDesktopFileTest : public QObject
     Q_OBJECT
 private Q_SLOTS:
     void testRead();
+    void testReadLocalized_data();
     void testReadLocalized();
     void testUnsuccessfulTryExec();
     void testSuccessfulTryExec();
