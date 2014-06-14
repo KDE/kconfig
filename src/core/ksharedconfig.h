@@ -30,12 +30,16 @@
  *
  * KConfig variant using shared memory
  *
- * KSharedConfig provides a reference counted, shared memory variant
+ * KSharedConfig provides a shared (reference counted) variant
  * of KConfig.  This allows you to use manipulate the same configuration
  * files from different places in your code without worrying about
  * accidentally overwriting changes.
  *
- * Note that, as with most of kdelibs, this is @b NOT threadsafe.
+ * The openConfig() method is threadsafe: every thread gets a separate repository
+ * of shared KConfig objects. This means, however, that you'll be responsible for
+ * synchronizing the instances of KConfig for the same filename between threads,
+ * using reparseConfiguration after a manual change notification, just like you have
+ * to do between processes.
  */
 class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData //krazy:exclude=dpointer (only for refcounting)
 {

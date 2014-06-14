@@ -24,6 +24,8 @@
 #include "kconfiggroup.h"
 #include "kconfig_p.h"
 #include <QCoreApplication>
+#include <QThread>
+#include <QThreadStorage>
 
 void _k_globalMainConfigSync();
 
@@ -32,11 +34,13 @@ class GlobalSharedConfigList : public QList<KSharedConfig *>
 public:
     GlobalSharedConfigList()
     {
-        // We want to force the sync() before the QCoreApplication
-        // instance is gone. Otherwise we trigger a QLockFile::lock()
-        // after QCoreApplication is gone, calling qAppName() for a non
-        // existent app...
-        qAddPostRoutine(&_k_globalMainConfigSync);
+        if (!qApp || QThread::currentThread() == qApp->thread()) {
+            // We want to force the sync() before the QCoreApplication
+            // instance is gone. Otherwise we trigger a QLockFile::lock()
+            // after QCoreApplication is gone, calling qAppName() for a non
+            // existent app...
+            qAddPostRoutine(&_k_globalMainConfigSync);
+        }
     }
 
     // in addition to the list, we need to hold the main config,
@@ -44,12 +48,24 @@ public:
     KSharedConfigPtr mainConfig;
 };
 
-Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList)
+static QThreadStorage<GlobalSharedConfigList *> s_storage;
+template <typename T>
+T * perThreadGlobalStatic()
+{
+    if (!s_storage.hasLocalData()) {
+        s_storage.setLocalData(new T);
+    }
+    return s_storage.localData();
+};
+
+// Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList), but per thread:
+static GlobalSharedConfigList *globalSharedConfigList() { return perThreadGlobalStatic<GlobalSharedConfigList>(); }
 
 void _k_globalMainConfigSync()
 {
-    if (globalSharedConfigList->mainConfig) {
-        globalSharedConfigList->mainConfig->sync();
+    KSharedConfigPtr mainConfig = globalSharedConfigList()->mainConfig;
+    if (mainConfig) {
+        mainConfig->sync();
     }
 }
 
@@ -64,7 +80,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
         fileName = KConfig::mainConfigName();
     }
 
-    static bool wasTestModeEnabled = false;
+    static QBasicAtomicInt wasTestModeEnabled = Q_BASIC_ATOMIC_INITIALIZER(false);
     if (!wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
         wasTestModeEnabled = true;
         list->clear();
@@ -86,7 +102,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
     if (_fileName.isEmpty() && flags == FullConfig && resType == QStandardPaths::GenericConfigLocation) {
         list->mainConfig = ptr;
 
-        static bool userWarned = false;
+        static QBasicAtomicInt userWarned = Q_BASIC_ATOMIC_INITIALIZER(false);
         if (!userWarned) {
             userWarned = true;
             QByteArray readOnly = qgetenv("KDE_HOME_READONLY");
@@ -111,7 +127,7 @@ KSharedConfig::KSharedConfig(const QString &fileName,
 
 KSharedConfig::~KSharedConfig()
 {
-    if (!globalSharedConfigList.isDestroyed()) {
+    if (s_storage.hasLocalData()) {
         globalSharedConfigList()->removeAll(this);
     }
 }
