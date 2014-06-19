@@ -33,10 +33,10 @@ class KConfigIniBackend : public KConfigBackend
 {
 Q_OBJECT
 private:
-    class BufferFragment;
-
     QLockFile *lockFile;
+
 public:
+    class BufferFragment;
 
     KConfigIniBackend();
     ~KConfigIniBackend();
