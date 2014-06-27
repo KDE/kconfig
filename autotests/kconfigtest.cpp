@@ -95,6 +95,9 @@ void KConfigTest::initTestCase()
     // to make sure all files from a previous failed run are deleted
     cleanupTestCase();
 
+    KSharedConfigPtr mainConfig = KSharedConfig::openConfig();
+    mainConfig->group("Main").writeEntry("Key", "Value");
+
     KConfig sc(TEST_SUBDIR "kconfigtest");
 
     KConfigGroup cg(&sc, "AAA");
@@ -1411,6 +1414,11 @@ void KConfigTest::testSharedConfig()
         myConfigGroup = KConfigGroup(config, "Hello");
     }
     QCOMPARE(myConfigGroup.readEntry("stringEntry1"), QString(STRINGENTRY1));
+
+    // Get the main config
+    KSharedConfigPtr mainConfig = KSharedConfig::openConfig();
+    KConfigGroup mainGroup(mainConfig, "Main");
+    QCOMPARE(mainGroup.readEntry("Key", QString()), QString("Value"));
 }
 
 void KConfigTest::testLocaleConfig()
@@ -1676,6 +1684,8 @@ void KConfigTest::testThreads()
     futures << QtConcurrent::run(this, &KConfigTest::testAddConfigSources);
     futures << QtConcurrent::run(this, &KConfigTest::testSimple);
     futures << QtConcurrent::run(this, &KConfigTest::testDefaults);
+    futures << QtConcurrent::run(this, &KConfigTest::testSharedConfig);
+    futures << QtConcurrent::run(this, &KConfigTest::testSharedConfig);
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     //futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     //futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);

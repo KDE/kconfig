@@ -33,6 +33,7 @@ class GlobalSharedConfigList : public QList<KSharedConfig *>
 {
 public:
     GlobalSharedConfigList()
+        : wasTestModeEnabled(false)
     {
         if (!qApp || QThread::currentThread() == qApp->thread()) {
             // We want to force the sync() before the QCoreApplication
@@ -41,11 +42,14 @@ public:
             // existent app...
             qAddPostRoutine(&_k_globalMainConfigSync);
         }
+        // In other threads, QThreadStorage takes care of deleting the GlobalSharedConfigList when
+        // the thread exits.
     }
 
     // in addition to the list, we need to hold the main config,
     // so that it's not created and destroyed all the time.
     KSharedConfigPtr mainConfig;
+    bool wasTestModeEnabled;
 };
 
 static QThreadStorage<GlobalSharedConfigList *> s_storage;
@@ -80,30 +84,30 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
         fileName = KConfig::mainConfigName();
     }
 
-    static QBasicAtomicInt wasTestModeEnabled = Q_BASIC_ATOMIC_INITIALIZER(false);
-    if (!wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
-        wasTestModeEnabled = true;
+    if (!list->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
+        list->wasTestModeEnabled = true;
         list->clear();
         list->mainConfig = Q_NULLPTR;
     }
 
-    if (list) {
-        foreach (auto cfg, *static_cast<const GlobalSharedConfigList*>(list)) {
-            if (cfg->name() == fileName &&
-                    cfg->d_ptr->openFlags == flags &&
-                    cfg->locationType() == resType
-//                    cfg->backend()->type() == backend
-               ) {
-                return KSharedConfigPtr(cfg);
-            }
+    foreach (auto cfg, *static_cast<const GlobalSharedConfigList*>(list)) {
+        if (cfg->name() == fileName &&
+                cfg->d_ptr->openFlags == flags &&
+                cfg->locationType() == resType
+//                cfg->backend()->type() == backend
+           ) {
+            return KSharedConfigPtr(cfg);
         }
     }
+
     KSharedConfigPtr ptr(new KSharedConfig(fileName, flags, resType));
+
     if (_fileName.isEmpty() && flags == FullConfig && resType == QStandardPaths::GenericConfigLocation) {
         list->mainConfig = ptr;
 
-        static QBasicAtomicInt userWarned = Q_BASIC_ATOMIC_INITIALIZER(false);
-        if (!userWarned) {
+        const bool isMainThread = !qApp || QThread::currentThread() == qApp->thread();
+        static bool userWarned = false;
+        if (isMainThread && !userWarned) {
             userWarned = true;
             QByteArray readOnly = qgetenv("KDE_HOME_READONLY");
             if (readOnly.isEmpty() && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
