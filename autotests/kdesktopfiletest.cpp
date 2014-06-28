@@ -67,7 +67,7 @@ void KDesktopFileTest::testReadLocalized_data()
     QTest::newRow("de_CH")      << QLocale(QLocale::German, QLocale::Switzerland) << swiss;
     QTest::newRow("de_CH@bern") << QLocale(QStringLiteral("de_CH@bern"))          << swiss;
     // Austria should fall back to "de"
-    QTest::newRow("de_AT")       << QLocale(QLocale::German, QLocale::QLocale::Austria) << german;
+    QTest::newRow("de_AT")       << QLocale(QLocale::German, QLocale::Austria) << german;
     QTest::newRow("de_AT@tirol") << QLocale(QStringLiteral("de_AT@tirol"))              << german;
     // no translation for French
     QTest::newRow("fr") << QLocale(QLocale::French) << QStringLiteral("My Application");
