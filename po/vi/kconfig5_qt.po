@@ -1,0 +1,145 @@
+# Vietnamese translation for kwriteconfig.
+# Copyright © 2006 Free Software Foundation, Inc.
+#
+# Phan Vĩnh Thịnh <teppi82@gmail.com>, 2006.
+# Lê Hoàng Phương <herophuong93@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2012-01-09 23:55+0700\n"
+"Last-Translator: Lê Hoàng Phương <herophuong93@gmail.com>\n"
+"Language-Team: Vietnamese <kde-i18n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: core/kconfig.cpp:858
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr ""
+
+#: core/kconfigini.cpp:576
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr ""
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:930
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:932
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+#, fuzzy
+#| msgid "Use <file> instead of global config"
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Dùng <file> thay cho cấu hình toàn hệ thống"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+#, fuzzy
+#| msgid "Group to look in. Use repeatedly for nested groups."
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Nhóm để xem. Dùng lại với các nhóm lồng nhau."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+#, fuzzy
+#| msgid "Key to look for"
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Từ khóa cần tìm kiếm"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
+#, fuzzy
+#| msgid ""
+#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
+#| "a string"
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Dạng biến. Dùng \"bool\" cho các biến lôgíc, nếu không thì sẽ là một chuỗi."
+
+#: kreadconfig/kwriteconfig.cpp:39
+#, fuzzy
+#| msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Giá trị để ghi. Bắt buộc trên một hệ vỏ dùng '' cho rỗng"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "Ghi mục KConfig - dùng trong các tập lệnh của hệ vỏ"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "Đã viết kreadconfig - là cơ sở cho chương trình này"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "Luís Pedro Coelho"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
+
+#~ msgid "Group to look in"
+#~ msgstr "Nhóm nơi cần tìm kiếm"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Phan Vĩnh Thịnh"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "teppi82@gmail.com"

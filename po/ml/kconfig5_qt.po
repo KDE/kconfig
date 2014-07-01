@@ -1,0 +1,137 @@
+# translation of kwriteconfig.po to
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdebase package.
+# ANI PETER|അനി പീറ്റര്‍ <peter.ani@gmail.com>, 2008.
+# Hari|ഹരി  Vishnu | വിഷ്ണു <harivishnu@gmail.com>, 2008.
+# Praveen Arimbrathodiyil <pravi.a@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdebase\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2008-11-29 01:50-0800\n"
+"Last-Translator: Praveen Arimbrathodiyil <pravi.a@gmail.com>\n"
+"Language-Team: Malayalam <smc-discuss@googlegroups.com>\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: INDIA\n"
+"X-Generator: Lokalize 0.3\n"
+
+#: core/kconfig.cpp:858
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr ""
+
+#: core/kconfigini.cpp:576
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr ""
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:930
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:932
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+#, fuzzy
+#| msgid "Use <file> instead of global config"
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "ഗ്ലോബല്‍ കോണ്‍ഫിഗിനു് പകരം <file> ഉപയോഗിക്കുക"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+#, fuzzy
+#| msgid "Group to look in. Use repeatedly for nested groups."
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "ഉള്ളില്‍ തിരയേണ്ട കൂട്ടങ്ങള്‍. നെസ്ടഡ് കൂട്ടങ്ങള്‍ക്കായ് വീണ്ടും വീണ്ടും ഉപയോഗിക്കുക."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+#, fuzzy
+#| msgid "Key to look for"
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "തിരയേണ്ട സൂചന"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
+#, fuzzy
+#| msgid ""
+#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
+#| "a string"
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"വേരിയബിള്‍ തരം. ബൂലിയെന്‍ ആണെങ്കില്‍  \"bool\" ഉപയോഗിക്കുക, അല്ലെങ്കില്‍ അതൊരു സ്ട്രിങ്ങ് ആയി "
+"എടുക്കപെടും"
+
+#: kreadconfig/kwriteconfig.cpp:39
+#, fuzzy
+#| msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "എഴുതേണ്ട വില (അക്കം). നിര്‍ബന്ധമാണു്‌, ഷെല്ലില്‍ ശൂന്യത്തിനു് '' ഉപയോഗിയ്ക്കുക"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "കെ-കോണ്‍ഫിഗ് എണ്ട്രികള്‍ എഴുതുക - ഷെല്‍ സ്ക്രിപ്ടുകളില്‍ ഉപയോഗിക്കാനായ്"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "(c) 2001 റെഡ് ഹാറ്റ്, ഇന്‍കും ലൂയി പെഡ്രോ കോലോയും"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "ഇതു അടിസ്ഥാനപെടുത്തുന്ന കെ-റീഡ്-കോണ്‍ഫിഗ് എഴുതി"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "ലൂയി പെഡ്രോ കോലോ"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "ബെര്‍നാഡ് റോസന്‍ക്രെന്‍സര്‍"

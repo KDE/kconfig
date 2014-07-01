@@ -1,0 +1,150 @@
+# Translation of kwriteconfig to Croatian
+#
+# Andrej Dundović <adundovi@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig 0\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2011-08-02 05:32+0200\n"
+"PO-Revision-Date: 2009-07-01 09:19+0200\n"
+"Last-Translator: Andrej Dundović <adundovi@gmail.com>\n"
+"Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 0.3\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: core/kconfig.cpp:858
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr ""
+
+#: core/kconfigini.cpp:576
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr ""
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:930
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:932
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:933
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+#, fuzzy
+#| msgid "Use <file> instead of global config"
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Umjesto opće konfiguracije upotrijebi <file> "
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+#, fuzzy
+#| msgid "Group to look in. Use repeatedly for nested groups."
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Grupa u kojoj se traži. Ponavljaj za ugnježdene grupe."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+#, fuzzy
+#| msgid "Key to look for"
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Ključ za kojim se traga"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
+#, fuzzy
+#| msgid ""
+#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
+#| "a string"
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Vrsta varijable. Za Boolean unos upotrijebite \"bool\", u suprotnom će se s "
+"njima postupati kao sa znakovnim nizovima."
+
+#: kreadconfig/kwriteconfig.cpp:39
+#, fuzzy
+#| msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr ""
+"Vrijednost koja će biti zapisana. Obavezno u ljusci za prazninu upotrijebite "
+"''"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "Zapisuj KConfig unose – za upotrebu u skriptama ljuske"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "© 2001 Red Hat, Inc. & Luís Pedro Coelho"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "Luís Pedro Coelho"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "Napisan je kreadconfig na kojem je ovo bazirano"
+
+#~ msgid "Group to look in"
+#~ msgstr "Tražiti u grupi"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Danko Butorac, Denis Lackovic, Nikola Planinac, Robert Sedak"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "lokalizacija@linux.hr"
