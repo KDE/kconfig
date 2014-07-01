@@ -661,7 +661,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
 
     QByteArray result; // Guesstimated that it's good to avoid data() initialization for a length of l*4
     result.resize(l * 4); // Maximum 4x as long as source string due to \x<ab> escape sequences
-    register const char *s = aString.constData();
+    const char *s = aString.constData();
     int i = 0;
     char *data = result.data();
     char *start = data;
