@@ -170,7 +170,7 @@ void KConfigTest::initTestCase()
     cg.writePathEntry("homepathescape", HOMEPATHESCAPE);
 
     cg = KConfigGroup(&sc, "Enum Types");
-#if _MSC_VER == 1600
+#if defined(_MSC_VER) && _MSC_VER == 1600
     cg.writeEntry("dummy", 42);
 #else
     //Visual C++ 2010 throws an Internal Compiler Error here
@@ -572,7 +572,7 @@ void KConfigTest::testEnums()
     //Visual C++ 2010 (compiler version 16.0) throws an Internal Compiler Error
     //when compiling the code in initTestCase that creates these KConfig entries,
     //so we can't run this test
-#if _MSC_VER == 1600
+#if defined(_MSC_VER) && _MSC_VER == 1600
     QSKIP("Visual C++ 2010 can't compile this test");
 #endif
     KConfig sc(TEST_SUBDIR "kconfigtest");
