@@ -97,6 +97,7 @@ void KConfigTest::initTestCase()
 
     KSharedConfigPtr mainConfig = KSharedConfig::openConfig();
     mainConfig->group("Main").writeEntry("Key", "Value");
+    mainConfig->sync();
 
     KConfig sc(TEST_SUBDIR "kconfigtest");
 
