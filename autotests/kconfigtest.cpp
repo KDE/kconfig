@@ -1672,6 +1672,33 @@ void KConfigTest::testNewlines()
 
 }
 
+void KConfigTest::testXdgListEntry()
+{
+    QTemporaryFile file;
+    QVERIFY(file.open());
+    QTextStream out(&file);
+    out <<  "[General]" << endl
+        << "Key1=" << endl // empty list
+        // emtpty entries
+        << "Key2=;" << endl
+        << "Key3=;;" << endl
+        << "Key4=;;;" << endl
+        << "Key5=\\;" << endl
+        << "Key6=1;2\\;3;;" << endl;
+    out.flush();
+    file.close();
+    KConfig anonConfig(file.fileName(), KConfig::SimpleConfig);
+    KConfigGroup grp = anonConfig.group("General");
+    QStringList invalidList; // use this as a default when an empty list is expected
+    invalidList << "Error! Default value read!";
+    QCOMPARE(grp.readXdgListEntry("Key1", invalidList), QStringList());
+    QCOMPARE(grp.readXdgListEntry("Key2", invalidList), QStringList() << QString());
+    QCOMPARE(grp.readXdgListEntry("Key3", invalidList), QStringList() << QString() << QString());
+    QCOMPARE(grp.readXdgListEntry("Key4", invalidList), QStringList()<< QString() << QString() << QString());
+    QCOMPARE(grp.readXdgListEntry("Key5", invalidList), QStringList() << ";");
+    QCOMPARE(grp.readXdgListEntry("Key6", invalidList), QStringList() << "1" << "2;3" << QString());
+}
+
 #include <QThreadPool>
 #include <qtconcurrentrun.h>
 

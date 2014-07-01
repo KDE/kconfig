@@ -142,21 +142,35 @@ void KDesktopFileTest::testActionGroup()
     QTextStream ts(&file);
     ts <<
        "[Desktop Entry]\n"
-       "Actions=encrypt;\n"
+       // make sure escaping of ';' using "\;" works
+       "Actions=encrypt;semi\\;colon;decrypt;\n"
        "[Desktop Action encrypt]\n"
        "Name=Encrypt file\n"
+       "[Desktop Action decrypt]\n"
+       "Name=Decrypt file\n"
+       // no escaping needed in group header
+       "[Desktop Action semi;colon]\n"
+       "Name=With semicolon\n"
        "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
     QCOMPARE(df.readType(), QString());
     QCOMPARE(df.fileName(), fileName);
-    QCOMPARE(df.readActions(), QStringList() << "encrypt");
+    QCOMPARE(df.readActions(), QStringList() << "encrypt" << "semi;colon" << "decrypt");
     QCOMPARE(df.hasActionGroup("encrypt"), true);
+    QCOMPARE(df.hasActionGroup("semi;colon"), true);
+    QCOMPARE(df.hasActionGroup("decrypt"), true);
     QCOMPARE(df.hasActionGroup("doesnotexist"), false);
     KConfigGroup cg = df.actionGroup("encrypt");
     QVERIFY(cg.hasKey("Name"));
     QCOMPARE(cg.readEntry("Name"), QString("Encrypt file"));
+    cg = df.actionGroup("decrypt");
+    QVERIFY(cg.hasKey("Name"));
+    QCOMPARE(cg.readEntry("Name"), QString("Decrypt file"));
+    cg = df.actionGroup("semi;colon");
+    QVERIFY(cg.hasKey("Name"));
+    QCOMPARE(cg.readEntry("Name"), QString("With semicolon"));
 }
 
 void KDesktopFileTest::testIsAuthorizedDesktopFile()

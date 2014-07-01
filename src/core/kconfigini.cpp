@@ -792,6 +792,12 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
             case '\\':
                 *r = '\\';
                 break;
+            case ';':
+                // not really an escape sequence, but allowed in .desktop files, don't strip '\;' from the string
+                *r = '\\';
+                r++;
+                *r = ';';
+                break;
             case 'x':
                 if (i + 2 < l) {
                     *r = charFromHex(str + i + 1, file, line);

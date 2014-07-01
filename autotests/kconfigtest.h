@@ -76,6 +76,7 @@ private Q_SLOTS:
     void testDirtyAfterRevert();
     void testKdeGlobals();
     void testNewlines();
+    void testXdgListEntry();
 
     void testThreads();
 
