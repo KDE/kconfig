@@ -17,6 +17,7 @@ include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMMarkNonGuiExecutable)
+include(ECMPoQmTools)
 
 set(KF5_VERSION "5.0.0") # handled by release scripts
 
