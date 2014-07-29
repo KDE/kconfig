@@ -64,10 +64,10 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
     sGlobalFileName = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals");
 
     static QBasicAtomicInt use_etc_kderc = Q_BASIC_ATOMIC_INITIALIZER(-1);
-    if (use_etc_kderc < 0) {
-        use_etc_kderc = !qEnvironmentVariableIsSet("KDE_SKIP_KDERC");    // for unit tests
+    if (use_etc_kderc.load() < 0) {
+        use_etc_kderc.store( !qEnvironmentVariableIsSet("KDE_SKIP_KDERC"));    // for unit tests
     }
-    if (use_etc_kderc) {
+    if (use_etc_kderc.load()) {
 
         etc_kderc =
 #ifdef Q_OS_WIN
