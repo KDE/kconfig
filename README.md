@@ -21,9 +21,3 @@ KConfigGui provides a way to hook widgets to the configuration so that they are
 automatically initialized from the configuration and automatically propagate
 their changes to their respective configuration files.
 
-## Links
-
-- Home page: <https://projects.kde.org/projects/frameworks/kconfig>
-- Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: \#kde-devel on Freenode
-- Git repository: <https://projects.kde.org/projects/frameworks/kconfig/repository>

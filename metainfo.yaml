@@ -7,3 +7,9 @@ platforms:
 portingAid: false
 deprecated: false
 release: true
+libraries:
+ - qmake: KConfigCore
+   cmake: "KF5::ConfigCore"
+ - qmake: KConfigGui
+   cmake: "KF5::ConfigGui"
+cmakename: KF5Config
