@@ -1,7 +1,5 @@
 # KConfig
 
-Backend for storing application configuration
-
 ## Introduction
 
 KConfig provides an advanced configuration system. It is made of two parts:
