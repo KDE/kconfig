@@ -27,6 +27,9 @@
 
 class QWindow;
 
+/**
+ * Save and load window sizes into a config
+ */
 namespace KWindowConfig
 {
 /**
