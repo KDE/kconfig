@@ -34,6 +34,11 @@ class KConfigBasePrivate;
 
 /**
  * \class KConfigBase kconfigbase.h <KConfigBase>
+ * \brief Interface to interact with configuration.
+ *
+ * KConfigBase allows a component of an application to persists its configuration
+ * without the component knowing if it is storing the configuration into a top
+ * level KConfig or a KConfigGroup inside a KConfig instance.
  */
 class KCONFIGCORE_EXPORT KConfigBase
 {
