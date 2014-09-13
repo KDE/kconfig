@@ -24,8 +24,8 @@
 #include <QScreen>
 #include <QWindow>
 
-static const char *s_initialSizePropertyName = "_kconfig_initial_size";
-static const char *s_initialScreenSizePropertyName = "_kconfig_initial_screen_size";
+static const char s_initialSizePropertyName[] = "_kconfig_initial_size";
+static const char s_initialScreenSizePropertyName[] = "_kconfig_initial_screen_size";
 
 void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options)
 {
