@@ -1105,33 +1105,33 @@ void KCoreConfigSkeleton::usrSetDefaults()
 {
 }
 
-void KCoreConfigSkeleton::usrRead()
-{
 #ifdef Q_CC_GNU
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
+void KCoreConfigSkeleton::usrRead()
+{
     usrReadConfig();
+}
 #ifdef Q_CC_GNU
 #pragma GCC diagnostic pop
 #endif
-}
 
 void KCoreConfigSkeleton::usrReadConfig()
 {
 }
 
-bool KCoreConfigSkeleton::usrSave()
-{
 #ifdef Q_CC_GNU
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
+bool KCoreConfigSkeleton::usrSave()
+{
     return usrWriteConfig();
+}
 #ifdef Q_CC_GNU
 #pragma GCC diagnostic pop
 #endif
-}
 
 bool KCoreConfigSkeleton::usrWriteConfig()
 {
