@@ -79,7 +79,7 @@ void KConfigCompiler_Test_Signals::cleanupTestCase()
 
 struct TestSettersArg {
     // default constructor required for Q_DECLARE_METATYPE
-    TestSettersArg() : obj(nullptr) {}
+    TestSettersArg() : obj(Q_NULLPTR) {}
     template<typename T>
     TestSettersArg(T* object) : obj(object) {
         // we can also call static methods using object->foo() so this works for all four cases
