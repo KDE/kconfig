@@ -158,6 +158,12 @@ public:
      */
     QString name() const;
 
+    /**
+     * @return the flags this object was opened with
+     * @since 5.2
+     */
+    OpenFlags openFlags() const;
+
     /// @reimp
     bool sync() Q_DECL_OVERRIDE;
 

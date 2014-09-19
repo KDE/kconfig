@@ -517,6 +517,13 @@ QString KConfig::name() const
     return d->fileName;
 }
 
+
+KConfig::OpenFlags KConfig::openFlags() const
+{
+    Q_D(const KConfig);
+    return d->openFlags;
+}
+
 Q_GLOBAL_STATIC(QString, globalMainConfigName)
 
 void KConfig::setMainConfigName(const QString &str)
