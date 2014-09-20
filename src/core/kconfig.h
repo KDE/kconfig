@@ -160,7 +160,7 @@ public:
 
     /**
      * @return the flags this object was opened with
-     * @since 5.2
+     * @since 5.3
      */
     OpenFlags openFlags() const;
 
