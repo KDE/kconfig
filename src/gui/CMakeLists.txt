@@ -9,6 +9,7 @@ set(libkconfiggui_SRCS
    kconfigskeleton.cpp
    kstandardshortcut.cpp
    kwindowconfig.cpp
+   ${kconfig_QM_LOADER}
 )
 
 add_library(KF5ConfigGui ${libkconfiggui_SRCS})
