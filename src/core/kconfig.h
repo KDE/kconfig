@@ -125,7 +125,7 @@ public:
      * @param type         The standard directory to look for the configuration
      *                     file in
      *
-     * @sa KSharedConfig::openConfig(const QString&, OpenFlags, const char*)
+     * @sa KSharedConfig::openConfig(const QString&, OpenFlags, QStandardPaths::StandardLocation)
      */
     explicit KConfig(const QString &file = QString(), OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
