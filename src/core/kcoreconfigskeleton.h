@@ -277,6 +277,7 @@ public:
             } else {
                 cg.writeEntry(mKey, mReference);
             }
+            mLoadedValue = mReference;
         }
     }
 

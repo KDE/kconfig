@@ -152,6 +152,7 @@ void KCoreConfigSkeleton::ItemString::writeConfig(KConfig *config)
         } else {
             cg.writeEntry(mKey, mReference);
         }
+        mLoadedValue = mReference;
     }
 }
 
@@ -218,6 +219,7 @@ void KCoreConfigSkeleton::ItemUrl::writeConfig(KConfig *config)
         } else {
             cg.writeEntry<QString>(mKey, mReference.toString());
         }
+        mLoadedValue = mReference;
     }
 }
 
@@ -483,6 +485,7 @@ void KCoreConfigSkeleton::ItemEnum::writeConfig(KConfig *config)
         } else {
             cg.writeEntry(mKey, mReference);
         }
+        mLoadedValue = mReference;
     }
 }
 
@@ -881,6 +884,7 @@ void KCoreConfigSkeleton::ItemPathList::writeConfig(KConfig *config)
             QStringList sl = mReference;
             cg.writePathEntry(mKey, sl);
         }
+        mLoadedValue = mReference;
     }
 }
 
@@ -925,6 +929,7 @@ void KCoreConfigSkeleton::ItemUrlList::writeConfig(KConfig *config)
             }
             cg.writeEntry<QStringList>(mKey, strList);
         }
+        mLoadedValue = mReference;
     }
 }
 

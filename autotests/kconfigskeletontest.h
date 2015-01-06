@@ -21,19 +21,24 @@
 
 #include <kconfigskeleton.h>
 
-class KConfigSkeletonTest : public KConfigSkeleton
+class KConfigSkeletonTest : public QObject
 {
     Q_OBJECT
 public:
 
 private Q_SLOTS:
-    void initTestCase();
+    void init();
+    void cleanup();
     void testSimple();
     void testDefaults();
     void testRemoveItem();
     void testClear();
+    void testKConfigDirty();
+    void testSaveRead();
 
 private:
+    KConfigSkeleton *s;
+    KConfigSkeleton::ItemBool *itemBool;
     bool mMyBool;
     QColor mMyColor;
     QFont mMyFont;
