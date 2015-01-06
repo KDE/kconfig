@@ -51,6 +51,9 @@ Commas (,) are used to seperate fields and may not occur as part
 of any field and all of the keywords are case-sensitive, i.e. you
 cannot say "key" instead of "Key" for example.
 
+Starting from KDE Frameworks 5 make sure to put Version=5 before the first "Id=" otherwise the upd file
+will be skipped and the config file will not be updated.
+
 For the rest the file is parsed and executed sequentially from top to bottom.
 Each line can contain one entry. The following entries are recognized:
 
@@ -161,6 +164,7 @@ Example update file
 ===================
 
 # This is comment
+Version=5
 Id=kde2.2
 File=kioslaverc,kio_httprc
 Group=Proxy Settings

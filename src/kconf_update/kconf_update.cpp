@@ -29,6 +29,7 @@
 #include <QCoreApplication>
 #include <QtCore/QDir>
 #include <QProcess>
+#include <QDebug>
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
@@ -239,13 +240,21 @@ bool KonfUpdate::checkFile(const QString &filename)
     int lineCount = 0;
     resetOptions();
     QString id;
+    bool foundVersion = false;
     while (!ts.atEnd()) {
         const QString line = ts.readLine().trimmed();
-        lineCount++;
+        if (line.startsWith("Version=5")) {
+            foundVersion = true;
+        }
+        ++lineCount;
         if (line.isEmpty() || (line[0] == '#')) {
             continue;
         }
         if (line.startsWith("Id=")) {
+            if (!foundVersion) {
+                qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped.").arg(filename);
+                return true;
+            }
             id = m_currentFilename + ':' + line.mid(3);
         } else if (line.startsWith("File=")) {
             checkGotFile(line.mid(5), id);
@@ -315,13 +324,21 @@ bool KonfUpdate::updateFile(const QString &filename)
     ts.setCodec(QTextCodec::codecForName("ISO-8859-1"));
     m_lineCount = 0;
     resetOptions();
+    bool foundVersion = false;
     while (!ts.atEnd()) {
         m_line = ts.readLine().trimmed();
+        if (m_line.startsWith("Version=5")) {
+            foundVersion = true;
+        }
         m_lineCount++;
         if (m_line.isEmpty() || (m_line[0] == QLatin1Char('#'))) {
             continue;
         }
         if (m_line.startsWith(QLatin1String("Id="))) {
+            if (!foundVersion) {
+                qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped.").arg(filename);
+                break;
+            }
             gotId(m_line.mid(3));
         } else if (m_skip) {
             continue;

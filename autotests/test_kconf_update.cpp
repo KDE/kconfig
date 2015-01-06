@@ -82,6 +82,8 @@ void TestKConfUpdate::test_data()
     QTest::addColumn<QString>("newConfName");
     QTest::addColumn<QString>("expectedNewConfContent");
     QTest::addColumn<QString>("expectedOldConfContent");
+    QTest::addColumn<bool>("useVersion5");
+    QTest::addColumn<bool>("shouldUpdateWork");
 
     QTest::newRow("moveKeysSameFile")
             <<
@@ -104,6 +106,8 @@ void TestKConfUpdate::test_data()
             "new=value\n"
             <<
             ""
+            << true
+            << true
             ;
     QTest::newRow("moveKeysOtherFile")
             <<
@@ -132,6 +136,8 @@ void TestKConfUpdate::test_data()
             "\n"
             "[stay]\n"
             "foo=bar\n"
+            << true
+            << true
             ;
     QTest::newRow("allKeys")
             <<
@@ -161,6 +167,8 @@ void TestKConfUpdate::test_data()
             "foo=bar\n"
             <<
             ""
+            << true
+            << true
             ;
     QTest::newRow("allKeysSubGroup")
             <<
@@ -198,6 +206,8 @@ void TestKConfUpdate::test_data()
             "foo=bar\n"
             <<
             ""
+            << true
+            << true
             ;
     QTest::newRow("removeGroup")
             <<
@@ -221,6 +231,8 @@ void TestKConfUpdate::test_data()
             "key=value\n"
             <<
             ""
+            << true
+            << true
             ;
     QTest::newRow("moveKeysSameFileDontExist")
             <<
@@ -247,6 +259,50 @@ void TestKConfUpdate::test_data()
             "key1=value1\n"
             <<
             ""
+            << true
+            << true
+            ;
+    QTest::newRow("DontMigrateWhenFileDoesntHaveVersion")
+            <<
+            "File=testrc\n"
+            "Group=group\n"
+            "Key=old,new\n"
+            "Options=overwrite\n"
+            <<
+            "testrc"
+            <<
+            "[group]\n"
+            "old=value\n"
+            <<
+            "testrc"
+            <<
+            "[group]\n"
+            "old=value\n"
+            <<
+            ""
+            << false
+            << false
+            ;
+
+    QTest::newRow("DontMigrateWhenUpdateCantDoItMissingFilename")
+            <<
+            "Group=group\n"
+            "Key=old,new\n"
+            "Options=overwrite\n"
+            <<
+            "testrc"
+            <<
+            "[group]\n"
+            "old=value\n"
+            <<
+            "testrc"
+            <<
+            "[group]\n"
+            "old=value\n"
+            <<
+            ""
+            << true
+            << false
             ;
 }
 
@@ -258,9 +314,14 @@ void TestKConfUpdate::test()
     QFETCH(QString, newConfName);
     QFETCH(QString, expectedNewConfContent);
     QFETCH(QString, expectedOldConfContent);
+    QFETCH(bool, useVersion5);
+    QFETCH(bool, shouldUpdateWork);
 
-    // Prepend the Id= field to the upd content
-    updContent = QString("Id=%1\n").arg(QTest::currentDataTag()) + updContent;
+    // Prepend Version and the Id= field to the upd content
+    const QString header = QString("Id=%1\n").arg(QTest::currentDataTag());
+    updContent = header + updContent;
+    if (useVersion5)
+        updContent.prepend("Version=5\n");
 
     QString oldConfPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + oldConfName;
     QString newConfPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + newConfName;
@@ -278,12 +339,16 @@ void TestKConfUpdate::test()
                          .arg(QTest::currentDataTag());
 
     QString newConfContentAfter = readFile(newConfPath);
-    expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
+    if (shouldUpdateWork) {
+        expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
+    }
     QCOMPARE(newConfContentAfter, expectedNewConfContent);
 
     if (oldConfName != newConfName) {
         QString oldConfContentAfter = readFile(oldConfPath);
-        expectedOldConfContent = expectedOldConfContent.arg(updateInfo);
+        if (shouldUpdateWork) {
+            expectedOldConfContent = expectedOldConfContent.arg(updateInfo);
+        }
         QCOMPARE(oldConfContentAfter, expectedOldConfContent);
     }
 }
@@ -548,8 +613,8 @@ void TestKConfUpdate::testScript()
     QFETCH(QString, oldConfContent);
     QFETCH(QString, expectedNewConfContent);
 
-    // Prepend the Id= field to the upd content
-    updContent = QString("Id=%1\n").arg(QTest::currentDataTag()) + updContent;
+    // Prepend the Version and Id= field to the upd content
+    updContent = QString("Version=5\nId=%1\n").arg(QTest::currentDataTag()) + updContent;
 
     QSharedPointer<QTemporaryFile> updFile(writeUpdFile(updContent));
 
@@ -572,4 +637,5 @@ void TestKConfUpdate::testScript()
     expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
     QCOMPARE(newConfContent, expectedNewConfContent);
 }
+
 
