@@ -16,7 +16,7 @@ add_library(KF5ConfigGui ${libkconfiggui_SRCS})
 generate_export_header(KF5ConfigGui BASE_NAME KConfigGui)
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
 
-target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KConfigGui>")
+target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui>")
 
 target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
 
@@ -41,9 +41,9 @@ install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAU
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
-  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KConfigGui COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui COMPONENT Devel
 )
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KF5_INCLUDE_INSTALL_DIR}/KConfigGui)
+ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

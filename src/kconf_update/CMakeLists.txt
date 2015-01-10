@@ -20,4 +20,4 @@ configure_file(config-kconf.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconf.h )
 
 # Although this is mostly an internal binary (hence installing it in
 # KF5_LIBEXEC_INSTALL_DIR), it is used by kded, and so we export its location
-install(TARGETS kconf_update EXPORT KF5ConfigTargets DESTINATION ${KF5_LIBEXEC_INSTALL_DIR})
+install(TARGETS kconf_update EXPORT KF5ConfigTargets DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF5})
