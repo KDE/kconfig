@@ -20,6 +20,8 @@
 #ifndef KCONFIGLOADER_H
 #define KCONFIGLOADER_H
 
+#include <QIODevice>
+
 #include <kconfiggroup.h>
 #include <kconfigskeleton.h>
 #include <ksharedconfig.h>
