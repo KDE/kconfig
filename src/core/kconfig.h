@@ -172,11 +172,11 @@ public:
     bool isDirty() const;
 
     /// @reimp
-    void markAsClean();
+    void markAsClean() Q_DECL_OVERRIDE;
 
     /// @{ configuration object state
     /// @reimp
-    AccessMode accessMode() const;
+    AccessMode accessMode() const Q_DECL_OVERRIDE;
 
     /**
      * Whether the configuration can be written to.
@@ -312,7 +312,7 @@ public:
 
     /// @{ immutability
     /// @reimp
-    bool isImmutable() const;
+    bool isImmutable() const Q_DECL_OVERRIDE;
     /// @}
 
     /// @{ global
@@ -343,7 +343,7 @@ public:
     /// @}
 
     /// @reimp
-    QStringList groupList() const;
+    QStringList groupList() const Q_DECL_OVERRIDE;
 
     /**
      * Returns a map (tree) of entries in a particular group.
@@ -365,11 +365,11 @@ public:
     static void setMainConfigName(const QString &str);
 
 protected:
-    virtual bool hasGroupImpl(const QByteArray &group) const;
-    virtual KConfigGroup groupImpl(const QByteArray &b);
-    virtual const KConfigGroup groupImpl(const QByteArray &b) const;
-    virtual void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal);
-    virtual bool isGroupImmutableImpl(const QByteArray &aGroup) const;
+    virtual bool hasGroupImpl(const QByteArray &group) const Q_DECL_OVERRIDE;
+    virtual KConfigGroup groupImpl(const QByteArray &b) Q_DECL_OVERRIDE;
+    virtual const KConfigGroup groupImpl(const QByteArray &b) const Q_DECL_OVERRIDE;
+    virtual void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal) Q_DECL_OVERRIDE;
+    virtual bool isGroupImmutableImpl(const QByteArray &aGroup) const Q_DECL_OVERRIDE;
 
     friend class KConfigGroup;
     friend class KConfigGroupPrivate;
@@ -378,7 +378,7 @@ protected:
     /** Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.
      */
-    virtual void virtual_hook(int id, void *data);
+    virtual void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
 
     KConfigPrivate *const d_ptr;
 

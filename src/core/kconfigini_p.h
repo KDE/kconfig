@@ -43,22 +43,22 @@ public:
 
     ParseInfo parseConfig(const QByteArray &locale,
                           KEntryMap &entryMap,
-                          ParseOptions options);
+                          ParseOptions options) Q_DECL_OVERRIDE;
     ParseInfo parseConfig(const QByteArray &locale,
                           KEntryMap &entryMap,
                           ParseOptions options,
                           bool merging);
     bool writeConfig(const QByteArray &locale, KEntryMap &entryMap,
-                     WriteOptions options);
+                     WriteOptions options) Q_DECL_OVERRIDE;
 
-    bool isWritable() const;
-    QString nonWritableErrorMessage() const;
-    KConfigBase::AccessMode accessMode() const;
-    void createEnclosing();
-    void setFilePath(const QString &path);
-    bool lock();
-    void unlock();
-    bool isLocked() const;
+    bool isWritable() const Q_DECL_OVERRIDE;
+    QString nonWritableErrorMessage() const Q_DECL_OVERRIDE;
+    KConfigBase::AccessMode accessMode() const Q_DECL_OVERRIDE;
+    void createEnclosing() Q_DECL_OVERRIDE;
+    void setFilePath(const QString &path) Q_DECL_OVERRIDE;
+    bool lock() Q_DECL_OVERRIDE;
+    void unlock() Q_DECL_OVERRIDE;
+    bool isLocked() const Q_DECL_OVERRIDE;
 
 protected:
 

@@ -53,16 +53,16 @@ public:
                   const QColor &defaultValue = QColor(128, 128, 128));
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -76,16 +76,16 @@ public:
                  const QFont &defaultValue = QFont());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
 public:

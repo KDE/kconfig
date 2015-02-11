@@ -262,13 +262,13 @@ public:
     /**
       Set the value for this item to the default value
      */
-    virtual void setDefault()
+    virtual void setDefault() Q_DECL_OVERRIDE
     {
         mReference = mDefault;
     }
 
     /** @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
-    virtual void writeConfig(KConfig *config)
+    virtual void writeConfig(KConfig *config) Q_DECL_OVERRIDE
     {
         if (mReference != mLoadedValue) { // Is this needed?
             KConfigGroup cg(config, mGroup);
@@ -282,7 +282,7 @@ public:
     }
 
     /** @copydoc KConfigSkeletonItem::readDefault(KConfig*) */
-    void readDefault(KConfig *config)
+    void readDefault(KConfig *config) Q_DECL_OVERRIDE
     {
         config->setReadDefaults(true);
         readConfig(config);
@@ -291,7 +291,7 @@ public:
     }
 
     /** @copydoc KConfigSkeletonItem::swapDefault() */
-    void swapDefault()
+    void swapDefault() Q_DECL_OVERRIDE
     {
         T tmp = mReference;
         mReference = mDefault;
@@ -448,19 +448,19 @@ public:
                    Type type = Normal);
 
         /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
-        void writeConfig(KConfig *config);
+        void writeConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() const */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
 
     private:
         Type mType;
@@ -504,19 +504,19 @@ public:
                 const QUrl &defaultValue = QUrl());
 
         /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
-        void writeConfig(KConfig *config);
+        void writeConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() const */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -529,14 +529,14 @@ public:
         ItemProperty(const QString &_group, const QString &_key,
                      QVariant &reference, const QVariant &defaultValue = QVariant());
 
-        void readConfig(KConfig *config);
-        void setProperty(const QVariant &p);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() const */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -550,16 +550,16 @@ public:
                  bool defaultValue = true);
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() const */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -573,22 +573,22 @@ public:
                 qint32 defaultValue = 0);
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
 
         /** Get the minimum value that is allowed to be stored in this item */
-        QVariant minValue() const;
+        QVariant minValue() const Q_DECL_OVERRIDE;
 
         /** Get the maximum value this is allowed to be stored in this item */
-        QVariant maxValue() const;
+        QVariant maxValue() const Q_DECL_OVERRIDE;
 
         /** Set the minimum value for the item
             @sa minValue()
@@ -618,22 +618,22 @@ public:
                      qint64 defaultValue = 0);
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::minValue() */
-        QVariant minValue() const;
+        QVariant minValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::maxValue() */
-        QVariant maxValue() const;
+        QVariant maxValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::setMinValue(qint32) */
         void setMinValue(qint64);
@@ -673,10 +673,10 @@ public:
         QList<Choice> choices() const;
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
-        void writeConfig(KConfig *config);
+        void writeConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         // Source compatibility with 4.x
         typedef Choice Choice2;
@@ -697,22 +697,22 @@ public:
                  quint32 &reference, quint32 defaultValue = 0);
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::minValue() */
-        QVariant minValue() const;
+        QVariant minValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::maxValue() */
-        QVariant maxValue() const;
+        QVariant maxValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::setMinValue(qint32) */
         void setMinValue(quint32);
@@ -738,22 +738,22 @@ public:
                       quint64 defaultValue = 0);
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::minValue() */
-        QVariant minValue() const;
+        QVariant minValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::maxValue() */
-        QVariant maxValue() const;
+        QVariant maxValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::setMinValue(qint32) */
         void setMinValue(quint64);
@@ -782,22 +782,22 @@ public:
                    double &reference, double defaultValue = 0);
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::minValue() */
-        QVariant minValue() const;
+        QVariant minValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::maxValue() */
-        QVariant maxValue() const;
+        QVariant maxValue() const Q_DECL_OVERRIDE;
 
         /** @copydoc ItemInt::setMinValue() */
         void setMinValue(double);
@@ -823,16 +823,16 @@ public:
                  const QRect &defaultValue = QRect());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -846,16 +846,16 @@ public:
                   const QPoint &defaultValue = QPoint());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -869,16 +869,16 @@ public:
                  const QSize &defaultValue = QSize());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -893,16 +893,16 @@ public:
                      const QDateTime &defaultValue = QDateTime());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -917,16 +917,16 @@ public:
                        const QStringList &defaultValue = QStringList());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -941,9 +941,9 @@ public:
                      const QStringList &defaultValue = QStringList());
 
         /** @copydoc KConfigSkeletonItem::readConfig */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
         /** @copydoc KConfigSkeletonItem::writeConfig */
-        void writeConfig(KConfig *config);
+        void writeConfig(KConfig *config) Q_DECL_OVERRIDE;
     };
 
     /**
@@ -958,19 +958,19 @@ public:
                     const QList<QUrl> &defaultValue = QList<QUrl>());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
-        void writeConfig(KConfig *config);
+        void writeConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
     /**
@@ -985,16 +985,16 @@ public:
                     const QList < int > &defaultValue = QList < int >());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
-        void readConfig(KConfig *config);
+        void readConfig(KConfig *config) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
-        void setProperty(const QVariant &p);
+        void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
-        bool isEqual(const QVariant &p) const;
+        bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
 
         /** @copydoc KConfigSkeletonItem::property() */
-        QVariant property() const;
+        QVariant property() const Q_DECL_OVERRIDE;
     };
 
 public:
