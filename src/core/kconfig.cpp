@@ -440,6 +440,12 @@ bool KConfig::sync()
             QExplicitlySharedDataPointer<KConfigBackend> tmp = KConfigBackend::create(d->sGlobalFileName);
             if (d->configState == ReadWrite && !tmp->lock()) {
                 qWarning() << "couldn't lock global file";
+
+                //unlock the local config if we're returning early
+                if (d->mBackend->isLocked()) {
+                    d->mBackend->unlock();
+                }
+
                 d->bDirty = true;
                 return false;
             }
