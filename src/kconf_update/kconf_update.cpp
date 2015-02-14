@@ -252,8 +252,7 @@ bool KonfUpdate::checkFile(const QString &filename)
         }
         if (line.startsWith("Id=")) {
             if (!foundVersion) {
-                qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped.").arg(filename);
-                return true;
+                qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped in the future.").arg(filename);
             }
             id = m_currentFilename + ':' + line.mid(3);
         } else if (line.startsWith("File=")) {
@@ -336,8 +335,7 @@ bool KonfUpdate::updateFile(const QString &filename)
         }
         if (m_line.startsWith(QLatin1String("Id="))) {
             if (!foundVersion) {
-                qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped.").arg(filename);
-                break;
+                qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped in the future.").arg(filename);
             }
             gotId(m_line.mid(3));
         } else if (m_skip) {
