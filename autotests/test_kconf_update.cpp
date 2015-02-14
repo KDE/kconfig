@@ -262,7 +262,7 @@ void TestKConfUpdate::test_data()
             << true
             << true
             ;
-    QTest::newRow("MigrateWhenFileDoesntHaveVersion")
+    QTest::newRow("DontMigrateWhenFileDoesntHaveVersion")
             <<
             "File=testrc\n"
             "Group=group\n"
@@ -276,15 +276,12 @@ void TestKConfUpdate::test_data()
             <<
             "testrc"
             <<
-            "[$Version]\n"
-            "update_info=%1\n"
-            "\n"
             "[group]\n"
-            "new=value\n"
+            "old=value\n"
             <<
             ""
             << false
-            << true
+            << false
             ;
 
     QTest::newRow("DontMigrateWhenUpdateCantDoItMissingFilename")
