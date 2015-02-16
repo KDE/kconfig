@@ -79,16 +79,17 @@ KConfigGroup KDesktopFile::desktopGroup() const
 QString KDesktopFile::locateLocal(const QString &path)
 {
     QString relativePath;
+    QChar plus(QLatin1Char('/'));
     // Relative to config? (e.g. for autostart)
     Q_FOREACH (const QString &dir, QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation)) {
-        if (path.startsWith(dir) + '/') {
+        if (path.startsWith(dir + plus)) {
             relativePath = dir.mid(path.length() + 1);
             return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + relativePath;
         }
     }
     // Relative to xdg data dir? (much more common)
     Q_FOREACH (const QString &dir, QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
-        if (path.startsWith(dir) + '/') {
+        if (path.startsWith(dir + plus)) {
             relativePath = dir.mid(path.length() + 1);
         }
     }
