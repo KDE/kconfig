@@ -79,8 +79,8 @@ public:
 
 private:
     Q_DISABLE_COPY(KSharedConfig)
-    virtual KConfigGroup groupImpl(const QByteArray &aGroup) Q_DECL_OVERRIDE;
-    virtual const KConfigGroup groupImpl(const QByteArray &aGroup) const Q_DECL_OVERRIDE;
+    KConfigGroup groupImpl(const QByteArray &aGroup) Q_DECL_OVERRIDE;
+    const KConfigGroup groupImpl(const QByteArray &aGroup) const Q_DECL_OVERRIDE;
 
     KSharedConfig(const QString &file, OpenFlags mode,
                   QStandardPaths::StandardLocation resourceType);

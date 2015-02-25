@@ -262,13 +262,13 @@ public:
     /**
       Set the value for this item to the default value
      */
-    virtual void setDefault() Q_DECL_OVERRIDE
+    void setDefault() Q_DECL_OVERRIDE
     {
         mReference = mDefault;
     }
 
     /** @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
-    virtual void writeConfig(KConfig *config) Q_DECL_OVERRIDE
+    void writeConfig(KConfig *config) Q_DECL_OVERRIDE
     {
         if (mReference != mLoadedValue) { // Is this needed?
             KConfigGroup cg(config, mGroup);
@@ -333,14 +333,14 @@ public:
             NotifyFunction targetFunction, quint64 userData);
     virtual ~KConfigCompilerSignallingItem();
 
-    virtual void readConfig(KConfig *) Q_DECL_OVERRIDE;
-    virtual void writeConfig(KConfig *) Q_DECL_OVERRIDE;
-    virtual void readDefault(KConfig *) Q_DECL_OVERRIDE;
-    virtual void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
-    virtual bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
-    virtual QVariant property() const Q_DECL_OVERRIDE;
-    virtual void setDefault() Q_DECL_OVERRIDE;
-    virtual void swapDefault() Q_DECL_OVERRIDE;
+    void readConfig(KConfig *) Q_DECL_OVERRIDE;
+    void writeConfig(KConfig *) Q_DECL_OVERRIDE;
+    void readDefault(KConfig *) Q_DECL_OVERRIDE;
+    void setProperty(const QVariant &p) Q_DECL_OVERRIDE;
+    bool isEqual(const QVariant &p) const Q_DECL_OVERRIDE;
+    QVariant property() const Q_DECL_OVERRIDE;
+    void setDefault() Q_DECL_OVERRIDE;
+    void swapDefault() Q_DECL_OVERRIDE;
 private:
     inline void invokeNotifyFunction()
     {
