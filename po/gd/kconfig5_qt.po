@@ -1,0 +1,494 @@
+# GunChleoc <fios@foramnagaidhlig.net>, 2014.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2014-12-09 10:26+0100\n"
+"Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
+"Language-Team: Fòram na Gàidhlig\n"
+"Language: gd\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Qt-Contexts: true\n"
+
+#: core/kconfig.cpp:871
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Cuir fios gu rianaire an t-siostaim agad."
+
+#: core/kconfigini.cpp:576
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Cha ghabh sgrìobhadh san fhaidhle rèiteachaidh \"%1\".\n"
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Tùsail"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Fosgail"
+
+#: gui/kstandardshortcut.cpp:74
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Ùr"
+
+#: gui/kstandardshortcut.cpp:75
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Dùin"
+
+#: gui/kstandardshortcut.cpp:76
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Sàbhail"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "Clò-bhuail"
+
+#: gui/kstandardshortcut.cpp:78
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Fàg an-seo"
+
+#: gui/kstandardshortcut.cpp:81
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Neo-dhèan"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Ath-dhèan"
+
+#: gui/kstandardshortcut.cpp:83
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Gearr às"
+
+#: gui/kstandardshortcut.cpp:84
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Dèan lethbhreac"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Cuir ann"
+
+#: gui/kstandardshortcut.cpp:86
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Cuir ann na thagh thu"
+
+#: gui/kstandardshortcut.cpp:88
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Tagh na h-uile"
+
+#: gui/kstandardshortcut.cpp:89
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "Neo-thagh"
+
+#: gui/kstandardshortcut.cpp:90
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Sguab às facal roimhe"
+
+#: gui/kstandardshortcut.cpp:91
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Sguab às facal às a dhèidh"
+
+#: gui/kstandardshortcut.cpp:93
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Lorg"
+
+#: gui/kstandardshortcut.cpp:94
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Lorg an ath fhear"
+
+#: gui/kstandardshortcut.cpp:95
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Lorg am fear roimhe"
+
+#: gui/kstandardshortcut.cpp:96
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Cuir 'na àite"
+
+#: gui/kstandardshortcut.cpp:99
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Dhachaigh"
+
+#: gui/kstandardshortcut.cpp:100
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "An toiseach"
+
+#: gui/kstandardshortcut.cpp:101
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "An deireadh"
+
+#: gui/kstandardshortcut.cpp:102
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "An nì roimhe"
+
+#: gui/kstandardshortcut.cpp:103
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "An ath nì"
+
+#: gui/kstandardshortcut.cpp:105
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "Suas"
+
+#: gui/kstandardshortcut.cpp:106
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Air ais"
+
+#: gui/kstandardshortcut.cpp:107
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Air adhart"
+
+#: gui/kstandardshortcut.cpp:108
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Ath-luchdaich"
+
+#: gui/kstandardshortcut.cpp:110
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Toiseach na loidhne"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Deireadh na loidhne"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Rach gu loidhne"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Facal air ais"
+
+#: gui/kstandardshortcut.cpp:114
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Facal air adhart"
+
+#: gui/kstandardshortcut.cpp:116
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Cuir comharra-leabhair ris"
+
+#: gui/kstandardshortcut.cpp:117
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Sùm a-steach"
+
+#: gui/kstandardshortcut.cpp:118
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Sùm a-mach"
+
+#: gui/kstandardshortcut.cpp:119
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Modh làn-sgrìn"
+
+#: gui/kstandardshortcut.cpp:121
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Seall bàr clàr-taice"
+
+#: gui/kstandardshortcut.cpp:122
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Gnìomhaich an ath thaba"
+
+#: gui/kstandardshortcut.cpp:123
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Gnìomhaich an taba roimhe"
+
+#: gui/kstandardshortcut.cpp:126
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Cobhair"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Dè th' ann?"
+
+#: gui/kstandardshortcut.cpp:130
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Coileanadh teacsa"
+
+#: gui/kstandardshortcut.cpp:131
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Am maidse roimhe"
+
+#: gui/kstandardshortcut.cpp:132
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "An ath mhaidse"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Coileanadh fo-shreinge"
+
+#: gui/kstandardshortcut.cpp:135
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "An nì roimhe air an liosta"
+
+#: gui/kstandardshortcut.cpp:136
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "An ath nì air an liosta"
+
+#: gui/kstandardshortcut.cpp:138
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Fosgail nì o chionn goirid"
+
+#: gui/kstandardshortcut.cpp:139
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Sàbhail mar"
+
+#: gui/kstandardshortcut.cpp:140
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Till"
+
+#: gui/kstandardshortcut.cpp:141
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Ro-shealladh a' chlò-bhualaidh"
+
+#: gui/kstandardshortcut.cpp:142
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Cuir air a' phost-d"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Falamhaich"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "An dearbh mheud"
+
+#: gui/kstandardshortcut.cpp:145
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Co-fhreagair ris an duilleag"
+
+#: gui/kstandardshortcut.cpp:146
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Co-fhreagair ris an leud"
+
+#: gui/kstandardshortcut.cpp:147
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Co-fhreagair ris an àirde"
+
+#: gui/kstandardshortcut.cpp:148
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Sùm"
+
+#: gui/kstandardshortcut.cpp:149
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Rach gu"
+
+#: gui/kstandardshortcut.cpp:150
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Rach gu duilleag"
+
+#: gui/kstandardshortcut.cpp:151
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "An sgrìobhainn roimhpe"
+
+#: gui/kstandardshortcut.cpp:152
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "An ath sgrìobhainn"
+
+#: gui/kstandardshortcut.cpp:153
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Deasaich na comharran-leabhair"
+
+#: gui/kstandardshortcut.cpp:154
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Dearbhadh an litreachaidh"
+
+#: gui/kstandardshortcut.cpp:155
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Seall am bàr-inneal"
+
+#: gui/kstandardshortcut.cpp:156
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Seall am bàr-staid"
+
+#: gui/kstandardshortcut.cpp:157
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Sàbhail na roghainnean"
+
+#: gui/kstandardshortcut.cpp:158
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Nasgadh nan iuchraichean"
+
+#: gui/kstandardshortcut.cpp:159
+msgctxt "KStandardShortcut|@action"
+msgid "Preferences"
+msgstr "Roghainnean"
+
+#: gui/kstandardshortcut.cpp:160
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Rèitich na bàraichean-inneal"
+
+#: gui/kstandardshortcut.cpp:161
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Rèitich na brathan"
+
+#: gui/kstandardshortcut.cpp:162
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Gliocas an latha"
+
+#: gui/kstandardshortcut.cpp:163
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Dèan aithris air buga"
+
+#: gui/kstandardshortcut.cpp:164
+msgctxt "KStandardShortcut|@action"
+msgid "Switch Application Language"
+msgstr "Atharraich cànan na h-aplacaid"
+
+#: gui/kstandardshortcut.cpp:165
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "Mun aplacaid seo"
+
+#: gui/kstandardshortcut.cpp:166
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "Mu KDE"
+
+#: kconf_update/kconf_update.cpp:947
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "Inneal KDE gus faidhlichean rèiteachaidh a' chleachdaiche ùrachadh"
+
+#: kconf_update/kconf_update.cpp:949
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Cum toraidhean às-chuir o sgriobtaichean"
+
+#: kconf_update/kconf_update.cpp:950
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Thoir sùil a bheil am faidhle rèiteachaidh fhèin feumach air ùrachadh"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1536
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Am pasgan sa thèid na faidhlichean a ghintinn ann [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1537
+msgctxt "main|"
+msgid "directory"
+msgstr "pasgan"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1540
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Seall ceadachas a' bhathair-bhog"
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Cleachd <file> an àite an rèiteachaidh uile-choitchinn"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+"Am buidheann sa thèid a lorg. Cleachd iomadh turas airson bhuidhnean "
+"neadaichte."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "An iuchair a thèid a shireadh"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "An luach tùsail"
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Seòrsa a' chaochladair"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Seòrsa a' chaochladair. Cleachd \"bool\" airson booleach air neo thèid "
+"dèiligeadh ris mar shreang."
+
+#: kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr ""
+"An luach a thèid a sgrìobhadh. Tha seo riatanach, cleachd '' air shell "
+"airson luach falamh."
