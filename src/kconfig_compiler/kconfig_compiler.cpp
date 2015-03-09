@@ -96,7 +96,6 @@ public:
         allDefaultGetters = (defaultGetters.count() == 1) && (defaultGetters.at(0).toLower() == "true");
         globalEnums = codegenConfig.value("GlobalEnums", false).toBool();
         useEnumTypes = codegenConfig.value("UseEnumTypes", false).toBool();
-
         const QString trString = codegenConfig.value("TranslationSystem").toString().toLower();
         if (trString == "kde") {
             translationSystem = KdeTranslation;
@@ -106,6 +105,7 @@ public:
             }
             translationSystem = QtTranslation;
         }
+        qCategoryLoggingName = codegenConfig.value("CategoryLoggingName", QString()).toString();
     }
 
 public:
@@ -128,6 +128,7 @@ public:
     QStringList sourceIncludes;
     QStringList mutators;
     QStringList defaultGetters;
+    QString qCategoryLoggingName;
     bool allMutators;
     bool setUserTexts;
     bool allDefaultGetters;
@@ -1364,6 +1365,16 @@ QString memberAccessorBody(CfgEntry *e, bool globalEnums, const CfgConfig &cfg)
 // returns the member mutator implementation
 // which should go in the h file if inline
 // or the cpp file if not inline
+
+void addDebugMethod(QTextStream &out, const CfgConfig &cfg, const QString &n)
+{
+    if (cfg.qCategoryLoggingName.isEmpty()) {
+       out << "  qDebug() << \"" << setFunction(n);
+    } else {
+       out << "  qCDebug(" << cfg.qCategoryLoggingName << ") << \"" << setFunction(n);
+    }
+}
+
 QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
 {
     QString result;
@@ -1375,7 +1386,7 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
         if (e->minValue() != "0" || !isUnsigned(t)) { // skip writing "if uint<0" (#187579)
             out << "if (v < " << e->minValue() << ")" << endl;
             out << "{" << endl;
-            out << "  qDebug() << \"" << setFunction(n);
+            addDebugMethod(out, cfg, n);
             out << ": value \" << v << \" is less than the minimum value of ";
             out << e->minValue() << "\";" << endl;
             out << "  v = " << e->minValue() << ";" << endl;
@@ -1386,7 +1397,7 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
     if (!e->maxValue().isEmpty()) {
         out << endl << "if (v > " << e->maxValue() << ")" << endl;
         out << "{" << endl;
-        out << "  qDebug() << \"" << setFunction(n);
+        addDebugMethod(out, cfg, n);
         out << ": value \" << v << \" is greater than the maximum value of ";
         out << e->maxValue() << "\";" << endl;
         out << "  v = " << e->maxValue() << ";" << endl;

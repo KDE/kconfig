@@ -222,12 +222,23 @@ ecm_add_test(${kconfigcompiler_test_signals_SRCS}
     LINK_LIBRARIES Qt5::Test KF5::ConfigGui
 )
 
+
 ########### next target ###############
 
 ecm_add_test(kconfigcompiler_test.cpp
     TEST_NAME kconfigcompiler-basic-test
     LINK_LIBRARIES Qt5::Test
 )
+
+
+########### next target ###############
+
+set(test_qcategory_SRCS test_qdebugcategorymain.cpp test_qdebugcategory_debug.cpp)
+gen_kcfg_test_source(test_qdebugcategory test_qcategory_SRCS)
+add_executable(test_qdebugcategory ${test_qcategory_SRCS})
+ecm_mark_as_test(test_qdebugcategory)
+target_link_libraries(test_qdebugcategory KF5::ConfigGui)
+
 
 ########### install files ###############
 
