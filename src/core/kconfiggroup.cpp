@@ -92,7 +92,7 @@ public:
     QByteArray name() const
     {
         if (mName.isEmpty()) {
-            return "<default>";
+            return QByteArrayLiteral("<default>");
         }
         return mName;
     }
@@ -112,7 +112,7 @@ public:
     {
         QExplicitlySharedDataPointer<KConfigGroupPrivate> data;
         if (dynamic_cast<KConfigGroup *>(master)) {
-            data = new KConfigGroupPrivate(dynamic_cast<KConfigGroup *>(master), isImmutable, isConst, name);
+            data = new KConfigGroupPrivate(static_cast<KConfigGroup *>(master), isImmutable, isConst, name);
         } else {
             data = new KConfigGroupPrivate(dynamic_cast<KConfig *>(master), isImmutable, isConst, name);
         }
@@ -125,13 +125,13 @@ public:
 
 QByteArray KConfigGroupPrivate::serializeList(const QList<QByteArray> &list)
 {
-    QByteArray value = "";
+    QByteArray value;
 
     if (!list.isEmpty()) {
         QList<QByteArray>::ConstIterator it = list.constBegin();
         const QList<QByteArray>::ConstIterator end = list.constEnd();
 
-        value = QByteArray(*it).replace('\\', "\\\\").replace(',', "\\,");
+        value = QByteArray(*it).replace('\\', QByteArrayLiteral("\\\\")).replace(',', QByteArrayLiteral("\\,"));
 
         while (++it != end) {
             // In the loop, so it is not done when there is only one element.
@@ -139,12 +139,12 @@ QByteArray KConfigGroupPrivate::serializeList(const QList<QByteArray> &list)
             value.reserve(4096);
 
             value += ',';
-            value += QByteArray(*it).replace('\\', "\\\\").replace(',', "\\,");
+            value += QByteArray(*it).replace('\\', QByteArrayLiteral("\\\\")).replace(',', QByteArrayLiteral("\\,"));
         }
 
         // To be able to distinguish an empty list from a list with one empty element.
         if (value.isEmpty()) {
-            value = "\\0";
+            value = QByteArrayLiteral("\\0");
         }
     }
 
