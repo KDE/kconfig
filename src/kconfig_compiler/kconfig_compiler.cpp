@@ -202,7 +202,7 @@ public:
           mLabelContext(labelContext), mLabel(label), mToolTipContext(toolTipContext), mToolTip(toolTip),
           mWhatsThisContext(whatsThisContext), mWhatsThis(whatsThis),
           mCode(code), mDefaultValue(defaultValue), mChoices(choices),
-          mSignalList(signalList), mHidden(hidden)
+          mSignalList(signalList), mParamMax(0), mHidden(hidden)
     {
     }
 
