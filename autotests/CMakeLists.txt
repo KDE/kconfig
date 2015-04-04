@@ -37,6 +37,7 @@ ecm_add_tests(
    kdesktopfiletest.cpp
    ksharedconfigtest.cpp
    test_kconf_update.cpp
+   ksharedconfig_in_global_object
    NAME_PREFIX kconfigcore-
    LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent
 )

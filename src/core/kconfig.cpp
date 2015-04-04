@@ -530,23 +530,35 @@ KConfig::OpenFlags KConfig::openFlags() const
     return d->openFlags;
 }
 
-Q_GLOBAL_STATIC(QString, globalMainConfigName)
+struct KConfigStaticData
+{
+    QString globalMainConfigName;
+    // Keep a copy so we can use it in global dtors, after qApp is gone
+    // This is a workaround for the Qt bug fixed in https://codereview.qt-project.org/107005 for Qt 5.5
+    // Revert this addition once we can depend on Qt 5.5.
+    QStringList appArgs;
+};
+Q_GLOBAL_STATIC(KConfigStaticData, globalData)
 
 void KConfig::setMainConfigName(const QString &str)
 {
-    *globalMainConfigName() = str;
+    globalData()->globalMainConfigName = str;
 }
 
 QString KConfig::mainConfigName()
 {
+    KConfigStaticData* data = globalData();
+    if (data->appArgs.isEmpty())
+        data->appArgs = QCoreApplication::arguments();
+
     // --config on the command line overrides everything else
-    const QStringList args = QCoreApplication::arguments();
+    const QStringList args = data->appArgs;
     for (int i = 1; i < args.count(); ++i) {
         if (args.at(i) == QLatin1String("--config") && i < args.count() - 1) {
             return args.at(i + 1);
         }
     }
-    const QString globalName = *globalMainConfigName();
+    const QString globalName = data->globalMainConfigName;
     if (!globalName.isEmpty()) {
         return globalName;
     }
