@@ -97,6 +97,7 @@ public:
         globalEnums = codegenConfig.value("GlobalEnums", false).toBool();
         useEnumTypes = codegenConfig.value("UseEnumTypes", false).toBool();
         const QString trString = codegenConfig.value("TranslationSystem").toString().toLower();
+        generateProperties = codegenConfig.value("GenerateProperties", false).toBool();
         if (trString == "kde") {
             translationSystem = KdeTranslation;
         } else {
@@ -137,6 +138,7 @@ public:
     bool useEnumTypes;
     bool itemAccessors;
     TranslationSystem translationSystem;
+    bool generateProperties;
 };
 
 struct SignalArguments {
@@ -147,9 +149,12 @@ struct SignalArguments {
 class Signal
 {
 public:
+    Signal() : modify(false) {}
+
     QString name;
     QString label;
     QList<SignalArguments> arguments;
+    bool modify;
 };
 
 class CfgEntry
@@ -549,6 +554,11 @@ static QString setFunction(const QString &n, const QString &className = QString(
     return result;
 }
 
+static QString changeSignalName(const QString &n)
+{
+    return n+QStringLiteral("Changed");
+}
+
 static QString getDefaultFunction(const QString &n, const QString &className = QString())
 {
     QString result = QString::fromLatin1("default") +  n + QString::fromLatin1("Value");
@@ -842,6 +852,13 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
             signal.name = e.attribute("signal");
             signalList.append(signal);
         }
+    }
+
+    if (cfg.generateProperties && (cfg.allMutators || cfg.mutators.contains(name))) {
+        Signal s;
+        s.name = changeSignalName(name);
+        s.modify = true;
+        signalList.append(s);
     }
 
     bool nameIsEmpty = name.isEmpty();
@@ -1404,7 +1421,14 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
         out << "}" << endl << endl;
     }
 
-    out << "if (!" << This << "isImmutable( QString::fromLatin1( \"";
+    const QString varExpression = This + varPath(n, cfg) + (e->param().isEmpty() ? QString() : "[i]");
+
+    const bool hasBody = !e->signalList().empty() || cfg.generateProperties;
+    out << "if (";
+    if (hasBody) {
+        out << "v != " << varExpression << " && ";
+    }
+    out << "!" << This << "isImmutable( QString::fromLatin1( \"";
     if (!e->param().isEmpty()) {
         out << e->paramName().replace("$(" + e->param() + ")", "%1") << "\" ).arg( ";
         if (e->paramType() == "Enum") {
@@ -1424,17 +1448,17 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
     } else {
         out << n << "\" )";
     }
-    out << " ))" << (!e->signalList().empty() ? " {" : "") << endl;
-    out << "  " << This << varPath(n, cfg);
-    if (!e->param().isEmpty()) {
-        out << "[i]";
-    }
-    out << " = v;" << endl;
+    out << " ))" << (hasBody ? " {" : "") << endl;
+    out << "  " << varExpression << " = v;" << endl;
 
-    if (!e->signalList().empty()) {
-        Q_FOREACH (const Signal &signal, e->signalList()) {
+    Q_FOREACH (const Signal &signal, e->signalList()) {
+        if (signal.modify) {
+            out << "  Q_EMIT " << This << signal.name << "();" << endl;
+        } else {
             out << "  " << This << varPath("settingsChanged", cfg) << " |= " << signalEnumName(signal.name) << ";" << endl;
         }
+    }
+    if (hasBody) {
         out << "}" << endl;
     }
 
@@ -1619,7 +1643,6 @@ int main(int argc, char **argv)
     QList<Param> parameters;
     QList<Signal> signalList;
     QStringList includes;
-    bool hasSignals = false;
 
     QList<CfgEntry *> entries;
 
@@ -1718,7 +1741,6 @@ int main(int argc, char **argv)
     }
 #endif
 
-    hasSignals = !signalList.empty();
     QString headerFileName = baseName + ".h";
     QString implementationFileName = baseName + ".cpp";
     QString mocFileName = baseName + ".moc";
@@ -1788,7 +1810,7 @@ int main(int argc, char **argv)
 
     h << "{" << endl;
     // Add Q_OBJECT macro if the config need signals.
-    if (hasSignals) {
+    if (!signalList.isEmpty() || cfg.generateProperties) {
         h << "  Q_OBJECT" << endl;
     }
     h << "  public:" << endl;
@@ -1842,25 +1864,9 @@ int main(int argc, char **argv)
             }
         }
     }
-    if (hasSignals) {
-        h << "\n    enum {" << endl;
-        unsigned val = 1;
-        QList<Signal>::ConstIterator it, itEnd = signalList.constEnd();
-        for (it = signalList.constBegin(); it != itEnd; val <<= 1) {
-            if (!val) {
-                cerr << "Too many signals to create unique bit masks" << endl;
-                exit(1);
-            }
-            Signal signal = *it;
-            h << "      " << signalEnumName(signal.name) << " = 0x" << hex << val;
-            if (++it != itEnd) {
-                h << ",";
-            }
-            h << endl;
-        }
-        h << " };" << dec << endl;
-    }
     h << endl;
+    
+
     // Constructor or singleton accessor
     if (!cfg.singleton) {
         h << "    " << cfg.className << "(";
@@ -1930,6 +1936,33 @@ int main(int argc, char **argv)
             }
         }
         h << endl;
+
+        QString returnType;
+        if (cfg.useEnumTypes && t == "Enum") {
+            returnType = enumType(*itEntry, cfg.globalEnums);
+        } else {
+            returnType = cppType(t);
+        }
+
+        if (cfg.generateProperties) {
+            h << "    Q_PROPERTY(" << returnType << ' ' << n;
+            h << " READ " << n;
+            if (cfg.allMutators || cfg.mutators.contains(n)) {
+                const QString signal = changeSignalName(n);
+                h << " WRITE " << setFunction(n);
+                h << " NOTIFY " << signal;
+
+                //If we have the modified signal, we'll also need
+                //the changed signal as well
+                Signal s;
+                s.name = signal;
+                s.modify = true;
+                signalList.append(s);
+            } else {
+                h << " CONSTANT";
+            }
+            h << ")" << endl;
+        }
         // Accessor
         h << "    /**" << endl;
         h << "      Get " << (*itEntry)->label() << endl;
@@ -1938,11 +1971,7 @@ int main(int argc, char **argv)
             h << "    static" << endl;
         }
         h << "    ";
-        if (cfg.useEnumTypes && t == "Enum") {
-            h << enumType(*itEntry, cfg.globalEnums);
-        } else {
-            h << cppType(t);
-        }
+        h << returnType;
         h << " " << getFunction(n) << "(";
         if (!(*itEntry)->param().isEmpty()) {
             h << " " << cppType((*itEntry)->paramType()) << " i ";
@@ -2021,8 +2050,27 @@ int main(int argc, char **argv)
     }
 
     // Signal definition.
+    const bool hasSignals = !signalList.isEmpty();
+    bool hasNonModifySignals = false;
     if (hasSignals) {
-        h << endl;
+        h << "\n    enum {" << endl;
+        unsigned val = 1;
+        QList<Signal>::ConstIterator it, itEnd = signalList.constEnd();
+        for (it = signalList.constBegin(); it != itEnd; val <<= 1) {
+            hasNonModifySignals |= !it->modify;
+            if (!val) {
+                cerr << "Too many signals to create unique bit masks" << endl;
+                exit(1);
+            }
+            Signal signal = *it;
+            h << "      " << signalEnumName(signal.name) << " = 0x" << hex << val;
+            if (++it != itEnd) {
+                h << ",";
+            }
+            h << endl;
+        }
+        h << "    };" << dec << endl << endl;
+
         h << "  Q_SIGNALS:";
         Q_FOREACH (const Signal &signal, signalList) {
             h << endl;
@@ -2070,7 +2118,7 @@ int main(int argc, char **argv)
         h << "    friend class " << cfg.className << "Helper;" << endl << endl;
     }
 
-    if (hasSignals) {
+    if (hasNonModifySignals) {
         h << "    virtual bool usrWriteConfig();" << endl;
     }
 
@@ -2122,7 +2170,7 @@ int main(int argc, char **argv)
                 h << ";" << endl;
             }
         }
-        if (hasSignals) {
+        if (hasNonModifySignals) {
             h << "    uint " << varName("settingsChanged", cfg) << ";" << endl;
         }
 
@@ -2231,7 +2279,7 @@ int main(int argc, char **argv)
             }
             cpp << ";" << endl;
         }
-        if (hasSignals) {
+        if (hasNonModifySignals) {
             cpp << "    uint " << varName("settingsChanged", cfg) << ";" << endl;
         }
 
@@ -2321,7 +2369,7 @@ int main(int argc, char **argv)
         cpp << "  , mParam" << (*it).name << "(" << (*it).name << ")" << endl;
     }
 
-    if (hasSignals && !cfg.dpointer) {
+    if (hasNonModifySignals && !cfg.dpointer) {
         cpp << "  , " << varName("settingsChanged", cfg) << "(0)" << endl;
     }
 
@@ -2329,7 +2377,7 @@ int main(int argc, char **argv)
 
     if (cfg.dpointer) {
         cpp << "  d = new " + cfg.className + "Private;" << endl;
-        if (hasSignals) {
+        if (hasNonModifySignals) {
             cpp << "  " << varPath("settingsChanged", cfg) << " = 0;" << endl;
         }
     }
@@ -2550,14 +2598,18 @@ int main(int argc, char **argv)
     }
     cpp << "}" << endl << endl;
 
-    if (hasSignals) {
+    if (hasNonModifySignals) {
         cpp << "bool " << cfg.className << "::" << "usrWriteConfig()" << endl;
         cpp << "{" << endl;
         cpp << "  const bool res = " << cfg.inherits << "::usrWriteConfig();" << endl;
         cpp << "  if (!res) return false;" << endl << endl;
         Q_FOREACH (const Signal &signal, signalList) {
-            cpp << "  if ( " << varPath("settingsChanged", cfg) << " & " << signalEnumName(signal.name) << " ) " << endl;
-            cpp << "    emit " << signal.name << "(";
+            if (signal.modify) {
+                continue;
+            }
+
+            cpp << "  if ( " << varPath("settingsChanged", cfg) << " & " << signalEnumName(signal.name) << " )" << endl;
+            cpp << "    Q_EMIT " << signal.name << "(";
             QList<SignalArguments>::ConstIterator it, itEnd = signal.arguments.constEnd();
             for (it = signal.arguments.constBegin(); it != itEnd;) {
                 SignalArguments argument = *it;
@@ -2579,17 +2631,35 @@ int main(int argc, char **argv)
                     cpp << ", ";
                 }
             }
-            cpp << ");" << endl << endl;
+            cpp << ");" << endl;
         }
+
         cpp << "  " << varPath("settingsChanged", cfg) << " = 0;" << endl;
         cpp << "  return true;" << endl;
         cpp << "}" << endl;
+    }
 
+    if (hasSignals) {
         cpp << endl;
         cpp << "void " << cfg.className << "::" << "itemChanged(quint64 flags) {" << endl;
-        cpp << "  " << varPath("settingsChanged", cfg) << " |= flags;" << endl;
-        cpp << "}" << endl;
+        if (hasNonModifySignals)
+            cpp << "  " << varPath("settingsChanged", cfg) << " |= flags;" << endl;
 
+        if (!signalList.isEmpty())
+            cpp << endl;
+
+        Q_FOREACH (const Signal &signal, signalList) {
+            if (signal.modify) {
+                cpp << "  if ( flags & " << signalEnumName(signal.name) << " ) {" << endl;
+                cpp << "    Q_EMIT " << signal.name << "();" << endl;
+                cpp << "  }" << endl;
+            }
+        }
+
+        cpp << "}" << endl;
+    }
+
+    if (hasSignals || cfg.generateProperties) {
         // Add includemoc if they are signals defined.
         cpp << endl;
         cpp << "#include \"" << mocFileName << "\"" << endl;

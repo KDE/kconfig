@@ -12,11 +12,6 @@ class TestSignal : public KConfigSkeleton
   Q_OBJECT
   public:
 
-    enum {
-      signalEmoticonSettingsChanged = 0x1,
-      signalStyleChanged = 0x2
- };
-
     static TestSignal *self();
     ~TestSignal();
 
@@ -26,7 +21,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setEmoticonTheme( const QString & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "emoticonTheme" ) )) {
+      if (v != self()->mEmoticonTheme && !self()->isImmutable( QString::fromLatin1( "emoticonTheme" ) )) {
         self()->mEmoticonTheme = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -47,7 +42,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setUseEmoticon( bool v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "useEmoticon" ) )) {
+      if (v != self()->mUseEmoticon && !self()->isImmutable( QString::fromLatin1( "useEmoticon" ) )) {
         self()->mUseEmoticon = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -68,7 +63,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setEmoticonRequireSpace( bool v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "emoticonRequireSpace" ) )) {
+      if (v != self()->mEmoticonRequireSpace && !self()->isImmutable( QString::fromLatin1( "emoticonRequireSpace" ) )) {
         self()->mEmoticonRequireSpace = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -89,7 +84,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setStylePath( const QString & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "stylePath" ) )) {
+      if (v != self()->mStylePath && !self()->isImmutable( QString::fromLatin1( "stylePath" ) )) {
         self()->mStylePath = v;
         self()->mSettingsChanged |= signalStyleChanged;
       }
@@ -123,6 +118,11 @@ class TestSignal : public KConfigSkeleton
       return self()->mStyleCSSVariant;
     }
 
+
+    enum {
+      signalEmoticonSettingsChanged = 0x1,
+      signalStyleChanged = 0x2
+    };
 
   Q_SIGNALS:
     void emoticonSettingsChanged();

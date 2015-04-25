@@ -61,18 +61,17 @@ bool TestSignal::usrWriteConfig()
   const bool res = KConfigSkeleton::usrWriteConfig();
   if (!res) return false;
 
-  if ( mSettingsChanged & signalEmoticonSettingsChanged ) 
-    emit emoticonSettingsChanged();
-
-  if ( mSettingsChanged & signalStyleChanged ) 
-    emit styleChanged(mStylePath, mStyleCSSVariant);
-
+  if ( mSettingsChanged & signalEmoticonSettingsChanged )
+    Q_EMIT emoticonSettingsChanged();
+  if ( mSettingsChanged & signalStyleChanged )
+    Q_EMIT styleChanged(mStylePath, mStyleCSSVariant);
   mSettingsChanged = 0;
   return true;
 }
 
 void TestSignal::itemChanged(quint64 flags) {
   mSettingsChanged |= flags;
+
 }
 
 #include "test_signal.moc"

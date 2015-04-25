@@ -192,6 +192,17 @@ target_link_libraries(test12 KF5::ConfigGui)
 
 ########### next target ###############
 
+set(test13_SRCS test13main.cpp )
+
+gen_kcfg_test_source(test13 test13_SRCS)
+
+add_executable(test13 ${test13_SRCS})
+ecm_mark_as_test(test13)
+target_link_libraries(test13 KF5::ConfigGui)
+
+
+########### next target ###############
+
 set(test_dpointer_SRCS test_dpointer_main.cpp )
 
 gen_kcfg_test_source(test_dpointer test_dpointer_SRCS)
