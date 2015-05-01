@@ -156,7 +156,7 @@ void KDesktopFileTest::testActionGroup()
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
     QCOMPARE(df.readType(), QString());
-    QCOMPARE(df.fileName(), fileName);
+    QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
     QCOMPARE(df.readActions(), QStringList() << "encrypt" << "semi;colon" << "decrypt");
     QCOMPARE(df.hasActionGroup("encrypt"), true);
     QCOMPARE(df.hasActionGroup("semi;colon"), true);
