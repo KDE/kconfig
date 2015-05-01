@@ -31,8 +31,7 @@
 
 #include <qtest.h>
 
-// QT5 TODO QTEST_GUILESS_MAIN(TestKConfUpdate)
-QTEST_MAIN(TestKConfUpdate)
+QTEST_GUILESS_MAIN(TestKConfUpdate)
 
 static void writeFile(const QString &path, const QString &content)
 {

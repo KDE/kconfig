@@ -26,8 +26,7 @@
 // Local
 #include "kconfigutils.h"
 
-// QT5 TODO QTEST_GUILESS_MAIN(TestKConfigUtils)
-QTEST_MAIN(TestKConfigUtils)
+QTEST_GUILESS_MAIN(TestKConfigUtils)
 
 void TestKConfigUtils::testParseGroupString_data()
 {
