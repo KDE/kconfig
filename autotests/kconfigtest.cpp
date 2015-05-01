@@ -892,11 +892,15 @@ void KConfigTest::testEmptyGroup()
     QVERIFY(lines.first() != QByteArray("TestKey=defaultGroup\n"));
 }
 
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC) && !defined(Q_OS_BLACKBERRY) && !defined(Q_OS_ANDROID)
+#define Q_XDG_PLATFORM
+#endif
+
 void KConfigTest::testCascadingWithLocale()
 {
     // This test relies on XDG_CONFIG_DIRS, which only has effect on Unix.
     // Cascading (more than two levels) isn't available at all on Windows.
-#ifdef Q_OS_UNIX
+#ifdef Q_XDG_PLATFORM
     QTemporaryDir middleDir;
     QTemporaryDir globalDir;
     qputenv("XDG_CONFIG_DIRS", qPrintable(middleDir.path() + QString(":") + globalDir.path()));
