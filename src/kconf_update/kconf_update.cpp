@@ -777,6 +777,7 @@ void KonfUpdate::gotScript(const QString &_script)
         log() << m_currentFilename << ": Running script '" << script << "'" << endl;
     }
 
+    QStringList args;
     QString cmd;
     if (interpreter.isEmpty()) {
         cmd = path;
@@ -787,12 +788,12 @@ void KonfUpdate::gotScript(const QString &_script)
             m_skip = true;
             return;
         }
-        cmd = interpreterPath + ' ' + path;
+        cmd = interpreterPath;
+        args << path;
     }
 
     if (!m_arguments.isNull()) {
-        cmd += ' ';
-        cmd += m_arguments;
+        args += m_arguments;
     }
 
     QTemporaryFile scriptIn;
@@ -834,7 +835,7 @@ void KonfUpdate::gotScript(const QString &_script)
             log() << "Script contents is:" << endl << scriptFile.readAll() << endl;
         }
     }
-    proc.start(cmd);
+    proc.start(cmd, args);
     if (!proc.waitForFinished(60000)) {
         logFileError() << "update script did not terminate within 60 seconds: " << cmd << endl;
         m_skip = true;

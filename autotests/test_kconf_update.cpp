@@ -33,6 +33,12 @@
 
 QTEST_GUILESS_MAIN(TestKConfUpdate)
 
+void TestKConfUpdate::initTestCase()
+{
+    // Ensure it all works with spaces in paths (as happens more commonly on OSX where it's ~/Library/Application Support/)
+    qputenv("XDG_DATA_HOME", "/tmp/a b");
+}
+
 static void writeFile(const QString &path, const QString &content)
 {
     QFile file(path);
