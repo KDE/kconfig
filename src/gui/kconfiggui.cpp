@@ -25,14 +25,41 @@
 
 #include <kconfig.h>
 
+static QString configName(const QString &id, const QString &key)
+{
+    return(QLatin1String("session/") + QGuiApplication::applicationName() +
+           QLatin1Char('_')          + id                                 +
+           QLatin1Char('_')          + key);
+}
+
 static KConfig *s_sessionConfig = Q_NULLPTR;
 
 KConfig *KConfigGui::sessionConfig()
 {
-    if (!s_sessionConfig) { // create an instance specific config object
-        s_sessionConfig = new KConfig(sessionConfigName(), KConfig::SimpleConfig);
+#ifdef QT_NO_SESSIONMANAGER
+#error QT_NO_SESSIONMANAGER was set, this will not compile. Reconfigure Qt with Session management support.
+#endif
+    if (!hasSessionConfig()) {
+        // create the default instance specific config object
+        // from applications' -session command line parameter
+        s_sessionConfig = new KConfig(configName(qApp->sessionId(),
+                                                 qApp->sessionKey()),
+                                      KConfig::SimpleConfig);
     }
+
     return s_sessionConfig;
+}
+
+void KConfigGui::setSessionConfig(const QString &id, const QString &key)
+{
+    if (hasSessionConfig()) {
+        delete s_sessionConfig;
+        s_sessionConfig = Q_NULLPTR;
+    }
+
+    // create a new instance specific config object from supplied id & key
+    s_sessionConfig = new KConfig(configName(id, key),
+                                  KConfig::SimpleConfig);
 }
 
 bool KConfigGui::hasSessionConfig()
@@ -40,13 +67,9 @@ bool KConfigGui::hasSessionConfig()
     return s_sessionConfig != Q_NULLPTR;
 }
 
+#ifndef KDE_NO_DEPRECATED
 QString KConfigGui::sessionConfigName()
 {
-#ifdef QT_NO_SESSIONMANAGER
-#error QT_NO_SESSIONMANAGER was set, this will not compile. Reconfigure Qt with Session management support.
-#endif
-    const QString sessionKey = qApp->sessionKey();
-    const QString sessionId = qApp->sessionId();
-    return QString(QLatin1String("session/%1_%2_%3")).arg(QGuiApplication::applicationName()).arg(sessionId).arg(sessionKey);
+    return sessionConfig()->name();
 }
-
+#endif

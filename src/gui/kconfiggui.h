@@ -31,13 +31,23 @@ class KConfig;
 namespace KConfigGui
 {
 /**
- * Returns the application session config object.
+ * Returns the current application session config object.
  *
  * @return A pointer to the application's instance specific
  * KConfig object.
  * @see KConfig
  */
 KCONFIGGUI_EXPORT KConfig *sessionConfig();
+
+/**
+ * Replaces the current application session config object.
+ *
+ * @param id  new session id
+ * @param key new session key
+ *
+ * @since 5.11
+ */
+KCONFIGGUI_EXPORT void setSessionConfig(const QString &id, const QString &key);
 
 /**
  * Indicates if a session config has been created for that application
@@ -51,8 +61,11 @@ KCONFIGGUI_EXPORT bool hasSessionConfig();
  * Returns the name of the application session
  *
  * @return the application session name
+ * @deprecated since 5.11, use sessionConfig()->name()
  */
-KCONFIGGUI_EXPORT QString sessionConfigName();
+#ifndef KDE_NO_DEPRECATED
+KCONFIGGUI_DEPRECATED QString sessionConfigName();
+#endif
 }
 
 #endif // KCONFIGGUI_H
