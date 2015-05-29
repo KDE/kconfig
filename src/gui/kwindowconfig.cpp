@@ -29,7 +29,8 @@ static const char s_initialScreenSizePropertyName[] = "_kconfig_initial_screen_s
 
 void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options)
 {
-    if (!window) {
+    // QWindow::screen() shouldn't return null, but it sometimes does due to bugs.
+    if (!window || !window->screen()) {
         return;
     }
     const QRect desk = window->screen()->geometry();
