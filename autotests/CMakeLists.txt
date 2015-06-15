@@ -31,11 +31,16 @@ ecm_add_test(${test_kconfigutils_SRCS}
 )
 target_include_directories(test_kconfigutils PRIVATE ../src/kconf_update)
 
+qt5_add_resources(sharedconfigresources sharedconfigresources.qrc)
+
+ecm_add_test(ksharedconfigtest ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
+
+
+
 ecm_add_tests(
    kconfignokdehometest.cpp
    kconfigtest.cpp
    kdesktopfiletest.cpp
-   ksharedconfigtest.cpp
    test_kconf_update.cpp
    ksharedconfig_in_global_object
    NAME_PREFIX kconfigcore-

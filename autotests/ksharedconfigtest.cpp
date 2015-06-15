@@ -30,6 +30,7 @@ private Q_SLOTS:
     void testUnicity();
     void testReadWrite();
     void testReadWriteSync();
+    void testQrcFile();
 private:
     QString m_path;
 };
@@ -77,6 +78,16 @@ void KSharedConfigTest::testReadWriteSync()
         KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
         QCOMPARE(cg.readEntry("NumKey", 0), 1);
     }
+}
+
+void KSharedConfigTest::testQrcFile()
+{
+    QVERIFY(QFile::exists(QStringLiteral(":/testdata/test.ini")));
+    KSharedConfig::Ptr sharedConfig = KSharedConfig::openConfig(QStringLiteral(":/testdata/test.ini"), KConfig::NoGlobals);
+    QVERIFY(sharedConfig);
+
+    KConfigGroup cfg(sharedConfig, QStringLiteral("MainSection"));
+    QCOMPARE(cfg.readEntry(QStringLiteral("TestEntry"), QStringLiteral("UnexpectedData")), QStringLiteral("ExpectedData"));
 }
 
 QTEST_MAIN(KSharedConfigTest)
