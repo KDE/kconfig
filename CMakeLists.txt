@@ -61,6 +61,9 @@ install(EXPORT KF5ConfigTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KF5ConfigTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
 
 
+install(EXPORT KF5ConfigCompilerTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KF5ConfigCompilerTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
+
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel )
 
