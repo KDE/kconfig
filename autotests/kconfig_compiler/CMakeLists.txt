@@ -233,3 +233,27 @@ gen_kcfg_test_source(test_qdebugcategory test_qcategory_SRCS)
 ecm_add_test(TEST_NAME test_qdebugcategory ${test_qcategory_SRCS})
 target_link_libraries(test_qdebugcategory KF5::ConfigGui)
 
+########### next target ###############
+
+set(test_translation_qt_SRCS test_translation_qt_main.cpp)
+gen_kcfg_test_source(test_translation_qt test_translation_qt_SRCS KCFG test_translation.kcfg)
+
+ecm_add_test(TEST_NAME test_translation_qt ${test_translation_qt_SRCS})
+target_link_libraries(test_translation_qt KF5::ConfigGui)
+
+########### next target ###############
+
+set(test_translation_kde_SRCS test_translation_kde_main.cpp)
+gen_kcfg_test_source(test_translation_kde test_translation_kde_SRCS KCFG test_translation.kcfg)
+
+ecm_add_test(TEST_NAME test_translation_kde ${test_translation_kde_SRCS})
+target_link_libraries(test_translation_kde KF5::ConfigGui)
+
+########### next target ###############
+
+set(test_translation_kde_domain_SRCS test_translation_kde_domain_main.cpp)
+gen_kcfg_test_source(test_translation_kde_domain test_translation_kde_domain_SRCS KCFG test_translation.kcfg)
+
+ecm_add_test(TEST_NAME test_translation_kde_domain ${test_translation_kde_domain_SRCS})
+target_link_libraries(test_translation_kde_domain KF5::ConfigGui)
+

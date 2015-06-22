@@ -100,6 +100,7 @@ public:
         generateProperties = codegenConfig.value("GenerateProperties", false).toBool();
         if (trString == "kde") {
             translationSystem = KdeTranslation;
+            translationDomain = codegenConfig.value("TranslationDomain").toString();
         } else {
             if (!trString.isEmpty() && trString != "qt") {
                 cerr << "Unknown translation system, falling back to Qt tr()" << endl;
@@ -138,6 +139,7 @@ public:
     bool useEnumTypes;
     bool itemAccessors;
     TranslationSystem translationSystem;
+    QString translationDomain;
     bool generateProperties;
 };
 
@@ -1306,7 +1308,11 @@ QString translatedString(const CfgConfig &cfg, const QString &string, const QStr
         break;
 
     case CfgConfig::KdeTranslation:
-        if (!context.isEmpty()) {
+        if (!cfg.translationDomain.isEmpty() && !context.isEmpty()) {
+            result += "i18ndc(" + quoteString(cfg.translationDomain) + ", " + quoteString(context) + ", ";
+        } else if (!cfg.translationDomain.isEmpty()) {
+            result += "i18nd(" + quoteString(cfg.translationDomain) + ", ";
+        } else if (!context.isEmpty()) {
             result += "i18nc(" + quoteString(context) + ", ";
         } else {
             result += "i18n(";

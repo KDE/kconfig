@@ -45,8 +45,11 @@ static CompilerTestSet testCases = {
     "test12.h", "test12.cpp",
     "test13.h", "test13.cpp",
     "test_dpointer.cpp", "test_dpointer.h",
-    "test_signal.cpp", "test_signal.h",
     "test_qdebugcategory.cpp", "test_qdebugcategory.h",
+    "test_signal.cpp", "test_signal.h",
+    "test_translation_kde.cpp", "test_translation_kde.h",
+    "test_translation_kde_domain.cpp", "test_translation_kde_domain.h",
+    "test_translation_qt.cpp", "test_translation_qt.h",
     Q_NULLPTR
 };
 
@@ -66,8 +69,11 @@ static CompilerTestSet testCasesToRun = {
     "test12",
     "test13",
     "test_dpointer",
-    "test_signal",
     "test_qdebugcategory",
+    "test_signal",
+    "test_translation_kde",
+    "test_translation_kde_domain",
+    "test_translation_qt",
     Q_NULLPTR
 };
 
