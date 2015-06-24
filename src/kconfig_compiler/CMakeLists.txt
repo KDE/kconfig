@@ -10,7 +10,7 @@ set_target_properties(kconfig_compiler PROPERTIES
 
 if(CMAKE_TOOLCHAIN_FILE)
     if(BUILD_TESTING)
-        message("Testing should be disabled on cross-compilation")
+        message(WARNING "Testing should be disabled on cross-compilation")
     endif()
 else()
     add_executable(KF5::kconfig_compiler ALIAS kconfig_compiler)
