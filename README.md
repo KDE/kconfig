@@ -1,5 +1,7 @@
 # KConfig
 
+Persistent platform-independent application settings.
+
 ## Introduction
 
 KConfig provides an advanced configuration system. It is made of two parts:
