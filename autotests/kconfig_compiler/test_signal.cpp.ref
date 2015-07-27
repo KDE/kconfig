@@ -56,9 +56,9 @@ TestSignal::~TestSignal()
   s_globalTestSignal()->q = 0;
 }
 
-bool TestSignal::usrWriteConfig()
+bool TestSignal::usrSave()
 {
-  const bool res = KConfigSkeleton::usrWriteConfig();
+  const bool res = KConfigSkeleton::usrSave();
   if (!res) return false;
 
   if ( mSettingsChanged & signalEmoticonSettingsChanged )

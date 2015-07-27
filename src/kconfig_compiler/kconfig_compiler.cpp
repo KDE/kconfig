@@ -2125,7 +2125,7 @@ int main(int argc, char **argv)
     }
 
     if (hasNonModifySignals) {
-        h << "    virtual bool usrWriteConfig();" << endl;
+        h << "    virtual bool usrSave();" << endl;
     }
 
     // Member variables
@@ -2605,9 +2605,9 @@ int main(int argc, char **argv)
     cpp << "}" << endl << endl;
 
     if (hasNonModifySignals) {
-        cpp << "bool " << cfg.className << "::" << "usrWriteConfig()" << endl;
+        cpp << "bool " << cfg.className << "::" << "usrSave()" << endl;
         cpp << "{" << endl;
-        cpp << "  const bool res = " << cfg.inherits << "::usrWriteConfig();" << endl;
+        cpp << "  const bool res = " << cfg.inherits << "::usrSave();" << endl;
         cpp << "  if (!res) return false;" << endl << endl;
         Q_FOREACH (const Signal &signal, signalList) {
             if (signal.modify) {
