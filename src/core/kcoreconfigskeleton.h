@@ -1417,8 +1417,8 @@ public Q_SLOTS:
     /**
      * Write preferences to config file. The values of all registered items are
      * written to disk.
-     * This method calls usrWriteConfig() after writing the settings from the
-     * registered items to the KConfig. You can override usrWriteConfig()
+     * This method calls usrSave() after writing the settings from the
+     * registered items to the KConfig. You can override usrSave()
      * in derived classes if you have special requirements.
      */
     bool save();
