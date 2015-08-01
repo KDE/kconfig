@@ -16,7 +16,7 @@ else()
     add_executable(KF5::kconfig_compiler ALIAS kconfig_compiler)
 endif()
 
-find_package(Qt5Xml 5.2.0 REQUIRED NO_MODULE)
+find_package(Qt5Xml ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
 target_link_libraries(kconfig_compiler Qt5::Xml)
 
