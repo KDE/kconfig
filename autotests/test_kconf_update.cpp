@@ -44,7 +44,7 @@ static void writeFile(const QString &path, const QString &content)
     QFile file(path);
     bool ok = file.open(QIODevice::WriteOnly);
     Q_UNUSED(ok) // silence warnings
-    Q_ASSERT(ok);
+    QVERIFY2(ok, qPrintable(path));
     file.write(content.toUtf8());
 }
 
