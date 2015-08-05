@@ -35,6 +35,8 @@ QTEST_GUILESS_MAIN(TestKConfUpdate)
 
 void TestKConfUpdate::initTestCase()
 {
+    QStandardPaths::setTestModeEnabled(true);
+
     // Ensure it all works with spaces in paths (as happens more commonly on OSX where it's ~/Library/Application Support/)
     qputenv("XDG_DATA_HOME", "/tmp/a b");
 }
@@ -76,7 +78,7 @@ static QTemporaryFile *writeUpdFile(const QString &content)
 static void runKConfUpdate(const QString &updPath)
 {
     QVERIFY(QFile::exists(KCONF_UPDATE_EXECUTABLE));
-    QCOMPARE(0, QProcess::execute(KCONF_UPDATE_EXECUTABLE, QStringList() << "--debug" << updPath));
+    QCOMPARE(0, QProcess::execute(KCONF_UPDATE_EXECUTABLE, QStringList() << "--testmode" << "--debug" << updPath));
 }
 
 void TestKConfUpdate::test_data()
