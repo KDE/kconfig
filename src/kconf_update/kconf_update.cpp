@@ -165,7 +165,7 @@ KonfUpdate::~KonfUpdate()
     delete m_textStream;
 }
 
-QTextStream &operator<<(QTextStream &stream, const QStringList &lst)
+static QTextStream &operator<<(QTextStream &stream, const QStringList &lst)
 {
     stream << lst.join(", ");
     return stream;
@@ -954,7 +954,7 @@ int main(int argc, char **argv)
     parser.addOption(QCommandLineOption(QStringList() << "debug", QCoreApplication::translate("main", "Keep output results from scripts")));
     parser.addOption(QCommandLineOption(QStringList() << "testmode", QCoreApplication::translate("main", "For unit tests only: use test directories to stay away from the user's real files")));
     parser.addOption(QCommandLineOption(QStringList() << "check", QCoreApplication::translate("main", "Check whether config file itself requires updating"), "update-file"));
-    //parser.addOption(QCommandLineOption(QStringList() << "+[file]", QCoreApplication::translate("main", "File to read update instructions from")));
+    parser.addPositionalArgument("files", QCoreApplication::translate("main", "File(s) to read update instructions from"), "[files...]");
 
     // TODO aboutData.addAuthor(ki18n("Waldo Bastian"), KLocalizedString(), "bastian@kde.org");
 
