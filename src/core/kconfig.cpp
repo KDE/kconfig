@@ -51,8 +51,13 @@ static inline int pclose(FILE *stream)
 #include <qdir.h>
 #include <QtCore/QProcess>
 #include <QtCore/QSet>
+#include <QtCore/QBasicMutex>
+#include <QtCore/QMutexLocker>
 
 bool KConfigPrivate::mappingsRegistered = false;
+
+Q_GLOBAL_STATIC(QStringList, s_globalFiles); // For caching purposes.
+static QBasicMutex s_globalFilesMutex;
 
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
                                QStandardPaths::StandardLocation resourceType)
@@ -628,6 +633,11 @@ void KConfig::reparseConfiguration()
 
     d->bFileImmutable = false;
 
+    {
+        QMutexLocker locker(&s_globalFilesMutex);
+        s_globalFiles()->clear();
+    }
+
     // Parse all desired files from the least to the most specific.
     if (d->wantGlobals()) {
         d->parseGlobalFiles();
@@ -638,17 +648,27 @@ void KConfig::reparseConfiguration()
 
 QStringList KConfigPrivate::getGlobalFiles() const
 {
-    QStringList globalFiles;
-    Q_FOREACH (const QString &dir1, QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("kdeglobals"))) {
-        globalFiles.push_front(dir1);
+    QMutexLocker locker(&s_globalFilesMutex);
+    if (s_globalFiles()->isEmpty()) {
+        const QStringList paths1 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("kdeglobals"));
+        const QStringList paths2 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("system.kdeglobals"));
+
+        const bool useEtcKderc = !etc_kderc.isEmpty();
+        s_globalFiles()->reserve(paths1.size() + paths2.size() + (useEtcKderc ? 1 : 0));
+
+        Q_FOREACH (const QString &dir1, paths1) {
+            s_globalFiles()->push_front(dir1);
+        }
+        Q_FOREACH (const QString &dir2, paths2) {
+            s_globalFiles()->push_front(dir2);
+        }
+
+        if (useEtcKderc) {
+            s_globalFiles()->push_front(etc_kderc);
+        }
     }
-    Q_FOREACH (const QString &dir2, QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("system.kdeglobals"))) {
-        globalFiles.push_front(dir2);
-    }
-    if (!etc_kderc.isEmpty()) {
-        globalFiles.push_front(etc_kderc);
-    }
-    return globalFiles;
+
+    return *s_globalFiles();
 }
 
 void KConfigPrivate::parseGlobalFiles()
