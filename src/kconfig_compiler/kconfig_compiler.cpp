@@ -1434,7 +1434,7 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
     if (hasBody) {
         out << "v != " << varExpression << " && ";
     }
-    out << "!" << This << "isImmutable( QString::fromLatin1( \"";
+    out << "!" << This << "isImmutable( QStringLiteral( \"";
     if (!e->param().isEmpty()) {
         out << e->paramName().replace("$(" + e->param() + ")", "%1") << "\" ).arg( ";
         if (e->paramType() == "Enum") {
