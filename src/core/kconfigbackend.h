@@ -29,6 +29,7 @@
 
 #include <kconfigcore_export.h>
 #include <kconfigbase.h>
+class KConfigBackendPrivate;
 
 class KEntryMap;
 class QFile;
@@ -194,8 +195,7 @@ protected:
     void setLocalFilePath(const QString &file);
 
 private:
-    class Private;
-    Private *const d;
+    KConfigBackendPrivate *const d;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigBackend::ParseOptions)

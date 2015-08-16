@@ -35,7 +35,7 @@
 
 typedef QExplicitlySharedDataPointer<KConfigBackend> BackendPtr;
 
-class KConfigBackend::Private
+class KConfigBackendPrivate
 {
 public:
     qint64 size;
@@ -55,7 +55,7 @@ void KConfigBackend::registerMappings(const KEntryMap & /*entryMap*/)
 BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 {
     //qDebug() << "creating a backend for file" << file << "with system" << sys;
-    const QString system = (sys.isEmpty() ? Private::whatSystem(file) : sys);
+    const QString system = (sys.isEmpty() ? KConfigBackendPrivate::whatSystem(file) : sys);
     KConfigBackend *backend = Q_NULLPTR;
 
 #if 0 // TODO port to Qt5 plugin loading
@@ -82,7 +82,7 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 }
 
 KConfigBackend::KConfigBackend()
-    : d(new Private)
+    : d(new KConfigBackendPrivate)
 {
 }
 
