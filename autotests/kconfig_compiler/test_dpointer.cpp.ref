@@ -155,7 +155,7 @@ TestDPointer::TestDPointer(  )
 
 void TestDPointer::setAutoSave( bool v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "AutoSave" ) ))
+      if (!self()->isImmutable( QStringLiteral( "AutoSave" ) ))
         self()->d->autoSave = v;
 }
 
@@ -172,7 +172,7 @@ KConfigSkeleton::ItemBool *TestDPointer::autoSaveItem()
 
 void TestDPointer::setAutoSaveInterval( int v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "AutoSaveInterval" ) ))
+      if (!self()->isImmutable( QStringLiteral( "AutoSaveInterval" ) ))
         self()->d->autoSaveInterval = v;
 }
 
@@ -189,7 +189,7 @@ KConfigSkeleton::ItemInt *TestDPointer::autoSaveIntervalItem()
 
 void TestDPointer::setConfirm( bool v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "Confirm" ) ))
+      if (!self()->isImmutable( QStringLiteral( "Confirm" ) ))
         self()->d->confirm = v;
 }
 
@@ -206,7 +206,7 @@ KConfigSkeleton::ItemBool *TestDPointer::confirmItem()
 
 void TestDPointer::setArchiveFile( const QString & v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "ArchiveFile" ) ))
+      if (!self()->isImmutable( QStringLiteral( "ArchiveFile" ) ))
         self()->d->archiveFile = v;
 }
 
@@ -223,7 +223,7 @@ KConfigSkeleton::ItemString *TestDPointer::archiveFileItem()
 
 void TestDPointer::setDestination( int v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "Destination" ) ))
+      if (!self()->isImmutable( QStringLiteral( "Destination" ) ))
         self()->d->destination = v;
 }
 
@@ -240,7 +240,7 @@ KConfigSkeleton::ItemEnum *TestDPointer::destinationItem()
 
 void TestDPointer::setHourSize( int v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "HourSize" ) ))
+      if (!self()->isImmutable( QStringLiteral( "HourSize" ) ))
         self()->d->hourSize = v;
 }
 
@@ -257,7 +257,7 @@ KConfigSkeleton::ItemInt *TestDPointer::hourSizeItem()
 
 void TestDPointer::setSelectionStartsEditor( bool v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "SelectionStartsEditor" ) ))
+      if (!self()->isImmutable( QStringLiteral( "SelectionStartsEditor" ) ))
         self()->d->selectionStartsEditor = v;
 }
 
@@ -274,7 +274,7 @@ KConfigSkeleton::ItemBool *TestDPointer::selectionStartsEditorItem()
 
 void TestDPointer::setSelectedPlugins( const QStringList & v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "SelectedPlugins" ) ))
+      if (!self()->isImmutable( QStringLiteral( "SelectedPlugins" ) ))
         self()->d->selectedPlugins = v;
 }
 
@@ -291,7 +291,7 @@ KConfigSkeleton::ItemStringList *TestDPointer::selectedPluginsItem()
 
 void TestDPointer::setHighlightColor( const QColor & v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "HighlightColor" ) ))
+      if (!self()->isImmutable( QStringLiteral( "HighlightColor" ) ))
         self()->d->highlightColor = v;
 }
 
@@ -308,7 +308,7 @@ KConfigSkeleton::ItemColor *TestDPointer::highlightColorItem()
 
 void TestDPointer::setAgendaBgColor( const QColor & v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "AgendaBgColor" ) ))
+      if (!self()->isImmutable( QStringLiteral( "AgendaBgColor" ) ))
         self()->d->agendaBgColor = v;
 }
 
@@ -325,7 +325,7 @@ KConfigSkeleton::ItemColor *TestDPointer::agendaBgColorItem()
 
 void TestDPointer::setTimeBarFont( const QFont & v )
 {
-      if (!self()->isImmutable( QString::fromLatin1( "TimeBarFont" ) ))
+      if (!self()->isImmutable( QStringLiteral( "TimeBarFont" ) ))
         self()->d->timeBarFont = v;
 }
 

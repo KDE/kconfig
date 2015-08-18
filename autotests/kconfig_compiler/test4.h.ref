@@ -31,7 +31,7 @@ class Test4 : public KConfigSkeleton
     static
     void setColor( int i, const QColor & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "Color%1" ).arg( i ) ))
+      if (!self()->isImmutable( QStringLiteral( "Color%1" ).arg( i ) ))
         self()->mColor[i] = v;
     }
 
@@ -50,7 +50,7 @@ class Test4 : public KConfigSkeleton
     static
     void setMouseAction( int i, int v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "MouseAction%1" ).arg( QLatin1String( EnumButton::enumToString[i] ) ) ))
+      if (!self()->isImmutable( QStringLiteral( "MouseAction%1" ).arg( QLatin1String( EnumButton::enumToString[i] ) ) ))
         self()->mMouseAction[i] = v;
     }
 
@@ -69,7 +69,7 @@ class Test4 : public KConfigSkeleton
     static
     void setGrayColor( int i, const QColor & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "GrayColor%1" ).arg( i ) ))
+      if (!self()->isImmutable( QStringLiteral( "GrayColor%1" ).arg( i ) ))
         self()->mGrayColor[i] = v;
     }
 
@@ -88,7 +88,7 @@ class Test4 : public KConfigSkeleton
     static
     void setColorString( int i, const QString & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "ColorString%1" ).arg( i ) ))
+      if (!self()->isImmutable( QStringLiteral( "ColorString%1" ).arg( i ) ))
         self()->mColorString[i] = v;
     }
 
@@ -107,7 +107,7 @@ class Test4 : public KConfigSkeleton
     static
     void setFooBar( const QString & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "FooBar" ) ))
+      if (!self()->isImmutable( QStringLiteral( "FooBar" ) ))
         self()->mFooBar = v;
     }
 
@@ -138,7 +138,7 @@ class Test4 : public KConfigSkeleton
         v = 88;
       }
 
-      if (!self()->isImmutable( QString::fromLatin1( "Age" ) ))
+      if (!self()->isImmutable( QStringLiteral( "Age" ) ))
         self()->mAge = v;
     }
 

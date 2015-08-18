@@ -31,7 +31,7 @@ class Test13 : public KConfigSkeleton
     */
     void setBrightness( double v )
     {
-      if (v != mBrightness && !isImmutable( QString::fromLatin1( "brightness" ) )) {
+      if (v != mBrightness && !isImmutable( QStringLiteral( "brightness" ) )) {
         mBrightness = v;
         Q_EMIT brightnessChanged();
       }

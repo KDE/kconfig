@@ -21,7 +21,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setEmoticonTheme( const QString & v )
     {
-      if (v != self()->mEmoticonTheme && !self()->isImmutable( QString::fromLatin1( "emoticonTheme" ) )) {
+      if (v != self()->mEmoticonTheme && !self()->isImmutable( QStringLiteral( "emoticonTheme" ) )) {
         self()->mEmoticonTheme = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -42,7 +42,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setUseEmoticon( bool v )
     {
-      if (v != self()->mUseEmoticon && !self()->isImmutable( QString::fromLatin1( "useEmoticon" ) )) {
+      if (v != self()->mUseEmoticon && !self()->isImmutable( QStringLiteral( "useEmoticon" ) )) {
         self()->mUseEmoticon = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -63,7 +63,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setEmoticonRequireSpace( bool v )
     {
-      if (v != self()->mEmoticonRequireSpace && !self()->isImmutable( QString::fromLatin1( "emoticonRequireSpace" ) )) {
+      if (v != self()->mEmoticonRequireSpace && !self()->isImmutable( QStringLiteral( "emoticonRequireSpace" ) )) {
         self()->mEmoticonRequireSpace = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -84,7 +84,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setStylePath( const QString & v )
     {
-      if (v != self()->mStylePath && !self()->isImmutable( QString::fromLatin1( "stylePath" ) )) {
+      if (v != self()->mStylePath && !self()->isImmutable( QStringLiteral( "stylePath" ) )) {
         self()->mStylePath = v;
         self()->mSettingsChanged |= signalStyleChanged;
       }
@@ -105,7 +105,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setStyleCSSVariant( const QString & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "StyleCSSVariant" ) ))
+      if (!self()->isImmutable( QStringLiteral( "StyleCSSVariant" ) ))
         self()->mStyleCSSVariant = v;
     }
 

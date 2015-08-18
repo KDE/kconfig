@@ -23,7 +23,7 @@ class Test5 : public KConfigSkeleton
     static
     void setColor( int i, const QColor & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "Color%1" ).arg( i ) ))
+      if (!self()->isImmutable( QStringLiteral( "Color%1" ).arg( i ) ))
         self()->mColor[i] = v;
     }
 
@@ -42,7 +42,7 @@ class Test5 : public KConfigSkeleton
     static
     void setMouseAction( int i, int v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "MouseAction%1" ).arg( QLatin1String( EnumButtonToString[i] ) ) ))
+      if (!self()->isImmutable( QStringLiteral( "MouseAction%1" ).arg( QLatin1String( EnumButtonToString[i] ) ) ))
         self()->mMouseAction[i] = v;
     }
 
@@ -61,7 +61,7 @@ class Test5 : public KConfigSkeleton
     static
     void setFooBar( const QString & v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "FooBar" ) ))
+      if (!self()->isImmutable( QStringLiteral( "FooBar" ) ))
         self()->mFooBar = v;
     }
 
@@ -92,7 +92,7 @@ class Test5 : public KConfigSkeleton
         v = 88;
       }
 
-      if (!self()->isImmutable( QString::fromLatin1( "Age" ) ))
+      if (!self()->isImmutable( QStringLiteral( "Age" ) ))
         self()->mAge = v;
     }
 

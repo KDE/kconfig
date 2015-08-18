@@ -19,7 +19,7 @@ class Test7 : public KConfigSkeleton
     */
     void setColor( const QColor & v )
     {
-      if (!isImmutable( QString::fromLatin1( "Color" ) ))
+      if (!isImmutable( QStringLiteral( "Color" ) ))
         mColor = v;
     }
 
@@ -36,7 +36,7 @@ class Test7 : public KConfigSkeleton
     */
     void setFooBar( const QString & v )
     {
-      if (!isImmutable( QString::fromLatin1( "FooBar" ) ))
+      if (!isImmutable( QStringLiteral( "FooBar" ) ))
         mFooBar = v;
     }
 
@@ -65,7 +65,7 @@ class Test7 : public KConfigSkeleton
         v = 88;
       }
 
-      if (!isImmutable( QString::fromLatin1( "Age" ) ))
+      if (!isImmutable( QStringLiteral( "Age" ) ))
         mAge = v;
     }
 

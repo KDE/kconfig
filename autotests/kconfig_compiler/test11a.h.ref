@@ -29,7 +29,7 @@ class Test11a : public MyPrefs
     */
     void setAutoSave( bool v )
     {
-      if (!isImmutable( QString::fromLatin1( "AutoSave" ) ))
+      if (!isImmutable( QStringLiteral( "AutoSave" ) ))
         mAutoSave = v;
     }
 
@@ -54,7 +54,7 @@ class Test11a : public MyPrefs
     */
     void setAutoSaveInterval( int v )
     {
-      if (!isImmutable( QString::fromLatin1( "AutoSaveInterval" ) ))
+      if (!isImmutable( QStringLiteral( "AutoSaveInterval" ) ))
         mAutoSaveInterval = v;
     }
 
@@ -79,7 +79,7 @@ class Test11a : public MyPrefs
     */
     void setConfirm( bool v )
     {
-      if (!isImmutable( QString::fromLatin1( "Confirm" ) ))
+      if (!isImmutable( QStringLiteral( "Confirm" ) ))
         mConfirm = v;
     }
 
@@ -104,7 +104,7 @@ class Test11a : public MyPrefs
     */
     void setArchiveFile( const QString & v )
     {
-      if (!isImmutable( QString::fromLatin1( "ArchiveFile" ) ))
+      if (!isImmutable( QStringLiteral( "ArchiveFile" ) ))
         mArchiveFile = v;
     }
 
@@ -129,7 +129,7 @@ class Test11a : public MyPrefs
     */
     void setDestination( EnumDestination::type v )
     {
-      if (!isImmutable( QString::fromLatin1( "Destination" ) ))
+      if (!isImmutable( QStringLiteral( "Destination" ) ))
         mDestination = v;
     }
 
@@ -162,7 +162,7 @@ class Test11a : public MyPrefs
     */
     void setHourSize( int v )
     {
-      if (!isImmutable( QString::fromLatin1( "HourSize" ) ))
+      if (!isImmutable( QStringLiteral( "HourSize" ) ))
         mHourSize = v;
     }
 
@@ -187,7 +187,7 @@ class Test11a : public MyPrefs
     */
     void setSelectionStartsEditor( bool v )
     {
-      if (!isImmutable( QString::fromLatin1( "SelectionStartsEditor" ) ))
+      if (!isImmutable( QStringLiteral( "SelectionStartsEditor" ) ))
         mSelectionStartsEditor = v;
     }
 
@@ -220,7 +220,7 @@ class Test11a : public MyPrefs
     */
     void setSelectedPlugins( const QStringList & v )
     {
-      if (!isImmutable( QString::fromLatin1( "SelectedPlugins" ) ))
+      if (!isImmutable( QStringLiteral( "SelectedPlugins" ) ))
         mSelectedPlugins = v;
     }
 
@@ -245,7 +245,7 @@ class Test11a : public MyPrefs
     */
     void setHighlightColor( const QColor & v )
     {
-      if (!isImmutable( QString::fromLatin1( "HighlightColor" ) ))
+      if (!isImmutable( QStringLiteral( "HighlightColor" ) ))
         mHighlightColor = v;
     }
 
@@ -270,7 +270,7 @@ class Test11a : public MyPrefs
     */
     void setAgendaBgColor( const QColor & v )
     {
-      if (!isImmutable( QString::fromLatin1( "AgendaBgColor" ) ))
+      if (!isImmutable( QStringLiteral( "AgendaBgColor" ) ))
         mAgendaBgColor = v;
     }
 
@@ -295,7 +295,7 @@ class Test11a : public MyPrefs
     */
     void setTimeBarFont( const QFont & v )
     {
-      if (!isImmutable( QString::fromLatin1( "TimeBarFont" ) ))
+      if (!isImmutable( QStringLiteral( "TimeBarFont" ) ))
         mTimeBarFont = v;
     }
 
@@ -320,7 +320,7 @@ class Test11a : public MyPrefs
     */
     void setEmailClient( MailClient v )
     {
-      if (!isImmutable( QString::fromLatin1( "EmailClient" ) ))
+      if (!isImmutable( QStringLiteral( "EmailClient" ) ))
         mEmailClient = v;
     }
 
@@ -345,7 +345,7 @@ class Test11a : public MyPrefs
     */
     void setDefaultReminderUnits( TimePeriod::Units v )
     {
-      if (!isImmutable( QString::fromLatin1( "DefaultReminderUnits" ) ))
+      if (!isImmutable( QStringLiteral( "DefaultReminderUnits" ) ))
         mDefaultReminderUnits = v;
     }
 
@@ -378,7 +378,7 @@ class Test11a : public MyPrefs
     */
     void setQueueRate( int i, const QList<int> & v )
     {
-      if (!isImmutable( QString::fromLatin1( "queueRate%1" ).arg( i ) ))
+      if (!isImmutable( QStringLiteral( "queueRate%1" ).arg( i ) ))
         mQueueRate[i] = v;
     }
 
@@ -403,7 +403,7 @@ class Test11a : public MyPrefs
     */
     void setShowQueueTuner( bool v )
     {
-      if (!isImmutable( QString::fromLatin1( "ShowQueueTuner" ) ))
+      if (!isImmutable( QStringLiteral( "ShowQueueTuner" ) ))
         mShowQueueTuner = v;
     }
 

@@ -20,7 +20,7 @@ class Test9 : public KConfigSkeleton
     */
     void setMyStringList( const QStringList & v )
     {
-      if (!isImmutable( QString::fromLatin1( "MyStringList" ) ))
+      if (!isImmutable( QStringLiteral( "MyStringList" ) ))
         mMyStringList = v;
     }
 
@@ -37,7 +37,7 @@ class Test9 : public KConfigSkeleton
     */
     void setMyPathList( const QStringList & v )
     {
-      if (!isImmutable( QString::fromLatin1( "MyPathList" ) ))
+      if (!isImmutable( QStringLiteral( "MyPathList" ) ))
         mMyPathList = v;
     }
 
@@ -54,7 +54,7 @@ class Test9 : public KConfigSkeleton
     */
     void setMyPathsList2( const QStringList & v )
     {
-      if (!isImmutable( QString::fromLatin1( "MyPathsList2" ) ))
+      if (!isImmutable( QStringLiteral( "MyPathsList2" ) ))
         mMyPathsList2 = v;
     }
 

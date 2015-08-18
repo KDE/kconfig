@@ -20,7 +20,7 @@ class Test8a : public KConfigSkeleton
     */
     void setFont( const QFont & v )
     {
-      if (!isImmutable( QString::fromLatin1( "Font" ) ))
+      if (!isImmutable( QStringLiteral( "Font" ) ))
         mFont = v;
     }
 
@@ -37,7 +37,7 @@ class Test8a : public KConfigSkeleton
     */
     void setTitleFont( const QFont & v )
     {
-      if (!isImmutable( QString::fromLatin1( "TitleFont" ) ))
+      if (!isImmutable( QStringLiteral( "TitleFont" ) ))
         mTitleFont = v;
     }
 

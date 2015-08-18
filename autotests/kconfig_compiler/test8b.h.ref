@@ -22,7 +22,7 @@ class Test8b : public Test8a
     static
     void setSomething( uint v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "Something" ) ))
+      if (!self()->isImmutable( QStringLiteral( "Something" ) ))
         self()->mSomething = v;
     }
 
@@ -41,7 +41,7 @@ class Test8b : public Test8a
     static
     void setFooBoo( bool v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "FooBoo" ) ))
+      if (!self()->isImmutable( QStringLiteral( "FooBoo" ) ))
         self()->mFooBoo = v;
     }
 
@@ -60,7 +60,7 @@ class Test8b : public Test8a
     static
     void setPort( uint v )
     {
-      if (!self()->isImmutable( QString::fromLatin1( "Port" ) ))
+      if (!self()->isImmutable( QStringLiteral( "Port" ) ))
         self()->mPort = v;
     }
 
