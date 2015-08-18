@@ -614,8 +614,8 @@ void KConfigTest::testEntryMap()
     QCOMPARE(entryMap.value("boolEntry2"), QString(BOOLENTRY2 ? "true" : "false"));
     QCOMPARE(entryMap.value("keywith=equalsign"), QString(STRINGENTRY1));
     QCOMPARE(entryMap.value("byteArrayEntry1"), QString(STRINGENTRY1));
-    QCOMPARE(entryMap.value("doubleEntry1"), QString::number(DOUBLEENTRY, 'g', 15));
-    QCOMPARE(entryMap.value("floatEntry1"), QString::number(FLOATENTRY, 'g', 8));
+    QCOMPARE(entryMap.value("doubleEntry1").toDouble(), DOUBLEENTRY);
+    QCOMPARE(entryMap.value("floatEntry1").toFloat(), FLOATENTRY);
 }
 
 void KConfigTest::testInvalid()
