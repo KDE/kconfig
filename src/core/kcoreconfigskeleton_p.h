@@ -24,13 +24,13 @@
 
 #include "kcoreconfigskeleton.h"
 
-class KCoreConfigSkeleton::Private
+class KCoreConfigSkeletonPrivate
 {
 public:
-    Private()
+    KCoreConfigSkeletonPrivate()
         : mCurrentGroup(QLatin1String("No Group")), mUseDefaults(false)
     {}
-    ~Private()
+    ~KCoreConfigSkeletonPrivate()
     {
         KConfigSkeletonItem::List::ConstIterator it;
         for (it = mItems.constBegin(); it != mItems.constEnd(); ++it) {

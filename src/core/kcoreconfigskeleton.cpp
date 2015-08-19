@@ -987,7 +987,7 @@ QVariant KCoreConfigSkeleton::ItemIntList::property() const
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *parent)
     : QObject(parent),
-      d(new Private)
+      d(new KCoreConfigSkeletonPrivate)
 {
     //qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
 
@@ -996,7 +996,7 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *par
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
     : QObject(parent),
-      d(new Private)
+      d(new KCoreConfigSkeletonPrivate)
 {
     //qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
     d->mConfig = pConfig;

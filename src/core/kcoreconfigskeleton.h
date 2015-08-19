@@ -34,6 +34,7 @@
 #include <QtCore/QStringList>
 #include <QtCore/QVariant>
 #include <QtCore/QUrl>
+class KCoreConfigSkeletonPrivate;
 
 class KConfigSkeletonItemPrivate;
 /**
@@ -1484,8 +1485,7 @@ protected:
     KCONFIGCORE_DEPRECATED virtual bool usrWriteConfig();
 
 private:
-    class Private;
-    Private *const d;
+    KCoreConfigSkeletonPrivate *const d;
     friend class KConfigSkeleton;
 
 };
