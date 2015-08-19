@@ -56,7 +56,7 @@ static inline int pclose(FILE *stream)
 
 bool KConfigPrivate::mappingsRegistered = false;
 
-Q_GLOBAL_STATIC(QStringList, s_globalFiles); // For caching purposes.
+Q_GLOBAL_STATIC(QStringList, s_globalFiles) // For caching purposes.
 static QBasicMutex s_globalFilesMutex;
 
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
