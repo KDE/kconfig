@@ -38,11 +38,12 @@
 static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input,
                          QVariant &output)
 {
-    const QString errString = QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
+    const auto errString = [&]() {
+        return QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
                               .arg(QLatin1String(key))
                               .arg(QLatin1String(QVariant::typeToName(input.type())))
                               .arg(QLatin1String(data.constData()));
-    const QString formatError = QStringLiteral(" (wrong format: expected '%1' items, read '%2')");
+    };
 
     // set in case of failure
     output = input;
@@ -61,7 +62,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             QColor col;
             col.setNamedColor(QString::fromUtf8(data.constData(), data.length()));
             if (!col.isValid()) {
-                qCritical() << qPrintable(errString);
+                qCritical() << qPrintable(errString());
             }
             output = col;
             return true;
@@ -70,7 +71,8 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             const int count = list.count();
 
             if (count != 3 && count != 4) {
-                qCritical() << qPrintable(errString) << qPrintable(formatError.arg(QStringLiteral("3' or '4")).arg(count));
+                const QString formatError = QStringLiteral(" (wrong format: expected '%1' items, read '%2')");
+                qCritical() << qPrintable(errString()) << qPrintable(formatError.arg(QStringLiteral("3' or '4")).arg(count));
                 return true;    // return default
             }
 
@@ -80,7 +82,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
                 bool ok;
                 const int j = temp[i] = list.at(i).toInt(&ok);
                 if (!ok) { // failed to convert to int
-                    qCritical() << qPrintable(errString) << " (integer conversion failed)";
+                    qCritical() << qPrintable(errString()) << " (integer conversion failed)";
                     return true; // return default
                 }
                 if (j < 0 || j > 255) {
@@ -88,7 +90,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
                         "red", "green", "blue", "alpha"
                     };
                     const QString boundsError = QStringLiteral(" (bounds error: %1 component %2)");
-                    qCritical() << qPrintable(errString)
+                    qCritical() << qPrintable(errString())
                                 << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0 ? QStringLiteral("< 0") : QStringLiteral("> 255")));
                     return true; // return default
                 }
@@ -101,7 +103,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             if (aColor.isValid()) {
                 output = aColor;
             } else {
-                qCritical() << qPrintable(errString);
+                qCritical() << qPrintable(errString());
             }
             return true;
         }
@@ -112,7 +114,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
         if (tmp.convert(QMetaType::QFont)) {
             output = tmp;
         } else {
-            qCritical() << qPrintable(errString);
+            qCritical() << qPrintable(errString());
         }
         return true;
     }
