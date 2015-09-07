@@ -160,6 +160,13 @@ public:
     QStringList readActions() const;
 
     /**
+     * Returns a list of the "MimeType=" entries.
+     * @return the list of mime types
+     * @since 5.15
+     */
+    QStringList readMimeTypes() const;
+
+    /**
      * Sets the desktop action group.
      * @param group the new action group
      */

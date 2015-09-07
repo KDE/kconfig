@@ -237,6 +237,12 @@ QStringList KDesktopFile::readActions() const
     return d->desktopGroup.readXdgListEntry("Actions");
 }
 
+QStringList KDesktopFile::readMimeTypes() const
+{
+    Q_D(const KDesktopFile);
+    return d->desktopGroup.readXdgListEntry("MimeType");
+}
+
 KConfigGroup KDesktopFile::actionGroup(const QString &group)
 {
     return KConfigGroup(this, QLatin1String("Desktop Action ") + group);

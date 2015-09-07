@@ -37,6 +37,7 @@ void KDesktopFileTest::testRead()
        "Type=Application\n"
        "Name=My Application\n"
        "Icon=foo\n"
+       "MimeType=text/plain;image/png;\n"
        "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
@@ -46,6 +47,8 @@ void KDesktopFileTest::testRead()
     QVERIFY(df.hasApplicationType());
     QCOMPARE(df.readName(), QString::fromLatin1("My Application"));
     QCOMPARE(df.readIcon(), QString::fromLatin1("foo"));
+    QCOMPARE(df.readMimeTypes(), QStringList() << QString::fromLatin1("text/plain")
+                                              << QString::fromLatin1("image/png"));
     QVERIFY(!df.hasLinkType());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
 }
