@@ -78,7 +78,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 #ifdef Q_OS_WIN
             QFile::decodeName(qgetenv("WINDIR") + "/kde5rc");
 #else
-            QLatin1String("/etc/kde5rc");
+            QStringLiteral("/etc/kde5rc");
 #endif
         if (!QFileInfo(etc_kderc).isReadable()) {
             etc_kderc.clear();
@@ -498,7 +498,7 @@ void KConfig::checkUpdate(const QString &id, const QString &updateFile)
     const QString cfg_id = updateFile + QLatin1Char(':') + id;
     const QStringList ids = cg.readEntry("update_info", QStringList());
     if (!ids.contains(cfg_id)) {
-        QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList() << QString::fromLatin1("--check") << updateFile);
+        QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList() << QStringLiteral("--check") << updateFile);
         reparseConfiguration();
     }
 }
@@ -583,7 +583,7 @@ void KConfigPrivate::changeFileName(const QString &name)
             file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
         } else if (wantGlobals()) { // accessing "kdeglobals" by specifying no filename and NoCascade - XXX used anywhere?
             resourceType = QStandardPaths::GenericConfigLocation;
-            fileName = QLatin1String("kdeglobals");
+            fileName = QStringLiteral("kdeglobals");
             file = sGlobalFileName;
         } else {
             // anonymous config
@@ -650,8 +650,8 @@ QStringList KConfigPrivate::getGlobalFiles() const
 {
     QMutexLocker locker(&s_globalFilesMutex);
     if (s_globalFiles()->isEmpty()) {
-        const QStringList paths1 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("kdeglobals"));
-        const QStringList paths2 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("system.kdeglobals"));
+        const QStringList paths1 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("kdeglobals"));
+        const QStringList paths2 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("system.kdeglobals"));
 
         const bool useEtcKderc = !etc_kderc.isEmpty();
         s_globalFiles()->reserve(paths1.size() + paths2.size() + (useEtcKderc ? 1 : 0));
@@ -901,11 +901,11 @@ bool KConfig::isConfigWritable(bool warnUser)
 
         // Note: We don't ask the user if we should not ask this question again because we can't save the answer.
         errorMsg += QCoreApplication::translate("KConfig", "Please contact your system administrator.");
-        QString cmdToExec = QStandardPaths::findExecutable(QString::fromLatin1("kdialog"));
+        QString cmdToExec = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
         if (!cmdToExec.isEmpty()) {
             QProcess::execute(cmdToExec, QStringList()
-                              << QString::fromLatin1("--title") << QCoreApplication::applicationName()
-                              << QString::fromLatin1("--msgbox") << errorMsg);
+                              << QStringLiteral("--title") << QCoreApplication::applicationName()
+                              << QStringLiteral("--msgbox") << errorMsg);
         }
     }
 

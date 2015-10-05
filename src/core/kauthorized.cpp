@@ -54,7 +54,7 @@ public:
     { b = true; s = s.mid(1); } \
     else b = false;
 #define checkEqual(s, b) \
-    b = (s == QString::fromLatin1("="));
+    b = (s == QLatin1String("="));
 
     URLActionRule(const QByteArray &act,
                   const QString &bProt, const QString &bHost, const QString &bPath,
@@ -267,39 +267,39 @@ static void initUrlActionRestrictions()
 //  d->urlActionRestrictions.append(
 //  URLActionRule("list", Any, Any, Any, "file", Any, QDir::homePath(), true));
     d->urlActionRestrictions.append(
-        URLActionRule("link", Any, Any, Any, QLatin1String(":internet"), Any, Any, true));
+        URLActionRule("link", Any, Any, Any, QStringLiteral(":internet"), Any, Any, true));
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", Any, Any, Any, QLatin1String(":internet"), Any, Any, true));
+        URLActionRule("redirect", Any, Any, Any, QStringLiteral(":internet"), Any, Any, true));
 
     // We allow redirections to file: but not from internet protocols, redirecting to file:
     // is very popular among io-slaves and we don't want to break them
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", Any, Any, Any, QLatin1String("file"), Any, Any, true));
+        URLActionRule("redirect", Any, Any, Any, QStringLiteral("file"), Any, Any, true));
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", QLatin1String(":internet"), Any, Any, QLatin1String("file"), Any, Any, false));
+        URLActionRule("redirect", QStringLiteral(":internet"), Any, Any, QStringLiteral("file"), Any, Any, false));
 
     // local protocols may redirect everywhere
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", QLatin1String(":local"), Any, Any, Any, Any, Any, true));
+        URLActionRule("redirect", QStringLiteral(":local"), Any, Any, Any, Any, Any, true));
 
     // Anyone may redirect to about:
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", Any, Any, Any, QLatin1String("about"), Any, Any, true));
+        URLActionRule("redirect", Any, Any, Any, QStringLiteral("about"), Any, Any, true));
 
     // Anyone may redirect to mailto:
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", Any, Any, Any, QLatin1String("mailto"), Any, Any, true));
+        URLActionRule("redirect", Any, Any, Any, QStringLiteral("mailto"), Any, Any, true));
 
     // Anyone may redirect to itself, cq. within it's own group
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", Any, Any, Any, QLatin1String("="), Any, Any, true));
+        URLActionRule("redirect", Any, Any, Any, QStringLiteral("="), Any, Any, true));
 
     d->urlActionRestrictions.append(
-        URLActionRule("redirect", QLatin1String("about"), Any, Any, Any, Any, Any, true));
+        URLActionRule("redirect", QStringLiteral("about"), Any, Any, Any, Any, Any, true));
 
     KConfigGroup cg(KSharedConfig::openConfig(), "KDE URL Restrictions");
     int count = cg.readEntry("rule_count", 0);
-    QString keyFormat = QString::fromLatin1("rule_%1");
+    QString keyFormat = QStringLiteral("rule_%1");
     for (int i = 1; i <= count; i++) {
         QString key = keyFormat.arg(i);
         const QStringList rule = cg.readEntry(key, QStringList());

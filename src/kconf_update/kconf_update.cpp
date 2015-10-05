@@ -110,24 +110,24 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
 {
     bool updateAll = false;
 
-    m_config = new KConfig("kconf_updaterc");
+    m_config = new KConfig(QStringLiteral("kconf_updaterc"));
     KConfigGroup cg(m_config, QString());
 
     QStringList updateFiles;
 
-    m_debug = parser->isSet("debug");
+    m_debug = parser->isSet(QStringLiteral("debug"));
 
-    if (parser->isSet("testmode")) {
+    if (parser->isSet(QStringLiteral("testmode"))) {
         QStandardPaths::setTestModeEnabled(true);
     }
 
     m_bUseConfigInfo = false;
-    if (parser->isSet("check")) {
+    if (parser->isSet(QStringLiteral("check"))) {
         m_bUseConfigInfo = true;
-        const QString file = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kconf_update/" + parser->value("check"));
+        const QString file = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kconf_update/" + parser->value(QStringLiteral("check")));
         if (file.isEmpty()) {
-            qWarning("File '%s' not found.", parser->value("check").toLocal8Bit().data());
-            log() << "File '" << parser->value("check") << "' passed on command line not found" << endl;
+            qWarning("File '%s' not found.", parser->value(QStringLiteral("check")).toLocal8Bit().data());
+            log() << "File '" << parser->value(QStringLiteral("check")) << "' passed on command line not found" << endl;
             return;
         }
         updateFiles.append(file);
@@ -167,7 +167,7 @@ KonfUpdate::~KonfUpdate()
 
 static QTextStream &operator<<(QTextStream &stream, const QStringList &lst)
 {
-    stream << lst.join(", ");
+    stream << lst.join(QStringLiteral(", "));
     return stream;
 }
 
@@ -205,7 +205,7 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
 {
     QStringList result;
 
-    const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "kconf_update", QStandardPaths::LocateDirectory);
+    const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("kconf_update"), QStandardPaths::LocateDirectory);
     Q_FOREACH (const QString &d, dirs) {
         const QDir dir(d);
 
@@ -247,20 +247,20 @@ bool KonfUpdate::checkFile(const QString &filename)
     bool foundVersion = false;
     while (!ts.atEnd()) {
         const QString line = ts.readLine().trimmed();
-        if (line.startsWith("Version=5")) {
+        if (line.startsWith(QLatin1String("Version=5"))) {
             foundVersion = true;
         }
         ++lineCount;
         if (line.isEmpty() || (line[0] == '#')) {
             continue;
         }
-        if (line.startsWith("Id=")) {
+        if (line.startsWith(QLatin1String("Id="))) {
             if (!foundVersion) {
                 qDebug() << QStringLiteral("Missing \"Version=5\", file \'%1\' will be skipped.").arg(filename);
                 return true;
             }
             id = m_currentFilename + ':' + line.mid(3);
-        } else if (line.startsWith("File=")) {
+        } else if (line.startsWith(QLatin1String("File="))) {
             checkGotFile(line.mid(5), id);
         }
     }
@@ -331,7 +331,7 @@ bool KonfUpdate::updateFile(const QString &filename)
     bool foundVersion = false;
     while (!ts.atEnd()) {
         m_line = ts.readLine().trimmed();
-        if (m_line.startsWith("Version=5")) {
+        if (m_line.startsWith(QLatin1String("Version=5"))) {
             foundVersion = true;
         }
         m_lineCount++;
@@ -520,7 +520,7 @@ void KonfUpdate::gotFile(const QString &_file)
     if (!m_oldFile.isEmpty()) { // if File= is specified, it doesn't exist, is empty or contains only kconf_update's [$Version] group, skip
         if (m_oldConfig1 != Q_NULLPTR
                 && (m_oldConfig1->groupList().isEmpty()
-                    || (m_oldConfig1->groupList().count() == 1 && m_oldConfig1->groupList().first() == "$Version"))) {
+                    || (m_oldConfig1->groupList().count() == 1 && m_oldConfig1->groupList().first() == QLatin1String("$Version")))) {
             log() << m_currentFilename << ": File '" << m_oldFile << "' does not exist or empty, skipping" << endl;
             m_skipFile = true;
         }
@@ -945,16 +945,16 @@ void KonfUpdate::resetOptions()
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    app.setApplicationVersion("1.1");
+    app.setApplicationVersion(QStringLiteral("1.1"));
 
     QCommandLineParser parser;
     parser.addVersionOption();
     parser.setApplicationDescription(QCoreApplication::translate("main", "KDE Tool for updating user configuration files"));
     parser.addHelpOption();
-    parser.addOption(QCommandLineOption(QStringList() << "debug", QCoreApplication::translate("main", "Keep output results from scripts")));
-    parser.addOption(QCommandLineOption(QStringList() << "testmode", QCoreApplication::translate("main", "For unit tests only: use test directories to stay away from the user's real files")));
-    parser.addOption(QCommandLineOption(QStringList() << "check", QCoreApplication::translate("main", "Check whether config file itself requires updating"), "update-file"));
-    parser.addPositionalArgument("files", QCoreApplication::translate("main", "File(s) to read update instructions from"), "[files...]");
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("debug"), QCoreApplication::translate("main", "Keep output results from scripts")));
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("testmode"), QCoreApplication::translate("main", "For unit tests only: use test directories to stay away from the user's real files")));
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("check"), QCoreApplication::translate("main", "Check whether config file itself requires updating"), QStringLiteral("update-file")));
+    parser.addPositionalArgument(QStringLiteral("files"), QCoreApplication::translate("main", "File(s) to read update instructions from"), QStringLiteral("[files...]"));
 
     // TODO aboutData.addAuthor(ki18n("Waldo Bastian"), KLocalizedString(), "bastian@kde.org");
 

@@ -133,7 +133,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
             return true;
         }
     }
-    const QString servicesDir = QLatin1String("kservices5/"); // KGlobal::dirs()->xdgDataRelativePath("services")
+    const QString servicesDir = QStringLiteral("kservices5/"); // KGlobal::dirs()->xdgDataRelativePath("services")
     Q_FOREACH (const QString &xdgDataPrefix, QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
         if (QDir(xdgDataPrefix).exists()) {
             const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
@@ -142,7 +142,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
             }
         }
     }
-    const QString autostartDir = QLatin1String("autostart/");
+    const QString autostartDir = QStringLiteral("autostart/");
     Q_FOREACH (const QString &xdgDataPrefix, QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation)) {
         if (QDir(xdgDataPrefix).exists()) {
             const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
@@ -153,7 +153,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
     }
 
     // Forbid desktop files outside of standard locations if kiosk is set so
-    if (!KAuthorized::authorize(QLatin1String("run_desktop_files"))) {
+    if (!KAuthorized::authorize(QStringLiteral("run_desktop_files"))) {
         qWarning() << "Access to '" << path << "' denied because of 'run_desktop_files' restriction." << endl;
         return false;
     }
@@ -302,9 +302,9 @@ bool KDesktopFile::tryExec() const
             user = QString::fromLocal8Bit(qgetenv("ADMIN_ACCOUNT"));
         }
         if (user.isEmpty()) {
-            user = QString::fromLatin1("root");
+            user = QStringLiteral("root");
         }
-        if (!KAuthorized::authorize(QString::fromLatin1("user/") + user)) {
+        if (!KAuthorized::authorize(QLatin1String("user/") + user)) {
             return false;
         }
     }
@@ -365,12 +365,12 @@ bool KDesktopFile::noDisplay() const
         return true;
     }
     if (d->desktopGroup.hasKey("OnlyShowIn")) {
-        if (!d->desktopGroup.readXdgListEntry("OnlyShowIn").contains(QLatin1String("KDE"))) {
+        if (!d->desktopGroup.readXdgListEntry("OnlyShowIn").contains(QStringLiteral("KDE"))) {
             return true;
         }
     }
     if (d->desktopGroup.hasKey("NotShowIn")) {
-        if (d->desktopGroup.readXdgListEntry("NotShowIn").contains(QLatin1String("KDE"))) {
+        if (d->desktopGroup.readXdgListEntry("NotShowIn").contains(QStringLiteral("KDE"))) {
             return true;
         }
     }

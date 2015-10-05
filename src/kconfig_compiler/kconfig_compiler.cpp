@@ -66,48 +66,48 @@ public:
         // Configure the compiler with some settings
         QSettings codegenConfig(codegenFilename, QSettings::IniFormat);
 
-        nameSpace = codegenConfig.value("NameSpace").toString();
-        className = codegenConfig.value("ClassName").toString();
+        nameSpace = codegenConfig.value(QStringLiteral("NameSpace")).toString();
+        className = codegenConfig.value(QStringLiteral("ClassName")).toString();
         if (className.isEmpty()) {
             cerr << "Class name missing" << endl;
             exit(1);
         }
-        inherits = codegenConfig.value("Inherits").toString();
+        inherits = codegenConfig.value(QStringLiteral("Inherits")).toString();
         if (inherits.isEmpty()) {
-            inherits = "KConfigSkeleton";
+            inherits = QStringLiteral("KConfigSkeleton");
         }
-        visibility = codegenConfig.value("Visibility").toString();
+        visibility = codegenConfig.value(QStringLiteral("Visibility")).toString();
         if (!visibility.isEmpty()) {
             visibility += ' ';
         }
-        forceStringFilename = codegenConfig.value("ForceStringFilename", false).toBool();
-        singleton = codegenConfig.value("Singleton", false).toBool();
+        forceStringFilename = codegenConfig.value(QStringLiteral("ForceStringFilename"), false).toBool();
+        singleton = codegenConfig.value(QStringLiteral("Singleton"), false).toBool();
         staticAccessors = singleton;
-        customAddons = codegenConfig.value("CustomAdditions", false).toBool();
-        memberVariables = codegenConfig.value("MemberVariables").toString();
-        dpointer = (memberVariables == "dpointer");
-        headerIncludes = codegenConfig.value("IncludeFiles", QStringList()).toStringList();
-        sourceIncludes = codegenConfig.value("SourceIncludeFiles", QStringList()).toStringList();
-        mutators = codegenConfig.value("Mutators", QStringList()).toStringList();
-        allMutators = ((mutators.count() == 1) && (mutators.at(0).toLower() == "true"));
-        itemAccessors = codegenConfig.value("ItemAccessors", false).toBool();
-        setUserTexts = codegenConfig.value("SetUserTexts", false).toBool();
-        defaultGetters = codegenConfig.value("DefaultValueGetters", QStringList()).toStringList();
-        allDefaultGetters = (defaultGetters.count() == 1) && (defaultGetters.at(0).toLower() == "true");
-        globalEnums = codegenConfig.value("GlobalEnums", false).toBool();
-        useEnumTypes = codegenConfig.value("UseEnumTypes", false).toBool();
-        const QString trString = codegenConfig.value("TranslationSystem").toString().toLower();
-        generateProperties = codegenConfig.value("GenerateProperties", false).toBool();
-        if (trString == "kde") {
+        customAddons = codegenConfig.value(QStringLiteral("CustomAdditions"), false).toBool();
+        memberVariables = codegenConfig.value(QStringLiteral("MemberVariables")).toString();
+        dpointer = (memberVariables == QLatin1String("dpointer"));
+        headerIncludes = codegenConfig.value(QStringLiteral("IncludeFiles"), QStringList()).toStringList();
+        sourceIncludes = codegenConfig.value(QStringLiteral("SourceIncludeFiles"), QStringList()).toStringList();
+        mutators = codegenConfig.value(QStringLiteral("Mutators"), QStringList()).toStringList();
+        allMutators = ((mutators.count() == 1) && (mutators.at(0).toLower() == QLatin1String("true")));
+        itemAccessors = codegenConfig.value(QStringLiteral("ItemAccessors"), false).toBool();
+        setUserTexts = codegenConfig.value(QStringLiteral("SetUserTexts"), false).toBool();
+        defaultGetters = codegenConfig.value(QStringLiteral("DefaultValueGetters"), QStringList()).toStringList();
+        allDefaultGetters = (defaultGetters.count() == 1) && (defaultGetters.at(0).toLower() == QLatin1String("true"));
+        globalEnums = codegenConfig.value(QStringLiteral("GlobalEnums"), false).toBool();
+        useEnumTypes = codegenConfig.value(QStringLiteral("UseEnumTypes"), false).toBool();
+        const QString trString = codegenConfig.value(QStringLiteral("TranslationSystem")).toString().toLower();
+        generateProperties = codegenConfig.value(QStringLiteral("GenerateProperties"), false).toBool();
+        if (trString == QLatin1String("kde")) {
             translationSystem = KdeTranslation;
-            translationDomain = codegenConfig.value("TranslationDomain").toString();
+            translationDomain = codegenConfig.value(QStringLiteral("TranslationDomain")).toString();
         } else {
-            if (!trString.isEmpty() && trString != "qt") {
+            if (!trString.isEmpty() && trString != QLatin1String("qt")) {
                 cerr << "Unknown translation system, falling back to Qt tr()" << endl;
             }
             translationSystem = QtTranslation;
         }
-        qCategoryLoggingName = codegenConfig.value("CategoryLoggingName", QString()).toString();
+        qCategoryLoggingName = codegenConfig.value(QStringLiteral("CategoryLoggingName"), QString()).toString();
     }
 
 public:
@@ -203,7 +203,7 @@ public:
     CfgEntry(const QString &group, const QString &type, const QString &key,
              const QString &name, const QString &labelContext, const QString &label,
              const QString &toolTipContext, const QString &toolTip, const QString &whatsThisContext, const QString &whatsThis, const QString &code,
-             const QString &defaultValue, const Choices &choices, const QList<Signal> signalList,
+             const QString &defaultValue, const Choices &choices, const QList<Signal> &signalList,
              bool hidden)
         : mGroup(group), mType(type), mKey(key), mName(name),
           mLabelContext(labelContext), mLabel(label), mToolTipContext(toolTipContext), mToolTip(toolTip),
@@ -503,7 +503,7 @@ static QString varPath(const QString &n, const CfgConfig &cfg)
 
 static QString enumName(const QString &n)
 {
-    QString result = QString::fromLatin1("Enum") + n;
+    QString result = QLatin1String("Enum") + n;
     result[4] = result[4].toUpper();
     return result;
 }
@@ -512,7 +512,7 @@ static QString enumName(const QString &n, const CfgEntry::Choices &c)
 {
     QString result = c.name();
     if (result.isEmpty()) {
-        result = QString::fromLatin1("Enum") + n;
+        result = QLatin1String("Enum") + n;
         result[4] = result[4].toUpper();
     }
     return result;
@@ -522,9 +522,9 @@ static QString enumType(const CfgEntry *e, bool globalEnums)
 {
     QString result = e->choices().name();
     if (result.isEmpty()) {
-        result = QString::fromLatin1("Enum") + e->name();
+        result = QLatin1String("Enum") + e->name();
         if (!globalEnums) {
-            result += QString::fromLatin1("::type");
+            result += QLatin1String("::type");
         }
         result[4] = result[4].toUpper();
     }
@@ -535,7 +535,7 @@ static QString enumTypeQualifier(const QString &n, const CfgEntry::Choices &c)
 {
     QString result = c.name();
     if (result.isEmpty()) {
-        result = QString::fromLatin1("Enum") + n + QString::fromLatin1("::");
+        result = QLatin1String("Enum") + n + QLatin1String("::");
         result[4] = result[4].toUpper();
     } else if (c.external()) {
         result = c.externalQualifier();
@@ -547,11 +547,11 @@ static QString enumTypeQualifier(const QString &n, const CfgEntry::Choices &c)
 
 static QString setFunction(const QString &n, const QString &className = QString())
 {
-    QString result = QString::fromLatin1("set") + n;
+    QString result = QLatin1String("set") + n;
     result[3] = result[3].toUpper();
 
     if (!className.isEmpty()) {
-        result = className + QString::fromLatin1("::") + result;
+        result = className + QLatin1String("::") + result;
     }
     return result;
 }
@@ -563,11 +563,11 @@ static QString changeSignalName(const QString &n)
 
 static QString getDefaultFunction(const QString &n, const QString &className = QString())
 {
-    QString result = QString::fromLatin1("default") +  n + QString::fromLatin1("Value");
+    QString result = QLatin1String("default") +  n + QLatin1String("Value");
     result[7] = result[7].toUpper();
 
     if (!className.isEmpty()) {
-        result = className + QString::fromLatin1("::") + result;
+        result = className + QLatin1String("::") + result;
     }
     return result;
 }
@@ -578,7 +578,7 @@ static QString getFunction(const QString &n, const QString &className = QString(
     result[0] = result[0].toLower();
 
     if (!className.isEmpty()) {
-        result = className + QString::fromLatin1("::") + result;
+        result = className + QLatin1String("::") + result;
     }
     return result;
 }
@@ -612,9 +612,9 @@ static QString literalString(const QString &s)
         }
 
     if (isAscii) {
-        return QString::fromLatin1("QLatin1String( ") + quoteString(s) + QString::fromLatin1(" )");
+        return QLatin1String("QLatin1String( ") + quoteString(s) + QLatin1String(" )");
     } else {
-        return QString::fromLatin1("QString::fromUtf8( ") + quoteString(s) + QString::fromLatin1(" )");
+        return QLatin1String("QString::fromUtf8( ") + quoteString(s) + QLatin1String(" )");
     }
 }
 
@@ -626,14 +626,14 @@ static QString dumpNode(const QDomNode &node)
 
     msg = msg.simplified();
     if (msg.length() > 40) {
-        return msg.left(37) + QString::fromLatin1("...");
+        return msg.left(37) + QLatin1String("...");
     }
     return msg;
 }
 
 static QString filenameOnly(const QString &path)
 {
-    int i = path.lastIndexOf(QRegExp(QLatin1String("[/\\]")));
+    int i = path.lastIndexOf(QRegExp(QStringLiteral("[/\\]")));
     if (i >= 0) {
         return path.mid(i + 1);
     }
@@ -643,7 +643,7 @@ static QString filenameOnly(const QString &path)
 static QString signalEnumName(const QString &signalName)
 {
     QString result;
-    result = QString::fromLatin1("signal") + signalName;
+    result = QLatin1String("signal") + signalName;
     result[6] = result[6].toUpper();
 
     return result;
@@ -661,14 +661,14 @@ static void preProcessDefault(QString &defaultValue, const QString &name,
         defaultValue = literalString(defaultValue);
     } else if (type == QLatin1String("Url") && !defaultValue.isEmpty()) {
         // Use fromUserInput in order to support absolute paths and absolute urls, like KDE4's KUrl(QString) did.
-        defaultValue = QString::fromLatin1("QUrl::fromUserInput( ") + literalString(defaultValue) + QLatin1Char(')');
+        defaultValue = QLatin1String("QUrl::fromUserInput( ") + literalString(defaultValue) + QLatin1Char(')');
     } else if ((type == QLatin1String("UrlList") || type == QLatin1String("StringList") || type == QLatin1String("PathList")) && !defaultValue.isEmpty()) {
         QTextStream cpp(&code, QIODevice::WriteOnly | QIODevice::Append);
         if (!code.isEmpty()) {
             cpp << endl;
         }
 
-        if (type == "UrlList") {
+        if (type == QLatin1String("UrlList")) {
             cpp << "  QList<QUrl> default" << name << ";" << endl;
         } else {
             cpp << "  QStringList default" << name << ";" << endl;
@@ -686,10 +686,10 @@ static void preProcessDefault(QString &defaultValue, const QString &name,
             }
             cpp << ");" << endl;
         }
-        defaultValue = QString::fromLatin1("default") + name;
+        defaultValue = QLatin1String("default") + name;
 
     } else if (type == QLatin1String("Color") && !defaultValue.isEmpty()) {
-        QRegExp colorRe(QLatin1String("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?"));
+        QRegExp colorRe(QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?"));
         if (colorRe.exactMatch(defaultValue)) {
             defaultValue = QLatin1String("QColor( ") + defaultValue + QLatin1String(" )");
         } else {
@@ -724,17 +724,17 @@ static void preProcessDefault(QString &defaultValue, const QString &name,
                     << endl;
             }
         }
-        defaultValue = QString::fromLatin1("default") + name;
+        defaultValue = QLatin1String("default") + name;
     }
 }
 
 CfgEntry *parseEntry(const QString &group, const QDomElement &element, const CfgConfig &cfg)
 {
     bool defaultCode = false;
-    QString type = element.attribute("type");
-    QString name = element.attribute("name");
-    QString key = element.attribute("key");
-    QString hidden = element.attribute("hidden");
+    QString type = element.attribute(QStringLiteral("type"));
+    QString name = element.attribute(QStringLiteral("name"));
+    QString key = element.attribute(QStringLiteral("key"));
+    QString hidden = element.attribute(QStringLiteral("hidden"));
     QString labelContext;
     QString label;
     QString toolTipContext;
@@ -756,24 +756,24 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
 
     for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         QString tag = e.tagName();
-        if (tag == "label") {
+        if (tag == QLatin1String("label")) {
             label = e.text();
-            labelContext = e.attribute("context");
-        } else if (tag == "tooltip") {
+            labelContext = e.attribute(QStringLiteral("context"));
+        } else if (tag == QLatin1String("tooltip")) {
             toolTip = e.text();
-            toolTipContext = e.attribute("context");
-        } else if (tag == "whatsthis") {
+            toolTipContext = e.attribute(QStringLiteral("context"));
+        } else if (tag == QLatin1String("whatsthis")) {
             whatsThis = e.text();
-            whatsThisContext = e.attribute("context");
-        } else if (tag == "min") {
+            whatsThisContext = e.attribute(QStringLiteral("context"));
+        } else if (tag == QLatin1String("min")) {
             minValue = e.text();
-        } else if (tag == "max") {
+        } else if (tag == QLatin1String("max")) {
             maxValue = e.text();
-        } else if (tag == "code") {
+        } else if (tag == QLatin1String("code")) {
             code = e.text();
-        } else if (tag == "parameter") {
-            param = e.attribute("name");
-            paramType = e.attribute("type");
+        } else if (tag == QLatin1String("parameter")) {
+            param = e.attribute(QStringLiteral("name"));
+            paramType = e.attribute(QStringLiteral("type"));
             if (param.isEmpty()) {
                 cerr << "Parameter must have a name: " << dumpNode(e) << endl;
                 return 0;
@@ -782,19 +782,19 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
                 cerr << "Parameter must have a type: " << dumpNode(e) << endl;
                 return 0;
             }
-            if ((paramType == "Int") || (paramType == "UInt")) {
+            if ((paramType == QLatin1String("Int")) || (paramType == QLatin1String("UInt"))) {
                 bool ok;
-                paramMax = e.attribute("max").toInt(&ok);
+                paramMax = e.attribute(QStringLiteral("max")).toInt(&ok);
                 if (!ok) {
                     cerr << "Integer parameter must have a maximum (e.g. max=\"0\"): "
                          << dumpNode(e) << endl;
                     return 0;
                 }
-            } else if (paramType == "Enum") {
+            } else if (paramType == QLatin1String("Enum")) {
                 for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
-                    if (e2.tagName() == "values") {
+                    if (e2.tagName() == QLatin1String("values")) {
                         for (QDomElement e3 = e2.firstChildElement(); !e3.isNull(); e3 = e3.nextSiblingElement()) {
-                            if (e3.tagName() == "value") {
+                            if (e3.tagName() == QLatin1String("value")) {
                                 paramValues.append(e3.text());
                             }
                         }
@@ -812,46 +812,46 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
                      << " but must be of type int, uint or Enum." << endl;
                 return 0;
             }
-        } else if (tag == "default") {
-            if (e.attribute("param").isEmpty()) {
+        } else if (tag == QLatin1String("default")) {
+            if (e.attribute(QStringLiteral("param")).isEmpty()) {
                 defaultValue = e.text();
-                if (e.attribute("code") == "true") {
+                if (e.attribute(QStringLiteral("code")) == QLatin1String("true")) {
                     defaultCode = true;
                 }
             }
-        } else if (tag == "choices") {
-            QString name = e.attribute("name");
-            QString prefix = e.attribute("prefix");
+        } else if (tag == QLatin1String("choices")) {
+            QString name = e.attribute(QStringLiteral("name"));
+            QString prefix = e.attribute(QStringLiteral("prefix"));
             QList<CfgEntry::Choice> chlist;
             for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
-                if (e2.tagName() == "choice") {
+                if (e2.tagName() == QLatin1String("choice")) {
                     CfgEntry::Choice choice;
-                    choice.name = e2.attribute("name");
+                    choice.name = e2.attribute(QStringLiteral("name"));
                     if (choice.name.isEmpty()) {
                         cerr << "Tag <choice> requires attribute 'name'." << endl;
                     }
                     for (QDomElement e3 = e2.firstChildElement(); !e3.isNull(); e3 = e3.nextSiblingElement()) {
-                        if (e3.tagName() == "label") {
+                        if (e3.tagName() == QLatin1String("label")) {
                             choice.label = e3.text();
-                            choice.context = e3.attribute("context");
+                            choice.context = e3.attribute(QStringLiteral("context"));
                         }
-                        if (e3.tagName() == "tooltip") {
+                        if (e3.tagName() == QLatin1String("tooltip")) {
                             choice.toolTip = e3.text();
-                            choice.context = e3.attribute("context");
+                            choice.context = e3.attribute(QStringLiteral("context"));
                         }
-                        if (e3.tagName() == "whatsthis") {
+                        if (e3.tagName() == QLatin1String("whatsthis")) {
                             choice.whatsThis = e3.text();
-                            choice.context = e3.attribute("context");
+                            choice.context = e3.attribute(QStringLiteral("context"));
                         }
                     }
                     chlist.append(choice);
                 }
             }
             choices = CfgEntry::Choices(chlist, name, prefix);
-        } else if (tag == "emit") {
+        } else if (tag == QLatin1String("emit")) {
             QDomNode signalNode;
             Signal signal;
-            signal.name = e.attribute("signal");
+            signal.name = e.attribute(QStringLiteral("signal"));
             signalList.append(signal);
         }
     }
@@ -881,7 +881,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
         name.remove(' ');
     }
 
-    if (name.contains("$(")) {
+    if (name.contains(QStringLiteral("$("))) {
         if (param.isEmpty()) {
             cerr << "Name may not be parameterized: " << name << endl;
             return 0;
@@ -898,7 +898,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
     }
 
     if (type.isEmpty()) {
-        type = "String";    // XXX : implicit type might be bad
+        type = QStringLiteral("String");    // XXX : implicit type might be bad
     }
 
     if (!param.isEmpty()) {
@@ -912,8 +912,8 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
 
         for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
             QString tag = e.tagName();
-            if (tag == "default") {
-                QString index = e.attribute("param");
+            if (tag == QLatin1String("default")) {
+                QString index = e.attribute(QStringLiteral("param"));
                 if (index.isEmpty()) {
                     continue;
                 }
@@ -935,7 +935,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
 
                 QString tmpDefaultValue = e.text();
 
-                if (e.attribute("code") != "true") {
+                if (e.attribute(QStringLiteral("code")) != QLatin1String("true")) {
                     preProcessDefault(tmpDefaultValue, name, type, choices, code, cfg);
                 }
 
@@ -971,7 +971,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
 
     CfgEntry *result = new CfgEntry(group, type, key, name, labelContext, label, toolTipContext, toolTip, whatsThisContext, whatsThis,
                                     code, defaultValue, choices, signalList,
-                                    hidden == "true");
+                                    hidden == QLatin1String("true"));
     if (!param.isEmpty()) {
         result->setParam(param);
         result->setParamName(paramName);
@@ -988,10 +988,10 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
 
 static bool isUnsigned(const QString &type)
 {
-    if (type == "UInt") {
+    if (type == QLatin1String("UInt")) {
         return true;
     }
-    if (type == "ULongLong") {
+    if (type == QLatin1String("ULongLong")) {
         return true;
     }
     return false;
@@ -1003,51 +1003,51 @@ static bool isUnsigned(const QString &type)
 QString param(const QString &t)
 {
     const QString type = t.toLower();
-    if (type == "string") {
-        return "const QString &";
-    } else if (type == "stringlist") {
-        return "const QStringList &";
-    } else if (type == "font") {
-        return "const QFont &";
-    } else if (type == "rect") {
-        return "const QRect &";
-    } else if (type == "size") {
-        return "const QSize &";
-    } else if (type == "color") {
-        return "const QColor &";
-    } else if (type == "point") {
-        return "const QPoint &";
-    } else if (type == "int") {
-        return "int";
-    } else if (type == "uint") {
-        return "uint";
-    } else if (type == "bool") {
-        return "bool";
-    } else if (type == "double") {
-        return "double";
-    } else if (type == "datetime") {
-        return "const QDateTime &";
-    } else if (type == "longlong") {
-        return "qint64";
-    } else if (type == "ulonglong") {
-        return "quint64";
-    } else if (type == "intlist") {
-        return "const QList<int> &";
-    } else if (type == "enum") {
-        return "int";
-    } else if (type == "path") {
-        return "const QString &";
-    } else if (type == "pathlist") {
-        return "const QStringList &";
-    } else if (type == "password") {
-        return "const QString &";
-    } else if (type == "url") {
-        return "const QUrl &";
-    } else if (type == "urllist") {
-        return "const QList<QUrl> &";
+    if (type == QLatin1String("string")) {
+        return QStringLiteral("const QString &");
+    } else if (type == QLatin1String("stringlist")) {
+        return QStringLiteral("const QStringList &");
+    } else if (type == QLatin1String("font")) {
+        return QStringLiteral("const QFont &");
+    } else if (type == QLatin1String("rect")) {
+        return QStringLiteral("const QRect &");
+    } else if (type == QLatin1String("size")) {
+        return QStringLiteral("const QSize &");
+    } else if (type == QLatin1String("color")) {
+        return QStringLiteral("const QColor &");
+    } else if (type == QLatin1String("point")) {
+        return QStringLiteral("const QPoint &");
+    } else if (type == QLatin1String("int")) {
+        return QStringLiteral("int");
+    } else if (type == QLatin1String("uint")) {
+        return QStringLiteral("uint");
+    } else if (type == QLatin1String("bool")) {
+        return QStringLiteral("bool");
+    } else if (type == QLatin1String("double")) {
+        return QStringLiteral("double");
+    } else if (type == QLatin1String("datetime")) {
+        return QStringLiteral("const QDateTime &");
+    } else if (type == QLatin1String("longlong")) {
+        return QStringLiteral("qint64");
+    } else if (type == QLatin1String("ulonglong")) {
+        return QStringLiteral("quint64");
+    } else if (type == QLatin1String("intlist")) {
+        return QStringLiteral("const QList<int> &");
+    } else if (type == QLatin1String("enum")) {
+        return QStringLiteral("int");
+    } else if (type == QLatin1String("path")) {
+        return QStringLiteral("const QString &");
+    } else if (type == QLatin1String("pathlist")) {
+        return QStringLiteral("const QStringList &");
+    } else if (type == QLatin1String("password")) {
+        return QStringLiteral("const QString &");
+    } else if (type == QLatin1String("url")) {
+        return QStringLiteral("const QUrl &");
+    } else if (type == QLatin1String("urllist")) {
+        return QStringLiteral("const QList<QUrl> &");
     } else {
         cerr << "kconfig_compiler_kf5 does not support type \"" << type << "\"" << endl;
-        return "QString"; //For now, but an assert would be better
+        return QStringLiteral("QString"); //For now, but an assert would be better
     }
 }
 
@@ -1057,102 +1057,102 @@ QString param(const QString &t)
 QString cppType(const QString &t)
 {
     const QString type = t.toLower();
-    if (type == "string") {
-        return "QString";
-    } else if (type == "stringlist") {
-        return "QStringList";
-    } else if (type == "font") {
-        return "QFont";
-    } else if (type == "rect") {
-        return "QRect";
-    } else if (type == "size") {
-        return "QSize";
-    } else if (type == "color") {
-        return "QColor";
-    } else if (type == "point") {
-        return "QPoint";
-    } else if (type == "int") {
-        return "int";
-    } else if (type == "uint") {
-        return "uint";
-    } else if (type == "bool") {
-        return "bool";
-    } else if (type == "double") {
-        return "double";
-    } else if (type == "datetime") {
-        return "QDateTime";
-    } else if (type == "longlong") {
-        return "qint64";
-    } else if (type == "ulonglong") {
-        return "quint64";
-    } else if (type == "intlist") {
-        return "QList<int>";
-    } else if (type == "enum") {
-        return "int";
-    } else if (type == "path") {
-        return "QString";
-    } else if (type == "pathlist") {
-        return "QStringList";
-    } else if (type == "password") {
-        return "QString";
-    } else if (type == "url") {
-        return "QUrl";
-    } else if (type == "urllist") {
-        return "QList<QUrl>";
+    if (type == QLatin1String("string")) {
+        return QStringLiteral("QString");
+    } else if (type == QLatin1String("stringlist")) {
+        return QStringLiteral("QStringList");
+    } else if (type == QLatin1String("font")) {
+        return QStringLiteral("QFont");
+    } else if (type == QLatin1String("rect")) {
+        return QStringLiteral("QRect");
+    } else if (type == QLatin1String("size")) {
+        return QStringLiteral("QSize");
+    } else if (type == QLatin1String("color")) {
+        return QStringLiteral("QColor");
+    } else if (type == QLatin1String("point")) {
+        return QStringLiteral("QPoint");
+    } else if (type == QLatin1String("int")) {
+        return QStringLiteral("int");
+    } else if (type == QLatin1String("uint")) {
+        return QStringLiteral("uint");
+    } else if (type == QLatin1String("bool")) {
+        return QStringLiteral("bool");
+    } else if (type == QLatin1String("double")) {
+        return QStringLiteral("double");
+    } else if (type == QLatin1String("datetime")) {
+        return QStringLiteral("QDateTime");
+    } else if (type == QLatin1String("longlong")) {
+        return QStringLiteral("qint64");
+    } else if (type == QLatin1String("ulonglong")) {
+        return QStringLiteral("quint64");
+    } else if (type == QLatin1String("intlist")) {
+        return QStringLiteral("QList<int>");
+    } else if (type == QLatin1String("enum")) {
+        return QStringLiteral("int");
+    } else if (type == QLatin1String("path")) {
+        return QStringLiteral("QString");
+    } else if (type == QLatin1String("pathlist")) {
+        return QStringLiteral("QStringList");
+    } else if (type == QLatin1String("password")) {
+        return QStringLiteral("QString");
+    } else if (type == QLatin1String("url")) {
+        return QStringLiteral("QUrl");
+    } else if (type == QLatin1String("urllist")) {
+        return QStringLiteral("QList<QUrl>");
     } else {
         cerr << "kconfig_compiler_kf5 does not support type \"" << type << "\"" << endl;
-        return "QString"; //For now, but an assert would be better
+        return QStringLiteral("QString"); //For now, but an assert would be better
     }
 }
 
 QString defaultValue(const QString &t)
 {
     const QString type = t.toLower();
-    if (type == "string") {
-        return "\"\"";    // Use empty string, not null string!
-    } else if (type == "stringlist") {
-        return "QStringList()";
-    } else if (type == "font") {
-        return "QFont()";
-    } else if (type == "rect") {
-        return "QRect()";
-    } else if (type == "size") {
-        return "QSize()";
-    } else if (type == "color") {
-        return "QColor(128, 128, 128)";
-    } else if (type == "point") {
-        return "QPoint()";
-    } else if (type == "int") {
-        return "0";
-    } else if (type == "uint") {
-        return "0";
-    } else if (type == "bool") {
-        return "false";
-    } else if (type == "double") {
-        return "0.0";
-    } else if (type == "datetime") {
-        return "QDateTime()";
-    } else if (type == "longlong") {
-        return "0";
-    } else if (type == "ulonglong") {
-        return "0";
-    } else if (type == "intlist") {
-        return "QList<int>()";
-    } else if (type == "enum") {
-        return "0";
-    } else if (type == "path") {
-        return "\"\"";    // Use empty string, not null string!
-    } else if (type == "pathlist") {
-        return "QStringList()";
-    } else if (type == "password") {
-        return "\"\"";    // Use empty string, not null string!
-    } else if (type == "url") {
-        return "QUrl()";
-    } else if (type == "urllist") {
-        return "QList<QUrl>()";
+    if (type == QLatin1String("string")) {
+        return QStringLiteral("\"\"");    // Use empty string, not null string!
+    } else if (type == QLatin1String("stringlist")) {
+        return QStringLiteral("QStringList()");
+    } else if (type == QLatin1String("font")) {
+        return QStringLiteral("QFont()");
+    } else if (type == QLatin1String("rect")) {
+        return QStringLiteral("QRect()");
+    } else if (type == QLatin1String("size")) {
+        return QStringLiteral("QSize()");
+    } else if (type == QLatin1String("color")) {
+        return QStringLiteral("QColor(128, 128, 128)");
+    } else if (type == QLatin1String("point")) {
+        return QStringLiteral("QPoint()");
+    } else if (type == QLatin1String("int")) {
+        return QStringLiteral("0");
+    } else if (type == QLatin1String("uint")) {
+        return QStringLiteral("0");
+    } else if (type == QLatin1String("bool")) {
+        return QStringLiteral("false");
+    } else if (type == QLatin1String("double")) {
+        return QStringLiteral("0.0");
+    } else if (type == QLatin1String("datetime")) {
+        return QStringLiteral("QDateTime()");
+    } else if (type == QLatin1String("longlong")) {
+        return QStringLiteral("0");
+    } else if (type == QLatin1String("ulonglong")) {
+        return QStringLiteral("0");
+    } else if (type == QLatin1String("intlist")) {
+        return QStringLiteral("QList<int>()");
+    } else if (type == QLatin1String("enum")) {
+        return QStringLiteral("0");
+    } else if (type == QLatin1String("path")) {
+        return QStringLiteral("\"\"");    // Use empty string, not null string!
+    } else if (type == QLatin1String("pathlist")) {
+        return QStringLiteral("QStringList()");
+    } else if (type == QLatin1String("password")) {
+        return QStringLiteral("\"\"");    // Use empty string, not null string!
+    } else if (type == QLatin1String("url")) {
+        return QStringLiteral("QUrl()");
+    } else if (type == QLatin1String("urllist")) {
+        return QStringLiteral("QList<QUrl>()");
     } else {
         cerr << "Error, kconfig_compiler_kf5 does not support the \"" << type << "\" type!" << endl;
-        return "QString"; //For now, but an assert would be better
+        return QStringLiteral("QString"); //For now, but an assert would be better
     }
 }
 
@@ -1174,7 +1174,7 @@ static QString itemDeclaration(const CfgEntry *e, const CfgConfig &cfg)
 
     QString type;
     if (!e->signalList().isEmpty()) {
-        type = "KConfigCompilerSignallingItem";
+        type = QStringLiteral("KConfigCompilerSignallingItem");
     } else {
         type = cfg.inherits + "::Item" + itemType(e->type());
     }
@@ -1182,7 +1182,7 @@ static QString itemDeclaration(const CfgEntry *e, const CfgConfig &cfg)
     QString fCap = e->name();
     fCap[0] = fCap[0].toUpper();
     return "  " + type + "  *item" + fCap +
-            ( (!e->param().isEmpty())?(QString("[%1]").arg(e->paramMax()+1)) : QString()) + ";\n";
+            ( (!e->param().isEmpty())?(QStringLiteral("[%1]").arg(e->paramMax()+1)) : QString()) + ";\n";
 }
 
 // returns the name of an item variable
@@ -1223,35 +1223,35 @@ QString newItem(const CfgEntry* entry, const QString &key, const QString& defaul
     QList<Signal> sigs = entry->signalList();
     QString t;
     if (!sigs.isEmpty()) {
-        t += "new KConfigCompilerSignallingItem(";
+        t += QLatin1String("new KConfigCompilerSignallingItem(");
     }
     t += "new "+ cfg.inherits + "::Item" + itemType(entry->type()) + "( currentGroup(), "
             + key + ", " + varPath( entry->name(), cfg ) + param;
 
-    if (entry->type() == "Enum") {
+    if (entry->type() == QLatin1String("Enum")) {
         t += ", values" + entry->name();
     }
     if (!defaultValue.isEmpty()) {
-        t += ", ";
-        if (entry->type() == "String") {
+        t += QLatin1String(", ");
+        if (entry->type() == QLatin1String("String")) {
             t += defaultValue;
         } else {
             t += defaultValue;
         }
     }
-    t += " )";
+    t += QLatin1String(" )");
 
     if (!sigs.isEmpty()) {
-        t += ", this, notifyFunction, ";
+        t += QLatin1String(", this, notifyFunction, ");
         //append the signal flags
         for (int i = 0; i < sigs.size(); ++i) {
             if (i != 0)
-                t += " | ";
+                t += QLatin1String(" | ");
             t += signalEnumName(sigs[i].name);
         }
-        t += ")";
+        t += QLatin1String(")");
     }
-    t += ";";
+    t += QLatin1String(";");
     return t;
 }
 
@@ -1261,7 +1261,7 @@ QString paramString(const QString &s, const CfgEntry *e, int i)
     QString needle = "$(" + e->param() + ')';
     if (result.contains(needle)) {
         QString tmp;
-        if (e->paramType() == "Enum") {
+        if (e->paramType() == QLatin1String("Enum")) {
             tmp = e->paramValues()[i];
         } else {
             tmp = QString::number(i);
@@ -1302,7 +1302,7 @@ QString translatedString(const CfgConfig &cfg, const QString &string, const QStr
         if (!context.isEmpty()) {
             result += "/*: " + context + " */ QCoreApplication::translate(\"";
         } else {
-            result += "QCoreApplication::translate(\"";
+            result += QLatin1String("QCoreApplication::translate(\"");
         }
         result += cfg.className + "\", ";
         break;
@@ -1315,7 +1315,7 @@ QString translatedString(const CfgConfig &cfg, const QString &string, const QStr
         } else if (!context.isEmpty()) {
             result += "i18nc(" + quoteString(context) + ", ";
         } else {
-            result += "i18n(";
+            result += QLatin1String("i18n(");
         }
         break;
     }
@@ -1334,7 +1334,7 @@ QString translatedString(const CfgConfig &cfg, const QString &string, const QStr
 }
 
 /* int i is the value of the parameter */
-QString userTextsFunctions(CfgEntry *e, const CfgConfig &cfg, QString itemVarStr = QString(), QString i = QString())
+QString userTextsFunctions(CfgEntry *e, const CfgConfig &cfg, QString itemVarStr = QString(), const QString &i = QString())
 {
     QString txt;
     if (itemVarStr.isNull()) {
@@ -1343,17 +1343,17 @@ QString userTextsFunctions(CfgEntry *e, const CfgConfig &cfg, QString itemVarStr
     if (!e->label().isEmpty()) {
         txt += "  " + itemVarStr + "->setLabel( ";
         txt += translatedString(cfg, e->label(), e->labelContext(), e->param(), i);
-        txt += " );\n";
+        txt += QLatin1String(" );\n");
     }
     if (!e->toolTip().isEmpty()) {
         txt += "  " + itemVarStr + "->setToolTip( ";
         txt += translatedString(cfg, e->toolTip(), e->toolTipContext(), e->param(), i);
-        txt += " );\n";
+        txt += QLatin1String(" );\n");
     }
     if (!e->whatsThis().isEmpty()) {
         txt += "  " + itemVarStr + "->setWhatsThis( ";
         txt += translatedString(cfg, e->whatsThis(), e->whatsThisContext(), e->param(), i);
-        txt += " );\n";
+        txt += QLatin1String(" );\n");
     }
     return txt;
 }
@@ -1367,7 +1367,7 @@ QString memberAccessorBody(CfgEntry *e, bool globalEnums, const CfgConfig &cfg)
     QTextStream out(&result, QIODevice::WriteOnly);
     QString n = e->name();
     QString t = e->type();
-    bool useEnumType = cfg.useEnumTypes && t == "Enum";
+    bool useEnumType = cfg.useEnumTypes && t == QLatin1String("Enum");
 
     out << "return ";
     if (useEnumType) {
@@ -1406,7 +1406,7 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
     QString t = e->type();
 
     if (!e->minValue().isEmpty()) {
-        if (e->minValue() != "0" || !isUnsigned(t)) { // skip writing "if uint<0" (#187579)
+        if (e->minValue() != QLatin1String("0") || !isUnsigned(t)) { // skip writing "if uint<0" (#187579)
             out << "if (v < " << e->minValue() << ")" << endl;
             out << "{" << endl;
             addDebugMethod(out, cfg, n);
@@ -1427,7 +1427,7 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
         out << "}" << endl << endl;
     }
 
-    const QString varExpression = This + varPath(n, cfg) + (e->param().isEmpty() ? QString() : "[i]");
+    const QString varExpression = This + varPath(n, cfg) + (e->param().isEmpty() ? QString() : QStringLiteral("[i]"));
 
     const bool hasBody = !e->signalList().empty() || cfg.generateProperties;
     out << "if (";
@@ -1436,8 +1436,8 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
     }
     out << "!" << This << "isImmutable( QStringLiteral( \"";
     if (!e->param().isEmpty()) {
-        out << e->paramName().replace("$(" + e->param() + ")", "%1") << "\" ).arg( ";
-        if (e->paramType() == "Enum") {
+        out << e->paramName().replace("$(" + e->param() + ")", QLatin1String("%1")) << "\" ).arg( ";
+        if (e->paramType() == QLatin1String("Enum")) {
             out << "QLatin1String( ";
 
             if (cfg.globalEnums) {
@@ -1461,7 +1461,7 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
         if (signal.modify) {
             out << "  Q_EMIT " << This << signal.name << "();" << endl;
         } else {
-            out << "  " << This << varPath("settingsChanged", cfg) << " |= " << signalEnumName(signal.name) << ";" << endl;
+            out << "  " << This << varPath(QStringLiteral("settingsChanged"), cfg) << " |= " << signalEnumName(signal.name) << ";" << endl;
         }
     }
     if (hasBody) {
@@ -1488,7 +1488,7 @@ QString memberGetDefaultBody(CfgEntry *e)
             }
         }
         out << "  default:" << endl;
-        out << "    return " << e->defaultValue().replace("$(" + e->param() + ')', "i") << ';' << endl;
+        out << "    return " << e->defaultValue().replace("$(" + e->param() + ')', QLatin1String("i")) << ';' << endl;
         out << "  }" << endl;
     } else {
         out << "  return " << e->defaultValue() << ';';
@@ -1537,7 +1537,7 @@ QString indent(QString text, int spaces)
 void beginNamespaces(const QString &p_ns, QTextStream &p_out)
 {
     if (!p_ns.isEmpty()) {
-        const QStringList nameSpaces = p_ns.split("::");
+        const QStringList nameSpaces = p_ns.split(QStringLiteral("::"));
         foreach (const QString &ns, nameSpaces) {
             p_out << "namespace " << ns << " {" << endl;
         }
@@ -1550,7 +1550,7 @@ void beginNamespaces(const QString &p_ns, QTextStream &p_out)
 void endNamespaces(const QString &p_ns, QTextStream &p_out)
 {
     if (!p_ns.isEmpty()) {
-        const int namespaceCount = p_ns.count("::") + 1;
+        const int namespaceCount = p_ns.count(QStringLiteral("::")) + 1;
         for (int i = 0; i < namespaceCount; ++i) {
             p_out << "}" << endl;
         }
@@ -1561,24 +1561,24 @@ void endNamespaces(const QString &p_ns, QTextStream &p_out)
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    app.setApplicationName("kconfig_compiler");
-    app.setApplicationVersion(KCONFIG_VERSION_STRING);
+    app.setApplicationName(QStringLiteral("kconfig_compiler"));
+    app.setApplicationVersion(QStringLiteral(KCONFIG_VERSION_STRING));
 
-    validNameRegexp = new QRegExp("[a-zA-Z_][a-zA-Z0-9_]*");
+    validNameRegexp = new QRegExp(QStringLiteral("[a-zA-Z_][a-zA-Z0-9_]*"));
 
     QString inputFilename, codegenFilename;
 
     QCommandLineParser parser;
 
-    parser.addPositionalArgument("file.kcfg", "Input kcfg XML file");
-    parser.addPositionalArgument("file.kcfgc", "Code generation options file");
+    parser.addPositionalArgument(QStringLiteral("file.kcfg"), QStringLiteral("Input kcfg XML file"));
+    parser.addPositionalArgument(QStringLiteral("file.kcfgc"), QStringLiteral("Code generation options file"));
 
-    QCommandLineOption targetDirectoryOption(QStringList() << "d" << "directory",
+    QCommandLineOption targetDirectoryOption(QStringList() << QStringLiteral("d") << QStringLiteral("directory"),
             QCoreApplication::translate("main", "Directory to generate files in [.]"),
             QCoreApplication::translate("main", "directory"), QStringLiteral("."));
     parser.addOption(targetDirectoryOption);
 
-    QCommandLineOption licenseOption (QStringList() << "l" << "license", QCoreApplication::translate("main", "Display software license."));
+    QCommandLineOption licenseOption (QStringList() << QStringLiteral("l") << QStringLiteral("license"), QCoreApplication::translate("main", "Display software license."));
     parser.addOption (licenseOption);
 
     parser.addVersionOption();
@@ -1655,35 +1655,35 @@ int main(int argc, char **argv)
     for (QDomElement e = cfgElement.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         QString tag = e.tagName();
 
-        if (tag == "include") {
+        if (tag == QLatin1String("include")) {
             QString includeFile = e.text();
             if (!includeFile.isEmpty()) {
                 includes.append(includeFile);
             }
 
-        } else if (tag == "kcfgfile") {
-            cfgFileName = e.attribute("name");
-            cfgFileNameArg = e.attribute("arg").toLower() == "true";
+        } else if (tag == QLatin1String("kcfgfile")) {
+            cfgFileName = e.attribute(QStringLiteral("name"));
+            cfgFileNameArg = e.attribute(QStringLiteral("arg")).toLower() == QLatin1String("true");
             for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
-                if (e2.tagName() == "parameter") {
+                if (e2.tagName() == QLatin1String("parameter")) {
                     Param p;
-                    p.name = e2.attribute("name");
-                    p.type = e2.attribute("type");
+                    p.name = e2.attribute(QStringLiteral("name"));
+                    p.type = e2.attribute(QStringLiteral("type"));
                     if (p.type.isEmpty()) {
-                        p.type = "String";
+                        p.type = QStringLiteral("String");
                     }
                     parameters.append(p);
                 }
             }
 
-        } else if (tag == "group") {
-            QString group = e.attribute("name");
+        } else if (tag == QLatin1String("group")) {
+            QString group = e.attribute(QStringLiteral("name"));
             if (group.isEmpty()) {
                 cerr << "Group without name" << endl;
                 return 1;
             }
             for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
-                if (e2.tagName() != "entry") {
+                if (e2.tagName() != QLatin1String("entry")) {
                     continue;
                 }
                 CfgEntry *entry = parseEntry(group, e2, cfg);
@@ -1694,8 +1694,8 @@ int main(int argc, char **argv)
                     return 1;
                 }
             }
-        } else if (tag == "signal") {
-            QString signalName = e.attribute("name");
+        } else if (tag == QLatin1String("signal")) {
+            QString signalName = e.attribute(QStringLiteral("name"));
             if (signalName.isEmpty()) {
                 cerr << "Signal without name." << endl;
                 return 1;
@@ -1704,16 +1704,16 @@ int main(int argc, char **argv)
             theSignal.name = signalName;
 
             for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
-                if (e2.tagName() == "argument") {
+                if (e2.tagName() == QLatin1String("argument")) {
                     SignalArguments argument;
-                    argument.type = e2.attribute("type");
+                    argument.type = e2.attribute(QStringLiteral("type"));
                     if (argument.type.isEmpty()) {
                         cerr << "Signal argument without type." << endl;
                         return 1;
                     }
                     argument.variableName = e2.text();
                     theSignal.arguments.append(argument);
-                } else if (e2.tagName() == "label") {
+                } else if (e2.tagName() == QLatin1String("label")) {
                     theSignal.label = e2.text();
                 }
             }
@@ -1763,9 +1763,9 @@ int main(int argc, char **argv)
     h << "// This file is generated by kconfig_compiler_kf5 from " << QFileInfo(inputFilename).fileName() << "." << endl;
     h << "// All changes you do to this file will be lost." << endl;
 
-    h << "#ifndef " << (!cfg.nameSpace.isEmpty() ? QString(QString(cfg.nameSpace).replace("::", "_").toUpper() + '_') : "")
+    h << "#ifndef " << (!cfg.nameSpace.isEmpty() ? QString(QString(cfg.nameSpace).replace(QLatin1String("::"), QLatin1String("_")).toUpper() + '_') : QLatin1String(""))
       << cfg.className.toUpper() << "_H" << endl;
-    h << "#define " << (!cfg.nameSpace.isEmpty() ? QString(QString(cfg.nameSpace).replace("::", "_").toUpper() + '_') : "")
+    h << "#define " << (!cfg.nameSpace.isEmpty() ? QString(QString(cfg.nameSpace).replace(QLatin1String("::"), QLatin1String("_")).toUpper() + '_') : QLatin1String(""))
       << cfg.className.toUpper() << "_H" << endl << endl;
 
     // Includes
@@ -1786,7 +1786,7 @@ int main(int argc, char **argv)
         h << "#include <qglobal.h>" << endl;
     }
 
-    if (cfg.inherits == "KCoreConfigSkeleton") {
+    if (cfg.inherits == QLatin1String("KCoreConfigSkeleton")) {
         h << "#include <kcoreconfigskeleton.h>" << endl;
     } else {
         h << "#include <kconfigskeleton.h>" << endl;
@@ -1834,18 +1834,18 @@ int main(int argc, char **argv)
             }
             if (choices.name().isEmpty()) {
                 if (cfg.globalEnums) {
-                    h << "    enum " << enumName((*itEntry)->name(), (*itEntry)->choices()) << " { " << values.join(", ") << " };" << endl;
+                    h << "    enum " << enumName((*itEntry)->name(), (*itEntry)->choices()) << " { " << values.join(QStringLiteral(", ")) << " };" << endl;
                 } else {
                     // Create an automatically named enum
                     h << "    class " << enumName((*itEntry)->name(), (*itEntry)->choices()) << endl;
                     h << "    {" << endl;
                     h << "      public:" << endl;
-                    h << "      enum type { " << values.join(", ") << ", COUNT };" << endl;
+                    h << "      enum type { " << values.join(QStringLiteral(", ")) << ", COUNT };" << endl;
                     h << "    };" << endl;
                 }
             } else if (!choices.external()) {
                 // Create a named enum
-                h << "    enum " << enumName((*itEntry)->name(), (*itEntry)->choices()) << " { " << values.join(", ") << " };" << endl;
+                h << "    enum " << enumName((*itEntry)->name(), (*itEntry)->choices()) << " { " << values.join(QStringLiteral(", ")) << " };" << endl;
             }
         }
         const QStringList values = (*itEntry)->paramValues();
@@ -1854,19 +1854,19 @@ int main(int argc, char **argv)
                 // ### FIXME!!
                 // make the following string table an index-based string search!
                 // ###
-                h << "    enum " << enumName((*itEntry)->param()) << " { " << values.join(", ") << " };" << endl;
+                h << "    enum " << enumName((*itEntry)->param()) << " { " << values.join(QStringLiteral(", ")) << " };" << endl;
                 h << "    static const char* const " << enumName((*itEntry)->param()) << "ToString[];" << endl;
                 cppPreamble += "const char* const " + cfg.className + "::" + enumName((*itEntry)->param()) +
-                               "ToString[] = { \"" + values.join("\", \"") + "\" };\n";
+                               "ToString[] = { \"" + values.join(QStringLiteral("\", \"")) + "\" };\n";
             } else {
                 h << "    class " << enumName((*itEntry)->param()) << endl;
                 h << "    {" << endl;
                 h << "      public:" << endl;
-                h << "      enum type { " << values.join(", ") << ", COUNT };" << endl;
+                h << "      enum type { " << values.join(QStringLiteral(", ")) << ", COUNT };" << endl;
                 h << "      static const char* const enumToString[];" << endl;
                 h << "    };" << endl;
                 cppPreamble += "const char* const " + cfg.className + "::" + enumName((*itEntry)->param()) +
-                               "::enumToString[] = { \"" + values.join("\", \"") + "\" };\n";
+                               "::enumToString[] = { \"" + values.join(QStringLiteral("\", \"")) + "\" };\n";
             }
         }
     }
@@ -1904,9 +1904,9 @@ int main(int argc, char **argv)
 
     // global variables
     if (cfg.staticAccessors) {
-        This = "self()->";
+        This = QStringLiteral("self()->");
     } else {
-        Const = " const";
+        Const = QStringLiteral(" const");
     }
 
     for (itEntry = entries.constBegin(); itEntry != entries.constEnd(); ++itEntry) {
@@ -1925,7 +1925,7 @@ int main(int argc, char **argv)
             if (!(*itEntry)->param().isEmpty()) {
                 h << cppType((*itEntry)->paramType()) << " i, ";
             }
-            if (cfg.useEnumTypes && t == "Enum") {
+            if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
                 h << enumType(*itEntry, cfg.globalEnums);
             } else {
                 h << param(t);
@@ -1944,7 +1944,7 @@ int main(int argc, char **argv)
         h << endl;
 
         QString returnType;
-        if (cfg.useEnumTypes && t == "Enum") {
+        if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
             returnType = enumType(*itEntry, cfg.globalEnums);
         } else {
             returnType = cppType(t);
@@ -2003,7 +2003,7 @@ int main(int argc, char **argv)
                 h << "    static" << endl;
             }
             h << "    ";
-            if (cfg.useEnumTypes && t == "Enum") {
+            if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
                 h << enumType(*itEntry, cfg.globalEnums);
             } else {
                 h << cppType(t);
@@ -2015,7 +2015,7 @@ int main(int argc, char **argv)
             h << ")" << Const << endl;
             h << "    {" << endl;
             h << "        return ";
-            if (cfg.useEnumTypes && t == "Enum") {
+            if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
                 h << "static_cast<" << enumType(*itEntry, cfg.globalEnums) << ">(";
             }
             h << getDefaultFunction(n) << "_helper(";
@@ -2023,7 +2023,7 @@ int main(int argc, char **argv)
                 h << " i ";
             }
             h << ")";
-            if (cfg.useEnumTypes && t == "Enum") {
+            if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
                 h << ")";
             }
             h << ";" << endl;
@@ -2090,7 +2090,7 @@ int main(int argc, char **argv)
             for (it = signal.arguments.constBegin(); it != itEnd;) {
                 SignalArguments argument = *it;
                 QString type = param(argument.type);
-                if (cfg.useEnumTypes && argument.type == "Enum") {
+                if (cfg.useEnumTypes && argument.type == QLatin1String("Enum")) {
                     for (int i = 0, end = entries.count(); i < end; ++i) {
                         if (entries[i]->name() == argument.variableName) {
                             type = enumType(entries[i], cfg.globalEnums);
@@ -2129,7 +2129,7 @@ int main(int argc, char **argv)
     }
 
     // Member variables
-    if (!cfg.memberVariables.isEmpty() && cfg.memberVariables != "private" && cfg.memberVariables != "dpointer") {
+    if (!cfg.memberVariables.isEmpty() && cfg.memberVariables != QLatin1String("private") && cfg.memberVariables != QLatin1String("dpointer")) {
         h << "  " << cfg.memberVariables << ":" << endl;
     }
 
@@ -2139,7 +2139,7 @@ int main(int argc, char **argv)
         h << "    " << cppType((*it).type) << " mParam" << (*it).name << ";" << endl;
     }
 
-    if (cfg.memberVariables != "dpointer") {
+    if (cfg.memberVariables != QLatin1String("dpointer")) {
         QString group;
         for (itEntry = entries.constBegin(); itEntry != entries.constEnd(); ++itEntry) {
             if ((*itEntry)->group() != group) {
@@ -2149,7 +2149,7 @@ int main(int argc, char **argv)
             }
             h << "    " << cppType((*itEntry)->type()) << " " << varName((*itEntry)->name(), cfg);
             if (!(*itEntry)->param().isEmpty()) {
-                h << QString("[%1]").arg((*itEntry)->paramMax() + 1);
+                h << QStringLiteral("[%1]").arg((*itEntry)->paramMax() + 1);
             }
             h << ";" << endl;
 
@@ -2171,13 +2171,13 @@ int main(int argc, char **argv)
             for (itEntry = entries.constBegin(); itEntry != entries.constEnd(); ++itEntry) {
                 h << "    Item" << itemType((*itEntry)->type()) << " *" << itemVar(*itEntry, cfg);
                 if (!(*itEntry)->param().isEmpty()) {
-                    h << QString("[%1]").arg((*itEntry)->paramMax() + 1);
+                    h << QStringLiteral("[%1]").arg((*itEntry)->paramMax() + 1);
                 }
                 h << ";" << endl;
             }
         }
         if (hasNonModifySignals) {
-            h << "    uint " << varName("settingsChanged", cfg) << ";" << endl;
+            h << "    uint " << varName(QStringLiteral("settingsChanged"), cfg) << ";" << endl;
         }
 
     } else {
@@ -2270,7 +2270,7 @@ int main(int argc, char **argv)
             }
             cpp << "    " << cppType((*itEntry)->type()) << " " << varName((*itEntry)->name(), cfg);
             if (!(*itEntry)->param().isEmpty()) {
-                cpp << QString("[%1]").arg((*itEntry)->paramMax() + 1);
+                cpp << QStringLiteral("[%1]").arg((*itEntry)->paramMax() + 1);
             }
             cpp << ";" << endl;
         }
@@ -2278,15 +2278,15 @@ int main(int argc, char **argv)
         for (itEntry = entries.constBegin(); itEntry != entries.constEnd(); ++itEntry) {
             const QString declType = (*itEntry)->signalList().isEmpty()
                     ? QString(cfg.inherits + "::Item" + itemType((*itEntry)->type()))
-                    : "KConfigCompilerSignallingItem";
+                    : QStringLiteral("KConfigCompilerSignallingItem");
             cpp << "    " << declType << " *" << itemVar( *itEntry, cfg );
             if (!(*itEntry)->param().isEmpty()) {
-                cpp << QString("[%1]").arg((*itEntry)->paramMax() + 1);
+                cpp << QStringLiteral("[%1]").arg((*itEntry)->paramMax() + 1);
             }
             cpp << ";" << endl;
         }
         if (hasNonModifySignals) {
-            cpp << "    uint " << varName("settingsChanged", cfg) << ";" << endl;
+            cpp << "    uint " << varName(QStringLiteral("settingsChanged"), cfg) << ";" << endl;
         }
 
         cpp << "};" << endl << endl;
@@ -2376,7 +2376,7 @@ int main(int argc, char **argv)
     }
 
     if (hasNonModifySignals && !cfg.dpointer) {
-        cpp << "  , " << varName("settingsChanged", cfg) << "(0)" << endl;
+        cpp << "  , " << varName(QStringLiteral("settingsChanged"), cfg) << "(0)" << endl;
     }
 
     cpp << "{" << endl;
@@ -2384,7 +2384,7 @@ int main(int argc, char **argv)
     if (cfg.dpointer) {
         cpp << "  d = new " + cfg.className + "Private;" << endl;
         if (hasNonModifySignals) {
-            cpp << "  " << varPath("settingsChanged", cfg) << " = 0;" << endl;
+            cpp << "  " << varPath(QStringLiteral("settingsChanged"), cfg) << " = 0;" << endl;
         }
     }
     // Needed in case the singleton class is used as baseclass for
@@ -2417,7 +2417,7 @@ int main(int argc, char **argv)
         if (!(*itEntry)->code().isEmpty()) {
             cpp << (*itEntry)->code() << endl;
         }
-        if ((*itEntry)->type() == "Enum") {
+        if ((*itEntry)->type() == QLatin1String("Enum")) {
             cpp << "  QList<" + cfg.inherits + "::ItemEnum::Choice> values"
                 << (*itEntry)->name() << ";" << endl;
             const QList<CfgEntry::Choice> choices = (*itEntry)->choices().choices;
@@ -2479,7 +2479,7 @@ int main(int argc, char **argv)
             // Indexed
             for (int i = 0; i <= (*itEntry)->paramMax(); i++) {
                 QString defaultStr;
-                QString itemVarStr(itemPath(*itEntry, cfg) + QString("[%1]").arg(i));
+                QString itemVarStr(itemPath(*itEntry, cfg) + QStringLiteral("[%1]").arg(i));
 
                 if (!(*itEntry)->paramDefaultValue(i).isEmpty()) {
                     defaultStr = (*itEntry)->paramDefaultValue(i);
@@ -2490,7 +2490,7 @@ int main(int argc, char **argv)
                 }
 
                 cpp << "  " << itemVarStr << " = "
-                    << newItem((*itEntry), paramString(key, *itEntry, i), defaultStr, cfg, QString("[%1]").arg(i)) << endl;
+                    << newItem((*itEntry), paramString(key, *itEntry, i), defaultStr, cfg, QStringLiteral("[%1]").arg(i)) << endl;
 
                 if (cfg.setUserTexts) {
                     cpp << userTextsFunctions(*itEntry, cfg, itemVarStr, (*itEntry)->paramName());
@@ -2501,10 +2501,10 @@ int main(int argc, char **argv)
                 // name available, just the corresponding enum value (int), so we need to store the
                 // param names in a separate static list!.
                 cpp << "  addItem( " << itemVarStr << ", QLatin1String( \"";
-                if ((*itEntry)->paramType() == "Enum") {
-                    cpp << (*itEntry)->paramName().replace("$(" + (*itEntry)->param() + ')', "%1").arg((*itEntry)->paramValues()[i]);
+                if ((*itEntry)->paramType() == QLatin1String("Enum")) {
+                    cpp << (*itEntry)->paramName().replace("$(" + (*itEntry)->param() + ')', QLatin1String("%1")).arg((*itEntry)->paramValues()[i]);
                 } else {
-                    cpp << (*itEntry)->paramName().replace("$(" + (*itEntry)->param() + ')', "%1").arg(i);
+                    cpp << (*itEntry)->paramName().replace("$(" + (*itEntry)->param() + ')', QLatin1String("%1")).arg(i);
                 }
                 cpp << "\" ) );" << endl;
             }
@@ -2525,7 +2525,7 @@ int main(int argc, char **argv)
                 if (!(*itEntry)->param().isEmpty()) {
                     cpp << cppType((*itEntry)->paramType()) << " i, ";
                 }
-                if (cfg.useEnumTypes && t == "Enum") {
+                if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
                     cpp << enumType(*itEntry, cfg.globalEnums);
                 } else {
                     cpp << param(t);
@@ -2539,7 +2539,7 @@ int main(int argc, char **argv)
             }
 
             // Accessor
-            if (cfg.useEnumTypes && t == "Enum") {
+            if (cfg.useEnumTypes && t == QLatin1String("Enum")) {
                 cpp << enumType(*itEntry, cfg.globalEnums);
             } else {
                 cpp << cppType(t);
@@ -2614,13 +2614,13 @@ int main(int argc, char **argv)
                 continue;
             }
 
-            cpp << "  if ( " << varPath("settingsChanged", cfg) << " & " << signalEnumName(signal.name) << " )" << endl;
+            cpp << "  if ( " << varPath(QStringLiteral("settingsChanged"), cfg) << " & " << signalEnumName(signal.name) << " )" << endl;
             cpp << "    Q_EMIT " << signal.name << "(";
             QList<SignalArguments>::ConstIterator it, itEnd = signal.arguments.constEnd();
             for (it = signal.arguments.constBegin(); it != itEnd;) {
                 SignalArguments argument = *it;
                 bool cast = false;
-                if (cfg.useEnumTypes && argument.type == "Enum") {
+                if (cfg.useEnumTypes && argument.type == QLatin1String("Enum")) {
                     for (int i = 0, end = entries.count(); i < end; ++i) {
                         if (entries[i]->name() == argument.variableName) {
                             cpp << "static_cast<" << enumType(entries[i], cfg.globalEnums) << ">(";
@@ -2640,7 +2640,7 @@ int main(int argc, char **argv)
             cpp << ");" << endl;
         }
 
-        cpp << "  " << varPath("settingsChanged", cfg) << " = 0;" << endl;
+        cpp << "  " << varPath(QStringLiteral("settingsChanged"), cfg) << " = 0;" << endl;
         cpp << "  return true;" << endl;
         cpp << "}" << endl;
     }
@@ -2649,7 +2649,7 @@ int main(int argc, char **argv)
         cpp << endl;
         cpp << "void " << cfg.className << "::" << "itemChanged(quint64 flags) {" << endl;
         if (hasNonModifySignals)
-            cpp << "  " << varPath("settingsChanged", cfg) << " |= flags;" << endl;
+            cpp << "  " << varPath(QStringLiteral("settingsChanged"), cfg) << " |= flags;" << endl;
 
         if (!signalList.isEmpty())
             cpp << endl;

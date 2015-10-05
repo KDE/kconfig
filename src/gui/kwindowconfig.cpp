@@ -38,15 +38,15 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
     const QSize sizeToSave = window->size();
     const bool isMaximized = window->windowState() & Qt::WindowMaximized;
 
-    const QString screenMaximizedString(QString::fromLatin1("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()));
+    const QString screenMaximizedString(QStringLiteral("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()));
     // Save size only if window is not maximized
     if (!isMaximized) {
         const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
         const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
         const bool sizeValid = defaultSize.isValid() && defaultScreenSize.isValid();
         if (!sizeValid || (sizeValid && (defaultSize != sizeToSave || defaultScreenSize != desk.size()))) {
-            const QString wString(QString::fromLatin1("Width %1").arg(desk.width()));
-            const QString hString(QString::fromLatin1("Height %1").arg(desk.height()));
+            const QString wString(QStringLiteral("Width %1").arg(desk.width()));
+            const QString hString(QStringLiteral("Height %1").arg(desk.height()));
             config.writeEntry(wString, sizeToSave.width(), options);
             config.writeEntry(hString, sizeToSave.height(), options);
         }
@@ -67,9 +67,9 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
 
     const QRect desk = window->screen()->geometry();
 
-    const int width = config.readEntry(QString::fromLatin1("Width %1").arg(desk.width()), window->size().width());
-    const int height = config.readEntry(QString::fromLatin1("Height %1").arg(desk.height()), window->size().height());
-    const bool isMaximized = config.readEntry(QString::fromLatin1("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
+    const int width = config.readEntry(QStringLiteral("Width %1").arg(desk.width()), window->size().width());
+    const int height = config.readEntry(QStringLiteral("Height %1").arg(desk.height()), window->size().height());
+    const bool isMaximized = config.readEntry(QStringLiteral("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
 
     // Check default size
     const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());

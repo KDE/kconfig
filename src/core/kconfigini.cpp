@@ -55,7 +55,7 @@ static QByteArray lookup(const KConfigIniBackend::BufferFragment &fragment, QHas
 
 QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 {
-    return QString::fromLatin1("KConfigIni: In file %2, line %1: ")
+    return QStringLiteral("KConfigIni: In file %2, line %1: ")
            .arg(line).arg(file.fileName());
 }
 
@@ -810,7 +810,7 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
             default:
                 *r = '\\';
                 qWarning() << warningProlog(file, line)
-                           << QString::fromLatin1("Invalid escape sequence \"\\%1\".").arg(str[i]);
+                           << QStringLiteral("Invalid escape sequence \"\\%1\".").arg(str[i]);
             }
         }
     }

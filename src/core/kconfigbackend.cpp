@@ -44,7 +44,7 @@ public:
 
     static QString whatSystem(const QString & /*fileName*/)
     {
-        return QLatin1String("INI");
+        return QStringLiteral("INI");
     }
 };
 
