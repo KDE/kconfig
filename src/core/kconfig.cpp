@@ -713,6 +713,12 @@ void KConfigPrivate::parseConfigFiles()
                     Q_FOREACH (const QString &f, QStandardPaths::locateAll(resourceType, fileName)) {
                         files.prepend(f);
                     }
+
+                    // allow fallback to config files bundled in resources
+                    const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
+                    if (QFile::exists(resourceFile)) {
+                        files.prepend(resourceFile);
+                    }
                 }
             }
         } else {
