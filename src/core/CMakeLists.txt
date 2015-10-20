@@ -21,7 +21,7 @@ add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
 
 target_compile_definitions(KF5ConfigCore
     PRIVATE
-        KCONF_UPDATE_INSTALL_LOCATION="${CMAKE_INSTALL_PREFIX}/${KDE_INSTALL_LIBEXECDIR_KF5}/$<TARGET_FILE_NAME:KF5::kconf_update>"
+        KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF5}/$<TARGET_FILE_NAME:KF5::kconf_update>"
 )
 
 target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore>")
