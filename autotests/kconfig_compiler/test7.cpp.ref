@@ -4,25 +4,25 @@
 #include "test7.h"
 
 Test7::Test7(  int Number )
-  : KConfigSkeleton( QLatin1String( "test7rc" ) )
+  : KConfigSkeleton( QStringLiteral( "test7rc" ) )
   , mParamNumber(Number)
 {
-  setCurrentGroup( QLatin1String( "Foo" ) );
+  setCurrentGroup( QStringLiteral( "Foo" ) );
 
   KConfigSkeleton::ItemColor  *itemColor;
-  itemColor = new KConfigSkeleton::ItemColor( currentGroup(), QString( QLatin1String( "color #%1" ) ).arg( mParamNumber ), mColor, QColor( "red" ) );
-  addItem( itemColor, QLatin1String( "Color" ) );
+  itemColor = new KConfigSkeleton::ItemColor( currentGroup(), QStringLiteral( "color #%1" ).arg( mParamNumber ), mColor, QColor( "red" ) );
+  addItem( itemColor, QStringLiteral( "Color" ) );
 
-  setCurrentGroup( QString( QLatin1String( "Bar%1" ) ).arg( mParamNumber ) );
+  setCurrentGroup( QStringLiteral( "Bar%1" ).arg( mParamNumber ) );
 
   KConfigSkeleton::ItemString  *itemFooBar;
-  itemFooBar = new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "foo bar" ), mFooBar );
-  addItem( itemFooBar, QLatin1String( "FooBar" ) );
+  itemFooBar = new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "foo bar" ), mFooBar );
+  addItem( itemFooBar, QStringLiteral( "FooBar" ) );
   KConfigSkeleton::ItemInt  *itemAge;
-  itemAge = new KConfigSkeleton::ItemInt( currentGroup(), QLatin1String( "Age" ), mAge, 35 );
+  itemAge = new KConfigSkeleton::ItemInt( currentGroup(), QStringLiteral( "Age" ), mAge, 35 );
   itemAge->setMinValue(8);
   itemAge->setMaxValue(88);
-  addItem( itemAge, QLatin1String( "Age" ) );
+  addItem( itemAge, QStringLiteral( "Age" ) );
 }
 
 Test7::~Test7()

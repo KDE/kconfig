@@ -6,15 +6,15 @@
 using namespace TestNameSpace;
 
 TestTranslationQt::TestTranslationQt(  )
-  : KConfigSkeleton( QLatin1String( "test_translation_rc" ) )
+  : KConfigSkeleton( QStringLiteral( "test_translation_rc" ) )
 {
-  setCurrentGroup( QLatin1String( "General" ) );
+  setCurrentGroup( QStringLiteral( "General" ) );
 
   KConfigSkeleton::ItemBool  *itemAutoSave;
-  itemAutoSave = new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "Auto Save" ), mAutoSave, false );
+  itemAutoSave = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "Auto Save" ), mAutoSave, false );
   itemAutoSave->setLabel( QCoreApplication::translate("TestTranslationQt", "Enable automatic saving of calendar") );
   itemAutoSave->setWhatsThis( /*: @info:whatsthis */ QCoreApplication::translate("TestTranslationQt", "Enable automatic saving of calendars to have calendars saved automatically.") );
-  addItem( itemAutoSave, QLatin1String( "AutoSave" ) );
+  addItem( itemAutoSave, QStringLiteral( "AutoSave" ) );
 }
 
 TestTranslationQt::~TestTranslationQt()

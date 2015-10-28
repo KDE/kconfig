@@ -4,18 +4,18 @@
 #include "test13.h"
 
 Test13::Test13(  )
-  : KConfigSkeleton( QLatin1String( "muondatasourcesrc" ) )
+  : KConfigSkeleton( QStringLiteral( "muondatasourcesrc" ) )
 {
   KConfigCompilerSignallingItem::NotifyFunction notifyFunction = static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&Test13::itemChanged);
 
-  setCurrentGroup( QLatin1String( "kamoso" ) );
+  setCurrentGroup( QStringLiteral( "kamoso" ) );
 
   KConfigSkeleton::ItemUrl  *itemPicturesDir;
-  itemPicturesDir = new KConfigSkeleton::ItemUrl( currentGroup(), QLatin1String( "picturesDir" ), mPicturesDir );
-  addItem( itemPicturesDir, QLatin1String( "picturesDir" ) );
+  itemPicturesDir = new KConfigSkeleton::ItemUrl( currentGroup(), QStringLiteral( "picturesDir" ), mPicturesDir );
+  addItem( itemPicturesDir, QStringLiteral( "picturesDir" ) );
   KConfigCompilerSignallingItem  *itemBrightness;
-  itemBrightness = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemDouble( currentGroup(), QLatin1String( "brightness" ), mBrightness ), this, notifyFunction, signalBrightnessChanged);
-  addItem( itemBrightness, QLatin1String( "brightness" ) );
+  itemBrightness = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemDouble( currentGroup(), QStringLiteral( "brightness" ), mBrightness ), this, notifyFunction, signalBrightnessChanged);
+  addItem( itemBrightness, QStringLiteral( "brightness" ) );
 }
 
 Test13::~Test13()

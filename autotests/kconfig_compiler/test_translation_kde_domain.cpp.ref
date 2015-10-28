@@ -8,15 +8,15 @@
 using namespace TestNameSpace;
 
 TestTranslationKdeDomain::TestTranslationKdeDomain(  )
-  : KConfigSkeleton( QLatin1String( "test_translation_rc" ) )
+  : KConfigSkeleton( QStringLiteral( "test_translation_rc" ) )
 {
-  setCurrentGroup( QLatin1String( "General" ) );
+  setCurrentGroup( QStringLiteral( "General" ) );
 
   KConfigSkeleton::ItemBool  *itemAutoSave;
-  itemAutoSave = new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "Auto Save" ), mAutoSave, false );
+  itemAutoSave = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "Auto Save" ), mAutoSave, false );
   itemAutoSave->setLabel( i18nd("test-kcfg-kde", "Enable automatic saving of calendar") );
   itemAutoSave->setWhatsThis( i18ndc("test-kcfg-kde", "@info:whatsthis", "Enable automatic saving of calendars to have calendars saved automatically.") );
-  addItem( itemAutoSave, QLatin1String( "AutoSave" ) );
+  addItem( itemAutoSave, QStringLiteral( "AutoSave" ) );
 }
 
 TestTranslationKdeDomain::~TestTranslationKdeDomain()

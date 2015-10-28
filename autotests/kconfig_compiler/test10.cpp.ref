@@ -25,18 +25,18 @@ Test10 *Test10::self()
 }
 
 Test10::Test10(  )
-  : KConfigSkeleton( QLatin1String( "test10rc" ) )
+  : KConfigSkeleton( QStringLiteral( "test10rc" ) )
 {
   Q_ASSERT(!s_globalTest10()->q);
   s_globalTest10()->q = this;
-  setCurrentGroup( QLatin1String( "Foo" ) );
+  setCurrentGroup( QStringLiteral( "Foo" ) );
 
   KConfigSkeleton::ItemUrl  *itemFooBar;
-  itemFooBar = new KConfigSkeleton::ItemUrl( currentGroup(), QLatin1String( "foo bar" ), mFooBar );
-  addItem( itemFooBar, QLatin1String( "FooBar" ) );
+  itemFooBar = new KConfigSkeleton::ItemUrl( currentGroup(), QStringLiteral( "foo bar" ), mFooBar );
+  addItem( itemFooBar, QStringLiteral( "FooBar" ) );
   KConfigSkeleton::ItemUrlList  *itemBarFoo;
-  itemBarFoo = new KConfigSkeleton::ItemUrlList( currentGroup(), QLatin1String( "bar foo" ), mBarFoo );
-  addItem( itemBarFoo, QLatin1String( "BarFoo" ) );
+  itemBarFoo = new KConfigSkeleton::ItemUrlList( currentGroup(), QStringLiteral( "bar foo" ), mBarFoo );
+  addItem( itemBarFoo, QStringLiteral( "BarFoo" ) );
 }
 
 Test10::~Test10()

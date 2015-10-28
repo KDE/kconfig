@@ -4,66 +4,66 @@
 #include "test1.h"
 
 Test1::Test1(  const QString & transport, const QString & folder )
-  : KConfigSkeleton( QLatin1String( "examplerc" ) )
+  : KConfigSkeleton( QStringLiteral( "examplerc" ) )
   , mParamtransport(transport)
   , mParamfolder(folder)
 {
-  setCurrentGroup( QString( QLatin1String( "General-%1" ) ).arg( mParamfolder ) );
+  setCurrentGroup( QStringLiteral( "General-%1" ).arg( mParamfolder ) );
 
   KConfigSkeleton::ItemBool  *itemOneOption;
-  itemOneOption = new KConfigSkeleton::ItemBool( currentGroup(), QLatin1String( "OneOption" ), mOneOption, true );
-  addItem( itemOneOption, QLatin1String( "OneOption" ) );
+  itemOneOption = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "OneOption" ), mOneOption, true );
+  addItem( itemOneOption, QStringLiteral( "OneOption" ) );
   KConfigSkeleton::ItemInt  *itemAnotherOption;
-  itemAnotherOption = new KConfigSkeleton::ItemInt( currentGroup(), QLatin1String( "Another Option" ), mAnotherOption, 5 );
-  addItem( itemAnotherOption, QLatin1String( "AnotherOption" ) );
+  itemAnotherOption = new KConfigSkeleton::ItemInt( currentGroup(), QStringLiteral( "Another Option" ), mAnotherOption, 5 );
+  addItem( itemAnotherOption, QStringLiteral( "AnotherOption" ) );
   QList<KConfigSkeleton::ItemEnum::Choice> valuesListOption;
   {
     KConfigSkeleton::ItemEnum::Choice choice;
-    choice.name = QLatin1String("One");
+    choice.name = QStringLiteral("One");
     valuesListOption.append( choice );
   }
   {
     KConfigSkeleton::ItemEnum::Choice choice;
-    choice.name = QLatin1String("Two");
+    choice.name = QStringLiteral("Two");
     valuesListOption.append( choice );
   }
   {
     KConfigSkeleton::ItemEnum::Choice choice;
-    choice.name = QLatin1String("Three");
+    choice.name = QStringLiteral("Three");
     valuesListOption.append( choice );
   }
   KConfigSkeleton::ItemEnum  *itemListOption;
-  itemListOption = new KConfigSkeleton::ItemEnum( currentGroup(), QLatin1String( "ListOption" ), mListOption, valuesListOption, EnumListOption::One );
-  addItem( itemListOption, QLatin1String( "ListOption" ) );
+  itemListOption = new KConfigSkeleton::ItemEnum( currentGroup(), QStringLiteral( "ListOption" ), mListOption, valuesListOption, EnumListOption::One );
+  addItem( itemListOption, QStringLiteral( "ListOption" ) );
 
-  setCurrentGroup( QLatin1String( "MyOptions" ) );
+  setCurrentGroup( QStringLiteral( "MyOptions" ) );
 
   KConfigSkeleton::ItemString  *itemMyString;
-  itemMyString = new KConfigSkeleton::ItemString( currentGroup(), QLatin1String( "MyString" ), mMyString, QLatin1String( "Default String" ) );
-  addItem( itemMyString, QLatin1String( "MyString" ) );
+  itemMyString = new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "MyString" ), mMyString, QStringLiteral( "Default String" ) );
+  addItem( itemMyString, QStringLiteral( "MyString" ) );
   KConfigSkeleton::ItemPath  *itemMyPath;
-  itemMyPath = new KConfigSkeleton::ItemPath( currentGroup(), QLatin1String( "MyPath" ), mMyPath, QDir::homePath()+QString::fromLatin1(".hidden_file") );
-  addItem( itemMyPath, QLatin1String( "MyPath" ) );
+  itemMyPath = new KConfigSkeleton::ItemPath( currentGroup(), QStringLiteral( "MyPath" ), mMyPath, QDir::homePath()+QString::fromLatin1(".hidden_file") );
+  addItem( itemMyPath, QStringLiteral( "MyPath" ) );
   KConfigSkeleton::ItemInt  *itemAnotherOption2;
-  itemAnotherOption2 = new KConfigSkeleton::ItemInt( currentGroup(), QLatin1String( "Another Option" ), mAnotherOption2, 10 );
-  addItem( itemAnotherOption2, QLatin1String( "AnotherOption2" ) );
+  itemAnotherOption2 = new KConfigSkeleton::ItemInt( currentGroup(), QStringLiteral( "Another Option" ), mAnotherOption2, 10 );
+  addItem( itemAnotherOption2, QStringLiteral( "AnotherOption2" ) );
   QStringList defaultMyStringList;
   defaultMyStringList.append( QString::fromUtf8( "up" ) );
   defaultMyStringList.append( QString::fromUtf8( "down" ) );
 
   KConfigSkeleton::ItemStringList  *itemMyStringList;
-  itemMyStringList = new KConfigSkeleton::ItemStringList( currentGroup(), QLatin1String( "MyStringList" ), mMyStringList, defaultMyStringList );
-  addItem( itemMyStringList, QLatin1String( "MyStringList" ) );
+  itemMyStringList = new KConfigSkeleton::ItemStringList( currentGroup(), QStringLiteral( "MyStringList" ), mMyStringList, defaultMyStringList );
+  addItem( itemMyStringList, QStringLiteral( "MyStringList" ) );
   QStringList defaultMyStringListHidden;
   defaultMyStringListHidden.append( QString::fromUtf8( "up" ) );
   defaultMyStringListHidden.append( QString::fromUtf8( "down" ) );
 
   KConfigSkeleton::ItemStringList  *itemMyStringListHidden;
-  itemMyStringListHidden = new KConfigSkeleton::ItemStringList( currentGroup(), QLatin1String( "MyStringListHidden" ), mMyStringListHidden, defaultMyStringListHidden );
-  addItem( itemMyStringListHidden, QLatin1String( "MyStringListHidden" ) );
+  itemMyStringListHidden = new KConfigSkeleton::ItemStringList( currentGroup(), QStringLiteral( "MyStringListHidden" ), mMyStringListHidden, defaultMyStringListHidden );
+  addItem( itemMyStringListHidden, QStringLiteral( "MyStringListHidden" ) );
   KConfigSkeleton::ItemInt  *itemMyNumber;
-  itemMyNumber = new KConfigSkeleton::ItemInt( currentGroup(), QString( QLatin1String( "List-%1-%2" ) ).arg( mParamtransport ).arg( mParamfolder ), mMyNumber, 1 );
-  addItem( itemMyNumber, QLatin1String( "MyNumber" ) );
+  itemMyNumber = new KConfigSkeleton::ItemInt( currentGroup(), QStringLiteral( "List-%1-%2" ).arg( mParamtransport ).arg( mParamfolder ), mMyNumber, 1 );
+  addItem( itemMyNumber, QStringLiteral( "MyNumber" ) );
 }
 
 Test1::~Test1()

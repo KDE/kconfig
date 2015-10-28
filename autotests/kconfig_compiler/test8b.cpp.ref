@@ -29,20 +29,20 @@ Test8b::Test8b(  )
 {
   Q_ASSERT(!s_globalTest8b()->q);
   s_globalTest8b()->q = this;
-  setCurrentGroup( QLatin1String( "Group8b1" ) );
+  setCurrentGroup( QStringLiteral( "Group8b1" ) );
 
   Test8a::ItemUInt  *itemSomething;
-  itemSomething = new Test8a::ItemUInt( currentGroup(), QLatin1String( "Something" ), mSomething, 60 );
-  addItem( itemSomething, QLatin1String( "Something" ) );
+  itemSomething = new Test8a::ItemUInt( currentGroup(), QStringLiteral( "Something" ), mSomething, 60 );
+  addItem( itemSomething, QStringLiteral( "Something" ) );
 
-  setCurrentGroup( QLatin1String( "Group8b2" ) );
+  setCurrentGroup( QStringLiteral( "Group8b2" ) );
 
   Test8a::ItemBool  *itemFooBoo;
-  itemFooBoo = new Test8a::ItemBool( currentGroup(), QLatin1String( "FooBoo" ), mFooBoo, false );
-  addItem( itemFooBoo, QLatin1String( "FooBoo" ) );
+  itemFooBoo = new Test8a::ItemBool( currentGroup(), QStringLiteral( "FooBoo" ), mFooBoo, false );
+  addItem( itemFooBoo, QStringLiteral( "FooBoo" ) );
   Test8a::ItemUInt  *itemPort;
-  itemPort = new Test8a::ItemUInt( currentGroup(), QLatin1String( "Port" ), mPort, 1000 );
-  addItem( itemPort, QLatin1String( "Port" ) );
+  itemPort = new Test8a::ItemUInt( currentGroup(), QStringLiteral( "Port" ), mPort, 1000 );
+  addItem( itemPort, QStringLiteral( "Port" ) );
 }
 
 Test8b::~Test8b()

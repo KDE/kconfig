@@ -4,90 +4,90 @@
 #include "test2.h"
 
 Test2::Test2(  )
-  : MyPrefs( QLatin1String( "korganizerrc" ) )
+  : MyPrefs( QStringLiteral( "korganizerrc" ) )
 {
-  setCurrentGroup( QLatin1String( "General" ) );
+  setCurrentGroup( QStringLiteral( "General" ) );
 
-  mAutoSaveItem = new MyPrefs::ItemBool( currentGroup(), QLatin1String( "Auto Save" ), mAutoSave, false );
+  mAutoSaveItem = new MyPrefs::ItemBool( currentGroup(), QStringLiteral( "Auto Save" ), mAutoSave, false );
   mAutoSaveItem->setLabel( QCoreApplication::translate("Test2", "Enable automatic saving of calendar") );
   mAutoSaveItem->setWhatsThis( QCoreApplication::translate("Test2", "WhatsThis text for AutoSave option") );
-  addItem( mAutoSaveItem, QLatin1String( "AutoSave" ) );
-  mAutoSaveIntervalItem = new MyPrefs::ItemInt( currentGroup(), QLatin1String( "Auto Save Interval" ), mAutoSaveInterval, 10 );
+  addItem( mAutoSaveItem, QStringLiteral( "AutoSave" ) );
+  mAutoSaveIntervalItem = new MyPrefs::ItemInt( currentGroup(), QStringLiteral( "Auto Save Interval" ), mAutoSaveInterval, 10 );
   mAutoSaveIntervalItem->setLabel( QCoreApplication::translate("Test2", "Auto Save Interval") );
-  addItem( mAutoSaveIntervalItem, QLatin1String( "AutoSaveInterval" ) );
-  mConfirmItem = new MyPrefs::ItemBool( currentGroup(), QLatin1String( "Confirm Deletes" ), mConfirm, true );
+  addItem( mAutoSaveIntervalItem, QStringLiteral( "AutoSaveInterval" ) );
+  mConfirmItem = new MyPrefs::ItemBool( currentGroup(), QStringLiteral( "Confirm Deletes" ), mConfirm, true );
   mConfirmItem->setLabel( QCoreApplication::translate("Test2", "Confirm deletes") );
-  addItem( mConfirmItem, QLatin1String( "Confirm" ) );
-  mArchiveFileItem = new MyPrefs::ItemString( currentGroup(), QLatin1String( "Archive File" ), mArchiveFile );
+  addItem( mConfirmItem, QStringLiteral( "Confirm" ) );
+  mArchiveFileItem = new MyPrefs::ItemString( currentGroup(), QStringLiteral( "Archive File" ), mArchiveFile );
   mArchiveFileItem->setLabel( QCoreApplication::translate("Test2", "Archive File") );
-  addItem( mArchiveFileItem, QLatin1String( "ArchiveFile" ) );
+  addItem( mArchiveFileItem, QStringLiteral( "ArchiveFile" ) );
   QList<MyPrefs::ItemEnum::Choice> valuesDestination;
   {
     MyPrefs::ItemEnum::Choice choice;
-    choice.name = QLatin1String("standardDestination");
+    choice.name = QStringLiteral("standardDestination");
     valuesDestination.append( choice );
   }
   {
     MyPrefs::ItemEnum::Choice choice;
-    choice.name = QLatin1String("askDestination");
+    choice.name = QStringLiteral("askDestination");
     valuesDestination.append( choice );
   }
   {
     MyPrefs::ItemEnum::Choice choice;
-    choice.name = QLatin1String("argl1");
+    choice.name = QStringLiteral("argl1");
     choice.label = QCoreApplication::translate("Test2", "Argl1 Label");
     valuesDestination.append( choice );
   }
   {
     MyPrefs::ItemEnum::Choice choice;
-    choice.name = QLatin1String("argl2");
+    choice.name = QStringLiteral("argl2");
     choice.whatsThis = QCoreApplication::translate("Test2", "Argl2 Whatsthis");
     valuesDestination.append( choice );
   }
   {
     MyPrefs::ItemEnum::Choice choice;
-    choice.name = QLatin1String("argl3");
+    choice.name = QStringLiteral("argl3");
     choice.label = QCoreApplication::translate("Test2", "Argl3 Label");
     choice.whatsThis = QCoreApplication::translate("Test2", "Argl3 Whatsthis");
     valuesDestination.append( choice );
   }
-  mDestinationItem = new MyPrefs::ItemEnum( currentGroup(), QLatin1String( "Destination" ), mDestination, valuesDestination, standardDestination );
+  mDestinationItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "Destination" ), mDestination, valuesDestination, standardDestination );
   mDestinationItem->setLabel( QCoreApplication::translate("Test2", "New Events/Todos Should") );
-  addItem( mDestinationItem, QLatin1String( "Destination" ) );
+  addItem( mDestinationItem, QStringLiteral( "Destination" ) );
 
-  setCurrentGroup( QLatin1String( "Views" ) );
+  setCurrentGroup( QStringLiteral( "Views" ) );
 
-  mHourSizeItem = new MyPrefs::ItemInt( currentGroup(), QLatin1String( "Hour Size" ), mHourSize, 10 );
+  mHourSizeItem = new MyPrefs::ItemInt( currentGroup(), QStringLiteral( "Hour Size" ), mHourSize, 10 );
   mHourSizeItem->setLabel( QCoreApplication::translate("Test2", "Hour Size") );
-  addItem( mHourSizeItem, QLatin1String( "HourSize" ) );
-  mSelectionStartsEditorItem = new MyPrefs::ItemBool( currentGroup(), QLatin1String( "SelectionStartsEditor" ), mSelectionStartsEditor, false );
+  addItem( mHourSizeItem, QStringLiteral( "HourSize" ) );
+  mSelectionStartsEditorItem = new MyPrefs::ItemBool( currentGroup(), QStringLiteral( "SelectionStartsEditor" ), mSelectionStartsEditor, false );
   mSelectionStartsEditorItem->setLabel( QCoreApplication::translate("Test2", "Time range selection in agenda view starts event editor") );
-  addItem( mSelectionStartsEditorItem, QLatin1String( "SelectionStartsEditor" ) );
+  addItem( mSelectionStartsEditorItem, QStringLiteral( "SelectionStartsEditor" ) );
 
-  setCurrentGroup( QLatin1String( "KOrganizer Plugins" ) );
+  setCurrentGroup( QStringLiteral( "KOrganizer Plugins" ) );
 
   QStringList defaultSelectedPlugins;
   defaultSelectedPlugins.append( QString::fromUtf8( "holidays" ) );
   defaultSelectedPlugins.append( QString::fromUtf8( "webexport" ) );
 
-  mSelectedPluginsItem = new MyPrefs::ItemStringList( currentGroup(), QLatin1String( "SelectedPlugins" ), mSelectedPlugins, defaultSelectedPlugins );
+  mSelectedPluginsItem = new MyPrefs::ItemStringList( currentGroup(), QStringLiteral( "SelectedPlugins" ), mSelectedPlugins, defaultSelectedPlugins );
   mSelectedPluginsItem->setLabel( QCoreApplication::translate("Test2", "SelectedPlugins") );
-  addItem( mSelectedPluginsItem, QLatin1String( "SelectedPlugins" ) );
+  addItem( mSelectedPluginsItem, QStringLiteral( "SelectedPlugins" ) );
 
-  setCurrentGroup( QLatin1String( "Colors" ) );
+  setCurrentGroup( QStringLiteral( "Colors" ) );
 
-  mHighlightColorItem = new MyPrefs::ItemColor( currentGroup(), QLatin1String( "Highlight Color" ), mHighlightColor, QColor( 100, 100, 255 ) );
+  mHighlightColorItem = new MyPrefs::ItemColor( currentGroup(), QStringLiteral( "Highlight Color" ), mHighlightColor, QColor( 100, 100, 255 ) );
   mHighlightColorItem->setLabel( QCoreApplication::translate("Test2", "Highlight color") );
-  addItem( mHighlightColorItem, QLatin1String( "HighlightColor" ) );
-  mAgendaBgColorItem = new MyPrefs::ItemColor( currentGroup(), QLatin1String( "Agenda Background Color" ), mAgendaBgColor, QColor( 255, 255, 255 ) );
+  addItem( mHighlightColorItem, QStringLiteral( "HighlightColor" ) );
+  mAgendaBgColorItem = new MyPrefs::ItemColor( currentGroup(), QStringLiteral( "Agenda Background Color" ), mAgendaBgColor, QColor( 255, 255, 255 ) );
   mAgendaBgColorItem->setLabel( QCoreApplication::translate("Test2", "Agenda view background color") );
-  addItem( mAgendaBgColorItem, QLatin1String( "AgendaBgColor" ) );
+  addItem( mAgendaBgColorItem, QStringLiteral( "AgendaBgColor" ) );
 
-  setCurrentGroup( QLatin1String( "Fonts" ) );
+  setCurrentGroup( QStringLiteral( "Fonts" ) );
 
-  mTimeBarFontItem = new MyPrefs::ItemFont( currentGroup(), QLatin1String( "TimeBar Font" ), mTimeBarFont );
+  mTimeBarFontItem = new MyPrefs::ItemFont( currentGroup(), QStringLiteral( "TimeBar Font" ), mTimeBarFont );
   mTimeBarFontItem->setLabel( QCoreApplication::translate("Test2", "Time bar") );
-  addItem( mTimeBarFontItem, QLatin1String( "TimeBarFont" ) );
+  addItem( mTimeBarFontItem, QStringLiteral( "TimeBarFont" ) );
 }
 
 Test2::~Test2()

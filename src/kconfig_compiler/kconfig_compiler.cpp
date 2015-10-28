@@ -612,7 +612,7 @@ static QString literalString(const QString &s)
         }
 
     if (isAscii) {
-        return QLatin1String("QLatin1String( ") + quoteString(s) + QLatin1String(" )");
+        return QLatin1String("QStringLiteral( ") + quoteString(s) + QLatin1String(" )");
     } else {
         return QLatin1String("QString::fromUtf8( ") + quoteString(s) + QLatin1String(" )");
     }
@@ -1287,10 +1287,10 @@ QString paramString(const QString &group, const QList<Param> &parameters)
         }
     }
     if (arguments.isEmpty()) {
-        return "QLatin1String( \"" + group + "\" )";
+        return "QStringLiteral( \"" + group + "\" )";
     }
 
-    return "QString( QLatin1String( \"" + paramString + "\" ) )" + arguments;
+    return "QStringLiteral( \"" + paramString + "\" )" + arguments;
 }
 
 QString translatedString(const CfgConfig &cfg, const QString &string, const QString &context = QString(), const QString &param = QString(), const QString &paramValue = QString())
@@ -2359,7 +2359,7 @@ int main(int argc, char **argv)
 
     cpp << "  : " << cfg.inherits << "(";
     if (!cfgFileName.isEmpty()) {
-        cpp << " QLatin1String( \"" << cfgFileName << "\" ";
+        cpp << " QStringLiteral( \"" << cfgFileName << "\" ";
     }
     if (cfgFileNameArg) {
         cpp << " config ";
@@ -2425,7 +2425,7 @@ int main(int argc, char **argv)
             for (it = choices.constBegin(); it != choices.constEnd(); ++it) {
                 cpp << "  {" << endl;
                 cpp << "    " + cfg.inherits + "::ItemEnum::Choice choice;" << endl;
-                cpp << "    choice.name = QLatin1String(\"" << (*it).name << "\");" << endl;
+                cpp << "    choice.name = QStringLiteral(\"" << (*it).name << "\");" << endl;
                 if (cfg.setUserTexts) {
                     if (!(*it).label.isEmpty()) {
                         cpp << "    choice.label = "
@@ -2472,7 +2472,7 @@ int main(int argc, char **argv)
             QString quotedName = (*itEntry)->name();
             addQuotes(quotedName);
             if (quotedName != key) {
-                cpp << ", QLatin1String( \"" << (*itEntry)->name() << "\" )";
+                cpp << ", QStringLiteral( \"" << (*itEntry)->name() << "\" )";
             }
             cpp << " );" << endl;
         } else {
@@ -2500,7 +2500,7 @@ int main(int argc, char **argv)
                 // param name. The check for isImmutable in the set* functions doesn't have the param
                 // name available, just the corresponding enum value (int), so we need to store the
                 // param names in a separate static list!.
-                cpp << "  addItem( " << itemVarStr << ", QLatin1String( \"";
+                cpp << "  addItem( " << itemVarStr << ", QStringLiteral( \"";
                 if ((*itEntry)->paramType() == QLatin1String("Enum")) {
                     cpp << (*itEntry)->paramName().replace("$(" + (*itEntry)->param() + ')', QLatin1String("%1")).arg((*itEntry)->paramValues()[i]);
                 } else {
