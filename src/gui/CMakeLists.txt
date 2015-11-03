@@ -9,8 +9,8 @@ set(libkconfiggui_SRCS
    kconfigskeleton.cpp
    kstandardshortcut.cpp
    kwindowconfig.cpp
-   ${kconfig_QM_LOADER}
 )
+ecm_create_qm_loader(libkconfiggui_SRCS kconfig5_qt)
 
 add_library(KF5ConfigGui ${libkconfiggui_SRCS})
 generate_export_header(KF5ConfigGui BASE_NAME KConfigGui)
