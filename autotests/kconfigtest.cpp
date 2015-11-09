@@ -607,7 +607,7 @@ void KConfigTest::testEntryMap()
     QVERIFY(!entryMap.contains("stringEntry5"));
     QVERIFY(!entryMap.contains("stringEntry6"));
     QCOMPARE(entryMap.value("Test"), QString::fromUtf8(UTF8BITENTRY));
-    QCOMPARE(entryMap.value("bytearrayEntry"), QString::fromUtf8(BYTEARRAYENTRY));
+    QCOMPARE(entryMap.value("bytearrayEntry"), QString::fromUtf8(BYTEARRAYENTRY.constData()));
     QCOMPARE(entryMap.value("emptyEntry"), QString());
     QVERIFY(entryMap.contains("emptyEntry"));
     QCOMPARE(entryMap.value("boolEntry1"), QString(BOOLENTRY1 ? "true" : "false"));
