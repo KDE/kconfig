@@ -28,6 +28,9 @@
 
 class KConfig;
 
+/**
+ * Interface-related functions.
+ */
 namespace KConfigGui
 {
 /**
