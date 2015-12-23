@@ -87,7 +87,7 @@ static CompilerTestSet willFailCases = {
 
 void KConfigCompiler_Test::initTestCase()
 {
-    m_diffExe = QStandardPaths::findExecutable("diff");
+    m_diffExe = QStandardPaths::findExecutable( QStringLiteral("diff") );
     if (m_diffExe.isEmpty()) {
         qDebug() << "diff command not found, detailed info on comparison failure will not be available.";
     }
@@ -165,7 +165,7 @@ void KConfigCompiler_Test::appendFileDiff(const QString &oldFile, const QString 
     }
 
     QStringList args;
-    args << "-u";
+    args << QStringLiteral("-u");
     args << QFileInfo(oldFile).absoluteFilePath();
     args << QFileInfo(newFile).absoluteFilePath();
 

@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     if (parser.positionalArguments().isEmpty()) {
         parser.showHelp(1);
     }
-    QString value = parser.positionalArguments().first();
+    QString value = parser.positionalArguments().at(0);
 
     KConfig *konfig;
     if (file.isEmpty())

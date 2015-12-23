@@ -1262,7 +1262,7 @@ QString paramString(const QString &s, const CfgEntry *e, int i)
     if (result.contains(needle)) {
         QString tmp;
         if (e->paramType() == QLatin1String("Enum")) {
-            tmp = e->paramValues()[i];
+            tmp = e->paramValues().at(i);
         } else {
             tmp = QString::number(i);
         }

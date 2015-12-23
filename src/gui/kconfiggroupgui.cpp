@@ -40,9 +40,9 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
 {
     const auto errString = [&]() {
         return QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
-                              .arg(QLatin1String(key))
-                              .arg(QLatin1String(QVariant::typeToName(input.type())))
-                              .arg(QLatin1String(data.constData()));
+                              .arg(QLatin1String(key),
+                                   QLatin1String(QVariant::typeToName(input.type())),
+                                   QLatin1String(data.constData()) );
     };
 
     // set in case of failure

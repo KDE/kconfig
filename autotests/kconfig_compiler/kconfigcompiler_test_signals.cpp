@@ -132,7 +132,7 @@ void KConfigCompiler_Test_Signals::testSetters()
     QCOMPARE(spy.count(), 1);
     args = spy.takeFirst();
     QCOMPARE(args.size(), 1);
-    QCOMPARE(args[0].value<QString>(), changedValue);
+    QCOMPARE(args[0].toString(), changedValue);
 
     //reset to default values via setDefaults()
     QVERIFY(params.getter() != params.defaultGetter());

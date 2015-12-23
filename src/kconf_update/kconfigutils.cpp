@@ -96,7 +96,7 @@ QString unescapeString(const QString &src, bool *ok, QString *error)
                 dst += '\\';
             } else if (ch == 'x') {
                 if (pos + 2 < length) {
-                    char value = src.mid(pos + 1, 2).toInt(ok, 16);
+                    char value = src.midRef(pos + 1, 2).toInt(ok, 16);
                     if (*ok) {
                         dst += QChar::fromLatin1(value);
                         pos += 2;

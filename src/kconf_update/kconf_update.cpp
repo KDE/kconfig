@@ -131,7 +131,7 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
             return;
         }
         updateFiles.append(file);
-    } else if (parser->positionalArguments().count()) {
+    } else if (!parser->positionalArguments().isEmpty()) {
         updateFiles += parser->positionalArguments();
     } else {
         if (cg.readEntry("autoUpdateDisabled", false)) {
@@ -520,7 +520,7 @@ void KonfUpdate::gotFile(const QString &_file)
     if (!m_oldFile.isEmpty()) { // if File= is specified, it doesn't exist, is empty or contains only kconf_update's [$Version] group, skip
         if (m_oldConfig1 != Q_NULLPTR
                 && (m_oldConfig1->groupList().isEmpty()
-                    || (m_oldConfig1->groupList().count() == 1 && m_oldConfig1->groupList().first() == QLatin1String("$Version")))) {
+                    || (m_oldConfig1->groupList().count() == 1 && m_oldConfig1->groupList().at(0) == QLatin1String("$Version")))) {
             log() << m_currentFilename << ": File '" << m_oldFile << "' does not exist or empty, skipping" << endl;
             m_skipFile = true;
         }

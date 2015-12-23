@@ -203,9 +203,9 @@ static QList<qreal> asRealList(const QByteArray &string)
 static QString errString(const char *pKey, const QByteArray &value, const QVariant &aDefault)
 {
     return QStringLiteral("\"%1\" - conversion of \"%3\" to %2 failed")
-           .arg(QString::fromLatin1(pKey))
-           .arg(QString::fromLatin1(QVariant::typeToName(aDefault.type())))
-           .arg(QString::fromLatin1(value));
+           .arg( QString::fromLatin1(pKey),
+                 QString::fromLatin1(QVariant::typeToName(aDefault.type())),
+                 QString::fromLatin1(value) );
 }
 
 static QString formatError(int expected, int got)

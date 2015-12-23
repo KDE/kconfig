@@ -261,7 +261,7 @@ KEMailSettings::KEMailSettings()
             setDefault(p->m_sDefaultProfile);
         }
     } else {
-        if (p->profiles.count()) {
+        if (!p->profiles.isEmpty()) {
             setDefault(p->profiles[0]);
         } else {
             setDefault(tr("Default"));
