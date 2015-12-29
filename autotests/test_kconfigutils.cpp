@@ -57,6 +57,12 @@ void TestKConfigUtils::testParseGroupString_data()
             << QStringList()
             << false
             ;
+
+    QTest::newRow("invalid-escape-string")
+            << "[a\\z]"
+            << QStringList()
+            << false
+            ;
 }
 
 void TestKConfigUtils::testParseGroupString()

@@ -46,7 +46,7 @@ KConfigGroup openGroup(KConfig *config, const QStringList &lst)
 QStringList parseGroupString(const QString &_str, bool *ok, QString *error)
 {
     QString str = unescapeString(_str.trimmed(), ok, error);
-    if (!ok) {
+    if (!*ok) {
         return QStringList();
     }
 
