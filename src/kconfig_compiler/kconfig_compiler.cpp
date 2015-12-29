@@ -1232,12 +1232,7 @@ QString newItem(const CfgEntry* entry, const QString &key, const QString& defaul
         t += ", values" + entry->name();
     }
     if (!defaultValue.isEmpty()) {
-        t += QLatin1String(", ");
-        if (entry->type() == QLatin1String("String")) {
-            t += defaultValue;
-        } else {
-            t += defaultValue;
-        }
+        t += QLatin1String(", ") + defaultValue;
     }
     t += QLatin1String(" )");
 
