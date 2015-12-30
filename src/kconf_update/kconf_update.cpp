@@ -106,7 +106,8 @@ protected:
 
 KonfUpdate::KonfUpdate(QCommandLineParser *parser)
     : m_oldConfig1(Q_NULLPTR), m_oldConfig2(Q_NULLPTR), m_newConfig(Q_NULLPTR),
-      m_textStream(Q_NULLPTR), m_file(Q_NULLPTR)
+      m_bCopy(false), m_bOverwrite(false), m_textStream(Q_NULLPTR),
+      m_file(Q_NULLPTR), m_lineCount(-1)
 {
     bool updateAll = false;
 
