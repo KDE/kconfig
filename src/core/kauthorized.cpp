@@ -349,13 +349,8 @@ KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl
     MY_D
     QMutexLocker locker((&d->mutex));
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 3, 0)
     const QString basePath = _baseURL.adjusted(QUrl::StripTrailingSlash).path();
     const QString destPath = _destURL.adjusted(QUrl::StripTrailingSlash).path();
-#else
-    const QString basePath = QUrl(_baseURL.toString(QUrl::StripTrailingSlash)).path();
-    const QString destPath = QUrl(_destURL.toString(QUrl::StripTrailingSlash)).path();
-#endif
 
     d->urlActionRestrictions.append(URLActionRule
                                     (action.toLatin1(), _baseURL.scheme(), _baseURL.host(), basePath,
