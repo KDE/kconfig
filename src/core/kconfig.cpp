@@ -221,6 +221,14 @@ QString KConfigPrivate::expandString(const QString &value)
                     QByteArray pEnv = qgetenv(aVarName.toLatin1().constData());
                     if (!pEnv.isEmpty()) {
                         env = QString::fromLocal8Bit(pEnv.constData());
+                    } else {
+                        if (aVarName == QStringLiteral("QT_DATA_HOME")) {
+                            env = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+                        } else if (aVarName == QStringLiteral("QT_CONFIG_HOME")) {
+                            env = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+                        } else if (aVarName == QStringLiteral("QT_CACHE_HOME")) {
+			    env = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation);
+                        }
                     }
                 }
                 aValue.replace(nDollarPos, nEndPos - nDollarPos, env);

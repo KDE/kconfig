@@ -552,6 +552,40 @@ void KConfigTest::testPersistenceOfExpandFlagForPath()
     testPath();
 }
 
+void KConfigTest::testPathQtHome()
+{
+    {
+        QFile file(testConfigDir() + "/pathtest");
+        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream out(&file);
+        out.setCodec("UTF-8");
+        out << "[Test Group]" << endl
+            << "dataDir[$e]=$QT_DATA_HOME/kconfigtest" << endl
+            << "cacheDir[$e]=$QT_CACHE_HOME/kconfigtest" << endl
+            << "configDir[$e]=$QT_CONFIG_HOME/kconfigtest" << endl;
+    }
+    KConfig cf2(TEST_SUBDIR "pathtest");
+    KConfigGroup group = cf2.group("Test Group");
+    qunsetenv("QT_DATA_HOME");
+    qunsetenv("QT_CACHE_HOME");
+    qunsetenv("QT_CONFIG_HOME");
+    QVERIFY(group.hasKey("dataDir"));
+    QCOMPARE(group.readEntry("dataDir", QString()), QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation).append(QStringLiteral("/kconfigtest")));
+    QVERIFY(group.hasKey("cacheDir"));
+    QCOMPARE(group.readEntry("cacheDir", QString()), QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation).append(QStringLiteral("/kconfigtest")));
+    QVERIFY(group.hasKey("configDir"));
+    QCOMPARE(group.readEntry("configDir", QString()), QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation).append(QStringLiteral("/kconfigtest")));
+    qputenv("QT_DATA_HOME","/1");
+    qputenv("QT_CACHE_HOME","/2");
+    qputenv("QT_CONFIG_HOME","/3");
+    QVERIFY(group.hasKey("dataDir"));
+    QCOMPARE(group.readEntry("dataDir", QString()), QStringLiteral("/1/kconfigtest"));
+    QVERIFY(group.hasKey("cacheDir"));
+    QCOMPARE(group.readEntry("cacheDir", QString()), QStringLiteral("/2/kconfigtest"));
+    QVERIFY(group.hasKey("configDir"));
+    QCOMPARE(group.readEntry("configDir", QString()), QStringLiteral("/3/kconfigtest"));
+}
+
 void KConfigTest::testComplex()
 {
     KConfig sc2(TEST_SUBDIR "kconfigtest");

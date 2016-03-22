@@ -41,6 +41,7 @@ private Q_SLOTS:
     void testLocale();
     void testEncoding();
     void testPath();
+    void testPathQtHome();
     void testPersistenceOfExpandFlagForPath();
     void testComplex();
     void testEnums();
