@@ -93,7 +93,7 @@ struct TestSettersArg {
     std::function<void(const QString&)> setter;
 };
 
-Q_DECLARE_METATYPE(TestSettersArg); // so that QFETCH works
+Q_DECLARE_METATYPE(TestSettersArg) // so that QFETCH works
 
 void KConfigCompiler_Test_Signals::testSetters_data()
 {
@@ -151,7 +151,7 @@ void KConfigCompiler_Test_Signals::testSetters()
     QCOMPARE(args[0].value<QString>(), defaultValue);
 }
 
-Q_DECLARE_METATYPE(KCoreConfigSkeleton*);
+Q_DECLARE_METATYPE(KCoreConfigSkeleton*)
 
 void KConfigCompiler_Test_Signals::testSetProperty_data()
 {
