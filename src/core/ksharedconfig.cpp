@@ -60,7 +60,7 @@ T * perThreadGlobalStatic()
         s_storage.setLocalData(new T);
     }
     return s_storage.localData();
-};
+}
 
 // Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList), but per thread:
 static GlobalSharedConfigList *globalSharedConfigList() { return perThreadGlobalStatic<GlobalSharedConfigList>(); }
