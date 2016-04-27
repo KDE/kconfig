@@ -55,10 +55,10 @@ void KConfigBackend::registerMappings(const KEntryMap & /*entryMap*/)
 BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 {
     //qDebug() << "creating a backend for file" << file << "with system" << sys;
-    const QString system = (sys.isEmpty() ? KConfigBackendPrivate::whatSystem(file) : sys);
     KConfigBackend *backend = Q_NULLPTR;
 
 #if 0 // TODO port to Qt5 plugin loading
+    const QString system = (sys.isEmpty() ? KConfigBackendPrivate::whatSystem(file) : sys);
     if (system.compare(QLatin1String("INI"), Qt::CaseInsensitive) != 0) {
         const QString constraint = QString::fromLatin1("[X-KDE-PluginInfo-Name] ~~ '%1'").arg(system);
         KService::List offers = KServiceTypeTrader::self()->query(QLatin1String("KConfigBackend"), constraint);
