@@ -59,6 +59,12 @@ bool KConfigPrivate::mappingsRegistered = false;
 Q_GLOBAL_STATIC(QStringList, s_globalFiles) // For caching purposes.
 static QBasicMutex s_globalFilesMutex;
 
+#ifndef Q_OS_WIN
+static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
+#else
+static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
+#endif
+
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
                                QStandardPaths::StandardLocation resourceType)
     : openFlags(flags), resourceType(resourceType), mBackend(Q_NULLPTR),
@@ -610,11 +616,7 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     Q_ASSERT(!file.isEmpty());
 
-#ifndef Q_OS_WIN
-    bSuppressGlobal = (file == sGlobalFileName);
-#else
-    bSuppressGlobal = (file.compare(sGlobalFileName, Qt::CaseInsensitive) == 0);
-#endif
+    bSuppressGlobal = (file.compare(sGlobalFileName, sPathCaseSensitivity) == 0);
 
     if (bDynamicBackend || !mBackend) { // allow dynamic changing of backend
         mBackend = KConfigBackend::create(file);
@@ -689,11 +691,8 @@ void KConfigPrivate::parseGlobalFiles()
     const QByteArray utf8Locale = locale.toUtf8();
     Q_FOREACH (const QString &file, globalFiles) {
         KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
-#ifndef Q_OS_WIN
-        if (file != sGlobalFileName)
-#else
-        if (file.compare(sGlobalFileName, Qt::CaseInsensitive) != 0)
-#endif
+
+        if (file.compare(sGlobalFileName, sPathCaseSensitivity) != 0)
             parseOpts |= KConfigBackend::ParseDefaults;
 
         QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
@@ -740,11 +739,7 @@ void KConfigPrivate::parseConfigFiles()
 
         const QByteArray utf8Locale = locale.toUtf8();
         foreach (const QString &file, files) {
-#ifndef Q_OS_WIN
-            if (file == mBackend->filePath()) {
-#else
-            if (file.compare(mBackend->filePath(), Qt::CaseInsensitive) == 0) {
-#endif
+            if (file.compare(mBackend->filePath(), sPathCaseSensitivity) == 0) {
                 switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseExpansions)) {
                 case KConfigBackend::ParseOk:
                     break;
