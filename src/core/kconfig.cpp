@@ -58,6 +58,7 @@ bool KConfigPrivate::mappingsRegistered = false;
 
 Q_GLOBAL_STATIC(QStringList, s_globalFiles) // For caching purposes.
 static QBasicMutex s_globalFilesMutex;
+Q_GLOBAL_STATIC_WITH_ARGS(QString, sGlobalFileName, (QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals")))
 
 #ifndef Q_OS_WIN
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
@@ -72,8 +73,6 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
       bFileImmutable(false), bForceGlobal(false), bSuppressGlobal(false),
       configState(KConfigBase::NoAccess)
 {
-    sGlobalFileName = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals");
-
     static QBasicAtomicInt use_etc_kderc = Q_BASIC_ATOMIC_INITIALIZER(-1);
     if (use_etc_kderc.load() < 0) {
         use_etc_kderc.store( !qEnvironmentVariableIsSet("KDE_SKIP_KDERC"));    // for unit tests
@@ -456,7 +455,7 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            QExplicitlySharedDataPointer<KConfigBackend> tmp = KConfigBackend::create(d->sGlobalFileName);
+            QExplicitlySharedDataPointer<KConfigBackend> tmp = KConfigBackend::create(*sGlobalFileName);
             if (d->configState == ReadWrite && !tmp->lock()) {
                 qWarning() << "couldn't lock global file";
 
@@ -598,7 +597,7 @@ void KConfigPrivate::changeFileName(const QString &name)
         } else if (wantGlobals()) { // accessing "kdeglobals" by specifying no filename and NoCascade - XXX used anywhere?
             resourceType = QStandardPaths::GenericConfigLocation;
             fileName = QStringLiteral("kdeglobals");
-            file = sGlobalFileName;
+            file = *sGlobalFileName;
         } else {
             // anonymous config
             openFlags = KConfig::SimpleConfig;
@@ -616,7 +615,7 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     Q_ASSERT(!file.isEmpty());
 
-    bSuppressGlobal = (file.compare(sGlobalFileName, sPathCaseSensitivity) == 0);
+    bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
     if (bDynamicBackend || !mBackend) { // allow dynamic changing of backend
         mBackend = KConfigBackend::create(file);
@@ -692,7 +691,7 @@ void KConfigPrivate::parseGlobalFiles()
     Q_FOREACH (const QString &file, globalFiles) {
         KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
 
-        if (file.compare(sGlobalFileName, sPathCaseSensitivity) != 0)
+        if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0)
             parseOpts |= KConfigBackend::ParseDefaults;
 
         QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);

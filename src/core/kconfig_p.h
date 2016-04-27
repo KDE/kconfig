@@ -80,7 +80,6 @@ private:
     bool bForceGlobal: 1;
     bool bSuppressGlobal: 1;
 
-    QString sGlobalFileName;
     static bool mappingsRegistered;
 
     KEntryMap entryMap;
