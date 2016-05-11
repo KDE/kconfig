@@ -35,7 +35,7 @@
 class KConfig;
 class KConfigGroupPrivate;
 class KSharedConfig;
-typedef QExplicitlySharedDataPointer<KSharedConfig> KSharedConfigPtr;
+
 /**
  * \class KConfigGroup kconfiggroup.h <KConfigGroup>
  *
@@ -83,9 +83,9 @@ public:
     KConfigGroup(const KConfigBase *master, const char *group);
 
     /** Overload for KConfigGroup(const KConfigBase*,const QString&) */
-    KConfigGroup(const KSharedConfigPtr &master, const QString &group);
+    KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const QString &group);
     /** Overload for KConfigGroup(const KConfigBase*,const QString&) */
-    KConfigGroup(const KSharedConfigPtr &master, const char *group);
+    KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const char *group);
 
     /**
      * Creates a copy of a group.
