@@ -308,12 +308,6 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &zoomIn();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &zoomOut();
 
 /**
- * Toggle insert/overwrite (with visual feedback, e.g. in the statusbar). Default: Insert
- * @return the shortcut of the standard accelerator
- */
-KCONFIGGUI_EXPORT const QList<QKeySequence> &insert();
-
-/**
  * Goto home page. Default: Alt-Home
  * @return the shortcut of the standard accelerator
  */
