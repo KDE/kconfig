@@ -281,9 +281,12 @@ bool KDesktopFile::tryExec() const
     QString te = d->desktopGroup.readEntry("TryExec", QString());
 
     if (!te.isEmpty()) {
-        return !QStandardPaths::findExecutable(te).isEmpty();
+        if (QStandardPaths::findExecutable(te).isEmpty()) {
+            return false;
+        }
     }
     const QStringList list = d->desktopGroup.readEntry("X-KDE-AuthorizeAction", QStringList());
+
     if (!list.isEmpty()) {
         for (QStringList::ConstIterator it = list.begin();
                 it != list.end();
