@@ -18,6 +18,7 @@
 #include "kdesktopfiletest.h"
 #include "helper.h"
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 #include <qtemporaryfile.h>
 
 #include "kdesktopfile.h"
@@ -25,6 +26,14 @@
 #include <QtTest>
 
 QTEST_MAIN(KDesktopFileTest)
+
+void KDesktopFileTest::initTestCase()
+{
+    QStandardPaths::enableTestMode(true);
+
+    KConfigGroup actionRestrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
+    actionRestrictions.writeEntry("someBlockedAction", false);
+}
 
 void KDesktopFileTest::testRead()
 {
@@ -204,5 +213,45 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
         QVERIFY(KDesktopFile::isAuthorizedDesktopFile(autostartFile));
     } else {
         qWarning("Skipping test for plasma-desktop.desktop, not found. kde-workspace not installed?");
+    }
+}
+
+void KDesktopFileTest::testTryExecWithAuthorizeAction()
+{
+    {
+        QTemporaryFile file("testAuthActionXXXXXX.desktop");
+        QVERIFY(file.open());
+        const QString fileName = file.fileName();
+        QTextStream ts(&file);
+        ts <<
+        "[Desktop Entry]\n"
+        "Type=Application\n"
+        "Name=My Application\n"
+        "Exec=kfoo\n"
+        "TryExec=bash\n"
+        "X-KDE-AuthorizeAction=someAction"
+        "\n";
+        file.close();
+
+        KDesktopFile desktopFile(fileName);
+        QVERIFY(desktopFile.tryExec());
+    }
+    {
+        QTemporaryFile file("testAuthActionXXXXXX.desktop");
+        QVERIFY(file.open());
+        const QString fileName = file.fileName();
+        QTextStream ts(&file);
+        ts <<
+        "[Desktop Entry]\n"
+        "Type=Application\n"
+        "Name=My Application\n"
+        "Exec=kfoo\n"
+        "TryExec=bash\n"
+        "X-KDE-AuthorizeAction=someBlockedAction"
+        "\n";
+        file.close();
+
+        KDesktopFile desktopFile(fileName);
+        QVERIFY(!desktopFile.tryExec());
     }
 }

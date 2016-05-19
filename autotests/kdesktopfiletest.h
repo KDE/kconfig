@@ -25,6 +25,7 @@ class KDesktopFileTest : public QObject
 {
     Q_OBJECT
 private Q_SLOTS:
+    void initTestCase();
     void testRead();
     void testReadLocalized_data();
     void testReadLocalized();
@@ -32,6 +33,7 @@ private Q_SLOTS:
     void testSuccessfulTryExec();
     void testActionGroup();
     void testIsAuthorizedDesktopFile();
+    void testTryExecWithAuthorizeAction();
 
 };
 
