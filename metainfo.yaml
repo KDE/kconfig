@@ -13,3 +13,7 @@ libraries:
  - qmake: KConfigGui
    cmake: "KF5::ConfigGui"
 cmakename: KF5Config
+
+public_lib: true
+group: Frameworks
+subgroup: Tier 1
