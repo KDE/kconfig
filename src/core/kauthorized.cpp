@@ -216,7 +216,7 @@ bool KAuthorized::authorize(const QString &genericAction)
     return cg.readEntry(genericAction, true);
 }
 
-bool KAuthorized::authorizeKAction(const QString &action)
+bool KAuthorized::authorizeAction(const QString &action)
 {
     MY_D
     if (d->blockEverything) {
@@ -228,6 +228,13 @@ bool KAuthorized::authorizeKAction(const QString &action)
 
     return authorize(QLatin1String("action/") + action);
 }
+
+#ifndef KDE_NO_DEPRECATED
+bool KAuthorized::authorizeKAction(const QString &action)
+{
+    return authorizeAction(action);
+}
+#endif
 
 bool KAuthorized::authorizeControlModule(const QString &menuId)
 {
