@@ -416,22 +416,11 @@ static QString translatePath(QString path)   // krazy:exclude=passbyvalue
     // only "our" $HOME should be interpreted
     path.replace(QLatin1Char('$'), QLatin1String("$$"));
 
-    bool startsWithFile = path.startsWith(QLatin1String("file:"), Qt::CaseInsensitive);
+    const bool startsWithFile = path.startsWith(QLatin1String("file:"), Qt::CaseInsensitive);
+    path = startsWithFile ? QUrl(path).toLocalFile() : path;
 
-    // return original path, if it refers to another type of URL (e.g. http:/), or
-    // if the path is already relative to another directory
-    if ((!startsWithFile && QFileInfo(path).isRelative()) ||
-            (startsWithFile && QFileInfo(path.mid(5)).isRelative())) {
+    if (QDir::isRelativePath(path)) {
         return path;
-    }
-
-    if (startsWithFile) {
-        path.remove(0, 5);    // strip leading "file:/" off the string
-    }
-
-    // keep only one single '/' at the beginning - needed for cleanHomeDirPath()
-    while (path[0] == QLatin1Char('/') && path[1] == QLatin1Char('/')) {
-        path.remove(0, 1);
     }
 
     // we can not use KGlobal::dirs()->relativeLocation("home", path) here,
@@ -448,7 +437,7 @@ static QString translatePath(QString path)   // krazy:exclude=passbyvalue
     }
 
     if (startsWithFile) {
-        path.prepend(QStringLiteral("file://"));
+        path = QUrl::fromLocalFile(path).toString();
     }
 
     return path;
