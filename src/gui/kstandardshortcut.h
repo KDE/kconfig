@@ -114,6 +114,9 @@ enum StandardShortcut {
     AboutApp,
     AboutKDE,
 
+    DeleteFile,     // @since 5.25
+    RenameFile,     // @since 5.25
+    MoveToTrash,    // @since 5.25
     // Insert new items here!
 
     StandardShortcutCount // number of standard shortcuts
@@ -471,6 +474,27 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &forwardWord();
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &showMenubar();
+
+/**
+ * Delete File. Default: Shift+Delete
+ * @return the shortcut of the standard accelerator
+ * @since 5.25
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteFile();
+
+/**
+ * Rename File. Default: F2
+ * @return the shortcut of the standard accelerator
+ * @since 5.25
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &renameFile();
+
+/**
+ * Move to Trash. Default: Delete
+ * @return the shortcut of the standard accelerator
+ * @since 5.25
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &moveToTrash();
 
 }
 

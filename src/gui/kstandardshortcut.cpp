@@ -164,6 +164,9 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { SwitchApplicationLanguage, "SwitchApplicationLanguage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Switch Application Language", "@action"), 0, 0, QList<QKeySequence>(), false },
     { AboutApp, "AboutApp", QT_TRANSLATE_NOOP3("KStandardShortcut", "About Application", "@action"), 0, 0, QList<QKeySequence>(), false },
     { AboutKDE, "AboutKDE", QT_TRANSLATE_NOOP3("KStandardShortcut", "About KDE", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { DeleteFile, "DeleteFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete File", "@action"), SHIFT(Delete), 0, QList<QKeySequence>(), false },
+    { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename File", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false },
+    { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false },
 
     //dummy entry to catch simple off-by-one errors. Insert new entries before this line.
     { AccelNone, 0, {0, 0}, 0, 0, QList<QKeySequence>(), false }
@@ -516,6 +519,18 @@ const QList<QKeySequence> &forward()
 const QList<QKeySequence> &showMenubar()
 {
     return shortcut(ShowMenubar);
+}
+const QList<QKeySequence> &deleteFile()
+{
+    return shortcut(DeleteFile);
+}
+const QList<QKeySequence> &renameFile()
+{
+    return shortcut(RenameFile);
+}
+const QList<QKeySequence> &moveToTrash()
+{
+    return shortcut(MoveToTrash);
 }
 
 }
