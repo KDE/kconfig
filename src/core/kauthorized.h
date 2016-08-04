@@ -119,7 +119,7 @@ KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
  *                otherwise.
  *
  * @see authorize()
- * @deprecated Use authorizeAction() instead.
+ * @deprecated since 5.24, use authorizeAction() instead.
  */
 #ifndef KDE_NO_DEPRECATED
 KCONFIGCORE_DEPRECATED_EXPORT bool authorizeKAction(const QString &action);
