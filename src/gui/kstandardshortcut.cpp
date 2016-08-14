@@ -167,6 +167,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { DeleteFile, "DeleteFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete File", "@action"), SHIFT(Delete), 0, QList<QKeySequence>(), false },
     { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename File", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false },
     { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false },
+    { Donate, "Donate", QT_TRANSLATE_NOOP3("KStandardShortcut", "Donate", "@action"), 0, 0, QList<QKeySequence>(), false },
 
     //dummy entry to catch simple off-by-one errors. Insert new entries before this line.
     { AccelNone, 0, {0, 0}, 0, 0, QList<QKeySequence>(), false }

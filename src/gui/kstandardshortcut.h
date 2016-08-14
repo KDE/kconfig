@@ -117,6 +117,8 @@ enum StandardShortcut {
     DeleteFile,     // @since 5.25
     RenameFile,     // @since 5.25
     MoveToTrash,    // @since 5.25
+
+    Donate,         // @since 5.26
     // Insert new items here!
 
     StandardShortcutCount // number of standard shortcuts
