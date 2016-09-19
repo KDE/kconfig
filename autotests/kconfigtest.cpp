@@ -1370,6 +1370,10 @@ void KConfigTest::testFailOnReadOnlyFileSync()
     QVERIFY(f.exists());
     QVERIFY(f.setPermissions(QFileDevice::ReadOwner));
 
+#ifndef Q_OS_WIN
+    if (::getuid() == 0)
+        QSKIP("Root can write to read-only files");
+#endif
     cgLocal.writeEntry("someLocalString", "whatever2");
     QVERIFY(!cgLocal.sync());
 
