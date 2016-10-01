@@ -2595,10 +2595,10 @@ int main(int argc, char **argv)
     // Destructor
     cpp << cfg.className << "::~" << cfg.className << "()" << endl;
     cpp << "{" << endl;
+    if (cfg.dpointer) {
+        cpp << "  delete d;" << endl;
+    }
     if (cfg.singleton) {
-        if (cfg.dpointer) {
-            cpp << "  delete d;" << endl;
-        }
         cpp << "  s_global" << cfg.className << "()->q = 0;" << endl;
     }
     cpp << "}" << endl << endl;
