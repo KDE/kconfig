@@ -206,6 +206,15 @@ The following options are read from the kcfgc file:
   <td>bool</td>
   <td>false</td>
   <td>If set to true, forces the first parameter of the generated class to be a QString when using an argument for the filename. This is useful to specify at runtime the filename of the configuration class.</td>
+</tr>
+<tr>
+  <td><b>GenerateProperties</b></td>
+  <td>bool</td>
+  <td>false</td>
+  <td>If set to true, a Q_PROPERTY will be generated for each member variable holding a configuration value
+  and the Q_OBJECT macro will be added to the generated class.
+  Note that you will also need to pass the GENERATE_MOC option to the kconfig_add_kcfg_files macro.</td>
+</tr>
 </table>
 
 
