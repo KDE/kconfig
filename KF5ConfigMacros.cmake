@@ -32,7 +32,7 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-macro (KCONFIG_ADD_KCFG_FILES _sources )
+function (KCONFIG_ADD_KCFG_FILES _sources )
    foreach (_current_ARG ${ARGN})
       if( ${_current_ARG} STREQUAL "GENERATE_MOC" )
          set(_kcfg_generatemoc TRUE)
@@ -42,6 +42,8 @@ macro (KCONFIG_ADD_KCFG_FILES _sources )
          set(_kcfg_relativepath TRUE)
       endif()
    endforeach ()
+
+   set(sources)
 
    foreach (_current_FILE ${ARGN})
 
@@ -61,12 +63,16 @@ macro (KCONFIG_ADD_KCFG_FILES _sources )
 
        get_filename_component(_basename ${_tmp_FILE} NAME_WE)
        # If we had a relative path and we're asked to use it, then change the basename accordingly
-       if(NOT ${_rel_PATH} STREQUAL "")
+       if(_rel_PATH)
            set(_basename ${_rel_PATH}/${_basename})
        endif()
 
        file(READ ${_tmp_FILE} _contents)
-       string(REGEX REPLACE "^(.*\n)?File=([^\n]+kcfg).*\n.*$" "\\2"  _kcfg_FILENAME "${_contents}")
+       string(REGEX MATCH "File=([^\n]+\\.kcfg)\n" "" "${_contents}")
+       set(_kcfg_FILENAME "${CMAKE_MATCH_1}")
+       if (NOT _kcfg_FILENAME)
+            message(WARNING "Couldn't read the \"File\" field in ${_tmp_FILE}")
+       endif()
        set(_src_FILE    ${CMAKE_CURRENT_BINARY_DIR}/${_basename}.cpp)
        set(_header_FILE ${CMAKE_CURRENT_BINARY_DIR}/${_basename}.h)
        set(_moc_FILE    ${CMAKE_CURRENT_BINARY_DIR}/${_basename}.moc)
@@ -77,7 +83,7 @@ macro (KCONFIG_ADD_KCFG_FILES _sources )
        endif()
 
        if(NOT EXISTS "${_kcfg_FILE}")
-           message(ERROR "${_kcfg_FILENAME} not found; tried in ${_abs_PATH} and ${CMAKE_CURRENT_BINARY_DIR}")
+           message(FATAL_ERROR "${_kcfg_FILENAME} not found; tried in ${_abs_PATH} and ${CMAKE_CURRENT_BINARY_DIR}")
        endif()
 
        # make sure the directory exist in the build directory
@@ -93,13 +99,16 @@ macro (KCONFIG_ADD_KCFG_FILES _sources )
                           DEPENDS ${_kcfg_FILE})
 
        if(_kcfg_generatemoc)
-          qt5_generate_moc(${_header_FILE} ${_moc_FILE} )
-          set_source_files_properties(${_src_FILE} PROPERTIES SKIP_AUTOMOC TRUE)  # don't run automoc on this file
-          list(APPEND ${_sources} ${_moc_FILE})
+          list(APPEND sources ${_moc_FILE})
+          qt5_generate_moc(${_header_FILE} ${_moc_FILE})
+          set_property(SOURCE ${_src_FILE} PROPERTY SKIP_AUTOMOC TRUE)  # don't run automoc on this file
+          set_property(SOURCE ${_src_FILE} APPEND PROPERTY OBJECT_DEPENDS ${_moc_FILE} )
        endif()
 
-       list(APPEND ${_sources} ${_src_FILE} ${_header_FILE})
+       list(APPEND sources ${_src_FILE} ${_header_FILE})
      endif(NOT ${_current_FILE} STREQUAL "GENERATE_MOC" AND NOT ${_current_FILE} STREQUAL "USE_RELATIVE_PATH")
    endforeach (_current_FILE)
 
-endmacro (KCONFIG_ADD_KCFG_FILES)
+   set(${_sources} ${${_sources}} ${sources} PARENT_SCOPE)
+
+endfunction(KCONFIG_ADD_KCFG_FILES)

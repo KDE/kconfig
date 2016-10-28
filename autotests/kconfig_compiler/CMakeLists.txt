@@ -10,26 +10,10 @@ endif()
 # make sure the generated headers can be found
 include_directories(${KCFG_OUTPUT_DIR})
 
+include(${CMAKE_SOURCE_DIR}/KF5ConfigMacros.cmake)
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
-   cmake_parse_arguments(ARG "" "KCFG" "" ${ARGN} )
-   set(_kcfgFile ${ARG_KCFG})
-   if (NOT _kcfgFile)
-      set(_kcfgFile "${_testName}.kcfg")
-   endif()
-   add_custom_command(
-      OUTPUT ${KCFG_OUTPUT_DIR}/${_testName}.cpp ${KCFG_OUTPUT_DIR}/${_testName}.h
-      COMMAND KF5::kconfig_compiler ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc
-      WORKING_DIRECTORY ${KCFG_OUTPUT_DIR}
-      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${CMAKE_CURRENT_SOURCE_DIR}/${_testName}.kcfgc KF5::kconfig_compiler)
-
-   # set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_testName}.h PROPERTIES GENERATED TRUE)
-   qt5_generate_moc(${KCFG_OUTPUT_DIR}/${_testName}.h ${KCFG_OUTPUT_DIR}/${_testName}.moc )
-   # do not run automoc on the generated file
-   set_source_files_properties(${KCFG_OUTPUT_DIR}/${_testName}.cpp PROPERTIES SKIP_AUTOMOC TRUE)
-
-   set( ${_srcs} ${${_srcs}} ${KCFG_OUTPUT_DIR}/${_testName}.cpp)
-   set_property(SOURCE ${KCFG_OUTPUT_DIR}/${_testName}.cpp APPEND PROPERTY OBJECT_DEPENDS ${KCFG_OUTPUT_DIR}/${_testName}.moc )
-endmacro(GEN_KCFG_TEST_SOURCE)
+   KCONFIG_ADD_KCFG_FILES(${_srcs} ${_testName}.kcfgc ${ARGN})
+endmacro()
 
 include(ECMMarkAsTest)
 
@@ -181,7 +165,7 @@ target_link_libraries(test12 KF5::ConfigGui)
 
 set(test13_SRCS test13main.cpp )
 
-gen_kcfg_test_source(test13 test13_SRCS)
+gen_kcfg_test_source(test13 test13_SRCS GENERATE_MOC)
 
 ecm_add_test(TEST_NAME test13 ${test13_SRCS})
 target_link_libraries(test13 KF5::ConfigGui)
@@ -200,17 +184,17 @@ target_link_libraries(test_dpointer KF5::ConfigGui)
 ########### next target ###############
 
 set(test_signal_SRCS test_signal_main.cpp )
-gen_kcfg_test_source(test_signal test_signal_SRCS)
+gen_kcfg_test_source(test_signal test_signal_SRCS GENERATE_MOC)
 ecm_add_test(TEST_NAME test_signal ${test_signal_SRCS})
 target_link_libraries(test_signal KF5::ConfigGui)
 
 ########### next target ###############
 
 set(kconfigcompiler_test_signals_SRCS kconfigcompiler_test_signals.cpp)
-gen_kcfg_test_source(signals_test_singleton kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
-gen_kcfg_test_source(signals_test_no_singleton kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
-gen_kcfg_test_source(signals_test_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
-gen_kcfg_test_source(signals_test_no_singleton_dpointer kconfigcompiler_test_signals_SRCS KCFG signals_test.kcfg)
+gen_kcfg_test_source(signals_test_singleton kconfigcompiler_test_signals_SRCS GENERATE_MOC)
+gen_kcfg_test_source(signals_test_no_singleton kconfigcompiler_test_signals_SRCS GENERATE_MOC)
+gen_kcfg_test_source(signals_test_singleton_dpointer kconfigcompiler_test_signals_SRCS GENERATE_MOC)
+gen_kcfg_test_source(signals_test_no_singleton_dpointer kconfigcompiler_test_signals_SRCS GENERATE_MOC)
 
 ecm_add_test(${kconfigcompiler_test_signals_SRCS}
     TEST_NAME kconfigcompiler-signals-test
@@ -236,7 +220,7 @@ target_link_libraries(test_qdebugcategory KF5::ConfigGui)
 ########### next target ###############
 
 set(test_translation_qt_SRCS test_translation_qt_main.cpp)
-gen_kcfg_test_source(test_translation_qt test_translation_qt_SRCS KCFG test_translation.kcfg)
+gen_kcfg_test_source(test_translation_qt test_translation_qt_SRCS)
 
 ecm_add_test(TEST_NAME test_translation_qt ${test_translation_qt_SRCS})
 target_link_libraries(test_translation_qt KF5::ConfigGui)
@@ -244,7 +228,7 @@ target_link_libraries(test_translation_qt KF5::ConfigGui)
 ########### next target ###############
 
 set(test_translation_kde_SRCS test_translation_kde_main.cpp)
-gen_kcfg_test_source(test_translation_kde test_translation_kde_SRCS KCFG test_translation.kcfg)
+gen_kcfg_test_source(test_translation_kde test_translation_kde_SRCS)
 
 ecm_add_test(TEST_NAME test_translation_kde ${test_translation_kde_SRCS})
 target_link_libraries(test_translation_kde KF5::ConfigGui)
@@ -252,8 +236,7 @@ target_link_libraries(test_translation_kde KF5::ConfigGui)
 ########### next target ###############
 
 set(test_translation_kde_domain_SRCS test_translation_kde_domain_main.cpp)
-gen_kcfg_test_source(test_translation_kde_domain test_translation_kde_domain_SRCS KCFG test_translation.kcfg)
+gen_kcfg_test_source(test_translation_kde_domain test_translation_kde_domain_SRCS)
 
 ecm_add_test(TEST_NAME test_translation_kde_domain ${test_translation_kde_domain_SRCS})
 target_link_libraries(test_translation_kde_domain KF5::ConfigGui)
-
