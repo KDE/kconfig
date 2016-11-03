@@ -33,25 +33,15 @@
 # SUCH DAMAGE.
 
 function (KCONFIG_ADD_KCFG_FILES _sources )
-   foreach (_current_ARG ${ARGN})
-      if( ${_current_ARG} STREQUAL "GENERATE_MOC" )
-         set(_kcfg_generatemoc TRUE)
-      endif()
-
-      if( ${_current_ARG} STREQUAL "USE_RELATIVE_PATH" )
-         set(_kcfg_relativepath TRUE)
-      endif()
-   endforeach ()
+   set(options GENERATE_MOC USE_RELATIVE_PATH)
+   cmake_parse_arguments(ARG "${options}" "" "" ${ARGN})
 
    set(sources)
-
-   foreach (_current_FILE ${ARGN})
-
-     if(NOT ${_current_FILE} STREQUAL "GENERATE_MOC" AND NOT ${_current_FILE} STREQUAL "USE_RELATIVE_PATH")
+   foreach (_current_FILE ${ARG_UNPARSED_ARGUMENTS})
        get_filename_component(_tmp_FILE ${_current_FILE} ABSOLUTE)
        get_filename_component(_abs_PATH ${_tmp_FILE} PATH)
 
-       if (_kcfg_relativepath) # Process relative path only if the option was set
+       if (ARG_USE_RELATIVE_PATH) # Process relative path only if the option was set
            # Get relative path
            get_filename_component(_rel_PATH ${_current_FILE} PATH)
 
@@ -99,7 +89,7 @@ function (KCONFIG_ADD_KCFG_FILES _sources )
                           MAIN_DEPENDENCY ${_tmp_FILE}
                           DEPENDS ${_kcfg_FILE})
 
-       if(_kcfg_generatemoc)
+       if(ARG_GENERATE_MOC)
           list(APPEND sources ${_moc_FILE})
           qt5_generate_moc(${_header_FILE} ${_moc_FILE})
           set_property(SOURCE ${_src_FILE} PROPERTY SKIP_AUTOMOC TRUE)  # don't run automoc on this file
@@ -107,7 +97,6 @@ function (KCONFIG_ADD_KCFG_FILES _sources )
        endif()
 
        list(APPEND sources ${_src_FILE} ${_header_FILE})
-     endif(NOT ${_current_FILE} STREQUAL "GENERATE_MOC" AND NOT ${_current_FILE} STREQUAL "USE_RELATIVE_PATH")
    endforeach (_current_FILE)
 
    set(${_sources} ${${_sources}} ${sources} PARENT_SCOPE)
