@@ -1,0 +1,781 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# g.sora <g.sora@tiscali.it>, 2010.
+# Giovanni Sora <g.sora@tioscali.it>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2014-07-23 14:39+0200\n"
+"Last-Translator: Giovanni Sora <g.sora@tiscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: core/kconfig.cpp:911
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Pro favor, tu continge tu administrator de systema"
+
+#: core/kconfigini.cpp:577
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "File de configuration \"%1\" non pote scriber se.\n"
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Predefinite"
+
+#: gui/kstandardshortcut.cpp:73
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Open"
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Aperi"
+
+#: gui/kstandardshortcut.cpp:74
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "New"
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Nove "
+
+#: gui/kstandardshortcut.cpp:75
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Close"
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Claude"
+
+#: gui/kstandardshortcut.cpp:76
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Save"
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Salveguarda"
+
+#: gui/kstandardshortcut.cpp:77
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Print"
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "Imprime"
+
+#: gui/kstandardshortcut.cpp:78
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Quit"
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Quita"
+
+#: gui/kstandardshortcut.cpp:81
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Undo"
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Annulla"
+
+#: gui/kstandardshortcut.cpp:82
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Redo"
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Reface"
+
+#: gui/kstandardshortcut.cpp:83
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Cut"
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Talia"
+
+#: gui/kstandardshortcut.cpp:84
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Copy"
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Copia"
+
+#: gui/kstandardshortcut.cpp:85
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Paste"
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Colla"
+
+#: gui/kstandardshortcut.cpp:86
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Paste Selection"
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Colla Selection"
+
+#: gui/kstandardshortcut.cpp:88
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Select All"
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Selige toto"
+
+#: gui/kstandardshortcut.cpp:89
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Deselect"
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "De-selectiona"
+
+#: gui/kstandardshortcut.cpp:90
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Delete Word Backwards"
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Cancella Parola de Retro"
+
+#: gui/kstandardshortcut.cpp:91
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Delete Word Forward"
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Cancella Parola In Avante"
+
+#: gui/kstandardshortcut.cpp:93
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Find"
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Trova"
+
+#: gui/kstandardshortcut.cpp:94
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Find Next"
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Trova proxime"
+
+#: gui/kstandardshortcut.cpp:95
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Find Prev"
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Trova Precedente"
+
+#: gui/kstandardshortcut.cpp:96
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Replace"
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Reimplacia"
+
+#: gui/kstandardshortcut.cpp:99
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Home"
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Domo"
+
+#: gui/kstandardshortcut.cpp:100
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Begin"
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "Initio"
+
+#: gui/kstandardshortcut.cpp:101
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "End"
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "Fin"
+
+#: gui/kstandardshortcut.cpp:102
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Prior"
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "Ante"
+
+#: gui/kstandardshortcut.cpp:103
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Next"
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "Proxime"
+
+#: gui/kstandardshortcut.cpp:105
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Up"
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "In alto"
+
+#: gui/kstandardshortcut.cpp:106
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Back"
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Retro"
+
+#: gui/kstandardshortcut.cpp:107
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Forward"
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Avante"
+
+#: gui/kstandardshortcut.cpp:108
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Reload"
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Recarga"
+
+#: gui/kstandardshortcut.cpp:110
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Beginning of Line"
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Initio de linea"
+
+#: gui/kstandardshortcut.cpp:111
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "End of Line"
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Fin de Linea"
+
+#: gui/kstandardshortcut.cpp:112
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Go to Line"
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Vade a le Linea"
+
+#: gui/kstandardshortcut.cpp:113
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Backward Word"
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Parola de retro"
+
+#: gui/kstandardshortcut.cpp:114
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Forward Word"
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Parola in Avante"
+
+#: gui/kstandardshortcut.cpp:116
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Add Bookmark"
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Adde marcator de libro"
+
+#: gui/kstandardshortcut.cpp:117
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Zoom In"
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Zoom In (aggrandir)"
+
+#: gui/kstandardshortcut.cpp:118
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Zoom Out"
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Zoom Out (Diminuer)"
+
+#: gui/kstandardshortcut.cpp:119
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Full Screen Mode"
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Modo de Schermo Integre"
+
+#: gui/kstandardshortcut.cpp:121
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Show Menu Bar"
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Monstra le barra de menu"
+
+#: gui/kstandardshortcut.cpp:122
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Activate Next Tab"
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Activa proxime scheda"
+
+#: gui/kstandardshortcut.cpp:123
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Activate Previous Tab"
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Activa previe scheda"
+
+#: gui/kstandardshortcut.cpp:126
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Help"
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Adjuta"
+
+#: gui/kstandardshortcut.cpp:127
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "What's This"
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Que es isto"
+
+#: gui/kstandardshortcut.cpp:130
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Text Completion"
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Completamento de texto"
+
+#: gui/kstandardshortcut.cpp:131
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Previous Completion Match"
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Resultato de completamento precedente"
+
+#: gui/kstandardshortcut.cpp:132
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Next Completion Match"
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "Resultato de completamento proxime"
+
+#: gui/kstandardshortcut.cpp:133
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Substring Completion"
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Completamento de sub-catena"
+
+#: gui/kstandardshortcut.cpp:135
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Previous Item in List"
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Elemento precedente in lista"
+
+#: gui/kstandardshortcut.cpp:136
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Next Item in List"
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Elemento proxime in lista"
+
+#: gui/kstandardshortcut.cpp:138
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Open Recent"
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Aperi Recente "
+
+#: gui/kstandardshortcut.cpp:139
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Save As"
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Salveguarda como"
+
+#: gui/kstandardshortcut.cpp:140
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Revert"
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Reverte"
+
+#: gui/kstandardshortcut.cpp:141
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Print Preview"
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Vista preliminar de imprimer"
+
+#: gui/kstandardshortcut.cpp:142
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Mail"
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "E-posta"
+
+#: gui/kstandardshortcut.cpp:143
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Clear"
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Netta"
+
+#: gui/kstandardshortcut.cpp:144
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Actual Size"
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "Dimension actual"
+
+#: gui/kstandardshortcut.cpp:145
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Fit To Page"
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Adapta a le pagina"
+
+#: gui/kstandardshortcut.cpp:146
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Fit To Width"
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Adapta in largessa"
+
+#: gui/kstandardshortcut.cpp:147
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Fit To Height"
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Adapta in altessa"
+
+#: gui/kstandardshortcut.cpp:148
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Zoom"
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Zoom"
+
+#: gui/kstandardshortcut.cpp:149
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Goto"
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Vade a"
+
+#: gui/kstandardshortcut.cpp:150
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Goto Page"
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Vade a pagina"
+
+#: gui/kstandardshortcut.cpp:151
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Document Back"
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Documento Previe (de retro)"
+
+#: gui/kstandardshortcut.cpp:152
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Document Forward"
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "Documento in Avante"
+
+#: gui/kstandardshortcut.cpp:153
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Edit Bookmarks"
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Edita marcatores de libro"
+
+#: gui/kstandardshortcut.cpp:154
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Spelling"
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Controlo orthographic"
+
+#: gui/kstandardshortcut.cpp:155
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Show Toolbar"
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Monstra le barra de instrumentos"
+
+#: gui/kstandardshortcut.cpp:156
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Show Statusbar"
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Monstra le barra de stato"
+
+#: gui/kstandardshortcut.cpp:157
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Save Options"
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Salveguarda optiones"
+
+#: gui/kstandardshortcut.cpp:158
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Key Bindings"
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Ligamines Clave"
+
+#: gui/kstandardshortcut.cpp:159
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Preferences"
+msgctxt "KStandardShortcut|@action"
+msgid "Preferences"
+msgstr "Preferentias"
+
+#: gui/kstandardshortcut.cpp:160
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Configure Toolbars"
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Configura le barras de instrumentos"
+
+#: gui/kstandardshortcut.cpp:161
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Configure Notifications"
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Configura notificationes "
+
+#: gui/kstandardshortcut.cpp:162
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Tip Of Day"
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Consilio del Die"
+
+#: gui/kstandardshortcut.cpp:163
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Report Bug"
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Reporta Bug"
+
+#: gui/kstandardshortcut.cpp:164
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "Switch Application Language"
+msgctxt "KStandardShortcut|@action"
+msgid "Switch Application Language"
+msgstr "Commuta le linguage de application"
+
+#: gui/kstandardshortcut.cpp:165
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "About Application"
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "A proposito de Application"
+
+#: gui/kstandardshortcut.cpp:166
+#, fuzzy
+#| msgctxt "KStandardShortcut|"
+#| msgid "About KDE"
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "A proposio de KDE"
+
+#: gui/kstandardshortcut.cpp:167
+msgctxt "KStandardShortcut|@action"
+msgid "Delete File"
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:168
+msgctxt "KStandardShortcut|@action"
+msgid "Rename File"
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:169
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:170
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:953
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "Instrumento KDE pro actualisar le files de configuration del usator"
+
+#: kconf_update/kconf_update.cpp:955
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Mantene le resultatos de exitos ex le scripts"
+
+#: kconf_update/kconf_update.cpp:956
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:957
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Controla si le mesme file de configuration debe esser actualisate"
+
+#: kconf_update/kconf_update.cpp:958
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1572
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Directorio pro generar files in [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1573
+msgctxt "main|"
+msgid "directory"
+msgstr "directorio"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1576
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Monstra licentia de software."
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Usa <file> in vice de config global"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+"Gruppo de guardar internemente. Usa repetitemente per gruppos annidate."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Clave per cercar"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "Valor predefinite"
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Typo de variabile"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Typo de variabile. Usa \"bool\" per un boolean, alteremente il es tractate "
+"como un catena"
+
+#: kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Le valor de scriber. Obligatori usar in un shell \" per vacue"
+
+#~ msgid "KWriteConfig"
+#~ msgstr "KWriteConfig"
+
+#~ msgid "Write KConfig entries - for use in shell scripts"
+#~ msgstr "Entratas de Write KConfig - per uso in scripts de shell"
+
+#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+#~ msgstr "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
+
+#~ msgid "Wrote kreadconfig on which this is based"
+#~ msgstr "Il scribeva kreadconfig sur le qual isto es basate"
+
+#~ msgid "Luís Pedro Coelho"
+#~ msgstr "Luís Pedro Coelho"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
