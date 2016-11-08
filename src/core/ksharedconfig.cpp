@@ -109,8 +109,8 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
         static bool userWarned = false;
         if (isMainThread && !userWarned) {
             userWarned = true;
-            QByteArray readOnly = qgetenv("KDE_HOME_READONLY");
-            if (readOnly.isEmpty() && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
+            const bool isReadOnly = qEnvironmentVariableIsEmpty("KDE_HOME_READONLY");
+            if (isReadOnly && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
                 if (ptr->group("General").readEntry(QStringLiteral("warn_unwritable_config"), true)) {
                     ptr->isConfigWritable(true);
                 }
