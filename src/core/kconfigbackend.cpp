@@ -73,6 +73,8 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
             }
         } // foreach offers
     }
+#else
+    Q_UNUSED(sys);
 #endif
 
     //qDebug() << "default creation of the Ini backend";
