@@ -2122,7 +2122,7 @@ int main(int argc, char **argv)
     }
 
     if (hasNonModifySignals) {
-        h << "    virtual bool usrSave();" << endl;
+        h << "    bool usrSave() Q_DECL_OVERRIDE;" << endl;
     }
 
     // Member variables
