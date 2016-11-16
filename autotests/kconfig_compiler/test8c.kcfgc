@@ -1,0 +1,4 @@
+File=test8c.kcfg
+ClassName=Test8c
+Mutators=true
+Singleton=true

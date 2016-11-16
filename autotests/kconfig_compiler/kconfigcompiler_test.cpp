@@ -38,6 +38,7 @@ static CompilerTestSet testCases = {
     "test7.cpp", "test7.h",
     "test8a.cpp", "test8a.h",
     "test8b.cpp", "test8b.h",
+    "test8c.cpp", "test8c.h",
     "test9.h", "test9.cpp",
     "test10.h", "test10.cpp",
     "test11.h", "test11.cpp",

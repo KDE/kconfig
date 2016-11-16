@@ -1893,6 +1893,7 @@ int main(int argc, char **argv)
         h << "    static " << cfg.className << " *self();" << endl;
         if (cfgFileNameArg) {
             h << "    static void instance(const QString& cfgfilename);" << endl;
+            h << "    static void instance(KSharedConfig::Ptr config);" << endl;
         }
     }
 
@@ -2115,7 +2116,7 @@ int main(int argc, char **argv)
     if (cfg.singleton) {
         h << "    " << cfg.className << "(";
         if (cfgFileNameArg) {
-            h << "const QString& arg";
+            h << "KSharedConfig::Ptr config";
         }
         h << ");" << endl;
         h << "    friend class " << cfg.className << "Helper;" << endl << endl;
@@ -2320,15 +2321,25 @@ int main(int argc, char **argv)
         cpp << "}" << endl << endl;
 
         if (cfgFileNameArg) {
-            cpp << "void " << cfg.className << "::instance(const QString& cfgfilename)" << endl;
-            cpp << "{" << endl;
-            cpp << "  if (s_global" << cfg.className << "()->q) {" << endl;
-            cpp << "     qDebug() << \"" << cfg.className << "::instance called after the first use - ignoring\";" << endl;
-            cpp << "     return;" << endl;
-            cpp << "  }" << endl;
-            cpp << "  new " << cfg.className << "(cfgfilename);" << endl;
-            cpp << "  s_global" << cfg.className << "()->q->read();" << endl;
-            cpp << "}" << endl << endl;
+            auto instance = [&cfg, &cpp] (const QString &type, const QString arg, bool wrap) {
+                cpp << "void " << cfg.className << "::instance(" << type << " " << arg << ")" << endl;
+                cpp << "{" << endl;
+                cpp << "  if (s_global" << cfg.className << "()->q) {" << endl;
+                cpp << "     qDebug() << \"" << cfg.className << "::instance called after the first use - ignoring\";" << endl;
+                cpp << "     return;" << endl;
+                cpp << "  }" << endl;
+                cpp << "  new " << cfg.className << "(";
+                if (wrap) {
+                    cpp << "KSharedConfig::openConfig(" << arg << ")";
+                } else {
+                    cpp << arg;
+                }
+                cpp << ");" << endl;
+                cpp << "  s_global" << cfg.className << "()->q->read();" << endl;
+                cpp << "}" << endl << endl;
+            };
+            instance(QStringLiteral("const QString&"), QStringLiteral("cfgfilename"), true);
+            instance(QStringLiteral("KSharedConfig::Ptr"), QStringLiteral("config"), false);
         }
     }
 
@@ -2339,7 +2350,7 @@ int main(int argc, char **argv)
     // Constructor
     cpp << cfg.className << "::" << cfg.className << "( ";
     if (cfgFileNameArg) {
-        if (!cfg.singleton && ! cfg.forceStringFilename) {
+        if (! cfg.forceStringFilename) {
             cpp << " KSharedConfig::Ptr config";
         } else {
             cpp << " const QString& config";
