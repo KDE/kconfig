@@ -112,7 +112,6 @@ set(test8_SRCS test8main.cpp )
 
 gen_kcfg_test_source(test8a test8_SRCS)
 gen_kcfg_test_source(test8b test8_SRCS)
-gen_kcfg_test_source(test8c test8_SRCS)
 
 ecm_add_test(TEST_NAME test8 ${test8_SRCS})
 target_link_libraries(test8 KF5::ConfigGui)
