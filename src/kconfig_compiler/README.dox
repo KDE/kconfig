@@ -108,7 +108,11 @@ The following options are read from the kcfgc file:
   <td>string</td>
   <td>KConfigSkeleton</td>
   <td>Class the generated class inherits from. This class must inherit
-  KConfigSkeleton.</td>
+  KConfigSkeleton and must provide a default constructor (kcfgfile not specified), a constructor
+  taking a QString argument (kcfgfile with "name" attribute) and a constructor taking a
+  KSharedConfig::Ptr as argument (kcfgfile with "arg" attribute).
+  Please refer to the documentation of KConfigSkeleton.
+  </td>
 </tr>
 <tr>
   <td><b>Visibility</b></td>
