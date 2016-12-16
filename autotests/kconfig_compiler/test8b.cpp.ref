@@ -9,7 +9,7 @@
 class Test8bHelper
 {
   public:
-    Test8bHelper() : q(0) {}
+    Test8bHelper() : q(nullptr) {}
     ~Test8bHelper() { delete q; }
     Test8b *q;
 };
@@ -47,6 +47,6 @@ Test8b::Test8b(  )
 
 Test8b::~Test8b()
 {
-  s_globalTest8b()->q = 0;
+  s_globalTest8b()->q = nullptr;
 }
 

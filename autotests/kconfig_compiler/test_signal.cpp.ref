@@ -9,7 +9,7 @@
 class TestSignalHelper
 {
   public:
-    TestSignalHelper() : q(0) {}
+    TestSignalHelper() : q(nullptr) {}
     ~TestSignalHelper() { delete q; }
     TestSignal *q;
 };
@@ -53,7 +53,7 @@ TestSignal::TestSignal(  )
 
 TestSignal::~TestSignal()
 {
-  s_globalTestSignal()->q = 0;
+  s_globalTestSignal()->q = nullptr;
 }
 
 bool TestSignal::usrSave()

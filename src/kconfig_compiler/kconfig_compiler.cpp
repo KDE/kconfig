@@ -2298,7 +2298,7 @@ int main(int argc, char **argv)
         cpp << "class " << cfg.className << "Helper" << endl;
         cpp << '{' << endl;
         cpp << "  public:" << endl;
-        cpp << "    " << cfg.className << "Helper() : q(0) {}" << endl;
+        cpp << "    " << cfg.className << "Helper() : q(nullptr) {}" << endl;
         cpp << "    ~" << cfg.className << "Helper() { delete q; }" << endl;
         cpp << "    " << cfg.className << " *q;" << endl;
         cpp << "};" << endl;
@@ -2599,7 +2599,7 @@ int main(int argc, char **argv)
         cpp << "  delete d;" << endl;
     }
     if (cfg.singleton) {
-        cpp << "  s_global" << cfg.className << "()->q = 0;" << endl;
+        cpp << "  s_global" << cfg.className << "()->q = nullptr;" << endl;
     }
     cpp << "}" << endl << endl;
 

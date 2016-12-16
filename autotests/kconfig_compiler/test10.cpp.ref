@@ -9,7 +9,7 @@
 class Test10Helper
 {
   public:
-    Test10Helper() : q(0) {}
+    Test10Helper() : q(nullptr) {}
     ~Test10Helper() { delete q; }
     Test10 *q;
 };
@@ -41,6 +41,6 @@ Test10::Test10(  )
 
 Test10::~Test10()
 {
-  s_globalTest10()->q = 0;
+  s_globalTest10()->q = nullptr;
 }
 

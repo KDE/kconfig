@@ -48,7 +48,7 @@ class TestDPointerPrivate
 class TestDPointerHelper
 {
   public:
-    TestDPointerHelper() : q(0) {}
+    TestDPointerHelper() : q(nullptr) {}
     ~TestDPointerHelper() { delete q; }
     TestDPointer *q;
 };
@@ -343,6 +343,6 @@ KConfigSkeleton::ItemFont *TestDPointer::timeBarFontItem()
 TestDPointer::~TestDPointer()
 {
   delete d;
-  s_globalTestDPointer()->q = 0;
+  s_globalTestDPointer()->q = nullptr;
 }
 
