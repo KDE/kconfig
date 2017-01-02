@@ -24,13 +24,13 @@
 class KConfigTest : public QObject
 {
     Q_OBJECT
-    Q_ENUMS(Testing)
-    Q_FLAGS(Flags)
 
 public:
     enum Testing { Ones = 1, Tens = 10, Hundreds = 100};
+    Q_ENUM(Testing)
     enum bits { bit0 = 1, bit1 = 2, bit2 = 4, bit3 = 8 };
     Q_DECLARE_FLAGS(Flags, bits)
+    Q_FLAG(Flags)
 
 private Q_SLOTS:
     void initTestCase();

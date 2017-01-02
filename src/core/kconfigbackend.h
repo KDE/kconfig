@@ -48,8 +48,6 @@ class QDateTime;
 class KCONFIGCORE_EXPORT KConfigBackend : public QObject, public QSharedData
 {
     Q_OBJECT
-    Q_FLAGS(ParseOption)
-    Q_FLAGS(WriteOption)
 
 public:
     /**
@@ -86,6 +84,7 @@ public:
         ParseDefaults = 2, /// entries should be marked as @em default
         ParseExpansions = 4 /// entries are allowed to be marked as @em expandable
     };
+    Q_FLAG(ParseOption)
     /// @typedef typedef QFlags<ParseOption> ParseOptions
     Q_DECLARE_FLAGS(ParseOptions, ParseOption)
 
@@ -93,6 +92,7 @@ public:
     enum WriteOption {
         WriteGlobal = 1 /// only write entries marked as "global"
     };
+    Q_FLAG(WriteOption)
     /// @typedef typedef QFlags<WriteOption> WriteOptions
     Q_DECLARE_FLAGS(WriteOptions, WriteOption)
 

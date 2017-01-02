@@ -650,10 +650,10 @@ private:
 
 #define KCONFIGGROUP_ENUMERATOR_ERROR(ENUM) \
     "The Qt MetaObject system does not seem to know about \"" ENUM \
-    "\" please use Q_ENUMS or Q_FLAGS to register it."
+    "\" please use Q_ENUM or Q_FLAG to register it."
 
 /**
- * To add support for your own enums in KConfig, you can declare them with Q_ENUMS()
+ * To add support for your own enums in KConfig, you can declare them with Q_ENUM()
  * in a QObject subclass (which will make moc generate the code to turn the
  * enum into a string and vice-versa), and then (in the cpp code)
  * use the macro
@@ -686,7 +686,7 @@ private:
     { group.writeEntry(key, value, flags); }
 
 /**
- * Similar to KCONFIGGROUP_DECLARE_ENUM_QOBJECT but for flags declared with Q_FLAGS()
+ * Similar to KCONFIGGROUP_DECLARE_ENUM_QOBJECT but for flags declared with Q_FLAG()
  * (where multiple values can be set at the same time)
  */
 #define KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(Class, Flags)                            \
