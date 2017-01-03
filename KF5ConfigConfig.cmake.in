@@ -4,6 +4,7 @@
 
 include("${CMAKE_CURRENT_LIST_DIR}/KF5ConfigTargets.cmake")
 
+include(CMakeFindDependencyMacro)
 find_dependency(Qt5Xml "@REQUIRED_QT_VERSION@")
 
 if(CMAKE_CROSSCOMPILING AND KF5_HOST_TOOLING)
