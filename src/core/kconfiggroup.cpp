@@ -367,7 +367,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     case QMetaType::QFont:
         qWarning() << "KConfigGroup::readEntry was passed GUI type '"
                    << aDefault.typeName()
-                   << "' but kdeui isn't linked! If it is linked to your program, "
+                   << "' but KConfigGui isn't linked! If it is linked to your program, "
                    "this is a platform bug. Please inform the KDE developers";
         break;
     case QMetaType::QUrl:
@@ -1041,7 +1041,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
     case QMetaType::QFont:
         qWarning() << "KConfigGroup::writeEntry was passed GUI type '"
                    << value.typeName()
-                   << "' but kdeui isn't linked! If it is linked to your program, this is a platform bug. "
+                   << "' but KConfigGui isn't linked! If it is linked to your program, this is a platform bug. "
                    "Please inform the KDE developers";
         break;
     case QMetaType::QUrl:
