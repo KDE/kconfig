@@ -11,7 +11,7 @@
 class Test8cHelper
 {
   public:
-    Test8cHelper() : q(0) {}
+    Test8cHelper() : q(nullptr) {}
     ~Test8cHelper() { delete q; }
     Test8c *q;
 };
@@ -60,6 +60,6 @@ Test8c::Test8c(  KSharedConfig::Ptr config  )
 
 Test8c::~Test8c()
 {
-  s_globalTest8c()->q = 0;
+  s_globalTest8c()->q = nullptr;
 }
 
