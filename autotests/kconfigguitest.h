@@ -30,6 +30,9 @@ private Q_SLOTS:
     void testInvalid();
     void initTestCase();
     void cleanupTestCase();
+
+private:
+    bool m_fontFromStringBug;
 };
 
 #endif /* KCONFIGTEST_H */

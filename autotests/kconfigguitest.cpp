@@ -23,6 +23,7 @@
 #include <kconfig.h>
 #include <QDir>
 #include <QFont>
+#include <QStandardPaths>
 #include <kconfiggroup.h>
 #include <kconfigskeleton.h>
 
@@ -35,6 +36,8 @@ QTEST_MAIN(KConfigTest)
 
 void KConfigTest::initTestCase()
 {
+    QStandardPaths::setTestModeEnabled(true);
+
     // cheat the linker on windows to link against kconfiggui
     KConfigSkeleton foo;
     Q_UNUSED(foo);
@@ -55,21 +58,25 @@ void KConfigTest::initTestCase()
     sg0.writeEntry("WarnOutput", 0);
     sg0.writeEntry("FatalOutput", 0);
     QVERIFY(sc1.sync());
+
+    // Qt 5.8.0 would fail the fromString(toString) roundtrip in QFont
+    // if the qApp font has a styleName set.
+    // This is fixed by https://codereview.qt-project.org/181645
+    // It's not in yet, and it depends on the app font, so rather than
+    // a version check, let's do a runtime check.
+    QFont orig(FONTENTRY);
+    QFont f;
+    f.fromString(orig.toString());
+    m_fontFromStringBug = (f.toString() != orig.toString());
+    if (m_fontFromStringBug) {
+        qDebug() << "QFont::fromString serialization bug (Qt 5.8.0), the font test will be skipped" << f.toString() << "!=" << orig.toString();
+    }
 }
 
 void KConfigTest::cleanupTestCase()
 {
-    QDir local(QDir::homePath() + "/.kde-unit-test/share/config");
-
-    Q_FOREACH (const QString &file, local.entryList(QDir::Files))
-        if (!local.remove(file)) {
-            qWarning("%s: removing failed", qPrintable(file));
-        }
-
-    QCOMPARE((int)local.entryList(QDir::Files).count(), 0);
-
-    local.cdUp();
-    local.rmpath("config");
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
+    QVERIFY(dir.removeRecursively());
 }
 
 void KConfigTest::testComplex()
@@ -84,6 +91,9 @@ void KConfigTest::testComplex()
     QCOMPARE(sc3.readEntry("colorEntry3", QColor()), COLORENTRY3);
     QCOMPARE(sc3.readEntry("colorEntry4", QColor()), COLORENTRY2);
     QCOMPARE(sc3.readEntry("defaultColorTest", QColor("black")), QColor("black"));
+    if (m_fontFromStringBug) {
+        QEXPECT_FAIL("", "QFont fromString bug from Qt 5.8.0", Continue);
+    }
     QCOMPARE(sc3.readEntry("fontEntry", QFont()), FONTENTRY);
 }
 
