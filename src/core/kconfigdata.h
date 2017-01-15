@@ -23,6 +23,8 @@
 #ifndef KCONFIGDATA_H
 #define KCONFIGDATA_H
 
+#include <kconfigcore_export.h>
+
 #include <QtCore/QByteArray>
 #include <QtCore/QString>
 #include <QtCore/QMap>
@@ -155,7 +157,7 @@ QDebug operator<<(QDebug dbg, const KEntry &entry);
  * with the group name.
  * @internal
  */
-class KEntryMap : public QMap<KEntryKey, KEntry>
+class KCONFIGCORE_EXPORT KEntryMap : public QMap<KEntryKey, KEntry>
 {
 public:
     enum SearchFlag {
