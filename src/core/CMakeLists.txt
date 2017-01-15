@@ -52,6 +52,32 @@ ecm_generate_headers(KConfigCore_HEADERS
   REQUIRED_HEADERS KConfigCore_HEADERS
 )
 
+find_package(PythonModuleGeneration)
+
+if (PythonModuleGeneration_FOUND)
+  ecm_generate_python_binding(
+    TARGET KF5::ConfigCore
+    PYTHONNAMESPACE PyKF5
+    MODULENAME KConfigCore
+    RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
+    INSTALL_DIR_SUFFIX ${KDE_INSTALL_PYTHONBINDINGSDIR}
+    SIP_DEPENDS
+      QtCore/QtCoremod.sip
+    HEADERS
+      kauthorized.h
+      kconfig.h
+      kconfigbackend.h
+      kconfigbase.h
+      kconfigdata.h
+      kconfiggroup.h
+      kdesktopfile.h
+      ksharedconfig.h
+      kcoreconfigskeleton.h
+      kemailsettings.h
+      conversioncheck.h
+  )
+endif()
+
 install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
