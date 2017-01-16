@@ -53,7 +53,7 @@ public:
      * If an absolute path is specified for @p fileName, that file will be used
      * as the store for the configuration settings.  If a non-absolute path
      * is provided, the file will be looked for in the standard directory
-     * specified by resourceType.  If no path is provided, a default
+     * specified by @p type.  If no path is provided, a default
      * configuration file will be used based on the name of the main
      * application component.
      *
@@ -66,7 +66,7 @@ public:
      *                     from the application name + "rc")
      * @param mode         how global settings should affect the configuration
      *                     options exposed by this KConfig object
-     * @param resourceType The standard directory to look for the configuration
+     * @param type         The standard directory to look for the configuration
      *                     file in (see QStandardPaths)
      *
      * @sa KConfig

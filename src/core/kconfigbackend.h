@@ -108,8 +108,8 @@ public:
      *
      * @param locale the locale to read entries for (if the backend supports localized entries)
      * @param pWriteBackMap the KEntryMap where the entries are placed
-     * @param options @see ParseOptions
-     * @return @see ParseInfo
+     * @param options See ParseOptions
+     * @return See ParseInfo
      */
     virtual ParseInfo parseConfig(const QByteArray &locale,
                                   KEntryMap &pWriteBackMap,
@@ -120,7 +120,7 @@ public:
      *
      * @param locale the locale to write entries for (if the backend supports localized entries)
      * @param entryMap the KEntryMap containing the config object's entries.
-     * @param options @see WriteOptions
+     * @param options See WriteOptions
      *
      * @return @c true if the write was successful, @c false if writing the configuration failed
      */

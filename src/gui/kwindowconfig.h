@@ -51,7 +51,7 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  *
  * @note the group must be set before calling
  *
- * @param dialog The dialog to restore size.
+ * @param window The window to restore size.
  * @param config The config group to read from.
  * @since 5.0.
  */
