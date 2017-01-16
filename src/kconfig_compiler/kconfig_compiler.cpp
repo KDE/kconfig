@@ -776,11 +776,11 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
             paramType = e.attribute(QStringLiteral("type"));
             if (param.isEmpty()) {
                 cerr << "Parameter must have a name: " << dumpNode(e) << endl;
-                return 0;
+                return nullptr;
             }
             if (paramType.isEmpty()) {
                 cerr << "Parameter must have a type: " << dumpNode(e) << endl;
-                return 0;
+                return nullptr;
             }
             if ((paramType == QLatin1String("Int")) || (paramType == QLatin1String("UInt"))) {
                 bool ok;
@@ -788,7 +788,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
                 if (!ok) {
                     cerr << "Integer parameter must have a maximum (e.g. max=\"0\"): "
                          << dumpNode(e) << endl;
-                    return 0;
+                    return nullptr;
                 }
             } else if (paramType == QLatin1String("Enum")) {
                 for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
@@ -804,13 +804,13 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
                 if (paramValues.isEmpty()) {
                     cerr << "No values specified for parameter '" << param
                          << "'." << endl;
-                    return 0;
+                    return nullptr;
                 }
                 paramMax = paramValues.count() - 1;
             } else {
                 cerr << "Parameter '" << param << "' has type " << paramType
                      << " but must be of type int, uint or Enum." << endl;
-                return 0;
+                return nullptr;
             }
         } else if (tag == QLatin1String("default")) {
             if (e.attribute(QStringLiteral("param")).isEmpty()) {
@@ -866,7 +866,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
     bool nameIsEmpty = name.isEmpty();
     if (nameIsEmpty && key.isEmpty()) {
         cerr << "Entry must have a name or a key: " << dumpNode(element) << endl;
-        return 0;
+        return nullptr;
     }
 
     if (key.isEmpty()) {
@@ -884,12 +884,12 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
     if (name.contains(QStringLiteral("$("))) {
         if (param.isEmpty()) {
             cerr << "Name may not be parameterized: " << name << endl;
-            return 0;
+            return nullptr;
         }
     } else {
         if (!param.isEmpty()) {
             cerr << "Name must contain '$(" << param << ")': " << name << endl;
-            return 0;
+            return nullptr;
         }
     }
 
@@ -924,13 +924,13 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
                     i = paramValues.indexOf(index);
                     if (i == -1) {
                         cerr << "Index '" << index << "' for default value is unknown." << endl;
-                        return 0;
+                        return nullptr;
                     }
                 }
 
                 if ((i < 0) || (i > paramMax)) {
                     cerr << "Index '" << i << "' for default value is out of range [0, " << paramMax << "]." << endl;
-                    return 0;
+                    return nullptr;
                 }
 
                 QString tmpDefaultValue = e.text();
@@ -951,7 +951,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
         else {
             cerr << "The name '" << name << "' is not a valid name for an entry." << endl;
         }
-        return 0;
+        return nullptr;
     }
 
     if (allNames.contains(name)) {
@@ -961,7 +961,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
         else {
             cerr << "The name '" << name << "' is not unique." << endl;
         }
-        return 0;
+        return nullptr;
     }
     allNames.append(name);
 

@@ -653,7 +653,7 @@ QString KConfigGroup::readEntryUntranslated(const char *key, const QString &aDef
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::readEntryUntranslated", "accessing an invalid group");
 
-    QString result = config()->d_func()->lookupData(d->fullName(), key, KEntryMap::SearchFlags(), 0);
+    QString result = config()->d_func()->lookupData(d->fullName(), key, KEntryMap::SearchFlags(), nullptr);
     if (result.isNull()) {
         return aDefault;
     }

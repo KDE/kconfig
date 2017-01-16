@@ -69,7 +69,7 @@ struct KStandardShortcutInfo {
 // Read the comments of the big enum in kstandardshortcut.h before you change anything!
 static KStandardShortcutInfo g_infoStandardShortcut[] = {
 //Group File,
-    { AccelNone, 0, {0, 0}, 0, 0, QList<QKeySequence>(), false },
+    { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false },
     { Open, "Open", QT_TRANSLATE_NOOP3("KStandardShortcut", "Open", "@action"), CTRL(O), 0, QList<QKeySequence>(), false },
     { New, "New", QT_TRANSLATE_NOOP3("KStandardShortcut", "New", "@action"), CTRL(N), 0, QList<QKeySequence>(), false },
     { Close, "Close", QT_TRANSLATE_NOOP3("KStandardShortcut", "Close", "@action"), CTRL(W), CTRL(Escape), QList<QKeySequence>(), false },
@@ -170,7 +170,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { Donate, "Donate", QT_TRANSLATE_NOOP3("KStandardShortcut", "Donate", "@action"), 0, 0, QList<QKeySequence>(), false },
 
     //dummy entry to catch simple off-by-one errors. Insert new entries before this line.
-    { AccelNone, 0, {0, 0}, 0, 0, QList<QKeySequence>(), false }
+    { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false }
 };
 
 /** Search for the KStandardShortcutInfo object associated with the given @p id.

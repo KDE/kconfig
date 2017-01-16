@@ -390,7 +390,7 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     const QByteArray theGroup(aGroup.isEmpty() ? "<default>" : aGroup.toUtf8());
 
     const KEntryMapConstIterator theEnd = d->entryMap.constEnd();
-    KEntryMapConstIterator it = d->entryMap.findEntry(theGroup, 0, 0);
+    KEntryMapConstIterator it = d->entryMap.findEntry(theGroup, nullptr, nullptr);
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
@@ -833,7 +833,7 @@ bool KConfig::isImmutable() const
 bool KConfig::isGroupImmutableImpl(const QByteArray &aGroup) const
 {
     Q_D(const KConfig);
-    return isImmutable() || d->entryMap.getEntryOption(aGroup, 0, 0, KEntryMap::EntryImmutable);
+    return isImmutable() || d->entryMap.getEntryOption(aGroup, nullptr, nullptr, KEntryMap::EntryImmutable);
 }
 
 #ifndef KDE_NO_DEPRECATED
@@ -864,7 +864,7 @@ const KConfigGroup KConfig::groupImpl(const QByteArray &group) const
 
 KEntryMap::EntryOptions convertToOptions(KConfig::WriteConfigFlags flags)
 {
-    KEntryMap::EntryOptions options = 0;
+    KEntryMap::EntryOptions options = nullptr;
 
     if (flags & KConfig::Persistent) {
         options |= KEntryMap::EntryDirty;
