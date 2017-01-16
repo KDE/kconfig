@@ -1006,7 +1006,7 @@ public:
      *                   config file as returned by KSharedConfig::openConfig() is used
      * @param parent the parent object (see QObject documentation)
      */
-    explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = Q_NULLPTR);
+    explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
 
     /**
      * Constructor.
@@ -1014,7 +1014,7 @@ public:
      * @param config configuration object to use
      * @param parent the parent object (see QObject documentation)
      */
-    explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = Q_NULLPTR);
+    explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
     /**
      * Destructor

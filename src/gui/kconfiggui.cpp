@@ -32,7 +32,7 @@ static QString configName(const QString &id, const QString &key)
            QLatin1Char('_')          + key);
 }
 
-static KConfig *s_sessionConfig = Q_NULLPTR;
+static KConfig *s_sessionConfig = nullptr;
 
 KConfig *KConfigGui::sessionConfig()
 {
@@ -54,7 +54,7 @@ void KConfigGui::setSessionConfig(const QString &id, const QString &key)
 {
     if (hasSessionConfig()) {
         delete s_sessionConfig;
-        s_sessionConfig = Q_NULLPTR;
+        s_sessionConfig = nullptr;
     }
 
     // create a new instance specific config object from supplied id & key
@@ -64,7 +64,7 @@ void KConfigGui::setSessionConfig(const QString &id, const QString &key)
 
 bool KConfigGui::hasSessionConfig()
 {
-    return s_sessionConfig != Q_NULLPTR;
+    return s_sessionConfig != nullptr;
 }
 
 #ifndef KDE_NO_DEPRECATED

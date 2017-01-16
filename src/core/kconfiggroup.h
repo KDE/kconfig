@@ -280,9 +280,9 @@ public:
     QString readEntry(const char *key, const QString &aDefault) const;
 
     /** Overload for readEntry(const QString&, const QString&) */
-    QString readEntry(const QString &key, const char *aDefault = Q_NULLPTR) const;
+    QString readEntry(const QString &key, const char *aDefault = nullptr) const;
     /** Overload for readEntry(const QString&, const QString&) */
-    QString readEntry(const char *key, const char *aDefault = Q_NULLPTR) const;
+    QString readEntry(const char *key, const char *aDefault = nullptr) const;
 
     /**
      * @copydoc readEntry(const char*, const QStringList&) const

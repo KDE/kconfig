@@ -216,7 +216,7 @@ public:
      *
      * @return @p config if it was set, otherwise a new KConfig object
      */
-    KConfig *copyTo(const QString &file, KConfig *config = Q_NULLPTR) const;
+    KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
 
     /**
      * Ensures that the configuration file contains a certain update.

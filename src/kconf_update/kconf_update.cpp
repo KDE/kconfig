@@ -105,9 +105,9 @@ protected:
 };
 
 KonfUpdate::KonfUpdate(QCommandLineParser *parser)
-    : m_oldConfig1(Q_NULLPTR), m_oldConfig2(Q_NULLPTR), m_newConfig(Q_NULLPTR),
-      m_bCopy(false), m_bOverwrite(false), m_textStream(Q_NULLPTR),
-      m_file(Q_NULLPTR), m_lineCount(-1)
+    : m_oldConfig1(nullptr), m_oldConfig2(nullptr), m_newConfig(nullptr),
+      m_bCopy(false), m_bOverwrite(false), m_textStream(nullptr),
+      m_file(nullptr), m_lineCount(-1)
 {
     bool updateAll = false;
 
@@ -435,7 +435,7 @@ void KonfUpdate::gotFile(const QString &_file)
     if (!m_oldFile.isEmpty()) {
         // Close old file.
         delete m_oldConfig1;
-        m_oldConfig1 = Q_NULLPTR;
+        m_oldConfig1 = nullptr;
 
         KConfigGroup cg(m_oldConfig2, "$Version");
         QStringList ids = cg.readEntry("update_info", QStringList());
@@ -446,7 +446,7 @@ void KonfUpdate::gotFile(const QString &_file)
         }
         cg.sync();
         delete m_oldConfig2;
-        m_oldConfig2 = Q_NULLPTR;
+        m_oldConfig2 = nullptr;
 
         QString file = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + m_oldFile;
         QFileInfo info(file);
@@ -468,11 +468,11 @@ void KonfUpdate::gotFile(const QString &_file)
         }
         m_newConfig->sync();
         delete m_newConfig;
-        m_newConfig = Q_NULLPTR;
+        m_newConfig = nullptr;
 
         m_newFile.clear();
     }
-    m_newConfig = Q_NULLPTR;
+    m_newConfig = nullptr;
 
     int i = _file.indexOf(',');
     if (i == -1) {
@@ -519,7 +519,7 @@ void KonfUpdate::gotFile(const QString &_file)
 
     m_skipFile = false;
     if (!m_oldFile.isEmpty()) { // if File= is specified, it doesn't exist, is empty or contains only kconf_update's [$Version] group, skip
-        if (m_oldConfig1 != Q_NULLPTR
+        if (m_oldConfig1 != nullptr
                 && (m_oldConfig1->groupList().isEmpty()
                     || (m_oldConfig1->groupList().count() == 1 && m_oldConfig1->groupList().at(0) == QLatin1String("$Version")))) {
             log() << m_currentFilename << ": File '" << m_oldFile << "' does not exist or empty, skipping" << endl;

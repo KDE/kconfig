@@ -30,11 +30,11 @@ Q_DECLARE_METATYPE(QList<int>)
 #define GET_CONFIG_ITEM_VALUE(type, configName) \
     KConfigSkeletonItem* item = cl->findItem(TEST_NAME, configName); \
     /* Check if we got back a valid item. */ \
-    QVERIFY(item != Q_NULLPTR); \
+    QVERIFY(item != nullptr); \
     /* Cast the item to the given type. */ \
     type typeItem = dynamic_cast<type>(item); \
     /* Make sure the cast was successful. */ \
-    QVERIFY(typeItem != Q_NULLPTR);
+    QVERIFY(typeItem != nullptr);
 
 void ConfigLoaderTest::init()
 {

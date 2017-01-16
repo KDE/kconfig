@@ -1243,7 +1243,7 @@ bool KConfigGroup::isGroupImmutableImpl(const QByteArray &b) const
 void KConfigGroup::copyTo(KConfigBase *other, WriteConfigFlags pFlags) const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::copyTo", "accessing an invalid group");
-    Q_ASSERT(other != Q_NULLPTR);
+    Q_ASSERT(other != nullptr);
 
     if (KConfigGroup *otherGroup = dynamic_cast<KConfigGroup *>(other)) {
         config()->d_func()->copyGroup(d->fullName(), otherGroup->d->fullName(), otherGroup, pFlags);
@@ -1260,7 +1260,7 @@ void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
     Q_ASSERT_X(isValid(), "KConfigGroup::reparent", "accessing an invalid group");
     Q_ASSERT_X(!d->bConst, "KConfigGroup::reparent", "reparenting a read-only group");
     Q_ASSERT_X(!d->bImmutable, "KConfigGroup::reparent", "reparenting an immutable group");
-    Q_ASSERT(parent != Q_NULLPTR);
+    Q_ASSERT(parent != nullptr);
 
     KConfigGroup oldGroup(*this);
 

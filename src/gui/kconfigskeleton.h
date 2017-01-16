@@ -95,14 +95,14 @@ public:
      * @param configname name of config file. If no name is given, the default
      * config file as returned by KSharedConfig::openConfig() is used.
      */
-    explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = Q_NULLPTR);
+    explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
 
     /**
      * Constructor.
      *
      * @param config configuration object to use.
      */
-    explicit KConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = Q_NULLPTR);
+    explicit KConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
     /**
      * Register an item of type QColor.

@@ -196,7 +196,7 @@ void ConfigLoaderHandler::addItem()
 
     m_name.remove(QLatin1Char(' '));
 
-    KConfigSkeletonItem *item = Q_NULLPTR;
+    KConfigSkeletonItem *item = nullptr;
 
     if (m_type == QStringLiteral("bool")) {
         bool defaultValue = m_default.toLower() == QStringLiteral("true");

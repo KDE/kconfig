@@ -87,7 +87,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
     if (!list->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
         list->wasTestModeEnabled = true;
         list->clear();
-        list->mainConfig = Q_NULLPTR;
+        list->mainConfig = nullptr;
     }
 
     foreach (auto cfg, *static_cast<const GlobalSharedConfigList*>(list)) {

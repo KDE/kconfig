@@ -55,7 +55,7 @@ void KConfigBackend::registerMappings(const KEntryMap & /*entryMap*/)
 BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 {
     //qDebug() << "creating a backend for file" << file << "with system" << sys;
-    KConfigBackend *backend = Q_NULLPTR;
+    KConfigBackend *backend = nullptr;
 
 #if 0 // TODO port to Qt5 plugin loading
     const QString system = (sys.isEmpty() ? KConfigBackendPrivate::whatSystem(file) : sys);
@@ -65,7 +65,7 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 
         //qDebug() << "found" << offers.count() << "offers for KConfigBackend plugins with name" << system;
         foreach (const KService::Ptr &offer, offers) {
-            backend = offer->createInstance<KConfigBackend>(Q_NULLPTR);
+            backend = offer->createInstance<KConfigBackend>(nullptr);
             if (backend) {
                 //qDebug() << "successfully created a backend for" << system;
                 backend->setFilePath(file);

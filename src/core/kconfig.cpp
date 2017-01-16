@@ -68,7 +68,7 @@ static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
 
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
                                QStandardPaths::StandardLocation resourceType)
-    : openFlags(flags), resourceType(resourceType), mBackend(Q_NULLPTR),
+    : openFlags(flags), resourceType(resourceType), mBackend(nullptr),
       bDynamicBackend(true),  bDirty(false), bReadDefaults(false),
       bFileImmutable(false), bForceGlobal(false), bSuppressGlobal(false),
       configState(KConfigBase::NoAccess)

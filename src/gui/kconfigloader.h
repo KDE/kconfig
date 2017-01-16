@@ -109,7 +109,7 @@ public:
      * @param xml the xml data; must be valid KConfigXT data
      * @param parent optional QObject parent
      **/
-    KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = Q_NULLPTR);
+    KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
     /**
      * Creates a KConfigSkeleton populated using the definition found in
@@ -119,7 +119,7 @@ public:
      * @param xml the xml data; must be valid KConfigXT data
      * @param parent optional QObject parent
      **/
-    KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent = Q_NULLPTR);
+    KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent = nullptr);
 
     /**
      * Creates a KConfigSkeleton populated using the definition found in
@@ -129,7 +129,7 @@ public:
      * @param xml the xml data; must be valid KConfigXT data
      * @param parent optional QObject parent
      **/
-    KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = Q_NULLPTR);
+    KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
     ~KConfigLoader();
 

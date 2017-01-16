@@ -51,7 +51,7 @@ static CompilerTestSet testCases = {
     "test_translation_kde.cpp", "test_translation_kde.h",
     "test_translation_kde_domain.cpp", "test_translation_kde_domain.h",
     "test_translation_qt.cpp", "test_translation_qt.h",
-    Q_NULLPTR
+    nullptr
 };
 
 static CompilerTestSet testCasesToRun = {
@@ -75,7 +75,7 @@ static CompilerTestSet testCasesToRun = {
     "test_translation_kde",
     "test_translation_kde_domain",
     "test_translation_qt",
-    Q_NULLPTR
+    nullptr
 };
 
 #if 0

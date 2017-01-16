@@ -40,7 +40,7 @@ class KConfigIniBackend::BufferFragment
 
 public:
 
-    BufferFragment() : d(Q_NULLPTR), len(0)
+    BufferFragment() : d(nullptr), len(0)
     {
     }
 

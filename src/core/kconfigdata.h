@@ -203,7 +203,7 @@ public:
     QString getEntry(const QByteArray &group, const QByteArray &key,
                      const QString &defaultValue = QString(),
                      SearchFlags flags = SearchFlags(),
-                     bool *expand = Q_NULLPTR) const;
+                     bool *expand = nullptr) const;
 
     bool hasEntry(const QByteArray &group, const QByteArray &key = QByteArray(),
                   SearchFlags flags = SearchFlags()) const;

@@ -32,7 +32,7 @@
 class KEMailSettingsPrivate
 {
 public:
-    KEMailSettingsPrivate() : m_pConfig(Q_NULLPTR) {}
+    KEMailSettingsPrivate() : m_pConfig(nullptr) {}
     ~KEMailSettingsPrivate()
     {
         delete m_pConfig;
