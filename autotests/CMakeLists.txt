@@ -20,8 +20,9 @@ endif()
 set(kentrymaptest_SRCS kentrymaptest.cpp ../src/core/kconfigdata.cpp)
 ecm_add_test(${kentrymaptest_SRCS}
   TEST_NAME kentrymaptest
-  LINK_LIBRARIES KF5::ConfigCore Qt5::Test
+  LINK_LIBRARIES Qt5::Test
 )
+target_include_directories(kentrymaptest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/core)
 
 # compile KConfigUtils into the test since it's not exported
 set(test_kconfigutils_SRCS test_kconfigutils ../src/kconf_update/kconfigutils.cpp)

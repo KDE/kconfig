@@ -23,8 +23,6 @@
 #ifndef KCONFIGDATA_H
 #define KCONFIGDATA_H
 
-#include <kconfigcore_export.h>
-
 #include <QtCore/QByteArray>
 #include <QtCore/QString>
 #include <QtCore/QMap>
