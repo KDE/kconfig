@@ -157,7 +157,7 @@ QDebug operator<<(QDebug dbg, const KEntry &entry);
  * with the group name.
  * @internal
  */
-class KCONFIGCORE_EXPORT KEntryMap : public QMap<KEntryKey, KEntry>
+class KEntryMap : public QMap<KEntryKey, KEntry>
 {
 public:
     enum SearchFlag {

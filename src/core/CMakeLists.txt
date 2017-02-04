@@ -68,7 +68,6 @@ if (PythonModuleGeneration_FOUND)
       kconfig.h
       kconfigbackend.h
       kconfigbase.h
-      kconfigdata.h
       kconfiggroup.h
       kdesktopfile.h
       ksharedconfig.h

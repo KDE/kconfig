@@ -16,7 +16,8 @@ if(NOT Qt5Concurrent_FOUND)
     return()
 endif()
 
-set(kentrymaptest_SRCS kentrymaptest.cpp)
+# compile KEntryMap into the test since it's not exported
+set(kentrymaptest_SRCS kentrymaptest.cpp ../src/core/kconfigdata.cpp)
 ecm_add_test(${kentrymaptest_SRCS}
   TEST_NAME kentrymaptest
   LINK_LIBRARIES KF5::ConfigCore Qt5::Test
