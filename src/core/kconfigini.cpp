@@ -727,7 +727,6 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
     if (result.endsWith(' ') && type != GroupString) {
         result.replace(result.length() - 1, 1, "\\s");
     }
-    result.squeeze();
 
     return result;
 }
