@@ -187,6 +187,24 @@ static KStandardShortcutInfo *guardedStandardShortcutInfo(StandardShortcut id)
     }
 }
 
+
+// Sanitize the list for duplicates. For some reason some
+// people have kdeglobals entries like
+//   Close=Ctrl+W; Ctrl+Esc; Ctrl+W; Ctrl+Esc;
+// having the same shortcut more than once in the shortcut
+// declaration is clearly bogus so fix it
+static void sanitizeShortcutList(QList<QKeySequence> *list)
+{
+    for (int i = 0; i < list->size(); ++i) {
+        const QKeySequence &ks = list->at(i);
+        int other = list->indexOf(ks, i + 1);
+        while (other != -1) {
+            list->removeAt(other);
+            other = list->indexOf(ks, other);
+        }
+    }
+}
+
 /** Initialize the accelerator @p id by checking if it is overridden
     in the configuration file (and if it isn't, use the default).
     On X11, if QApplication was initialized with GUI disabled,
@@ -209,6 +227,7 @@ static void initialize(StandardShortcut id)
         QString s = cg.readEntry(info->name);
         if (s != QLatin1String("none")) {
             info->cut = QKeySequence::listFromString(s);
+            sanitizeShortcutList(&info->cut);
         } else {
             info->cut = QList<QKeySequence>();
         }
@@ -244,6 +263,7 @@ void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut)
     }
 
     // Write the changed shortcut to kdeglobals
+    sanitizeShortcutList(&info->cut);
     cg.writeEntry(info->name, QKeySequence::listToString(info->cut), KConfig::Global | KConfig::Persistent);
 }
 
