@@ -600,14 +600,8 @@ void KConfigIniBackend::setFilePath(const QString &file)
     const QFileInfo info(file);
     if (info.exists()) {
         setLocalFilePath(info.canonicalFilePath());
-        setLastModified(info.lastModified());
-        setSize(info.size());
     } else {
         setLocalFilePath(file);
-        setSize(0);
-        QDateTime dummy;
-        dummy.setTime_t(0);
-        setLastModified(dummy);
     }
 }
 

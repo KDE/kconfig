@@ -34,7 +34,6 @@ class KConfigBackendPrivate;
 class KEntryMap;
 class QFile;
 class QByteArray;
-class QDateTime;
 
 /**
  * \class KConfigBackend kconfigbackend_p.h <KConfigBackend>
@@ -181,19 +180,11 @@ public:
      */
     virtual bool isLocked() const = 0;
 
-    /**
-     * @return the date and time when the object was last modified
-     */
-    QDateTime lastModified() const;
     /** @return the absolute path to the object */
     QString filePath() const;
-    /** @return the size of the object */
-    qint64 size() const;
 
 protected:
     KConfigBackend();
-    void setLastModified(const QDateTime &dt);
-    void setSize(qint64 sz);
     void setLocalFilePath(const QString &file);
 
 private:

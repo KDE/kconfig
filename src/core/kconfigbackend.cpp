@@ -38,8 +38,6 @@ typedef QExplicitlySharedDataPointer<KConfigBackend> BackendPtr;
 class KConfigBackendPrivate
 {
 public:
-    qint64 size;
-    QDateTime lastModified;
     QString localFileName;
 
     static QString whatSystem(const QString & /*fileName*/)
@@ -91,26 +89,6 @@ KConfigBackend::KConfigBackend()
 KConfigBackend::~KConfigBackend()
 {
     delete d;
-}
-
-QDateTime KConfigBackend::lastModified() const
-{
-    return d->lastModified;
-}
-
-void KConfigBackend::setLastModified(const QDateTime &dt)
-{
-    d->lastModified = dt;
-}
-
-qint64 KConfigBackend::size() const
-{
-    return d->size;
-}
-
-void KConfigBackend::setSize(qint64 sz)
-{
-    d->size = sz;
 }
 
 QString KConfigBackend::filePath() const
