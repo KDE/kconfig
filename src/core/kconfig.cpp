@@ -39,7 +39,7 @@ static inline int pclose(FILE *stream)
 #include <unistd.h>
 #endif
 
-#include "kconfigbackend.h"
+#include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
 #include <qcoreapplication.h>

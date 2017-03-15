@@ -23,7 +23,7 @@
 #include "kconfigini_p.h"
 
 #include "kconfig.h"
-#include "kconfigbackend.h"
+#include "kconfigbackend_p.h"
 #include "bufferfragment_p.h"
 #include "kconfigdata.h"
 

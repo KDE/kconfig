@@ -20,7 +20,7 @@
 */
 
 #include "ksharedconfig.h"
-#include "kconfigbackend.h"
+#include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 #include "kconfig_p.h"
 #include <QCoreApplication>

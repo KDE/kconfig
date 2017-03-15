@@ -24,7 +24,7 @@
 #define KCONFIGINI_P_H
 
 #include <kconfigcore_export.h>
-#include <kconfigbackend.h>
+#include <kconfigbackend_p.h>
 
 class QLockFile;
 class QIODevice;

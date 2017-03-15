@@ -37,7 +37,7 @@ class QByteArray;
 class QDateTime;
 
 /**
- * \class KConfigBackend kconfigbackend.h <KConfigBackend>
+ * \class KConfigBackend kconfigbackend_p.h <KConfigBackend>
  *
  * Provides the implementation for accessing configuration sources.
  *

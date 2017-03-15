@@ -25,7 +25,7 @@
 #define KCONFIG_P_H
 
 #include "kconfigdata.h"
-#include "kconfigbackend.h"
+#include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
 #include <QtCore/QStringList>
