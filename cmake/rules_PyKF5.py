@@ -52,7 +52,6 @@ def discard_base(container, sip, matcher):
 
 def local_container_rules():
     return [
-        [".*", "KConfigBackend", ".*", ".*", ".*", mark_and_discard_QSharedData],
         [".*", "KConfigBase", ".*", ".*", ".*", rules_engine.container_mark_abstract],
 
         [".*KCoreConfigSkeleton.*", ".*ItemString", ".*", ".*", ".*", set_skeleton_item_base],
@@ -107,11 +106,6 @@ def local_function_rules():
         ["KEntryMap", "setEntryOption", ".*", ".*", ".*", rules_engine.function_discard],
         ["KEntryMap", "findEntry", ".*", ".*", ".*", rules_engine.function_discard],
         ["KEntryMap", "findExactEntry", ".*", ".*", ".*", rules_engine.function_discard],
-
-        ["KConfigBackend", "registerMappings", ".*", ".*", ".*", rules_engine.function_discard],
-        ["KConfigBackend", "parseConfig", ".*", ".*", ".*", rules_engine.function_discard],
-        ["KConfigBackend", "writeConfig", ".*", ".*", ".*", rules_engine.function_discard],
-
     ]
 
 def local_typedef_rules():

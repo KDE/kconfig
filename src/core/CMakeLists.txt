@@ -40,7 +40,6 @@ ecm_generate_headers(KConfigCore_HEADERS
   HEADER_NAMES
   KAuthorized
   KConfig
-  KConfigBackend
   KConfigBase
   KConfigGroup
   KDesktopFile
@@ -66,7 +65,6 @@ if (PythonModuleGeneration_FOUND)
     HEADERS
       kauthorized.h
       kconfig.h
-      kconfigbackend.h
       kconfigbase.h
       kconfiggroup.h
       kdesktopfile.h

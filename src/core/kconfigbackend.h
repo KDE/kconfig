@@ -41,11 +41,13 @@ class QDateTime;
  *
  * Provides the implementation for accessing configuration sources.
  *
- * KDELibs only provides an INI backend, but this class can be used
+ * KConfig only provides an INI backend, but this class can be used
  * to create plugins that allow access to other file formats and
  * configuration systems.
+ *
+ * \internal
  */
-class KCONFIGCORE_EXPORT KConfigBackend : public QObject, public QSharedData
+class KConfigBackend : public QObject, public QSharedData
 {
     Q_OBJECT
 
@@ -201,10 +203,12 @@ private:
 Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigBackend::ParseOptions)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigBackend::WriteOptions)
 
+#if 0 // TODO re-enable if the plugin loading code is re-enabled
 /**
  * Register a KConfig backend when it is contained in a loadable module
  */
 #define K_EXPORT_KCONFIGBACKEND(libname, classname) \
     K_PLUGIN_FACTORY(factory, registerPlugin<classname>();)
+#endif
 
 #endif // KCONFIGBACKEND_H
