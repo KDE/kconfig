@@ -255,3 +255,34 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
         QVERIFY(!desktopFile.tryExec());
     }
 }
+
+void KDesktopFileTest::testLocateLocal_data()
+{
+    QString systemConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation).last();
+    QString writableConfigLocation = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+    QString systemDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).last();
+    QString writableDataLocation = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+
+    QTest::addColumn<QString>("path");
+    QTest::addColumn<QString>("result");
+
+    QTest::newRow("configLocation, system-wide") << systemConfigLocation + "/test.desktop" << writableConfigLocation + "/test.desktop";
+    QTest::newRow("autostart, system-wide") << systemConfigLocation + "/autostart/test.desktop" << writableConfigLocation + "/autostart/test.desktop";
+    QTest::newRow("dataLocation, system-wide") << systemDataLocation + "/test.desktop" << writableDataLocation + "/test.desktop";
+    QTest::newRow("applications, system-wide") << systemDataLocation + "/applications/test.desktop" << writableDataLocation + "/applications/test.desktop";
+    QTest::newRow("desktop-directories, system-wide") << systemDataLocation + "/desktop-directories/test.directory" << writableDataLocation + "/desktop-directories/test.directory";
+    QTest::newRow("configLocation, writable") << writableConfigLocation + "/test.desktop" << writableConfigLocation + "/test.desktop";
+    QTest::newRow("autostart, writable") << writableConfigLocation + "/autostart/test.desktop" << writableConfigLocation + "/autostart/test.desktop";
+    QTest::newRow("dataLocation, writable") << writableDataLocation + "/test.desktop" << writableDataLocation + "/test.desktop";
+    QTest::newRow("applications, writable") << writableDataLocation + "/applications/test.desktop" << writableDataLocation + "/applications/test.desktop";
+    QTest::newRow("desktop-directories, writable") << writableDataLocation + "/desktop-directories/test.directory" << writableDataLocation + "/desktop-directories/test.directory";
+    QTest::newRow("unknown location") << "/test.desktop" << writableDataLocation + "/test.desktop";
+}
+
+void KDesktopFileTest::testLocateLocal()
+{
+    QFETCH(QString, path);
+    QFETCH(QString, result);
+
+    QCOMPARE(KDesktopFile::locateLocal(path), result);
+}

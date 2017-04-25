@@ -34,6 +34,8 @@ private Q_SLOTS:
     void testActionGroup();
     void testIsAuthorizedDesktopFile();
     void testTryExecWithAuthorizeAction();
+    void testLocateLocal_data();
+    void testLocateLocal();
 
 };
 
