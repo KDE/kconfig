@@ -67,6 +67,9 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui COMPONENT Devel
 )
 
+# make available to ecm_add_qch in parent folder
+set(KConfigGui_APIDOX_SRCS ${KConfigGui_HEADERS} PARENT_SCOPE)
+
 include(ECMGeneratePriFile)
 ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

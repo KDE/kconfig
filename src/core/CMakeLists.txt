@@ -83,6 +83,9 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore COMPONENT Devel
 )
 
+# make available to ecm_add_qch in parent folder
+set(KConfigCore_APIDOX_SRCS ${KConfigCore_HEADERS} PARENT_SCOPE)
+
 include(ECMGeneratePriFile)
 ecm_generate_pri_file(BASE_NAME KConfigCore LIB_NAME KF5ConfigCore DEPS "core" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
