@@ -31,6 +31,8 @@
 #include <QFont>
 
 /**
+ * @class KConfigSkeleton kconfigskeleton.h <KConfigSkeleton>
+ *
  * @short Class for handling preferences settings for an application.
  * @author Cornelius Schumacher
  *

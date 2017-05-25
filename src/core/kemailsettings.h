@@ -36,6 +36,8 @@
 class KEMailSettingsPrivate;
 
 /**
+  * \class KEMailSettings kemailsettings.h <KEMailSettings>
+  *
   * This is just a small class to facilitate accessing e-mail settings in
   * a sane way, and allowing any program to manage multiple e-mail
   * profiles effortlessly
