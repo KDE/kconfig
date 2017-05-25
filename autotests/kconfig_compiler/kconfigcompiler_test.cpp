@@ -110,11 +110,11 @@ void KConfigCompiler_Test::testBaselineComparison()
     QFile file(QFINDTESTDATA(testName));
     QFile fileRef(QFINDTESTDATA(testName + QLatin1String(".ref")));
 
-    if (!file.open(QIODevice::ReadOnly)) {
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Failed to open" << file.fileName() << "(" << testName << ")";
         QFAIL("Can't open file for comparison");
     }
-    if (!fileRef.open(QIODevice::ReadOnly)) {
+    if (!fileRef.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Failed to open" << fileRef.fileName() << "(" << testName << ".ref )";
         QFAIL("Can't open file for comparison");
     }
