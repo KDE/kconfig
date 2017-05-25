@@ -151,7 +151,7 @@ void KConfigCompiler_Test::testRunning()
     QVERIFY2(!program.isEmpty(), qPrintable(testName + QLatin1String(" must exist!")));
     QVERIFY2(QFile::exists(program), qPrintable(program + QLatin1String(" must exist!")));
     QProcess process;
-    process.start(program, QIODevice::ReadOnly);
+    process.start(program, QStringList(), QIODevice::ReadOnly);
     if (process.waitForStarted()) {
         QVERIFY(process.waitForFinished());
     }
