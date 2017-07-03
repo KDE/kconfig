@@ -1379,7 +1379,7 @@ public:
 
     /**
      * Removes and deletes an item by name
-     * @arg name the name of the item to remove
+     * @param name the name of the item to remove
      */
     void removeItem(const QString &name);
 
