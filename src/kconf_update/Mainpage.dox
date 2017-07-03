@@ -16,7 +16,7 @@ several drawbacks:
 kconf_update addresses these problems by offering a framework to update 
 configuration files without adding code to the application itself.
 
-See the <a href="http://websvn.kde.org/trunk/KDE/kdelibs/kconf_update/README.kconf_update?view=markup">README file</a> for more information.
+See the <a href="https://commits.kde.org/kconfig?path=src/kconf_update/README.kconf_update">README file</a> for more information.
 
 @authors
 Waldo Bastian \<bastian@kde.org\>
