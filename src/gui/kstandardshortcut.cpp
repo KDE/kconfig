@@ -119,8 +119,8 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { FullScreen, "FullScreen", QT_TRANSLATE_NOOP3("KStandardShortcut", "Full Screen Mode", "@action"), CTRLSHIFT(F), 0, QList<QKeySequence>(), false },
 
     { ShowMenubar, "ShowMenubar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Menu Bar", "@action"), CTRL(M), 0, QList<QKeySequence>(), false },
-    { TabNext, "Activate Next Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Next Tab", "@action"), CTRL(Period), CTRL(BracketRight), QList<QKeySequence>(), false },
-    { TabPrev, "Activate Previous Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Previous Tab", "@action"), CTRL(Comma), CTRL(BracketLeft), QList<QKeySequence>(), false },
+    { TabNext, "Activate Next Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Next Tab", "@action"), CTRL(PageDown), CTRL(BracketRight), QList<QKeySequence>(), false },
+    { TabPrev, "Activate Previous Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Previous Tab", "@action"), CTRL(PageUp), CTRL(BracketLeft), QList<QKeySequence>(), false },
 
     //Group Help
     { Help, "Help", QT_TRANSLATE_NOOP3("KStandardShortcut", "Help", "@action"), Qt::Key_F1, 0, QList<QKeySequence>(), false },
