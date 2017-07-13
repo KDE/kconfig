@@ -91,9 +91,9 @@ The following syntax for environment variables is also supported:
     Name[$ei]=${USER}
 
 There are three environment variables that have a fallback strategy if the
-environment variable is not set. They instead map to a location from QStanardPaths.
+environment variable is not set. They instead map to a location from QStandardPaths.
 They are:
 
-    `$QT_CACHE_HOME` - QStandardPaths::GenericConfigLocation
-    `$QT_CONFIG_HOME` - QStandardPaths::GenericConfigLocation
-    `$QT_DATA_HOME` - QStandardPaths::GenericDataLocation
+* `$QT_CACHE_HOME` - QStandardPaths::GenericCacheLocation
+* `$QT_CONFIG_HOME` - QStandardPaths::GenericConfigLocation
+* `$QT_DATA_HOME` - QStandardPaths::GenericDataLocation
