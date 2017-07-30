@@ -16,8 +16,6 @@ else()
     add_executable(KF5::kconfig_compiler ALIAS kconfig_compiler)
 endif()
 
-find_package(Qt5Xml ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
-
 target_link_libraries(kconfig_compiler Qt5::Xml)
 
 ecm_mark_nongui_executable(kconfig_compiler)

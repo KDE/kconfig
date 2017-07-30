@@ -52,6 +52,7 @@ ecm_add_tests(
 
 target_include_directories(test_kconf_update PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../src/kconf_update)
 
+if(TARGET Qt5::Gui)
 ecm_add_tests(
    kconfigguitest.cpp
    kconfigloadertest.cpp
@@ -67,4 +68,4 @@ set_tests_properties(kconfigcore-kconfignokdehometest PROPERTIES RUN_SERIAL TRUE
 set_tests_properties(kconfiggui-kconfigguitest PROPERTIES RUN_SERIAL TRUE)
 
 add_subdirectory(kconfig_compiler)
-
+endif()

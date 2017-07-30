@@ -12,7 +12,11 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 set(REQUIRED_QT_VERSION 5.6.0)
 
-find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui Xml)
+find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
+option(KCONFIG_USE_GUI "Build components using Qt5Gui" ON)
+if(KCONFIG_USE_GUI)
+    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
+endif()
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
