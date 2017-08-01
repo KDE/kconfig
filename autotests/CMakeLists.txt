@@ -61,5 +61,10 @@ ecm_add_tests(
    LINK_LIBRARIES KF5::ConfigGui Qt5::Test
 )
 
+# These tests do a global cleanup of ~/.qttest, so they can't run in parallel
+set_tests_properties(kconfigcore-kconfigtest PROPERTIES RUN_SERIAL TRUE)
+set_tests_properties(kconfigcore-kconfignokdehometest PROPERTIES RUN_SERIAL TRUE)
+set_tests_properties(kconfiggui-kconfigguitest PROPERTIES RUN_SERIAL TRUE)
+
 add_subdirectory(kconfig_compiler)
 

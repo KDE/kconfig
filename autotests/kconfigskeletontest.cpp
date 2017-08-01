@@ -35,6 +35,11 @@ QTEST_MAIN(KConfigSkeletonTest)
 #define WRITE_SETTING3 QFont("helvetica",14)
 #define WRITE_SETTING4 QString("KDE")
 
+void KConfigSkeletonTest::initTestCase()
+{
+    QStandardPaths::setTestModeEnabled(true);
+}
+
 void KConfigSkeletonTest::init()
 {
     QFile::remove(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kconfigskeletontestrc");

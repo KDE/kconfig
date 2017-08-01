@@ -27,6 +27,7 @@ class KConfigSkeletonTest : public QObject
 public:
 
 private Q_SLOTS:
+    void initTestCase();
     void init();
     void cleanup();
     void testSimple();
