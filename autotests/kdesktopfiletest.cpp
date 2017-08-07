@@ -43,10 +43,10 @@ void KDesktopFileTest::testRead()
     QTextStream ts(&file);
     ts <<
        "[Desktop Entry]\n"
-       "Type=Application\n"
+       "Type= Application\n"
        "Name=My Application\n"
-       "Icon=foo\n"
-       "MimeType=text/plain;image/png;\n"
+       "Icon = foo\n"
+       "MimeType =text/plain;image/png;\n"
        "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));

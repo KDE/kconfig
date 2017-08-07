@@ -193,6 +193,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
                 temp.trim();
                 aKey = temp;
                 line.truncateLeft(eqpos + 1);
+                line.trim();
             }
             if (aKey.isEmpty()) {
                 qWarning() << warningProlog(file, lineNo) << "Invalid entry (empty key)";
