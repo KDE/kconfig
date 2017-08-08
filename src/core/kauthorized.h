@@ -53,19 +53,19 @@ namespace KAuthorized
  * will return @c false.
  *
  * This method is intended for actions that do not necessarily have a
- * one-to-one correspondence with a menu or toolbar item (ie: a KAction
+ * one-to-one correspondence with a menu or toolbar item (ie: a QAction
  * in a KXMLGui application).  "shell_access" is an example of such a
  * "generic" action.
  *
  * The convention for actions like "File->New" is to prepend the action
  * name with "action/", for example "action/file_new".  This is what
- * authorizeKAction() does.
+ * authorizeAction() does.
  *
  * @param action  The name of the action.
  * @return        @c true if the action is authorized, @c false
  *                otherwise.
  *
- * @see authorizeKAction()
+ * @see authorizeAction()
  */
 KCONFIGCORE_EXPORT bool authorize(const QString &action);
 
