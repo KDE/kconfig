@@ -58,67 +58,96 @@ enum StandardShortcut {
     //This means that everything will be well-ordered from here on.
     AccelNone = 0,
     // File menu
-    Open, New, Close, Save,
+    Open, ///< Open file.
+    New, ///< Create a new document.
+    Close, ///< Close current document.
+    Save, ///< Save current document.
     // The Print item
-    Print,
-    Quit,
+    Print, ///< Print current document.
+    Quit, ///< Quit the program.
     // Edit menu
-    Undo, Redo, Cut, Copy, Paste,     PasteSelection,
-    SelectAll, Deselect, DeleteWordBack, DeleteWordForward,
-    Find, FindNext, FindPrev, Replace,
+    Undo, ///< Undo last operation.
+    Redo, ///< Redo last operation.
+    Cut, ///< Cut selected area and store it in the clipboard.
+    Copy, ///< Copy selected area into the clipboard.
+    Paste, ///< Paste contents of clipboard at mouse/cursor position.
+    PasteSelection, ///< Paste the selection at mouse/cursor position.
+    SelectAll, ///< Select all.
+    Deselect, ///< Deselect any selected elements.
+    DeleteWordBack, ///< Delete a word back from mouse/cursor position.
+    DeleteWordForward, ///< Delete a word forward from mouse/cursor position.
+    Find, ///< Initiate a 'find' request in the current document.
+    FindNext, ///< Find the next instance of a stored 'find'.
+    FindPrev, ///< Find a previous instance of a stored 'find'.
+    Replace, ///< Find and replace matches.
     // Navigation
-    Home, Begin, End, Prior, Next,
-    Up, Back, Forward, Reload,
+    Home, ///< Go to home page.
+    Begin, ///< Go to beginning of the document.
+    End, ///< Go to end of the document.
+    Prior, ///< Scroll up one page.
+    Next, ///< Scroll down one page.
+    Up, ///< Up.
+    Back, ///< Back.
+    Forward, ///< Forward.
+    Reload, ///< Reload.
     // Text Navigation
-    BeginningOfLine, EndOfLine, GotoLine,
-    BackwardWord, ForwardWord,
+    BeginningOfLine, ///< Go to beginning of current line.
+    EndOfLine, ///< Go to end of current line.
+    GotoLine, ///< Go to line.
+    BackwardWord, ///< BackwardWord.
+    ForwardWord, ///< ForwardWord.
     // View parameters
-    AddBookmark, ZoomIn, ZoomOut, FullScreen,
-    ShowMenubar,
+    AddBookmark, ///< Add current page to bookmarks.
+    ZoomIn, ///< Zoom in.
+    ZoomOut, ///< Zoom out.
+    FullScreen, ///< Full Screen mode.
+    ShowMenubar, ///< Show Menu Bar.
     // Tabular navigation
-    TabNext, TabPrev,
+    TabNext, ///< Next Tab.
+    TabPrev, ///< Previous Tab.
     // Help menu
-    Help, WhatsThis,
+    Help, ///< Help the user in the current situation.
+    WhatsThis, ///< What's This button.
     // Text completion
-    TextCompletion, PrevCompletion, NextCompletion, SubstringCompletion,
-
-    RotateUp, RotateDown,
-
-    OpenRecent,
-    SaveAs,
-    Revert,
-    PrintPreview,
-    Mail,
-    Clear,
-    ActualSize,
-    FitToPage,
-    FitToWidth,
-    FitToHeight,
-    Zoom,
-    Goto,
-    GotoPage,
-    DocumentBack,
-    DocumentForward,
-    EditBookmarks,
-    Spelling,
-    ShowToolbar,
-    ShowStatusbar,
+    TextCompletion, ///< Complete text in input widgets.
+    PrevCompletion, ///< Iterate through a list when completion returns multiple items.
+    NextCompletion, ///< Iterate through a list when completion returns multiple items.
+    SubstringCompletion, ///< Find a string within another string or list of strings.
+    RotateUp, ///< Help users iterate through a list of entries.
+    RotateDown, ///< Help users iterate through a list of entries.
+    OpenRecent, ///< Open a recently used document.
+    SaveAs, ///< Save the current document under a different name.
+    Revert, ///< Revert the current document to the last saved version.
+    PrintPreview, ///< Show a print preview of the current document.
+    Mail, ///< Send the current document by mail.
+    Clear, ///< Clear the content of the focus widget.
+    ActualSize, ///< View the document at its actual size.
+    FitToPage, ///< Fit the document view to the size of the current window.
+    FitToWidth, ///< Fit the document view to the width of the current window.
+    FitToHeight, ///< Fit the document view to the height of the current window.
+    Zoom, ///< Select the current zoom level.
+    Goto, ///< Jump to some specific location in the document.
+    GotoPage, ///< Go to a specific page.
+    DocumentBack, ///< Move back (document style menu).
+    DocumentForward, ///< Move forward (document style menu).
+    EditBookmarks, ///< Edit the application bookmarks.
+    Spelling, ///< Pop up the spell checker.
+    ShowToolbar, ///< Show/Hide the toolbar.
+    ShowStatusbar, ///< Show/Hide the statusbar.
     SaveOptions,
-    KeyBindings,
-    Preferences,
-    ConfigureToolbars,
-    ConfigureNotifications,
-    TipofDay,
-    ReportBug,
-    SwitchApplicationLanguage,
-    AboutApp,
-    AboutKDE,
-
-    DeleteFile,     // @since 5.25
-    RenameFile,     // @since 5.25
-    MoveToTrash,    // @since 5.25
-
-    Donate,         // @since 5.26
+    KeyBindings, ///< Display the configure key bindings dialog.
+    Preferences, ///< Display the preferences/options dialog.
+    ConfigureToolbars, ///< Display the toolbar configuration dialog.
+    ConfigureNotifications, ///< Display the notifications configuration dialog.
+    TipofDay, ///< Display the "Tip of the Day".
+    ReportBug, ///< Display the Report Bug dialog.
+    SwitchApplicationLanguage, ///< Display the Switch Application Language dialog.
+    AboutApp, ///< Display the application's About dialog.
+    AboutKDE, ///< Display the About KDE dialog.
+    DeleteFile, ///< Permanently delete files or folders. @since 5.25
+    RenameFile, ///< Rename files or folders. @since 5.25
+    MoveToTrash, ///< Move files or folders to the trash. @since 5.25
+    Donate, ///< Open donation page on kde.org. @since 5.26
     // Insert new items here!
 
     StandardShortcutCount // number of standard shortcuts
@@ -229,7 +258,7 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &quit();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &undo();
 
 /**
- * Redo. Default: Shift-Ctrl-z
+ * Redo last operation. Default: Shift-Ctrl-z
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &redo();
@@ -277,19 +306,19 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteWordBack();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteWordForward();
 
 /**
- * Find, search. Default: Ctrl-f
+ * Initiate a 'find' request in the current document. Default: Ctrl-f
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &find();
 
 /**
- * Find/search next. Default: F3
+ * Find the next instance of a stored 'find' Default: F3
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &findNext();
 
 /**
- * Find/search previous. Default: Shift-F3
+ * Find a previous instance of a stored 'find'. Default: Shift-F3
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &findPrev();
@@ -313,31 +342,31 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &zoomIn();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &zoomOut();
 
 /**
- * Goto home page. Default: Alt-Home
+ * Go to home page. Default: Alt-Home
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &home();
 
 /**
- * Goto beginning of the document. Default: Ctrl-Home
+ * Go to beginning of the document. Default: Ctrl-Home
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &begin();
 
 /**
- * Goto end of the document. Default: Ctrl-End
+ * Go to end of the document. Default: Ctrl-End
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &end();
 
 /**
- * Goto beginning of current line. Default: Home
+ * Go to beginning of current line. Default: Home
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &beginningOfLine();
 
 /**
- * Goto end of current line. Default: End
+ * Go to end of current line. Default: End
  * @return the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &endOfLine();
@@ -478,21 +507,21 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &forwardWord();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &showMenubar();
 
 /**
- * Delete File. Default: Shift+Delete
+ * Permanently delete files or folders. Default: Shift+Delete
  * @return the shortcut of the standard accelerator
  * @since 5.25
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteFile();
 
 /**
- * Rename File. Default: F2
+ * Rename files or folders. Default: F2
  * @return the shortcut of the standard accelerator
  * @since 5.25
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &renameFile();
 
 /**
- * Move to Trash. Default: Delete
+ * Moves files or folders to the trash. Default: Delete
  * @return the shortcut of the standard accelerator
  * @since 5.25
  */
