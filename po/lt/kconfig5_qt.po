@@ -1,0 +1,535 @@
+# translation of kwriteconfig.po to
+# Donatas Glodenis <dgvirtual@akl.lt>, 2005.
+# Liudas Ališauskas <liudas@aksioma.lt>, 2014.
+# Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2016-11-22 23:21+0200\n"
+"Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: core/kconfig.cpp:909
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Prašome susisiekti su sistemos administratoriumi."
+
+#: core/kconfigini.cpp:578
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Į konfigūracijos failą „%1“ rašyti negalima.\n"
+
+#: core/kemailsettings.cpp:256 core/kemailsettings.cpp:259
+#: core/kemailsettings.cpp:267
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Numatyta"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Atverti"
+
+#: gui/kstandardshortcut.cpp:74
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Naujas"
+
+#: gui/kstandardshortcut.cpp:75
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Užverti"
+
+#: gui/kstandardshortcut.cpp:76
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Įrašyti"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "Spausdinti"
+
+#: gui/kstandardshortcut.cpp:78
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Išeiti"
+
+#: gui/kstandardshortcut.cpp:81
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Atšaukti"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Atstatyti"
+
+#: gui/kstandardshortcut.cpp:83
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Iškirpti"
+
+#: gui/kstandardshortcut.cpp:84
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Kopijuoti"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Padėti"
+
+#: gui/kstandardshortcut.cpp:86
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Padėti pažymėtą sritį"
+
+#: gui/kstandardshortcut.cpp:88
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Pažymėti viską"
+
+#: gui/kstandardshortcut.cpp:89
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "Naikinti pažymėjimą"
+
+#: gui/kstandardshortcut.cpp:90
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Trinti žodį atgal"
+
+#: gui/kstandardshortcut.cpp:91
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Trinti žodį į priekį"
+
+#: gui/kstandardshortcut.cpp:93
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Ieškoti"
+
+#: gui/kstandardshortcut.cpp:94
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Ieškoti kito"
+
+#: gui/kstandardshortcut.cpp:95
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Ieškoti atgal"
+
+#: gui/kstandardshortcut.cpp:96
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Pakeisti"
+
+#: gui/kstandardshortcut.cpp:99
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Pradžia"
+
+#: gui/kstandardshortcut.cpp:100
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "Pradžia"
+
+#: gui/kstandardshortcut.cpp:101
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "Pabaiga"
+
+#: gui/kstandardshortcut.cpp:102
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "Ankstesnis"
+
+#: gui/kstandardshortcut.cpp:103
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "Kitas"
+
+#: gui/kstandardshortcut.cpp:105
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "Aukštyn"
+
+#: gui/kstandardshortcut.cpp:106
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Atgal"
+
+#: gui/kstandardshortcut.cpp:107
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Pirmyn"
+
+#: gui/kstandardshortcut.cpp:108
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Įkelti iš naujo"
+
+#: gui/kstandardshortcut.cpp:110
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Eilutės pradžia"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Eilutės pabaiga"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Eiti į eilutę"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Žodis atgal"
+
+#: gui/kstandardshortcut.cpp:114
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Žodis į priekį"
+
+#: gui/kstandardshortcut.cpp:116
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Pridėti žymelę"
+
+#: gui/kstandardshortcut.cpp:117
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Padidinti"
+
+#: gui/kstandardshortcut.cpp:118
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Sumažinti"
+
+#: gui/kstandardshortcut.cpp:119
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Viso ekrano veiksena"
+
+#: gui/kstandardshortcut.cpp:121
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Rodyti meniu juostą"
+
+#: gui/kstandardshortcut.cpp:122
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Aktyvuoti kitą kortelę"
+
+#: gui/kstandardshortcut.cpp:123
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Aktyvuoti ankstesnę kortelę"
+
+#: gui/kstandardshortcut.cpp:126
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Pagalba"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Kas tai"
+
+#: gui/kstandardshortcut.cpp:130
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Teksto baigimas"
+
+#: gui/kstandardshortcut.cpp:131
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Ankstesnis atitikmuo"
+
+#: gui/kstandardshortcut.cpp:132
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "Kitas atitikmuo"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Eilutės baigimas"
+
+#: gui/kstandardshortcut.cpp:135
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Ankstesnis sąrašo objektas"
+
+#: gui/kstandardshortcut.cpp:136
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Kitas sąrašo objektas"
+
+#: gui/kstandardshortcut.cpp:138
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Atverti neseniai naudotą"
+
+#: gui/kstandardshortcut.cpp:139
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Įrašyti kaip"
+
+#: gui/kstandardshortcut.cpp:140
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Grąžinti"
+
+#: gui/kstandardshortcut.cpp:141
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Spaudinio peržiūra"
+
+#: gui/kstandardshortcut.cpp:142
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Paštas"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Išvalyti"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "Tikras dydis"
+
+#: gui/kstandardshortcut.cpp:145
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Talpinti į puslapį"
+
+#: gui/kstandardshortcut.cpp:146
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Talpinti į puslapio plotį"
+
+#: gui/kstandardshortcut.cpp:147
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Talpinti į puslapio aukštį"
+
+#: gui/kstandardshortcut.cpp:148
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Mastelis"
+
+#: gui/kstandardshortcut.cpp:149
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Eiti į"
+
+#: gui/kstandardshortcut.cpp:150
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Eiti į puslapį"
+
+#: gui/kstandardshortcut.cpp:151
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Dokumentas atgal"
+
+#: gui/kstandardshortcut.cpp:152
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "Dokumentas į priekį"
+
+#: gui/kstandardshortcut.cpp:153
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Keisti žymeles"
+
+#: gui/kstandardshortcut.cpp:154
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Rašybos tikrinimas"
+
+#: gui/kstandardshortcut.cpp:155
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Rodyti įrankinę"
+
+#: gui/kstandardshortcut.cpp:156
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Rodyti būsenos juostą"
+
+#: gui/kstandardshortcut.cpp:157
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Išsaugoti parinktis"
+
+#: gui/kstandardshortcut.cpp:158
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Klavišų sietys"
+
+#: gui/kstandardshortcut.cpp:159
+msgctxt "KStandardShortcut|@action"
+msgid "Preferences"
+msgstr "Nuostatos"
+
+#: gui/kstandardshortcut.cpp:160
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Konfigūruoti įrankines"
+
+#: gui/kstandardshortcut.cpp:161
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Konfigūruoti pranešimus"
+
+#: gui/kstandardshortcut.cpp:162
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Dienos patarimas"
+
+#: gui/kstandardshortcut.cpp:163
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Pranešti apie programos klaidą"
+
+#: gui/kstandardshortcut.cpp:164
+msgctxt "KStandardShortcut|@action"
+msgid "Switch Application Language"
+msgstr "Pakeisti programos kalbą"
+
+#: gui/kstandardshortcut.cpp:165
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "Apie programą"
+
+#: gui/kstandardshortcut.cpp:166
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "Apie KDE"
+
+#: gui/kstandardshortcut.cpp:167
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Delete File"
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "Pašalinti failą"
+
+#: gui/kstandardshortcut.cpp:168
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Rename File"
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "Pervadinti failą"
+
+#: gui/kstandardshortcut.cpp:169
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "Perkelti į šiukšlinę"
+
+#: gui/kstandardshortcut.cpp:170
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "Paremti"
+
+#: kconf_update/kconf_update.cpp:953
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "KDE įrankis naudotojo nustatymų failų atnaujinimui"
+
+#: kconf_update/kconf_update.cpp:955
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Saugoti išvesties rezultatus nuo scenarijų"
+
+#: kconf_update/kconf_update.cpp:956
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:957
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Tikrinti, ar pačiam konfigūracijos failui reikia atnaujinimo"
+
+#: kconf_update/kconf_update.cpp:958
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr ""
+
+#: kconfig_compiler/kconfig_compiler.cpp:1572
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Katalogas, į kurį generuoti failus [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1573
+msgctxt "main|"
+msgid "directory"
+msgstr "katalogas"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1576
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Rodyti programinės įrangos licenziją."
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Naudoti <file> vietoje globalios konfigūracijos"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+"Grupė, kurioje žiūrėti. Jei grupės struktūrinės, tai kartokite kelissyk."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Raktas, kurio ieškoti"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "Numatyta reikšmė"
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Kintamojo tipas"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Kintamojo tipas. Naudokite „bool“ pažymėti boolean tipui, kitu atveju su juo "
+"bus elgiamasi kaip su eilute"
+
+#: kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Vertė įrašymui. Privalomas, apvalkale naudoti '' jei nerašoma nieko"
