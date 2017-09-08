@@ -134,7 +134,7 @@ enum StandardShortcut {
     Spelling, ///< Pop up the spell checker.
     ShowToolbar, ///< Show/Hide the toolbar.
     ShowStatusbar, ///< Show/Hide the statusbar.
-    SaveOptions,
+    SaveOptions, ///< @deprecated since 5.39
     KeyBindings, ///< Display the configure key bindings dialog.
     Preferences, ///< Display the preferences/options dialog.
     ConfigureToolbars, ///< Display the toolbar configuration dialog.
