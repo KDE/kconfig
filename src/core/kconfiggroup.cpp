@@ -182,19 +182,25 @@ QStringList KConfigGroupPrivate::deserializeList(const QString &data)
     return value;
 }
 
-static QList<int> asIntList(const QByteArray &string)
+static QVector<int> asIntList(const QByteArray &string)
 {
-    QList<int> list;
-    Q_FOREACH (const QByteArray &s, string.split(',')) {
+    const auto &splitString = string.split(',');
+
+    QVector<int> list;
+    list.reserve(splitString.count());
+    for (const QByteArray &s : splitString) {
         list << s.toInt();
     }
     return list;
 }
 
-static QList<qreal> asRealList(const QByteArray &string)
+static QVector<qreal> asRealList(const QByteArray &string)
 {
-    QList<qreal> list;
-    Q_FOREACH (const QByteArray &s, string.split(',')) {
+    const auto &splitString = string.split(',');
+
+    QVector<qreal> list;
+    list.reserve(splitString.count());
+    for (const QByteArray &s : splitString) {
         list << s.toDouble();
     }
     return list;
@@ -251,7 +257,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return tmp;
     }
     case QMetaType::QPoint: {
-        const QList<int> list = asIntList(value);
+        const auto list = asIntList(value);
 
         if (list.count() != 2) {
             qWarning() << errString(pKey, value, aDefault)
@@ -261,7 +267,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return QPoint(list.at(0), list.at(1));
     }
     case QMetaType::QPointF: {
-        const QList<qreal> list = asRealList(value);
+        const auto list = asRealList(value);
 
         if (list.count() != 2) {
             qWarning() << errString(pKey, value, aDefault)
@@ -271,7 +277,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return QPointF(list.at(0), list.at(1));
     }
     case QMetaType::QRect: {
-        const QList<int> list = asIntList(value);
+        const auto list = asIntList(value);
 
         if (list.count() != 4) {
             qWarning() << errString(pKey, value, aDefault)
@@ -286,7 +292,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return rect;
     }
     case QMetaType::QRectF: {
-        const QList<qreal> list = asRealList(value);
+        const auto list = asRealList(value);
 
         if (list.count() != 4) {
             qWarning() << errString(pKey, value, aDefault)
@@ -301,7 +307,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return rect;
     }
     case QMetaType::QSize: {
-        const QList<int> list = asIntList(value);
+        const auto list = asIntList(value);
 
         if (list.count() != 2) {
             qWarning() << errString(pKey, value, aDefault)
@@ -316,7 +322,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return size;
     }
     case QMetaType::QSizeF: {
-        const QList<qreal> list = asRealList(value);
+        const auto list = asRealList(value);
 
         if (list.count() != 2) {
             qWarning() << errString(pKey, value, aDefault)
@@ -331,7 +337,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return size;
     }
     case QMetaType::QDateTime: {
-        const QList<int> list = asIntList(value);
+        const auto list = asIntList(value);
         if (list.count() != 6) {
             qWarning() << errString(pKey, value, aDefault)
                        << formatError(6, list.count());
@@ -347,7 +353,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return dt;
     }
     case QMetaType::QDate: {
-        QList<int> list = asIntList(value);
+        auto list = asIntList(value);
         if (list.count() == 6) {
             list = list.mid(0, 3);    // don't break config files that stored QDate as QDateTime
         }
@@ -743,8 +749,11 @@ QVariantList KConfigGroup::readEntry(const char *key, const QVariantList &aDefau
         return aDefault;
     }
 
+    const auto &list = KConfigGroupPrivate::deserializeList(data);
+
     QVariantList value;
-    Q_FOREACH (const QString &v, KConfigGroupPrivate::deserializeList(data)) {
+    value.reserve(list.count());
+    for (const QString &v : list) {
         value << v;
     }
 
@@ -880,8 +889,9 @@ void KConfigGroup::writeEntry(const char *key, const QStringList &list, WriteCon
     Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
 
     QList<QByteArray> balist;
+    balist.reserve(list.count());
 
-    Q_FOREACH (const QString &entry, list) {
+    for (const QString &entry : list) {
         balist.append(entry.toUtf8());
     }
 
@@ -899,8 +909,9 @@ void KConfigGroup::writeEntry(const char *key, const QVariantList &list, WriteCo
     Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
 
     QList<QByteArray> data;
+    data.reserve(list.count());
 
-    Q_FOREACH (const QVariant &v, list) {
+    for (const QVariant &v : list) {
         if (v.type() == QVariant::ByteArray) {
             data << v.toByteArray();
         } else {
@@ -950,88 +961,102 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         writeEntry(key, value.toList(), flags);
         return;
     case QMetaType::QPoint: {
-        QVariantList list;
         const QPoint rPoint = value.toPoint();
-        list.insert(0, rPoint.x());
-        list.insert(1, rPoint.y());
+
+        const QVariantList list{
+            rPoint.x(),
+            rPoint.y()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QPointF: {
-        QVariantList list;
         const QPointF point = value.toPointF();
-        list.insert(0, point.x());
-        list.insert(1, point.y());
+
+        const QVariantList list{
+            point.x(),
+            point.y()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QRect: {
-        QVariantList list;
         const QRect rRect = value.toRect();
-        list.insert(0, rRect.left());
-        list.insert(1, rRect.top());
-        list.insert(2, rRect.width());
-        list.insert(3, rRect.height());
+
+        const QVariantList list{
+            rRect.left(),
+            rRect.top(),
+            rRect.width(),
+            rRect.height()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QRectF: {
-        QVariantList list;
         const QRectF rRectF = value.toRectF();
-        list.insert(0, rRectF.left());
-        list.insert(1, rRectF.top());
-        list.insert(2, rRectF.width());
-        list.insert(3, rRectF.height());
+
+        const QVariantList list{
+            rRectF.left(),
+            rRectF.top(),
+            rRectF.width(),
+            rRectF.height()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QSize: {
-        QVariantList list;
         const QSize rSize = value.toSize();
-        list.insert(0, rSize.width());
-        list.insert(1, rSize.height());
+
+        const QVariantList list{
+            rSize.width(),
+            rSize.height()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QSizeF: {
-        QVariantList list;
         const QSizeF rSizeF = value.toSizeF();
-        list.insert(0, rSizeF.width());
-        list.insert(1, rSizeF.height());
+
+        const QVariantList list{
+            rSizeF.width(),
+            rSizeF.height()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QDate: {
-        QVariantList list;
         const QDate date = value.toDate();
 
-        list.insert(0, date.year());
-        list.insert(1, date.month());
-        list.insert(2, date.day());
+        const QVariantList list{
+            date.year(),
+            date.month(),
+            date.day()
+        };
 
         writeEntry(key, list, flags);
         return;
     }
     case QMetaType::QDateTime: {
-        QVariantList list;
         const QDateTime rDateTime = value.toDateTime();
 
         const QTime time = rDateTime.time();
         const QDate date = rDateTime.date();
 
-        list.insert(0, date.year());
-        list.insert(1, date.month());
-        list.insert(2, date.day());
+        const QVariantList list{
+            date.year(),
+            date.month(),
+            date.day(),
 
-        list.insert(3, time.hour());
-        list.insert(4, time.minute());
-        list.insert(5, time.second());
+            time.hour(),
+            time.minute(),
+            time.second(),
+        };
 
         writeEntry(key, list, flags);
         return;
@@ -1115,7 +1140,8 @@ void KConfigGroup::writePathEntry(const char *pKey, const QStringList &value, Wr
     Q_ASSERT_X(!d->bConst, "KConfigGroup::writePathEntry", "writing to a read-only group");
 
     QList<QByteArray> list;
-    Q_FOREACH (const QString &path, value) {
+    list.reserve(value.length());
+    for (const QString &path : value) {
         list << translatePath(path).toUtf8();
     }
 
