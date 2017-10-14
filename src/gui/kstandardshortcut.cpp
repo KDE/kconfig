@@ -156,7 +156,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { ShowStatusbar, "ShowStatusbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Statusbar", "@action"), 0, 0, QList<QKeySequence>(), false },
     { SaveOptions, "SaveOptions", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save Options", "@action"), 0, 0, QList<QKeySequence>(), false },
     { KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Preferences, "Preferences", QT_TRANSLATE_NOOP3("KStandardShortcut", "Preferences", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { Preferences, "Preferences", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Application", "@action"), CTRLSHIFT(Comma), 0, QList<QKeySequence>(), false },
     { ConfigureToolbars, "ConfigureToolbars", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Toolbars", "@action"), 0, 0, QList<QKeySequence>(), false },
     { ConfigureNotifications, "ConfigureNotifications", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Notifications", "@action"), 0, 0, QList<QKeySequence>(), false },
     { TipofDay, "TipofDay", QT_TRANSLATE_NOOP3("KStandardShortcut", "Tip Of Day", "@action"), 0, 0, QList<QKeySequence>(), false },
