@@ -67,5 +67,7 @@ set_tests_properties(kconfigcore-kconfigtest PROPERTIES RUN_SERIAL TRUE)
 set_tests_properties(kconfigcore-kconfignokdehometest PROPERTIES RUN_SERIAL TRUE)
 set_tests_properties(kconfiggui-kconfigguitest PROPERTIES RUN_SERIAL TRUE)
 
-add_subdirectory(kconfig_compiler)
+if (NOT CMAKE_CROSSCOMPILING)
+    add_subdirectory(kconfig_compiler)
+endif()
 endif()
