@@ -62,6 +62,25 @@ void KDesktopFileTest::testRead()
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
 }
 
+void KDesktopFileTest::testReadDirectory()
+{
+    QTemporaryFile file("testReadDirectoryXXXXXX.directory");
+    QVERIFY(file.open());
+    const QString fileName = file.fileName();
+    QTextStream ts(&file);
+    ts <<
+       "[Desktop Entry]\n"
+       "Type=Directory\n"
+       "SortOrder=2.desktop;1.desktop;\n"
+       "\n";
+    file.close();
+    QVERIFY(QFile::exists(fileName));
+    KDesktopFile df(fileName);
+    QCOMPARE(df.readType(), QString::fromLatin1("Directory"));
+    QCOMPARE(df.sortOrder(), QStringList() << QString::fromLatin1("2.desktop")
+                                           << QString::fromLatin1("1.desktop"));
+}
+
 void KDesktopFileTest::testReadLocalized_data()
 {
     QTest::addColumn<QLocale>("locale");

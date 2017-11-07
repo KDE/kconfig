@@ -330,7 +330,7 @@ QStringList
 KDesktopFile::sortOrder() const
 {
     Q_D(const KDesktopFile);
-    return d->desktopGroup.readEntry("SortOrder", QStringList());
+    return d->desktopGroup.readXdgListEntry("SortOrder");
 }
 
 //void KDesktopFile::virtual_hook( int id, void* data )
