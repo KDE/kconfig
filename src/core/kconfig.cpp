@@ -86,6 +86,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
             QStringLiteral("/etc/kde5rc");
 #endif
         if (!QFileInfo(etc_kderc).isReadable()) {
+            use_etc_kderc.store(false);
             etc_kderc.clear();
         }
     }
