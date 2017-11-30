@@ -38,7 +38,7 @@ Q_DECLARE_METATYPE(QList<int>)
 
 void ConfigLoaderTest::init()
 {
-    QString fileName = TEST_NAME + QString::fromLatin1(".xml");
+    QString fileName = TEST_NAME + QLatin1String(".xml");
     configFile = new QFile(QFINDTESTDATA(QString::fromLatin1("/") + fileName));
     cl = new KConfigLoader(configFile->fileName(), configFile);
 }
@@ -118,11 +118,11 @@ void ConfigLoaderTest::stringListDefaultValue()
 
     // Create a string list with the expected values.
     QStringList expected;
-    expected.append("One");
-    expected.append("Two");
-    expected.append("Three");
-    expected.append("Four");
-    expected.append("Five");
+    expected.append(QStringLiteral("One"));
+    expected.append(QStringLiteral("Two"));
+    expected.append(QStringLiteral("Three"));
+    expected.append(QStringLiteral("Four"));
+    expected.append(QStringLiteral("Five"));
 
     QVERIFY(typeItem->isEqual(expected));
 }

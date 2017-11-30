@@ -42,7 +42,7 @@ void KConfigTest::initTestCase()
     KConfigSkeleton foo;
     Q_UNUSED(foo);
 
-    KConfig sc("kconfigtest");
+    KConfig sc(QStringLiteral("kconfigtest"));
 
     KConfigGroup cg(&sc, "ComplexTypes");
     cg.writeEntry("colorEntry1", COLORENTRY1);
@@ -52,7 +52,7 @@ void KConfigTest::initTestCase()
     cg.writeEntry("fontEntry", FONTENTRY);
     QVERIFY(sc.sync());
 
-    KConfig sc1("kdebugrc");
+    KConfig sc1(QStringLiteral("kdebugrc"));
     KConfigGroup sg0(&sc1, "0");
     sg0.writeEntry("AbortFatal", false);
     sg0.writeEntry("WarnOutput", 0);
@@ -81,7 +81,7 @@ void KConfigTest::cleanupTestCase()
 
 void KConfigTest::testComplex()
 {
-    KConfig sc2("kconfigtest");
+    KConfig sc2(QStringLiteral("kconfigtest"));
     KConfigGroup sc3(&sc2, "ComplexTypes");
 
     QCOMPARE(QVariant(sc3.readEntry("colorEntry1", QColor(Qt::black))).toString(),
@@ -99,7 +99,7 @@ void KConfigTest::testComplex()
 
 void KConfigTest::testInvalid()
 {
-    KConfig sc("kconfigtest");
+    KConfig sc(QStringLiteral("kconfigtest"));
 
     // all of these should print a message to the kdebug.dbg file
     KConfigGroup sc3(&sc, "InvalidTypes");
@@ -108,7 +108,7 @@ void KConfigTest::testInvalid()
 
     // 1 element list
     list << 1;
-    sc3.writeEntry(QString("badList"), list);
+    sc3.writeEntry(QStringLiteral("badList"), list);
     QVERIFY(sc.sync());
 
     QVERIFY(sc3.readEntry("badList", QColor()) == QColor());

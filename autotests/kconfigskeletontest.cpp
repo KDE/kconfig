@@ -43,14 +43,14 @@ void KConfigSkeletonTest::initTestCase()
 void KConfigSkeletonTest::init()
 {
     QFile::remove(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/kconfigskeletontestrc");
-    s = new KConfigSkeleton("kconfigskeletontestrc");
-    s->setCurrentGroup("MyGroup");
-    itemBool = s->addItemBool("MySetting1", mMyBool, DEFAULT_SETTING1);
-    s->addItemColor("MySetting2", mMyColor, DEFAULT_SETTING2);
+    s = new KConfigSkeleton(QStringLiteral("kconfigskeletontestrc"));
+    s->setCurrentGroup(QStringLiteral("MyGroup"));
+    itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, DEFAULT_SETTING1);
+    s->addItemColor(QStringLiteral("MySetting2"), mMyColor, DEFAULT_SETTING2);
 
-    s->setCurrentGroup("MyOtherGroup");
-    s->addItemFont("MySetting3", mMyFont, DEFAULT_SETTING3);
-    s->addItemString("MySetting4", mMyString, DEFAULT_SETTING4);
+    s->setCurrentGroup(QStringLiteral("MyOtherGroup"));
+    s->addItemFont(QStringLiteral("MySetting3"), mMyFont, DEFAULT_SETTING3);
+    s->addItemString(QStringLiteral("MySetting4"), mMyString, DEFAULT_SETTING4);
 
     QCOMPARE(mMyBool, DEFAULT_SETTING1);
     QCOMPARE(mMyColor, DEFAULT_SETTING2);
@@ -88,7 +88,7 @@ void KConfigSkeletonTest::testSimple()
 void KConfigSkeletonTest::testRemoveItem()
 {
     QVERIFY(s->findItem("MySetting1"));
-    s->removeItem("MySetting1");
+    s->removeItem(QStringLiteral("MySetting1"));
     QVERIFY(!s->findItem("MySetting1"));
 }
 

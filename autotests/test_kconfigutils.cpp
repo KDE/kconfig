@@ -36,19 +36,19 @@ void TestKConfigUtils::testParseGroupString_data()
 
     QTest::newRow("simple-group")
             << " group  "
-            << (QStringList() << "group")
+            << (QStringList() << QStringLiteral("group"))
             << true
             ;
 
     QTest::newRow("sub-group")
             << "[group][sub]"
-            << (QStringList() << "group" << "sub")
+            << (QStringList() << QStringLiteral("group") << QStringLiteral("sub"))
             << true
             ;
 
     QTest::newRow("crazy-sub-group")
             << "[a\\ttab\\x5d[and some hex esc\\x61pe]"
-            << (QStringList() << "a\ttab" << "and some hex escape")
+            << (QStringList() << QStringLiteral("a\ttab") << QStringLiteral("and some hex escape"))
             << true
             ;
 

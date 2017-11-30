@@ -325,7 +325,7 @@ void TestKConfUpdate::test()
     QFETCH(bool, shouldUpdateWork);
 
     // Prepend Version and the Id= field to the upd content
-    const QString header = QString("Id=%1\n").arg(QTest::currentDataTag());
+    const QString header = QStringLiteral("Id=%1\n").arg(QTest::currentDataTag());
     updContent = header + updContent;
     if (useVersion5)
         updContent.prepend("Version=5\n");
@@ -341,7 +341,7 @@ void TestKConfUpdate::test()
     QSharedPointer<QTemporaryFile> updFile(writeUpdFile(updContent));
     runKConfUpdate(updFile->fileName());
 
-    QString updateInfo = QString("%1:%2")
+    QString updateInfo = QStringLiteral("%1:%2")
                          .arg(updFile->fileName().section('/', -1))
                          .arg(QTest::currentDataTag());
 
@@ -557,7 +557,7 @@ void TestKConfUpdate::testScript_data()
             "new=value3\n"
             ;
 
-    if (QStandardPaths::findExecutable("sed").isEmpty()) {
+    if (QStandardPaths::findExecutable(QStringLiteral("sed")).isEmpty()) {
         qWarning("sed executable not found, cannot run all tests!");
     } else {
         QTest::newRow("filter")
@@ -610,7 +610,7 @@ void TestKConfUpdate::testScript_data()
 
 void TestKConfUpdate::testScript()
 {
-    if (QStandardPaths::findExecutable("sh").isEmpty()) {
+    if (QStandardPaths::findExecutable(QStringLiteral("sh")).isEmpty()) {
         QSKIP("Could not find sh executable, cannot run test");
         return;
     }
@@ -621,7 +621,7 @@ void TestKConfUpdate::testScript()
     QFETCH(QString, expectedNewConfContent);
 
     // Prepend the Version and Id= field to the upd content
-    updContent = QString("Version=5\nId=%1\n").arg(QTest::currentDataTag()) + updContent;
+    updContent = QStringLiteral("Version=5\nId=%1\n").arg(QTest::currentDataTag()) + updContent;
 
     QSharedPointer<QTemporaryFile> updFile(writeUpdFile(updContent));
 
@@ -637,7 +637,7 @@ void TestKConfUpdate::testScript()
 
     runKConfUpdate(updFile->fileName());
 
-    QString updateInfo = QString("%1:%2")
+    QString updateInfo = QStringLiteral("%1:%2")
                          .arg(updFile->fileName().section('/', -1))
                          .arg(QTest::currentDataTag());
     QString newConfContent = readFile(confPath);

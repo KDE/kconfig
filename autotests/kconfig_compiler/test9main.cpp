@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 
     // add another path
     QStringList newlist;
-    myPathsList2 << QDir::homePath() + QString::fromLatin1("/.kde");
+    myPathsList2 << QDir::homePath() + QLatin1String("/.kde");
     qWarning() << myPathsList2;
 
     t->setMyPathsList2(myPathsList2);

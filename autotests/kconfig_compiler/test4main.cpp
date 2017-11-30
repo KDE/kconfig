@@ -29,9 +29,9 @@ int main(int argc, char **argv)
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
     {
-        KConfig initialConfig(QLatin1String("test4rc"));
-        KConfigGroup group = initialConfig.group(QLatin1String("Foo"));
-        group.writeEntry(QLatin1String("foo bar"), QStringLiteral("Value"));
+        KConfig initialConfig(QStringLiteral("test4rc"));
+        KConfigGroup group = initialConfig.group(QStringLiteral("Foo"));
+        group.writeEntry(QStringLiteral("foo bar"), QStringLiteral("Value"));
     }
     Test4 *t = Test4::self();
     bool ok = QFile::exists(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/test4rc");

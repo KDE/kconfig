@@ -37,7 +37,7 @@ void KDesktopFileTest::initTestCase()
 
 void KDesktopFileTest::testRead()
 {
-    QTemporaryFile file("testReadXXXXXX.desktop");
+    QTemporaryFile file(QStringLiteral("testReadXXXXXX.desktop"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -87,7 +87,7 @@ void KDesktopFileTest::testReadLocalized_data()
 
 void KDesktopFileTest::testReadLocalized()
 {
-    QTemporaryFile file("testReadLocalizedXXXXXX.desktop");
+    QTemporaryFile file(QStringLiteral("testReadLocalizedXXXXXX.desktop"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -174,20 +174,20 @@ void KDesktopFileTest::testActionGroup()
     QCOMPARE(df.hasActionGroup("semi;colon"), true);
     QCOMPARE(df.hasActionGroup("decrypt"), true);
     QCOMPARE(df.hasActionGroup("doesnotexist"), false);
-    KConfigGroup cg = df.actionGroup("encrypt");
+    KConfigGroup cg = df.actionGroup(QStringLiteral("encrypt"));
     QVERIFY(cg.hasKey("Name"));
     QCOMPARE(cg.readEntry("Name"), QString("Encrypt file"));
-    cg = df.actionGroup("decrypt");
+    cg = df.actionGroup(QStringLiteral("decrypt"));
     QVERIFY(cg.hasKey("Name"));
     QCOMPARE(cg.readEntry("Name"), QString("Decrypt file"));
-    cg = df.actionGroup("semi;colon");
+    cg = df.actionGroup(QStringLiteral("semi;colon"));
     QVERIFY(cg.hasKey("Name"));
     QCOMPARE(cg.readEntry("Name"), QString("With semicolon"));
 }
 
 void KDesktopFileTest::testIsAuthorizedDesktopFile()
 {
-    QTemporaryFile file("testAuthXXXXXX.desktop");
+    QTemporaryFile file(QStringLiteral("testAuthXXXXXX.desktop"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -219,7 +219,7 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
 void KDesktopFileTest::testTryExecWithAuthorizeAction()
 {
     {
-        QTemporaryFile file("testAuthActionXXXXXX.desktop");
+        QTemporaryFile file(QStringLiteral("testAuthActionXXXXXX.desktop"));
         QVERIFY(file.open());
         const QString fileName = file.fileName();
         QTextStream ts(&file);
@@ -237,7 +237,7 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
         QVERIFY(desktopFile.tryExec());
     }
     {
-        QTemporaryFile file("testAuthActionXXXXXX.desktop");
+        QTemporaryFile file(QStringLiteral("testAuthActionXXXXXX.desktop"));
         QVERIFY(file.open());
         const QString fileName = file.fileName();
         QTextStream ts(&file);

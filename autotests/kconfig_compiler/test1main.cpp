@@ -29,9 +29,9 @@ int main(int argc, char **argv)
     Q_UNUSED(app);
 
     {
-        KConfig initialConfig(QLatin1String("examplerc"));
-        KConfigGroup group = initialConfig.group(QLatin1String("MyOptions"));
-        group.writeEntry(QLatin1String("MyString"), QStringLiteral("The String"));
+        KConfig initialConfig(QStringLiteral("examplerc"));
+        KConfigGroup group = initialConfig.group(QStringLiteral("MyOptions"));
+        group.writeEntry(QStringLiteral("MyString"), QStringLiteral("The String"));
     }
     Test1 *t = new Test1(QString(), QString());
 

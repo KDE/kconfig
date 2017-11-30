@@ -122,7 +122,7 @@ void KConfigTest::initTestCase()
     cg.writeEntry("stringEntry3", STRINGENTRY3);
     cg.writeEntry("stringEntry4", STRINGENTRY4);
     cg.writeEntry("stringEntry5", STRINGENTRY5);
-    cg.writeEntry("urlEntry1", QUrl("http://qt-project.org"));
+    cg.writeEntry("urlEntry1", QUrl(QStringLiteral("http://qt-project.org")));
     cg.writeEntry("keywith=equalsign", STRINGENTRY1);
     cg.deleteEntry("stringEntry5");
     cg.deleteEntry("stringEntry6");   // deleting a nonexistent entry
@@ -315,7 +315,7 @@ void KConfigTest::testRevertAllEntries()
 void KConfigTest::testSimple()
 {
     // kdeglobals (which was created in initTestCase) must be found this way:
-    const QStringList kdeglobals = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QLatin1String("kdeglobals"));
+    const QStringList kdeglobals = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("kdeglobals"));
     QVERIFY(!kdeglobals.isEmpty());
 
     KConfig sc2(TEST_SUBDIR "kconfigtest");
@@ -343,7 +343,7 @@ void KConfigTest::testSimple()
     QCOMPARE(sc3.readEntry("bytearrayEntry", QByteArray()), BYTEARRAYENTRY);
     QCOMPARE(sc3.readEntry(ESCAPEKEY), QString(ESCAPEENTRY));
     QCOMPARE(sc3.readEntry("Test", QString()), QString::fromUtf8(UTF8BITENTRY));
-    QCOMPARE(sc3.readEntry("emptyEntry"/*, QString("Fietsbel")*/), QString(""));
+    QCOMPARE(sc3.readEntry("emptyEntry"/*, QString("Fietsbel")*/), QLatin1String(""));
     QCOMPARE(sc3.readEntry("emptyEntry", QString("Fietsbel")).isEmpty(), true);
     QCOMPARE(sc3.readEntry("stringEntry1"), QString(STRINGENTRY1));
     QCOMPARE(sc3.readEntry("stringEntry2"), QString(STRINGENTRY2));
@@ -369,8 +369,8 @@ void KConfigTest::testDefaults()
     const QString defaultsFile = TEST_SUBDIR "defaulttest.defaults";
     KConfig defaults(defaultsFile, KConfig::SimpleConfig);
 
-    const QString Default("Default");
-    const QString NotDefault("Not Default");
+    const QString Default(QStringLiteral("Default"));
+    const QString NotDefault(QStringLiteral("Not Default"));
     const QString Value1(STRINGENTRY1);
     const QString Value2(STRINGENTRY2);
 
@@ -419,14 +419,14 @@ void KConfigTest::testLocale()
 
     KConfigGroup group = config.group("Hello");
     group.writeEntry("stringEntry1", Untranslated);
-    config.setLocale("fr");
+    config.setLocale(QStringLiteral("fr"));
     group.writeEntry("stringEntry1", Translated, KConfig::Localized | KConfig::Persistent);
     QVERIFY(config.sync());
 
     QCOMPARE(group.readEntry("stringEntry1", QString()), Translated);
     QCOMPARE(group.readEntryUntranslated("stringEntry1"), Untranslated);
 
-    config.setLocale("C"); // strings written in the "C" locale are written as nonlocalized
+    config.setLocale(QStringLiteral("C")); // strings written in the "C" locale are written as nonlocalized
     group.writeEntry("stringEntry1", Untranslated, KConfig::Localized | KConfig::Persistent);
     QVERIFY(config.sync());
 
@@ -435,7 +435,7 @@ void KConfigTest::testLocale()
 
 void KConfigTest::testEncoding()
 {
-    QString groupstr = QString::fromUtf8("UTF-8:\xc3\xb6l");
+    QString groupstr = QStringLiteral("UTF-8:\xc3\xb6l");
 
     KConfig c(TEST_SUBDIR "kconfigtestencodings");
     KConfigGroup cg(&c, groupstr);
@@ -664,7 +664,7 @@ void KConfigTest::testInvalid()
 
     // 1 element list
     list << 1;
-    sc3.writeEntry(QString("badList"), list);
+    sc3.writeEntry(QStringLiteral("badList"), list);
 
     QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
     QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
@@ -971,7 +971,7 @@ void KConfigTest::testCascadingWithLocale()
     QCOMPARE(group.readEntry("FromGlobal"), QString("true"));
     QCOMPARE(group.readEntry("FromLocal"), QString("true"));
     QCOMPARE(group.readEntry("Name"), QString("Local Testing"));
-    config.setLocale("fr");
+    config.setLocale(QStringLiteral("fr"));
     QCOMPARE(group.readEntry("FromGlobal"), QString("vrai"));
     QCOMPARE(group.readEntry("FromLocal"), QString("vrai"));
     QCOMPARE(group.readEntry("Name"), QString("FR"));
@@ -1063,12 +1063,12 @@ void KConfigTest::testOptionOrder()
             << "entry2[$i][de_DE]=t2" << endl;
     }
     KConfig config(TEST_SUBDIR "doubleattrtest", KConfig::SimpleConfig);
-    config.setLocale("de_DE");
+    config.setLocale(QStringLiteral("de_DE"));
     KConfigGroup cg3 = config.group("group3");
     QVERIFY(!cg3.isImmutable());
     QCOMPARE(cg3.readEntry("entry2", ""), QString("t2"));
     QVERIFY(cg3.isEntryImmutable("entry2"));
-    config.setLocale("C");
+    config.setLocale(QStringLiteral("C"));
     QCOMPARE(cg3.readEntry("entry2", ""), QString("unlocalized"));
     QVERIFY(!cg3.isEntryImmutable("entry2"));
     cg3.writeEntry("entry2", "modified");
@@ -1117,9 +1117,9 @@ void KConfigTest::testSubGroup()
     groupList.sort(); // comes from QSet, so order is undefined
     QCOMPARE(groupList, (QStringList() << "SubGroup/3" << "SubGroup1" << "SubGroup2"));
 
-    const QStringList expectedSubgroup3Keys = (QStringList() << "sub3string");
+    const QStringList expectedSubgroup3Keys = (QStringList() << QStringLiteral("sub3string"));
     QCOMPARE(subcg3.keyList(), expectedSubgroup3Keys);
-    const QStringList expectedParentGroupKeys(QStringList() << "parentgrpstring");
+    const QStringList expectedParentGroupKeys(QStringList() << QStringLiteral("parentgrpstring"));
 
     QCOMPARE(cg.keyList(), expectedParentGroupKeys);
 
@@ -1290,7 +1290,7 @@ void KConfigTest::testConfigCopyTo()
 void KConfigTest::testReparent()
 {
     KConfig cf(TEST_SUBDIR "kconfigtest");
-    const QString name("Enum Types");
+    const QString name(QStringLiteral("Enum Types"));
     KConfigGroup group = cf.group(name);
     const QMap<QString, QString> originalMap = group.entryMap();
     KConfigGroup parent = cf.group("Parent Group");
@@ -1491,7 +1491,7 @@ void KConfigTest::testLocaleConfig()
     // Load the testdata
     QVERIFY(QFile::exists(file));
     KConfig config(file);
-    config.setLocale("ca");
+    config.setLocale(QStringLiteral("ca"));
 
     // This group has only localized values. That is not supported. The values
     // should be dropped on loading.
@@ -1542,7 +1542,7 @@ void KConfigTest::testDeleteWhenLocalized()
     // Load the testdata. We start in locale "ca".
     QVERIFY(QFile::exists(file));
     KConfig config(file);
-    config.setLocale("ca");
+    config.setLocale(QStringLiteral("ca"));
     KConfigGroup cg(&config, "Test4711");
 
     // Delete a value. Once with localized, once with Normal
@@ -1566,7 +1566,7 @@ void KConfigTest::testDeleteWhenLocalized()
     // Now switch the locale to "de" and repeat the checks. Results should be
     // the same. But they currently are not. The localized value are
     // independent of each other. All values are still there in "de".
-    config.setLocale("de");
+    config.setLocale(QStringLiteral("de"));
     QEXPECT_FAIL("", "Currently localized values are not deleted correctly", Continue);
     QVERIFY(!cg.hasKey("foostring"));
     QEXPECT_FAIL("", "Currently localized values are not deleted correctly", Continue);
@@ -1580,7 +1580,7 @@ void KConfigTest::testDeleteWhenLocalized()
 
     // Now switch the locale back "ca" and repeat the checks. Results are
     // again different.
-    config.setLocale("ca");
+    config.setLocale(QStringLiteral("ca"));
     // This line worked above. But now it fails.
     QEXPECT_FAIL("", "Currently localized values are not deleted correctly", Continue);
     QVERIFY(!cg.hasKey("foostring"));
@@ -1610,7 +1610,7 @@ void KConfigTest::testDeleteWhenLocalized()
 
     // Now switch the locale to "de" and repeat the checks. All values
     // still here because only the primary values are deleted.
-    config.setLocale("de");
+    config.setLocale(QStringLiteral("de"));
     QEXPECT_FAIL("", "Currently localized values are not deleted correctly", Continue);
     QVERIFY(!cg.hasKey("foo"));
     QEXPECT_FAIL("", "Currently localized values are not deleted correctly", Continue);
@@ -1628,7 +1628,7 @@ void KConfigTest::testDeleteWhenLocalized()
     // Now switch the locale to "ca" and repeat the checks
     // "foostring" is now really gone because both the primary value and the
     // "ca" value are deleted.
-    config.setLocale("ca");
+    config.setLocale(QStringLiteral("ca"));
     QEXPECT_FAIL("", "Currently localized values are not deleted correctly", Continue);
     QVERIFY(!cg.hasKey("foo"));
     QVERIFY(!cg.hasKey("foostring"));
@@ -1647,13 +1647,13 @@ void KConfigTest::testDeleteWhenLocalized()
 void KConfigTest::testKdeGlobals()
 {
     {
-        KConfig glob("kdeglobals");
+        KConfig glob(QStringLiteral("kdeglobals"));
         KConfigGroup general(&glob, "General");
         general.writeEntry("testKG", "1");
         QVERIFY(glob.sync());
     }
 
-    KConfig globRead("kdeglobals");
+    KConfig globRead(QStringLiteral("kdeglobals"));
     const KConfigGroup general(&globRead, "General");
     QCOMPARE(general.readEntry("testKG"), QString("1"));
 
@@ -1664,7 +1664,7 @@ void KConfigTest::testKdeGlobals()
 
     // Writing using NoGlobals
     {
-        KConfig glob("kdeglobals", KConfig::NoGlobals);
+        KConfig glob(QStringLiteral("kdeglobals"), KConfig::NoGlobals);
         KConfigGroup general(&glob, "General");
         general.writeEntry("testKG", "2");
         QVERIFY(glob.sync());
@@ -1674,7 +1674,7 @@ void KConfigTest::testKdeGlobals()
 
     // Reading using NoGlobals
     {
-        KConfig globReadNoGlob("kdeglobals", KConfig::NoGlobals);
+        KConfig globReadNoGlob(QStringLiteral("kdeglobals"), KConfig::NoGlobals);
         const KConfigGroup generalNoGlob(&globReadNoGlob, "General");
         QCOMPARE(generalNoGlob.readEntry("testKG"), QString("2"));
     }
@@ -1732,7 +1732,7 @@ void KConfigTest::testXdgListEntry()
     KConfig anonConfig(file.fileName(), KConfig::SimpleConfig);
     KConfigGroup grp = anonConfig.group("General");
     QStringList invalidList; // use this as a default when an empty list is expected
-    invalidList << "Error! Default value read!";
+    invalidList << QStringLiteral("Error! Default value read!");
     QCOMPARE(grp.readXdgListEntry("Key1", invalidList), QStringList());
     QCOMPARE(grp.readXdgListEntry("Key2", invalidList), QStringList() << QString());
     QCOMPARE(grp.readXdgListEntry("Key3", invalidList), QStringList() << QString() << QString());
