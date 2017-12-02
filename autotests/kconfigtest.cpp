@@ -43,6 +43,16 @@ KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(KConfigTest, Flags)
 
 QTEST_MAIN(KConfigTest)
 
+static QString homePath()
+{
+#ifdef Q_OS_WIN
+    return QDir::homePath();
+#else
+    // Don't use QDir::homePath() on Unix, it removes any trailing slash, while KConfig uses $HOME.
+    return QString::fromLocal8Bit(qgetenv("HOME"));
+#endif
+}
+
 #define BOOLENTRY1 true
 #define BOOLENTRY2 false
 #define STRINGENTRY1 "hello"
@@ -73,8 +83,8 @@ QTEST_MAIN(KConfigTest)
 #define BYTEARRAYLISTENTRY1 QList<QByteArray>() << "" << "1,2" << "end"
 #define VARIANTLISTENTRY (QVariantList() << true << false << QString("joe") << 10023)
 #define VARIANTLISTENTRY2 (QVariantList() << POINTENTRY << SIZEENTRY)
-#define HOMEPATH QString(QDir::homePath()+"/foo")
-#define HOMEPATHESCAPE QString(QDir::homePath()+"/foo/$HOME")
+#define HOMEPATH QString(homePath()+"/foo")
+#define HOMEPATHESCAPE QString(homePath()+"/foo/$HOME")
 #define DOLLARGROUP "$i"
 
 #define TEST_SUBDIR "kconfigtest_subdir/"
@@ -497,6 +507,7 @@ void KConfigTest::testPath()
     QCOMPARE(sc3.readPathEntry("homepathescape", QString()), HOMEPATHESCAPE);
     QCOMPARE(sc3.entryMap()["homepath"], HOMEPATH);
 
+    qputenv("WITHSLASH", "/a/");
     {
         QFile file(testConfigDir() + "/pathtest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -505,6 +516,8 @@ void KConfigTest::testPath()
         out << "[Test Group]" << endl
             << "homePath=$HOME/foo" << endl
             << "homePath2=file://$HOME/foo" << endl
+            << "withSlash=$WITHSLASH/foo" << endl
+            << "withSlash2=$WITHSLASH" << endl
             << "withBraces[$e]=file://${HOME}/foo" << endl
             << "URL[$e]=file://${HOME}/foo" << endl
             << "hostname[$e]=$(hostname)" << endl
@@ -516,6 +529,10 @@ void KConfigTest::testPath()
     QCOMPARE(group.readPathEntry("homePath", QString()), HOMEPATH);
     QVERIFY(group.hasKey("homePath2"));
     QCOMPARE(group.readPathEntry("homePath2", QString()), QString("file://" + HOMEPATH));
+    QVERIFY(group.hasKey("withSlash"));
+    QCOMPARE(group.readPathEntry("withSlash", QString()), QStringLiteral("/a//foo"));
+    QVERIFY(group.hasKey("withSlash2"));
+    QCOMPARE(group.readPathEntry("withSlash2", QString()), QStringLiteral("/a/"));
     QVERIFY(group.hasKey("withBraces"));
     QCOMPARE(group.readPathEntry("withBraces", QString()), QString("file://" + HOMEPATH));
     QVERIFY(group.hasKey("URL"));
