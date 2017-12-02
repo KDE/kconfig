@@ -233,7 +233,7 @@ QString KConfigPrivate::expandString(const QString &value)
                         } else if (aVarName == QStringLiteral("QT_CONFIG_HOME")) {
                             env = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
                         } else if (aVarName == QStringLiteral("QT_CACHE_HOME")) {
-			    env = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation);
+                            env = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation);
                         }
                     }
                 }
