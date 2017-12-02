@@ -435,7 +435,7 @@ void KConfigTest::testLocale()
 
 void KConfigTest::testEncoding()
 {
-    QString groupstr = QStringLiteral("UTF-8:\xc3\xb6l");
+    QString groupstr = QString::fromUtf8("UTF-8:\xc3\xb6l");
 
     KConfig c(TEST_SUBDIR "kconfigtestencodings");
     KConfigGroup cg(&c, groupstr);
