@@ -326,12 +326,14 @@ bool KDesktopFile::tryExec() const
 //QString
 //KDesktopFile::resource() const { return backEnd->resource(); }
 
+#ifndef KDE_NO_DEPRECATED
 QStringList
 KDesktopFile::sortOrder() const
 {
     Q_D(const KDesktopFile);
     return d->desktopGroup.readXdgListEntry("SortOrder");
 }
+#endif
 
 //void KDesktopFile::virtual_hook( int id, void* data )
 //{ KConfig::virtual_hook( id, data ); }

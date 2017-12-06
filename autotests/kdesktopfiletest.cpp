@@ -62,6 +62,7 @@ void KDesktopFileTest::testRead()
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
 }
 
+#ifndef KDE_NO_DEPRECATED
 void KDesktopFileTest::testReadDirectory()
 {
     QTemporaryFile file("testReadDirectoryXXXXXX.directory");
@@ -80,6 +81,7 @@ void KDesktopFileTest::testReadDirectory()
     QCOMPARE(df.sortOrder(), QStringList() << QString::fromLatin1("2.desktop")
                                            << QString::fromLatin1("1.desktop"));
 }
+#endif
 
 void KDesktopFileTest::testReadLocalized_data()
 {
