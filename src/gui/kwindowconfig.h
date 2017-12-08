@@ -49,6 +49,10 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  * Restores the dialog's size from the configuration according to
  * the screen size.
  *
+ * If you're calling this from a constructor (for a mainwindow or dialog, for instance)
+ * you should first call winId() so that a QWindow is created, then you can call windowHandle()
+ * to pass to this method.
+ *
  * @note the group must be set before calling
  *
  * @param window The window to restore size.
