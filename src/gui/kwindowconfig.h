@@ -55,7 +55,7 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  *
  * Example code:
  * @code
- *   winId(); // ensure there's a window created
+ *   create(); // ensure there's a window created
  *   const QSize availableSize = windowHandle()->screen()->availableSize();
  *   windowHandle()->resize(availableSize.width() * 0.7, availableSize.height() * 0.5); // default size
  *   KWindowConfig::restoreWindowSize(windowHandle(), KSharedConfig::openConfig()->group("MyDialog"));
