@@ -53,6 +53,15 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  * you should first call winId() so that a QWindow is created, then you can call windowHandle()
  * to pass to this method.
  *
+ * Example code:
+ * @code
+ *   winId(); // ensure there's a window created
+ *   const QSize availableSize = windowHandle()->screen()->availableSize();
+ *   windowHandle()->resize(availableSize.width() * 0.7, availableSize.height() * 0.5); // default size
+ *   KWindowConfig::restoreWindowSize(windowHandle(), KSharedConfig::openConfig()->group("MyDialog"));
+ *   resize(windowHandle()->size()); // workaround for QTBUG-40584
+ * @endcode
+ *
  * @note the group must be set before calling
  *
  * @param window The window to restore size.
