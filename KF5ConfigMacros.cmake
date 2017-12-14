@@ -95,11 +95,12 @@ function (KCONFIG_ADD_KCFG_FILES _sources )
                           MAIN_DEPENDENCY ${_tmp_FILE}
                           DEPENDS ${_kcfg_FILE})
 
+       set_source_files_properties(${_header_FILE} PROPERTIES SKIP_AUTOMOC ON)  # don't run automoc on this file
+       set_source_files_properties(${_src_FILE} PROPERTIES SKIP_AUTOMOC ON)  # don't run automoc on this file
+
        if(ARG_GENERATE_MOC)
           list(APPEND sources ${_moc_FILE})
           qt5_generate_moc(${_header_FILE} ${_moc_FILE})
-          set_property(SOURCE ${_header_FILE} PROPERTY SKIP_AUTOMOC TRUE)  # don't run automoc on this file
-          set_property(SOURCE ${_src_FILE} PROPERTY SKIP_AUTOMOC TRUE)  # don't run automoc on this file
           set_property(SOURCE ${_src_FILE} APPEND PROPERTY OBJECT_DEPENDS ${_moc_FILE} )
        endif()
 
