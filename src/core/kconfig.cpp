@@ -200,13 +200,13 @@ QString KConfigPrivate::expandString(const QString &value)
         } else if (aValue[nDollarPos + 1] != QLatin1Char('$')) {
             int nEndPos = nDollarPos + 1;
             // the next character is not $
-            QString aVarName;
+            QStringRef aVarName;
             if (aValue[nEndPos] == QLatin1Char('{')) {
                 while ((nEndPos <= aValue.length()) && (aValue[nEndPos] != QLatin1Char('}'))) {
                     nEndPos++;
                 }
                 nEndPos++;
-                aVarName = aValue.mid(nDollarPos + 2, nEndPos - nDollarPos - 3);
+                aVarName = aValue.midRef(nDollarPos + 2, nEndPos - nDollarPos - 3);
             } else {
                 while (nEndPos <= aValue.length() &&
                         (aValue[nEndPos].isNumber() ||
@@ -214,7 +214,7 @@ QString KConfigPrivate::expandString(const QString &value)
                          aValue[nEndPos] == QLatin1Char('_'))) {
                     nEndPos++;
                 }
-                aVarName = aValue.mid(nDollarPos + 1, nEndPos - nDollarPos - 1);
+                aVarName = aValue.midRef(nDollarPos + 1, nEndPos - nDollarPos - 1);
             }
             QString env;
             if (!aVarName.isEmpty()) {
