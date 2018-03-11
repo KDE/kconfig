@@ -21,12 +21,12 @@
 #ifndef CONVERSION_CHECK_H
 #define CONVERSION_CHECK_H
 
-#include <QtCore/QString>
-#include <QtCore/QDate>
-#include <QtCore/QPoint>
-#include <QtCore/QSize>
-#include <QtCore/QRect>
-#include <QtCore/QVariant>
+#include <QString>
+#include <QDate>
+#include <QPoint>
+#include <QSize>
+#include <QRect>
+#include <QVariant>
 
 class QColor;
 class QFont;

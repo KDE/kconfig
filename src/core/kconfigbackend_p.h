@@ -23,8 +23,8 @@
 #ifndef KCONFIGBACKEND_H
 #define KCONFIGBACKEND_H
 
-#include <QtCore/QObject>
-#include <QtCore/QString>
+#include <QObject>
+#include <QString>
 #include <QExplicitlySharedDataPointer>
 
 #include <kconfigcore_export.h>

@@ -28,8 +28,8 @@
 #ifndef _KEMAILSETTINGS_H
 #define _KEMAILSETTINGS_H
 
-#include <QtCore/QCoreApplication> // Q_DECLARE_TR_FUNCTIONS
-#include <QtCore/QStringList>
+#include <QCoreApplication> // Q_DECLARE_TR_FUNCTIONS
+#include <QStringList>
 
 #include <kconfigcore_export.h>
 

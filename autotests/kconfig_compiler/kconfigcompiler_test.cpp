@@ -14,11 +14,11 @@
     *************************************************************************
 */
 
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QProcess>
-#include <QtCore/QString>
-#include <QtTest/QtTest>
+#include <QDir>
+#include <QFile>
+#include <QProcess>
+#include <QString>
+#include <QtTest>
 #include <qstandardpaths.h>
 #include "kconfigcompiler_test.h"
 

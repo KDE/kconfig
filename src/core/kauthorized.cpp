@@ -20,8 +20,8 @@
 
 #include "kauthorized.h"
 
-#include <QtCore/QDir>
-#include <QtCore/QRegExp>
+#include <QDir>
+#include <QRegExp>
 #include <QList>
 #include <QUrl>
 

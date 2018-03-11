@@ -22,12 +22,12 @@
 
 #include "kconfigbackend_p.h"
 
-#include <QtCore/QDateTime>
-#include <QtCore/QStringList>
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtCore/QHash>
-#include <QtCore/QDebug>
+#include <QDateTime>
+#include <QStringList>
+#include <QDir>
+#include <QFileInfo>
+#include <QHash>
+#include <QDebug>
 
 #include "kconfig.h"
 #include "kconfigini_p.h"

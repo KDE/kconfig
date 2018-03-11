@@ -28,10 +28,10 @@
 #include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
-#include <QtCore/QStringList>
-#include <QtCore/QStack>
-#include <QtCore/QFile>
-#include <QtCore/QDir>
+#include <QStringList>
+#include <QStack>
+#include <QFile>
+#include <QDir>
 
 class KConfigPrivate
 {

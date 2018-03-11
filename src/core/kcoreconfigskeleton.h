@@ -28,12 +28,12 @@
 #include <ksharedconfig.h>
 #include <kconfiggroup.h>
 
-#include <QtCore/QDate>
-#include <QtCore/QHash>
-#include <QtCore/QRect>
-#include <QtCore/QStringList>
-#include <QtCore/QVariant>
-#include <QtCore/QUrl>
+#include <QDate>
+#include <QHash>
+#include <QRect>
+#include <QStringList>
+#include <QVariant>
+#include <QUrl>
 class KCoreConfigSkeletonPrivate;
 
 class KConfigSkeletonItemPrivate;

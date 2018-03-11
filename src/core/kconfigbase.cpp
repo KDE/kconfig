@@ -24,7 +24,7 @@
 
 #include "kconfiggroup.h"
 
-#include <QtCore/QString>
+#include <QString>
 
 bool KConfigBase::hasGroup(const QString &group) const
 {

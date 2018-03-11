@@ -17,8 +17,8 @@
 
 */
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QtGlobal>
+#include <QCoreApplication>
+#include <QtGlobal>
 #include <QTimer>
 #include <ksharedconfig.h>
 #include <kconfiggroup.h>

@@ -19,7 +19,7 @@
 
 #include <QObject>
 
-#include <QtTest/QtTest>
+#include <QtTest>
 #include <QStandardPaths>
 #include <ksharedconfig.h>
 

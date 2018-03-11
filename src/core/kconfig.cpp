@@ -49,10 +49,10 @@ static inline int pclose(FILE *stream)
 #include <qfile.h>
 #include <qlocale.h>
 #include <qdir.h>
-#include <QtCore/QProcess>
-#include <QtCore/QSet>
-#include <QtCore/QBasicMutex>
-#include <QtCore/QMutexLocker>
+#include <QProcess>
+#include <QSet>
+#include <QBasicMutex>
+#include <QMutexLocker>
 
 bool KConfigPrivate::mappingsRegistered = false;
 

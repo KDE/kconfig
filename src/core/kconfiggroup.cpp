@@ -28,15 +28,15 @@
 #include "ksharedconfig.h"
 #include "kconfigdata.h"
 
-#include <QtCore/QDate>
-#include <QtCore/QSharedData>
-#include <QtCore/QFile>
-#include <QtCore/QPoint>
-#include <QtCore/QRect>
-#include <QtCore/QString>
-#include <QtCore/QTextStream>
-#include <QtCore/QDir>
-#include <QtCore/QUrl>
+#include <QDate>
+#include <QSharedData>
+#include <QFile>
+#include <QPoint>
+#include <QRect>
+#include <QString>
+#include <QTextStream>
+#include <QDir>
+#include <QUrl>
 
 #include <stdlib.h>
 
@@ -388,7 +388,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
 }
 
 #ifdef Q_OS_WIN
-# include <QtCore/QDir>
+# include <QDir>
 #endif
 
 static bool cleanHomeDirPath(QString &path, const QString &homeDir)

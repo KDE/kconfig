@@ -28,10 +28,10 @@
 
 #include <kconfigcore_export.h>
 
-#include <QtCore/QString>
-#include <QtCore/QVariant>
-#include <QtCore/QByteArray>
-#include <QtCore/QList>
+#include <QString>
+#include <QVariant>
+#include <QByteArray>
+#include <QList>
 #include <qstandardpaths.h>
 
 class KConfigGroup;

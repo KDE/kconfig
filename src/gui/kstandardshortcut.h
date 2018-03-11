@@ -20,7 +20,7 @@
 #ifndef KSTANDARDSHORTCUT_H
 #define KSTANDARDSHORTCUT_H
 
-#include <QtCore/QString>
+#include <QString>
 #include <QKeySequence>
 
 #include <kconfiggui_export.h>

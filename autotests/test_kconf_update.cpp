@@ -24,7 +24,7 @@
 #include <QFile>
 #include <QDir>
 #include <QSharedPointer>
-#include <QtCore/QProcess>
+#include <QProcess>
 #include <qtemporaryfile.h>
 #include <qstandardpaths.h>
 #include "config-kconf.h"

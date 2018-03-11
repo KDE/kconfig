@@ -20,14 +20,14 @@
 
 #include <config-kconf.h> // CMAKE_INSTALL_PREFIX
 
-#include <QtCore/QDate>
-#include <QtCore/QFile>
-#include <QtCore/QTextStream>
-#include <QtCore/QTextCodec>
+#include <QDate>
+#include <QFile>
+#include <QTextStream>
+#include <QTextCodec>
 #include <QUrl>
 #include <QTemporaryFile>
 #include <QCoreApplication>
-#include <QtCore/QDir>
+#include <QDir>
 #include <QProcess>
 #include <QDebug>
 

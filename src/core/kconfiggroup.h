@@ -28,9 +28,9 @@
 
 #include <kconfigcore_export.h>
 
-#include <QtCore/QExplicitlySharedDataPointer>
-#include <QtCore/QVariant>
-#include <QtCore/QStringList>
+#include <QExplicitlySharedDataPointer>
+#include <QVariant>
+#include <QStringList>
 
 class KConfig;
 class KConfigGroupPrivate;

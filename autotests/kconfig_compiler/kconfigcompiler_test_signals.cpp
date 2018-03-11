@@ -23,11 +23,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "signals_test_no_singleton.h"
 #include "signals_test_singleton_dpointer.h"
 #include "signals_test_no_singleton_dpointer.h"
-#include <QtTest/QtTestGui>
-#include <QtTest/QSignalSpy>
-#include <QtCore/QSharedPointer>
-#include <QtCore/QtGlobal>
-#include <QtCore/QDebug>
+#include <QtTestGui>
+#include <QSignalSpy>
+#include <QSharedPointer>
+#include <QtGlobal>
+#include <QDebug>
 #include <QTemporaryFile>
 #include <QFileInfo>
 #include <functional>

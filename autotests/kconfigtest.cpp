@@ -23,7 +23,7 @@
 #include "kconfigtest.h"
 #include "helper.h"
 
-#include <QtTest/QtTest>
+#include <QtTest>
 #include <qtemporarydir.h>
 #include <QStandardPaths>
 #include <kdesktopfile.h>

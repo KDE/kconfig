@@ -20,7 +20,7 @@
 #ifndef KENTRYMAPTEST_H
 #define KENTRYMAPTEST_H
 
-#include <QtCore/QObject>
+#include <QObject>
 #include "kconfigdata.h"
 
 class KEntryMapTest : public QObject

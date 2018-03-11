@@ -26,14 +26,14 @@
 // Compiling this file with this flag is just crazy
 #undef QT_NO_CAST_FROM_ASCII
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QFile>
-#include <QtCore/QFileInfo>
-#include <QtCore/QSettings>
-#include <QtCore/QTextStream>
-#include <QtXml/QDomAttr>
-#include <QtCore/QRegExp>
-#include <QtCore/QStringList>
+#include <QCoreApplication>
+#include <QFile>
+#include <QFileInfo>
+#include <QSettings>
+#include <QTextStream>
+#include <QDomAttr>
+#include <QRegExp>
+#include <QStringList>
 
 #include <qcommandlineparser.h>
 #include <qcommandlineoption.h>
@@ -2244,7 +2244,7 @@ int main(int argc, char **argv)
 
     // Header required by singleton implementation
     if (cfg.singleton) {
-        cpp << "#include <qglobal.h>" << endl << "#include <QtCore/QFile>" << endl << endl;
+        cpp << "#include <qglobal.h>" << endl << "#include <QFile>" << endl << endl;
     }
     if (cfg.singleton && cfgFileNameArg) {
         cpp << "#include <QDebug>" << endl << endl;

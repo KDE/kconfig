@@ -25,8 +25,8 @@
 #include <unistd.h>
 #endif
 
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
+#include <QDir>
+#include <QFileInfo>
 #include <QUrl>
 #include <qstandardpaths.h>
 

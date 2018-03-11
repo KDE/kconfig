@@ -20,7 +20,7 @@
 #ifndef KSTDACCELTEST_H
 #define KSTDACCELTEST_H
 
-#include <QtCore/QObject>
+#include <QObject>
 
 class KStandardShortcutTest : public QObject
 {
