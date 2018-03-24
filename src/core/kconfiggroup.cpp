@@ -957,9 +957,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
         if (!value.canConvert(QMetaType::QStringList))
             qWarning() << "not all types in \"" << key << "\" can convert to QString,"
                        " information will be lost";
-#if QT_VERSION >= QT_VERSION_CHECK(5,8,0)
         Q_FALLTHROUGH();
-#endif
     case QMetaType::QStringList:
         writeEntry(key, value.toList(), flags);
         return;
