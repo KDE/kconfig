@@ -4,7 +4,7 @@
 #include "test5.h"
 
 #include <qglobal.h>
-#include <QtCore/QFile>
+#include <QFile>
 
 class Test5Helper
 {

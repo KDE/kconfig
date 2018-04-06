@@ -4,7 +4,7 @@
 #include "test_signal.h"
 
 #include <qglobal.h>
-#include <QtCore/QFile>
+#include <QFile>
 
 class TestSignalHelper
 {
