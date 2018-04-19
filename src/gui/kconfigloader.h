@@ -131,7 +131,7 @@ public:
      **/
     KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
-    ~KConfigLoader();
+    ~KConfigLoader() Q_DECL_OVERRIDE;
 
     /**
      * Finds the item for the given group and key.

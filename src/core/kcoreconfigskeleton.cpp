@@ -480,7 +480,7 @@ void KCoreConfigSkeleton::ItemEnum::writeConfig(KConfig *config)
         KConfigGroup cg(config, mGroup);
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
             cg.revertToDefault(mKey);
-        } else if ((mReference >= 0) && (mReference < (int) mChoices.count())) {
+        } else if ((mReference >= 0) && (mReference < mChoices.count())) {
             cg.writeEntry(mKey, mChoices[mReference].name);
         } else {
             cg.writeEntry(mKey, mReference);

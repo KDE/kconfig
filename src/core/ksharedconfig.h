@@ -75,7 +75,7 @@ public:
                                          OpenFlags mode = FullConfig,
                                          QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
-    virtual ~KSharedConfig();
+    ~KSharedConfig() Q_DECL_OVERRIDE;
 
 private:
     Q_DISABLE_COPY(KSharedConfig)

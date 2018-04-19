@@ -39,7 +39,7 @@ public:
     class BufferFragment;
 
     KConfigIniBackend();
-    ~KConfigIniBackend();
+    ~KConfigIniBackend() Q_DECL_OVERRIDE;
 
     ParseInfo parseConfig(const QByteArray &locale,
                           KEntryMap &entryMap,

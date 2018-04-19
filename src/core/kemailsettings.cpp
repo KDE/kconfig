@@ -53,75 +53,57 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     switch (s) {
     case ClientProgram: {
         return cg.readEntry("EmailClient");
-        break;
     }
     case ClientTerminal: {
         return cg.readEntry("TerminalClient", QVariant(false)).toString();
-        break;
     }
     case RealName: {
         return cg.readEntry("FullName");
-        break;
     }
     case EmailAddress: {
         return cg.readEntry("EmailAddress");
-        break;
     }
     case ReplyToAddress: {
         return cg.readEntry("ReplyAddr");
-        break;
     }
     case Organization: {
         return cg.readEntry("Organization");
-        break;
     }
     case OutServer: {
         return cg.readEntry("OutgoingServer");
-        break;
     }
     case OutServerLogin: {
         return cg.readEntry("OutgoingUserName");
-        break;
     }
     case OutServerPass: {
         return cg.readEntry("OutgoingPassword");
-        break;
     }
     case OutServerType: {
         return cg.readEntry("OutgoingServerType");
-        break;
     }
     case OutServerCommand: {
         return cg.readEntry("OutgoingCommand");
-        break;
     }
     case OutServerTLS: {
         return cg.readEntry("OutgoingServerTLS", QVariant(false)).toString();
-        break;
     }
     case InServer: {
         return cg.readEntry("IncomingServer");
-        break;
     }
     case InServerLogin: {
         return cg.readEntry("IncomingUserName");
-        break;
     }
     case InServerPass: {
         return cg.readEntry("IncomingPassword");
-        break;
     }
     case InServerType: {
         return cg.readEntry("IncomingServerType");
-        break;
     }
     case InServerMBXType: {
         return cg.readEntry("IncomingServerMBXType");
-        break;
     }
     case InServerTLS: {
         return cg.readEntry("IncomingServerTLS", QVariant(false)).toString();
-        break;
     }
     };
     return QString();

@@ -332,7 +332,7 @@ public:
     */
     KConfigCompilerSignallingItem(KConfigSkeletonItem *item, QObject* object,
             NotifyFunction targetFunction, quint64 userData);
-    virtual ~KConfigCompilerSignallingItem();
+    ~KConfigCompilerSignallingItem() Q_DECL_OVERRIDE;
 
     void readConfig(KConfig *) Q_DECL_OVERRIDE;
     void writeConfig(KConfig *) Q_DECL_OVERRIDE;
