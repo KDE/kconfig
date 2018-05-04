@@ -75,12 +75,12 @@ public:
                                          OpenFlags mode = FullConfig,
                                          QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
-    ~KSharedConfig() Q_DECL_OVERRIDE;
+    ~KSharedConfig() override;
 
 private:
     Q_DISABLE_COPY(KSharedConfig)
-    KConfigGroup groupImpl(const QByteArray &aGroup) Q_DECL_OVERRIDE;
-    const KConfigGroup groupImpl(const QByteArray &aGroup) const Q_DECL_OVERRIDE;
+    KConfigGroup groupImpl(const QByteArray &aGroup) override;
+    const KConfigGroup groupImpl(const QByteArray &aGroup) const override;
 
     KSharedConfig(const QString &file, OpenFlags mode,
                   QStandardPaths::StandardLocation resourceType);

@@ -124,13 +124,13 @@ public:
      *
      * Syncs the parent config.
      */
-    bool sync() Q_DECL_OVERRIDE;
+    bool sync() override;
 
     /// @reimp
-    void markAsClean() Q_DECL_OVERRIDE;
+    void markAsClean() override;
 
     /// @reimp
-    AccessMode accessMode() const Q_DECL_OVERRIDE;
+    AccessMode accessMode() const override;
 
     /**
      * Return the config object that this group belongs to
@@ -203,7 +203,7 @@ public:
     /**
      * @reimp
      */
-    QStringList groupList() const Q_DECL_OVERRIDE;
+    QStringList groupList() const override;
 
     /**
      * Returns a list of keys this group contains
@@ -546,7 +546,7 @@ public:
      *
      * @return @c false if the group may be changed, @c true otherwise
      */
-    bool isImmutable() const Q_DECL_OVERRIDE;
+    bool isImmutable() const override;
 
     /**
      * Checks if it is possible to change the given entry
@@ -624,11 +624,11 @@ public:
     QMap<QString, QString> entryMap() const;
 
 protected:
-    bool hasGroupImpl(const QByteArray &group) const Q_DECL_OVERRIDE;
-    KConfigGroup groupImpl(const QByteArray &b) Q_DECL_OVERRIDE;
-    const KConfigGroup groupImpl(const QByteArray &b) const Q_DECL_OVERRIDE;
-    void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags) Q_DECL_OVERRIDE;
-    bool isGroupImmutableImpl(const QByteArray &aGroup) const Q_DECL_OVERRIDE;
+    bool hasGroupImpl(const QByteArray &group) const override;
+    KConfigGroup groupImpl(const QByteArray &b) override;
+    const KConfigGroup groupImpl(const QByteArray &b) const override;
+    void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags) override;
+    bool isGroupImmutableImpl(const QByteArray &aGroup) const override;
 
 private:
     QExplicitlySharedDataPointer<KConfigGroupPrivate> d;

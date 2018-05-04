@@ -131,7 +131,7 @@ public:
      **/
     KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
-    ~KConfigLoader() Q_DECL_OVERRIDE;
+    ~KConfigLoader() override;
 
     /**
      * Finds the item for the given group and key.
@@ -169,7 +169,7 @@ protected:
     /**
      * Hack used to force writing when no default exists in config file.
      */
-    bool usrWriteConfig() Q_DECL_OVERRIDE;
+    bool usrWriteConfig() override;
 
 private:
     ConfigLoaderPrivate *const d;

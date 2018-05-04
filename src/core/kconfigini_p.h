@@ -39,26 +39,26 @@ public:
     class BufferFragment;
 
     KConfigIniBackend();
-    ~KConfigIniBackend() Q_DECL_OVERRIDE;
+    ~KConfigIniBackend() override;
 
     ParseInfo parseConfig(const QByteArray &locale,
                           KEntryMap &entryMap,
-                          ParseOptions options) Q_DECL_OVERRIDE;
+                          ParseOptions options) override;
     ParseInfo parseConfig(const QByteArray &locale,
                           KEntryMap &entryMap,
                           ParseOptions options,
                           bool merging);
     bool writeConfig(const QByteArray &locale, KEntryMap &entryMap,
-                     WriteOptions options) Q_DECL_OVERRIDE;
+                     WriteOptions options) override;
 
-    bool isWritable() const Q_DECL_OVERRIDE;
-    QString nonWritableErrorMessage() const Q_DECL_OVERRIDE;
-    KConfigBase::AccessMode accessMode() const Q_DECL_OVERRIDE;
-    void createEnclosing() Q_DECL_OVERRIDE;
-    void setFilePath(const QString &path) Q_DECL_OVERRIDE;
-    bool lock() Q_DECL_OVERRIDE;
-    void unlock() Q_DECL_OVERRIDE;
-    bool isLocked() const Q_DECL_OVERRIDE;
+    bool isWritable() const override;
+    QString nonWritableErrorMessage() const override;
+    KConfigBase::AccessMode accessMode() const override;
+    void createEnclosing() override;
+    void setFilePath(const QString &path) override;
+    bool lock() override;
+    void unlock() override;
+    bool isLocked() const override;
 
 protected:
 

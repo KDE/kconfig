@@ -28,10 +28,10 @@ class ConfigLoaderHandler : public QXmlDefaultHandler
 public:
     ConfigLoaderHandler(KConfigLoader *config, ConfigLoaderPrivate *d);
     bool startElement(const QString &namespaceURI, const QString &localName,
-                      const QString &qName, const QXmlAttributes &atts) Q_DECL_OVERRIDE;
+                      const QString &qName, const QXmlAttributes &atts) override;
     bool endElement(const QString &namespaceURI, const QString &localName,
-                    const QString &qName) Q_DECL_OVERRIDE;
-    bool characters(const QString &ch) Q_DECL_OVERRIDE;
+                    const QString &qName) override;
+    bool characters(const QString &ch) override;
 
     QString name() const;
     void setName(const QString &name);

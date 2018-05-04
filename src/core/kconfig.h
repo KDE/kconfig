@@ -165,18 +165,18 @@ public:
     OpenFlags openFlags() const;
 
     /// @reimp
-    bool sync() Q_DECL_OVERRIDE;
+    bool sync() override;
 
     /// Returns true if sync has any changes to write out.
     /// @since 4.12
     bool isDirty() const;
 
     /// @reimp
-    void markAsClean() Q_DECL_OVERRIDE;
+    void markAsClean() override;
 
     /// @{ configuration object state
     /// @reimp
-    AccessMode accessMode() const Q_DECL_OVERRIDE;
+    AccessMode accessMode() const override;
 
     /**
      * Whether the configuration can be written to.
@@ -312,7 +312,7 @@ public:
 
     /// @{ immutability
     /// @reimp
-    bool isImmutable() const Q_DECL_OVERRIDE;
+    bool isImmutable() const override;
     /// @}
 
     /// @{ global
@@ -343,7 +343,7 @@ public:
     /// @}
 
     /// @reimp
-    QStringList groupList() const Q_DECL_OVERRIDE;
+    QStringList groupList() const override;
 
     /**
      * Returns a map (tree) of entries in a particular group.
@@ -365,11 +365,11 @@ public:
     static void setMainConfigName(const QString &str);
 
 protected:
-    bool hasGroupImpl(const QByteArray &group) const Q_DECL_OVERRIDE;
-    KConfigGroup groupImpl(const QByteArray &b) Q_DECL_OVERRIDE;
-    const KConfigGroup groupImpl(const QByteArray &b) const Q_DECL_OVERRIDE;
-    void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal) Q_DECL_OVERRIDE;
-    bool isGroupImmutableImpl(const QByteArray &aGroup) const Q_DECL_OVERRIDE;
+    bool hasGroupImpl(const QByteArray &group) const override;
+    KConfigGroup groupImpl(const QByteArray &b) override;
+    const KConfigGroup groupImpl(const QByteArray &b) const override;
+    void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal) override;
+    bool isGroupImmutableImpl(const QByteArray &aGroup) const override;
 
     friend class KConfigGroup;
     friend class KConfigGroupPrivate;
@@ -378,7 +378,7 @@ protected:
     /** Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.
      */
-    void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+    void virtual_hook(int id, void *data) override;
 
     KConfigPrivate *const d_ptr;
 
