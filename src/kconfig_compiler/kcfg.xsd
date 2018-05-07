@@ -61,7 +61,7 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="include" minOccurs="0" maxOccurs="unbounded" type="xsd:string"/>
-                <xsd:element name="kcfgfile" >
+                <xsd:element name="kcfgfile" minOccurs="0" maxOccurs="1" >
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="parameter" type="kcfg:parameter" minOccurs="0" maxOccurs="unbounded" />
@@ -231,4 +231,3 @@
         </xsd:simpleContent>
     </xsd:complexType>
 </xsd:schema>
-
