@@ -139,7 +139,7 @@ class TestSignal : public KConfigSkeleton
     TestSignal();
     friend class TestSignalHelper;
 
-    bool usrSave() Q_DECL_OVERRIDE;
+    bool usrSave() override;
 
     // Appearance
     QString mEmoticonTheme;
