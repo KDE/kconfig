@@ -29,7 +29,6 @@
 #include <QHash>
 #include <QDebug>
 
-#include "kconfig.h"
 #include "kconfigini_p.h"
 #include "kconfigdata.h"
 
