@@ -39,7 +39,9 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
 
 
 add_subdirectory(src)
-add_subdirectory(autotests)
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
 
 include (ECMPoQmTools)
 if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
