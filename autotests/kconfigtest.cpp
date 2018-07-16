@@ -521,7 +521,9 @@ void KConfigTest::testPath()
             << "withBraces[$e]=file://${HOME}/foo" << endl
             << "URL[$e]=file://${HOME}/foo" << endl
             << "hostname[$e]=$(hostname)" << endl
-            << "noeol=foo"; // no EOL
+            << "escapes=aaa,bb/b,ccc\\,ccc" << endl
+            << "noeol=foo" // no EOL
+            ;
     }
     KConfig cf2(TEST_SUBDIR "pathtest");
     KConfigGroup group = cf2.group("Test Group");
@@ -547,6 +549,9 @@ void KConfigTest::testPath()
 #endif
     QVERIFY(group.hasKey("noeol"));
     QCOMPARE(group.readEntry("noeol", QString()), QString("foo"));
+
+    const auto val = QStringList { QStringLiteral("aaa"), QStringLiteral("bb/b"), QStringLiteral("ccc,ccc")};
+    QCOMPARE(group.readPathEntry("escapes", QStringList()), val);
 }
 
 void KConfigTest::testPersistenceOfExpandFlagForPath()
