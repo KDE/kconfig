@@ -94,7 +94,7 @@ static inline QString testConfigDir() {
 }
 
 static inline QString kdeGlobalsPath() {
-    return testConfigDir() + "../kdeglobals";
+    return QDir::cleanPath(testConfigDir() + "..") + "/kdeglobals";
 }
 
 void KConfigTest::initTestCase()
