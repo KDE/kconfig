@@ -26,5 +26,6 @@ int main() {
         std::cout << "Test OK" << std::endl;
         return 0;
     }
+    std::cout << "Test FAILED" << std::endl;
     return 1;
 }
