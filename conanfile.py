@@ -3,7 +3,7 @@ from conans import ConanFile, CMake
 
 class KConfigConan(ConanFile):
     name = "kconfig"
-    version = "5.48.0"
+    version = "5.50.0"
     license = "GPLv2"
     url = "https://api.kde.org/frameworks/kconfig/html/index.html"
     description = "Persistent platform-independent application settings."
@@ -11,7 +11,7 @@ class KConfigConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
     requires = (
-        "extra-cmake-modules/5.48.0@kde/testing",
+        "extra-cmake-modules/5.50.0@kde/testing", # CMakeLists.txt requires 5.49.0
 
         "Qt/5.11.1@bincrafters/stable"
         # "qt-gui/5.8.0@qt/testing",
