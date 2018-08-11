@@ -11,7 +11,7 @@ class KConfigConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
     requires = (
-        "extra-cmake-modules/5.58.0@kde/testing",
+        "extra-cmake-modules/5.48.0@kde/testing",
 
         "Qt/5.11.1@bincrafters/stable"
         # "qt-gui/5.8.0@qt/testing",
