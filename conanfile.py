@@ -15,6 +15,7 @@ class KConfigConan(ConanFile):
 
         "Qt/5.11.1@bincrafters/stable"
         # "qt-gui/5.8.0@qt/testing",
+        # "qt-xml/5.8.0@qt/testing",
     )
 
     generators = "cmake"
