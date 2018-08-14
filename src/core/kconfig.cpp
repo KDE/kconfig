@@ -759,12 +759,6 @@ void KConfigPrivate::parseConfigFiles()
                 break;
             }
         }
-#pragma message("TODO: enable kiosk feature again (resource restrictions), but without KStandardDirs... Needs a class in the kconfig framework.")
-#if 0
-        if (componentData.dirs()->isRestrictedResource(resourceType, fileName)) {
-            bFileImmutable = true;
-        }
-#endif
     }
 }
 
