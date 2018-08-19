@@ -755,10 +755,13 @@ void KConfigPrivate::parseConfigFiles()
                 files = getGlobalFiles();
             } else {
                 if (QDir::isAbsolutePath(fileName)) {
-                    files << fileName;
+                    const QString canonicalFile = QFileInfo(fileName).canonicalFilePath();
+                    if (!canonicalFile.isEmpty()) { // empty if it doesn't exist
+                        files << canonicalFile;
+                    }
                 } else {
                     Q_FOREACH (const QString &f, QStandardPaths::locateAll(resourceType, fileName)) {
-                        files.prepend(f);
+                        files.prepend(QFileInfo(f).canonicalFilePath());
                     }
 
                     // allow fallback to config files bundled in resources

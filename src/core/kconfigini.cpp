@@ -602,7 +602,11 @@ void KConfigIniBackend::setFilePath(const QString &file)
     if (info.exists()) {
         setLocalFilePath(info.canonicalFilePath());
     } else {
-        setLocalFilePath(file);
+        const QString dir = info.dir().canonicalPath();
+        if (!dir.isEmpty())
+            setLocalFilePath(dir + QLatin1Char('/') + info.fileName());
+        else
+            setLocalFilePath(file);
     }
 }
 
