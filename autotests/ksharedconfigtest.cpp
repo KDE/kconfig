@@ -37,7 +37,7 @@ private:
 
 void KSharedConfigTest::initTestCase()
 {
-    QStandardPaths::enableTestMode(true);
+    QStandardPaths::setTestModeEnabled(true);
 
     m_path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation)
             + QLatin1Char('/') + QCoreApplication::applicationName() + QStringLiteral("rc");

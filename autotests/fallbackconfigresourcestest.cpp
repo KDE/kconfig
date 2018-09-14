@@ -32,7 +32,7 @@ private Q_SLOTS:
 
 void FallbackConfigResourcesTest::initTestCase()
 {
-    QStandardPaths::enableTestMode(true);
+    QStandardPaths::setTestModeEnabled(true);
 }
 
 void FallbackConfigResourcesTest::testResourceFallbackFile()
