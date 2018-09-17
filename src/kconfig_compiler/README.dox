@@ -55,6 +55,11 @@ types the following special types are supported:
   to the application as QValueList<int>. Useful for storing QSplitter
   geometries.
 
+- Color  isn't a special type but has special input. It is generated as QColor.
+  Any valid input to QColor(QString) can be used (hex or SVG keyword notation)
+  as well as a special format r,g,b,a where the a denotes the alpha channel and
+  may be omitted.
+
 An entry can optionally have a default value which is used as default when
 the value isn't specified in any config file. Default values are interpreted
 as literal constant values. If a default value needs to be computed
