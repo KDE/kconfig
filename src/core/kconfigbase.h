@@ -58,13 +58,19 @@ public:
          */
         Localized = 0x04,
         /**<
+         * Notify remote KConfigWatchers of changes (requires DBus support)
+         * Implied persistent
+         * @since 5.51
+         */
+        Notify = 0x08 | Persistent,
+        /**<
          * Add the locale tag to the key when writing it.
          */
         Normal = Persistent
-                 /**<
-                  * Save the entry to the application specific config file without
-                  * a locale tag. This is the default.
-                  */
+        /**<
+        * Save the entry to the application specific config file without
+        * a locale tag. This is the default.
+        */
 
     };
     Q_DECLARE_FLAGS(WriteConfigFlags, WriteConfigFlag)

@@ -23,6 +23,8 @@
 #include "kconfig.h"
 #include "kconfig_p.h"
 
+#include "config-kconfig.h"
+
 #include <cstdlib>
 #include <fcntl.h>
 
@@ -53,6 +55,12 @@ static inline int pclose(FILE *stream)
 #include <QSet>
 #include <QBasicMutex>
 #include <QMutexLocker>
+
+#if KCONFIG_USE_DBUS
+#include <QDBusMessage>
+#include <QDBusConnection>
+#include <QDBusMetaType>
+#endif
 
 bool KConfigPrivate::mappingsRegistered = false;
 
@@ -424,6 +432,9 @@ bool KConfig::sync()
         return false;
     }
 
+    QHash<QString, QByteArrayList> notifyGroupsLocal;
+    QHash<QString, QByteArrayList> notifyGroupsGlobal;
+
     if (d->bDirty && d->mBackend) {
         const QByteArray utf8Locale(locale().toUtf8());
 
@@ -439,16 +450,20 @@ bool KConfig::sync()
         // Rewrite global/local config only if there is a dirty entry in it.
         bool writeGlobals = false;
         bool writeLocals = false;
-        Q_FOREACH (const KEntry &e, d->entryMap) {
+
+        for (auto it = d->entryMap.constBegin(); it != d->entryMap.constEnd(); ++it) {
+            auto e = it.value();
             if (e.bDirty) {
                 if (e.bGlobal) {
                     writeGlobals = true;
+                    if (e.bNotify) {
+                        notifyGroupsGlobal[QString::fromUtf8(it.key().mGroup)] << it.key().mKey;
+                    }
                 } else {
                     writeLocals = true;
-                }
-
-                if (writeGlobals && writeLocals) {
-                    break;
+                    if (e.bNotify) {
+                        notifyGroupsLocal[QString::fromUtf8(it.key().mGroup)] << it.key().mKey;
+                    }
                 }
             }
         }
@@ -485,7 +500,33 @@ bool KConfig::sync()
             d->mBackend->unlock();
         }
     }
+
+    if (!notifyGroupsLocal.isEmpty()) {
+        d->notifyClients(notifyGroupsLocal, QStringLiteral("/") + name());
+    }
+    if (!notifyGroupsGlobal.isEmpty()) {
+        d->notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));
+    }
+
     return !d->bDirty;
+}
+
+void KConfigPrivate::notifyClients(const QHash<QString, QByteArrayList> &changes, const QString &path)
+{
+#if KCONFIG_USE_DBUS
+    qDBusRegisterMetaType<QByteArrayList>();
+
+    qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
+
+    QDBusMessage message = QDBusMessage::createSignal(path,
+                                                                                                QStringLiteral("org.kde.kconfig.notify"),
+                                                                                                QStringLiteral("ConfigChanged"));
+    message.setArguments({QVariant::fromValue(changes)});
+    QDBusConnection::sessionBus().send(message);
+#else
+    Q_UNUSED(changes)
+    Q_UNUSED(path)
+#endif
 }
 
 void KConfig::markAsClean()
@@ -497,6 +538,7 @@ void KConfig::markAsClean()
     const KEntryMapIterator theEnd = d->entryMap.end();
     for (KEntryMapIterator it = d->entryMap.begin(); it != theEnd; ++it) {
         it->bDirty = false;
+        it->bNotify = false;
     }
 }
 
@@ -873,6 +915,9 @@ KEntryMap::EntryOptions convertToOptions(KConfig::WriteConfigFlags flags)
     }
     if (flags & KConfig::Localized) {
         options |= KEntryMap::EntryLocalized;
+    }
+    if (flags & KConfig::Notify) {
+        options |= KEntryMap::EntryNotify;
     }
     return options;
 }

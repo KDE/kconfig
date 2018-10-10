@@ -37,7 +37,7 @@ struct KEntry {
     KEntry()
         : mValue(), bDirty(false),
           bGlobal(false), bImmutable(false), bDeleted(false), bExpand(false), bReverted(false),
-          bLocalizedCountry(false) {}
+          bLocalizedCountry(false), bNotify(false) {}
     /** @internal */
     QByteArray mValue;
     /**
@@ -69,11 +69,13 @@ struct KEntry {
      * if @c true the value references language and country, e.g. "de_DE".
      **/
     bool    bLocalizedCountry: 1;
+
+    bool     bNotify: 1;
 };
 
 // These operators are used to check whether an entry which is about
 // to be written equals the previous value. As such, this intentionally
-// omits the dirty flag from the comparison.
+// omits the dirty/notify flag from the comparison.
 inline bool operator ==(const KEntry &k1, const KEntry &k2)
 {
     return k1.bGlobal == k2.bGlobal && k1.bImmutable == k2.bImmutable
@@ -172,6 +174,7 @@ public:
         EntryExpansion = 16,
         EntryRawKey = 32,
         EntryLocalizedCountry = 64,
+        EntryNotify = 128,
         EntryDefault = (SearchDefaults << 16),
         EntryLocalized = (SearchLocalized << 16)
     };

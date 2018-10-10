@@ -17,6 +17,13 @@ option(KCONFIG_USE_GUI "Build components using Qt5Gui" ON)
 if(KCONFIG_USE_GUI)
     find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
 endif()
+
+option(KCONFIG_USE_DBUS "Build components using Qt5DBus" ON)
+if(KCONFIG_USE_DBUS)
+    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
+endif()
+
+
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)

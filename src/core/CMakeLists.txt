@@ -10,7 +10,10 @@ set(libkconfigcore_SRCS
    kcoreconfigskeleton.cpp
    kauthorized.cpp
    kemailsettings.cpp
+   kconfigwatcher.cpp
 )
+
+configure_file(config-kconfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconfig.h )
 
 add_library(KF5ConfigCore ${libkconfigcore_SRCS})
 generate_export_header(KF5ConfigCore BASE_NAME KConfigCore)
@@ -24,6 +27,11 @@ target_compile_definitions(KF5ConfigCore
 target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore>")
 
 target_link_libraries(KF5ConfigCore PUBLIC Qt5::Core)
+
+if(KCONFIG_USE_DBUS)
+    target_link_libraries(KF5ConfigCore PRIVATE Qt5::DBus)
+endif()
+
 if(WIN32)
     target_link_libraries(KF5ConfigCore PRIVATE ${KDEWIN_LIBRARIES})
 endif()
@@ -44,6 +52,7 @@ ecm_generate_headers(KConfigCore_HEADERS
   KCoreConfigSkeleton
   KEMailSettings
   ConversionCheck
+  KConfigWatcher
 
   REQUIRED_HEADERS KConfigCore_HEADERS
 )
@@ -68,6 +77,7 @@ if (PythonModuleGeneration_FOUND)
       kcoreconfigskeleton.h
       kemailsettings.h
       conversioncheck.h
+      kconfigwatcher.h
   )
 endif()
 

@@ -23,6 +23,8 @@
 #include "kconfigtest.h"
 #include "helper.h"
 
+#include "config-kconfig.h"
+
 #include <QtTest>
 #include <qtemporarydir.h>
 #include <QStandardPaths>
@@ -30,6 +32,7 @@
 
 #include <ksharedconfig.h>
 #include <kconfiggroup.h>
+#include <kconfigwatcher.h>
 
 #ifdef Q_OS_UNIX
 #include <utime.h>
@@ -42,6 +45,8 @@ KCONFIGGROUP_DECLARE_ENUM_QOBJECT(KConfigTest, Testing)
 KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(KConfigTest, Flags)
 
 QTEST_MAIN(KConfigTest)
+
+Q_DECLARE_METATYPE(KConfigGroup)
 
 static QString homePath()
 {
@@ -101,6 +106,7 @@ void KConfigTest::initTestCase()
 {
     // ensure we don't use files in the real config directory
     QStandardPaths::setTestModeEnabled(true);
+    qRegisterMetaType<KConfigGroup>();
 
     // to make sure all files from a previous failed run are deleted
     cleanupTestCase();
@@ -1784,4 +1790,77 @@ void KConfigTest::testThreads()
     Q_FOREACH (QFuture<void> f, futures) { // krazy:exclude=foreach
         f.waitForFinished();
     }
+}
+
+void KConfigTest::testNotify()
+{
+#if !KCONFIG_USE_DBUS
+        QSKIP("KConfig notification requires DBus")
+#endif
+
+    KConfig config(TEST_SUBDIR "kconfigtest");
+    auto myConfigGroup = KConfigGroup(&config, "TopLevelGroup");
+
+    //mimics a config in another process, which is watching for events
+    auto remoteConfig = KSharedConfig::openConfig(TEST_SUBDIR "kconfigtest");
+    KConfigWatcher::Ptr watcher = KConfigWatcher::create(remoteConfig);
+
+    //some random config that shouldn't be changing when kconfigtest changes, only on kdeglobals
+    auto otherRemoteConfig = KSharedConfig::openConfig(TEST_SUBDIR "kconfigtest2");
+    KConfigWatcher::Ptr otherWatcher = KConfigWatcher::create(otherRemoteConfig);
+
+    QSignalSpy watcherSpy(watcher.data(), &KConfigWatcher::configChanged);
+    QSignalSpy otherWatcherSpy(otherWatcher.data(), &KConfigWatcher::configChanged);
+
+    //write entries in a group and subgroup
+    myConfigGroup.writeEntry("entryA",  "foo", KConfig::Persistent | KConfig::Notify);
+    auto subGroup = myConfigGroup.group("aSubGroup");
+    subGroup.writeEntry("entry1",  "foo", KConfig::Persistent | KConfig::Notify);
+    subGroup.writeEntry("entry2",  "foo", KConfig::Persistent | KConfig::Notify);
+    config.sync();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.count(), 2);
+
+    std::sort(watcherSpy.begin(), watcherSpy.end(), [] (QList<QVariant> a, QList<QVariant> b) {
+        return a[0].value<KConfigGroup>().name() <  b[0].value<KConfigGroup>().name();
+    });
+
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entryA"}));
+
+    QCOMPARE(watcherSpy[1][0].value<KConfigGroup>().name(), "aSubGroup");
+    QCOMPARE(watcherSpy[1][0].value<KConfigGroup>().parent().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[1][1].value<QByteArrayList>(), QByteArrayList({"entry1", "entry2"}));
+
+   //delete an entry
+    watcherSpy.clear();
+    myConfigGroup.deleteEntry("entryA", KConfig::Persistent | KConfig::Notify);
+    config.sync();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.count(), 1);
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entryA"}));
+
+    //deleting a group, should notify that every entry in that group has changed
+    watcherSpy.clear();
+    myConfigGroup.deleteGroup("aSubGroup", KConfig::Persistent | KConfig::Notify);
+    config.sync();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.count(), 1);
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "aSubGroup");
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entry1", "entry2"}));
+
+    //global write still triggers our notification
+    watcherSpy.clear();
+    myConfigGroup.writeEntry("someGlobalEntry",  "foo", KConfig::Persistent | KConfig::Notify | KConfig::Global);
+    config.sync();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.count(), 1);
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
+
+    //watching another file should have only triggered from the kdeglobals change
+    QCOMPARE(otherWatcherSpy.count(), 1);
+    QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
 }

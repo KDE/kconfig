@@ -134,6 +134,8 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
 
     e.mValue = value;
     e.bDirty = e.bDirty || (options & EntryDirty);
+    e.bNotify = e.bNotify || (options & EntryNotify);
+
     e.bGlobal = (options & EntryGlobal); //we can't use || here, because changes to entries in
     //kdeglobals would be written to kdeglobals instead
     //of the local config file, regardless of the globals flag
@@ -269,6 +271,8 @@ bool KEntryMap::getEntryOption(const QMap< KEntryKey, KEntry >::ConstIterator &i
             return it->bDeleted;
         case EntryExpansion:
             return it->bExpand;
+        case EntryNotify:
+            return it->bNotify;
         default:
             break; // fall through
         }
@@ -295,6 +299,9 @@ void KEntryMap::setEntryOption(QMap< KEntryKey, KEntry >::Iterator it, KEntryMap
             break;
         case EntryExpansion:
             it->bExpand = bf;
+            break;
+        case EntryNotify:
+            it->bNotify = bf;
             break;
         default:
             break; // fall through

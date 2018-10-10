@@ -78,6 +78,7 @@ private Q_SLOTS:
     void testKdeGlobals();
     void testNewlines();
     void testXdgListEntry();
+    void testNotify();
 
     void testThreads();
 
