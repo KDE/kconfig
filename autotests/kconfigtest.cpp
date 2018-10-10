@@ -1825,11 +1825,11 @@ void KConfigTest::testNotify()
         return a[0].value<KConfigGroup>().name() <  b[0].value<KConfigGroup>().name();
     });
 
-    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entryA"}));
 
-    QCOMPARE(watcherSpy[1][0].value<KConfigGroup>().name(), "aSubGroup");
-    QCOMPARE(watcherSpy[1][0].value<KConfigGroup>().parent().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[1][0].value<KConfigGroup>().name(), QStringLiteral("aSubGroup"));
+    QCOMPARE(watcherSpy[1][0].value<KConfigGroup>().parent().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(watcherSpy[1][1].value<QByteArrayList>(), QByteArrayList({"entry1", "entry2"}));
 
    //delete an entry
@@ -1838,7 +1838,7 @@ void KConfigTest::testNotify()
     config.sync();
     watcherSpy.wait();
     QCOMPARE(watcherSpy.count(), 1);
-    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entryA"}));
 
     //deleting a group, should notify that every entry in that group has changed
@@ -1847,7 +1847,7 @@ void KConfigTest::testNotify()
     config.sync();
     watcherSpy.wait();
     QCOMPARE(watcherSpy.count(), 1);
-    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "aSubGroup");
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("aSubGroup"));
     QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entry1", "entry2"}));
 
     //global write still triggers our notification
@@ -1856,11 +1856,11 @@ void KConfigTest::testNotify()
     config.sync();
     watcherSpy.wait();
     QCOMPARE(watcherSpy.count(), 1);
-    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
 
     //watching another file should have only triggered from the kdeglobals change
     QCOMPARE(otherWatcherSpy.count(), 1);
-    QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), "TopLevelGroup");
+    QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
 }
