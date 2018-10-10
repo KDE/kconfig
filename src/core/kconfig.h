@@ -271,6 +271,11 @@ public:
      */
     void addConfigSources(const QStringList &sources);
 
+    /**
+     * Returns a list of the additional configuration sources used in this object
+     */
+    QStringList additionalConfigSources() const;
+
     /// @}
     /// @{ locales
     /**

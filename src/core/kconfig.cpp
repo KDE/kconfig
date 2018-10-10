@@ -780,6 +780,12 @@ void KConfig::addConfigSources(const QStringList &files)
     }
 }
 
+QStringList KConfig::additionalConfigSources() const
+{
+    Q_D(const KConfig);
+    return d->extraFiles.toList();
+}
+
 QString KConfig::locale() const
 {
     Q_D(const KConfig);
