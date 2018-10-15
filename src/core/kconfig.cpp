@@ -916,7 +916,7 @@ KEntryMap::EntryOptions convertToOptions(KConfig::WriteConfigFlags flags)
     if (flags & KConfig::Localized) {
         options |= KEntryMap::EntryLocalized;
     }
-    if (flags & KConfig::Notify) {
+    if (flags.testFlag(KConfig::Notify)) {
         options |= KEntryMap::EntryNotify;
     }
     return options;
