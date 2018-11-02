@@ -849,7 +849,6 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
             }
             choices = CfgEntry::Choices(chlist, name, prefix);
         } else if (tag == QLatin1String("emit")) {
-            QDomNode signalNode;
             Signal signal;
             signal.name = e.attribute(QStringLiteral("signal"));
             signalList.append(signal);
