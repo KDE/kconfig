@@ -1774,7 +1774,7 @@ int main(int argc, char **argv)
         }
     }
 
-    if (cfg.headerIncludes.count() > 0) {
+    if (!cfg.headerIncludes.isEmpty()) {
         h << endl;
     }
 
@@ -2233,7 +2233,7 @@ int main(int argc, char **argv)
         }
     }
 
-    if (cfg.sourceIncludes.count() > 0) {
+    if (!cfg.sourceIncludes.isEmpty()) {
         cpp << endl;
     }
 
