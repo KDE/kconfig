@@ -52,7 +52,7 @@ types the following special types are supported:
   date without breaking compatibility.
 
 - IntList  This indicates a list of integers. This information is provided
-  to the application as QValueList<int>. Useful for storing QSplitter
+  to the application as QList<int>. Useful for storing QSplitter
   geometries.
 
 - Color  isn't a special type but has special input. It is generated as QColor.
