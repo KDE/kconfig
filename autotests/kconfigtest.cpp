@@ -1723,7 +1723,6 @@ void KConfigTest::testQByteArrayUtf8()
 {
     QTemporaryFile file;
     QVERIFY(file.open());
-    qWarning() << file.fileName();
     KConfig config(file.fileName(), KConfig::SimpleConfig);
     KConfigGroup general(&config, "General");
     QByteArray bytes(256, '\0');
@@ -1753,7 +1752,6 @@ void KConfigTest::testNewlines()
     // test that kconfig always uses the native line endings
     QTemporaryFile file;
     QVERIFY(file.open());
-    qWarning() << file.fileName();
     KConfig anonConfig(file.fileName(), KConfig::SimpleConfig);
     KConfigGroup general(&anonConfig, "General");
     general.writeEntry("Foo", "Bar");
