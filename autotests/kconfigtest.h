@@ -63,6 +63,7 @@ private Q_SLOTS:
     void testConfigCopyToSync();
     void testReparent();
     void testAnonymousConfig();
+    void testQByteArrayUtf8();
 
     void testSubGroup();
     void testAddConfigSources();

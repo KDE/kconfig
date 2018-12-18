@@ -673,7 +673,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
         switch (s[i]) {
         default:
             // The \n, \t, \r cases (all < 32) are handled below; we can ignore them here
-            if (((unsigned char)s[i]) < 32) {
+            if (((unsigned char)s[i]) < 32 || ((unsigned char)s[i]) >= 127) {
                 goto doEscape;
             }
             *data++ = s[i];
