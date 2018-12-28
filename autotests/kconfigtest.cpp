@@ -1824,7 +1824,7 @@ void KConfigTest::testThreads()
 void KConfigTest::testNotify()
 {
 #if !KCONFIG_USE_DBUS
-        QSKIP("KConfig notification requires DBus")
+        QSKIP("KConfig notification requires DBus");
 #endif
 
     KConfig config(TEST_SUBDIR "kconfigtest");
