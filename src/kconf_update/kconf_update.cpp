@@ -45,6 +45,10 @@ class KonfUpdate
 public:
     KonfUpdate(QCommandLineParser *parser);
     ~KonfUpdate();
+
+    KonfUpdate(const KonfUpdate &) = delete;
+    KonfUpdate& operator=(const KonfUpdate &) = delete;
+
     QStringList findUpdateFiles(bool dirtyOnly);
 
     QTextStream &log();
