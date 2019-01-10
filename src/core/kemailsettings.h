@@ -117,6 +117,9 @@ public:
       **/
     KEMailSettings();
 
+    KEMailSettings(const KEMailSettings &) = delete;
+    KEMailSettings& operator=(const KEMailSettings &) = delete;
+
     /**
       * Default destructor, nothing to see here.
       **/
