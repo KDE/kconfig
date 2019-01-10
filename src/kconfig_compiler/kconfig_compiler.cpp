@@ -2300,6 +2300,8 @@ int main(int argc, char **argv)
         cpp << "  public:" << endl;
         cpp << "    " << cfg.className << "Helper() : q(nullptr) {}" << endl;
         cpp << "    ~" << cfg.className << "Helper() { delete q; }" << endl;
+        cpp << "    " << cfg.className << "Helper(const " << cfg.className << "Helper&) = delete;" << endl;
+        cpp << "    " << cfg.className << "Helper& operator=(const " << cfg.className << "Helper&) = delete;" << endl;
         cpp << "    " << cfg.className << " *q;" << endl;
         cpp << "};" << endl;
         endNamespaces(cfg.nameSpace, cpp);

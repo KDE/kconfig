@@ -13,6 +13,8 @@ class Test8cHelper
   public:
     Test8cHelper() : q(nullptr) {}
     ~Test8cHelper() { delete q; }
+    Test8cHelper(const Test8cHelper&) = delete;
+    Test8cHelper& operator=(const Test8cHelper&) = delete;
     Test8c *q;
 };
 Q_GLOBAL_STATIC(Test8cHelper, s_globalTest8c)

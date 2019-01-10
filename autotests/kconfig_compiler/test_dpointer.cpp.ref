@@ -50,6 +50,8 @@ class TestDPointerHelper
   public:
     TestDPointerHelper() : q(nullptr) {}
     ~TestDPointerHelper() { delete q; }
+    TestDPointerHelper(const TestDPointerHelper&) = delete;
+    TestDPointerHelper& operator=(const TestDPointerHelper&) = delete;
     TestDPointer *q;
 };
 Q_GLOBAL_STATIC(TestDPointerHelper, s_globalTestDPointer)

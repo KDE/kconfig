@@ -11,6 +11,8 @@ class TestSignalHelper
   public:
     TestSignalHelper() : q(nullptr) {}
     ~TestSignalHelper() { delete q; }
+    TestSignalHelper(const TestSignalHelper&) = delete;
+    TestSignalHelper& operator=(const TestSignalHelper&) = delete;
     TestSignal *q;
 };
 Q_GLOBAL_STATIC(TestSignalHelper, s_globalTestSignal)

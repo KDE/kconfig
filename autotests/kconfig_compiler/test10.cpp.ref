@@ -11,6 +11,8 @@ class Test10Helper
   public:
     Test10Helper() : q(nullptr) {}
     ~Test10Helper() { delete q; }
+    Test10Helper(const Test10Helper&) = delete;
+    Test10Helper& operator=(const Test10Helper&) = delete;
     Test10 *q;
 };
 Q_GLOBAL_STATIC(Test10Helper, s_globalTest10)
