@@ -16,6 +16,7 @@ if (BUILD_QCH)
         SOURCES # using only public headers, to cover only public API
             ${KConfigCore_APIDOX_SRCS}
             ${KConfigGui_APIDOX_SRCS}
+            "${CMAKE_CURRENT_SOURCE_DIR}/kconfig_compiler/README.dox"
             "${CMAKE_SOURCE_DIR}/docs/options.md"
         MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
         LINK_QCHS
