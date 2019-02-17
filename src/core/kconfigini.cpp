@@ -647,13 +647,110 @@ bool KConfigIniBackend::isLocked() const
     return lockFile && lockFile->isLocked();
 }
 
+namespace {
+    // serialize an escaped byte at the end of @param data
+    // @param data should have room for 4 bytes
+    char* escapeByte(char* data, unsigned char s) {
+        static const char nibbleLookup[] = {
+            '0', '1', '2', '3', '4', '5', '6', '7',
+            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+        };
+        *data++ = '\\';
+        *data++ = 'x';
+        *data++ = nibbleLookup[s >> 4];
+        *data++ = nibbleLookup[s & 0x0f];
+        return data;
+    }
+
+    // Struct that represents a multi-byte UTF-8 character.
+    // This struct is used to keep track of bytes that seem to be valid
+    // UTF-8.
+    struct Utf8Char {
+    public:
+        unsigned char bytes[4];
+        unsigned char count;
+        unsigned char charLength;
+
+        Utf8Char() {
+            clear();
+            charLength = 0;
+        }
+        void clear() {
+            count = 0;
+        }
+        // Add a byte to the UTF8 character.
+        // When an additional byte leads to an invalid character, return false.
+        bool addByte(unsigned char b) {
+            if (count == 0) {
+                if (b > 0xc1 && (b & 0xe0) == 0xc0) {
+                    charLength = 2;
+                } else if ((b & 0xf0) == 0xe0) {
+                    charLength = 3;
+                } else if (b < 0xf5 && (b & 0xf8) == 0xf0) {
+                    charLength = 4;
+                } else {
+                    return false;
+                }
+                bytes[0] = b;
+                count = 1;
+            } else if (count < 4 && (b & 0xc0) == 0x80) {
+                if (count == 1) {
+                    if (charLength == 3 && bytes[0] == 0xe0 && b < 0xa0) {
+                        return false; // overlong 3 byte sequence
+                    }
+                    if (charLength == 4) {
+                        if (bytes[0] == 0xf0 && b < 0x90) {
+                            return false; // overlong 4 byte sequence
+                        }
+                        if (bytes[0] == 0xf4 && b > 0x8f) {
+                            return false; // Unicode value larger than U+10FFFF
+                        }
+                    }
+                }
+                bytes[count++] = b;
+            } else {
+                return false;
+            }
+            return true;
+        }
+        // Return true if Utf8Char contains one valid character.
+        bool isComplete() {
+            return count > 0 && count == charLength;
+        }
+        // Add the bytes in this UTF8 character in escaped form to data.
+        char* escapeBytes(char* data) {
+            for (unsigned char i = 0; i < count; ++i) {
+                data = escapeByte(data, bytes[i]);
+            }
+            clear();
+            return data;
+        }
+        // Add the bytes of the UTF8 character to a buffer.
+        // Only call this if isComplete() returns true.
+        char* writeUtf8(char* data) {
+            for (unsigned char i = 0; i < count; ++i) {
+                *data++ = bytes[i];
+            }
+            clear();
+            return data;
+        }
+        // Write the bytes in the UTF8 character literally, or, if the
+        // character is not complete, write the escaped bytes.
+        // This is useful to handle the state that remains after handling
+        // all bytes in a buffer.
+        char* write(char* data) {
+            if (isComplete()) {
+                data = writeUtf8(data);
+            } else {
+                data = escapeBytes(data);
+            }
+            return data;
+        }
+    };
+}
+
 QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, StringType type)
 {
-    static const char nibbleLookup[] = {
-        '0', '1', '2', '3', '4', '5', '6', '7',
-        '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
-    };
-
     if (aString.isEmpty()) {
         return aString;
     }
@@ -672,10 +769,16 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
         *data++ = 's';
         i++;
     }
+    Utf8Char utf8;
 
     for (; i < l; ++i/*, r++*/) {
         switch (s[i]) {
         default:
+            if (utf8.addByte(s[i])) {
+                break;
+            } else {
+                data = utf8.escapeBytes(data);
+            }
             // The \n, \t, \r cases (all < 32) are handled below; we can ignore them here
             if (((unsigned char)s[i]) < 32) {
                 goto doEscape;
@@ -717,13 +820,14 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
                 break;
             }
         doEscape:
-            *data++ = '\\';
-            *data++ = 'x';
-            *data++ = nibbleLookup[((unsigned char)s[i]) >> 4];
-            *data++ = nibbleLookup[((unsigned char)s[i]) & 0x0f];
+            data = escapeByte(data, s[i]);
             break;
         }
+        if (utf8.isComplete()) {
+            data = utf8.writeUtf8(data);
+        }
     }
+    data = utf8.write(data);
     *data = 0;
     result.resize(data - start);
 

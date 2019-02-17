@@ -64,6 +64,8 @@ private Q_SLOTS:
     void testReparent();
     void testAnonymousConfig();
     void testQByteArrayUtf8();
+    void testQStringUtf8_data();
+    void testQStringUtf8();
 
     void testSubGroup();
     void testAddConfigSources();
