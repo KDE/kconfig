@@ -58,13 +58,13 @@ public:
          */
         Localized = 0x04,
         /**<
-         * Notify remote KConfigWatchers of changes (requires DBus support)
-         * Implied persistent
-         * @since 5.51
+         * Add the locale tag to the key when writing it.
          */
         Notify = 0x08 | Persistent,
         /**<
-         * Add the locale tag to the key when writing it.
+         * Notify remote KConfigWatchers of changes (requires DBus support)
+         * Implied persistent
+         * @since 5.51
          */
         Normal = Persistent
         /**<
