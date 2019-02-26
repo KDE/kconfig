@@ -146,7 +146,7 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         updateAll = true;
     }
 
-    foreach (const QString& file, updateFiles) {
+    for (const QString& file : qAsConst(updateFiles)) {
         updateFile(file);
     }
 
@@ -211,11 +211,11 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
     QStringList result;
 
     const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("kconf_update"), QStandardPaths::LocateDirectory);
-    Q_FOREACH (const QString &d, dirs) {
+    for (const QString &d : dirs) {
         const QDir dir(d);
 
         const QStringList fileNames = dir.entryList(QStringList(QStringLiteral("*.upd")));
-        Q_FOREACH (const QString &fileName, fileNames) {
+        for (const QString &fileName : fileNames) {
             const QString file = dir.filePath(fileName);
             QFileInfo info(file);
 
@@ -637,12 +637,14 @@ void KonfUpdate::copyOrMoveGroup(const QStringList &srcGroupPath, const QStringL
     KConfigGroup cg = KConfigUtils::openGroup(m_oldConfig1, srcGroupPath);
 
     // Keys
-    Q_FOREACH (const QString &key, cg.keyList()) {
+    const QStringList lstKeys = cg.keyList();
+    for (const QString &key : lstKeys) {
         copyOrMoveKey(srcGroupPath, key, dstGroupPath, key);
     }
 
     // Subgroups
-    Q_FOREACH (const QString &group, cg.groupList()) {
+    const QStringList lstGroup = cg.groupList();
+    for (const QString &group : lstGroup) {
         const QStringList groupPath(group);
         copyOrMoveGroup(srcGroupPath + groupPath, dstGroupPath + groupPath);
     }
@@ -737,7 +739,8 @@ void KonfUpdate::copyGroup(const KConfigGroup &cg1, KConfigGroup &cg2)
     }
 
     // Copy subgroups
-    Q_FOREACH (const QString &group, cg1.groupList()) {
+    const QStringList lstGroup = cg1.groupList();
+    for (const QString &group : lstGroup) {
         copyGroup(&cg1, group, &cg2, group);
     }
 }
@@ -935,7 +938,8 @@ void KonfUpdate::gotScript(const QString &_script)
         KConfigGroup dstCg = KConfigUtils::openGroup(m_newConfig, m_newGroup);
         copyGroup(srcCg, dstCg);
     }
-    Q_FOREACH (const QString &group, scriptOutConfig.groupList()) {
+    const QStringList lstGroup = scriptOutConfig.groupList();
+    for (const QString &group : lstGroup) {
         copyGroup(&scriptOutConfig, group, m_newConfig, group);
     }
 }

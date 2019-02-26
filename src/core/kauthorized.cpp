@@ -391,7 +391,7 @@ KCONFIGCORE_EXPORT bool authorizeUrlActionInternal(const QString &action, const 
     QUrl destURL(_destURL);
     destURL.setPath(QDir::cleanPath(destURL.path()));
 
-    Q_FOREACH (const URLActionRule &rule, d->urlActionRestrictions) {
+    for (const URLActionRule &rule : qAsConst(d->urlActionRestrictions)) {
         if ((result != rule.permission) && // No need to check if it doesn't make a difference
                 (action == QLatin1String(rule.action.constData())) &&
                 rule.baseMatch(baseURL, baseClass) &&

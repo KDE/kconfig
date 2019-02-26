@@ -81,14 +81,16 @@ QString KDesktopFile::locateLocal(const QString &path)
     QString relativePath;
     QChar plus(QLatin1Char('/'));
     // Relative to config? (e.g. for autostart)
-    Q_FOREACH (const QString &dir, QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation)) {
+    const QStringList lstGenericConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
+    for (const QString &dir : lstGenericConfigLocation) {
         if (path.startsWith(dir + plus)) {
             relativePath = path.mid(dir.length() + 1);
             return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + relativePath;
         }
     }
     // Relative to xdg data dir? (much more common)
-    Q_FOREACH (const QString &dir, QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
+    const QStringList lstGenericDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+    for (const QString &dir : lstGenericDataLocation) {
         if (path.startsWith(dir + plus)) {
             relativePath = path.mid(dir.length() + 1);
         }
@@ -128,13 +130,14 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     // Check if the .desktop file is installed as part of KDE or XDG.
     const QStringList appsDirs = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation);
-    Q_FOREACH (const QString &prefix, appsDirs) {
+    for (const QString &prefix : appsDirs) {
         if (QDir(prefix).exists() && realPath.startsWith(QFileInfo(prefix).canonicalFilePath(), sensitivity)) {
             return true;
         }
     }
     const QString servicesDir = QStringLiteral("kservices5/"); // KGlobal::dirs()->xdgDataRelativePath("services")
-    Q_FOREACH (const QString &xdgDataPrefix, QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
+    const QStringList lstGenericDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+    for (const QString &xdgDataPrefix : lstGenericDataLocation) {
         if (QDir(xdgDataPrefix).exists()) {
             const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
             if (realPath.startsWith(prefix + QLatin1Char('/') + servicesDir, sensitivity)) {
@@ -143,7 +146,8 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
         }
     }
     const QString autostartDir = QStringLiteral("autostart/");
-    Q_FOREACH (const QString &xdgDataPrefix, QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation)) {
+    const QStringList lstConfigPath = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
+    for (const QString &xdgDataPrefix : lstConfigPath) {
         if (QDir(xdgDataPrefix).exists()) {
             const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
             if (realPath.startsWith(prefix + QLatin1Char('/') + autostartDir, sensitivity)) {

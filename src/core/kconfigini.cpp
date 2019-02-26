@@ -299,7 +299,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
     }
 
     // now make sure immutable groups are marked immutable
-    Q_FOREACH (const QByteArray &group, immutableGroups) {
+    for (const QByteArray &group : qAsConst(immutableGroups)) {
         entryMap.setEntry(group, QByteArray(), QByteArray(), KEntryMap::EntryImmutable);
     }
 

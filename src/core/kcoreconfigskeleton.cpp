@@ -902,12 +902,12 @@ void KCoreConfigSkeleton::ItemUrlList::readConfig(KConfig *config)
         mReference = mDefault;
     } else {
         QStringList strList;
-        Q_FOREACH (const QUrl &url, mDefault) {
+        for (const QUrl &url : qAsConst(mDefault)) {
             strList.append(url.toString());
         }
         mReference.clear();
         const QStringList readList = cg.readEntry<QStringList>(mKey, strList);
-        Q_FOREACH (const QString &str, readList) {
+        for (const QString &str : readList) {
             mReference.append(QUrl(str));
         }
     }
@@ -924,7 +924,7 @@ void KCoreConfigSkeleton::ItemUrlList::writeConfig(KConfig *config)
             cg.revertToDefault(mKey);
         } else {
             QStringList strList;
-            Q_FOREACH (const QUrl &url, mReference) {
+            for (const QUrl &url : qAsConst(mReference)) {
                 strList.append(url.toString());
             }
             cg.writeEntry<QStringList>(mKey, strList);

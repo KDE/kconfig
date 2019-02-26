@@ -270,9 +270,9 @@ void ConfigLoaderHandler::addItem()
         }
         item = doubleItem;
     } else if (m_type == QStringLiteral("intlist")) {
-        QStringList tmpList = m_default.split(QLatin1Char(','));
+        const QStringList tmpList = m_default.split(QLatin1Char(','));
         QList<int> defaultList;
-        foreach (const QString &tmp, tmpList) {
+        for (const QString &tmp : tmpList) {
             defaultList.append(tmp.toInt());
         }
         item = m_config->addItemIntList(m_name, *d->newIntList(), defaultList, m_key);
@@ -428,7 +428,8 @@ QStringList KConfigLoader::groupList() const
 bool KConfigLoader::usrWriteConfig()
 {
     if (d->saveDefaults) {
-        foreach (const auto& item, items()) {
+        const auto listItems = items();
+        for (const auto& item : listItems) {
             config()->group(item->group()).writeEntry(item->key(), "");
         }
     }

@@ -1451,7 +1451,8 @@ QString memberMutatorBody(CfgEntry *e, const CfgConfig &cfg)
     out << " ))" << (hasBody ? " {" : "") << endl;
     out << "  " << varExpression << " = v;" << endl;
 
-    Q_FOREACH (const Signal &signal, e->signalList()) {
+    const auto listSignal = e->signalList();
+    for (const Signal &signal : listSignal) {
         if (signal.modify) {
             out << "  Q_EMIT " << This << signal.name << "();" << endl;
         } else {
@@ -1532,7 +1533,7 @@ void beginNamespaces(const QString &p_ns, QTextStream &p_out)
 {
     if (!p_ns.isEmpty()) {
         const QStringList nameSpaces = p_ns.split(QStringLiteral("::"));
-        foreach (const QString &ns, nameSpaces) {
+        for (const QString &ns : nameSpaces) {
             p_out << "namespace " << ns << " {" << endl;
         }
         p_out << endl;
@@ -2075,7 +2076,7 @@ int main(int argc, char **argv)
         h << "    };" << dec << endl << endl;
 
         h << "  Q_SIGNALS:";
-        Q_FOREACH (const Signal &signal, signalList) {
+        for (const Signal &signal : qAsConst(signalList)) {
             h << endl;
             if (!signal.label.isEmpty()) {
                 h << "    /**" << endl;
@@ -2620,7 +2621,7 @@ int main(int argc, char **argv)
         cpp << "{" << endl;
         cpp << "  const bool res = " << cfg.inherits << "::usrSave();" << endl;
         cpp << "  if (!res) return false;" << endl << endl;
-        Q_FOREACH (const Signal &signal, signalList) {
+        for (const Signal &signal : qAsConst(signalList)) {
             if (signal.modify) {
                 continue;
             }
@@ -2665,7 +2666,7 @@ int main(int argc, char **argv)
         if (!signalList.isEmpty())
             cpp << endl;
 
-        Q_FOREACH (const Signal &signal, signalList) {
+        for (const Signal &signal : qAsConst(signalList)) {
             if (signal.modify) {
                 cpp << "  if ( flags & " << signalEnumName(signal.name) << " ) {" << endl;
                 cpp << "    Q_EMIT " << signal.name << "();" << endl;

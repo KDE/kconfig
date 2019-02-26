@@ -731,12 +731,13 @@ QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) 
 
     QVariantList data;
 
-    Q_FOREACH (const T &value, defaultValue) {
+    for (const T &value : defaultValue) {
         data.append(qVariantFromValue(value));
     }
 
     QList<T> list;
-    Q_FOREACH (const QVariant &value, readEntry<QVariantList>(key, data)) {
+    const auto variantList = readEntry<QVariantList>(key, data);
+    for (const QVariant &value : variantList) {
         Q_ASSERT(value.canConvert<T>());
         list.append(qvariant_cast<T>(value));
     }
@@ -757,7 +758,7 @@ void KConfigGroup::writeEntry(const char *key, const QList<T> &list, WriteConfig
     ConversionCheck::to_QVariant<T>();
     ConversionCheck::to_QString<T>();
     QVariantList data;
-    Q_FOREACH (const T &value, list) {
+    for (const T &value : list) {
         data.append(qVariantFromValue(value));
     }
 

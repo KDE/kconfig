@@ -90,7 +90,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
         list->mainConfig = nullptr;
     }
 
-    foreach (auto cfg, *static_cast<const GlobalSharedConfigList*>(list)) {
+    for (auto cfg :  qAsConst(*list)) {
         if (cfg->name() == fileName &&
                 cfg->d_ptr->openFlags == flags &&
                 cfg->locationType() == resType

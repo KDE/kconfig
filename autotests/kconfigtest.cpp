@@ -338,7 +338,8 @@ void KConfigTest::testSimple()
     QCOMPARE(sc2.name(), QString(TEST_SUBDIR "kconfigtest"));
 
     // make sure groupList() isn't returning something it shouldn't
-    Q_FOREACH (const QString &group, sc2.groupList()) {
+    const QStringList lstGroup = sc2.groupList();
+    for (const QString &group : lstGroup) {
         QVERIFY(!group.isEmpty() && group != "<default>");
         QVERIFY(!group.contains(QChar(0x1d)));
     }
@@ -853,14 +854,16 @@ void KConfigTest::testDelete()
     QVERIFY(cf.sync());
 
     int count = 0;
-    Q_FOREACH (const QByteArray &item, readLines())
+    const QList<QByteArray> listLines = readLines();
+    for (const QByteArray &item : listLines)
         if (item.startsWith("devices|")) { // krazy:exclude=strings
             count++;
         }
     QCOMPARE(count, 2);
     cg.deleteEntry("devices|manual|/mnt/ipod");
     QVERIFY(cf.sync());
-    Q_FOREACH (const QByteArray &item, readLines()) {
+    const QList<QByteArray> listLines2 = readLines();
+    for (const QByteArray &item : listLines2) {
         QVERIFY(!item.contains("ipod"));
     }
 }
@@ -898,7 +901,8 @@ void KConfigTest::testDefaultGroup()
     QCOMPARE(lines.first(), QByteArray("TestKey=defaultGroup\n"));
 
     // Now that the group exists make sure it isn't returned from groupList()
-    Q_FOREACH (const QString &group, sc.groupList()) {
+    const QStringList groupList = sc.groupList();
+    for (const QString &group : groupList) {
         QVERIFY(!group.isEmpty() && group != "<default>");
     }
 
@@ -943,7 +947,8 @@ void KConfigTest::testEmptyGroup()
     QCOMPARE(lines.first(), QByteArray("TestKey=emptyGroup\n"));
 
     // Now that the group exists make sure it isn't returned from groupList()
-    Q_FOREACH (const QString &group, sc.groupList()) {
+    const QStringList groupList = sc.groupList();
+    for (const QString &group : groupList) {
         QVERIFY(!group.isEmpty() && group != "<default>");
     }
     emptyGroup.deleteGroup();
@@ -1048,7 +1053,7 @@ void KConfigTest::testMerge()
               << "entry[fr]=French\n";
         QFile file(testConfigDir() + "/mergetest");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
-        Q_FOREACH (const QByteArray &line, lines) {
+        for (const QByteArray &line : qAsConst(lines)) {
             QCOMPARE(line, file.readLine());
         }
     }
@@ -1111,7 +1116,7 @@ void KConfigTest::testOptionOrder()
 
         QFile file(testConfigDir() + "/doubleattrtest");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
-        Q_FOREACH (const QByteArray &line, lines) {
+        for (const QByteArray &line : qAsConst(lines)) {
             QCOMPARE(line, file.readLine());
         }
     }
@@ -1190,7 +1195,8 @@ void KConfigTest::testSubGroup()
     QCOMPARE(groups, QStringList() << "NEG Child1" << "NEG Child4");
 
     // make sure groupList() isn't returning something it shouldn't
-    Q_FOREACH (const QString &group, sc.groupList()) {
+    const QStringList listGroup = sc.groupList();
+    for (const QString &group : listGroup) {
         QVERIFY(!group.isEmpty() && group != "<default>");
         QVERIFY(!group.contains(QChar(0x1d)));
         QVERIFY(!group.contains("subgroup"));
@@ -1866,7 +1872,7 @@ void KConfigTest::testThreads()
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     //futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     //futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);
-    Q_FOREACH (QFuture<void> f, futures) { // krazy:exclude=foreach
+    for (QFuture<void> f : qAsConst(futures)) { // krazy:exclude=foreach
         f.waitForFinished();
     }
 }

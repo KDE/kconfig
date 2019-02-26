@@ -706,10 +706,10 @@ QStringList KConfigPrivate::getGlobalFiles() const
         const bool useEtcKderc = !etc_kderc.isEmpty();
         s_globalFiles()->reserve(paths1.size() + paths2.size() + (useEtcKderc ? 1 : 0));
 
-        Q_FOREACH (const QString &dir1, paths1) {
+        for (const QString &dir1 : paths1) {
             s_globalFiles()->push_front(dir1);
         }
-        Q_FOREACH (const QString &dir2, paths2) {
+        for (const QString &dir2 : paths2) {
             s_globalFiles()->push_front(dir2);
         }
 
@@ -729,7 +729,7 @@ void KConfigPrivate::parseGlobalFiles()
     // TODO: can we cache the values in etc_kderc / other global files
     //       on a per-application basis?
     const QByteArray utf8Locale = locale.toUtf8();
-    Q_FOREACH (const QString &file, globalFiles) {
+    for (const QString &file : globalFiles) {
         KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
 
         if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0)
@@ -760,7 +760,8 @@ void KConfigPrivate::parseConfigFiles()
                         files << canonicalFile;
                     }
                 } else {
-                    Q_FOREACH (const QString &f, QStandardPaths::locateAll(resourceType, fileName)) {
+                    const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
+                    for (const QString &f : localFilesPath) {
                         files.prepend(QFileInfo(f).canonicalFilePath());
                     }
 
@@ -781,7 +782,7 @@ void KConfigPrivate::parseConfigFiles()
 //        qDebug() << "parsing local files" << files;
 
         const QByteArray utf8Locale = locale.toUtf8();
-        foreach (const QString &file, files) {
+        for (const QString &file : qAsConst(files)) {
             if (file.compare(mBackend->filePath(), sPathCaseSensitivity) == 0) {
                 switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseExpansions)) {
                 case KConfigBackend::ParseOk:
@@ -816,7 +817,7 @@ KConfig::AccessMode KConfig::accessMode() const
 void KConfig::addConfigSources(const QStringList &files)
 {
     Q_D(KConfig);
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
         d->extraFiles.push(file);
     }
 
@@ -931,9 +932,9 @@ void KConfig::deleteGroupImpl(const QByteArray &aGroup, WriteConfigFlags flags)
     KEntryMap::EntryOptions options = convertToOptions(flags) | KEntryMap::EntryDeleted;
 
     const QSet<QByteArray> groups = d->allSubGroups(aGroup);
-    Q_FOREACH (const QByteArray &group, groups) {
+    for (const QByteArray &group : groups) {
         const QStringList keys = d->keyListImpl(group);
-        Q_FOREACH (const QString &_key, keys) {
+        for (const QString &_key : keys) {
             const QByteArray &key = _key.toUtf8();
             if (d->canWriteEntry(group, key.constData())) {
                 d->entryMap.setEntry(group, key, QByteArray(), options);

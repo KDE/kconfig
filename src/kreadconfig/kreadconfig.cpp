@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 
 	parser.process(app);
 
-    QStringList groups=parser.values(QStringLiteral("group"));
+    const QStringList groups=parser.values(QStringLiteral("group"));
     QString key=parser.value(QStringLiteral("key"));
     QString file=parser.value(QStringLiteral("file"));
     QString dflt=parser.value(QStringLiteral("default"));
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 		configMustDeleted=true;
 	}
 	KConfigGroup cfgGroup = konfig->group(QString());
-	foreach (const QString &grp, groups)
+    for (const QString &grp : groups)
 		cfgGroup = cfgGroup.group(grp);
     if(type==QStringLiteral("bool")) {
 		dflt=dflt.toLower();

@@ -37,7 +37,7 @@ KConfigGroup openGroup(KConfig *config, const QStringList &lst)
 {
     KConfigGroup cg = config->group("");
 
-    foreach (const auto &i, lst) {
+    for (const auto &i : lst) {
         cg = cg.group(i);
     }
     return cg;

@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 
     parser.process(app);
 
-    QStringList groups=parser.values(QStringLiteral("group"));
+    const QStringList groups=parser.values(QStringLiteral("group"));
     QString key=parser.value(QStringLiteral("key"));
     QString file=parser.value(QStringLiteral("file"));
     QString type=parser.value(QStringLiteral("type")).toLower();
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
         konfig = new KConfig( file, KConfig::NoGlobals );
 
     KConfigGroup cfgGroup = konfig->group(QString());
-    foreach (const QString &grp, groups)
+    for (const QString &grp : groups)
         cfgGroup = cfgGroup.group(grp);
     if ( konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable( key ) ) return 2;
 
