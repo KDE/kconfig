@@ -77,7 +77,10 @@ public:
      * to provide defaults for the settings accessed through this object, or
      * possibly to override those settings in certain cases.
      *
-     * IncludeGlobals does the same, but with the global settings sources.
+     * If IncludeGlobals is selected, the kdeglobals configuration is used
+     * as additional configuration sources to provide defaults. Additionally
+     * selecting CascadeConfig will result in the system-wide kdeglobals sources
+     * also getting included.
      *
      * Note that the main configuration source overrides the cascaded sources,
      * which override those provided to addConfigSources(), which override the
