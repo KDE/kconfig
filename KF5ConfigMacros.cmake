@@ -57,6 +57,11 @@ function (KCONFIG_ADD_KCFG_FILES _sources )
            set(_basename ${_rel_PATH}/${_basename})
        endif()
 
+       # if the file name in the kcfgc is changed, we need to rerun cmake
+       set_property(DIRECTORY APPEND
+           PROPERTY CMAKE_CONFIGURE_DEPENDS ${_tmp_FILE}
+       )
+
        file(READ ${_tmp_FILE} _contents)
        string(REGEX MATCH "File=([^\n]+\\.kcfg)\n" "" "${_contents}")
        set(_kcfg_FILENAME "${CMAKE_MATCH_1}")
