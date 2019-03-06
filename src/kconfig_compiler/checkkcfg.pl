@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-if ( @ARGV != 1 ) {
+if ( @ARGV < 1 ) {
   print STDERR "Missing arg: filename\n";
   exit 1;
 }
@@ -10,8 +10,10 @@ $file = $ARGV[0];
 $file =~ /^(.*)\.[^\.]*$/;
 $filebase = $1;
 
-$file_h = "$filebase.h";
-$file_cpp = "$filebase.cpp";
+$header_extension = @ARGV > 1 ? $ARGV[1] : "h";
+$source_extension = @ARGV > 2 ? $ARGV[2] : "cpp";
+$file_h = "$filebase.$header_extension";
+$file_cpp = "$filebase.$source_extension";
 
 $kcfgc = $file . "c";
 

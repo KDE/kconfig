@@ -241,3 +241,11 @@ gen_kcfg_test_source(test_translation_kde_domain test_translation_kde_domain_SRC
 
 ecm_add_test(TEST_NAME test_translation_kde_domain ${test_translation_kde_domain_SRCS})
 target_link_libraries(test_translation_kde_domain KF5::ConfigGui)
+
+########### next target ###############
+
+set(test_fileextensions_SRCS test_fileextensions_main.cxx)
+gen_kcfg_test_source(test_fileextensions test_fileextensions_SRCS)
+
+ecm_add_test(TEST_NAME test_fileextensions ${test_fileextensions_SRCS})
+target_link_libraries(test_fileextensions KF5::ConfigGui)

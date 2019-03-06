@@ -97,6 +97,18 @@ The following options are read from the kcfgc file:
   <td>Name of kcfg file containing the options the class is generated for</td>
 </tr>
 <tr>
+  <td><b>HeaderExtension</b></td>
+  <td>string</td>
+  <td>h</td>
+  <td>Extension to use for the name of the generated C++ header files. Since KF 5.57</td>
+</tr>
+<tr>
+  <td><b>SourceExtension</b></td>
+  <td>string</td>
+  <td>cpp</td>
+  <td>Extension to use for the name of the generated C++ source file. Since KF 5.57</td>
+</tr>
+<tr>
   <td><b>NameSpace</b></td>
   <td>string</td>
   <td>-</td>

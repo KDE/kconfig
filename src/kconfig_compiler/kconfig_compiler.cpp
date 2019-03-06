@@ -108,6 +108,8 @@ public:
             translationSystem = QtTranslation;
         }
         qCategoryLoggingName = codegenConfig.value(QStringLiteral("CategoryLoggingName"), QString()).toString();
+        headerExtension = codegenConfig.value(QStringLiteral("HeaderExtension"), QStringLiteral("h")).toString();
+        sourceExtension = codegenConfig.value(QStringLiteral("SourceExtension"), QStringLiteral("cpp")).toString();
     }
 
 public:
@@ -131,6 +133,8 @@ public:
     QStringList mutators;
     QStringList defaultGetters;
     QString qCategoryLoggingName;
+    QString headerExtension;
+    QString sourceExtension;
     bool allMutators;
     bool setUserTexts;
     bool allDefaultGetters;
@@ -1742,8 +1746,8 @@ int main(int argc, char **argv)
     }
 #endif
 
-    QString headerFileName = baseName + ".h";
-    QString implementationFileName = baseName + ".cpp";
+    QString headerFileName = baseName + '.' + cfg.headerExtension;
+    QString implementationFileName = baseName + '.' + cfg.sourceExtension;
     QString mocFileName = baseName + ".moc";
     QString cppPreamble; // code to be inserted at the beginnin of the cpp file, e.g. initialization of static values
 
@@ -2199,7 +2203,7 @@ int main(int argc, char **argv)
 
     if (cfg.customAddons) {
         h << "    // Include custom additions" << endl;
-        h << "    #include \"" << filenameOnly(baseName) << "_addons.h\"" << endl;
+        h << "    #include \"" << filenameOnly(baseName) << "_addons." << cfg.headerExtension << '"' << endl;
     }
 
     h << "};" << endl << endl;
