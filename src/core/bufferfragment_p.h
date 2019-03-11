@@ -150,7 +150,7 @@ public:
         return (other.size() != (int)len || memcmp(d, other.constData(), len) != 0);
     }
 
-    bool operator==(const BufferFragment &other) const
+    bool operator==(const BufferFragment other) const
     {
         return other.len == len && !memcmp(d, other.d, len);
     }
@@ -195,7 +195,7 @@ private:
     unsigned int len;
 };
 
-uint qHash(const KConfigIniBackend::BufferFragment &fragment)
+uint qHash(const KConfigIniBackend::BufferFragment fragment)
 {
     const uchar *p = reinterpret_cast<const uchar*>(fragment.constData());
     const int len = fragment.length();

@@ -44,7 +44,7 @@
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
 
-static QByteArray lookup(const KConfigIniBackend::BufferFragment &fragment, QHash<KConfigIniBackend::BufferFragment, QByteArray> *cache)
+static QByteArray lookup(const KConfigIniBackend::BufferFragment fragment, QHash<KConfigIniBackend::BufferFragment, QByteArray> *cache)
 {
     auto it = cache->constFind(fragment);
     if (it != cache->constEnd()) {
