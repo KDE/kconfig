@@ -11,7 +11,7 @@ application desktop files).
 Immutable Entries
 -----------------
 
-KConfig's cadcading configuration mechanism usually causes values from earlier,
+KConfig's cascading configuration mechanism usually causes values from earlier,
 "global" configuration files to be overridden by later, "local" ones.
 Typically, the system administrator might set global defaults, and a user might
 override them in their local configuration files.
