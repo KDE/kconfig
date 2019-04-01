@@ -309,7 +309,7 @@ void KEntryMap::setEntryOption(QMap< KEntryKey, KEntry >::Iterator it, KEntryMap
     }
 }
 
-bool KEntryMap::revertEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
+bool KEntryMap::revertEntry(const QByteArray &group, const QByteArray &key, KEntryMap::EntryOptions options, KEntryMap::SearchFlags flags)
 {
     Q_ASSERT((flags & KEntryMap::SearchDefaults) == 0);
     Iterator entry = findEntry(group, key, flags);
@@ -330,6 +330,7 @@ bool KEntryMap::revertEntry(const QByteArray &group, const QByteArray &key, KEnt
         } else {
             entry->mValue = QByteArray();
         }
+        entry->bNotify = entry->bNotify || (options & EntryNotify);
         entry->bDirty = true;
         entry->bReverted = true; // skip it when writing out to disk
 

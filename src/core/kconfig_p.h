@@ -50,7 +50,8 @@ public:
 
     void putData(const QByteArray &group, const char *key, const QByteArray &value,
                  KConfigBase::WriteConfigFlags flags, bool expand = false);
-    void revertEntry(const QByteArray &group, const char *key);
+    void revertEntry(const QByteArray &group, const char *key,
+                     KConfigBase::WriteConfigFlags flags);
     QStringList groupList(const QByteArray &group) const;
     // copies the entries from @p source to @p otherGroup changing all occurrences
     // of @p source with @p destination

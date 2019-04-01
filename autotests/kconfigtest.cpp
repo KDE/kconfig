@@ -1926,6 +1926,15 @@ void KConfigTest::testNotify()
     QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entryA"}));
 
+    //revert to default an entry
+    watcherSpy.clear();
+    myConfigGroup.revertToDefault("entryA", KConfig::Persistent | KConfig::Notify);
+    config.sync();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.count(), 1);
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"entryA"}));
+
     //deleting a group, should notify that every entry in that group has changed
     watcherSpy.clear();
     myConfigGroup.deleteGroup("aSubGroup", KConfig::Persistent | KConfig::Notify);

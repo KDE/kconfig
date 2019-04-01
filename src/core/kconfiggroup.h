@@ -578,9 +578,14 @@ public:
      *
      * @param key The key of the entry to revert.
      */
+    // TODO KF6 merge with the other one
     void revertToDefault(const QString &key);
+    void revertToDefault(const QString &key, WriteConfigFlags pFlag);
+
     /** Overload for revertToDefault(const QString&) */
+    // TODO KF6 merge with the other one
     void revertToDefault(const char *key);
+    void revertToDefault(const char *key, WriteConfigFlags pFlag);
 
     /**
      * Whether a default is specified for an entry in either the

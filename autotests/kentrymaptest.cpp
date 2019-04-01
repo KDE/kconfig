@@ -123,11 +123,11 @@ void KEntryMapTest::testDefault()
     QCOMPARE(entry1->mValue, entry2->mValue);
 
     // revert entry1
-    map.revertEntry(group1, key1);
+    map.revertEntry(group1, key1, EntryOptions());
     QCOMPARE(defaultEntry->mValue, entry1->mValue);
 
     // revert entry2, no default --> should be marked as deleted
-    map.revertEntry(group1, key2);
+    map.revertEntry(group1, key2, EntryOptions());
     QCOMPARE(entry2->mValue, QByteArray());
     QVERIFY(entry2->bDirty);
     QVERIFY(entry2->bReverted);

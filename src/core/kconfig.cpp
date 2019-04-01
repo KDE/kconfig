@@ -1011,9 +1011,11 @@ void KConfigPrivate::putData(const QByteArray &group, const char *key,
     }
 }
 
-void KConfigPrivate::revertEntry(const QByteArray &group, const char *key)
+void KConfigPrivate::revertEntry(const QByteArray &group, const char *key, KConfigBase::WriteConfigFlags flags)
 {
-    bool dirtied = entryMap.revertEntry(group, key);
+    KEntryMap::EntryOptions options = convertToOptions(flags);
+
+    bool dirtied = entryMap.revertEntry(group, key, options);
     if (dirtied) {
         bDirty = true;
     }

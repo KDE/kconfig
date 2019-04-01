@@ -223,7 +223,7 @@ public:
         setEntryOption(findEntry(group, key, flags), option, bf);
     }
 
-    bool revertEntry(const QByteArray &group, const QByteArray &key, SearchFlags flags = SearchFlags());
+    bool revertEntry(const QByteArray &group, const QByteArray &key, EntryOptions options, SearchFlags flags = SearchFlags());
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::SearchFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)

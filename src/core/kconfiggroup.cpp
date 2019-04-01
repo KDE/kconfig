@@ -1164,15 +1164,25 @@ void KConfigGroup::deleteEntry(const QString &key, WriteConfigFlags flags)
 
 void KConfigGroup::revertToDefault(const char *key)
 {
+    revertToDefault(key, WriteConfigFlags());
+}
+
+void KConfigGroup::revertToDefault(const char *key, WriteConfigFlags flags)
+{
     Q_ASSERT_X(isValid(), "KConfigGroup::revertToDefault", "accessing an invalid group");
     Q_ASSERT_X(!d->bConst, "KConfigGroup::revertToDefault", "writing to a read-only group");
 
-    config()->d_func()->revertEntry(d->fullName(), key);
+    config()->d_func()->revertEntry(d->fullName(), key, flags);
 }
 
 void KConfigGroup::revertToDefault(const QString &key)
 {
-    revertToDefault(key.toUtf8().constData());
+    revertToDefault(key, WriteConfigFlags());
+}
+
+void KConfigGroup::revertToDefault(const QString &key, WriteConfigFlags flags)
+{
+    revertToDefault(key.toUtf8().constData(), flags);
 }
 
 bool KConfigGroup::hasDefault(const char *key) const
