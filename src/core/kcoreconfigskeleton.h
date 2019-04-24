@@ -133,6 +133,19 @@ public:
     QString whatsThis() const;
 
     /**
+      The write flags to be used when writing configuration.
+      @since 5.58
+    */
+    void setWriteFlags(KConfigBase::WriteConfigFlags flags);
+
+    /**
+      Return write flags to be used when writing configuration.
+      They should be passed to every call of writeEntry() and revertToDefault().
+      @since 5.58
+    */
+    KConfigBase::WriteConfigFlags writeFlags() const;
+
+    /**
      * This function is called by @ref KCoreConfigSkeleton to read the value for this setting
      * from a config file.
      */
@@ -141,6 +154,7 @@ public:
     /**
      * This function is called by @ref KCoreConfigSkeleton to write the value of this setting
      * to a config file.
+     * Make sure to pass writeFlags() to every call of writeEntry() and revertToDefault().
      */
     virtual void writeConfig(KConfig *) = 0;
 
@@ -274,9 +288,9 @@ public:
         if (mReference != mLoadedValue) { // Is this needed?
             KConfigGroup cg(config, mGroup);
             if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
-                cg.revertToDefault(mKey);
+                cg.revertToDefault(mKey, writeFlags());
             } else {
-                cg.writeEntry(mKey, mReference);
+                cg.writeEntry(mKey, mReference, writeFlags());
             }
             mLoadedValue = mReference;
         }

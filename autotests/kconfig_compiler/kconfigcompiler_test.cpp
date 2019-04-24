@@ -48,6 +48,7 @@ static CompilerTestSet testCases = {
     "test_dpointer.cpp", "test_dpointer.h",
     "test_qdebugcategory.cpp", "test_qdebugcategory.h",
     "test_signal.cpp", "test_signal.h",
+    "test_notifiers.cpp", "test_notifiers.h",
     "test_translation_kde.cpp", "test_translation_kde.h",
     "test_translation_kde_domain.cpp", "test_translation_kde_domain.h",
     "test_translation_qt.cpp", "test_translation_qt.h",

@@ -94,6 +94,8 @@ public:
         setUserTexts = codegenConfig.value(QStringLiteral("SetUserTexts"), false).toBool();
         defaultGetters = codegenConfig.value(QStringLiteral("DefaultValueGetters"), QStringList()).toStringList();
         allDefaultGetters = (defaultGetters.count() == 1) && (defaultGetters.at(0).toLower() == QLatin1String("true"));
+        notifiers = codegenConfig.value(QStringLiteral("Notifiers"), QStringList()).toStringList();
+        allNotifiers = ((notifiers.count() == 1) && (notifiers.at(0).toLower() == QLatin1String("true")));
         globalEnums = codegenConfig.value(QStringLiteral("GlobalEnums"), false).toBool();
         useEnumTypes = codegenConfig.value(QStringLiteral("UseEnumTypes"), false).toBool();
         const QString trString = codegenConfig.value(QStringLiteral("TranslationSystem")).toString().toLower();
@@ -132,6 +134,7 @@ public:
     QStringList sourceIncludes;
     QStringList mutators;
     QStringList defaultGetters;
+    QStringList notifiers;
     QString qCategoryLoggingName;
     QString headerExtension;
     QString sourceExtension;
@@ -142,6 +145,7 @@ public:
     bool globalEnums;
     bool useEnumTypes;
     bool itemAccessors;
+    bool allNotifiers;
     TranslationSystem translationSystem;
     QString translationDomain;
     bool generateProperties;
@@ -2482,6 +2486,10 @@ int main(int argc, char **argv)
 
             if (cfg.setUserTexts) {
                 cpp << userTextsFunctions((*itEntry), cfg);
+            }
+
+            if (cfg.allNotifiers || cfg.notifiers.contains((*itEntry)->name())) {
+                cpp << "  " << itemPath(*itEntry, cfg) << "->setWriteFlags(KConfigBase::Notify);" << endl;
             }
 
             cpp << "  addItem( " << itemPath(*itEntry, cfg);

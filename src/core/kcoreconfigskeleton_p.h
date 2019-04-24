@@ -52,8 +52,10 @@ class KConfigSkeletonItemPrivate
 public:
     KConfigSkeletonItemPrivate()
         : mIsImmutable(true)
+        , mWriteFlags(KConfigBase::Normal)
     {}
     bool mIsImmutable; ///< Indicates this item is immutable
+    KConfigBase::WriteConfigFlags mWriteFlags; ///< The flags to pass to calls of writeEntry() and revertToDefault()
 
     QString mLabel; ///< The label for this item
     QString mToolTip; ///< The ToolTip text for this item

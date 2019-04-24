@@ -189,6 +189,15 @@ gen_kcfg_test_source(test_signal test_signal_SRCS GENERATE_MOC)
 ecm_add_test(TEST_NAME test_signal ${test_signal_SRCS})
 target_link_libraries(test_signal KF5::ConfigGui)
 
+
+########### next target ###############
+
+set(test_notifiers_SRCS test_notifiers_main.cpp )
+gen_kcfg_test_source(test_notifiers test_notifiers_SRCS)
+ecm_add_test(TEST_NAME test_notifiers ${test_notifiers_SRCS})
+target_link_libraries(test_notifiers KF5::ConfigGui)
+
+
 ########### next target ###############
 
 set(kconfigcompiler_test_signals_SRCS kconfigcompiler_test_signals.cpp)

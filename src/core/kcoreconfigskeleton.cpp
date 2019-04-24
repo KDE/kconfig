@@ -110,6 +110,16 @@ QString KConfigSkeletonItem::whatsThis() const
     return d->mWhatsThis;
 }
 
+void KConfigSkeletonItem::setWriteFlags(KConfigBase::WriteConfigFlags flags)
+{
+    d->mWriteFlags = flags;
+}
+
+KConfigBase::WriteConfigFlags KConfigSkeletonItem::writeFlags() const
+{
+    return d->mWriteFlags;
+}
+
 QVariant KConfigSkeletonItem::minValue() const
 {
     return QVariant();
@@ -144,13 +154,13 @@ void KCoreConfigSkeleton::ItemString::writeConfig(KConfig *config)
     if (mReference != mLoadedValue) { // WABA: Is this test needed?
         KConfigGroup cg(config, mGroup);
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
-            cg.revertToDefault(mKey);
+            cg.revertToDefault(mKey, writeFlags());
         } else if (mType == Path) {
-            cg.writePathEntry(mKey, mReference);
+            cg.writePathEntry(mKey, mReference, writeFlags());
         } else if (mType == Password) {
-            cg.writeEntry(mKey, obscuredString(mReference));
+            cg.writeEntry(mKey, obscuredString(mReference), writeFlags());
         } else {
-            cg.writeEntry(mKey, mReference);
+            cg.writeEntry(mKey, mReference, writeFlags());
         }
         mLoadedValue = mReference;
     }
@@ -215,9 +225,9 @@ void KCoreConfigSkeleton::ItemUrl::writeConfig(KConfig *config)
     if (mReference != mLoadedValue) { // WABA: Is this test needed?
         KConfigGroup cg(config, mGroup);
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
-            cg.revertToDefault(mKey);
+            cg.revertToDefault(mKey, writeFlags());
         } else {
-            cg.writeEntry<QString>(mKey, mReference.toString());
+            cg.writeEntry<QString>(mKey, mReference.toString(), writeFlags());
         }
         mLoadedValue = mReference;
     }
@@ -479,11 +489,11 @@ void KCoreConfigSkeleton::ItemEnum::writeConfig(KConfig *config)
     if (mReference != mLoadedValue) { // WABA: Is this test needed?
         KConfigGroup cg(config, mGroup);
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
-            cg.revertToDefault(mKey);
+            cg.revertToDefault(mKey, writeFlags());
         } else if ((mReference >= 0) && (mReference < mChoices.count())) {
-            cg.writeEntry(mKey, mChoices[mReference].name);
+            cg.writeEntry(mKey, mChoices[mReference].name, writeFlags());
         } else {
-            cg.writeEntry(mKey, mReference);
+            cg.writeEntry(mKey, mReference, writeFlags());
         }
         mLoadedValue = mReference;
     }
@@ -879,10 +889,10 @@ void KCoreConfigSkeleton::ItemPathList::writeConfig(KConfig *config)
     if (mReference != mLoadedValue) { // WABA: Is this test needed?
         KConfigGroup cg(config, mGroup);
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
-            cg.revertToDefault(mKey);
+            cg.revertToDefault(mKey, writeFlags());
         } else {
             QStringList sl = mReference;
-            cg.writePathEntry(mKey, sl);
+            cg.writePathEntry(mKey, sl, writeFlags());
         }
         mLoadedValue = mReference;
     }
@@ -921,13 +931,13 @@ void KCoreConfigSkeleton::ItemUrlList::writeConfig(KConfig *config)
     if (mReference != mLoadedValue) { // WABA: Is this test needed?
         KConfigGroup cg(config, mGroup);
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
-            cg.revertToDefault(mKey);
+            cg.revertToDefault(mKey, writeFlags());
         } else {
             QStringList strList;
             for (const QUrl &url : qAsConst(mReference)) {
                 strList.append(url.toString());
             }
-            cg.writeEntry<QStringList>(mKey, strList);
+            cg.writeEntry<QStringList>(mKey, strList, writeFlags());
         }
         mLoadedValue = mReference;
     }
