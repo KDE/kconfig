@@ -725,7 +725,7 @@ template <typename T>
 T KConfigGroup::readEntry(const char *key, const T &defaultValue) const
 {
     ConversionCheck::to_QVariant<T>();
-    return qvariant_cast<T>(readEntry(key, qVariantFromValue(defaultValue)));
+    return qvariant_cast<T>(readEntry(key, QVariant::fromValue(defaultValue)));
 }
 
 template <typename T>
@@ -737,7 +737,7 @@ QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) 
     QVariantList data;
 
     for (const T &value : defaultValue) {
-        data.append(qVariantFromValue(value));
+        data.append(QVariant::fromValue(value));
     }
 
     QList<T> list;
@@ -754,7 +754,7 @@ template <typename T>
 void KConfigGroup::writeEntry(const char *key, const T &value, WriteConfigFlags pFlags)
 {
     ConversionCheck::to_QVariant<T>();
-    writeEntry(key, qVariantFromValue(value), pFlags);
+    writeEntry(key, QVariant::fromValue(value), pFlags);
 }
 
 template <typename T>
@@ -764,7 +764,7 @@ void KConfigGroup::writeEntry(const char *key, const QList<T> &list, WriteConfig
     ConversionCheck::to_QString<T>();
     QVariantList data;
     for (const T &value : list) {
-        data.append(qVariantFromValue(value));
+        data.append(QVariant::fromValue(value));
     }
 
     writeEntry(key, data, pFlags);
