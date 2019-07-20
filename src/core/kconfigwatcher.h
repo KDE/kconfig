@@ -21,6 +21,7 @@
 #define KCONFIGWATCHER_H
 
 #include <QObject>
+#include <QSharedPointer>
 
 #include <KSharedConfig>
 #include <KConfigGroup>
