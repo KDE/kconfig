@@ -1,12 +1,35 @@
 from conans import ConanFile, CMake
+import yaml
+import re
+import os.path
+
+
+def getVersion():
+    if(os.path.exists("CMakeLists.txt")):
+        regx = re.compile(r"^set\(.*VERSION\s(\"|')[0-9.]+(\"|')\)")
+        with open("CMakeLists.txt") as f:
+            for line in f:
+                if regx.match(line):
+                    version = re.search("\"[0-9\.]+\"", line)
+                    version = version.group().replace("\"", "")
+                    return version
+    return None
+
+
+def getMetaField(field):
+    if(os.path.exists("metainfo.yaml")):
+        with open("metainfo.yaml") as f:
+            metainfo = yaml.load(f.read())
+        return metainfo[field]
+    return None
 
 
 class KConfigConan(ConanFile):
-    name = "kconfig"
-    version = "5.50.0"
-    license = "GPLv2"
-    url = "https://api.kde.org/frameworks/kconfig/html/index.html"
-    description = "Persistent platform-independent application settings."
+    name = getMetaField('name')
+    version = getVersion()
+    license = getMetaField('license')
+    url = getMetaField('url')
+    description = getMetaField('description')
 
     settings = "os", "compiler", "build_type", "arch"
 
