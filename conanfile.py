@@ -11,9 +11,10 @@ class KConfigConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
     requires = (
-        "extra-cmake-modules/5.50.0@kde/testing", # CMakeLists.txt requires 5.49.0
+        # CMakeLists.txt requires 5.49.0
+        "extra-cmake-modules/[>=5.50.0]@kde/testing",
 
-        "Qt/5.11.1@bincrafters/stable"
+        "qt/[>=5.11.3]@bincrafters/stable"
         # "qt-gui/5.8.0@qt/testing",
         # "qt-xml/5.8.0@qt/testing",
     )
@@ -23,7 +24,7 @@ class KConfigConan(ConanFile):
         "type": "git",
         "url": "auto",
         "revision": "auto"
-     }
+    }
 
     def build(self):
         cmake = CMake(self)
