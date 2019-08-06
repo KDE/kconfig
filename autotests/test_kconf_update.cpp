@@ -44,18 +44,18 @@ void TestKConfUpdate::initTestCase()
 static void writeFile(const QString &path, const QString &content)
 {
     QFile file(path);
-    bool ok = file.open(QIODevice::WriteOnly);
-    Q_UNUSED(ok) // silence warnings
-    QVERIFY2(ok, qPrintable(path));
+    if (!file.open(QIODevice::WriteOnly)) {
+        qFatal("Could not write to '%s'", qPrintable(path));
+    }
     file.write(content.toUtf8());
 }
 
 static QString readFile(const QString &path)
 {
     QFile file(path);
-    bool ok = file.open(QIODevice::ReadOnly);
-    Q_UNUSED(ok) // silence warnings
-    Q_ASSERT(ok);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qFatal("Could not read '%s'", qPrintable(path));
+    }
     QString ret = QString::fromUtf8(file.readAll());
 #ifdef Q_OS_WIN
     // KConfig always writes files with the native line ending, the test comparison uses \n
@@ -330,8 +330,10 @@ void TestKConfUpdate::test()
     if (useVersion5)
         updContent.prepend("Version=5\n");
 
-    QString oldConfPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + oldConfName;
-    QString newConfPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + newConfName;
+    const QString configDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+    QVERIFY(QDir().mkpath(configDir));
+    QString oldConfPath = configDir + QLatin1Char('/') + oldConfName;
+    QString newConfPath = configDir + QLatin1Char('/') + newConfName;
 
     QFile::remove(oldConfPath);
     QFile::remove(newConfPath);
