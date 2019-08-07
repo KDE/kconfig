@@ -28,19 +28,6 @@
 #include <cstdlib>
 #include <fcntl.h>
 
-#ifdef _MSC_VER
-static inline FILE *popen(const char *cmd, const char *mode)
-{
-    return _popen(cmd, mode);
-}
-static inline int pclose(FILE *stream)
-{
-    return _pclose(stream);
-}
-#else
-#include <unistd.h>
-#endif
-
 #include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
@@ -183,29 +170,7 @@ QString KConfigPrivate::expandString(const QString &value)
     int nDollarPos = aValue.indexOf(QLatin1Char('$'));
     while (nDollarPos != -1 && nDollarPos + 1 < aValue.length()) {
         // there is at least one $
-        if (aValue[nDollarPos + 1] == QLatin1Char('(')) {
-            int nEndPos = nDollarPos + 1;
-            // the next character is not $
-            while ((nEndPos <= aValue.length()) && (aValue[nEndPos] != QLatin1Char(')'))) {
-                nEndPos++;
-            }
-            nEndPos++;
-            QString cmd = aValue.mid(nDollarPos + 2, nEndPos - nDollarPos - 3);
-
-            QString result;
-
-// FIXME: wince does not have pipes
-#ifndef _WIN32_WCE
-            FILE *fs = popen(QFile::encodeName(cmd).data(), "r");
-            if (fs) {
-                QTextStream ts(fs, QIODevice::ReadOnly);
-                result = ts.readAll().trimmed();
-                pclose(fs);
-            }
-#endif
-            aValue.replace(nDollarPos, nEndPos - nDollarPos, result);
-            nDollarPos += result.length();
-        } else if (aValue[nDollarPos + 1] != QLatin1Char('$')) {
+        if (aValue[nDollarPos + 1] != QLatin1Char('$')) {
             int nEndPos = nDollarPos + 1;
             // the next character is not $
             QStringRef aVarName;
