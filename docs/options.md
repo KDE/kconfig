@@ -67,18 +67,15 @@ environment variables (and `XDG_CONFIG_HOME` in particular).
 Shell Expansion
 ---------------
 
-If an entry is marked with `$e`, environment variables and shell commands will
-be expanded.
+If an entry is marked with `$e`, environment variables will be expanded.
 
     Name[$e]=$USER
-    Host[$e]=$(hostname)
 
 When the "Name" entry is read `$USER` will be replaced with the value of the
-`$USER` environment variable, and `$(hostname)` will be replaced with the output
-of the `hostname` command.
+`$USER` environment variable.
 
-Note that the application will replace `$USER` and `$(hostname)` with their
-respective expanded values after saving. To prevent this combine the `$e` option
+Note that the application will replace `$USER` with its
+expanded value after saving. To prevent this combine the `$e` option
 with `$i` (immmutable) option.  For example:
 
     Name[$ei]=$USER
