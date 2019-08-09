@@ -18,9 +18,13 @@ if(KCONFIG_USE_GUI)
     find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
 endif()
 
-option(KCONFIG_USE_DBUS "Build components using Qt5DBus" ON)
-if(KCONFIG_USE_DBUS)
-    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
+if (NOT ANDROID)
+    option(KCONFIG_USE_DBUS "Build components using Qt5DBus" ON)
+    if(KCONFIG_USE_DBUS)
+        find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
+    endif()
+else()
+    set(KCONFIG_USE_DBUS Off)
 endif()
 
 
