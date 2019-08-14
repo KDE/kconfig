@@ -34,6 +34,7 @@
 #include "kconfig_p.h"
 #include "kconfiggroup.h"
 #include "kconfigini_p.h"
+#include "kconfig_core_log_settings.h"
 
 class KDesktopFilePrivate : public KConfigPrivate
 {
@@ -158,7 +159,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     // Forbid desktop files outside of standard locations if kiosk is set so
     if (!KAuthorized::authorize(QStringLiteral("run_desktop_files"))) {
-        qWarning() << "Access to '" << path << "' denied because of 'run_desktop_files' restriction." << endl;
+        qCWarning(KCONFIG_CORE_LOG) << "Access to '" << path << "' denied because of 'run_desktop_files' restriction." << endl;
         return false;
     }
 
@@ -169,7 +170,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
         return true;
     }
 
-    qWarning() << "Access to '" << path << "' denied, not owned by root, executable flag not set." << endl;
+    qCWarning(KCONFIG_CORE_LOG) << "Access to '" << path << "' denied, not owned by root, executable flag not set." << endl;
     return false;
 }
 

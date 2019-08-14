@@ -20,6 +20,7 @@
 #include "kconfigwatcher.h"
 
 #include "config-kconfig.h"
+#include "kconfig_core_log_settings.h"
 
 #if KCONFIG_USE_DBUS
 #include <QDBusConnection>
@@ -85,7 +86,7 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config):
                                               SLOT(onConfigChangeNotification(QHash<QString,QByteArrayList>)));
     }
 #else
-    qWarning() << "Use of KConfigWatcher without DBus support. You will not receive updates";
+    qCWarning(KCONFIG_CORE_LOG) << "Use of KConfigWatcher without DBus support. You will not receive updates";
 #endif
 }
 

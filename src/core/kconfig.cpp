@@ -24,6 +24,7 @@
 #include "kconfig_p.h"
 
 #include "config-kconfig.h"
+#include "kconfig_core_log_settings.h"
 
 #include <cstdlib>
 #include <fcntl.h>
@@ -408,7 +409,7 @@ bool KConfig::sync()
 
         // lock the local file
         if (d->configState == ReadWrite && !d->lockLocal()) {
-            qWarning() << "couldn't lock local file";
+            qCWarning(KCONFIG_CORE_LOG) << "couldn't lock local file";
             return false;
         }
 
@@ -438,7 +439,7 @@ bool KConfig::sync()
         if (d->wantGlobals() && writeGlobals) {
             QExplicitlySharedDataPointer<KConfigBackend> tmp = KConfigBackend::create(*sGlobalFileName);
             if (d->configState == ReadWrite && !tmp->lock()) {
-                qWarning() << "couldn't lock global file";
+                qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
 
                 //unlock the local config if we're returning early
                 if (d->mBackend->isLocked()) {

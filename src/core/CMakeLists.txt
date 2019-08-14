@@ -13,6 +13,11 @@ set(libkconfigcore_SRCS
    kconfigwatcher.cpp
 )
 
+ecm_qt_declare_logging_category(libkconfigcore_SRCS
+                                HEADER kconfig_core_log_settings.h
+                                IDENTIFIER KCONFIG_CORE_LOG
+                                CATEGORY_NAME kf5.kconfig.core)
+
 configure_file(config-kconfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconfig.h )
 
 add_library(KF5ConfigCore ${libkconfigcore_SRCS})
