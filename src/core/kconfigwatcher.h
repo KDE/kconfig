@@ -49,6 +49,8 @@ public:
      */
     static Ptr create(const KSharedConfig::Ptr &config);
 
+    ~KConfigWatcher() override;
+
 Q_SIGNALS:
     /**
      * Emitted when a config group has changed
@@ -65,7 +67,7 @@ private Q_SLOTS:
 private:
     KConfigWatcher(const KSharedConfig::Ptr &config);
     Q_DISABLE_COPY(KConfigWatcher)
-    KConfigWatcherPrivate *const d;
+    const QScopedPointer<KConfigWatcherPrivate> d;
 };
 
 #endif
