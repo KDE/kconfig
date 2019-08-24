@@ -69,9 +69,9 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config):
     d->m_config = config;
 
     QStringList watchedPaths;
-    watchedPaths <<QStringLiteral("/") + d->m_config->name();
+    watchedPaths << QLatin1Char('/') + d->m_config->name();
     for (const QString file: d->m_config->additionalConfigSources()) {
-        watchedPaths << QStringLiteral("/") + file;
+        watchedPaths << QLatin1Char('/') + file;
     }
     if (d->m_config->openFlags() & KConfig::IncludeGlobals) {
         watchedPaths << QStringLiteral("/kdeglobals");

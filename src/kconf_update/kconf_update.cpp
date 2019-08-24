@@ -751,7 +751,7 @@ void KonfUpdate::gotScript(const QString &_script)
         return;
     }
 
-    QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kconf_update/") + script);
+    QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kconf_update/") + script);
     if (path.isEmpty()) {
         if (interpreter.isEmpty()) {
             path = CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/" + script;
