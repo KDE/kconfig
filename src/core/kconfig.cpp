@@ -202,11 +202,11 @@ QString KConfigPrivate::expandString(const QString &value)
                     if (!pEnv.isEmpty()) {
                         env = QString::fromLocal8Bit(pEnv.constData());
                     } else {
-                        if (aVarName == QStringLiteral("QT_DATA_HOME")) {
+                        if (aVarName == QLatin1String("QT_DATA_HOME")) {
                             env = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-                        } else if (aVarName == QStringLiteral("QT_CONFIG_HOME")) {
+                        } else if (aVarName == QLatin1String("QT_CONFIG_HOME")) {
                             env = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
-                        } else if (aVarName == QStringLiteral("QT_CACHE_HOME")) {
+                        } else if (aVarName == QLatin1String("QT_CACHE_HOME")) {
                             env = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation);
                         }
                     }
