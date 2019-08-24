@@ -1110,7 +1110,7 @@ void KConfigGroup::writeXdgListEntry(const char *key, const QStringList &list, W
     const QStringList::ConstIterator end = list.constEnd();
     for (; it != end; ++it) {
         QString val(*it);
-        val.replace(QLatin1Char('\\'), QStringLiteral("\\\\")).replace(QLatin1Char(';'), QStringLiteral("\\;"));
+        val.replace(QLatin1Char('\\'), QLatin1String("\\\\")).replace(QLatin1Char(';'), QLatin1String("\\;"));
         value += val;
         value += QLatin1Char(';');
     }
