@@ -1576,12 +1576,12 @@ int main(int argc, char **argv)
     parser.addPositionalArgument(QStringLiteral("file.kcfg"), QStringLiteral("Input kcfg XML file"));
     parser.addPositionalArgument(QStringLiteral("file.kcfgc"), QStringLiteral("Code generation options file"));
 
-    QCommandLineOption targetDirectoryOption(QStringList() << QStringLiteral("d") << QStringLiteral("directory"),
+    QCommandLineOption targetDirectoryOption(QStringList { QStringLiteral("d"), QStringLiteral("directory") },
             QCoreApplication::translate("main", "Directory to generate files in [.]"),
             QCoreApplication::translate("main", "directory"), QStringLiteral("."));
     parser.addOption(targetDirectoryOption);
 
-    QCommandLineOption licenseOption (QStringList() << QStringLiteral("l") << QStringLiteral("license"), QCoreApplication::translate("main", "Display software license."));
+    QCommandLineOption licenseOption (QStringList { QStringLiteral("l"), QStringLiteral("license") }, QCoreApplication::translate("main", "Display software license."));
     parser.addOption (licenseOption);
 
     parser.addVersionOption();

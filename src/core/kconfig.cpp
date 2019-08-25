@@ -520,7 +520,7 @@ void KConfig::checkUpdate(const QString &id, const QString &updateFile)
     const QString cfg_id = updateFile + QLatin1Char(':') + id;
     const QStringList ids = cg.readEntry("update_info", QStringList());
     if (!ids.contains(cfg_id)) {
-        QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList() << QStringLiteral("--check") << updateFile);
+        QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList { QStringLiteral("--check"), updateFile });
         reparseConfiguration();
     }
 }
