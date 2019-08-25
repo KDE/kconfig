@@ -51,7 +51,7 @@ public:
 #define checkStartWildCard(s, b) \
     if (s.isEmpty()) b = true; \
     else if (s[0] == QLatin1Char('*')) \
-    { b = true; s = s.mid(1); } \
+    { b = true; s.remove(0, 1); } \
     else b = false;
 #define checkEqual(s, b) \
     b = (s == QLatin1String("="));
