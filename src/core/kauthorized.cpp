@@ -46,7 +46,7 @@ public:
 #define checkExactMatch(s, b) \
     if (s.isEmpty()) b = true; \
     else if (s[s.length()-1] == QLatin1Char('!')) \
-    { b = false; s.truncate(s.length()-1); } \
+    { b = false; s.chop(1); } \
     else b = true;
 #define checkStartWildCard(s, b) \
     if (s.isEmpty()) b = true; \
