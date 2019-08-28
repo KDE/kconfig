@@ -230,7 +230,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
                             break;
                         case 'd':
                             entryOptions |= KEntryMap::EntryDeleted;
-                            aKey = aKey.left(start);
+                            aKey.truncate(start);
                             printableToString(&aKey, file, lineNo);
                             entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);
                             goto next_line;

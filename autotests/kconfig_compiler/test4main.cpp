@@ -38,7 +38,7 @@ int main(int argc, char **argv)
     if (!ok) {
         qWarning() << "config file was not created!";
     }
-    if (t->fooBar() != QStringLiteral("Value")) {
+    if (t->fooBar() != QLatin1String("Value")) {
         qWarning() << "wrong value for foo bar:" << t->fooBar();
     }
     delete t;

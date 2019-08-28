@@ -375,12 +375,12 @@ bool KDesktopFile::noDisplay() const
         return true;
     }
     if (d->desktopGroup.hasKey("OnlyShowIn")) {
-        if (!d->desktopGroup.readXdgListEntry("OnlyShowIn").contains(QStringLiteral("KDE"))) {
+        if (!d->desktopGroup.readXdgListEntry("OnlyShowIn").contains(QLatin1String("KDE"))) {
             return true;
         }
     }
     if (d->desktopGroup.hasKey("NotShowIn")) {
-        if (d->desktopGroup.readXdgListEntry("NotShowIn").contains(QStringLiteral("KDE"))) {
+        if (d->desktopGroup.readXdgListEntry("NotShowIn").contains(QLatin1String("KDE"))) {
             return true;
         }
     }
