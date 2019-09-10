@@ -1282,8 +1282,7 @@ QString paramString(const QString &group, const QList<Param> &parameters)
     for (QList<Param>::ConstIterator it = parameters.constBegin();
             it != parameters.constEnd(); ++it) {
         if (paramString.contains("$(" + (*it).name + ')')) {
-            QString tmp;
-            tmp.sprintf("%%%d", i++);
+            const QString tmp = QStringLiteral("%%1").arg(i++);
             paramString.replace("$(" + (*it).name + ')', tmp);
             arguments += ".arg( mParam" + (*it).name + " )";
         }

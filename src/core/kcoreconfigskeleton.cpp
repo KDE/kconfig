@@ -255,7 +255,7 @@ bool KCoreConfigSkeleton::ItemUrl::isEqual(const QVariant &v) const
 
 QVariant KCoreConfigSkeleton::ItemUrl::property() const
 {
-    return qVariantFromValue<QUrl>(mReference);
+    return QVariant::fromValue<QUrl>(mReference);
 }
 
 KCoreConfigSkeleton::ItemProperty::ItemProperty(const QString &_group,
@@ -955,7 +955,7 @@ bool KCoreConfigSkeleton::ItemUrlList::isEqual(const QVariant &v) const
 
 QVariant KCoreConfigSkeleton::ItemUrlList::property() const
 {
-    return qVariantFromValue<QList<QUrl> >(mReference);
+    return QVariant::fromValue<QList<QUrl> >(mReference);
 }
 
 KCoreConfigSkeleton::ItemIntList::ItemIntList(const QString &_group, const QString &_key,
@@ -990,7 +990,7 @@ bool KCoreConfigSkeleton::ItemIntList::isEqual(const QVariant &v) const
 
 QVariant KCoreConfigSkeleton::ItemIntList::property() const
 {
-    return qVariantFromValue< QList<int> >(mReference);
+    return QVariant::fromValue< QList<int> >(mReference);
 }
 
 //static int kCoreConfigSkeletionDebugArea() { static int s_area = KDebug::registerArea("kdecore (KConfigSkeleton)"); return s_area; }

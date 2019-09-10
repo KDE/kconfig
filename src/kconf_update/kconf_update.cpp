@@ -200,10 +200,11 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
             QFileInfo info(file);
 
             KConfigGroup cg(m_config, fileName);
-            const QDateTime ctime = QDateTime::fromTime_t(cg.readEntry("ctime", 0u));
-            const QDateTime mtime = QDateTime::fromTime_t(cg.readEntry("mtime", 0u));
+            const QDateTime ctime = QDateTime::fromSecsSinceEpoch(cg.readEntry("ctime", 0u));
+            const QDateTime mtime = QDateTime::fromSecsSinceEpoch(cg.readEntry("mtime", 0u));
             if (!dirtyOnly ||
-                    (ctime != info.created()) || (mtime != info.lastModified())) {
+                    (ctime.isValid() && ctime != info.birthTime()) ||
+                     mtime != info.lastModified()) {
                 result.append(file);
             }
         }
@@ -372,8 +373,10 @@ bool KonfUpdate::updateFile(const QString &filename)
 
     QFileInfo info(filename);
     KConfigGroup cg(m_config, m_currentFilename);
-    cg.writeEntry("ctime", info.created().toTime_t());
-    cg.writeEntry("mtime", info.lastModified().toTime_t());
+    if (info.birthTime().isValid()) {
+        cg.writeEntry("ctime", info.birthTime().toSecsSinceEpoch());
+    }
+    cg.writeEntry("mtime", info.lastModified().toSecsSinceEpoch());
     cg.sync();
     return true;
 }

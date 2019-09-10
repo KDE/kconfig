@@ -161,7 +161,7 @@ void ConfigLoaderTest::intListDefaultValue()
     expected.append(5);
     expected.append(8);
 
-    QVERIFY(typeItem->isEqual(qVariantFromValue(expected)));
+    QVERIFY(typeItem->isEqual(QVariant::fromValue(expected)));
 }
 
 void ConfigLoaderTest::longLongDefaultValue()
