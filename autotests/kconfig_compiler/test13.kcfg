@@ -7,5 +7,6 @@
   <group name="kamoso">
     <entry name="picturesDir" type="Url" />
     <entry name="brightness" type="double" />
+    <entry name="StartsWithUppercase" type="bool" />
   </group>
 </kcfg>

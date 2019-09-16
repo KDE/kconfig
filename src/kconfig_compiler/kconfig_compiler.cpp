@@ -1956,8 +1956,8 @@ int main(int argc, char **argv)
         }
 
         if (cfg.generateProperties) {
-            h << "    Q_PROPERTY(" << returnType << ' ' << n;
-            h << " READ " << n;
+            h << "    Q_PROPERTY(" << returnType << ' ' << getFunction(n);
+            h << " READ " << getFunction(n);
             if (cfg.allMutators || cfg.mutators.contains(n)) {
                 const QString signal = changeSignalName(n);
                 h << " WRITE " << setFunction(n);
