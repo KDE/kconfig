@@ -23,6 +23,9 @@ if (BUILD_QCH)
             Qt5Core_QCH
             Qt5Xml_QCH
             Qt5Gui_QCH
+        INCLUDE_DIRS
+            ${KConfigCore_APIDOX_INCLUDE_DIRS}
+            ${KConfigGui_APIDOX_INCLUDE_DIRS}
         BLANK_MACROS
             KCONFIGCORE_EXPORT
             KCONFIGCORE_DEPRECATED_EXPORT
