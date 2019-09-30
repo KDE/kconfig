@@ -2330,7 +2330,7 @@ int main(int argc, char **argv)
         cpp << "}" << endl << endl;
 
         if (cfgFileNameArg) {
-            auto instance = [&cfg, &cpp] (const QString &type, const QString arg, bool wrap) {
+            auto instance = [&cfg, &cpp] (const QString &type, const QString &arg, bool wrap) {
                 cpp << "void " << cfg.className << "::instance(" << type << " " << arg << ")" << endl;
                 cpp << "{" << endl;
                 cpp << "  if (s_global" << cfg.className << "()->q) {" << endl;

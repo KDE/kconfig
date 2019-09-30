@@ -29,7 +29,7 @@ KConfigSkeleton::KConfigSkeleton(const QString &configname, QObject *parent)
 }
 
 KConfigSkeleton::KConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
-    : KCoreConfigSkeleton(pConfig, parent)
+    : KCoreConfigSkeleton(std::move(pConfig), parent)
 {
 }
 

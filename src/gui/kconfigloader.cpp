@@ -367,7 +367,7 @@ KConfigLoader::KConfigLoader(const QString &configFile, QIODevice *xml, QObject 
 }
 
 KConfigLoader::KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(config, parent),
+    : KConfigSkeleton(std::move(config), parent),
       d(new ConfigLoaderPrivate)
 {
     d->parse(this, xml);

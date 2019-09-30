@@ -1009,7 +1009,7 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *pa
       d(new KCoreConfigSkeletonPrivate)
 {
     //qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
-    d->mConfig = pConfig;
+    d->mConfig = std::move(pConfig);
 }
 
 KCoreConfigSkeleton::~KCoreConfigSkeleton()
@@ -1044,7 +1044,7 @@ KSharedConfig::Ptr KCoreConfigSkeleton::sharedConfig() const
 
 void KCoreConfigSkeleton::setSharedConfig(KSharedConfig::Ptr pConfig)
 {
-    d->mConfig = pConfig;
+    d->mConfig = std::move(pConfig);
 }
 
 KConfigSkeletonItem::List KCoreConfigSkeleton::items() const
