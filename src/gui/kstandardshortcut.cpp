@@ -304,13 +304,13 @@ const QList<QKeySequence> &shortcut(StandardShortcut id)
 StandardShortcut find(const QKeySequence &seq)
 {
     if (!seq.isEmpty()) {
-        for (uint i = 0; i < sizeof(g_infoStandardShortcut) / sizeof(KStandardShortcutInfo); i++) {
-            StandardShortcut id = g_infoStandardShortcut[i].id;
+        for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
+            const StandardShortcut id = shortcutInfo.id;
             if (id != AccelNone) {
-                if (!g_infoStandardShortcut[i].isInitialized) {
+                if (!shortcutInfo.isInitialized) {
                     initialize(id);
                 }
-                if (g_infoStandardShortcut[i].cut.contains(seq)) {
+                if (shortcutInfo.cut.contains(seq)) {
                     return id;
                 }
             }
@@ -321,10 +321,11 @@ StandardShortcut find(const QKeySequence &seq)
 
 StandardShortcut find(const char *keyName)
 {
-    for (uint i = 0; i < sizeof(g_infoStandardShortcut) / sizeof(KStandardShortcutInfo); i++)
-        if (qstrcmp(g_infoStandardShortcut[i].name, keyName)) {
-            return g_infoStandardShortcut[i].id;
+    for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
+        if (qstrcmp(shortcutInfo.name, keyName)) {
+            return shortcutInfo.id;
         }
+    }
 
     return AccelNone;
 }
