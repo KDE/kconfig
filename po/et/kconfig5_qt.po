@@ -1,0 +1,537 @@
+# translation of kwriteconfig.po to Estonian
+# Copyright (C) 2003 Free Software Foundation, Inc.
+#
+# Marek Laane <bald@starman.ee>, 2003,2007-2008, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2016-09-09 01:14+0300\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
+"Language-Team: Estonian <kde-i18n-doc@kde.org>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: core/kconfig.cpp:925
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Palun võta ühendust süsteemiadministraatoriga."
+
+#: core/kconfigini.cpp:579
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Seadistusfaili \"%1\" ei saa kirjutada.\n"
+
+#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
+#: core/kemailsettings.cpp:248
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Vaikimisi"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Ava"
+
+#: gui/kstandardshortcut.cpp:74
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Uus"
+
+#: gui/kstandardshortcut.cpp:75
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Sulge"
+
+#: gui/kstandardshortcut.cpp:76
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Salvesta"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "Trüki"
+
+#: gui/kstandardshortcut.cpp:78
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Välju"
+
+#: gui/kstandardshortcut.cpp:81
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Võta tagasi"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Tee uuesti"
+
+#: gui/kstandardshortcut.cpp:83
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Lõika"
+
+#: gui/kstandardshortcut.cpp:84
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Kopeeri"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Aseta"
+
+#: gui/kstandardshortcut.cpp:86
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Aseta valik"
+
+#: gui/kstandardshortcut.cpp:88
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Vali kõik"
+
+#: gui/kstandardshortcut.cpp:89
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "Tühista valik"
+
+#: gui/kstandardshortcut.cpp:90
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Kustuta eelmine sõna"
+
+#: gui/kstandardshortcut.cpp:91
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Kustuta järgmine sõna"
+
+#: gui/kstandardshortcut.cpp:93
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Otsi"
+
+#: gui/kstandardshortcut.cpp:94
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Otsi järgmine"
+
+#: gui/kstandardshortcut.cpp:95
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Otsi eelmine"
+
+#: gui/kstandardshortcut.cpp:96
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Asenda"
+
+#: gui/kstandardshortcut.cpp:99
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Kodu"
+
+#: gui/kstandardshortcut.cpp:100
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "Algus"
+
+#: gui/kstandardshortcut.cpp:101
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "Lõpp"
+
+#: gui/kstandardshortcut.cpp:102
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "Eelmine"
+
+#: gui/kstandardshortcut.cpp:103
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "Järgmine"
+
+#: gui/kstandardshortcut.cpp:105
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "Üles"
+
+#: gui/kstandardshortcut.cpp:106
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Tagasi"
+
+#: gui/kstandardshortcut.cpp:107
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Edasi"
+
+#: gui/kstandardshortcut.cpp:108
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Laadi uuesti"
+
+#: gui/kstandardshortcut.cpp:110
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Rea algus"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Rea lõpp"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Mine reale"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Eelmine sõna"
+
+#: gui/kstandardshortcut.cpp:114
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Järgmine sõna"
+
+#: gui/kstandardshortcut.cpp:116
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Lisa järjehoidja"
+
+#: gui/kstandardshortcut.cpp:117
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Suurenda"
+
+#: gui/kstandardshortcut.cpp:118
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Vähenda"
+
+#: gui/kstandardshortcut.cpp:119
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Täisekraanirežiim"
+
+#: gui/kstandardshortcut.cpp:121
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Näita menüüriba"
+
+#: gui/kstandardshortcut.cpp:122
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Aktiveeri järgmine kaart"
+
+#: gui/kstandardshortcut.cpp:123
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Aktiveeri eelmine kaart"
+
+#: gui/kstandardshortcut.cpp:126
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Abi"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Mis see on"
+
+#: gui/kstandardshortcut.cpp:130
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Tekstilõpetus"
+
+#: gui/kstandardshortcut.cpp:131
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Eelmine lõpetamise kokkulangevus"
+
+#: gui/kstandardshortcut.cpp:132
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "Järgmine lõpetamise kokkulangevus"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Alamstringide lõpetamine"
+
+#: gui/kstandardshortcut.cpp:135
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Eelmine element nimekirjas"
+
+#: gui/kstandardshortcut.cpp:136
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Järgmine element nimekirjas"
+
+#: gui/kstandardshortcut.cpp:138
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Ava viimati kasutatud"
+
+#: gui/kstandardshortcut.cpp:139
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Salvesta kui"
+
+#: gui/kstandardshortcut.cpp:140
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Taasta"
+
+#: gui/kstandardshortcut.cpp:141
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Trükkimise eelvaatlus"
+
+#: gui/kstandardshortcut.cpp:142
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Saada e-postiga"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Puhasta"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "Tegelik suurus"
+
+#: gui/kstandardshortcut.cpp:145
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Mahuta leheküljele"
+
+#: gui/kstandardshortcut.cpp:146
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Mahuta laiusele"
+
+#: gui/kstandardshortcut.cpp:147
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Mahuta kõrgusele"
+
+#: gui/kstandardshortcut.cpp:148
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Suurendus"
+
+#: gui/kstandardshortcut.cpp:149
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Liikumine"
+
+#: gui/kstandardshortcut.cpp:150
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Mine leheküljele"
+
+#: gui/kstandardshortcut.cpp:151
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Eelmine dokument"
+
+#: gui/kstandardshortcut.cpp:152
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "Järgmine dokument"
+
+#: gui/kstandardshortcut.cpp:153
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Muuda järjehoidjaid"
+
+#: gui/kstandardshortcut.cpp:154
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Õigekirja kontroll"
+
+#: gui/kstandardshortcut.cpp:155
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Näita tööriistariba"
+
+#: gui/kstandardshortcut.cpp:156
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Näita olekuriba"
+
+#: gui/kstandardshortcut.cpp:157
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Salvesta valikud"
+
+#: gui/kstandardshortcut.cpp:158
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Kiirklahvid"
+
+#: gui/kstandardshortcut.cpp:159
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Configure Notifications"
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Application"
+msgstr "Märguannete seadistamine"
+
+#: gui/kstandardshortcut.cpp:160
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Tööriistaribade seadistamine"
+
+#: gui/kstandardshortcut.cpp:161
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Märguannete seadistamine"
+
+#: gui/kstandardshortcut.cpp:162
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Päeva nõuanne"
+
+#: gui/kstandardshortcut.cpp:163
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Saada veateade"
+
+#: gui/kstandardshortcut.cpp:164
+msgctxt "KStandardShortcut|@action"
+msgid "Switch Application Language"
+msgstr "Rakenduse keele vahetamine"
+
+#: gui/kstandardshortcut.cpp:165
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "Rakenduse teave"
+
+#: gui/kstandardshortcut.cpp:166
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "KDE teave"
+
+#: gui/kstandardshortcut.cpp:167
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Delete File"
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "Kustuta fail"
+
+#: gui/kstandardshortcut.cpp:168
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Rename File"
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "Muuda faili nime"
+
+#: gui/kstandardshortcut.cpp:169
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "Viska prügikasti"
+
+#: gui/kstandardshortcut.cpp:170
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "Anneta"
+
+#: kconf_update/kconf_update.cpp:944
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "KDE kasutaja seadistusfailide uuendamise rakendus."
+
+#: kconf_update/kconf_update.cpp:946
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Skripti väljundi tulemused säilitatakse"
+
+#: kconf_update/kconf_update.cpp:947
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr ""
+"Ainult ühiktestideks: testkataloogide kasutamine kasutaja tegelike failide "
+"puutumisest hoidumiseks"
+
+#: kconf_update/kconf_update.cpp:948
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Kontroll, kas seadistusfail ise vajab uuendamist"
+
+#: kconf_update/kconf_update.cpp:949
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr "Uuendamise instruktsioone sisaldav(ad) fail(id)"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1580
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Kataloog, kus failid genereeritakse [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1581
+msgctxt "main|"
+msgid "directory"
+msgstr "directory"
+
+#: kconfig_compiler/kconfig_compiler.cpp:1584
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Tarkvavalitsentsi näitamine."
+
+#: kreadconfig/kreadconfig.cpp:56 kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Globaalse seadistuse asemel kasutatakse faili <file>"
+
+#: kreadconfig/kreadconfig.cpp:57 kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Otsitav grupp. Pesastatud gruppide puhul anna mitu korda."
+
+#: kreadconfig/kreadconfig.cpp:58 kreadconfig/kwriteconfig.cpp:37
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Otsitav võti"
+
+#: kreadconfig/kreadconfig.cpp:59
+msgctxt "main|"
+msgid "Default value"
+msgstr "Vaikeväärtus"
+
+#: kreadconfig/kreadconfig.cpp:60
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Muutuja tüüp"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Muutuja tüüp. Kui on tõeväärtus, anna \"bool\", muidu käsitletakse stringina"
+
+#: kreadconfig/kwriteconfig.cpp:39
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Kirjutatav väärtus. See on kohustuslik. Shellis kasuta tühja asemel ''"
