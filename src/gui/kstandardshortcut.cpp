@@ -554,5 +554,9 @@ const QList<QKeySequence> &moveToTrash()
 {
     return shortcut(MoveToTrash);
 }
+const QList<QKeySequence> &preferences()
+{
+    return shortcut(Preferences);
+}
 
 }

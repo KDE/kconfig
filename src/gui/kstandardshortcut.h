@@ -527,6 +527,12 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &renameFile();
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &moveToTrash();
 
+/**
+ * Opens the app's settings window. Default: Ctrl+Shift+Comma
+ * @return the shortcut of the standard accelerator
+ * @since 5.64
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &preferences();
 }
 
 #endif // KSTANDARDSHORTCUT_H
