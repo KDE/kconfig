@@ -166,10 +166,14 @@ public:
     QStringList groupList() const;
 
 protected:
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     /**
      * Hack used to force writing when no default exists in config file.
      */
     bool usrWriteConfig() override;
+#else
+    bool usrSave() override;
+#endif
 
 private:
     ConfigLoaderPrivate *const d;

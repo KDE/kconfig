@@ -78,6 +78,7 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     case OutServerPass: {
         return cg.readEntry("OutgoingPassword");
     }
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     case OutServerType: {
         return cg.readEntry("OutgoingServerType");
     }
@@ -87,6 +88,12 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     case OutServerTLS: {
         return cg.readEntry("OutgoingServerTLS", QVariant(false)).toString();
     }
+#else
+    case OutServerType_DEPRECATED_DO_NOT_USE:
+    case OutServerCommand_DEPRECATED_DO_NOT_USE:
+    case OutServerTLS_DEPRECATED_DO_NOT_USE:
+        break;
+#endif
     case InServer: {
         return cg.readEntry("IncomingServer");
     }
@@ -96,6 +103,7 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     case InServerPass: {
         return cg.readEntry("IncomingPassword");
     }
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     case InServerType: {
         return cg.readEntry("IncomingServerType");
     }
@@ -105,6 +113,7 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     case InServerTLS: {
         return cg.readEntry("IncomingServerTLS", QVariant(false)).toString();
     }
+#endif
     };
     return QString();
 }
@@ -148,6 +157,7 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString  &v)
         cg.writeEntry("OutgoingPassword", v);
         break;
     }
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     case OutServerType: {
         cg.writeEntry("OutgoingServerType", v);
         break;
@@ -160,6 +170,12 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString  &v)
         cg.writeEntry("OutgoingServerTLS", (v == QLatin1String("true")));
         break;
     }
+#else
+    case OutServerType_DEPRECATED_DO_NOT_USE:
+    case OutServerCommand_DEPRECATED_DO_NOT_USE:
+    case OutServerTLS_DEPRECATED_DO_NOT_USE:
+        break;
+#endif
     case InServer: {
         cg.writeEntry("IncomingServer", v);
         break;
@@ -172,6 +188,7 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString  &v)
         cg.writeEntry("IncomingPassword", v);
         break;
     }
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     case InServerType: {
         cg.writeEntry("IncomingServerType", v);
         break;
@@ -184,6 +201,7 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString  &v)
         cg.writeEntry("IncomingServerTLS", (v == QLatin1String("true")));
         break;
     }
+#endif
     };
     cg.sync();
 }
@@ -207,7 +225,7 @@ void KEMailSettings::setProfile(const QString &s)
     }
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 QString KEMailSettings::currentProfileName() const
 {
     return p->m_sCurrentProfile;

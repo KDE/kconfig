@@ -331,7 +331,7 @@ bool KDesktopFile::tryExec() const
 //QString
 //KDesktopFile::resource() const { return backEnd->resource(); }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 42)
 QStringList
 KDesktopFile::sortOrder() const
 {

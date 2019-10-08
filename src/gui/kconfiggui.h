@@ -60,14 +60,15 @@ KCONFIGGUI_EXPORT void setSessionConfig(const QString &id, const QString &key);
  */
 KCONFIGGUI_EXPORT bool hasSessionConfig();
 
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 11)
 /**
  * Returns the name of the application session
  *
  * @return the application session name
  * @deprecated since 5.11, use sessionConfig()->name()
  */
-#ifndef KDE_NO_DEPRECATED
-KCONFIGGUI_DEPRECATED_EXPORT QString sessionConfigName();
+KCONFIGGUI_DEPRECATED_VERSION(5, 11, "Use KConfigGui::sessionConfig()->name()")
+KCONFIGGUI_EXPORT QString sessionConfigName();
 #endif
 }
 

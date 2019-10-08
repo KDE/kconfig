@@ -154,7 +154,12 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { Spelling, "Spelling", QT_TRANSLATE_NOOP3("KStandardShortcut", "Spelling", "@action"), 0, 0, QList<QKeySequence>(), false },
     { ShowToolbar, "ShowToolbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Toolbar", "@action"), 0, 0, QList<QKeySequence>(), false },
     { ShowStatusbar, "ShowStatusbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Statusbar", "@action"), 0, 0, QList<QKeySequence>(), false },
+#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 39)
     { SaveOptions, "SaveOptions", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save Options", "@action"), 0, 0, QList<QKeySequence>(), false },
+#else
+    // dummy entry
+    { SaveOptions_DEPRECATED_DO_NOT_USE, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false },
+#endif
     { KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), 0, 0, QList<QKeySequence>(), false },
     { Preferences, "Preferences", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Application", "@action"), CTRLSHIFT(Comma), 0, QList<QKeySequence>(), false },
     { ConfigureToolbars, "ConfigureToolbars", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Toolbars", "@action"), 0, 0, QList<QKeySequence>(), false },

@@ -847,7 +847,7 @@ bool KConfig::isGroupImmutableImpl(const QByteArray &aGroup) const
     return isImmutable() || d->entryMap.getEntryOption(aGroup, nullptr, nullptr, KEntryMap::EntryImmutable);
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(4, 0)
 void KConfig::setForceGlobal(bool b)
 {
     Q_D(KConfig);
@@ -855,7 +855,7 @@ void KConfig::setForceGlobal(bool b)
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(4, 0)
 bool KConfig::forceGlobal() const
 {
     Q_D(const KConfig);

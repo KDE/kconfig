@@ -62,7 +62,7 @@ void KDesktopFileTest::testRead()
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
 void KDesktopFileTest::testReadDirectory()
 {
     QTemporaryFile file("testReadDirectoryXXXXXX.directory");

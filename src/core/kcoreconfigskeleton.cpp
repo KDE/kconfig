@@ -1162,38 +1162,34 @@ void KCoreConfigSkeleton::usrSetDefaults()
 {
 }
 
-#ifdef Q_CC_GNU
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
 void KCoreConfigSkeleton::usrRead()
 {
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     usrReadConfig();
-}
-#ifdef Q_CC_GNU
-#pragma GCC diagnostic pop
 #endif
+}
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 void KCoreConfigSkeleton::usrReadConfig()
 {
 }
-
-#ifdef Q_CC_GNU
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
+
 bool KCoreConfigSkeleton::usrSave()
 {
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
     return usrWriteConfig();
-}
-#ifdef Q_CC_GNU
-#pragma GCC diagnostic pop
+#else
+    return true;
 #endif
+}
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 bool KCoreConfigSkeleton::usrWriteConfig()
 {
     return true;
 }
+#endif
 
 void KCoreConfigSkeleton::addItem(KConfigSkeletonItem *item, const QString &name)
 {
@@ -1315,7 +1311,7 @@ KCoreConfigSkeleton::ItemLongLong *KCoreConfigSkeleton::addItemLongLong(const QS
     return item;
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 KCoreConfigSkeleton::ItemLongLong *KCoreConfigSkeleton::addItemInt64(
     const QString &name,
     qint64 &reference,
@@ -1336,7 +1332,7 @@ KCoreConfigSkeleton::ItemULongLong *KCoreConfigSkeleton::addItemULongLong(const 
     return item;
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 KCoreConfigSkeleton::ItemULongLong *KCoreConfigSkeleton::addItemUInt64(
     const QString &name,
     quint64 &reference,

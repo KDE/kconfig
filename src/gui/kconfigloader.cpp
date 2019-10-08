@@ -425,7 +425,11 @@ QStringList KConfigLoader::groupList() const
     return d->groups;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 bool KConfigLoader::usrWriteConfig()
+#else
+bool KConfigLoader::usrSave()
+#endif
 {
     if (d->saveDefaults) {
         const auto listItems = items();

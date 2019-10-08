@@ -141,23 +141,26 @@ public:
      */
     const KConfig *config() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
      * Changes the group of the object
      *
-     * @deprecated
+     * @deprecated Since 5.0
      * Create another KConfigGroup from the parent of this group instead.
      */
-#ifndef KDE_NO_DEPRECATED
-    KCONFIGCORE_DEPRECATED void changeGroup(const QString &group);
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Create another KConfigGroup from the parent of this group")
+    void changeGroup(const QString &group);
 #endif
+
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
      * Overload for changeGroup(const QString&)
      *
-     * @deprecated
+     * @deprecated Since 5.0.
      * Create another KConfigGroup from the parent of this group instead.
      */
-#ifndef KDE_NO_DEPRECATED
-    KCONFIGCORE_DEPRECATED void changeGroup(const char *group);
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Create another KConfigGroup from the parent of this group")
+    void changeGroup(const char *group);
 #endif
 
     /**

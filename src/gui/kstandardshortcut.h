@@ -134,7 +134,11 @@ enum StandardShortcut {
     Spelling, ///< Pop up the spell checker.
     ShowToolbar, ///< Show/Hide the toolbar.
     ShowStatusbar, ///< Show/Hide the statusbar.
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 39)
     SaveOptions, ///< @deprecated since 5.39
+#else
+    SaveOptions_DEPRECATED_DO_NOT_USE,
+#endif
     KeyBindings, ///< Display the configure key bindings dialog.
     Preferences, ///< Display the preferences/options dialog.
     ConfigureToolbars, ///< Display the toolbar configuration dialog.

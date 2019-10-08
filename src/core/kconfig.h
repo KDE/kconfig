@@ -324,29 +324,29 @@ public:
     /// @}
 
     /// @{ global
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(4, 0)
     /**
-     * @deprecated
-     *
      * Forces all following write-operations to be performed on @c kdeglobals,
      * independent of the @c Global flag in writeEntry().
      *
      * @param force true to force writing to kdeglobals
      * @see forceGlobal
+     * @deprecated Since 4.0
      */
-#ifndef KDE_NO_DEPRECATED
-    KCONFIGCORE_DEPRECATED void setForceGlobal(bool force);
+    KCONFIGCORE_DEPRECATED_VERSION(4, 0, "Not recommended")
+    void setForceGlobal(bool force);
 #endif
+
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(4, 0)
     /**
-     * @deprecated
-     *
      * Returns whether all entries are being written to @c kdeglobals.
      *
      * @return @c true if all entries are being written to @c kdeglobals
      * @see setForceGlobal
-     * @deprecated
+     * @deprecated Since 4.0
      */
-#ifndef KDE_NO_DEPRECATED
-    KCONFIGCORE_DEPRECATED bool forceGlobal() const;
+    KCONFIGCORE_DEPRECATED_VERSION(4, 0, "Not recommended")
+    bool forceGlobal() const;
 #endif
     /// @}
 

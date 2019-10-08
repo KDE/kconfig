@@ -21,8 +21,15 @@ ecm_qt_declare_logging_category(libkconfigcore_SRCS
 configure_file(config-kconfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconfig.h )
 
 add_library(KF5ConfigCore ${libkconfigcore_SRCS})
-generate_export_header(KF5ConfigCore BASE_NAME KConfigCore)
 add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
+ecm_generate_export_header(KF5ConfigCore
+    BASE_NAME KConfigCore
+    # GROUP_BASE_NAME KF <- enable once all of KF modules use ecm_generate_export_header
+    VERSION ${KF5_VERSION}
+    DEPRECATED_BASE_VERSION 0
+    DEPRECATION_VERSIONS 4.0 5.0 5.24 5.42
+    EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
+)
 
 target_compile_definitions(KF5ConfigCore
     PRIVATE

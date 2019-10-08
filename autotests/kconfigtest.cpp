@@ -748,7 +748,7 @@ void KConfigTest::testChangeGroup()
     KConfigGroup sc3(&sc, "Hello");
     QCOMPARE(sc3.name(), QString("Hello"));
     KConfigGroup newGroup(sc3);
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     newGroup.changeGroup("FooBar"); // deprecated!
     QCOMPARE(newGroup.name(), QString("FooBar"));
     QCOMPARE(sc3.name(), QString("Hello")); // unchanged
@@ -764,7 +764,7 @@ void KConfigTest::testChangeGroup()
     KConfigGroup sc32(rootGroup.group("Hello"));
     QCOMPARE(sc32.name(), QString("Hello"));
     KConfigGroup newGroup2(sc32);
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     newGroup2.changeGroup("FooBar"); // deprecated!
     QCOMPARE(newGroup2.name(), QString("FooBar"));
     QCOMPARE(sc32.name(), QString("Hello")); // unchanged

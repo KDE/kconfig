@@ -684,8 +684,8 @@ public:
         qint64 mMin;
         qint64 mMax;
     };
-#ifndef KDE_NO_DEPRECATED
-    typedef KCONFIGCORE_DEPRECATED ItemLongLong ItemInt64;
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
+    typedef KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use ItemLongLong") ItemLongLong ItemInt64;
 #endif
 
     /**
@@ -804,8 +804,8 @@ public:
         quint64 mMin;
         quint64 mMax;
     };
-#ifndef KDE_NO_DEPRECATED
-    typedef KCONFIGCORE_DEPRECATED ItemULongLong ItemUInt64;
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
+    typedef KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use ItemULongLong") ItemULongLong ItemUInt64;
 #endif
 
     /**
@@ -1076,12 +1076,13 @@ public:
      */
     void load();
 
-#ifndef KCONFIGCORE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
      * @deprecated since 5.0, call load() instead (to reload from disk) or just read()
      * if the underlying KConfig object is already up-to-date.
      */
-    KCONFIGCORE_DEPRECATED void readConfig()
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::load() or KCoreConfigSkeleton::read()")
+    void readConfig()
     {
         load();
     }
@@ -1261,12 +1262,12 @@ public:
                                   qint64 defaultValue = 0,
                                   const QString &key = QString());
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
-     * @deprecated
-     * Use addItemLongLong().
+     * @deprecated Since 5.0, use addItemLongLong().
      */
-#ifndef KDE_NO_DEPRECATED
-    KCONFIGCORE_DEPRECATED ItemLongLong *addItemInt64(const QString &name, qint64 &reference,
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::addItemLongLong(...)")
+    ItemLongLong *addItemInt64(const QString &name, qint64 &reference,
             qint64 defaultValue = 0,
             const QString &key = QString());
 #endif
@@ -1286,12 +1287,12 @@ public:
                                     quint64 defaultValue = 0,
                                     const QString &key = QString());
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
-     * @deprecated
-     * Use addItemULongLong().
+     * @deprecated Since 5.0, use addItemULongLong().
      */
-#ifndef KDE_NO_DEPRECATED
-    KCONFIGCORE_DEPRECATED ItemULongLong *addItemUInt64(const QString &name, quint64 &reference,
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::addItemULongLong(...)")
+    ItemULongLong *addItemUInt64(const QString &name, quint64 &reference,
             quint64 defaultValue = 0,
             const QString &key = QString());
 #endif
@@ -1475,11 +1476,12 @@ public Q_SLOTS:
      */
     bool save();
 
-#ifndef KCONFIGCORE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
      * @deprecated since 5.0, call save() instead.
      */
-    KCONFIGCORE_DEPRECATED void writeConfig()
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::save()")
+    void writeConfig()
     {
         save();
     }
@@ -1523,17 +1525,23 @@ protected:
      */
     virtual bool usrSave();
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
    /**
      * @deprecated since 5.0, override usrRead instead.  This method is still called from usrRead
      * for compatibility.
      */
-    KCONFIGCORE_DEPRECATED virtual void usrReadConfig();
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Override KCoreConfigSkeleton::usrRead()")
+    virtual void usrReadConfig();
+#endif
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
    /**
      * @deprecated since 5.0, override usrSave instead.  This method is still called from usrSave
      * for compatibility.
      */
-    KCONFIGCORE_DEPRECATED virtual bool usrWriteConfig();
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Override KCoreConfigSkeleton::usrSave()")
+    virtual bool usrWriteConfig();
+#endif
 
 private:
     KCoreConfigSkeletonPrivate *const d;

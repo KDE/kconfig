@@ -69,7 +69,7 @@ public:
         OutServer,
         OutServerLogin,
         OutServerPass,
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
         /**
          * @deprecated since Frameworks 5.0
          */
@@ -82,11 +82,15 @@ public:
          * @deprecated since Frameworks 5.0
          */
         OutServerTLS,
+#else
+        OutServerType_DEPRECATED_DO_NOT_USE,
+        OutServerCommand_DEPRECATED_DO_NOT_USE,
+        OutServerTLS_DEPRECATED_DO_NOT_USE,
 #endif
         InServer,
         InServerLogin,
         InServerPass,
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
         /**
          * @deprecated since Frameworks 5.0
          */
@@ -131,13 +135,15 @@ public:
       **/
     QStringList profiles() const;
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
-      * @deprecated since Frameworks 5.0
       * Returns the name of the current profile.
       * @returns what profile we're currently using
+      * @deprecated Since 5.0
       **/
-    KCONFIGCORE_DEPRECATED QString currentProfileName() const;
+    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "API planned to be changed")
+    QString currentProfileName() const;
+    // see https://git.reviewboard.kde.org/r/111910/
 #endif
 
     /**

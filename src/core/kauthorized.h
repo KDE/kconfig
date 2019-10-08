@@ -96,6 +96,7 @@ KCONFIGCORE_EXPORT bool authorize(const QString &action);
  */
 KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 24)
 /**
  * Returns whether the user is permitted to perform a certain action.
  *
@@ -121,8 +122,8 @@ KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
  * @see authorize()
  * @deprecated since 5.24, use authorizeAction() instead.
  */
-#ifndef KDE_NO_DEPRECATED
-KCONFIGCORE_DEPRECATED_EXPORT bool authorizeKAction(const QString &action);
+KCONFIGCORE_DEPRECATED_VERSION(5, 24, "Use KAuthorized::authorizeAction(const QString&)")
+KCONFIGCORE_EXPORT bool authorizeKAction(const QString &action);
 #endif
 
 /**

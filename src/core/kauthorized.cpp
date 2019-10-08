@@ -229,7 +229,7 @@ bool KAuthorized::authorizeAction(const QString &action)
     return authorize(QLatin1String("action/") + action);
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 24)
 bool KAuthorized::authorizeKAction(const QString &action)
 {
     return authorizeAction(action);

@@ -9,8 +9,15 @@ set(libkconfiggui_SRCS
 ecm_create_qm_loader(libkconfiggui_SRCS kconfig5_qt)
 
 add_library(KF5ConfigGui ${libkconfiggui_SRCS})
-generate_export_header(KF5ConfigGui BASE_NAME KConfigGui)
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
+ecm_generate_export_header(KF5ConfigGui
+    BASE_NAME KConfigGui
+    # GROUP_BASE_NAME KF <- enable once all of KF modules use ecm_generate_export_header
+    VERSION ${KF5_VERSION}
+    DEPRECATED_BASE_VERSION 0
+    DEPRECATION_VERSIONS 5.11 5.39
+    EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
+)
 
 target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui>")
 

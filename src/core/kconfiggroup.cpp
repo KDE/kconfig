@@ -574,7 +574,7 @@ void KConfigGroup::deleteGroup(WriteConfigFlags flags)
     config()->deleteGroup(d->fullName(), flags);
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 void KConfigGroup::changeGroup(const QString &group)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::changeGroup", "accessing an invalid group");
@@ -583,7 +583,7 @@ void KConfigGroup::changeGroup(const QString &group)
 }
 #endif
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
 void KConfigGroup::changeGroup(const char *group)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::changeGroup", "accessing an invalid group");

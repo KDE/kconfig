@@ -214,7 +214,7 @@ public:
      */
     QString readDocPath() const;
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 42)
     /**
      * Returns the entry of the "SortOrder=" entry.
      * @return the value of the "SortOrder=" entry.
@@ -222,7 +222,8 @@ public:
      * SortOrder was used to specify the order of menu items, but
      * the Desktop Menu Specification defines another mechanism for it.
      */
-    KCONFIGCORE_DEPRECATED QStringList sortOrder() const;
+    KCONFIGCORE_DEPRECATED_VERSION(5, 42, "Not recommended, Desktop Menu Specification defines another mechanism")
+    QStringList sortOrder() const;
 #endif
 
     /**

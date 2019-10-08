@@ -20,6 +20,7 @@
 #define KDESKTOPFILETEST_H
 
 #include <QObject>
+#include <kconfigcore_export.h>
 
 class KDesktopFileTest : public QObject
 {
@@ -27,7 +28,9 @@ class KDesktopFileTest : public QObject
 private Q_SLOTS:
     void initTestCase();
     void testRead();
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
     void testReadDirectory();
+#endif
     void testReadLocalized_data();
     void testReadLocalized();
     void testUnsuccessfulTryExec();

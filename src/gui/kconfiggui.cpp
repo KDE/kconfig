@@ -67,7 +67,7 @@ bool KConfigGui::hasSessionConfig()
     return s_sessionConfig != nullptr;
 }
 
-#ifndef KDE_NO_DEPRECATED
+#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 11)
 QString KConfigGui::sessionConfigName()
 {
     return sessionConfig()->name();
