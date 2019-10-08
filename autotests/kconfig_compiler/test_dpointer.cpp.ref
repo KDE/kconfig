@@ -65,7 +65,7 @@ TestDPointer *TestDPointer::self()
   return s_globalTestDPointer()->q;
 }
 
-TestDPointer::TestDPointer(  )
+TestDPointer::TestDPointer( )
   : KConfigSkeleton( QStringLiteral( "korganizerrc" ) )
 {
   d = new TestDPointerPrivate;

@@ -3,7 +3,7 @@
 
 #include "test_qdebugcategory.h"
 
-TestQCategory::TestQCategory(  int Number )
+TestQCategory::TestQCategory( int Number )
   : KConfigSkeleton( QStringLiteral( "test7rc" ) )
   , mParamNumber(Number)
 {

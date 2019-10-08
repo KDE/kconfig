@@ -5,7 +5,7 @@
 
 using namespace TestNameSpace;
 
-TestTranslationQt::TestTranslationQt(  )
+TestTranslationQt::TestTranslationQt( )
   : KConfigSkeleton( QStringLiteral( "test_translation_rc" ) )
 {
   setCurrentGroup( QStringLiteral( "General" ) );

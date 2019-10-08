@@ -26,7 +26,7 @@ TestSignal *TestSignal::self()
   return s_globalTestSignal()->q;
 }
 
-TestSignal::TestSignal(  )
+TestSignal::TestSignal( )
   : KConfigSkeleton( QStringLiteral( "kconfig_compiler_kf5_test_rc" ) )
   , mSettingsChanged(0)
 {

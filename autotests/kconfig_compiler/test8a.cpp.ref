@@ -3,9 +3,10 @@
 
 #include "test8a.h"
 
-Test8a::Test8a(  KSharedConfig::Ptr config  )
+Test8a::Test8a( KSharedConfig::Ptr config, QObject *parent )
   : KConfigSkeleton( config )
 {
+  setParent(parent);
   setCurrentGroup( QStringLiteral( "Group" ) );
 
   KConfigSkeleton::ItemFont  *itemFont;

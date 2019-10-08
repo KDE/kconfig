@@ -3,7 +3,7 @@
 
 #include "test7.h"
 
-Test7::Test7(  int Number )
+Test7::Test7( int Number )
   : KConfigSkeleton( QStringLiteral( "test7rc" ) )
   , mParamNumber(Number)
 {

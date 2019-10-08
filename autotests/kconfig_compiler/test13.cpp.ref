@@ -3,7 +3,7 @@
 
 #include "test13.h"
 
-Test13::Test13(  )
+Test13::Test13( )
   : KConfigSkeleton( QStringLiteral( "muondatasourcesrc" ) )
 {
   KConfigCompilerSignallingItem::NotifyFunction notifyFunction = static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&Test13::itemChanged);

@@ -5,7 +5,7 @@
 
 using namespace TestNameSpace::InnerNameSpace;
 
-Test3a::Test3a(  )
+Test3a::Test3a( )
   : KConfigSkeleton( QStringLiteral( "test3arc" ) )
 {
   setCurrentGroup( QStringLiteral( "General" ) );

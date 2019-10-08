@@ -80,6 +80,7 @@ public:
         if (!visibility.isEmpty()) {
             visibility += ' ';
         }
+        parentInConstructor = codegenConfig.value(QStringLiteral("ParentInConstructor"), false).toBool();
         forceStringFilename = codegenConfig.value(QStringLiteral("ForceStringFilename"), false).toBool();
         singleton = codegenConfig.value(QStringLiteral("Singleton"), false).toBool();
         staticAccessors = singleton;
@@ -125,6 +126,7 @@ public:
     QString className;     // The class name to be generated
     QString inherits;      // The class the generated class inherits (if empty, from KConfigSkeleton)
     QString visibility;
+    bool parentInConstructor; // The class has the optional parent parameter in its constructor
     bool forceStringFilename;
     bool singleton;        // The class will be a singleton
     bool staticAccessors;  // provide or not static accessors
@@ -1895,6 +1897,12 @@ int main(int argc, char **argv)
             }
             h << " " << param((*it).type) << " " << (*it).name;
         }
+        if (cfg.parentInConstructor) {
+            if (cfgFileNameArg || !parameters.isEmpty()) {
+                h << ",";
+            }
+            h << " QObject *parent = nullptr";
+        }
         h << " );" << endl;
     } else {
         h << "    static " << cfg.className << " *self();" << endl;
@@ -2124,6 +2132,12 @@ int main(int argc, char **argv)
         h << "    " << cfg.className << "(";
         if (cfgFileNameArg) {
             h << "KSharedConfig::Ptr config";
+        }
+        if (cfg.parentInConstructor) {
+            if (cfgFileNameArg) {
+                h << ", ";
+            }
+            h << "QObject *parent = nullptr";
         }
         h << ");" << endl;
         h << "    friend class " << cfg.className << "Helper;" << endl << endl;
@@ -2357,14 +2371,14 @@ int main(int argc, char **argv)
     }
 
     // Constructor
-    cpp << cfg.className << "::" << cfg.className << "( ";
+    cpp << cfg.className << "::" << cfg.className << "(";
     if (cfgFileNameArg) {
         if (! cfg.forceStringFilename) {
             cpp << " KSharedConfig::Ptr config";
         } else {
             cpp << " const QString& config";
         }
-        cpp << (parameters.isEmpty() ? " " : ", ");
+        cpp << (parameters.isEmpty() ? "" : ",");
     }
 
     for (QList<Param>::ConstIterator it = parameters.constBegin();
@@ -2373,6 +2387,13 @@ int main(int argc, char **argv)
             cpp << ",";
         }
         cpp << " " << param((*it).type) << " " << (*it).name;
+    }
+
+    if (cfg.parentInConstructor) {
+        if (cfgFileNameArg || !parameters.isEmpty()) {
+            cpp << ",";
+        }
+        cpp << " QObject *parent";
     }
     cpp << " )" << endl;
 
@@ -2399,6 +2420,10 @@ int main(int argc, char **argv)
     }
 
     cpp << "{" << endl;
+
+    if (cfg.parentInConstructor) {
+        cpp << "  setParent(parent);" << endl;
+    }
 
     if (cfg.dpointer) {
         cpp << "  d = new " + cfg.className + "Private;" << endl;

@@ -7,7 +7,7 @@
 
 using namespace TestNameSpace;
 
-TestTranslationKdeDomain::TestTranslationKdeDomain(  )
+TestTranslationKdeDomain::TestTranslationKdeDomain( )
   : KConfigSkeleton( QStringLiteral( "test_translation_rc" ) )
 {
   setCurrentGroup( QStringLiteral( "General" ) );

@@ -3,7 +3,7 @@
 
 #include "test_notifiers.h"
 
-TestNotifiers::TestNotifiers(  int Number )
+TestNotifiers::TestNotifiers( int Number )
   : KConfigSkeleton( QStringLiteral( "test7rc" ) )
   , mParamNumber(Number)
 {

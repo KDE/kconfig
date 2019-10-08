@@ -3,7 +3,7 @@
 
 #include "test6.h"
 
-Test6::Test6(  const QString & Number )
+Test6::Test6( const QString & Number )
   : KConfigSkeleton( QStringLiteral( "test4rc" ) )
   , mParamNumber(Number)
 {

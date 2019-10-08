@@ -45,9 +45,10 @@ void Test8c::instance(KSharedConfig::Ptr config)
   s_globalTest8c()->q->read();
 }
 
-Test8c::Test8c(  KSharedConfig::Ptr config  )
+Test8c::Test8c( KSharedConfig::Ptr config, QObject *parent )
   : KConfigSkeleton( config )
 {
+  setParent(parent);
   Q_ASSERT(!s_globalTest8c()->q);
   s_globalTest8c()->q = this;
   setCurrentGroup( QStringLiteral( "Group" ) );

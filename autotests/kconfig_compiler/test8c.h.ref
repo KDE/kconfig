@@ -55,7 +55,7 @@ class Test8c : public KConfigSkeleton
     }
 
   protected:
-    Test8c(KSharedConfig::Ptr config);
+    Test8c(KSharedConfig::Ptr config, QObject *parent = nullptr);
     friend class Test8cHelper;
 
 

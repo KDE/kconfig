@@ -3,7 +3,7 @@
 
 #include "test11a.h"
 
-Test11a::Test11a(  )
+Test11a::Test11a( )
   : MyPrefs( QStringLiteral( "korganizerrc" ) )
 {
   setCurrentGroup( QStringLiteral( "General" ) );

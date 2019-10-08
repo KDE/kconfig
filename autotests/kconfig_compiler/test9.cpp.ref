@@ -3,7 +3,7 @@
 
 #include "test9.h"
 
-Test9::Test9(  const QString & transport, const QString & folder )
+Test9::Test9( const QString & transport, const QString & folder )
   : KConfigSkeleton( QStringLiteral( "examplerc" ) )
   , mParamtransport(transport)
   , mParamfolder(folder)

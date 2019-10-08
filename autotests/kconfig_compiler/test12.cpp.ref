@@ -3,7 +3,7 @@
 
 #include "test12.h"
 
-Test12::Test12(  )
+Test12::Test12( )
   : KConfigSkeleton( QStringLiteral( "muondatasourcesrc" ) )
 {
   setCurrentGroup( QStringLiteral( "muon" ) );

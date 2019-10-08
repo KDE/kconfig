@@ -26,7 +26,7 @@ Test8b *Test8b::self()
   return s_globalTest8b()->q;
 }
 
-Test8b::Test8b(  )
+Test8b::Test8b( )
   : Test8a()
 {
   Q_ASSERT(!s_globalTest8b()->q);

@@ -3,9 +3,10 @@
 
 #include "test11.h"
 
-Test11::Test11(  )
+Test11::Test11( QObject *parent )
   : MyPrefs( QStringLiteral( "korganizerrc" ) )
 {
+  setParent(parent);
   setCurrentGroup( QStringLiteral( "General" ) );
 
   mAutoSaveItem = new MyPrefs::ItemBool( currentGroup(), QStringLiteral( "Auto Save" ), mAutoSave, false );

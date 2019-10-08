@@ -28,9 +28,10 @@ Test5 *Test5::self()
 
 const char* const Test5::EnumButtonToString[] = { "right", "mid", "left" };
 
-Test5::Test5(  )
+Test5::Test5( QObject *parent )
   : KConfigSkeleton( QStringLiteral( "test4rc" ) )
 {
+  setParent(parent);
   Q_ASSERT(!s_globalTest5()->q);
   s_globalTest5()->q = this;
   setCurrentGroup( QStringLiteral( "Foo" ) );

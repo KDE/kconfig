@@ -1,3 +1,4 @@
 File=test8a.kcfg
 ClassName=Test8a
+ParentInConstructor=true
 Mutators=true

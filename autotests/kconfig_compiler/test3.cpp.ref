@@ -5,7 +5,7 @@
 
 using namespace TestNameSpace;
 
-Test3::Test3(  )
+Test3::Test3( )
   : KConfigSkeleton( QStringLiteral( "test3rc" ) )
 {
   setCurrentGroup( QStringLiteral( "General" ) );

@@ -106,7 +106,7 @@ class Test5 : public KConfigSkeleton
     }
 
   protected:
-    Test5();
+    Test5(QObject *parent = nullptr);
     friend class Test5Helper;
 
 
