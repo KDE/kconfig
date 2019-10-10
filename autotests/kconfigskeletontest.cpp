@@ -56,6 +56,9 @@ void KConfigSkeletonTest::init()
     QCOMPARE(mMyColor, DEFAULT_SETTING2);
     QCOMPARE(mMyFont, DEFAULT_SETTING3);
     QCOMPARE(mMyString, DEFAULT_SETTING4);
+
+    QVERIFY(s->isDefaults());
+    QVERIFY(!s->isSaveNeeded());
 }
 
 void KConfigSkeletonTest::cleanup()
@@ -70,14 +73,26 @@ void KConfigSkeletonTest::testSimple()
     mMyFont = WRITE_SETTING3;
     mMyString = WRITE_SETTING4;
 
+    QVERIFY(s->isSaveNeeded());
+    QVERIFY(!s->isDefaults());
+
     s->save();
+
+    QVERIFY(!s->isSaveNeeded());
+    QVERIFY(!s->isDefaults());
 
     mMyBool = false;
     mMyColor = QColor();
     mMyString.clear();
     mMyFont = QFont();
 
+    QVERIFY(s->isSaveNeeded());
+    QVERIFY(!s->isDefaults());
+
     s->read();
+
+    QVERIFY(!s->isSaveNeeded());
+    QVERIFY(!s->isDefaults());
 
     QCOMPARE(mMyBool, WRITE_SETTING1);
     QCOMPARE(mMyColor, WRITE_SETTING2);
@@ -112,9 +127,18 @@ void KConfigSkeletonTest::testDefaults()
     mMyFont = WRITE_SETTING3;
     mMyString = WRITE_SETTING4;
 
+    QVERIFY(s->isSaveNeeded());
+    QVERIFY(!s->isDefaults());
+
     s->save();
 
+    QVERIFY(!s->isSaveNeeded());
+    QVERIFY(!s->isDefaults());
+
     s->setDefaults();
+
+    QVERIFY(s->isSaveNeeded());
+    QVERIFY(s->isDefaults());
 
     QCOMPARE(mMyBool, DEFAULT_SETTING1);
     QCOMPARE(mMyColor, DEFAULT_SETTING2);
@@ -122,6 +146,9 @@ void KConfigSkeletonTest::testDefaults()
     QCOMPARE(mMyString, DEFAULT_SETTING4);
 
     s->save();
+
+    QVERIFY(!s->isSaveNeeded());
+    QVERIFY(s->isDefaults());
 }
 
 void KConfigSkeletonTest::testKConfigDirty()

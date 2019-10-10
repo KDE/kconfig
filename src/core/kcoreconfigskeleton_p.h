@@ -60,6 +60,10 @@ public:
     QString mLabel; ///< The label for this item
     QString mToolTip; ///< The ToolTip text for this item
     QString mWhatsThis; ///< The What's This text for this item
+
+    // HACK: Necessary to avoid introducing new virtuals in KConfigSkeletonItem
+    std::function<bool()> mIsDefaultImpl;
+    std::function<bool()> mIsSaveNeededImpl;
 };
 
 #endif

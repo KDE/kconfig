@@ -135,9 +135,29 @@ bool KConfigSkeletonItem::isImmutable() const
     return d->mIsImmutable;
 }
 
+bool KConfigSkeletonItem::isDefault() const
+{
+    return d->mIsDefaultImpl();
+}
+
+bool KConfigSkeletonItem::isSaveNeeded() const
+{
+    return d->mIsSaveNeededImpl();
+}
+
 void KConfigSkeletonItem::readImmutability(const KConfigGroup &group)
 {
     d->mIsImmutable = group.isEntryImmutable(mKey);
+}
+
+void KConfigSkeletonItem::setIsDefaultImpl(const std::function<bool ()> &impl)
+{
+    d->mIsDefaultImpl = impl;
+}
+
+void KConfigSkeletonItem::setIsSaveNeededImpl(const std::function<bool ()> &impl)
+{
+    d->mIsSaveNeededImpl = impl;
 }
 
 KCoreConfigSkeleton::ItemString::ItemString(const QString &_group, const QString &_key,
@@ -1091,6 +1111,28 @@ void KCoreConfigSkeleton::read()
     usrRead();
 }
 
+bool KCoreConfigSkeleton::isDefaults() const
+{
+    KConfigSkeletonItem::List::ConstIterator it;
+    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
+        if (!(*it)->isDefault()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool KCoreConfigSkeleton::isSaveNeeded() const
+{
+    KConfigSkeletonItem::List::ConstIterator it;
+    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
+        if ((*it)->isSaveNeeded()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool KCoreConfigSkeleton::save()
 {
     //qDebug();
@@ -1394,6 +1436,9 @@ KConfigCompilerSignallingItem::KConfigCompilerSignallingItem(KConfigSkeletonItem
     Q_ASSERT(mTargetFunction);
     Q_ASSERT(mItem);
     Q_ASSERT(mObject);
+
+    setIsDefaultImpl([this] { return mItem->isDefault(); });
+    setIsSaveNeededImpl([this] { return mItem->isSaveNeeded(); });
 }
 
 KConfigCompilerSignallingItem::~KConfigCompilerSignallingItem()

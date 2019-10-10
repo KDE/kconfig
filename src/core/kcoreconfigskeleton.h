@@ -210,6 +210,21 @@ public:
      */
     bool isImmutable() const;
 
+    /**
+     * Indicates if the item is set to its default value.
+     *
+     * @since 5.64
+     */
+    bool isDefault() const;
+
+    /**
+     * Indicates if the item has a different value than the
+     * previously loaded value.
+     *
+     * @since 5.64
+     */
+    bool isSaveNeeded() const;
+
 protected:
     /**
      * sets mIsImmutable to true if mKey in config is immutable
@@ -220,6 +235,11 @@ protected:
     QString mGroup; ///< The group name for this item
     QString mKey; ///< The config key for this item
     QString mName; ///< The name of this item
+
+    // HACK: Necessary to avoid introducing new virtuals in KConfigSkeletonItem
+    // KF6: Use proper pure virtuals in KConfigSkeletonItem
+    void setIsDefaultImpl(const std::function<bool()> &impl);
+    void setIsSaveNeededImpl(const std::function<bool()> &impl);
 
 private:
     KConfigSkeletonItemPrivate *const d;
@@ -240,6 +260,8 @@ public:
         : KConfigSkeletonItem(_group, _key), mReference(reference),
           mDefault(defaultValue), mLoadedValue(defaultValue)
     {
+        setIsDefaultImpl([this] { return mReference == mDefault; });
+        setIsSaveNeededImpl([this] { return mReference != mLoadedValue; });
     }
 
     /**
@@ -1076,6 +1098,21 @@ public:
      * @since 5.0
      */
     void read();
+
+    /**
+     * Indicates if all the registered items are set to their default value.
+     *
+     * @since 5.64
+     */
+    bool isDefaults() const;
+
+    /**
+     * Indicates if any registered item has a different value than the
+     * previously loaded value.
+     *
+     * @since 5.64
+     */
+    bool isSaveNeeded() const;
 
     /**
      * Set the config file group for subsequent addItem() calls. It is valid
