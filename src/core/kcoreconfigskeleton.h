@@ -1443,7 +1443,7 @@ public:
      * Return whether a certain item is immutable
      * @since 4.4
      */
-    bool isImmutable(const QString &name) const;
+    Q_INVOKABLE bool isImmutable(const QString &name) const;
 
     /**
      * Lookup item by name
