@@ -24,7 +24,7 @@ add_library(KF5ConfigCore ${libkconfigcore_SRCS})
 add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
 ecm_generate_export_header(KF5ConfigCore
     BASE_NAME KConfigCore
-    # GROUP_BASE_NAME KF <- enable once all of KF modules use ecm_generate_export_header
+    GROUP_BASE_NAME KF
     VERSION ${KF5_VERSION}
     DEPRECATED_BASE_VERSION 0
     DEPRECATION_VERSIONS 4.0 5.0 5.24 5.42

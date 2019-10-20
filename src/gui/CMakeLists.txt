@@ -12,7 +12,7 @@ add_library(KF5ConfigGui ${libkconfiggui_SRCS})
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
 ecm_generate_export_header(KF5ConfigGui
     BASE_NAME KConfigGui
-    # GROUP_BASE_NAME KF <- enable once all of KF modules use ecm_generate_export_header
+    GROUP_BASE_NAME KF
     VERSION ${KF5_VERSION}
     DEPRECATED_BASE_VERSION 0
     DEPRECATION_VERSIONS 5.11 5.39
