@@ -2344,7 +2344,7 @@ int main(int argc, char **argv)
         cpp << "}" << endl << endl;
 
         if (cfgFileNameArg) {
-            auto instance = [&cfg, &cpp] (const QString &type, const QString &arg, bool wrap) {
+            auto instance = [&cfg, &cpp] (const QString &type, const QString &arg, bool isString) {
                 cpp << "void " << cfg.className << "::instance(" << type << " " << arg << ")" << endl;
                 cpp << "{" << endl;
                 cpp << "  if (s_global" << cfg.className << "()->q) {" << endl;
@@ -2352,10 +2352,10 @@ int main(int argc, char **argv)
                 cpp << "     return;" << endl;
                 cpp << "  }" << endl;
                 cpp << "  new " << cfg.className << "(";
-                if (wrap) {
+                if (isString) {
                     cpp << "KSharedConfig::openConfig(" << arg << ")";
                 } else {
-                    cpp << arg;
+                    cpp << "std::move(" << arg << ")";
                 }
                 cpp << ");" << endl;
                 cpp << "  s_global" << cfg.className << "()->q->read();" << endl;
@@ -2402,7 +2402,11 @@ int main(int argc, char **argv)
         cpp << " QStringLiteral( \"" << cfgFileName << "\" ";
     }
     if (cfgFileNameArg) {
-        cpp << " config ";
+        if (! cfg.forceStringFilename) {
+            cpp << " std::move( config ) ";
+        } else {
+            cpp << " config ";
+        }
     }
     if (!cfgFileName.isEmpty()) {
         cpp << ") ";

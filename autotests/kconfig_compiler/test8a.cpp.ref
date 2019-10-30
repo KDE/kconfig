@@ -4,7 +4,7 @@
 #include "test8a.h"
 
 Test8a::Test8a( KSharedConfig::Ptr config, QObject *parent )
-  : KConfigSkeleton( config )
+  : KConfigSkeleton( std::move( config ) )
 {
   setParent(parent);
   setCurrentGroup( QStringLiteral( "Group" ) );

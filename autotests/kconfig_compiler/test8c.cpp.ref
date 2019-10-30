@@ -41,12 +41,12 @@ void Test8c::instance(KSharedConfig::Ptr config)
      qDebug() << "Test8c::instance called after the first use - ignoring";
      return;
   }
-  new Test8c(config);
+  new Test8c(std::move(config));
   s_globalTest8c()->q->read();
 }
 
 Test8c::Test8c( KSharedConfig::Ptr config, QObject *parent )
-  : KConfigSkeleton( config )
+  : KConfigSkeleton( std::move( config ) )
 {
   setParent(parent);
   Q_ASSERT(!s_globalTest8c()->q);
