@@ -70,7 +70,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
       configState(KConfigBase::NoAccess)
 {
     static QBasicAtomicInt use_etc_kderc = Q_BASIC_ATOMIC_INITIALIZER(-1);
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     if (use_etc_kderc.load() < 0) {
         use_etc_kderc.store( !qEnvironmentVariableIsSet("KDE_SKIP_KDERC"));    // for unit tests
     }
@@ -88,7 +88,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
             QStringLiteral("/etc/kde5rc");
 #endif
         if (!QFileInfo(etc_kderc).isReadable()) {
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
             use_etc_kderc.store(false);
 #else
             use_etc_kderc.storeRelaxed(false);
@@ -266,7 +266,7 @@ KConfig::KConfig(KConfigPrivate &d)
 KConfig::~KConfig()
 {
     Q_D(KConfig);
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     if (d->bDirty && (d->mBackend && d->mBackend->ref.load() == 1)) {
 #else
     if (d->bDirty && (d->mBackend && d->mBackend->ref.loadRelaxed() == 1)) {
