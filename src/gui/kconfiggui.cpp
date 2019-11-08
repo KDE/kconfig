@@ -39,7 +39,7 @@ KConfig *KConfigGui::sessionConfig()
 #ifdef QT_NO_SESSIONMANAGER
 #error QT_NO_SESSIONMANAGER was set, this will not compile. Reconfigure Qt with Session management support.
 #endif
-    if (!hasSessionConfig()) {
+    if (!hasSessionConfig() && qApp->isSessionRestored()) {
         // create the default instance specific config object
         // from applications' -session command line parameter
         s_sessionConfig = new KConfig(configName(qApp->sessionId(),
@@ -70,6 +70,10 @@ bool KConfigGui::hasSessionConfig()
 #if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 11)
 QString KConfigGui::sessionConfigName()
 {
-    return sessionConfig()->name();
+    if (sessionConfig()) {
+        return sessionConfig()->name();
+    } else {
+        return QString();
+    }
 }
 #endif
