@@ -54,6 +54,7 @@ public:
         : mIsImmutable(true)
         , mWriteFlags(KConfigBase::Normal)
     {}
+    virtual ~KConfigSkeletonItemPrivate();
     bool mIsImmutable; ///< Indicates this item is immutable
     KConfigBase::WriteConfigFlags mWriteFlags; ///< The flags to pass to calls of writeEntry() and revertToDefault()
 

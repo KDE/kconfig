@@ -52,6 +52,7 @@ class KConfigSkeletonItemPrivate;
  */
 class KCONFIGCORE_EXPORT KConfigSkeletonItem
 {
+    Q_DECLARE_PRIVATE(KConfigSkeletonItem)
 public:
     typedef QList < KConfigSkeletonItem * >List;
     typedef QHash < QString, KConfigSkeletonItem * > Dict;
@@ -226,6 +227,8 @@ public:
     bool isSaveNeeded() const;
 
 protected:
+    explicit KConfigSkeletonItem(KConfigSkeletonItemPrivate &dd, const QString &_group, const QString &_key);
+
     /**
      * sets mIsImmutable to true if mKey in config is immutable
      * @param group KConfigGroup to check if mKey is immutable in
@@ -241,8 +244,7 @@ protected:
     void setIsDefaultImpl(const std::function<bool()> &impl);
     void setIsSaveNeededImpl(const std::function<bool()> &impl);
 
-private:
-    KConfigSkeletonItemPrivate *const d;
+    KConfigSkeletonItemPrivate *const d_ptr;
 };
 
 /**
