@@ -247,6 +247,56 @@ protected:
     KConfigSkeletonItemPrivate *const d_ptr;
 };
 
+class KPropertySkeletonItemPrivate;
+
+/**
+ * \class KPropertySkeletonItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
+ *
+ * @short Class for proxying a QObject property as a preferences setting
+ * @author Kevin Ottens
+ * @see KConfigSkeletonItem
+ *
+ * This class represents one preferences setting as used by @ref KCoreConfigSkeleton.
+ * Unlike other @ref KConfigSkeletonItem subclasses, this one won't store the preference
+ * in KConfig but will use a QObject property as storage.
+ * You will have to register instances of this class with the function KCoreConfigSkeleton::addItem().
+ *
+ * @since 5.65
+ */
+class KCONFIGCORE_EXPORT KPropertySkeletonItem : public KConfigSkeletonItem
+{
+    Q_DECLARE_PRIVATE(KPropertySkeletonItem)
+public:
+    /**
+     * Constructor
+     *
+     * @param object The QObject instance which we'll manage the property of
+     * @param propertyName The name of the property in @p object which we'll manage
+     * @param defaultValue The default value of the property
+     */
+    KPropertySkeletonItem(QObject *object, const QByteArray &propertyName, const QVariant &defaultValue);
+
+    /** @copydoc KConfigSkeletonItem::property() */
+    QVariant property() const override;
+    /** @copydoc KConfigSkeletonItem::setProperty(const QVariant &) */
+    void setProperty(const QVariant &p) override;
+    /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
+    bool isEqual(const QVariant &p) const override;
+
+    /** @copydoc KConfigSkeletonItem::readConfig(KConfig *) */
+    void readConfig(KConfig *) override;
+    /** @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
+    void writeConfig(KConfig *) override;
+
+    /** @copydoc KConfigSkeletonItem::readDefault(KConfig *) */
+    void readDefault(KConfig *) override;
+    /** @copydoc KConfigSkeletonItem::setDefault() */
+    void setDefault() override;
+    /** @copydoc KConfigSkeletonItem::swapDefault() */
+    void swapDefault() override;
+};
+
+
 /**
  * \class KConfigSkeletonGenericItem kcoreconfigskeleton.h <KConfigSkeletonGenericItem>
  */

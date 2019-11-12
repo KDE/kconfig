@@ -183,6 +183,69 @@ void KConfigSkeletonItem::setIsSaveNeededImpl(const std::function<bool ()> &impl
     d->mIsSaveNeededImpl = impl;
 }
 
+KPropertySkeletonItem::KPropertySkeletonItem(QObject *object, const QByteArray &propertyName, const QVariant &defaultValue)
+    : KConfigSkeletonItem(*new KPropertySkeletonItemPrivate(object, propertyName, defaultValue), {}, {})
+{
+    setIsDefaultImpl([this] {
+        Q_D(const KPropertySkeletonItem);
+        return d->mReference == d->mDefaultValue;
+    });
+    setIsSaveNeededImpl([this] {
+        Q_D(const KPropertySkeletonItem);
+        return d->mReference != d->mLoadedValue;
+    });
+}
+
+QVariant KPropertySkeletonItem::property() const
+{
+    Q_D(const KPropertySkeletonItem);
+    return d->mReference;
+}
+
+void KPropertySkeletonItem::setProperty(const QVariant &p)
+{
+    Q_D(KPropertySkeletonItem);
+    d->mReference = p;
+}
+
+bool KPropertySkeletonItem::isEqual(const QVariant &p) const
+{
+    Q_D(const KPropertySkeletonItem);
+    return d->mReference == p;
+}
+
+void KPropertySkeletonItem::readConfig(KConfig *)
+{
+    Q_D(KPropertySkeletonItem);
+    d->mReference = d->mObject->property(d->mPropertyName.constData());
+    d->mLoadedValue = d->mReference;
+}
+
+void KPropertySkeletonItem::writeConfig(KConfig *)
+{
+    Q_D(KPropertySkeletonItem);
+    d->mObject->setProperty(d->mPropertyName.constData(), d->mReference);
+    d->mLoadedValue = d->mReference;
+}
+
+void KPropertySkeletonItem::readDefault(KConfig *)
+{
+    Q_D(KPropertySkeletonItem);
+    d->mReference = d->mConstDefaultValue;
+}
+
+void KPropertySkeletonItem::setDefault()
+{
+    Q_D(KPropertySkeletonItem);
+    d->mReference = d->mDefaultValue;
+}
+
+void KPropertySkeletonItem::swapDefault()
+{
+    Q_D(KPropertySkeletonItem);
+    std::swap(d->mReference, d->mDefaultValue);
+}
+
 KCoreConfigSkeleton::ItemString::ItemString(const QString &_group, const QString &_key,
         QString &reference,
         const QString &defaultValue,

@@ -67,4 +67,26 @@ public:
     std::function<bool()> mIsSaveNeededImpl;
 };
 
+class KPropertySkeletonItemPrivate : public KConfigSkeletonItemPrivate
+{
+public:
+    KPropertySkeletonItemPrivate(QObject *object, const QByteArray &propertyName, const QVariant &defaultValue)
+        : KConfigSkeletonItemPrivate()
+        , mObject(object)
+        , mPropertyName(propertyName)
+        , mDefaultValue(defaultValue)
+        , mConstDefaultValue(defaultValue)
+    {
+        mIsImmutable = false;
+    }
+
+    QObject *mObject;
+    const QByteArray mPropertyName;
+    QVariant mDefaultValue;
+    const QVariant mConstDefaultValue;
+    QVariant mReference;
+    QVariant mLoadedValue;
+};
+
+
 #endif
