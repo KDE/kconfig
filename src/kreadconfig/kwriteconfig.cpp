@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     parser.addOption(QCommandLineOption(QStringLiteral("group"), QCoreApplication::translate("main", "Group to look in. Use repeatedly for nested groups."), QStringLiteral("group"), QStringLiteral("KDE")));
     parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
     parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"), QStringLiteral("type")));
+    parser.addOption(QCommandLineOption(QStringLiteral("delete"), QCoreApplication::translate("main", "Delete the designated key if enabled")));
     parser.addPositionalArgument(QStringLiteral("value"), QCoreApplication::translate("main",  "The value to write. Mandatory, on a shell use '' for empty" ));
 
     parser.process(app);
@@ -44,12 +45,16 @@ int main(int argc, char **argv)
     QString key=parser.value(QStringLiteral("key"));
     QString file=parser.value(QStringLiteral("file"));
     QString type=parser.value(QStringLiteral("type")).toLower();
+    bool del=parser.isSet(QStringLiteral("delete"));
 
-
-    if (parser.positionalArguments().isEmpty()) {
+    QString value;
+    if (del) {
+        value = QStringLiteral("");
+    } else if (parser.positionalArguments().isEmpty()) {
         parser.showHelp(1);
+    } else {
+        value = parser.positionalArguments().at(0);
     }
-    QString value = parser.positionalArguments().at(0);
 
     KConfig *konfig;
     if (file.isEmpty())
@@ -62,7 +67,9 @@ int main(int argc, char **argv)
         cfgGroup = cfgGroup.group(grp);
     if ( konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable( key ) ) return 2;
 
-    if(type==QStringLiteral("bool")) {
+    if (del) {
+        cfgGroup.deleteEntry( key );
+    } else if (type==QStringLiteral("bool")) {
         // For symmetry with kreadconfig we accept a wider range of values as true than Qt
         bool boolvalue=(value==QStringLiteral("true") || value==QStringLiteral("on") || value==QStringLiteral("yes") || value==QStringLiteral("1"));
         cfgGroup.writeEntry( key, boolvalue );
