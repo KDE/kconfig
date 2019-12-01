@@ -54,9 +54,9 @@ KCONFIGGUI_EXPORT void setSessionConfig(const QString &id, const QString &key);
 
 /**
  * Indicates if a session config has been created for that application
- * (ie. if sessionConfig() got called at least once)
+ * (i.e.\ if sessionConfig() got called at least once)
  *
- * @return true if a sessionConfig object was created, false otherwise
+ * @return @c true if a sessionConfig object was created, @c false otherwise
  */
 KCONFIGGUI_EXPORT bool hasSessionConfig();
 
