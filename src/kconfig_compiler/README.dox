@@ -182,6 +182,15 @@ The following options are read from the kcfgc file:
       mutator functions are generated for the options that are listed.</td>
 </tr>
 <tr>
+  <td><b>Notifiers</b></td>
+  <td>true, false or a comma separated list of options</td>
+  <td>false</td>
+  <td>If true, entries will be written with the <b>Notify</b> flag enabled,
+      so changes can be detected using <b>KConfigWatcher</b>.
+      If a list is provided, the options that are listed are written with
+      said flag.</td>
+</tr>
+<tr>
   <td><b>DefaultValueGetters</b></td>
   <td>true, false or a comma separated list of options</td>
   <td>false</td>
