@@ -167,7 +167,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
             } while ((start = end + 2) <= line.length() && line.at(end + 1) == '[');
             currentGroup = newGroup;
 
-            groupSkip = entryMap.getEntryOption(currentGroup, nullptr, nullptr, KEntryMap::EntryImmutable);
+            groupSkip = entryMap.getEntryOption(currentGroup, {}, {}, KEntryMap::EntryImmutable);
 
             if (groupSkip && !bDefault) {
                 continue;
@@ -201,7 +201,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
                 continue;
             }
 
-            KEntryMap::EntryOptions entryOptions = nullptr;
+            KEntryMap::EntryOptions entryOptions = {};
             if (groupOptionImmutable) {
                 entryOptions |= KEntryMap::EntryImmutable;
             }
