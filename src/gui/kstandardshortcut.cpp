@@ -80,6 +80,8 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
 //Group Edit
     { Undo, "Undo", QT_TRANSLATE_NOOP3("KStandardShortcut", "Undo", "@action"), CTRL(Z), 0, QList<QKeySequence>(), false },
     { Redo, "Redo", QT_TRANSLATE_NOOP3("KStandardShortcut", "Redo", "@action"), CTRLSHIFT(Z), 0, QList<QKeySequence>(), false },
+    // Both "Cut" and "Delete" use Shift+Delete, but this is okay; see
+    // https://cgit.kde.org/kxmlgui.git/commit/?id=8eabbf6725386e716b7536c71a9181dfe5d959f0
     { Cut, "Cut", QT_TRANSLATE_NOOP3("KStandardShortcut", "Cut", "@action"), CTRL(X), SHIFT(Delete), QList<QKeySequence>(), false },
     { Copy, "Copy", QT_TRANSLATE_NOOP3("KStandardShortcut", "Copy", "@action"), CTRL(C), CTRL(Insert), QList<QKeySequence>(), false },
     { Paste, "Paste", QT_TRANSLATE_NOOP3("KStandardShortcut", "Paste", "@action"), CTRL(V), SHIFT(Insert), QList<QKeySequence>(), false },
@@ -169,6 +171,8 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { SwitchApplicationLanguage, "SwitchApplicationLanguage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Switch Application Language", "@action"), 0, 0, QList<QKeySequence>(), false },
     { AboutApp, "AboutApp", QT_TRANSLATE_NOOP3("KStandardShortcut", "About Application", "@action"), 0, 0, QList<QKeySequence>(), false },
     { AboutKDE, "AboutKDE", QT_TRANSLATE_NOOP3("KStandardShortcut", "About KDE", "@action"), 0, 0, QList<QKeySequence>(), false },
+    // Both "Cut" and "Delete" use Shift+Delete, but this is okay; see
+    // https://cgit.kde.org/kxmlgui.git/commit/?id=8eabbf6725386e716b7536c71a9181dfe5d959f0
     { DeleteFile, "DeleteFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete", "@action"), SHIFT(Delete), 0, QList<QKeySequence>(), false },
     { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false },
     { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false },
