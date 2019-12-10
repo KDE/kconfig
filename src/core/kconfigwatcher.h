@@ -53,7 +53,7 @@ public:
 
     /**
      * Returns the config being watched
-     * @since 5.65
+     * @since 5.66
      */
     KSharedConfig::Ptr config() const;
 
