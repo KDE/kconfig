@@ -51,6 +51,12 @@ public:
 
     ~KConfigWatcher() override;
 
+    /**
+     * Returns the config being watched
+     * @since 5.65
+     */
+    KSharedConfig::Ptr config() const;
+
 Q_SIGNALS:
     /**
      * Emitted when a config group has changed

@@ -92,6 +92,11 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config):
 
 KConfigWatcher::~KConfigWatcher() = default;
 
+KSharedConfig::Ptr KConfigWatcher::config() const
+{
+    return d->m_config;
+}
+
 void KConfigWatcher::onConfigChangeNotification(const QHash<QString, QByteArrayList> &changes)
 {
     //should we ever need it we can determine the file changed with  QDbusContext::message().path(), but it doesn't seem too useful
