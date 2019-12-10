@@ -1587,3 +1587,13 @@ void KConfigCompilerSignallingItem::swapDefault()
         invokeNotifyFunction();
     }
 }
+
+void KConfigCompilerSignallingItem::setWriteFlags(KConfigBase::WriteConfigFlags flags)
+{
+    mItem->setWriteFlags(flags);
+}
+
+KConfigBase::WriteConfigFlags KConfigCompilerSignallingItem::writeFlags() const
+{
+    return mItem->writeFlags();
+}
