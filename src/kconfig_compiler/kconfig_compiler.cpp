@@ -1877,7 +1877,7 @@ int main(int argc, char **argv)
         }
     }
     h << endl;
-    
+
 
     // Constructor or singleton accessor
     if (!cfg.singleton) {
@@ -2446,7 +2446,7 @@ int main(int argc, char **argv)
 
     if (hasSignals) {
         // this cast to base-class pointer-to-member is valid C++
-        // http://stackoverflow.com/questions/4272909/is-it-safe-to-upcast-a-method-pointer-and-use-it-with-base-class-pointer/
+        // https://stackoverflow.com/questions/4272909/is-it-safe-to-upcast-a-method-pointer-and-use-it-with-base-class-pointer/
         cpp << "  KConfigCompilerSignallingItem::NotifyFunction notifyFunction ="
             << " static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&"
             << cfg.className << "::itemChanged);" << endl << endl;

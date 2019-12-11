@@ -64,7 +64,7 @@ class KConfigPrivate;
  * KSharedConfig provides a set of open methods as counterparts for the
  * KConfig constructors.
  *
- * \sa KSharedConfig, KConfigGroup, <a href="http://techbase.kde.org/index.php?title=Development/Tutorials/KConfig">the techbase HOWTO on KConfig</a>.
+ * \sa KSharedConfig, KConfigGroup, <a href="https://techbase.kde.org/index.php?title=Development/Tutorials/KConfig">the techbase HOWTO on KConfig</a>.
  */
 class KCONFIGCORE_EXPORT KConfig : public KConfigBase
 {
