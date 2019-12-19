@@ -290,7 +290,7 @@ QStringList KConfig::groupList() const
         }
     }
 
-    return groups.toList();
+    return groups.values();
 }
 
 QStringList KConfigPrivate::groupList(const QByteArray &group) const
@@ -306,7 +306,7 @@ QStringList KConfigPrivate::groupList(const QByteArray &group) const
         }
     }
 
-    return groups.toList();
+    return groups.values();
 }
 
 static bool isGroupOrSubGroupMatch(const QByteArray &potentialGroup, const QByteArray &group)
@@ -359,7 +359,7 @@ QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
                 tmp << QString::fromUtf8(key.mKey);
             }
         }
-        keys = tmp.toList();
+        keys = tmp.values();
     }
 
     return keys;
