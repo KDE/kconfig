@@ -21,7 +21,6 @@
 #include "kauthorized.h"
 
 #include <QDir>
-#include <QRegExp>
 #include <QList>
 #include <QUrl>
 
