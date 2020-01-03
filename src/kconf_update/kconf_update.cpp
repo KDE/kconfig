@@ -832,7 +832,7 @@ void KonfUpdate::gotScript(const QString &_script)
     if (m_debug) {
         QFile scriptFile(path);
         if (scriptFile.open(QIODevice::ReadOnly)) {
-            qCDebug(KCONF_UPDATE_LOG) << "Script contents is:" << endl << scriptFile.readAll();
+            qCDebug(KCONF_UPDATE_LOG) << "Script contents is:\n" << scriptFile.readAll();
         }
     }
     proc.start(cmd, args);
@@ -870,7 +870,7 @@ void KonfUpdate::gotScript(const QString &_script)
         qCDebug(KCONF_UPDATE_LOG) << "Script output stored in" << scriptOut.fileName();
         QFile output(scriptOut.fileName());
         if (output.open(QIODevice::ReadOnly)) {
-            qCDebug(KCONF_UPDATE_LOG) << "Script output is:" << endl << output.readAll();
+            qCDebug(KCONF_UPDATE_LOG) << "Script output is:\n" << output.readAll();
         }
     }
 
