@@ -121,6 +121,17 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
     return ptr;
 }
 
+KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
+{
+    QString fileName(_fileName);
+
+    if (fileName.isEmpty()) {
+        fileName = QCoreApplication::applicationName() + QLatin1String("staterc");
+    }
+
+    return openConfig(fileName, SimpleConfig, QStandardPaths::AppDataLocation);
+}
+
 KSharedConfig::KSharedConfig(const QString &fileName,
                              OpenFlags flags,
                              QStandardPaths::StandardLocation resType)

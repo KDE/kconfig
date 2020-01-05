@@ -75,6 +75,28 @@ public:
                                          OpenFlags mode = FullConfig,
                                          QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
+    /**
+     * Creates a KSharedConfig object to manipulate a configuration file suitable
+     * for storing state information. Use this for storing information that is
+     * changing frequently and should not be saved by configuration backup
+     * utilities.
+     *
+     * If an absolute path is specified for @p fileName, that file will be used
+     * as the store for the configuration settings. If a non-absolute path
+     * is provided, the file will be looked for in the standard data directory
+     * (QStandardPaths::AppDataLocation). If no path is provided, a default
+     * configuration file will be used based on the name of the main
+     * application component.
+     *
+     * @param fileName the configuration file to open. If empty, it will be determined
+     *                 automatically from the application name + "staterc"
+     *
+     * @since 5.67
+     *
+     * @sa KConfig
+     */
+    static KSharedConfig::Ptr openStateConfig(const QString &fileName = QString());
+
     ~KSharedConfig() override;
 
 private:
