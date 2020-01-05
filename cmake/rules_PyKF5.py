@@ -95,6 +95,8 @@ def local_function_rules():
         ["KConfigGroup", "KConfigGroup", ".*", ".*", ".*KConfigBase.*", rules_engine.function_discard],
         ["KConfigGroup", "config", ".*", "const KConfig.*", ".*", rules_engine.function_discard],
 
+        ["KConfigWatcher", "config", ".*", "KSharedConfig::Ptr", ".*", rules_engine.function_discard],
+
         ["KDesktopFile", ".*", ".*", "const KConfigGroup", ".*", rules_engine.function_discard],
 
         ["KConfigGroup", ".*", ".*", "KConfigGroup", ".*", rules_engine.function_discard],
