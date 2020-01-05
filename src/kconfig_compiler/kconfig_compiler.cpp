@@ -32,7 +32,7 @@
 #include <QSettings>
 #include <QTextStream>
 #include <QDomAttr>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 
 #include <qcommandlineparser.h>
@@ -51,7 +51,7 @@ QTextStream cerr(stderr);
 }
 
 QStringList allNames;
-QRegExp *validNameRegexp;
+QRegularExpression *validNameRegexp;
 QString This;
 QString Const;
 
@@ -641,15 +641,6 @@ static QString dumpNode(const QDomNode &node)
     return msg;
 }
 
-static QString filenameOnly(const QString &path)
-{
-    int i = path.lastIndexOf(QRegExp(QStringLiteral("[/\\]")));
-    if (i >= 0) {
-        return path.mid(i + 1);
-    }
-    return path;
-}
-
 static QString signalEnumName(const QString &signalName)
 {
     QString result;
@@ -699,8 +690,10 @@ static void preProcessDefault(QString &defaultValue, const QString &name,
         defaultValue = QLatin1String("default") + name;
 
     } else if (type == QLatin1String("Color") && !defaultValue.isEmpty()) {
-        QRegExp colorRe(QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?"));
-        if (colorRe.exactMatch(defaultValue)) {
+        const QRegularExpression colorRe(QRegularExpression::anchoredPattern(
+                                         QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?")));
+
+        if (colorRe.match(defaultValue).hasMatch()) {
             defaultValue = QLatin1String("QColor( ") + defaultValue + QLatin1String(" )");
         } else {
             defaultValue = QLatin1String("QColor( \"") + defaultValue + QLatin1String("\" )");
@@ -953,7 +946,7 @@ CfgEntry *parseEntry(const QString &group, const QDomElement &element, const Cfg
         }
     }
 
-    if (!validNameRegexp->exactMatch(name)) {
+    if (!validNameRegexp->match(name).hasMatch()) {
         if (nameIsEmpty)
             cerr << "The key '" << key << "' can not be used as name for the entry because "
                  "it is not a valid name. You need to specify a valid name for this entry." << endl;
@@ -1568,7 +1561,8 @@ int main(int argc, char **argv)
     app.setApplicationName(QStringLiteral("kconfig_compiler"));
     app.setApplicationVersion(QStringLiteral(KCONFIG_VERSION_STRING));
 
-    validNameRegexp = new QRegExp(QStringLiteral("[a-zA-Z_][a-zA-Z0-9_]*"));
+    validNameRegexp = new QRegularExpression(QRegularExpression::anchoredPattern(
+                                             QStringLiteral("[a-zA-Z_][a-zA-Z0-9_]*")));
 
     QString inputFilename, codegenFilename;
 
@@ -2082,13 +2076,25 @@ int main(int argc, char **argv)
                 exit(1);
             }
             Signal signal = *it;
-            h << "      " << signalEnumName(signal.name) << " = 0x" << hex << val;
+            h << "      " << signalEnumName(signal.name) << " = 0x" <<
+     #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+                 hex
+     #else
+                 Qt::hex
+     #endif
+              << val;
             if (++it != itEnd) {
                 h << ",";
             }
             h << endl;
         }
-        h << "    };" << dec << endl << endl;
+        h << "    };" <<
+     #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+             dec
+     #else
+             Qt::dec
+     #endif
+          << endl << endl;
 
         h << "  Q_SIGNALS:";
         for (const Signal &signal : qAsConst(signalList)) {
@@ -2220,7 +2226,7 @@ int main(int argc, char **argv)
 
     if (cfg.customAddons) {
         h << "    // Include custom additions" << endl;
-        h << "    #include \"" << filenameOnly(baseName) << "_addons." << cfg.headerExtension << '"' << endl;
+        h << "    #include \"" << baseName << "_addons." << cfg.headerExtension << '"' << endl;
     }
 
     h << "};" << endl << endl;
