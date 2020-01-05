@@ -2082,13 +2082,25 @@ int main(int argc, char **argv)
                 exit(1);
             }
             Signal signal = *it;
-            h << "      " << signalEnumName(signal.name) << " = 0x" << hex << val;
+            h << "      " << signalEnumName(signal.name) << " = 0x" <<
+     #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+                 hex
+     #else
+                 Qt::hex
+     #endif
+              << val;
             if (++it != itEnd) {
                 h << ",";
             }
             h << endl;
         }
-        h << "    };" << dec << endl << endl;
+        h << "    };" <<
+     #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+             dec
+     #else
+             Qt::dec
+     #endif
+          << endl << endl;
 
         h << "  Q_SIGNALS:";
         for (const Signal &signal : qAsConst(signalList)) {
