@@ -1577,7 +1577,7 @@ protected:
     /**
      * Perform the actual writing of the configuration file.
      * Override in derived classes to write special config values.
-     * Called from @ref writeConfig()
+     * Called from @ref save()
      */
     virtual bool usrSave();
 
