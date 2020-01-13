@@ -1,4 +1,5 @@
 #  KCONFIG_ADD_KCFG_FILES (SRCS_VAR [GENERATE_MOC] [USE_RELATIVE_PATH] file1.kcfgc ... fileN.kcfgc)
+#  KCONFIG_ADD_KCFG_FILES (<target> [GENERATE_MOC] [USE_RELATIVE_PATH] file1.kcfgc ... fileN.kcfgc)
 #    Use this to add KDE config compiler files to your application/library.
 #    Use optional GENERATE_MOC to generate moc if you use signals in your kcfg files.
 #    Use optional USE_RELATIVE_PATH to generate the classes in the build following the given
@@ -32,7 +33,7 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-function (KCONFIG_ADD_KCFG_FILES _sources )
+function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
    set(options GENERATE_MOC USE_RELATIVE_PATH)
    cmake_parse_arguments(ARG "${options}" "" "" ${ARGN})
 
@@ -127,6 +128,10 @@ function (KCONFIG_ADD_KCFG_FILES _sources )
        list(APPEND sources ${_src_FILE} ${_header_FILE})
    endforeach (_current_FILE)
 
-   set(${_sources} ${${_sources}} ${sources} PARENT_SCOPE)
+   if (TARGET ${_target_or_source_var})
+      target_sources(${_target_or_source_var} PRIVATE ${sources})
+   else()
+      set(${_target_or_source_var} ${${_target_or_source_var}} ${sources} PARENT_SCOPE)
+   endif()
 
 endfunction(KCONFIG_ADD_KCFG_FILES)
