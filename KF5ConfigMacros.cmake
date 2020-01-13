@@ -33,6 +33,8 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
+include(CMakeParseArguments)
+
 function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
    set(options GENERATE_MOC USE_RELATIVE_PATH)
    cmake_parse_arguments(ARG "${options}" "" "" ${ARGN})
