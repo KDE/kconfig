@@ -1,5 +1,5 @@
 #  KCONFIG_ADD_KCFG_FILES (SRCS_VAR [GENERATE_MOC] [USE_RELATIVE_PATH] file1.kcfgc ... fileN.kcfgc)
-#  KCONFIG_ADD_KCFG_FILES (<target> [GENERATE_MOC] [USE_RELATIVE_PATH] file1.kcfgc ... fileN.kcfgc)
+#  KCONFIG_ADD_KCFG_FILES (<target> [GENERATE_MOC] [USE_RELATIVE_PATH] file1.kcfgc ... fileN.kcfgc) (since 5.67)
 #    Use this to add KDE config compiler files to your application/library.
 #    Use optional GENERATE_MOC to generate moc if you use signals in your kcfg files.
 #    Use optional USE_RELATIVE_PATH to generate the classes in the build following the given
