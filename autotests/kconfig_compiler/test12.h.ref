@@ -15,7 +15,6 @@ class Test12 : public KConfigSkeleton
     Test12( );
     ~Test12();
 
-
     /**
       Get RnRSource
     */

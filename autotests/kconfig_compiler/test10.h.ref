@@ -14,7 +14,6 @@ class Test10 : public KConfigSkeleton
     static Test10 *self();
     ~Test10();
 
-
     /**
       Get foo bar
     */
@@ -23,7 +22,6 @@ class Test10 : public KConfigSkeleton
     {
       return self()->mFooBar;
     }
-
 
     /**
       Get bar foo
