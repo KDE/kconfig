@@ -116,7 +116,7 @@ function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
                           COMMAND KF5::kconfig_compiler
                           ARGS ${_kcfg_FILE} ${_tmp_FILE} -d ${CMAKE_CURRENT_BINARY_DIR}/${_rel_PATH}
                           MAIN_DEPENDENCY ${_tmp_FILE}
-                          DEPENDS ${_kcfg_FILE})
+                          DEPENDS ${_kcfg_FILE} KF5::kconfig_compiler)
 
        set_source_files_properties(${_header_FILE} PROPERTIES SKIP_AUTOMOC ON)  # don't run automoc on this file
        set_source_files_properties(${_src_FILE} PROPERTIES SKIP_AUTOMOC ON)  # don't run automoc on this file
