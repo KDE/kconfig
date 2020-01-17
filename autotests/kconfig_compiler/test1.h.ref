@@ -8,7 +8,6 @@
 #include <QDebug>
 
 #include <qdir.h>
-
 class Test1 : public KConfigSkeleton
 {
   public:

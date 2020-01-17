@@ -16,6 +16,7 @@ class Test13 : public KConfigSkeleton
     Test13( );
     ~Test13();
 
+
     Q_PROPERTY(QUrl picturesDir READ picturesDir CONSTANT)
     /**
       Get picturesDir
@@ -44,6 +45,7 @@ class Test13 : public KConfigSkeleton
     {
       return mBrightness;
     }
+
 
     Q_PROPERTY(bool startsWithUppercase READ startsWithUppercase CONSTANT)
     /**

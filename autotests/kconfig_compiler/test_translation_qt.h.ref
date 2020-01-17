@@ -17,6 +17,7 @@ class TestTranslationQt : public KConfigSkeleton
     TestTranslationQt( );
     ~TestTranslationQt();
 
+
     /**
       Get Enable automatic saving of calendar
     */

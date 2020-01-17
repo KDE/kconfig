@@ -1,13 +1,6 @@
 
 
-set(kconfig_compiler_SRCS
-    KConfigXTParameters.cpp
-    KConfigCodeGeneratorBase.cpp
-    KConfigHeaderGenerator.cpp
-    KConfigSourceGenerator.cpp
-    KCFGXmlParser.cpp
-    kconfig_compiler.cpp
-)
+set(kconfig_compiler_SRCS kconfig_compiler.cpp)
 
 
 add_executable(kconfig_compiler ${kconfig_compiler_SRCS})

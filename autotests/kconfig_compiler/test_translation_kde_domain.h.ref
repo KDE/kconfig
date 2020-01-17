@@ -17,6 +17,7 @@ class TestTranslationKdeDomain : public KConfigSkeleton
     TestTranslationKdeDomain( );
     ~TestTranslationKdeDomain();
 
+
     /**
       Get Enable automatic saving of calendar
     */
