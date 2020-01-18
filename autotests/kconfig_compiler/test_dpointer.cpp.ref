@@ -157,8 +157,8 @@ TestDPointer::TestDPointer( )
 
 void TestDPointer::setAutoSave( bool v )
 {
-      if (!self()->isImmutable( QStringLiteral( "AutoSave" ) ))
-        self()->d->autoSave = v;
+    if (!self()->isImmutable( QStringLiteral( "AutoSave" ) ))
+      self()->d->autoSave = v;
 }
 
 bool TestDPointer::autoSave()
@@ -174,8 +174,8 @@ KConfigSkeleton::ItemBool *TestDPointer::autoSaveItem()
 
 void TestDPointer::setAutoSaveInterval( int v )
 {
-      if (!self()->isImmutable( QStringLiteral( "AutoSaveInterval" ) ))
-        self()->d->autoSaveInterval = v;
+    if (!self()->isImmutable( QStringLiteral( "AutoSaveInterval" ) ))
+      self()->d->autoSaveInterval = v;
 }
 
 int TestDPointer::autoSaveInterval()
@@ -191,8 +191,8 @@ KConfigSkeleton::ItemInt *TestDPointer::autoSaveIntervalItem()
 
 void TestDPointer::setConfirm( bool v )
 {
-      if (!self()->isImmutable( QStringLiteral( "Confirm" ) ))
-        self()->d->confirm = v;
+    if (!self()->isImmutable( QStringLiteral( "Confirm" ) ))
+      self()->d->confirm = v;
 }
 
 bool TestDPointer::confirm()
@@ -208,8 +208,8 @@ KConfigSkeleton::ItemBool *TestDPointer::confirmItem()
 
 void TestDPointer::setArchiveFile( const QString & v )
 {
-      if (!self()->isImmutable( QStringLiteral( "ArchiveFile" ) ))
-        self()->d->archiveFile = v;
+    if (!self()->isImmutable( QStringLiteral( "ArchiveFile" ) ))
+      self()->d->archiveFile = v;
 }
 
 QString TestDPointer::archiveFile()
@@ -225,8 +225,8 @@ KConfigSkeleton::ItemString *TestDPointer::archiveFileItem()
 
 void TestDPointer::setDestination( int v )
 {
-      if (!self()->isImmutable( QStringLiteral( "Destination" ) ))
-        self()->d->destination = v;
+    if (!self()->isImmutable( QStringLiteral( "Destination" ) ))
+      self()->d->destination = v;
 }
 
 int TestDPointer::destination()
@@ -242,8 +242,8 @@ KConfigSkeleton::ItemEnum *TestDPointer::destinationItem()
 
 void TestDPointer::setHourSize( int v )
 {
-      if (!self()->isImmutable( QStringLiteral( "HourSize" ) ))
-        self()->d->hourSize = v;
+    if (!self()->isImmutable( QStringLiteral( "HourSize" ) ))
+      self()->d->hourSize = v;
 }
 
 int TestDPointer::hourSize()
@@ -259,8 +259,8 @@ KConfigSkeleton::ItemInt *TestDPointer::hourSizeItem()
 
 void TestDPointer::setSelectionStartsEditor( bool v )
 {
-      if (!self()->isImmutable( QStringLiteral( "SelectionStartsEditor" ) ))
-        self()->d->selectionStartsEditor = v;
+    if (!self()->isImmutable( QStringLiteral( "SelectionStartsEditor" ) ))
+      self()->d->selectionStartsEditor = v;
 }
 
 bool TestDPointer::selectionStartsEditor()
@@ -276,8 +276,8 @@ KConfigSkeleton::ItemBool *TestDPointer::selectionStartsEditorItem()
 
 void TestDPointer::setSelectedPlugins( const QStringList & v )
 {
-      if (!self()->isImmutable( QStringLiteral( "SelectedPlugins" ) ))
-        self()->d->selectedPlugins = v;
+    if (!self()->isImmutable( QStringLiteral( "SelectedPlugins" ) ))
+      self()->d->selectedPlugins = v;
 }
 
 QStringList TestDPointer::selectedPlugins()
@@ -293,8 +293,8 @@ KConfigSkeleton::ItemStringList *TestDPointer::selectedPluginsItem()
 
 void TestDPointer::setHighlightColor( const QColor & v )
 {
-      if (!self()->isImmutable( QStringLiteral( "HighlightColor" ) ))
-        self()->d->highlightColor = v;
+    if (!self()->isImmutable( QStringLiteral( "HighlightColor" ) ))
+      self()->d->highlightColor = v;
 }
 
 QColor TestDPointer::highlightColor()
@@ -310,8 +310,8 @@ KConfigSkeleton::ItemColor *TestDPointer::highlightColorItem()
 
 void TestDPointer::setAgendaBgColor( const QColor & v )
 {
-      if (!self()->isImmutable( QStringLiteral( "AgendaBgColor" ) ))
-        self()->d->agendaBgColor = v;
+    if (!self()->isImmutable( QStringLiteral( "AgendaBgColor" ) ))
+      self()->d->agendaBgColor = v;
 }
 
 QColor TestDPointer::agendaBgColor()
@@ -327,8 +327,8 @@ KConfigSkeleton::ItemColor *TestDPointer::agendaBgColorItem()
 
 void TestDPointer::setTimeBarFont( const QFont & v )
 {
-      if (!self()->isImmutable( QStringLiteral( "TimeBarFont" ) ))
-        self()->d->timeBarFont = v;
+    if (!self()->isImmutable( QStringLiteral( "TimeBarFont" ) ))
+      self()->d->timeBarFont = v;
 }
 
 QFont TestDPointer::timeBarFont()

@@ -11,6 +11,7 @@
 #include <QDebug>
 
 #include "test11_types.h"
+
 class Test11 : public MyPrefs
 {
   public:

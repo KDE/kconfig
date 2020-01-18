@@ -52,6 +52,7 @@ static CompilerTestSet testCases = {
     "test_translation_kde.cpp", "test_translation_kde.h",
     "test_translation_kde_domain.cpp", "test_translation_kde_domain.h",
     "test_translation_qt.cpp", "test_translation_qt.h",
+    "test_emptyentries.cpp", "test_emptyentries.h",
     nullptr
 };
 
@@ -76,6 +77,7 @@ static CompilerTestSet testCasesToRun = {
     "test_translation_kde",
     "test_translation_kde_domain",
     "test_translation_qt",
+    "test_emptyentries",
     nullptr
 };
 
@@ -125,9 +127,7 @@ void KConfigCompiler_Test::testBaselineComparison()
     if (content != contentRef)  {
         appendFileDiff(fileRef.fileName(), file.fileName());
     }
-    // use split('\n') to avoid
-    // the whole output shown inline
-    QCOMPARE(content.split('\n'), contentRef.split('\n'));
+
     QVERIFY(content == contentRef);
 }
 
@@ -166,17 +166,23 @@ void KConfigCompiler_Test::appendFileDiff(const QString &oldFile, const QString 
         return;
     }
 
-    QStringList args;
-    args << QStringLiteral("-u");
-    args << QFileInfo(oldFile).absoluteFilePath();
-    args << QFileInfo(newFile).absoluteFilePath();
+    QStringList args({
+        QStringLiteral("-u"),
+        QFileInfo(oldFile).absoluteFilePath(),
+        QFileInfo(newFile).absoluteFilePath() });
 
     QProcess process;
     process.start(m_diffExe, args, QIODevice::ReadOnly);
     process.waitForStarted();
     process.waitForFinished();
+
     if (process.exitCode() == 1) {
-        QByteArray out = process.readAllStandardOutput();
-        qDebug() << '\n' << out;
+        const QString diffFileName = oldFile + QStringLiteral(".diff");
+        QFile diffFile(diffFileName);
+        QVERIFY2(diffFile.open(QIODevice::WriteOnly), qPrintable(QLatin1String("Could not save diff file for ") + oldFile));
+        diffFile.write(process.readAllStandardOutput());
+
+        // force a failure to print the flename where we stored the diff.
+        QVERIFY2(false, qPrintable(QLatin1String("This test failed, look at the following file for details: ") + diffFileName));
     }
 }

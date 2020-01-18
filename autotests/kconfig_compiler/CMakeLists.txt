@@ -161,7 +161,6 @@ gen_kcfg_test_source(test12 test12_SRCS)
 ecm_add_test(TEST_NAME test12 ${test12_SRCS})
 target_link_libraries(test12 KF5::ConfigGui)
 
-
 ########### next target ###############
 
 set(test13_SRCS test13main.cpp )
@@ -171,6 +170,14 @@ gen_kcfg_test_source(test13 test13_SRCS GENERATE_MOC)
 ecm_add_test(TEST_NAME test13 ${test13_SRCS})
 target_link_libraries(test13 KF5::ConfigGui)
 
+########### next target ###############
+
+set(test_emptyentries_SRCS test_emptyentries_main.cpp )
+
+gen_kcfg_test_source(test_emptyentries test_emptyentries_SRCS GENERATE_MOC)
+
+ecm_add_test(TEST_NAME test_emptyentries ${test_emptyentries_SRCS})
+target_link_libraries(test_emptyentries KF5::ConfigGui)
 
 ########### next target ###############
 
