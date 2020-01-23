@@ -530,15 +530,15 @@ void KConfigTest::testPath()
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
-        out << "[Test Group]" << endl
-            << "homePath=$HOME/foo" << endl
-            << "homePath2=file://$HOME/foo" << endl
-            << "withSlash=$WITHSLASH/foo" << endl
-            << "withSlash2=$WITHSLASH" << endl
-            << "withBraces[$e]=file://${HOME}/foo" << endl
-            << "URL[$e]=file://${HOME}/foo" << endl
-            << "hostname[$e]=$(hostname)" << endl
-            << "escapes=aaa,bb/b,ccc\\,ccc" << endl
+        out << "[Test Group]\n"
+            << "homePath=$HOME/foo\n"
+            << "homePath2=file://$HOME/foo\n"
+            << "withSlash=$WITHSLASH/foo\n"
+            << "withSlash2=$WITHSLASH\n"
+            << "withBraces[$e]=file://${HOME}/foo\n"
+            << "URL[$e]=file://${HOME}/foo\n"
+            << "hostname[$e]=$(hostname)\n"
+            << "escapes=aaa,bb/b,ccc\\,ccc\n"
             << "noeol=foo" // no EOL
             ;
     }
@@ -592,10 +592,10 @@ void KConfigTest::testPathQtHome()
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
-        out << "[Test Group]" << endl
-            << "dataDir[$e]=$QT_DATA_HOME/kconfigtest" << endl
-            << "cacheDir[$e]=$QT_CACHE_HOME/kconfigtest" << endl
-            << "configDir[$e]=$QT_CONFIG_HOME/kconfigtest" << endl;
+        out << "[Test Group]\n"
+            << "dataDir[$e]=$QT_DATA_HOME/kconfigtest\n"
+            << "cacheDir[$e]=$QT_CACHE_HOME/kconfigtest\n"
+            << "configDir[$e]=$QT_CONFIG_HOME/kconfigtest\n";
     }
     KConfig cf2(TEST_SUBDIR "pathtest");
     KConfigGroup group = cf2.group("Test Group");
@@ -981,13 +981,13 @@ void KConfigTest::testCascadingWithLocale()
     QFile global(globalConfigDir + "foo.desktop");
     QVERIFY(global.open(QIODevice::WriteOnly | QIODevice::Text));
     QTextStream globalOut(&global);
-    globalOut << "[Group]" << endl
-              << "FromGlobal=true" << endl
-              << "FromGlobal[fr]=vrai" << endl
-              << "Name=Testing" << endl
-              << "Name[fr]=FR" << endl
-              << "Other=Global" << endl
-              << "Other[fr]=Global_FR" << endl;
+    globalOut << "[Group]\n"
+              << "FromGlobal=true\n"
+              << "FromGlobal[fr]=vrai\n"
+              << "Name=Testing\n"
+              << "Name[fr]=FR\n"
+              << "Other=Global\n"
+              << "Other[fr]=Global_FR\n";
     global.close();
 
     const QString middleConfigDir = middleDir.path() + "/" TEST_SUBDIR;
@@ -995,12 +995,12 @@ void KConfigTest::testCascadingWithLocale()
     QFile local(middleConfigDir + "foo.desktop");
     QVERIFY(local.open(QIODevice::WriteOnly | QIODevice::Text));
     QTextStream out(&local);
-    out << "[Group]" << endl
-        << "FromLocal=true" << endl
-        << "FromLocal[fr]=vrai" << endl
-        << "Name=Local Testing" << endl
-        << "Name[fr]=FR" << endl
-        << "Other=English Only" << endl;
+    out << "[Group]\n"
+        << "FromLocal=true\n"
+        << "FromLocal[fr]=vrai\n"
+        << "Name=Local Testing\n"
+        << "Name[fr]=FR\n"
+        << "Other=English Only\n";
     local.close();
 
     KConfig config(TEST_SUBDIR "foo.desktop");
@@ -1032,13 +1032,13 @@ void KConfigTest::testMerge()
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
-        out << "[Merged Group]" << endl
-            << "entry1=Testing" << endl
-            << "entry2=More Testing" << endl
-            << "[some group]" << endl
-            << "entry[fr]=French" << endl
-            << "entry[es]=Spanish" << endl
-            << "entry[de]=German" << endl;
+        out << "[Merged Group]\n"
+            << "entry1=Testing\n"
+            << "entry2=More Testing\n"
+            << "[some group]\n"
+            << "entry[fr]=French\n"
+            << "entry[es]=Spanish\n"
+            << "entry[de]=German\n";
     }
     QVERIFY(config.sync());
 
@@ -1070,10 +1070,10 @@ void KConfigTest::testImmutable()
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
-        out << "[$i]" << endl
-            << "entry1=Testing" << endl
-            << "[group][$i]" << endl
-            << "[group][subgroup][$i]" << endl;
+        out << "[$i]\n"
+            << "entry1=Testing\n"
+            << "[group][$i]\n"
+            << "[group][subgroup][$i]\n";
     }
 
     KConfig config(TEST_SUBDIR "immutabletest", KConfig::SimpleConfig);
@@ -1095,9 +1095,9 @@ void KConfigTest::testOptionOrder()
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
         out.setCodec("UTF-8");
-        out << "[group3]" << endl
-            << "entry2=unlocalized" << endl
-            << "entry2[$i][de_DE]=t2" << endl;
+        out << "[group3]\n"
+            << "entry2=unlocalized\n"
+            << "entry2[$i][de_DE]=t2\n";
     }
     KConfig config(TEST_SUBDIR "doubleattrtest", KConfig::SimpleConfig);
     config.setLocale(QStringLiteral("de_DE"));
@@ -1836,14 +1836,14 @@ void KConfigTest::testXdgListEntry()
     QTemporaryFile file;
     QVERIFY(file.open());
     QTextStream out(&file);
-    out <<  "[General]" << endl
-        << "Key1=" << endl // empty list
+    out <<  "[General]\n"
+        << "Key1=\n" // empty list
         // emtpty entries
-        << "Key2=;" << endl
-        << "Key3=;;" << endl
-        << "Key4=;;;" << endl
-        << "Key5=\\;" << endl
-        << "Key6=1;2\\;3;;" << endl;
+        << "Key2=;\n"
+        << "Key3=;;\n"
+        << "Key4=;;;\n"
+        << "Key5=\\;\n"
+        << "Key6=1;2\\;3;;\n";
     out.flush();
     file.close();
     KConfig anonConfig(file.fileName(), KConfig::SimpleConfig);

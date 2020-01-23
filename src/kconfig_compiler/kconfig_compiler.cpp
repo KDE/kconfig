@@ -48,12 +48,6 @@
 #include "KConfigSourceGenerator.h"
 #include "KConfigXmlParser.h"
 
-namespace
-{
-QTextStream cout(stdout);
-QTextStream cerr(stderr);
-}
-
 QString varName(const QString &n, const KConfigParameters &cfg)
 {
     QString result;
@@ -266,7 +260,7 @@ QString param(const QString &t)
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("const QList<QUrl> &");
     } else {
-        cerr << "kconfig_compiler_kf5 does not support type \"" << type << "\"" << endl;
+        std::cerr << "kconfig_compiler_kf5 does not support type \"" << qPrintable(type) << "\"" << std::endl;
         return QStringLiteral("QString"); //For now, but an assert would be better
     }
 }
@@ -320,7 +314,7 @@ QString cppType(const QString &t)
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("QList<QUrl>");
     } else {
-        cerr << "kconfig_compiler_kf5 does not support type \"" << type << "\"" << endl;
+        std::cerr << "kconfig_compiler_kf5 does not support type \"" << qPrintable(type) << "\"" << std::endl;
         return QStringLiteral("QString"); //For now, but an assert would be better
     }
 }
@@ -371,7 +365,7 @@ QString defaultValue(const QString &t)
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("QList<QUrl>()");
     } else {
-        cerr << "Error, kconfig_compiler_kf5 does not support the \"" << type << "\" type!" << endl;
+        std::cerr << "Error, kconfig_compiler_kf5 does not support the \"" << qPrintable(type) << "\" type!" << std::endl;
         return QStringLiteral("QString"); //For now, but an assert would be better
     }
 }
@@ -594,20 +588,20 @@ QString memberGetDefaultBody(const CfgEntry *e)
 {
     QString result = e->code;
     QTextStream out(&result, QIODevice::WriteOnly);
-    out << endl;
+    out << '\n';
 
     if (!e->param.isEmpty()) {
-        out << "  switch (i) {" << endl;
+        out << "  switch (i) {\n";
         for (int i = 0; i <= e->paramMax; ++i) {
             if (!e->paramDefaultValues[i].isEmpty()) {
-                out << "  case " << i << ": return " << e->paramDefaultValues[i] << ';' << endl;
+                out << "  case " << i << ": return " << e->paramDefaultValues[i] << ";\n";
             }
         }
         QString defaultValue = e->defaultValue;
 
-        out << "  default:" << endl;
-        out << "    return " << defaultValue.replace("$(" + e->param + ')', QLatin1String("i")) << ';' << endl;
-        out << "  }" << endl;
+        out << "  default:\n";
+        out << "    return " << defaultValue.replace("$(" + e->param + ')', QLatin1String("i")) << ";\n";
+        out << "  }\n";
     } else {
         out << "  return " << e->defaultValue << ';';
     }
@@ -627,7 +621,7 @@ QString itemAccessorBody(const CfgEntry *e, const KConfigParameters &cfg)
     if (!e->param.isEmpty()) {
         out << "[i]";
     }
-    out << ";" << endl;
+    out << ";\n";
 
     return result;
 }
@@ -645,7 +639,7 @@ QString indent(QString text, int spaces)
             for (int i = 0; i < spaces; i++) {
                 out << " ";
             }
-        out << currLine << endl;
+        out << currLine << '\n';
     }
     return result;
 }
@@ -653,17 +647,17 @@ QString indent(QString text, int spaces)
 bool hasErrors(KConfigXmlParser &parser, const ParseResult& parseResult, const KConfigParameters &cfg)
 {
     if (cfg.className.isEmpty()) {
-        cerr << "Class name missing" << endl;
+        std::cerr << "Class name missing" << std::endl;
         return true;
     }
 
     if (cfg.singleton && !parseResult.parameters.isEmpty()) {
-        cerr << "Singleton class can not have parameters" << endl;
+        std::cerr << "Singleton class can not have parameters" << std::endl;
         return true;
     }
 
     if (!parseResult.cfgFileName.isEmpty() && parseResult.cfgFileNameArg) {
-        cerr << "Having both a fixed filename and a filename as argument is not possible." << endl;
+        std::cerr << "Having both a fixed filename and a filename as argument is not possible." << std::endl;
         return true;
     }
 
@@ -681,7 +675,7 @@ bool hasErrors(KConfigXmlParser &parser, const ParseResult& parseResult, const K
     * (to make things more interesting, it failed in a code that's never used within KDevelop... )
     */
     if (parseResult.entries.isEmpty()) {
-        cerr << "No entries." << endl;
+        std::cerr << "No entries." << std::endl;
         return false;
     }
 
@@ -717,23 +711,23 @@ int main(int argc, char **argv)
     parser.process(app);
 
     if (parser.isSet(licenseOption)) {
-	    cout << "Copyright 2003 Cornelius Schumacher, Waldo Bastian, Zack Rusin," << endl;
-        cout << "    Reinhold Kainhofer, Duncan Mac-Vicar P., Harald Fernengel" << endl;
-        cout << "This program comes with ABSOLUTELY NO WARRANTY." << endl;
-        cout << "You may redistribute copies of this program" << endl;
-        cout << "under the terms of the GNU Library Public License." << endl;
-        cout << "For more information about these matters, see the file named COPYING." << endl;
+        std::cout << "Copyright 2003 Cornelius Schumacher, Waldo Bastian, Zack Rusin," << std::endl;
+        std::cout << "    Reinhold Kainhofer, Duncan Mac-Vicar P., Harald Fernengel" << std::endl;
+        std::cout << "This program comes with ABSOLUTELY NO WARRANTY." << std::endl;
+        std::cout << "You may redistribute copies of this program" << std::endl;
+        std::cout << "under the terms of the GNU Library Public License." << std::endl;
+        std::cout << "For more information about these matters, see the file named COPYING." << std::endl;
         return 0;
     }
 
     const QStringList args = parser.positionalArguments();
     if (args.count() < 2) {
-	    cerr << "Too few arguments." << endl;
+        std::cerr << "Too few arguments." << std::endl;
 	    return 1;
     }
 
     if (args.count() > 2) {
-    	cerr << "Too many arguments." << endl;
+        std::cerr << "Too many arguments." << std::endl;
         return 1;
     }
     inputFilename = args.at(0);

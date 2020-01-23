@@ -31,16 +31,12 @@
 #include <QDebug>
 #include <QFileInfo>
 
-namespace
-{
-QTextStream cout(stdout);
-QTextStream cerr(stderr);
-}
+#include <iostream>
 
 KConfigParameters::KConfigParameters(const QString &codegenFilename)
 {
     if (!codegenFilename.endsWith(QLatin1String(".kcfgc"))) {
-        cerr << "Codegen options file must have extension .kcfgc" << endl;
+        std::cerr << "Codegen options file must have extension .kcfgc" << std::endl;
         exit(1);
     }
 
@@ -53,7 +49,7 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
     nameSpace = codegenConfig.value(QStringLiteral("NameSpace")).toString();
     className = codegenConfig.value(QStringLiteral("ClassName")).toString();
     if (className.isEmpty()) {
-        cerr << "Class name missing" << endl;
+        std::cerr << "Class name missing" << std::endl;
         exit(1);
     }
     inherits = codegenConfig.value(QStringLiteral("Inherits")).toString();
@@ -90,7 +86,7 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
         translationDomain = codegenConfig.value(QStringLiteral("TranslationDomain")).toString();
     } else {
         if (!trString.isEmpty() && trString != QLatin1String("qt")) {
-            cerr << "Unknown translation system, falling back to Qt tr()" << endl;
+            std::cerr << "Unknown translation system, falling back to Qt tr()" << std::endl;
         }
         translationSystem = QtTranslation;
     }

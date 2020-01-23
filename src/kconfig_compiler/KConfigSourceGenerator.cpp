@@ -39,12 +39,12 @@ KConfigSourceGenerator::KConfigSourceGenerator(
 void KConfigSourceGenerator::start() 
 {
     KConfigCodeGeneratorBase::start();
-    stream() << endl;
+    stream() << '\n';
     createHeaders();
 
     if (!cfg().nameSpace.isEmpty()) {
         stream() << "using namespace " << cfg().nameSpace << ";";
-        stream() << endl << endl;
+        stream() << endl << '\n';
     }
 
     createPrivateDPointerImplementation();
@@ -67,12 +67,12 @@ void KConfigSourceGenerator::createHeaders()
     addQuotes(headerName);
 
     addHeaders({ headerName });
-    stream() << endl;
+    stream() << '\n';
 
     addHeaders(cfg().sourceIncludes);
     if (cfg().setUserTexts && cfg().translationSystem == KConfigParameters::KdeTranslation) {
         addHeaders({QStringLiteral("klocalizedstring.h")});
-        stream() << endl;
+        stream() << '\n';
     }
 
     // Header required by singleton implementation
@@ -81,7 +81,7 @@ void KConfigSourceGenerator::createHeaders()
 
         // HACK: Add single line to fix test.
         if (cfg().singleton && parseResult.cfgFileNameArg) {
-            stream() << endl;
+            stream() << '\n';
         }
     }
 
@@ -90,7 +90,7 @@ void KConfigSourceGenerator::createHeaders()
     }
 
     if (cfg().singleton) {
-        stream() << endl;
+        stream() << '\n';
     }
 }
 
@@ -103,24 +103,24 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
 
     QString group;
     beginNamespaces();
-    stream() << "class " << cfg().className << "Private" << endl;
-    stream() << "{" << endl;
-    stream() << "  public:" << endl;
+    stream() << "class " << cfg().className << "Private\n";
+    stream() << "{\n";
+    stream() << "  public:\n";
 
     // Create Members
     for (auto *entry : parseResult.entries) {
         if (entry->group != group) {
             group = entry->group;
-            stream() << endl;
-            stream() << "    // " << group << endl;
+            stream() << '\n';
+            stream() << "    // " << group << '\n';
         }
         stream() << "    " << cppType(entry->type) << " " << varName(entry->name, cfg());
         if (!entry->param.isEmpty()) {
             stream() << QStringLiteral("[%1]").arg(entry->paramMax + 1);
         }
-        stream() << ";" << endl;
+        stream() << ";\n";
     }
-    stream() << endl << "    // items" << endl;
+    stream() << endl << "    // items\n";
 
     // Create Items.
     for (auto *entry : parseResult.entries) {
@@ -132,14 +132,14 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
         if (!entry->param.isEmpty()) {
             stream() << QStringLiteral("[%1]").arg(entry->paramMax + 1);
         }
-        stream() << ";" << endl;
+        stream() << ";\n";
     }
 
     if (parseResult.hasNonModifySignals) {
-        stream() << "    uint " << varName(QStringLiteral("settingsChanged"), cfg()) << ";" << endl;
+        stream() << "    uint " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
     }
 
-    stream() << "};" << endl << endl;
+    stream() << "};" << endl << '\n';
     endNamespaces();
 }
 
@@ -151,50 +151,50 @@ void KConfigSourceGenerator::createSingletonImplementation()
     }
 
     beginNamespaces();
-    stream() << "class " << cfg().className << "Helper" << endl;
-    stream() << '{' << endl;
-    stream() << "  public:" << endl;
-    stream() << "    " << cfg().className << "Helper() : q(nullptr) {}" << endl;
-    stream() << "    ~" << cfg().className << "Helper() { delete q; }" << endl;
-    stream() << "    " << cfg().className << "Helper(const " << cfg().className << "Helper&) = delete;" << endl;
-    stream() << "    " << cfg().className << "Helper& operator=(const " << cfg().className << "Helper&) = delete;" << endl;
-    stream() << "    " << cfg().className << " *q;" << endl;
-    stream() << "};" << endl;
+    stream() << "class " << cfg().className << "Helper\n";
+    stream() << '{' << '\n';
+    stream() << "  public:\n";
+    stream() << "    " << cfg().className << "Helper() : q(nullptr) {}\n";
+    stream() << "    ~" << cfg().className << "Helper() { delete q; }\n";
+    stream() << "    " << cfg().className << "Helper(const " << cfg().className << "Helper&) = delete;\n";
+    stream() << "    " << cfg().className << "Helper& operator=(const " << cfg().className << "Helper&) = delete;\n";
+    stream() << "    " << cfg().className << " *q;\n";
+    stream() << "};\n";
     endNamespaces();
 
-    stream() << "Q_GLOBAL_STATIC(" << cfg().className << "Helper, s_global" << cfg().className << ")" << endl;
+    stream() << "Q_GLOBAL_STATIC(" << cfg().className << "Helper, s_global" << cfg().className << ")\n";
 
-    stream() << cfg().className << " *" << cfg().className << "::self()" << endl;
-    stream() << "{" << endl;
+    stream() << cfg().className << " *" << cfg().className << "::self()\n";
+    stream() << "{\n";
     if (parseResult.cfgFileNameArg) {
-        stream() << "  if (!s_global" << cfg().className << "()->q)" << endl;
-        stream() << "     qFatal(\"you need to call " << cfg().className << "::instance before using\");" << endl;
+        stream() << "  if (!s_global" << cfg().className << "()->q)\n";
+        stream() << "     qFatal(\"you need to call " << cfg().className << "::instance before using\");\n";
     } else {
-        stream() << "  if (!s_global" << cfg().className << "()->q) {" << endl;
-        stream() << "    new " << cfg().className << ';' << endl;
-        stream() << "    s_global" << cfg().className << "()->q->read();" << endl;
-        stream() << "  }" << endl << endl;
+        stream() << "  if (!s_global" << cfg().className << "()->q) {\n";
+        stream() << "    new " << cfg().className << ';' << '\n';
+        stream() << "    s_global" << cfg().className << "()->q->read();\n";
+        stream() << "  }" << endl << '\n';
     }
-    stream() << "  return s_global" << cfg().className << "()->q;" << endl;
-    stream() << "}" << endl << endl;
+    stream() << "  return s_global" << cfg().className << "()->q;\n";
+    stream() << "}" << endl << '\n';
 
     if (parseResult.cfgFileNameArg) {
         auto instance = [this] (const QString &type, const QString &arg, bool isString) {
-            stream() << "void " << cfg().className << "::instance(" << type << " " << arg << ")" << endl;
-            stream() << "{" << endl;
-            stream() << "  if (s_global" << cfg().className << "()->q) {" << endl;
-            stream() << "     qDebug() << \"" << cfg().className << "::instance called after the first use - ignoring\";" << endl;
-            stream() << "     return;" << endl;
-            stream() << "  }" << endl;
+            stream() << "void " << cfg().className << "::instance(" << type << " " << arg << ")\n";
+            stream() << "{\n";
+            stream() << "  if (s_global" << cfg().className << "()->q) {\n";
+            stream() << "     qDebug() << \"" << cfg().className << "::instance called after the first use - ignoring\";\n";
+            stream() << "     return;\n";
+            stream() << "  }\n";
             stream() << "  new " << cfg().className << "(";
             if (isString) {
                 stream() << "KSharedConfig::openConfig(" << arg << ")";
             } else {
                 stream() << "std::move(" << arg << ")";
             }
-            stream() << ");" << endl;
-            stream() << "  s_global" << cfg().className << "()->q->read();" << endl;
-            stream() << "}" << endl << endl;
+            stream() << ");\n";
+            stream() << "  s_global" << cfg().className << "()->q->read();\n";
+            stream() << "}" << endl << '\n';
         };
         instance(QStringLiteral("const QString&"), QStringLiteral("cfgfilename"), true);
         instance(QStringLiteral("KSharedConfig::Ptr"), QStringLiteral("config"), false);
@@ -216,7 +216,7 @@ void KConfigSourceGenerator::createPreamble()
     }
 
     if (!cppPreamble.isEmpty()) {
-        stream() << cppPreamble << endl;
+        stream() << cppPreamble << '\n';
     }
 }
 
@@ -264,17 +264,17 @@ void KConfigSourceGenerator::createParentConstructorCall()
     if (!parseResult.cfgFileName.isEmpty()) {
         stream() << ") ";
     }
-    stream() << ")" << endl;
+    stream() << ")\n";
 }
 
 void KConfigSourceGenerator::createInitializerList()
 {
     for (const auto &parameter : parseResult.parameters) {
-        stream() << "  , mParam" << parameter.name << "(" << parameter.name << ")" << endl;
+        stream() << "  , mParam" << parameter.name << "(" << parameter.name << ")\n";
     }
 
     if (parseResult.hasNonModifySignals && !cfg().dpointer) {
-        stream() << "  , " << varName(QStringLiteral("settingsChanged"), cfg()) << "(0)" << endl;
+        stream() << "  , " << varName(QStringLiteral("settingsChanged"), cfg()) << "(0)\n";
     }
 }
 
@@ -283,44 +283,44 @@ void KConfigSourceGenerator::createEnums(const CfgEntry *entry)
     if (entry->type != QLatin1String("Enum")) {
         return;
     }
-    stream() << "  QList<" << cfg().inherits << "::ItemEnum::Choice> values" << entry->name << ";" << endl;
+    stream() << "  QList<" << cfg().inherits << "::ItemEnum::Choice> values" << entry->name << ";\n";
     
     for (const auto &choice : qAsConst(entry->choices.choices)) {
-        stream() << "  {" << endl;
-        stream() << "    " << cfg().inherits << "::ItemEnum::Choice choice;" << endl;
-        stream() << "    choice.name = QStringLiteral(\"" << choice.name << "\");" << endl;
+        stream() << "  {\n";
+        stream() << "    " << cfg().inherits << "::ItemEnum::Choice choice;\n";
+        stream() << "    choice.name = QStringLiteral(\"" << choice.name << "\");\n";
         if (cfg().setUserTexts) {
             if (!choice.label.isEmpty()) {
                 stream() << "    choice.label = "
                     << translatedString(cfg(), choice.label, choice.context)
-                    << ";" << endl;
+                    << ";\n";
             }
             if (!choice.toolTip.isEmpty()) {
                 stream() << "    choice.toolTip = "
                     << translatedString(cfg(), choice.toolTip, choice.context)
-                    << ";" << endl;
+                    << ";\n";
             }
             if (!choice.whatsThis.isEmpty()) {
                 stream() << "    choice.whatsThis = "
                     << translatedString(cfg(), choice.whatsThis, choice.context)
-                    << ";" << endl;
+                    << ";\n";
             }
         }
-        stream() << "    values" << entry->name << ".append( choice );" << endl;
-        stream() << "  }" << endl;
+        stream() << "    values" << entry->name << ".append( choice );\n";
+        stream() << "  }\n";
     }
 }
 
 void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QString &key)
 {
    stream() << "  " << itemPath(entry, cfg()) << " = "
-        << newItem(entry, key, entry->defaultValue, cfg()) << endl;
+        << newItem(entry, key, entry->defaultValue, cfg()) << '\n';
 
     if (!entry->min.isEmpty()) {
-        stream() << "  " << itemPath(entry, cfg()) << "->setMinValue(" << entry->min << ");" << endl;
+        stream() << "  " << itemPath(entry, cfg()) << "->setMinValue(" << entry->min << ");\n";
     }
     if (!entry->max.isEmpty()) {
-        stream() << "  " << itemPath(entry, cfg()) << "->setMaxValue(" << entry->max << ");" << endl;
+        stream() << "  " << itemPath(entry, cfg()) << "->setMaxValue(" << entry->max << ");\n";
     }
 
     if (cfg().setUserTexts) {
@@ -328,7 +328,7 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
     }
 
     if (cfg().allNotifiers || cfg().notifiers.contains(entry->name)) {
-        stream() << "  " << itemPath(entry, cfg()) << "->setWriteFlags(KConfigBase::Notify);" << endl;
+        stream() << "  " << itemPath(entry, cfg()) << "->setWriteFlags(KConfigBase::Notify);\n";
     }
 
     stream() << "  addItem( " << itemPath(entry, cfg());
@@ -337,7 +337,7 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
     if (quotedName != key) {
         stream() << ", QStringLiteral( \"" << entry->name << "\" )";
     }
-    stream() << " );" << endl;
+    stream() << " );\n";
 }
 
 void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QString &key)
@@ -350,7 +350,7 @@ void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QSt
                            : defaultValue(entry->type);
         
         stream() << "  " << itemVarStr << " = "
-            << newItem(entry, paramString(key, entry, i), defaultStr, cfg(), QStringLiteral("[%1]").arg(i)) << endl;
+            << newItem(entry, paramString(key, entry, i), defaultStr, cfg(), QStringLiteral("[%1]").arg(i)) << '\n';
 
         if (cfg().setUserTexts) {
             stream() << userTextsFunctions(entry, cfg(), itemVarStr, entry->paramName);
@@ -367,7 +367,7 @@ void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QSt
 
         stream() << "  addItem( " << itemVarStr << ", QStringLiteral( \"";
         stream() << paramName.replace(QStringLiteral("$(") + entry->param + QLatin1Char(')'), QLatin1String("%1")).arg( arg );
-        stream() << "\" ) );" << endl;
+        stream() << "\" ) );\n";
     }
 }
 
@@ -381,14 +381,14 @@ void KConfigSourceGenerator::handleCurrentGroupChange(const CfgEntry *entry)
     static bool first = true;
     if (!entry->group.isEmpty()) {
         if (!first) {
-            stream() << endl;
+            stream() << '\n';
         }
         first = false;
     }
 
     mCurrentGroup = entry->group;
     stream() << "  setCurrentGroup( " << paramString(mCurrentGroup, parseResult.parameters) << " );";
-    stream() << endl << endl;
+    stream() << endl << '\n';
 }
 
 void KConfigSourceGenerator::doConstructor()
@@ -396,29 +396,29 @@ void KConfigSourceGenerator::doConstructor()
     // Constructor
     stream() << cfg().className << "::" << cfg().className << "(";
     createConstructorParameterList();
-    stream() << " )" << endl;
+    stream() << " )\n";
     stream() << "  : ";
     createParentConstructorCall();
     createInitializerList();
 
-    stream() << "{" << endl;
+    stream() << "{\n";
 
     if (cfg().parentInConstructor) {
-        stream() << "  setParent(parent);" << endl;
+        stream() << "  setParent(parent);\n";
     }
 
     if (cfg().dpointer) {
-        stream() << "  d = new " << cfg().className << "Private;" << endl;
+        stream() << "  d = new " << cfg().className << "Private;\n";
         if (parseResult.hasNonModifySignals) {
-            stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " = 0;" << endl;
+            stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " = 0;\n";
         }
     }
 
     // Needed in case the singleton class is used as baseclass for
     // another singleton.
     if (cfg().singleton) {
-        stream() << "  Q_ASSERT(!s_global" << cfg().className << "()->q);" << endl;
-        stream() << "  s_global" << cfg().className << "()->q = this;" << endl;
+        stream() << "  Q_ASSERT(!s_global" << cfg().className << "()->q);\n";
+        stream() << "  s_global" << cfg().className << "()->q = this;\n";
     }
 
     if (!parseResult.signalList.isEmpty()) {
@@ -426,9 +426,9 @@ void KConfigSourceGenerator::doConstructor()
         // https://stackoverflow.com/questions/4272909/is-it-safe-to-upcast-a-method-pointer-and-use-it-with-base-class-pointer/
         stream() << "  KConfigCompilerSignallingItem::NotifyFunction notifyFunction ="
             << " static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&"
-            << cfg().className << "::itemChanged);" << endl;
+            << cfg().className << "::itemChanged);\n";
 
-        stream() << endl;
+        stream() << '\n';
     }
 
     for (auto *entry : parseResult.entries) {
@@ -436,7 +436,7 @@ void KConfigSourceGenerator::doConstructor()
 
         const QString key = paramString(entry->key, parseResult.parameters);
         if (!entry->code.isEmpty()) {
-            stream() << entry->code << endl;
+            stream() << entry->code << '\n';
         }
         createEnums(entry);
 
@@ -451,7 +451,7 @@ void KConfigSourceGenerator::doConstructor()
         }
     }
 
-    stream() << "}" << endl << endl;
+    stream() << "}\n\n";
 }
 
 void KConfigSourceGenerator::createGetterDPointerMode(const CfgEntry *entry)
@@ -467,7 +467,7 @@ void KConfigSourceGenerator::createGetterDPointerMode(const CfgEntry *entry)
     if (!entry->param.isEmpty()) {
         stream() << " " << cppType(entry->paramType) << " i ";
     }
-    stream() << ")" << Const() << endl;
+    stream() << ")" << Const() << '\n';
 
     // function body inline only if not using dpointer
     // for BC mode
@@ -475,7 +475,7 @@ void KConfigSourceGenerator::createGetterDPointerMode(const CfgEntry *entry)
     // HACK: Fix memberAccessorBody
     stream() << "  " << memberAccessorBody(entry, cfg().globalEnums);
     endScope();
-    stream() << endl;
+    stream() << '\n';
 }
 
 void KConfigSourceGenerator::createSetterDPointerMode(const CfgEntry *entry)
@@ -495,14 +495,14 @@ void KConfigSourceGenerator::createSetterDPointerMode(const CfgEntry *entry)
     } else {
         stream() << param(entry->type);
     }
-    stream() << " v )" << endl;
+    stream() << " v )\n";
 
     // function body inline only if not using dpointer
     // for BC mode
     startScope();
     memberMutatorBody(entry);
     endScope();
-    stream() << endl;
+    stream() << '\n';
 }
 
 void KConfigSourceGenerator::createItemGetterDPointerMode(const CfgEntry *entry)
@@ -511,13 +511,13 @@ void KConfigSourceGenerator::createItemGetterDPointerMode(const CfgEntry *entry)
     if (!cfg().itemAccessors) {
         return;
     }
-    stream() << endl;
+    stream() << '\n';
     stream() << cfg().inherits << "::Item" << itemType(entry->type) << " *"
         << getFunction(entry->name, cfg().className) << "Item(";
     if (!entry->param.isEmpty()) {
         stream() << " " << cppType(entry->paramType) << " i ";
     }
-    stream() << ")" << endl;
+    stream() << ")\n";
     startScope();
     stream() << "  " << itemAccessorBody(entry, cfg());
     endScope();
@@ -534,7 +534,7 @@ void KConfigSourceGenerator::doGetterSetterDPointerMode()
         createSetterDPointerMode(entry);
         createGetterDPointerMode(entry);
         createItemGetterDPointerMode(entry);
-        stream() << endl;
+        stream() << '\n';
     }
 }
 
@@ -551,27 +551,27 @@ void KConfigSourceGenerator::createDefaultValueGetterSetter()
             if (!entry->param.isEmpty()) {
                 stream() << " " << cppType(entry->paramType) << " i ";
             }
-            stream() << ")" << Const() << endl;
+            stream() << ")" << Const() << '\n';
             startScope();
-            stream() << memberGetDefaultBody(entry) << endl;
+            stream() << memberGetDefaultBody(entry) << '\n';
             endScope();
-            stream() << endl;
+            stream() << '\n';
         }
     }
 }
 
 void KConfigSourceGenerator::createDestructor()
 {
-    stream() << cfg().className << "::~" << cfg().className << "()" << endl;
+    stream() << cfg().className << "::~" << cfg().className << "()\n";
     startScope();
     if (cfg().dpointer) {
-        stream() << "  delete d;" << endl;
+        stream() << "  delete d;\n";
     }
     if (cfg().singleton) {
-        stream() << "  s_global" << cfg().className << "()->q = nullptr;" << endl;
+        stream() << "  s_global" << cfg().className << "()->q = nullptr;\n";
     }
     endScope();
-    stream() << endl;
+    stream() << '\n';
 }
 
 void KConfigSourceGenerator::createNonModifyingSignalsHelper()
@@ -579,16 +579,16 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
     if (!parseResult.hasNonModifySignals) {
         return;
     }
-    stream() << "bool " << cfg().className << "::" << "usrSave()" << endl;
+    stream() << "bool " << cfg().className << "::" << "usrSave()\n";
     startScope();
-    stream() << "  const bool res = " << cfg().inherits << "::usrSave();" << endl;
-    stream() << "  if (!res) return false;" << endl << endl;
+    stream() << "  const bool res = " << cfg().inherits << "::usrSave();\n";
+    stream() << "  if (!res) return false;\n\n";
     for (const Signal &signal : parseResult.signalList) {
         if (signal.modify) {
             continue;
         }
 
-        stream() << "  if ( " << varPath(QStringLiteral("settingsChanged"), cfg()) << " & " << signalEnumName(signal.name) << " )" << endl;
+        stream() << "  if ( " << varPath(QStringLiteral("settingsChanged"), cfg()) << " & " << signalEnumName(signal.name) << " )\n";
         stream() << "    Q_EMIT " << signal.name << "(";
         QList<Param>::ConstIterator it, itEnd = signal.arguments.constEnd();
         for (it = signal.arguments.constBegin(); it != itEnd;) {
@@ -612,11 +612,11 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
             }
         }
 
-        stream() << ");" << endl;
+        stream() << ");\n";
     }
 
-    stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " = 0;" << endl;
-    stream() << "  return true;" << endl;
+    stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " = 0;\n";
+    stream() << "  return true;\n";
     endScope();
 }
 
@@ -626,23 +626,23 @@ void KConfigSourceGenerator::createSignalFlagsHandler()
         return;
     }
 
-    stream() << endl;
-    stream() << "void " << cfg().className << "::" << "itemChanged(quint64 flags) {" << endl;
+    stream() << '\n';
+    stream() << "void " << cfg().className << "::" << "itemChanged(quint64 flags) {\n";
     if (parseResult.hasNonModifySignals)
-        stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " |= flags;" << endl;
+        stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " |= flags;\n";
 
     if (!parseResult.signalList.isEmpty())
-        stream() << endl;
+        stream() << '\n';
 
     for (const Signal &signal : parseResult.signalList) {
         if (signal.modify) {
-            stream() << "  if ( flags & " << signalEnumName(signal.name) << " ) {" << endl;
-            stream() << "    Q_EMIT " << signal.name << "();" << endl;
-            stream() << "  }" << endl;
+            stream() << "  if ( flags & " << signalEnumName(signal.name) << " ) {\n";
+            stream() << "    Q_EMIT " << signal.name << "();\n";
+            stream() << "  }\n";
         }
     }
 
-    stream() << "}" << endl;
+    stream() << "}\n";
 }
 
 void KConfigSourceGenerator::includeMoc() {
@@ -650,8 +650,8 @@ void KConfigSourceGenerator::includeMoc() {
 
     if (parseResult.signalList.count() || cfg().generateProperties) {
         // Add includemoc if they are signals defined.
-        stream() << endl;
-        stream() << "#include \"" << mocFileName << "\"" << endl;
-        stream() << endl;
+        stream() << '\n';
+        stream() << "#include \"" << mocFileName << "\"\n";
+        stream() << '\n';
     }
 }
