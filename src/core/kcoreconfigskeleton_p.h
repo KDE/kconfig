@@ -61,6 +61,7 @@ public:
     QString mLabel; ///< The label for this item
     QString mToolTip; ///< The ToolTip text for this item
     QString mWhatsThis; ///< The What's This text for this item
+    KConfigGroup mConfigGroup; ///< KConfigGroup, allow to read/write item in nested groups
 
     // HACK: Necessary to avoid introducing new virtuals in KConfigSkeletonItem
     std::function<bool()> mIsDefaultImpl;
