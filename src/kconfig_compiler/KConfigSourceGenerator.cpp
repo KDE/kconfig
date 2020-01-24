@@ -44,7 +44,7 @@ void KConfigSourceGenerator::start()
 
     if (!cfg().nameSpace.isEmpty()) {
         stream() << "using namespace " << cfg().nameSpace << ";";
-        stream() << endl << '\n';
+        stream() << "\n\n";
     }
 
     createPrivateDPointerImplementation();
@@ -120,7 +120,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
         }
         stream() << ";\n";
     }
-    stream() << endl << "    // items\n";
+    stream() << "\n    // items\n";
 
     // Create Items.
     for (auto *entry : parseResult.entries) {
@@ -139,7 +139,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
         stream() << "    uint " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
     }
 
-    stream() << "};" << endl << '\n';
+    stream() << "};\n\n";
     endNamespaces();
 }
 
@@ -173,10 +173,10 @@ void KConfigSourceGenerator::createSingletonImplementation()
         stream() << "  if (!s_global" << cfg().className << "()->q) {\n";
         stream() << "    new " << cfg().className << ';' << '\n';
         stream() << "    s_global" << cfg().className << "()->q->read();\n";
-        stream() << "  }" << endl << '\n';
+        stream() << "  }\n\n";
     }
     stream() << "  return s_global" << cfg().className << "()->q;\n";
-    stream() << "}" << endl << '\n';
+    stream() << "}\n\n";
 
     if (parseResult.cfgFileNameArg) {
         auto instance = [this] (const QString &type, const QString &arg, bool isString) {
@@ -194,7 +194,7 @@ void KConfigSourceGenerator::createSingletonImplementation()
             }
             stream() << ");\n";
             stream() << "  s_global" << cfg().className << "()->q->read();\n";
-            stream() << "}" << endl << '\n';
+            stream() << "}\n\n";
         };
         instance(QStringLiteral("const QString&"), QStringLiteral("cfgfilename"), true);
         instance(QStringLiteral("KSharedConfig::Ptr"), QStringLiteral("config"), false);
@@ -388,7 +388,7 @@ void KConfigSourceGenerator::handleCurrentGroupChange(const CfgEntry *entry)
 
     mCurrentGroup = entry->group;
     stream() << "  setCurrentGroup( " << paramString(mCurrentGroup, parseResult.parameters) << " );";
-    stream() << endl << '\n';
+    stream() << "\n\n";
 }
 
 void KConfigSourceGenerator::doConstructor()

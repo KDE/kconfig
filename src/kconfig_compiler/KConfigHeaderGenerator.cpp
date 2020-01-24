@@ -255,7 +255,14 @@ void KConfigHeaderGenerator::createSignals()
     // a last comma, as it's valid c++.
     for (int i = 0, end = parseResult.signalList.size(); i < end; i++) {
         auto signal = parseResult.signalList.at(i);
-        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x" << hex << val;
+        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x"
+                 <<
+            #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+                    hex
+            #else
+                    Qt::hex
+            #endif
+                 << val;
         if (i != end-1) {
             stream() << ",\n";
         }
@@ -263,7 +270,14 @@ void KConfigHeaderGenerator::createSignals()
         val <<= 1;
     }
     stream() << '\n';
-    stream() << whitespace() << "};" << dec << "\n\n";
+    stream() << whitespace() << "};"
+             <<
+            #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+                    dec
+            #else
+                    Qt::dec
+            #endif
+             << "\n\n";
 
     stream() << "  Q_SIGNALS:";
     for (const Signal &signal : parseResult.signalList) {
@@ -495,7 +509,7 @@ void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QSt
         stream() << ";\n";
     }
 
-    stream() <<endl;
+    stream() << '\n';
 }
 
 void KConfigHeaderGenerator::createDefaultValueMember(const CfgEntry *entry)
