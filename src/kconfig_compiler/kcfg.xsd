@@ -155,6 +155,7 @@
                             </xsd:element>
                         </xsd:sequence>
                         <xsd:attribute name="name" use="required" type="xsd:string"/>
+                        <xsd:attribute name="parentGroupName" use="optional" type="xsd:string"/>
                     </xsd:complexType>
                 </xsd:element>
             </xsd:sequence>

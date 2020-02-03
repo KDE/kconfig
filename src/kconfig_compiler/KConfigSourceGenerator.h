@@ -68,6 +68,7 @@ private:
 
 private:
     QString mCurrentGroup;
+    QStringList mConfigGroupList; // keeps track of generated KConfigGroup;
 };
 
 #endif

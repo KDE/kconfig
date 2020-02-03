@@ -83,6 +83,7 @@ public:
 
 public:
     QString group;
+    QString parentGroup;
     QString type;
     QString key;
     QString name;

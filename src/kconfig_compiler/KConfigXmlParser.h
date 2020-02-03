@@ -46,7 +46,7 @@ private:
 
     // TODO: Use std::optional and CfgEntry (without heap allocation) for this function
     // *or* fail hard if the parse fails.
-    CfgEntry *parseEntry(const QString &group, const QDomElement &element);
+    CfgEntry *parseEntry(const QString &group, const QString &parentGroup, const QDomElement &element);
 
     // Steps
     void readIncludeTag(const QDomElement &element);

@@ -344,7 +344,7 @@ void KConfigXmlParser::readParamDefaultValues(CfgEntry &readEntry, const QDomEle
     }
 }
 
-CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QDomElement &element)
+CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QString &parentGroup, const QDomElement &element)
 {
     CfgEntry readEntry;
     readEntry.type = element.attribute(QStringLiteral("type"));
@@ -352,6 +352,7 @@ CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QDomElement &
     readEntry.key = element.attribute(QStringLiteral("key"));
     readEntry.hidden = element.attribute(QStringLiteral("hidden")) == QLatin1String("true");;
     readEntry.group = group;
+    readEntry.parentGroup = parentGroup;
 
     const bool nameIsEmpty = readEntry.name.isEmpty();
 
@@ -400,6 +401,7 @@ CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QDomElement &
     // creating another one to fill the code.
     CfgEntry *result = new CfgEntry();
     result->group = readEntry.group;
+    result->parentGroup = readEntry.parentGroup;
     result->type = readEntry.type;
     result->key = readEntry.key;
     result->name = readEntry.name;
@@ -492,11 +494,13 @@ void KConfigXmlParser::readGroupTag(const QDomElement &e)
         exit (1);
     }
 
+    const QString parentGroup = e.attribute(QStringLiteral("parentGroupName"));
+
     for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
         if (e2.tagName() != QLatin1String("entry")) {
             continue;
         }
-        CfgEntry *entry = parseEntry(group, e2);
+        CfgEntry *entry = parseEntry(group, parentGroup, e2);
         if (entry) {
             mParseResult.entries.append(entry);
         } else {

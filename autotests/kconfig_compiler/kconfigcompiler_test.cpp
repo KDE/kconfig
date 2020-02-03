@@ -48,6 +48,7 @@ static CompilerTestSet testCases = {
     "test_emptyentries.cpp", "test_emptyentries.h",
     "test_properties_minmax.cpp", "test_properties_minmax.h",
     "test_param_minmax.cpp", "test_param_minmax.h",
+    "test_subgroups.cpp", "test_subgroups.h",
     nullptr
 };
 
@@ -75,6 +76,7 @@ static CompilerTestSet testCasesToRun = {
     "test_emptyentries",
     "test_properties_minmax",
     "test_param_minmax",
+    "test_subgroups",
     nullptr
 };
 

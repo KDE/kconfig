@@ -181,6 +181,16 @@ target_link_libraries(test_emptyentries KF5::ConfigGui)
 
 ########### next target ###############
 
+set(test_subgroups_SRCS test_subgroups_main.cpp )
+
+gen_kcfg_test_source(test_subgroups test_subgroups_SRCS GENERATE_MOC)
+
+ecm_add_test(TEST_NAME test_subgroups ${test_subgroups_SRCS})
+target_link_libraries(test_subgroups KF5::ConfigGui)
+
+
+########### next target ###############
+
 set(test_dpointer_SRCS test_dpointer_main.cpp )
 
 gen_kcfg_test_source(test_dpointer test_dpointer_SRCS)

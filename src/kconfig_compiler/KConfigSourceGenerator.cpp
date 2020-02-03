@@ -333,6 +333,10 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
         }
     }
 
+    if (!entry->parentGroup.isEmpty()) {
+        stream() << "  " << itemVarStr << "->setGroup(cg" << QString(entry->group).remove(QRegExp(QStringLiteral("\\W"))) << ");\n";
+    }
+
     stream() << "  addItem( " << itemVarStr;
     QString quotedName = entry->name;
     addQuotes(quotedName);
@@ -342,6 +346,11 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
     stream() << " );\n";
 }
 
+// TODO : Some compiler option won't work or generate bogus settings file.
+// * Does not manage properly Notifiers=true kcfgc option for parameterized entries :
+// ** KConfigCompilerSignallingItem generated with wrong userData parameter (4th one).
+// ** setWriteFlags() is missing.
+// * Q_PROPERTY signal won't work
 void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QString &key)
 {
     for (int i = 0; i <= entry->paramMax; i++) {
@@ -410,8 +419,25 @@ void KConfigSourceGenerator::handleCurrentGroupChange(const CfgEntry *entry)
     }
 
     mCurrentGroup = entry->group;
-    stream() << "  setCurrentGroup( " << paramString(mCurrentGroup, parseResult.parameters) << " );";
-    stream() << "\n\n";
+
+    if (!entry->parentGroup.isEmpty()) {
+        QString parentGroup = QString(entry->parentGroup).remove(QRegExp(QStringLiteral("\\W")));
+        if (!mConfigGroupList.contains(parentGroup)) {
+            stream() << "  KConfigGroup cg" << parentGroup
+                     << "(this->config(), " << paramString(entry->parentGroup, parseResult.parameters) << ");\n";
+            mConfigGroupList << parentGroup;
+        }
+        QString currentGroup = QString(mCurrentGroup).remove(QRegExp(QStringLiteral("\\W")));
+        if (!mConfigGroupList.contains(currentGroup)) {
+            stream() << "  KConfigGroup cg" << currentGroup
+                     << " = cg" << QString(entry->parentGroup).remove(QRegExp(QStringLiteral("\\W")))
+                     << ".group(" << paramString(mCurrentGroup, parseResult.parameters) << ");\n";
+            mConfigGroupList << currentGroup;
+        }
+    } else {
+        stream() << "  setCurrentGroup( " << paramString(mCurrentGroup, parseResult.parameters) << " );";
+        stream() << "\n\n";
+    }
 }
 
 void KConfigSourceGenerator::doConstructor()
