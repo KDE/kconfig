@@ -23,7 +23,7 @@ class Test5 : public KConfigSkeleton
     static
     void setColor( int i, const QColor & v )
     {
-      if (!self()->isImmutable( QStringLiteral( "Color%1" ).arg( i ) ))
+      if (!self()->isColorImmutable( i ))
         self()->mColor[i] = v;
     }
 
@@ -37,12 +37,21 @@ class Test5 : public KConfigSkeleton
     }
 
     /**
+      Is Block colors. Immutable
+    */
+    static
+    bool isColorImmutable( int i )
+    {
+      return self()->isImmutable( QStringLiteral( "Color%1" ).arg( i ) );
+    }
+
+    /**
       Set Mouse actions.
     */
     static
     void setMouseAction( int i, int v )
     {
-      if (!self()->isImmutable( QStringLiteral( "MouseAction%1" ).arg( QLatin1String( EnumButtonToString[i] ) ) ))
+      if (!self()->isMouseActionImmutable( i ))
         self()->mMouseAction[i] = v;
     }
 
@@ -56,12 +65,21 @@ class Test5 : public KConfigSkeleton
     }
 
     /**
+      Is Mouse actions. Immutable
+    */
+    static
+    bool isMouseActionImmutable( int i )
+    {
+      return self()->isImmutable( QStringLiteral( "MouseAction%1" ).arg( QLatin1String( EnumButtonToString[i] ) ) );
+    }
+
+    /**
       Set foo bar
     */
     static
     void setFooBar( const QString & v )
     {
-      if (!self()->isImmutable( QStringLiteral( "FooBar" ) ))
+      if (!self()->isFooBarImmutable())
         self()->mFooBar = v;
     }
 
@@ -72,6 +90,15 @@ class Test5 : public KConfigSkeleton
     QString fooBar()
     {
       return self()->mFooBar;
+    }
+
+    /**
+      Is foo bar Immutable
+    */
+    static
+    bool isFooBarImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "FooBar" ) );
     }
 
     /**
@@ -92,7 +119,7 @@ class Test5 : public KConfigSkeleton
         v = 88;
       }
 
-      if (!self()->isImmutable( QStringLiteral( "Age" ) ))
+      if (!self()->isAgeImmutable())
         self()->mAge = v;
     }
 
@@ -103,6 +130,15 @@ class Test5 : public KConfigSkeleton
     int age()
     {
       return self()->mAge;
+    }
+
+    /**
+      Is Age Immutable
+    */
+    static
+    bool isAgeImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "Age" ) );
     }
 
   protected:

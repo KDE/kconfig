@@ -79,7 +79,9 @@ void KConfigHeaderGenerator::doClassDefinition()
 
         createSetters(entry);
         createProperties(entry, returnType);
+        createImmutableProperty(entry);
         createGetters(entry, returnType);
+        createImmutableGetters(entry);
         createDefaultValueMember(entry);
         createItemAcessors(entry, returnType);
     }
@@ -172,7 +174,7 @@ void KConfigHeaderGenerator::implementChoiceEnums(const CfgEntry *entry, const C
     }
 
     QStringList values;
-    for (const auto choice : qAsConst(chlist)) {
+    for (const auto &choice : qAsConst(chlist)) {
         values.append(choices.prefix + choice.name);
     }
 
@@ -415,6 +417,16 @@ void KConfigHeaderGenerator::createProperties(const CfgEntry *entry, const QStri
     stream() << ")\n";
 }
 
+void KConfigHeaderGenerator::createImmutableProperty(const CfgEntry *entry)
+{
+    if (!cfg().generateProperties) {
+        return;
+    }
+    stream() << whitespace();
+    stream() << "Q_PROPERTY(bool " << immutableFunction(entry->name);
+    stream() << " CONSTANT)\n";
+}
+
 void KConfigHeaderGenerator::createSetters(const CfgEntry *entry)
 {
     // Manipulator
@@ -484,8 +496,38 @@ void KConfigHeaderGenerator::createGetters(const CfgEntry *entry, const QString 
     }
 }
 
+void KConfigHeaderGenerator::createImmutableGetters(const CfgEntry *entry)
+{
+    stream() << whitespace() << "/**\n";
+    stream() << whitespace() << "  Is " << entry->label << " Immutable\n";
+    stream() << whitespace() << "*/\n";
+    // Immutable
+    if (cfg().staticAccessors) {
+        stream() << whitespace() << "static\n";
+    }
+    stream() << whitespace() << "";
+    stream() << "bool " << immutableFunction(entry->name) << "(";
+    if (!entry->param.isEmpty()) {
+        stream() << " " << cppType(entry->paramType)<< " i ";
+    }
+    stream() << ")" << Const();
+    // function body inline only if not using dpointer
+    // for BC mode
+    if (!cfg().dpointer) {
+        stream() << '\n';
+        startScope();
+        memberImmutableBody(entry, cfg().globalEnums);
+        endScope();
+        stream() << '\n';
+    } else {
+        stream() << ";\n\n";
+    }
+}
+
 void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QString &returnType)
 {
+    Q_UNUSED(returnType)
+
     // Item accessor
     if (!cfg().itemAccessors) {
         return;

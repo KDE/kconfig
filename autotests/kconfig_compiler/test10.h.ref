@@ -24,12 +24,30 @@ class Test10 : public KConfigSkeleton
     }
 
     /**
+      Is foo bar Immutable
+    */
+    static
+    bool isFooBarImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "FooBar" ) );
+    }
+
+    /**
       Get bar foo
     */
     static
     QList<QUrl> barFoo()
     {
       return self()->mBarFoo;
+    }
+
+    /**
+      Is bar foo Immutable
+    */
+    static
+    bool isBarFooImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "BarFoo" ) );
     }
 
   protected:

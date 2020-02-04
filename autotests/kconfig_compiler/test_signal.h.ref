@@ -21,7 +21,7 @@ class TestSignal : public KConfigSkeleton
     static
     void setEmoticonTheme( const QString & v )
     {
-      if (v != self()->mEmoticonTheme && !self()->isImmutable( QStringLiteral( "emoticonTheme" ) )) {
+      if (v != self()->mEmoticonTheme && !self()->isEmoticonThemeImmutable()) {
         self()->mEmoticonTheme = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -37,12 +37,21 @@ class TestSignal : public KConfigSkeleton
     }
 
     /**
+      Is Current emoticon theme. Immutable
+    */
+    static
+    bool isEmoticonThemeImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "emoticonTheme" ) );
+    }
+
+    /**
       Set Enable emoticon support in Kopete.
     */
     static
     void setUseEmoticon( bool v )
     {
-      if (v != self()->mUseEmoticon && !self()->isImmutable( QStringLiteral( "useEmoticon" ) )) {
+      if (v != self()->mUseEmoticon && !self()->isUseEmoticonImmutable()) {
         self()->mUseEmoticon = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -58,12 +67,21 @@ class TestSignal : public KConfigSkeleton
     }
 
     /**
+      Is Enable emoticon support in Kopete. Immutable
+    */
+    static
+    bool isUseEmoticonImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "useEmoticon" ) );
+    }
+
+    /**
       Set Use strict mode in emoticon parsing.
     */
     static
     void setEmoticonRequireSpace( bool v )
     {
-      if (v != self()->mEmoticonRequireSpace && !self()->isImmutable( QStringLiteral( "emoticonRequireSpace" ) )) {
+      if (v != self()->mEmoticonRequireSpace && !self()->isEmoticonRequireSpaceImmutable()) {
         self()->mEmoticonRequireSpace = v;
         self()->mSettingsChanged |= signalEmoticonSettingsChanged;
       }
@@ -79,12 +97,21 @@ class TestSignal : public KConfigSkeleton
     }
 
     /**
+      Is Use strict mode in emoticon parsing. Immutable
+    */
+    static
+    bool isEmoticonRequireSpaceImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "emoticonRequireSpace" ) );
+    }
+
+    /**
       Set Absolute path to a directory containing a Adium/Kopete chat window style.
     */
     static
     void setStylePath( const QString & v )
     {
-      if (v != self()->mStylePath && !self()->isImmutable( QStringLiteral( "stylePath" ) )) {
+      if (v != self()->mStylePath && !self()->isStylePathImmutable()) {
         self()->mStylePath = v;
         self()->mSettingsChanged |= signalStyleChanged;
       }
@@ -100,12 +127,21 @@ class TestSignal : public KConfigSkeleton
     }
 
     /**
+      Is Absolute path to a directory containing a Adium/Kopete chat window style. Immutable
+    */
+    static
+    bool isStylePathImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "stylePath" ) );
+    }
+
+    /**
       Set Relative path to a CSS variant for the current style.
     */
     static
     void setStyleCSSVariant( const QString & v )
     {
-      if (!self()->isImmutable( QStringLiteral( "StyleCSSVariant" ) ))
+      if (!self()->isStyleCSSVariantImmutable())
         self()->mStyleCSSVariant = v;
     }
 
@@ -116,6 +152,15 @@ class TestSignal : public KConfigSkeleton
     QString styleCSSVariant()
     {
       return self()->mStyleCSSVariant;
+    }
+
+    /**
+      Is Relative path to a CSS variant for the current style. Immutable
+    */
+    static
+    bool isStyleCSSVariantImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "StyleCSSVariant" ) );
     }
 
 

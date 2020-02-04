@@ -22,7 +22,7 @@ class Test8c : public KConfigSkeleton
     static
     void setFont( const QFont & v )
     {
-      if (!self()->isImmutable( QStringLiteral( "Font" ) ))
+      if (!self()->isFontImmutable())
         self()->mFont = v;
     }
 
@@ -36,12 +36,21 @@ class Test8c : public KConfigSkeleton
     }
 
     /**
+      Is Font Immutable
+    */
+    static
+    bool isFontImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "Font" ) );
+    }
+
+    /**
       Set TitleFont
     */
     static
     void setTitleFont( const QFont & v )
     {
-      if (!self()->isImmutable( QStringLiteral( "TitleFont" ) ))
+      if (!self()->isTitleFontImmutable())
         self()->mTitleFont = v;
     }
 
@@ -52,6 +61,15 @@ class Test8c : public KConfigSkeleton
     QFont titleFont()
     {
       return self()->mTitleFont;
+    }
+
+    /**
+      Is TitleFont Immutable
+    */
+    static
+    bool isTitleFontImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "TitleFont" ) );
     }
 
   protected:

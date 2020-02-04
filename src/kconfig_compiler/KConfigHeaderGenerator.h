@@ -71,7 +71,9 @@ private:
     void createSetters(const CfgEntry *entry);
     void createItemAcessors(const CfgEntry *entry, const QString &returnType);
     void createGetters(const CfgEntry *entry, const QString &returnType);
+    void createImmutableGetters(const CfgEntry *entry);
     void createProperties(const CfgEntry *entry, const QString &returnType);
+    void createImmutableProperty(const CfgEntry *entry);
     void createDefaultValueMember(const CfgEntry *entry);
 };
 

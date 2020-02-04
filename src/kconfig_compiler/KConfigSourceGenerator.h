@@ -76,6 +76,7 @@ private:
 
     void doGetterSetterDPointerMode();
     void createGetterDPointerMode(const CfgEntry *entry);
+    void createImmutableGetterDPointerMode(const CfgEntry *entry);
     void createSetterDPointerMode(const CfgEntry *entry);
     void createItemGetterDPointerMode(const CfgEntry *entry);
 

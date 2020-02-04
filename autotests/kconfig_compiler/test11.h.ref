@@ -30,7 +30,7 @@ class Test11 : public MyPrefs
     */
     void setAutoSave( bool v )
     {
-      if (!isImmutable( QStringLiteral( "AutoSave" ) ))
+      if (!isAutoSaveImmutable())
         mAutoSave = v;
     }
 
@@ -40,6 +40,14 @@ class Test11 : public MyPrefs
     bool autoSave() const
     {
       return mAutoSave;
+    }
+
+    /**
+      Is Enable automatic saving of calendar Immutable
+    */
+    bool isAutoSaveImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AutoSave" ) );
     }
 
     /**
@@ -63,7 +71,7 @@ class Test11 : public MyPrefs
     */
     void setAutoSaveInterval( int v )
     {
-      if (!isImmutable( QStringLiteral( "AutoSaveInterval" ) ))
+      if (!isAutoSaveIntervalImmutable())
         mAutoSaveInterval = v;
     }
 
@@ -73,6 +81,14 @@ class Test11 : public MyPrefs
     int autoSaveInterval() const
     {
       return mAutoSaveInterval;
+    }
+
+    /**
+      Is Auto Save Interval Immutable
+    */
+    bool isAutoSaveIntervalImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AutoSaveInterval" ) );
     }
 
     /**
@@ -96,7 +112,7 @@ class Test11 : public MyPrefs
     */
     void setConfirm( bool v )
     {
-      if (!isImmutable( QStringLiteral( "Confirm" ) ))
+      if (!isConfirmImmutable())
         mConfirm = v;
     }
 
@@ -106,6 +122,14 @@ class Test11 : public MyPrefs
     bool confirm() const
     {
       return mConfirm;
+    }
+
+    /**
+      Is Confirm deletes Immutable
+    */
+    bool isConfirmImmutable() const
+    {
+      return isImmutable( QStringLiteral( "Confirm" ) );
     }
 
     /**
@@ -129,7 +153,7 @@ class Test11 : public MyPrefs
     */
     void setArchiveFile( const QString & v )
     {
-      if (!isImmutable( QStringLiteral( "ArchiveFile" ) ))
+      if (!isArchiveFileImmutable())
         mArchiveFile = v;
     }
 
@@ -139,6 +163,14 @@ class Test11 : public MyPrefs
     QString archiveFile() const
     {
       return mArchiveFile;
+    }
+
+    /**
+      Is Archive File Immutable
+    */
+    bool isArchiveFileImmutable() const
+    {
+      return isImmutable( QStringLiteral( "ArchiveFile" ) );
     }
 
     /**
@@ -154,7 +186,7 @@ class Test11 : public MyPrefs
     */
     void setDestination( EnumDestination::type v )
     {
-      if (!isImmutable( QStringLiteral( "Destination" ) ))
+      if (!isDestinationImmutable())
         mDestination = v;
     }
 
@@ -164,6 +196,14 @@ class Test11 : public MyPrefs
     EnumDestination::type destination() const
     {
       return static_cast<EnumDestination::type>(mDestination);
+    }
+
+    /**
+      Is New Events/Todos Should Immutable
+    */
+    bool isDestinationImmutable() const
+    {
+      return isImmutable( QStringLiteral( "Destination" ) );
     }
 
     /**
@@ -187,7 +227,7 @@ class Test11 : public MyPrefs
     */
     void setHourSize( int v )
     {
-      if (!isImmutable( QStringLiteral( "HourSize" ) ))
+      if (!isHourSizeImmutable())
         mHourSize = v;
     }
 
@@ -197,6 +237,14 @@ class Test11 : public MyPrefs
     int hourSize() const
     {
       return mHourSize;
+    }
+
+    /**
+      Is Hour Size Immutable
+    */
+    bool isHourSizeImmutable() const
+    {
+      return isImmutable( QStringLiteral( "HourSize" ) );
     }
 
     /**
@@ -220,7 +268,7 @@ class Test11 : public MyPrefs
     */
     void setSelectionStartsEditor( bool v )
     {
-      if (!isImmutable( QStringLiteral( "SelectionStartsEditor" ) ))
+      if (!isSelectionStartsEditorImmutable())
         mSelectionStartsEditor = v;
     }
 
@@ -230,6 +278,14 @@ class Test11 : public MyPrefs
     bool selectionStartsEditor() const
     {
       return mSelectionStartsEditor;
+    }
+
+    /**
+      Is Time range selection in agenda view starts event editor Immutable
+    */
+    bool isSelectionStartsEditorImmutable() const
+    {
+      return isImmutable( QStringLiteral( "SelectionStartsEditor" ) );
     }
 
     /**
@@ -253,7 +309,7 @@ class Test11 : public MyPrefs
     */
     void setSelectedPlugins( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "SelectedPlugins" ) ))
+      if (!isSelectedPluginsImmutable())
         mSelectedPlugins = v;
     }
 
@@ -263,6 +319,14 @@ class Test11 : public MyPrefs
     QStringList selectedPlugins() const
     {
       return mSelectedPlugins;
+    }
+
+    /**
+      Is SelectedPlugins Immutable
+    */
+    bool isSelectedPluginsImmutable() const
+    {
+      return isImmutable( QStringLiteral( "SelectedPlugins" ) );
     }
 
     /**
@@ -286,7 +350,7 @@ class Test11 : public MyPrefs
     */
     void setHighlightColor( const QColor & v )
     {
-      if (!isImmutable( QStringLiteral( "HighlightColor" ) ))
+      if (!isHighlightColorImmutable())
         mHighlightColor = v;
     }
 
@@ -296,6 +360,14 @@ class Test11 : public MyPrefs
     QColor highlightColor() const
     {
       return mHighlightColor;
+    }
+
+    /**
+      Is Highlight color Immutable
+    */
+    bool isHighlightColorImmutable() const
+    {
+      return isImmutable( QStringLiteral( "HighlightColor" ) );
     }
 
     /**
@@ -319,7 +391,7 @@ class Test11 : public MyPrefs
     */
     void setAgendaBgColor( const QColor & v )
     {
-      if (!isImmutable( QStringLiteral( "AgendaBgColor" ) ))
+      if (!isAgendaBgColorImmutable())
         mAgendaBgColor = v;
     }
 
@@ -329,6 +401,14 @@ class Test11 : public MyPrefs
     QColor agendaBgColor() const
     {
       return mAgendaBgColor;
+    }
+
+    /**
+      Is Agenda view background color Immutable
+    */
+    bool isAgendaBgColorImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AgendaBgColor" ) );
     }
 
     /**
@@ -352,7 +432,7 @@ class Test11 : public MyPrefs
     */
     void setTimeBarFont( const QFont & v )
     {
-      if (!isImmutable( QStringLiteral( "TimeBarFont" ) ))
+      if (!isTimeBarFontImmutable())
         mTimeBarFont = v;
     }
 
@@ -362,6 +442,14 @@ class Test11 : public MyPrefs
     QFont timeBarFont() const
     {
       return mTimeBarFont;
+    }
+
+    /**
+      Is Time bar Immutable
+    */
+    bool isTimeBarFontImmutable() const
+    {
+      return isImmutable( QStringLiteral( "TimeBarFont" ) );
     }
 
     /**
@@ -377,7 +465,7 @@ class Test11 : public MyPrefs
     */
     void setEmailClient( MailClient v )
     {
-      if (!isImmutable( QStringLiteral( "EmailClient" ) ))
+      if (!isEmailClientImmutable())
         mEmailClient = v;
     }
 
@@ -387,6 +475,14 @@ class Test11 : public MyPrefs
     MailClient emailClient() const
     {
       return static_cast<MailClient>(mEmailClient);
+    }
+
+    /**
+      Is Email client Immutable
+    */
+    bool isEmailClientImmutable() const
+    {
+      return isImmutable( QStringLiteral( "EmailClient" ) );
     }
 
     /**
@@ -410,7 +506,7 @@ class Test11 : public MyPrefs
     */
     void setDefaultReminderUnits( TimePeriod::Units v )
     {
-      if (!isImmutable( QStringLiteral( "DefaultReminderUnits" ) ))
+      if (!isDefaultReminderUnitsImmutable())
         mDefaultReminderUnits = v;
     }
 
@@ -420,6 +516,14 @@ class Test11 : public MyPrefs
     TimePeriod::Units defaultReminderUnits() const
     {
       return static_cast<TimePeriod::Units>(mDefaultReminderUnits);
+    }
+
+    /**
+      Is Reminder units Immutable
+    */
+    bool isDefaultReminderUnitsImmutable() const
+    {
+      return isImmutable( QStringLiteral( "DefaultReminderUnits" ) );
     }
 
     /**
@@ -443,7 +547,7 @@ class Test11 : public MyPrefs
     */
     void setQueueRate( int i, const QList<int> & v )
     {
-      if (!isImmutable( QStringLiteral( "queueRate%1" ).arg( i ) ))
+      if (!isQueueRateImmutable( i ))
         mQueueRate[i] = v;
     }
 
@@ -453,6 +557,14 @@ class Test11 : public MyPrefs
     QList<int> queueRate( int i ) const
     {
       return mQueueRate[i];
+    }
+
+    /**
+      Is EmptyingRate $(QueueIndex) Immutable
+    */
+    bool isQueueRateImmutable( int i ) const
+    {
+      return isImmutable( QStringLiteral( "queueRate%1" ).arg( i ) );
     }
 
     /**
@@ -476,7 +588,7 @@ class Test11 : public MyPrefs
     */
     void setShowQueueTuner( bool v )
     {
-      if (!isImmutable( QStringLiteral( "ShowQueueTuner" ) ))
+      if (!isShowQueueTunerImmutable())
         mShowQueueTuner = v;
     }
 
@@ -486,6 +598,14 @@ class Test11 : public MyPrefs
     bool showQueueTuner() const
     {
       return mShowQueueTuner;
+    }
+
+    /**
+      Is ShowQueueTuner Immutable
+    */
+    bool isShowQueueTunerImmutable() const
+    {
+      return isImmutable( QStringLiteral( "ShowQueueTuner" ) );
     }
 
     /**

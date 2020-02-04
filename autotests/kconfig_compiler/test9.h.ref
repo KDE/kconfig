@@ -21,7 +21,7 @@ class Test9 : public KConfigSkeleton
     */
     void setMyStringList( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "MyStringList" ) ))
+      if (!isMyStringListImmutable())
         mMyStringList = v;
     }
 
@@ -34,11 +34,19 @@ class Test9 : public KConfigSkeleton
     }
 
     /**
+      Is MyStringList Immutable
+    */
+    bool isMyStringListImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyStringList" ) );
+    }
+
+    /**
       Set This is a list of paths
     */
     void setMyPathList( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "MyPathList" ) ))
+      if (!isMyPathListImmutable())
         mMyPathList = v;
     }
 
@@ -51,11 +59,19 @@ class Test9 : public KConfigSkeleton
     }
 
     /**
+      Is This is a list of paths Immutable
+    */
+    bool isMyPathListImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyPathList" ) );
+    }
+
+    /**
       Set This is an additional test for PathList
     */
     void setMyPathsList2( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "MyPathsList2" ) ))
+      if (!isMyPathsList2Immutable())
         mMyPathsList2 = v;
     }
 
@@ -65,6 +81,14 @@ class Test9 : public KConfigSkeleton
     QStringList myPathsList2() const
     {
       return mMyPathsList2;
+    }
+
+    /**
+      Is This is an additional test for PathList Immutable
+    */
+    bool isMyPathsList2Immutable() const
+    {
+      return isImmutable( QStringLiteral( "MyPathsList2" ) );
     }
 
   protected:

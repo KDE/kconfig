@@ -22,7 +22,7 @@ class Test8b : public Test8a
     static
     void setSomething( uint v )
     {
-      if (!self()->isImmutable( QStringLiteral( "Something" ) ))
+      if (!self()->isSomethingImmutable())
         self()->mSomething = v;
     }
 
@@ -36,12 +36,21 @@ class Test8b : public Test8a
     }
 
     /**
+      Is Something Immutable
+    */
+    static
+    bool isSomethingImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "Something" ) );
+    }
+
+    /**
       Set FooBoo
     */
     static
     void setFooBoo( bool v )
     {
-      if (!self()->isImmutable( QStringLiteral( "FooBoo" ) ))
+      if (!self()->isFooBooImmutable())
         self()->mFooBoo = v;
     }
 
@@ -55,12 +64,21 @@ class Test8b : public Test8a
     }
 
     /**
+      Is FooBoo Immutable
+    */
+    static
+    bool isFooBooImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "FooBoo" ) );
+    }
+
+    /**
       Set Port
     */
     static
     void setPort( uint v )
     {
-      if (!self()->isImmutable( QStringLiteral( "Port" ) ))
+      if (!self()->isPortImmutable())
         self()->mPort = v;
     }
 
@@ -71,6 +89,15 @@ class Test8b : public Test8a
     uint port()
     {
       return self()->mPort;
+    }
+
+    /**
+      Is Port Immutable
+    */
+    static
+    bool isPortImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "Port" ) );
     }
 
   protected:

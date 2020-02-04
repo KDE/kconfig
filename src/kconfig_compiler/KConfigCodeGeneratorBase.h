@@ -82,6 +82,9 @@ public:
     // TODO: write to the stream directly without returning a QString.
     QString memberAccessorBody(const CfgEntry *e, bool globalEnums) const;
 
+    // Implements the is<Param>Immutable for the CfgEntry
+    void memberImmutableBody(const CfgEntry *e, bool globalEnums);
+
     // Implements the `Set` methods for the CfgEntry
     void memberMutatorBody(const CfgEntry *e);
 

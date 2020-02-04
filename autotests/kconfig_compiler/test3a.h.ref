@@ -23,7 +23,7 @@ class Test3a : public KConfigSkeleton
     */
     void setAutoSave( bool v )
     {
-      if (!isImmutable( QStringLiteral( "AutoSave" ) ))
+      if (!isAutoSaveImmutable())
         mAutoSave = v;
     }
 
@@ -33,6 +33,14 @@ class Test3a : public KConfigSkeleton
     bool autoSave() const
     {
       return mAutoSave;
+    }
+
+    /**
+      Is Enable automatic saving of calendar Immutable
+    */
+    bool isAutoSaveImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AutoSave" ) );
     }
 
     /**
@@ -48,7 +56,7 @@ class Test3a : public KConfigSkeleton
     */
     void setBlubb( int v )
     {
-      if (!isImmutable( QStringLiteral( "Blubb" ) ))
+      if (!isBlubbImmutable())
         mBlubb = v;
     }
 
@@ -58,6 +66,14 @@ class Test3a : public KConfigSkeleton
     int blubb() const
     {
       return mBlubb;
+    }
+
+    /**
+      Is Blubb Immutable
+    */
+    bool isBlubbImmutable() const
+    {
+      return isImmutable( QStringLiteral( "Blubb" ) );
     }
 
     /**
@@ -73,7 +89,7 @@ class Test3a : public KConfigSkeleton
     */
     void setBlahBlah( const QString & v )
     {
-      if (!isImmutable( QStringLiteral( "BlahBlah" ) ))
+      if (!isBlahBlahImmutable())
         mBlahBlah = v;
     }
 
@@ -83,6 +99,14 @@ class Test3a : public KConfigSkeleton
     QString blahBlah() const
     {
       return mBlahBlah;
+    }
+
+    /**
+      Is BlahBlah Immutable
+    */
+    bool isBlahBlahImmutable() const
+    {
+      return isImmutable( QStringLiteral( "BlahBlah" ) );
     }
 
     /**
@@ -98,7 +122,7 @@ class Test3a : public KConfigSkeleton
     */
     void setMyPassword( const QString & v )
     {
-      if (!isImmutable( QStringLiteral( "MyPassword" ) ))
+      if (!isMyPasswordImmutable())
         mMyPassword = v;
     }
 
@@ -108,6 +132,14 @@ class Test3a : public KConfigSkeleton
     QString myPassword() const
     {
       return mMyPassword;
+    }
+
+    /**
+      Is MyPassword Immutable
+    */
+    bool isMyPasswordImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyPassword" ) );
     }
 
     /**

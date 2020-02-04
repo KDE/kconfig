@@ -184,6 +184,34 @@ QString KConfigCodeGeneratorBase::memberAccessorBody(const CfgEntry *e, bool glo
     return result;
 }
 
+void KConfigCodeGeneratorBase::memberImmutableBody(const CfgEntry *e, bool globalEnums)
+{
+    QString n = e->name;
+    QString t = e->type;
+
+    stream() << whitespace() << "return " << m_this << "isImmutable( QStringLiteral( \"";
+    if (!e->param.isEmpty()) {
+        stream() << QString(e->paramName).replace(QLatin1String("$(") + e->param + QLatin1Char(')'), QLatin1String("%1")) << "\" ).arg( ";
+        if (e->paramType == QLatin1String("Enum")) {
+            stream() << "QLatin1String( ";
+
+            if (globalEnums) {
+                stream() << enumName(e->param) << "ToString[i]";
+            } else {
+                stream() << enumName(e->param) << "::enumToString[i]";
+            }
+
+            stream() << " )";
+        } else {
+            stream() << "i";
+        }
+        stream() << " )";
+    } else {
+        stream() << n << "\" )";
+    }
+    stream() << " );" << endl;
+}
+
 void KConfigCodeGeneratorBase::createIfSetLogic(const CfgEntry *e, const QString &varExpression)
 {
     const QString n = e->name;
@@ -194,29 +222,13 @@ void KConfigCodeGeneratorBase::createIfSetLogic(const CfgEntry *e, const QString
     if (hasBody) {
         m_stream << "v != " << varExpression << " && ";
     }
-    m_stream << "!" << m_this << "isImmutable( QStringLiteral( \"";
+
+    const auto immutablefunction = immutableFunction(n, m_cfg.dpointer ? m_cfg.className : QString());
+    m_stream << "!" << m_this << immutablefunction << "(";
     if (!e->param.isEmpty()) {
-        QString paramName = e->paramName;
-
-        m_stream << paramName.replace(QStringLiteral("$(") + e->param + QStringLiteral(")"), QLatin1String("%1")) << "\" ).arg( ";
-        if (e->paramType == QLatin1String("Enum")) {
-            m_stream << "QLatin1String( ";
-
-            if (m_cfg.globalEnums) {
-                m_stream << enumName(e->param) << "ToString[i]";
-            } else {
-                m_stream << enumName(e->param) << "::enumToString[i]";
-            }
-
-            m_stream << " )";
-        } else {
-            m_stream << "i";
-        }
-        m_stream << " )";
-    } else {
-        m_stream << n << "\" )";
+        m_stream << " i ";
     }
-    m_stream << " ))";
+    m_stream << "))";
 }
 
 void KConfigCodeGeneratorBase::memberMutatorBody(const CfgEntry *e)

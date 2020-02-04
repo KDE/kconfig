@@ -136,6 +136,7 @@ QString enumType(const CfgEntry *e, bool globalEnums);
 QString getDefaultFunction(const QString &n, const QString &className = QString());
 QString setFunction(const QString &n, const QString &className = QString());
 QString getFunction(const QString &n, const QString &className = QString());
+QString immutableFunction(const QString &n, const QString &className = QString());
 
 QString itemAccessorBody(const CfgEntry *e, const KConfigParameters &cfg);
 QString signalEnumName(const QString &signalName);

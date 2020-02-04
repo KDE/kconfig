@@ -23,7 +23,7 @@ class Test2 : public MyPrefs
     */
     void setAutoSave( bool v )
     {
-      if (!isImmutable( QStringLiteral( "AutoSave" ) ))
+      if (!isAutoSaveImmutable())
         mAutoSave = v;
     }
 
@@ -33,6 +33,14 @@ class Test2 : public MyPrefs
     bool autoSave() const
     {
       return mAutoSave;
+    }
+
+    /**
+      Is Enable automatic saving of calendar Immutable
+    */
+    bool isAutoSaveImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AutoSave" ) );
     }
 
     /**
@@ -48,7 +56,7 @@ class Test2 : public MyPrefs
     */
     void setAutoSaveInterval( int v )
     {
-      if (!isImmutable( QStringLiteral( "AutoSaveInterval" ) ))
+      if (!isAutoSaveIntervalImmutable())
         mAutoSaveInterval = v;
     }
 
@@ -58,6 +66,14 @@ class Test2 : public MyPrefs
     int autoSaveInterval() const
     {
       return mAutoSaveInterval;
+    }
+
+    /**
+      Is Auto Save Interval Immutable
+    */
+    bool isAutoSaveIntervalImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AutoSaveInterval" ) );
     }
 
     /**
@@ -73,7 +89,7 @@ class Test2 : public MyPrefs
     */
     void setConfirm( bool v )
     {
-      if (!isImmutable( QStringLiteral( "Confirm" ) ))
+      if (!isConfirmImmutable())
         mConfirm = v;
     }
 
@@ -83,6 +99,14 @@ class Test2 : public MyPrefs
     bool confirm() const
     {
       return mConfirm;
+    }
+
+    /**
+      Is Confirm deletes Immutable
+    */
+    bool isConfirmImmutable() const
+    {
+      return isImmutable( QStringLiteral( "Confirm" ) );
     }
 
     /**
@@ -98,7 +122,7 @@ class Test2 : public MyPrefs
     */
     void setArchiveFile( const QString & v )
     {
-      if (!isImmutable( QStringLiteral( "ArchiveFile" ) ))
+      if (!isArchiveFileImmutable())
         mArchiveFile = v;
     }
 
@@ -108,6 +132,14 @@ class Test2 : public MyPrefs
     QString archiveFile() const
     {
       return mArchiveFile;
+    }
+
+    /**
+      Is Archive File Immutable
+    */
+    bool isArchiveFileImmutable() const
+    {
+      return isImmutable( QStringLiteral( "ArchiveFile" ) );
     }
 
     /**
@@ -123,7 +155,7 @@ class Test2 : public MyPrefs
     */
     void setDestination( int v )
     {
-      if (!isImmutable( QStringLiteral( "Destination" ) ))
+      if (!isDestinationImmutable())
         mDestination = v;
     }
 
@@ -133,6 +165,14 @@ class Test2 : public MyPrefs
     int destination() const
     {
       return mDestination;
+    }
+
+    /**
+      Is New Events/Todos Should Immutable
+    */
+    bool isDestinationImmutable() const
+    {
+      return isImmutable( QStringLiteral( "Destination" ) );
     }
 
     /**
@@ -148,7 +188,7 @@ class Test2 : public MyPrefs
     */
     void setHourSize( int v )
     {
-      if (!isImmutable( QStringLiteral( "HourSize" ) ))
+      if (!isHourSizeImmutable())
         mHourSize = v;
     }
 
@@ -158,6 +198,14 @@ class Test2 : public MyPrefs
     int hourSize() const
     {
       return mHourSize;
+    }
+
+    /**
+      Is Hour Size Immutable
+    */
+    bool isHourSizeImmutable() const
+    {
+      return isImmutable( QStringLiteral( "HourSize" ) );
     }
 
     /**
@@ -173,7 +221,7 @@ class Test2 : public MyPrefs
     */
     void setSelectionStartsEditor( bool v )
     {
-      if (!isImmutable( QStringLiteral( "SelectionStartsEditor" ) ))
+      if (!isSelectionStartsEditorImmutable())
         mSelectionStartsEditor = v;
     }
 
@@ -183,6 +231,14 @@ class Test2 : public MyPrefs
     bool selectionStartsEditor() const
     {
       return mSelectionStartsEditor;
+    }
+
+    /**
+      Is Time range selection in agenda view starts event editor Immutable
+    */
+    bool isSelectionStartsEditorImmutable() const
+    {
+      return isImmutable( QStringLiteral( "SelectionStartsEditor" ) );
     }
 
     /**
@@ -198,7 +254,7 @@ class Test2 : public MyPrefs
     */
     void setSelectedPlugins( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "SelectedPlugins" ) ))
+      if (!isSelectedPluginsImmutable())
         mSelectedPlugins = v;
     }
 
@@ -208,6 +264,14 @@ class Test2 : public MyPrefs
     QStringList selectedPlugins() const
     {
       return mSelectedPlugins;
+    }
+
+    /**
+      Is SelectedPlugins Immutable
+    */
+    bool isSelectedPluginsImmutable() const
+    {
+      return isImmutable( QStringLiteral( "SelectedPlugins" ) );
     }
 
     /**
@@ -223,7 +287,7 @@ class Test2 : public MyPrefs
     */
     void setHighlightColor( const QColor & v )
     {
-      if (!isImmutable( QStringLiteral( "HighlightColor" ) ))
+      if (!isHighlightColorImmutable())
         mHighlightColor = v;
     }
 
@@ -233,6 +297,14 @@ class Test2 : public MyPrefs
     QColor highlightColor() const
     {
       return mHighlightColor;
+    }
+
+    /**
+      Is Highlight color Immutable
+    */
+    bool isHighlightColorImmutable() const
+    {
+      return isImmutable( QStringLiteral( "HighlightColor" ) );
     }
 
     /**
@@ -248,7 +320,7 @@ class Test2 : public MyPrefs
     */
     void setAgendaBgColor( const QColor & v )
     {
-      if (!isImmutable( QStringLiteral( "AgendaBgColor" ) ))
+      if (!isAgendaBgColorImmutable())
         mAgendaBgColor = v;
     }
 
@@ -258,6 +330,14 @@ class Test2 : public MyPrefs
     QColor agendaBgColor() const
     {
       return mAgendaBgColor;
+    }
+
+    /**
+      Is Agenda view background color Immutable
+    */
+    bool isAgendaBgColorImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AgendaBgColor" ) );
     }
 
     /**
@@ -273,7 +353,7 @@ class Test2 : public MyPrefs
     */
     void setTimeBarFont( const QFont & v )
     {
-      if (!isImmutable( QStringLiteral( "TimeBarFont" ) ))
+      if (!isTimeBarFontImmutable())
         mTimeBarFont = v;
     }
 
@@ -283,6 +363,14 @@ class Test2 : public MyPrefs
     QFont timeBarFont() const
     {
       return mTimeBarFont;
+    }
+
+    /**
+      Is Time bar Immutable
+    */
+    bool isTimeBarFontImmutable() const
+    {
+      return isImmutable( QStringLiteral( "TimeBarFont" ) );
     }
 
     /**

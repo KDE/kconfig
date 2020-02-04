@@ -25,6 +25,14 @@ class TestTranslationKde : public KConfigSkeleton
       return mAutoSave;
     }
 
+    /**
+      Is Enable automatic saving of calendar Immutable
+    */
+    bool isAutoSaveImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AutoSave" ) );
+    }
+
   protected:
 
     // General

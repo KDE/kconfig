@@ -26,7 +26,7 @@ class Test1 : public KConfigSkeleton
     */
     void setOneOption( bool v )
     {
-      if (!isImmutable( QStringLiteral( "OneOption" ) ))
+      if (!isOneOptionImmutable())
         mOneOption = v;
     }
 
@@ -39,11 +39,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is One option Immutable
+    */
+    bool isOneOptionImmutable() const
+    {
+      return isImmutable( QStringLiteral( "OneOption" ) );
+    }
+
+    /**
       Set Another option
     */
     void setAnotherOption( int v )
     {
-      if (!isImmutable( QStringLiteral( "AnotherOption" ) ))
+      if (!isAnotherOptionImmutable())
         mAnotherOption = v;
     }
 
@@ -56,11 +64,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is Another option Immutable
+    */
+    bool isAnotherOptionImmutable() const
+    {
+      return isImmutable( QStringLiteral( "AnotherOption" ) );
+    }
+
+    /**
       Set This is some funky option
     */
     void setListOption( int v )
     {
-      if (!isImmutable( QStringLiteral( "ListOption" ) ))
+      if (!isListOptionImmutable())
         mListOption = v;
     }
 
@@ -73,11 +89,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is This is some funky option Immutable
+    */
+    bool isListOptionImmutable() const
+    {
+      return isImmutable( QStringLiteral( "ListOption" ) );
+    }
+
+    /**
       Set This is a string
     */
     void setMyString( const QString & v )
     {
-      if (!isImmutable( QStringLiteral( "MyString" ) ))
+      if (!isMyStringImmutable())
         mMyString = v;
     }
 
@@ -90,11 +114,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is This is a string Immutable
+    */
+    bool isMyStringImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyString" ) );
+    }
+
+    /**
       Set This is a path
     */
     void setMyPath( const QString & v )
     {
-      if (!isImmutable( QStringLiteral( "MyPath" ) ))
+      if (!isMyPathImmutable())
         mMyPath = v;
     }
 
@@ -107,11 +139,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is This is a path Immutable
+    */
+    bool isMyPathImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyPath" ) );
+    }
+
+    /**
       Set Another option
     */
     void setAnotherOption2( int v )
     {
-      if (!isImmutable( QStringLiteral( "AnotherOption2" ) ))
+      if (!isAnotherOption2Immutable())
         mAnotherOption2 = v;
     }
 
@@ -124,11 +164,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is Another option Immutable
+    */
+    bool isAnotherOption2Immutable() const
+    {
+      return isImmutable( QStringLiteral( "AnotherOption2" ) );
+    }
+
+    /**
       Set MyStringList
     */
     void setMyStringList( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "MyStringList" ) ))
+      if (!isMyStringListImmutable())
         mMyStringList = v;
     }
 
@@ -141,11 +189,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is MyStringList Immutable
+    */
+    bool isMyStringListImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyStringList" ) );
+    }
+
+    /**
       Set MyStringListHidden
     */
     void setMyStringListHidden( const QStringList & v )
     {
-      if (!isImmutable( QStringLiteral( "MyStringListHidden" ) ))
+      if (!isMyStringListHiddenImmutable())
         mMyStringListHidden = v;
     }
 
@@ -158,11 +214,19 @@ class Test1 : public KConfigSkeleton
     }
 
     /**
+      Is MyStringListHidden Immutable
+    */
+    bool isMyStringListHiddenImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyStringListHidden" ) );
+    }
+
+    /**
       Set List Number
     */
     void setMyNumber( int v )
     {
-      if (!isImmutable( QStringLiteral( "MyNumber" ) ))
+      if (!isMyNumberImmutable())
         mMyNumber = v;
     }
 
@@ -172,6 +236,14 @@ class Test1 : public KConfigSkeleton
     int myNumber() const
     {
       return mMyNumber;
+    }
+
+    /**
+      Is List Number Immutable
+    */
+    bool isMyNumberImmutable() const
+    {
+      return isImmutable( QStringLiteral( "MyNumber" ) );
     }
 
   protected:

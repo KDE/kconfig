@@ -478,6 +478,20 @@ void KConfigSourceGenerator::createGetterDPointerMode(const CfgEntry *entry)
     stream() << '\n';
 }
 
+void KConfigSourceGenerator::createImmutableGetterDPointerMode(const CfgEntry *entry)
+{
+    stream() << whitespace() << "";
+    stream() << "bool " << " " << immutableFunction(entry->name, cfg().className) << "(";
+    if (!entry->param.isEmpty()) {
+        stream() << " " << cppType(entry->paramType) << " i ";
+    }
+    stream() << ")" << Const() << '\n';
+    startScope();
+    memberImmutableBody(entry, cfg().globalEnums);
+    endScope();
+    stream() << '\n';
+}
+
 void KConfigSourceGenerator::createSetterDPointerMode(const CfgEntry *entry)
 {
     // Manipulator
@@ -533,6 +547,7 @@ void KConfigSourceGenerator::doGetterSetterDPointerMode()
     for (auto *entry : parseResult.entries) {
         createSetterDPointerMode(entry);
         createGetterDPointerMode(entry);
+        createImmutableGetterDPointerMode(entry);
         createItemGetterDPointerMode(entry);
         stream() << '\n';
     }

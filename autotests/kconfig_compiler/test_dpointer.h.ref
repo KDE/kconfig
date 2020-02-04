@@ -34,6 +34,12 @@ class TestDPointer : public KConfigSkeleton
     bool autoSave();
 
     /**
+      Is Enable automatic saving of calendar Immutable
+    */
+    static
+    bool isAutoSaveImmutable();
+
+    /**
       Get Item object corresponding to AutoSave()
     */
     ItemBool *autoSaveItem();
@@ -49,6 +55,12 @@ class TestDPointer : public KConfigSkeleton
     */
     static
     int autoSaveInterval();
+
+    /**
+      Is Auto Save Interval Immutable
+    */
+    static
+    bool isAutoSaveIntervalImmutable();
 
     /**
       Get Item object corresponding to AutoSaveInterval()
@@ -68,6 +80,12 @@ class TestDPointer : public KConfigSkeleton
     bool confirm();
 
     /**
+      Is Confirm deletes Immutable
+    */
+    static
+    bool isConfirmImmutable();
+
+    /**
       Get Item object corresponding to Confirm()
     */
     ItemBool *confirmItem();
@@ -83,6 +101,12 @@ class TestDPointer : public KConfigSkeleton
     */
     static
     QString archiveFile();
+
+    /**
+      Is Archive File Immutable
+    */
+    static
+    bool isArchiveFileImmutable();
 
     /**
       Get Item object corresponding to ArchiveFile()
@@ -102,6 +126,12 @@ class TestDPointer : public KConfigSkeleton
     int destination();
 
     /**
+      Is New Events/Todos Should Immutable
+    */
+    static
+    bool isDestinationImmutable();
+
+    /**
       Get Item object corresponding to Destination()
     */
     ItemEnum *destinationItem();
@@ -117,6 +147,12 @@ class TestDPointer : public KConfigSkeleton
     */
     static
     int hourSize();
+
+    /**
+      Is Hour Size Immutable
+    */
+    static
+    bool isHourSizeImmutable();
 
     /**
       Get Item object corresponding to HourSize()
@@ -136,6 +172,12 @@ class TestDPointer : public KConfigSkeleton
     bool selectionStartsEditor();
 
     /**
+      Is Time range selection in agenda view starts event editor Immutable
+    */
+    static
+    bool isSelectionStartsEditorImmutable();
+
+    /**
       Get Item object corresponding to SelectionStartsEditor()
     */
     ItemBool *selectionStartsEditorItem();
@@ -151,6 +193,12 @@ class TestDPointer : public KConfigSkeleton
     */
     static
     QStringList selectedPlugins();
+
+    /**
+      Is SelectedPlugins Immutable
+    */
+    static
+    bool isSelectedPluginsImmutable();
 
     /**
       Get Item object corresponding to SelectedPlugins()
@@ -170,6 +218,12 @@ class TestDPointer : public KConfigSkeleton
     QColor highlightColor();
 
     /**
+      Is Highlight color Immutable
+    */
+    static
+    bool isHighlightColorImmutable();
+
+    /**
       Get Item object corresponding to HighlightColor()
     */
     ItemColor *highlightColorItem();
@@ -187,6 +241,12 @@ class TestDPointer : public KConfigSkeleton
     QColor agendaBgColor();
 
     /**
+      Is Agenda view background color Immutable
+    */
+    static
+    bool isAgendaBgColorImmutable();
+
+    /**
       Get Item object corresponding to AgendaBgColor()
     */
     ItemColor *agendaBgColorItem();
@@ -202,6 +262,12 @@ class TestDPointer : public KConfigSkeleton
     */
     static
     QFont timeBarFont();
+
+    /**
+      Is Time bar Immutable
+    */
+    static
+    bool isTimeBarFontImmutable();
 
     /**
       Get Item object corresponding to TimeBarFont()

@@ -154,6 +154,18 @@ QString getFunction(const QString &n, const QString &className)
     return result;
 }
 
+QString immutableFunction(const QString &n, const QString &className)
+{
+    QString result = QLatin1String("is") + n;
+    result[2] = result[2].toUpper();
+    result += "Immutable";
+
+    if (!className.isEmpty()) {
+        result = className + QLatin1String("::") + result;
+    }
+    return result;
+}
+
 void addQuotes(QString &s)
 {
     if (!s.startsWith(QLatin1Char('"'))) {
