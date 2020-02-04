@@ -30,7 +30,7 @@ KConfigCodeGeneratorBase::KConfigCodeGeneratorBase(
     const QString &fileName,
     const KConfigParameters &parameters,
     ParseResult &parseResult)
-    : m_inputFile(inputFile), m_baseDir(baseDir), m_fileName(fileName), m_cfg(parameters), parseResult(parseResult)
+    : parseResult(parseResult), m_inputFile(inputFile), m_baseDir(baseDir), m_fileName(fileName), m_cfg(parameters)
 {
     m_file.setFileName(m_fileName);
     if (!m_file.open(QIODevice::WriteOnly)) {

@@ -166,6 +166,7 @@ void KConfigXmlParser::readParameterFromEntry(CfgEntry &readEntry, const QDomEle
 bool KConfigXmlParser::hasDefaultCode(CfgEntry &readEntry, const QDomElement &element)
 {
     Q_UNUSED(readEntry)
+
     for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         if (e.attribute(QStringLiteral("param")).isEmpty()) {
             if (e.attribute(QStringLiteral("code")) == QLatin1String("true")) {

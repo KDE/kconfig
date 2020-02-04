@@ -665,6 +665,8 @@ QString indent(QString text, int spaces)
 
 bool hasErrors(KConfigXmlParser &parser, const ParseResult& parseResult, const KConfigParameters &cfg)
 {
+    Q_UNUSED(parser)
+
     if (cfg.className.isEmpty()) {
         std::cerr << "Class name missing" << std::endl;
         return true;
