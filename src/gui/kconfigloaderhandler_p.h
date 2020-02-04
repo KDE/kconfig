@@ -30,18 +30,9 @@ public:
 
     bool parse(QIODevice *input);
 
-    bool startElement(const QStringRef &namespaceURI, const QStringRef &localName,
-                      const QStringRef &qName, const QXmlStreamAttributes &atts);
-    bool endElement(const QStringRef &namespaceURI, const QStringRef &localName,
-                    const QStringRef &qName);
+    bool startElement(const QStringRef &localName, const QXmlStreamAttributes &attrs);
+    bool endElement(const QStringRef &localName);
     bool characters(const QStringRef &ch);
-
-    QString name() const;
-    void setName(const QString &name);
-    QString key() const;
-    void setKey(const QString &name);
-    QString type() const;
-    QString defaultValue() const;
 
 private:
     void addItem();
