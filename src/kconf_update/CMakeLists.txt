@@ -8,9 +8,12 @@ set(kconf_update_SRCS
     )
 
 ecm_qt_declare_logging_category(kconf_update_SRCS
-                                HEADER kconf_update_debug.h
-                                IDENTIFIER KCONF_UPDATE_LOG
-                                CATEGORY_NAME kf5.kconfig.update)
+    HEADER kconf_update_debug.h
+    IDENTIFIER KCONF_UPDATE_LOG
+    CATEGORY_NAME kf5.kconfig.update
+    DESCRIPTION "kconf_update"
+    EXPORT KCONFIG
+)
 
 add_executable(kconf_update ${kconf_update_SRCS})
 add_executable(KF5::kconf_update ALIAS kconf_update)

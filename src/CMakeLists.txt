@@ -6,6 +6,12 @@ add_subdirectory(kconfig_compiler)
 add_subdirectory(kconf_update)
 add_subdirectory(kreadconfig)
 
+ecm_qt_install_logging_categories(
+    EXPORT KCONFIG
+    FILE kconfig.categories
+    DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+)
+
 if (BUILD_QCH)
     ecm_add_qch(
         KF5Config_QCH
