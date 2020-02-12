@@ -86,6 +86,7 @@ public:
     const QVariant mConstDefaultValue;
     QVariant mReference;
     QVariant mLoadedValue;
+    std::function<void()> mNotifyFunction;
 };
 
 

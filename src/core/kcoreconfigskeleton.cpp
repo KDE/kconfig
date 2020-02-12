@@ -205,7 +205,13 @@ QVariant KPropertySkeletonItem::property() const
 void KPropertySkeletonItem::setProperty(const QVariant &p)
 {
     Q_D(KPropertySkeletonItem);
+    if (d->mReference == p) {
+        return;
+    }
     d->mReference = p;
+    if (d->mNotifyFunction) {
+        d->mNotifyFunction();
+    }
 }
 
 bool KPropertySkeletonItem::isEqual(const QVariant &p) const
@@ -217,7 +223,7 @@ bool KPropertySkeletonItem::isEqual(const QVariant &p) const
 void KPropertySkeletonItem::readConfig(KConfig *)
 {
     Q_D(KPropertySkeletonItem);
-    d->mReference = d->mObject->property(d->mPropertyName.constData());
+    setProperty(d->mObject->property(d->mPropertyName.constData()));
     d->mLoadedValue = d->mReference;
 }
 
@@ -231,19 +237,31 @@ void KPropertySkeletonItem::writeConfig(KConfig *)
 void KPropertySkeletonItem::readDefault(KConfig *)
 {
     Q_D(KPropertySkeletonItem);
-    d->mReference = d->mConstDefaultValue;
+    setProperty(d->mConstDefaultValue);
 }
 
 void KPropertySkeletonItem::setDefault()
 {
     Q_D(KPropertySkeletonItem);
-    d->mReference = d->mDefaultValue;
+    setProperty(d->mDefaultValue);
 }
 
 void KPropertySkeletonItem::swapDefault()
 {
     Q_D(KPropertySkeletonItem);
+    if (d->mReference == d->mDefaultValue) {
+        return;
+    }
     std::swap(d->mReference, d->mDefaultValue);
+    if (d->mNotifyFunction) {
+        d->mNotifyFunction();
+    }
+}
+
+void KPropertySkeletonItem::setNotifyFunction(const std::function<void ()> &impl)
+{
+    Q_D(KPropertySkeletonItem);
+    d->mNotifyFunction = impl;
 }
 
 KCoreConfigSkeleton::ItemString::ItemString(const QString &_group, const QString &_key,

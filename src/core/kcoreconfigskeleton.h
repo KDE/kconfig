@@ -294,6 +294,12 @@ public:
     void setDefault() override;
     /** @copydoc KConfigSkeletonItem::swapDefault() */
     void swapDefault() override;
+
+    /**
+     * Set a notify function, it will be invoked when the value of the property changes.
+     * @since 5.68
+     */
+    void setNotifyFunction(const std::function<void ()> &impl);
 };
 
 
