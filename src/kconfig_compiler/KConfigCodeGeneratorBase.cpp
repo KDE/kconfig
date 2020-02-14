@@ -209,7 +209,7 @@ void KConfigCodeGeneratorBase::memberImmutableBody(const CfgEntry *e, bool globa
     } else {
         stream() << n << "\" )";
     }
-    stream() << " );" << endl;
+    stream() << " );\n";
 }
 
 void KConfigCodeGeneratorBase::createIfSetLogic(const CfgEntry *e, const QString &varExpression)
