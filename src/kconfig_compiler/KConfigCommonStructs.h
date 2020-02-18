@@ -155,6 +155,11 @@ QString varPath(const QString &n, const KConfigParameters &cfg);
 // like using d-> in case of dpointer
 QString itemVar(const CfgEntry *e, const KConfigParameters &cfg);
 
+// returns the name of the local inner item if there is one
+// (before wrapping with KConfigCompilerSignallingItem)
+// Otherwise return itemVar()
+QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg);
+
 QString itemPath(const CfgEntry *e, const KConfigParameters &cfg);
 
 QString filenameOnly(const QString &path);
@@ -170,9 +175,16 @@ QString translatedString(
 
 // TODO: Sanitize those functions.
 QString newItem(
-    const CfgEntry* entry, 
+    const CfgEntry *entry,
     const QString &key,
-    const QString& defaultValue,
+    const QString &defaultValue,
+    const KConfigParameters &cfg,
+    const QString &param = QString());
+
+QString newInnerItem(
+    const CfgEntry *entry,
+    const QString &key,
+    const QString &defaultValue,
     const KConfigParameters &cfg,
     const QString &param = QString());
 

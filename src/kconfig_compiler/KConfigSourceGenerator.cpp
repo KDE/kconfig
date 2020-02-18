@@ -313,14 +313,21 @@ void KConfigSourceGenerator::createEnums(const CfgEntry *entry)
 
 void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QString &key)
 {
-   stream() << "  " << itemPath(entry, cfg()) << " = "
+    const QString innerItemVarStr = innerItemVar(entry, cfg());
+    if (!entry->signalList.isEmpty()) {
+        stream() << "  " << innerItemVarStr << " = "
+            << newInnerItem(entry, key, entry->defaultValue, cfg()) << '\n';
+    }
+
+    stream() << "  " << itemPath(entry, cfg()) << " = "
         << newItem(entry, key, entry->defaultValue, cfg()) << '\n';
 
     if (!entry->min.isEmpty()) {
-        stream() << "  " << itemPath(entry, cfg()) << "->setMinValue(" << entry->min << ");\n";
+        stream() << "  " << innerItemVarStr << "->setMinValue(" << entry->min << ");\n";
     }
+
     if (!entry->max.isEmpty()) {
-        stream() << "  " << itemPath(entry, cfg()) << "->setMaxValue(" << entry->max << ");\n";
+        stream() << "  " << innerItemVarStr << "->setMaxValue(" << entry->max << ");\n";
     }
 
     if (cfg().setUserTexts) {
@@ -343,14 +350,29 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
 void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QString &key)
 {
     for (int i = 0; i <= entry->paramMax; i++) {
-        QString itemVarStr(itemPath(entry, cfg()) + QStringLiteral("[%1]").arg(i));
+        const QString argBracket = QStringLiteral("[%1]").arg(i);
+        const QString innerItemVarStr = innerItemVar(entry, cfg()) + argBracket;
 
-        QString defaultStr = !entry->paramDefaultValues[i].isEmpty() ? entry->paramDefaultValues[i]
-                           : !entry->defaultValue.isEmpty() ? paramString(entry->defaultValue, entry, i)
-                           : defaultValue(entry->type);
-        
+        const QString defaultStr = !entry->paramDefaultValues[i].isEmpty()
+            ? entry->paramDefaultValues[i]
+            : !entry->defaultValue.isEmpty() ? paramString(entry->defaultValue, entry, i) : defaultValue(entry->type);
+
+        if (!entry->signalList.isEmpty()) {
+            stream() << "  " << innerItemVarStr << " = "
+                     << newInnerItem(entry, paramString(key, entry, i), defaultStr, cfg(), argBracket) << '\n';
+        }
+
+        const QString itemVarStr = itemPath(entry, cfg()) + argBracket;
+
         stream() << "  " << itemVarStr << " = "
-            << newItem(entry, paramString(key, entry, i), defaultStr, cfg(), QStringLiteral("[%1]").arg(i)) << '\n';
+                 << newItem(entry, paramString(key, entry, i), defaultStr, cfg(), argBracket) << '\n';
+
+        if (!entry->min.isEmpty()) {
+            stream() << "  " << innerItemVarStr << "->setMinValue(" << entry->min << ");\n";
+        }
+        if (!entry->max.isEmpty()) {
+            stream() << "  " << innerItemVarStr << "->setMaxValue(" << entry->max << ");\n";
+        }
 
         if (cfg().setUserTexts) {
             stream() << userTextsFunctions(entry, cfg(), itemVarStr, entry->paramName);
@@ -366,7 +388,7 @@ void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QSt
         QString paramName = entry->paramName;
 
         stream() << "  addItem( " << itemVarStr << ", QStringLiteral( \"";
-        stream() << paramName.replace(QStringLiteral("$(") + entry->param + QLatin1Char(')'), QLatin1String("%1")).arg( arg );
+        stream() << paramName.replace(QStringLiteral("$(") + entry->param + QLatin1Char(')'), QLatin1String("%1")).arg(arg);
         stream() << "\" ) );\n";
     }
 }
@@ -440,9 +462,7 @@ void KConfigSourceGenerator::doConstructor()
         }
         createEnums(entry);
 
-        if (!cfg().dpointer) {
-            stream() << itemDeclaration(entry, cfg());
-        }
+        stream() << itemDeclaration(entry, cfg());
 
         if (entry->param.isEmpty()) {
             createNormalEntry(entry, key);

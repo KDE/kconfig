@@ -362,7 +362,6 @@ CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QDomElement &
 
     readGroupElements(readEntry, element);
 
-    createChangedSignal(readEntry);
     validateNameAndKey(readEntry, element);
 
     if (readEntry.label.isEmpty()) {
@@ -431,6 +430,7 @@ CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QDomElement &
     }
     result->min = readEntry.min;
     result->max = readEntry.max;
+    createChangedSignal(*result);
 
     return result;
 }

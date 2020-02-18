@@ -37,16 +37,24 @@ TestSignal::TestSignal( )
   setCurrentGroup( QStringLiteral( "Appearance" ) );
 
   KConfigCompilerSignallingItem  *itemEmoticonTheme;
-  itemEmoticonTheme = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "emoticonTheme" ), mEmoticonTheme, QStringLiteral( "Default" ) ), this, notifyFunction, signalEmoticonSettingsChanged);
+  KConfigSkeleton::ItemString  *innerItemEmoticonTheme;
+  innerItemEmoticonTheme = new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "emoticonTheme" ), mEmoticonTheme, QStringLiteral( "Default" ) );
+  itemEmoticonTheme = new KConfigCompilerSignallingItem(innerItemEmoticonTheme, this, notifyFunction, signalEmoticonSettingsChanged);
   addItem( itemEmoticonTheme, QStringLiteral( "emoticonTheme" ) );
   KConfigCompilerSignallingItem  *itemUseEmoticon;
-  itemUseEmoticon = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "useEmoticon" ), mUseEmoticon, true ), this, notifyFunction, signalEmoticonSettingsChanged);
+  KConfigSkeleton::ItemBool  *innerItemUseEmoticon;
+  innerItemUseEmoticon = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "useEmoticon" ), mUseEmoticon, true );
+  itemUseEmoticon = new KConfigCompilerSignallingItem(innerItemUseEmoticon, this, notifyFunction, signalEmoticonSettingsChanged);
   addItem( itemUseEmoticon, QStringLiteral( "useEmoticon" ) );
   KConfigCompilerSignallingItem  *itemEmoticonRequireSpace;
-  itemEmoticonRequireSpace = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "emoticonRequireSpace" ), mEmoticonRequireSpace, true ), this, notifyFunction, signalEmoticonSettingsChanged);
+  KConfigSkeleton::ItemBool  *innerItemEmoticonRequireSpace;
+  innerItemEmoticonRequireSpace = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "emoticonRequireSpace" ), mEmoticonRequireSpace, true );
+  itemEmoticonRequireSpace = new KConfigCompilerSignallingItem(innerItemEmoticonRequireSpace, this, notifyFunction, signalEmoticonSettingsChanged);
   addItem( itemEmoticonRequireSpace, QStringLiteral( "emoticonRequireSpace" ) );
   KConfigCompilerSignallingItem  *itemStylePath;
-  itemStylePath = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "stylePath" ), mStylePath ), this, notifyFunction, signalStyleChanged);
+  KConfigSkeleton::ItemString  *innerItemStylePath;
+  innerItemStylePath = new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "stylePath" ), mStylePath );
+  itemStylePath = new KConfigCompilerSignallingItem(innerItemStylePath, this, notifyFunction, signalStyleChanged);
   addItem( itemStylePath, QStringLiteral( "stylePath" ) );
   KConfigSkeleton::ItemString  *itemStyleCSSVariant;
   itemStyleCSSVariant = new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "styleVariant" ), mStyleCSSVariant );

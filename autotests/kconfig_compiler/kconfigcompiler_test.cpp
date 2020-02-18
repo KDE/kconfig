@@ -53,6 +53,8 @@ static CompilerTestSet testCases = {
     "test_translation_kde_domain.cpp", "test_translation_kde_domain.h",
     "test_translation_qt.cpp", "test_translation_qt.h",
     "test_emptyentries.cpp", "test_emptyentries.h",
+    "test_properties_minmax.cpp", "test_properties_minmax.h",
+    "test_param_minmax.cpp", "test_param_minmax.h",
     nullptr
 };
 
@@ -78,6 +80,8 @@ static CompilerTestSet testCasesToRun = {
     "test_translation_kde_domain",
     "test_translation_qt",
     "test_emptyentries",
+    "test_properties_minmax",
+    "test_param_minmax",
     nullptr
 };
 

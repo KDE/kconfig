@@ -394,21 +394,23 @@ QString itemType(const QString &type)
 
 QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
 {
-    if (cfg.itemAccessors) {
-        return QString();
-    }
-
-    QString type;
-    if (!e->signalList.isEmpty()) {
-        type = QStringLiteral("KConfigCompilerSignallingItem");
-    } else {
-        type = cfg.inherits + "::Item" + itemType(e->type);
-    }
+    const QString type = cfg.inherits + "::Item" + itemType(e->type);
 
     QString fCap = e->name;
     fCap[0] = fCap[0].toUpper();
-    return "  " + type + "  *item" + fCap +
-            ( (!e->param.isEmpty())?(QStringLiteral("[%1]").arg(e->paramMax+1)) : QString()) + ";\n";
+    const QString argSuffix = (!e->param.isEmpty()) ? (QStringLiteral("[%1]").arg(e->paramMax + 1)) : QString();
+    QString result;
+
+    if (!cfg.itemAccessors && !cfg.dpointer) {
+        result += "  " + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type) +
+            "  *item" + fCap + argSuffix + ";\n";
+    }
+
+    if (!e->signalList.isEmpty()) {
+        result += "  " + type + "  *" + innerItemVar(e, cfg) + argSuffix + ";\n";
+    }
+
+    return result;
 }
 
 // returns the name of an item variable
@@ -432,6 +434,20 @@ QString itemVar(const CfgEntry *e, const KConfigParameters &cfg)
     return result;
 }
 
+// returns the name of the local inner item if there is one
+// (before wrapping with KConfigCompilerSignallingItem)
+// Otherwise return itemVar()
+QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg)
+{
+    if (e->signalList.isEmpty()) {
+        return itemVar(e, cfg);
+    } else {
+        QString result = "innerItem" + e->name;
+        result[9] = result[9].toUpper();
+        return result;
+    }
+}
+
 QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 {
     QString result;
@@ -443,15 +459,9 @@ QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
     return result;
 }
 
-QString newItem(const CfgEntry* entry, const QString &key, const QString& defaultValue,
+QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue,
                 const KConfigParameters &cfg, const QString &param) {
-
-    QList<Signal> sigs = entry->signalList;
-    QString t;
-    if (!sigs.isEmpty()) {
-        t += QLatin1String("new KConfigCompilerSignallingItem(");
-    }
-    t += "new "+ cfg.inherits + "::Item" + itemType(entry->type) + "( currentGroup(), "
+    QString t = "new "+ cfg.inherits + "::Item" + itemType(entry->type) + "( currentGroup(), "
             + key + ", " + varPath( entry->name, cfg ) + param;
 
     if (entry->type == QLatin1String("Enum")) {
@@ -460,9 +470,18 @@ QString newItem(const CfgEntry* entry, const QString &key, const QString& defaul
     if (!defaultValue.isEmpty()) {
         t += QLatin1String(", ") + defaultValue;
     }
-    t += QLatin1String(" )");
+    t += QLatin1String(" );");
 
+    return t;
+}
+
+QString newItem(const CfgEntry *entry, const QString &key, const QString &defaultValue,
+                const KConfigParameters &cfg, const QString &param) {
+
+    QList<Signal> sigs = entry->signalList;
+    QString t;
     if (!sigs.isEmpty()) {
+        t += QLatin1String("new KConfigCompilerSignallingItem(") + innerItemVar(entry, cfg) + param;
         t += QLatin1String(", this, notifyFunction, ");
         //append the signal flags
         for (int i = 0; i < sigs.size(); ++i) {
@@ -470,9 +489,10 @@ QString newItem(const CfgEntry* entry, const QString &key, const QString& defaul
                 t += QLatin1String(" | ");
             t += signalEnumName(sigs[i].name);
         }
-        t += QLatin1String(")");
+        t += QLatin1String(");");
+    } else {
+        t += newInnerItem(entry, key, defaultValue, cfg, param);
     }
-    t += QLatin1String(";");
     return t;
 }
 

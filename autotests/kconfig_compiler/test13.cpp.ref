@@ -14,7 +14,9 @@ Test13::Test13( )
   itemPicturesDir = new KConfigSkeleton::ItemUrl( currentGroup(), QStringLiteral( "picturesDir" ), mPicturesDir );
   addItem( itemPicturesDir, QStringLiteral( "picturesDir" ) );
   KConfigCompilerSignallingItem  *itemBrightness;
-  itemBrightness = new KConfigCompilerSignallingItem(new KConfigSkeleton::ItemDouble( currentGroup(), QStringLiteral( "brightness" ), mBrightness ), this, notifyFunction, signalBrightnessChanged);
+  KConfigSkeleton::ItemDouble  *innerItemBrightness;
+  innerItemBrightness = new KConfigSkeleton::ItemDouble( currentGroup(), QStringLiteral( "brightness" ), mBrightness );
+  itemBrightness = new KConfigCompilerSignallingItem(innerItemBrightness, this, notifyFunction, signalBrightnessChanged);
   addItem( itemBrightness, QStringLiteral( "brightness" ) );
   KConfigSkeleton::ItemBool  *itemStartsWithUppercase;
   itemStartsWithUppercase = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "StartsWithUppercase" ), mStartsWithUppercase );
