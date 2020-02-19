@@ -424,6 +424,7 @@ void KConfigHeaderGenerator::createImmutableProperty(const CfgEntry *entry)
     }
     stream() << whitespace();
     stream() << "Q_PROPERTY(bool " << immutableFunction(entry->name);
+    stream() << " READ " << immutableFunction(entry->name);
     stream() << " CONSTANT)\n";
 }
 
