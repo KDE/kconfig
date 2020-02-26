@@ -224,7 +224,7 @@ set(test_properties_minmax_SRCS test_properties_minmax_main.cpp)
 gen_kcfg_test_source(test_properties_minmax test_properties_minmax_SRCS GENERATE_MOC)
 
 ecm_add_test(${test_properties_minmax_SRCS}
-    TEST_NAME test-properties-minmax
+    TEST_NAME test_properties_minmax
     LINK_LIBRARIES KF5::ConfigGui
 )
 
@@ -234,7 +234,7 @@ set(test_param_minmax_SRCS test_param_minmax_main.cpp)
 gen_kcfg_test_source(test_param_minmax test_param_minmax_SRCS GENERATE_MOC)
 
 ecm_add_test(${test_param_minmax_SRCS}
-    TEST_NAME test-param-minmax
+    TEST_NAME test_param_minmax
     LINK_LIBRARIES KF5::ConfigGui
 )
 

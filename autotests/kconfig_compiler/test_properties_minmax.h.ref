@@ -40,7 +40,7 @@ class TestPropertiesMinMax : public KConfigSkeleton
     }
 
     Q_PROPERTY(int bar READ bar WRITE setBar NOTIFY barChanged)
-    Q_PROPERTY(bool isBarImmutable CONSTANT)
+    Q_PROPERTY(bool isBarImmutable READ isBarImmutable CONSTANT)
     /**
       Get bar
     */
