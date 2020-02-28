@@ -231,7 +231,7 @@ ecm_add_test(${test_properties_minmax_SRCS}
 ########### next target ###############
 
 set(test_param_minmax_SRCS test_param_minmax_main.cpp)
-gen_kcfg_test_source(test_param_minmax test_param_minmax_SRCS GENERATE_MOC)
+gen_kcfg_test_source(test_param_minmax test_param_minmax_SRCS)
 
 ecm_add_test(${test_param_minmax_SRCS}
     TEST_NAME test_param_minmax

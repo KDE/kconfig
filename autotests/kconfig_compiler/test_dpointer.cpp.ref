@@ -78,6 +78,8 @@ TestDPointer::TestDPointer( )
   d->autoSaveItem->setWhatsThis( QCoreApplication::translate("TestDPointer", "WhatsThis text for AutoSave option") );
   addItem( d->autoSaveItem, QStringLiteral( "AutoSave" ) );
   d->autoSaveIntervalItem = new KConfigSkeleton::ItemInt( currentGroup(), QStringLiteral( "Auto Save Interval" ), d->autoSaveInterval, 10 );
+  d->autoSaveIntervalItem->setMinValue(0);
+  d->autoSaveIntervalItem->setMaxValue(123);
   d->autoSaveIntervalItem->setLabel( QCoreApplication::translate("TestDPointer", "Auto Save Interval") );
   addItem( d->autoSaveIntervalItem, QStringLiteral( "AutoSaveInterval" ) );
   d->confirmItem = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "Confirm Deletes" ), d->confirm, true );
@@ -179,6 +181,18 @@ KConfigSkeleton::ItemBool *TestDPointer::autoSaveItem()
 
 void TestDPointer::setAutoSaveInterval( int v )
 {
+    if (v < 0)
+    {
+      qDebug() << "setAutoSaveInterval: value " << v << " is less than the minimum value of 0";
+      v = 0;
+    }
+
+    if (v > 123)
+    {
+      qDebug() << "setAutoSaveInterval: value " << v << " is greater than the maximum value of 123";
+      v = 123;
+    }
+
     if (!self()->TestDPointer::isAutoSaveIntervalImmutable())
       self()->d->autoSaveInterval = v;
 }

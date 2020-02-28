@@ -13,6 +13,8 @@
     </entry>
     <entry type="Int" key="Auto Save Interval">
       <default>10</default>
+      <min>0</min>
+      <max>123</max>
     </entry>
     <entry type="Bool" key="Confirm Deletes" name="Confirm">
       <label>Confirm deletes</label>

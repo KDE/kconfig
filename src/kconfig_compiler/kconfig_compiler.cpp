@@ -440,7 +440,7 @@ QString itemVar(const CfgEntry *e, const KConfigParameters &cfg)
 QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg)
 {
     if (e->signalList.isEmpty()) {
-        return itemVar(e, cfg);
+        return itemPath(e, cfg);
     } else {
         QString result = "innerItem" + e->name;
         result[9] = result[9].toUpper();
