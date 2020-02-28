@@ -166,10 +166,23 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
         cg->writeEntry(key, list, pFlags);
         return true;
     }
-    case QMetaType::QFont:
-        cg->writeEntry(key, prop.toString().toUtf8(), pFlags);
+    case QMetaType::QFont: {
+        QFont f = prop.value<QFont>();
+        // If the styleName property is set for a QFont, using setBold(true) would
+        // lead to Qt using an "emboldended"/synthetic font style instead of using
+        // the bold style provided by the font itself; the latter looks much better
+        // than the former. For more details see:
+        // https://bugreports.qt.io/browse/QTBUG-63792
+        // https://bugs.kde.org/show_bug.cgi?id=378523
+        if (f.styleName() == QLatin1String("Regular")
+            || f.styleName() == QLatin1String("Normal")
+            || f.styleName() == QLatin1String("Book")
+            || f.styleName() == QLatin1String("Roman")) {
+            f.setStyleName(QString());
+        }
+        cg->writeEntry(key, f.toString().toUtf8(), pFlags);
         return true;
-
+    }
     case QMetaType::QPixmap:
     case QMetaType::QImage:
     case QMetaType::QBrush:
