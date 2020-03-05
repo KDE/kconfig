@@ -24,7 +24,7 @@
       <choices>
         <choice name="Encrypt"/>
         <choice name="Decrypt"/>
-        <choice name="CrashNBurn"/>
+        <choice name="CrashNBurn" value="Crash and Burn"/>
         <choice name="PumpNDump"/>
       </choices>
       <default param="right">Decrypt</default>

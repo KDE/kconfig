@@ -68,10 +68,13 @@ QColor defaultColor[4] = { Qt::red, Qt::blue, Qt::green, Qt::black };
   }
   KConfigSkeleton::ItemEnum  *itemMouseAction[3];
   itemMouseAction[0] = new KConfigSkeleton::ItemEnum( currentGroup(), QStringLiteral( "right_mouse_action" ), mMouseAction[0], valuesMouseAction, EnumMouseAction::Decrypt );
+  itemMouseAction[0]->setValueForChoice(QStringLiteral( "CrashNBurn" ), QStringLiteral( "Crash and Burn" ));
   addItem( itemMouseAction[0], QStringLiteral( "MouseActionright" ) );
   itemMouseAction[1] = new KConfigSkeleton::ItemEnum( currentGroup(), QStringLiteral( "mid_mouse_action" ), mMouseAction[1], valuesMouseAction, EnumMouseAction::Encrypt );
+  itemMouseAction[1]->setValueForChoice(QStringLiteral( "CrashNBurn" ), QStringLiteral( "Crash and Burn" ));
   addItem( itemMouseAction[1], QStringLiteral( "MouseActionmid" ) );
   itemMouseAction[2] = new KConfigSkeleton::ItemEnum( currentGroup(), QStringLiteral( "left_mouse_action" ), mMouseAction[2], valuesMouseAction, EnumMouseAction::PumpNDump );
+  itemMouseAction[2]->setValueForChoice(QStringLiteral( "CrashNBurn" ), QStringLiteral( "Crash and Burn" ));
   addItem( itemMouseAction[2], QStringLiteral( "MouseActionleft" ) );
   KConfigSkeleton::ItemColor  *itemGrayColor[11];
   itemGrayColor[0] = new KConfigSkeleton::ItemColor( currentGroup(), QStringLiteral( "gray color #0" ), mGrayColor[0], 

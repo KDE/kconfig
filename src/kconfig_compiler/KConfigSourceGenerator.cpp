@@ -313,13 +313,14 @@ void KConfigSourceGenerator::createEnums(const CfgEntry *entry)
 
 void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QString &key)
 {
+    const QString itemVarStr = itemPath(entry, cfg());
     const QString innerItemVarStr = innerItemVar(entry, cfg());
     if (!entry->signalList.isEmpty()) {
         stream() << "  " << innerItemVarStr << " = "
             << newInnerItem(entry, key, entry->defaultValue, cfg()) << '\n';
     }
 
-    stream() << "  " << itemPath(entry, cfg()) << " = "
+    stream() << "  " << itemVarStr << " = "
         << newItem(entry, key, entry->defaultValue, cfg()) << '\n';
 
     if (!entry->min.isEmpty()) {
@@ -335,10 +336,16 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
     }
 
     if (cfg().allNotifiers || cfg().notifiers.contains(entry->name)) {
-        stream() << "  " << itemPath(entry, cfg()) << "->setWriteFlags(KConfigBase::Notify);\n";
+        stream() << "  " << itemVarStr << "->setWriteFlags(KConfigBase::Notify);\n";
     }
 
-    stream() << "  addItem( " << itemPath(entry, cfg());
+    for (const CfgEntry::Choice &choice : qAsConst(entry->choices.choices)) {
+        if (!choice.val.isEmpty()) {
+            stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val << "\" ));\n";
+        }
+    }
+
+    stream() << "  addItem( " << itemVarStr;
     QString quotedName = entry->name;
     addQuotes(quotedName);
     if (quotedName != key) {
@@ -372,6 +379,12 @@ void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QSt
         }
         if (!entry->max.isEmpty()) {
             stream() << "  " << innerItemVarStr << "->setMaxValue(" << entry->max << ");\n";
+        }
+
+        for (const CfgEntry::Choice &choice : qAsConst(entry->choices.choices)) {
+            if (!choice.val.isEmpty()) {
+                stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val << "\" ));\n";
+            }
         }
 
         if (cfg().setUserTexts) {

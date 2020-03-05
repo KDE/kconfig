@@ -55,6 +55,12 @@ public:
         QString label;
         QString toolTip;
         QString whatsThis;
+        QString val;
+
+        QString value() const
+        {
+            return !val.isEmpty() ? val : name;
+        }
     };
     class Choices
     {

@@ -590,6 +590,19 @@ void KCoreConfigSkeleton::ItemLongLong::setMaxValue(qint64 v)
     mMax = v;
 }
 
+QString KCoreConfigSkeleton::ItemEnum::valueForChoice(const QString &name) const
+{
+    // HACK for BC concerns
+    // TODO KF6: remove KConfigSkeletonItemPrivate::mValues and add a value field to KCoreConfigSkeleton::ItemEnum::Choice
+    const auto inHash = d_ptr->mValues.value(name);
+    return !inHash.isEmpty() ? inHash : name;
+}
+
+void KCoreConfigSkeleton::ItemEnum::setValueForChoice(const QString &name, const QString &value)
+{
+    d_ptr->mValues.insert(name, value);
+}
+
 KCoreConfigSkeleton::ItemEnum::ItemEnum(const QString &_group, const QString &_key,
                                         qint32 &reference,
                                         const QList<Choice> &choices,
@@ -609,7 +622,8 @@ void KCoreConfigSkeleton::ItemEnum::readConfig(KConfig *config)
         QString tmp = cg.readEntry(mKey, QString()).toLower();
         for (QList<Choice>::ConstIterator it = mChoices.constBegin();
                 it != mChoices.constEnd(); ++it, ++i) {
-            if ((*it).name.toLower() == tmp) {
+            QString choiceName = (*it).name;
+            if (valueForChoice(choiceName).toLower() == tmp) {
                 mReference = i;
                 break;
             }
@@ -630,7 +644,7 @@ void KCoreConfigSkeleton::ItemEnum::writeConfig(KConfig *config)
         if ((mDefault == mReference) && !cg.hasDefault(mKey)) {
             cg.revertToDefault(mKey, writeFlags());
         } else if ((mReference >= 0) && (mReference < mChoices.count())) {
-            cg.writeEntry(mKey, mChoices[mReference].name, writeFlags());
+            cg.writeEntry(mKey, valueForChoice(mChoices.at(mReference).name), writeFlags());
         } else {
             cg.writeEntry(mKey, mReference, writeFlags());
         }

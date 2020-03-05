@@ -62,6 +62,7 @@ public:
     QString mToolTip; ///< The ToolTip text for this item
     QString mWhatsThis; ///< The What's This text for this item
     KConfigGroup mConfigGroup; ///< KConfigGroup, allow to read/write item in nested groups
+    QHash<QString, QString> mValues; /// The values used for ItemEnum's choices, name -> value (if set)
 
     // HACK: Necessary to avoid introducing new virtuals in KConfigSkeletonItem
     std::function<bool()> mIsDefaultImpl;

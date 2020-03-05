@@ -802,8 +802,19 @@ public:
         void writeConfig(KConfig *config) override;
 
         // Source compatibility with 4.x
+        // TODO KF6 remove
         typedef Choice Choice2;
         QList<Choice> choices2() const;
+
+        /**
+         * Returns the value for for the choice with the given name
+         */
+        QString valueForChoice(const QString &name) const;
+
+        /**
+         * Stores a choice value for name
+         */
+        void setValueForChoice(const QString &name, const QString &valueForChoice);
 
     private:
         QList<Choice> mChoices;

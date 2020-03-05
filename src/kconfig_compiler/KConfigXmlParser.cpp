@@ -176,6 +176,7 @@ void KConfigXmlParser::readParameterFromEntry(CfgEntry &readEntry, const QDomEle
 
 bool KConfigXmlParser::hasDefaultCode(CfgEntry &readEntry, const QDomElement &element)
 {
+    Q_UNUSED(readEntry)
     for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         if (e.attribute(QStringLiteral("param")).isEmpty()) {
             if (e.attribute(QStringLiteral("code")) == QLatin1String("true")) {
@@ -186,10 +187,11 @@ bool KConfigXmlParser::hasDefaultCode(CfgEntry &readEntry, const QDomElement &el
     return false;
 }
 
-
 void KConfigXmlParser::readChoicesFromEntry(CfgEntry &readEntry, const QDomElement &e)
 {
     QList<CfgEntry::Choice> chlist;
+    const auto choiceNameRegex = QRegularExpression(QStringLiteral("\\w+"));
+
     for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
         if (e2.tagName() != QLatin1String("choice")) {
             continue;
@@ -198,7 +200,10 @@ void KConfigXmlParser::readChoicesFromEntry(CfgEntry &readEntry, const QDomEleme
         choice.name = e2.attribute(QStringLiteral("name"));
         if (choice.name.isEmpty()) {
             std::cerr << "Tag <choice> requires attribute 'name'." << std::endl;
+        } else if (!choiceNameRegex.match(choice.name).hasMatch()) {
+            std::cerr << "Tag <choice> attribute 'name' must be compatible with Enum naming. name was '" << qPrintable(choice.name) << "'. You can use attribute 'value' to pass any string as the choice value." << std::endl;
         }
+        choice.val = e2.attribute(QStringLiteral("value"));
         for (QDomElement e3 = e2.firstChildElement(); !e3.isNull(); e3 = e3.nextSiblingElement()) {
             if (e3.tagName() == QLatin1String("label")) {
                 choice.label = e3.text();

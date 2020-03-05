@@ -93,6 +93,7 @@
                                                                 <xsd:element minOccurs="0" name="tooltip" type="kcfg:translatableString"/>
                                                             </xsd:all>
                                                             <xsd:attribute name="name" use="required" type="xsd:string"/>
+                                                            <xsd:attribute name="value" use="optional" type="xsd:string"/>
                                                         </xsd:complexType>
                                                     </xsd:element>
                                                 </xsd:sequence>
