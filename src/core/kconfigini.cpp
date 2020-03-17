@@ -429,7 +429,10 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
 
         // only write entries that have the same "globality" as the file
         if (it->bGlobal == bGlobal) {
-            if (it->bReverted) {
+            if (it->bReverted && it->bOverridesGlobal) {
+                it->bDeleted = true;
+                writeMap[key] = *it;
+            } else if (it->bReverted) {
                 writeMap.remove(key);
             } else if (!it->bDeleted) {
                 writeMap[key] = *it;

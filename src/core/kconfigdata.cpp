@@ -100,6 +100,10 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
         k = it.key();
         e = *it;
         //qDebug() << "found existing entry for key" << k;
+        // If overridden entry is global and not default. And it's overridden by a non global
+        if (e.bGlobal && !(options & EntryGlobal) && !k.bDefault) {
+            e.bOverridesGlobal = true;
+        }
     } else {
         // make sure the group marker is in the map
         KEntryMap const *that = this;

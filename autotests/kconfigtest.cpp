@@ -1949,3 +1949,30 @@ void KConfigTest::testNotify()
     QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
 }
+
+void KConfigTest::testKdeglobalsVsDefault()
+{
+    // Add testRestore key with global value in kdeglobals
+    KConfig glob(QStringLiteral("kdeglobals"));
+    KConfigGroup generalGlob(&glob, "General");
+    generalGlob.writeEntry("testRestore", "global");
+    QVERIFY(glob.sync());
+
+    KConfig local(QStringLiteral(TEST_SUBDIR "restorerc"));
+    KConfigGroup generalLocal(&local, "General");
+    // Check if we get global and not the default value from cpp (defaultcpp) when reading data from restorerc
+    QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), "global");
+
+    // Add test restore key with restore value in restorerc file
+    generalLocal.writeEntry("testRestore", "restore");
+    QVERIFY(local.sync());
+    local.reparseConfiguration();
+    // We expect to get the value from restorerc file
+    QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), "restore");
+
+    // Revert to default testRestore key and we expect to get default value and not the global one
+    generalLocal.revertToDefault("testRestore");
+    local.sync();
+    local.reparseConfiguration();
+    QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), "defaultcpp");
+}

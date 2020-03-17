@@ -24,7 +24,7 @@ struct KEntry {
     KEntry()
         : mValue(), bDirty(false),
           bGlobal(false), bImmutable(false), bDeleted(false), bExpand(false), bReverted(false),
-          bLocalizedCountry(false), bNotify(false) {}
+          bLocalizedCountry(false), bNotify(false), bOverridesGlobal(false) {}
     /** @internal */
     QByteArray mValue;
     /**
@@ -58,6 +58,11 @@ struct KEntry {
     bool    bLocalizedCountry: 1;
 
     bool     bNotify: 1;
+
+    /**
+     * Entry will need to be written on a non global file even if it matches default value
+     */
+    bool     bOverridesGlobal: 1;
 };
 
 // These operators are used to check whether an entry which is about

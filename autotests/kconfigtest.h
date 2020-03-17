@@ -73,6 +73,8 @@ private Q_SLOTS:
 
     void testThreads();
 
+    void testKdeglobalsVsDefault();
+
     // should be last
     void testSyncOnExit();
 };
