@@ -1,25 +1,14 @@
-/* This file is part of the KDE libraries
-    Copyright (c) 2003 Cornelius Schumacher <schumacher@kde.org>
-    Copyright (c) 2003 Waldo Bastian <bastian@kde.org>
-    Copyright (c) 2003 Zack Rusin <zack@kde.org>
-    Copyright (c) 2006 Michaël Larouche <michael.larouche@kdemail.net>
-    Copyright (c) 2008 Allen Winter <winter@kde.org>
-    Copyright (C) 2020 Tomaz Cananbrava (tcanabrava@kde.org)
+/*
+    This file is part of the KDE libraries
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
+    SPDX-FileCopyrightText: 2003 Cornelius Schumacher <schumacher@kde.org>
+    SPDX-FileCopyrightText: 2003 Waldo Bastian <bastian@kde.org>
+    SPDX-FileCopyrightText: 2003 Zack Rusin <zack@kde.org>
+    SPDX-FileCopyrightText: 2006 Michaël Larouche <michael.larouche@kdemail.net>
+    SPDX-FileCopyrightText: 2008 Allen Winter <winter@kde.org>
+    SPDX-FileCopyrightText: 2020 Tomaz Cananbrava <tcanabrava@kde.org>
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Library General Public License for more details.
-
-    You should have received a copy of the GNU Library General Public License
-    along with this library; see the file COPYING.LIB.  If not, write to
-    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-    Boston, MA 02110-1301, USA.
+    SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
 #include "KConfigXmlParser.h"
@@ -133,12 +122,12 @@ void KConfigXmlParser::readParameterFromEntry(CfgEntry &readEntry, const QDomEle
 {
     readEntry.param = e.attribute(QStringLiteral("name"));
     readEntry.paramType = e.attribute(QStringLiteral("type"));
-    
+
     if (readEntry.param.isEmpty()) {
         std::cerr << "Parameter must have a name: " << qPrintable(dumpNode(e)) << std::endl;
         exit (1);
     }
-    
+
     if (readEntry.paramType.isEmpty()) {
         std::cerr << "Parameter must have a type: " << qPrintable(dumpNode(e)) << std::endl;
         exit(1);
@@ -220,7 +209,7 @@ void KConfigXmlParser::readChoicesFromEntry(CfgEntry &readEntry, const QDomEleme
         }
         chlist.append(choice);
     }
-    
+
     QString name = e.attribute(QStringLiteral("name"));
     QString prefix = e.attribute(QStringLiteral("prefix"));
 
@@ -406,7 +395,7 @@ CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QDomElement &
         preProcessDefault(readEntry.defaultValue, readEntry.name, readEntry.type, readEntry.choices, readEntry.code, cfg);
     }
 
-    // TODO: Try to Just return the CfgEntry we populated instead of 
+    // TODO: Try to Just return the CfgEntry we populated instead of
     // creating another one to fill the code.
     CfgEntry *result = new CfgEntry();
     result->group = readEntry.group;
@@ -446,7 +435,7 @@ KConfigXmlParser::KConfigXmlParser(const KConfigParameters &cfg, const QString &
 {
     mValidNameRegexp.setPattern(QRegularExpression::anchoredPattern(QStringLiteral("[a-zA-Z_][a-zA-Z0-9_]*")));
 }
- 
+
 void KConfigXmlParser::start()
 {
     QFile input(mInputFileName);
@@ -459,7 +448,7 @@ void KConfigXmlParser::start()
         std::cerr << "Parse error in " << qPrintable(mInputFileName) << ", line " << errorRow << ", col " << errorCol << ": " << qPrintable(errorMsg) << std::endl;
         exit (1);
     }
-    
+
     QDomElement cfgElement = doc.documentElement();
     if (cfgElement.isNull()) {
         std::cerr << "No document in kcfg file" << std::endl;
@@ -557,6 +546,6 @@ void KConfigXmlParser::readSignalTag(const QDomElement &e)
             theSignal.label = e2.text();
         }
     }
-    
+
     mParseResult.signalList.append(theSignal);
 }

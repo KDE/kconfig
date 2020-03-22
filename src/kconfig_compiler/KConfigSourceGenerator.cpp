@@ -1,26 +1,14 @@
-/* This file is part of the KDE libraries
-    Copyright (C) 2020 Tomaz Cananbrava (tcanabrava@kde.org)
-    Copyright (c) 2003 Cornelius Schumacher <schumacher@kde.org>
-    Copyright (c) 2003 Waldo Bastian <bastian@kde.org>
-    Copyright (c) 2003 Zack Rusin <zack@kde.org>
-    Copyright (c) 2006 Michaël Larouche <michael.larouche@kdemail.net>
-    Copyright (c) 2008 Allen Winter <winter@kde.org>
-    Copyright (C) 2020 Tomaz Cananbrava (tcanabrava@kde.org)
+/*
+    This file is part of the KDE libraries
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
+    SPDX-FileCopyrightText: 2003 Cornelius Schumacher <schumacher@kde.org>
+    SPDX-FileCopyrightText: 2003 Waldo Bastian <bastian@kde.org>
+    SPDX-FileCopyrightText: 2003 Zack Rusin <zack@kde.org>
+    SPDX-FileCopyrightText: 2006 Michaël Larouche <michael.larouche@kdemail.net>
+    SPDX-FileCopyrightText: 2008 Allen Winter <winter@kde.org>
+    SPDX-FileCopyrightText: 2020 Tomaz Cananbrava <tcanabrava@kde.org>
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Library General Public License for more details.
-
-    You should have received a copy of the GNU Library General Public License
-    along with this library; see the file COPYING.LIB.  If not, write to
-    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-    Boston, MA 02110-1301, USA.
+    SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
 #include "KConfigSourceGenerator.h"
@@ -36,7 +24,7 @@ KConfigSourceGenerator::KConfigSourceGenerator(
 {
 }
 
-void KConfigSourceGenerator::start() 
+void KConfigSourceGenerator::start()
 {
     KConfigCodeGeneratorBase::start();
     stream() << '\n';
@@ -208,7 +196,7 @@ void KConfigSourceGenerator::createPreamble()
         if (entry->paramValues.isEmpty()) {
             continue;
         }
-        
+
         cppPreamble += QStringLiteral("const char* const ") + cfg().className + QStringLiteral("::") + enumName(entry->param);
         cppPreamble += cfg().globalEnums
             ? QStringLiteral("ToString[] = { \"") + entry->paramValues.join(QStringLiteral("\", \"")) + QStringLiteral("\" };\n")
@@ -284,7 +272,7 @@ void KConfigSourceGenerator::createEnums(const CfgEntry *entry)
         return;
     }
     stream() << "  QList<" << cfg().inherits << "::ItemEnum::Choice> values" << entry->name << ";\n";
-    
+
     for (const auto &choice : qAsConst(entry->choices.choices)) {
         stream() << "  {\n";
         stream() << "    " << cfg().inherits << "::ItemEnum::Choice choice;\n";
@@ -668,7 +656,7 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
     endScope();
 }
 
-void KConfigSourceGenerator::createSignalFlagsHandler() 
+void KConfigSourceGenerator::createSignalFlagsHandler()
 {
     if (parseResult.signalList.isEmpty()) {
         return;

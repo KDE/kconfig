@@ -11,11 +11,11 @@
     <xsd:annotation>
         <xsd:documentation>
 
-            Copyright (c) 2003 Cornelius Schumacher &lt;schumacher@kde.org&gt;
-            Copyright (c) 2003 Waldo Bastian &lt;bastian@kde.org&gt;
-            Copyright (c) 2003 Zack Rusin &lt;zack@kde.org&gt;
-            Copyright (c) 2004 Frans Englich &lt;frans.englich@telia.com&gt;
-            Copyright (c) 2006 Michaël Larouche &lt;michael.larouche@kdemail.net&gt;
+            SPDX-FileCopyrightText: 2003 Cornelius Schumacher &lt;schumacher@kde.org&gt;
+            SPDX-FileCopyrightText: 2003 Waldo Bastian &lt;bastian@kde.org&gt;
+            SPDX-FileCopyrightText: 2003 Zack Rusin &lt;zack@kde.org&gt;
+            SPDX-FileCopyrightText: 2004 Frans Englich &lt;frans.englich@telia.com&gt;
+            SPDX-FileCopyrightText: 2006 Michaël Larouche &lt;michael.larouche@kdemail.net&gt;
 
             Permission to use, copy, modify and distribute this DTD
             and its accompanying documentation for any purpose and without fee
