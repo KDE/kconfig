@@ -166,6 +166,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false },
     { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false },
     { Donate, "Donate", QT_TRANSLATE_NOOP3("KStandardShortcut", "Donate", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { ShowHideHiddenFiles, "ShowHideHiddenFiles", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show/Hide Hidden Files", "@action"), CTRL(H), ALT(Period), QList<QKeySequence>(), false },
 
     //dummy entry to catch simple off-by-one errors. Insert new entries before this line.
     { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false }
@@ -555,6 +556,11 @@ const QList<QKeySequence> &moveToTrash()
 const QList<QKeySequence> &preferences()
 {
     return shortcut(Preferences);
+}
+
+const QList<QKeySequence> &showHideHiddenFiles()
+{
+    return shortcut(ShowHideHiddenFiles);
 }
 
 }

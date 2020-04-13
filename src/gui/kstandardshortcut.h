@@ -141,6 +141,7 @@ enum StandardShortcut {
     RenameFile, ///< Rename files or folders. @since 5.25
     MoveToTrash, ///< Move files or folders to the trash. @since 5.25
     Donate, ///< Open donation page on kde.org. @since 5.26
+    ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files @since 5.70
     // Insert new items here!
 
     StandardShortcutCount // number of standard shortcuts
@@ -526,6 +527,14 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &moveToTrash();
  * @since 5.64
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &preferences();
+
+/**
+ * Shows or hides hidden files. Defaults: Ctrl+H, Alt+.
+ * @return the shortcut of the standard accelerator
+ * @since 5.70
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &showHideHiddenFiles();
+
 }
 
 #endif // KSTANDARDSHORTCUT_H
