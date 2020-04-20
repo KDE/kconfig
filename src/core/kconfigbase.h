@@ -32,6 +32,7 @@ class KCONFIGCORE_EXPORT KConfigBase
 public:
     /**
      * Flags to control write entry
+     * @see WriteConfigFlags
      */
     enum WriteConfigFlag {
         Persistent = 0x01,
@@ -60,6 +61,9 @@ public:
         */
 
     };
+    /**
+     * Stores a combination of #WriteConfigFlag values.
+     */
     Q_DECLARE_FLAGS(WriteConfigFlags, WriteConfigFlag)
 
     /**

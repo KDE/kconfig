@@ -77,6 +77,7 @@ public:
      * Note that all values other than IncludeGlobals and CascadeConfig are
      * convenience definitions for the basic mode.
      * Do @em not combine them with anything.
+     * @see OpenFlags
      */
     enum OpenFlag {
         IncludeGlobals  = 0x01, ///< Blend kdeglobals into the config object.
@@ -87,6 +88,9 @@ public:
         NoGlobals       = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
         FullConfig      = IncludeGlobals | CascadeConfig ///< Fully-fledged config, including globals and cascading to system settings
     };
+    /**
+     * Stores a combination of #OpenFlag values.
+     */
     Q_DECLARE_FLAGS(OpenFlags, OpenFlag)
 
     /**
