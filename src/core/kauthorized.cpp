@@ -244,7 +244,7 @@ QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
     return result;
 }
 
-static void initUrlActionRestrictions()
+KCONFIGCORE_EXPORT void reloadUrlActionRestrictions()
 {
     MY_D
     const QString Any;
@@ -368,7 +368,7 @@ KCONFIGCORE_EXPORT bool authorizeUrlActionInternal(const QString &action, const 
 
     bool result = false;
     if (d->urlActionRestrictions.isEmpty()) {
-        initUrlActionRestrictions();
+        reloadUrlActionRestrictions();
     }
 
     QUrl baseURL(_baseURL);
