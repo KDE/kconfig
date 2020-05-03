@@ -244,6 +244,7 @@ QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
     return result;
 }
 
+// Exported for unittests (e.g. in KIO, we're missing tests for this in kconfig)
 KCONFIGCORE_EXPORT void reloadUrlActionRestrictions()
 {
     MY_D
