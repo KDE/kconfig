@@ -245,7 +245,7 @@ QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
 }
 
 // Exported for unittests (e.g. in KIO, we're missing tests for this in kconfig)
-KCONFIGCORE_EXPORT void reloadUrlActionRestrictions()
+KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
 {
     MY_D
     const QString Any;
@@ -291,7 +291,6 @@ KCONFIGCORE_EXPORT void reloadUrlActionRestrictions()
     d->urlActionRestrictions.append(
         URLActionRule("redirect", QStringLiteral("about"), Any, Any, Any, Any, Any, true));
 
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE URL Restrictions");
     int count = cg.readEntry("rule_count", 0);
     QString keyFormat = QStringLiteral("rule_%1");
     for (int i = 1; i <= count; i++) {
@@ -369,7 +368,8 @@ KCONFIGCORE_EXPORT bool authorizeUrlActionInternal(const QString &action, const 
 
     bool result = false;
     if (d->urlActionRestrictions.isEmpty()) {
-        reloadUrlActionRestrictions();
+        KConfigGroup cg(KSharedConfig::openConfig(), "KDE URL Restrictions");
+        loadUrlActionRestrictions(cg);
     }
 
     QUrl baseURL(_baseURL);
