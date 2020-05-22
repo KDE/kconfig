@@ -321,7 +321,7 @@ StandardShortcut find(const QKeySequence &seq)
 StandardShortcut find(const char *keyName)
 {
     for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
-        if (qstrcmp(shortcutInfo.name, keyName)) {
+        if (qstrcmp(shortcutInfo.name, keyName) == 0) {
             return shortcutInfo.id;
         }
     }
