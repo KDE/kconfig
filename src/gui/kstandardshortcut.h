@@ -186,6 +186,7 @@ KCONFIGGUI_EXPORT QString whatsThis(StandardShortcut id);
  */
 KCONFIGGUI_EXPORT StandardShortcut find(const QKeySequence &keySeq);
 
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 71)
 /**
  * Return the StandardShortcut id of the standard accel action which
  * has \a keyName as its name, or AccelNone if none of them do.
@@ -193,8 +194,21 @@ KCONFIGGUI_EXPORT StandardShortcut find(const QKeySequence &keySeq);
  * @param keyName the key sequence to search
  * @return the id of the standard accelerator, or AccelNone if there
  *          is none
+ * @deprecated since 5.71, use findByName(const QString &name) instead
  */
+KCONFIGGUI_DEPRECATED_VERSION(5, 71, "Use findByName(const QString &name) instead")
 KCONFIGGUI_EXPORT StandardShortcut find(const char *keyName);
+#endif
+
+/**
+ * Return the StandardShortcut id of the standard accelerator action which
+ * has \p name as its name, or AccelNone if none of them do.
+ * @param name the name as returned by  name(StandardShortcut id)
+ * @return the id of the standard accelerator with the given name or AccelNone
+ * if there is no such accelerator
+ * @since 5.71
+ */
+KCONFIGGUI_EXPORT StandardShortcut findByName(const QString &name);
 
 /**
  * Returns the hardcoded default shortcut for @p id.

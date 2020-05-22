@@ -44,3 +44,10 @@ void KStandardShortcutTest::testFindStdAccel()
     QCOMPARE(KStandardShortcut::find(QString("Ctrl+Shift+Alt+G")), KStandardShortcut::AccelNone);
 }
 
+void KStandardShortcutTest::testFindByName()
+{
+    for (int i = KStandardShortcut::AccelNone + 1; i < KStandardShortcut::StandardShortcutCount; ++i) {
+        const auto id = static_cast<KStandardShortcut::StandardShortcut>(i);
+        QCOMPARE(id, KStandardShortcut::findByName(KStandardShortcut::name(id)));
+    }
+}

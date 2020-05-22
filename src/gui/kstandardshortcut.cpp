@@ -318,6 +318,8 @@ StandardShortcut find(const QKeySequence &seq)
     return AccelNone;
 }
 
+
+#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 71)
 StandardShortcut find(const char *keyName)
 {
     for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
@@ -326,6 +328,18 @@ StandardShortcut find(const char *keyName)
         }
     }
 
+    return AccelNone;
+}
+#endif
+
+StandardShortcut findByName(const QString &name)
+{
+
+    for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
+        if (QString::fromLatin1(shortcutInfo.name) == name) {
+            return shortcutInfo.id;
+        }
+    }
     return AccelNone;
 }
 

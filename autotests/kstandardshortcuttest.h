@@ -19,6 +19,7 @@ private Q_SLOTS:
     void testLabel();
     void testShortcut();
     void testFindStdAccel();
+    void testFindByName();
 };
 
 #endif
