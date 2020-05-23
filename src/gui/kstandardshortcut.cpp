@@ -305,7 +305,11 @@ StandardShortcut find(const QKeySequence &seq)
     if (!seq.isEmpty()) {
         for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
             const StandardShortcut id = shortcutInfo.id;
+#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 39)
             if (id != AccelNone) {
+#else
+            if (id != AccelNone && id != SaveOptions_DEPRECATED_DO_NOT_USE) {
+#endif
                 if (!shortcutInfo.isInitialized) {
                     initialize(id);
                 }
