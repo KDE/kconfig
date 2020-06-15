@@ -157,7 +157,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     { ConfigureNotifications, "ConfigureNotifications", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Notifications", "@action"), 0, 0, QList<QKeySequence>(), false },
     { TipofDay, "TipofDay", QT_TRANSLATE_NOOP3("KStandardShortcut", "Tip Of Day", "@action"), 0, 0, QList<QKeySequence>(), false },
     { ReportBug, "ReportBug", QT_TRANSLATE_NOOP3("KStandardShortcut", "Report Bug", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { SwitchApplicationLanguage, "SwitchApplicationLanguage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Switch Application Language", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { SwitchApplicationLanguage, "SwitchApplicationLanguage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Language...", "@action"), 0, 0, QList<QKeySequence>(), false },
     { AboutApp, "AboutApp", QT_TRANSLATE_NOOP3("KStandardShortcut", "About Application", "@action"), 0, 0, QList<QKeySequence>(), false },
     { AboutKDE, "AboutKDE", QT_TRANSLATE_NOOP3("KStandardShortcut", "About KDE", "@action"), 0, 0, QList<QKeySequence>(), false },
     // Both "Cut" and "Delete" use Shift+Delete, but this is okay; see
