@@ -238,9 +238,18 @@ public:
      */
     KDesktopFile *copyTo(const QString &file) const;
 
+    /**
+     * Returns the name of the .desktop file that was used to construct this KDesktopFile.
+     */
     QString fileName() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 89)
+    /**
+     * @deprecated Since 5.89, use locationType() instead.
+     */
+    KCONFIGCORE_DEPRECATED_VERSION(5, 89, "Use locationType() instead.")
     QStandardPaths::StandardLocation resource() const;
+#endif
 
 private:
     Q_DISABLE_COPY(KDesktopFile)

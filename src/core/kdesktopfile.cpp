@@ -332,11 +332,13 @@ KDesktopFile *KDesktopFile::copyTo(const QString &file) const
     return config;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 89)
 QStandardPaths::StandardLocation KDesktopFile::resource() const
 {
     Q_D(const KDesktopFile);
     return d->resourceType;
 }
+#endif
 
 QString KDesktopFile::fileName() const
 {
