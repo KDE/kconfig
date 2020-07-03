@@ -47,6 +47,12 @@ void KStandardShortcutTest::testFindStdAccel()
 void KStandardShortcutTest::testFindByName()
 {
     for (int i = KStandardShortcut::AccelNone + 1; i < KStandardShortcut::StandardShortcutCount; ++i) {
+#if !KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 39)
+        // building without deprecated enumerator, so have to skip hole in values list
+        if (i == KStandardShortcut::SaveOptions_DEPRECATED_DO_NOT_USE) {
+            continue;
+        }
+#endif
         const auto id = static_cast<KStandardShortcut::StandardShortcut>(i);
         QCOMPARE(id, KStandardShortcut::findByName(KStandardShortcut::name(id)));
     }
