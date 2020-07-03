@@ -42,6 +42,9 @@ struct KStandardShortcutInfo {
 
     //! If this struct is initialized. If not initialized @cut is not valid
     bool isInitialized;
+
+    // Category of this Shortcut
+    Category category;
 };
 
 #define CTRL(x) Qt::CTRL+Qt::Key_##x
@@ -58,118 +61,118 @@ struct KStandardShortcutInfo {
 // Read the comments of the big enum in kstandardshortcut.h before you change anything!
 static KStandardShortcutInfo g_infoStandardShortcut[] = {
 //Group File,
-    { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false },
-    { Open, "Open", QT_TRANSLATE_NOOP3("KStandardShortcut", "Open", "@action"), CTRL(O), 0, QList<QKeySequence>(), false },
-    { New, "New", QT_TRANSLATE_NOOP3("KStandardShortcut", "New", "@action"), CTRL(N), 0, QList<QKeySequence>(), false },
-    { Close, "Close", QT_TRANSLATE_NOOP3("KStandardShortcut", "Close", "@action"), CTRL(W), CTRL(Escape), QList<QKeySequence>(), false },
-    { Save, "Save", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save", "@action"), CTRL(S), 0, QList<QKeySequence>(), false },
-    { Print, "Print", QT_TRANSLATE_NOOP3("KStandardShortcut", "Print", "@action"), CTRL(P), 0, QList<QKeySequence>(), false },
-    { Quit, "Quit", QT_TRANSLATE_NOOP3("KStandardShortcut", "Quit", "@action"), CTRL(Q), 0, QList<QKeySequence>(), false },
+    { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory },
+    { Open, "Open", QT_TRANSLATE_NOOP3("KStandardShortcut", "Open", "@action"), CTRL(O), 0, QList<QKeySequence>(), false, Category::File },
+    { New, "New", QT_TRANSLATE_NOOP3("KStandardShortcut", "New", "@action"), CTRL(N), 0, QList<QKeySequence>(), false, Category::File },
+    { Close, "Close", QT_TRANSLATE_NOOP3("KStandardShortcut", "Close", "@action"), CTRL(W), CTRL(Escape), QList<QKeySequence>(), false, Category::File },
+    { Save, "Save", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save", "@action"), CTRL(S), 0, QList<QKeySequence>(), false, Category::File },
+    { Print, "Print", QT_TRANSLATE_NOOP3("KStandardShortcut", "Print", "@action"), CTRL(P), 0, QList<QKeySequence>(), false, Category::File },
+    { Quit, "Quit", QT_TRANSLATE_NOOP3("KStandardShortcut", "Quit", "@action"), CTRL(Q), 0, QList<QKeySequence>(), false, Category::Navigation },
 
 //Group Edit
-    { Undo, "Undo", QT_TRANSLATE_NOOP3("KStandardShortcut", "Undo", "@action"), CTRL(Z), 0, QList<QKeySequence>(), false },
-    { Redo, "Redo", QT_TRANSLATE_NOOP3("KStandardShortcut", "Redo", "@action"), CTRLSHIFT(Z), 0, QList<QKeySequence>(), false },
+    { Undo, "Undo", QT_TRANSLATE_NOOP3("KStandardShortcut", "Undo", "@action"), CTRL(Z), 0, QList<QKeySequence>(), false, Category::Edit },
+    { Redo, "Redo", QT_TRANSLATE_NOOP3("KStandardShortcut", "Redo", "@action"), CTRLSHIFT(Z), 0, QList<QKeySequence>(), false, Category::Edit },
     // Both "Cut" and "Delete" use Shift+Delete, but this is okay; see
     // https://commits.kde.org/kxmlgui/8eabbf6725386e716b7536c71a9181dfe5d959f0
-    { Cut, "Cut", QT_TRANSLATE_NOOP3("KStandardShortcut", "Cut", "@action"), CTRL(X), SHIFT(Delete), QList<QKeySequence>(), false },
-    { Copy, "Copy", QT_TRANSLATE_NOOP3("KStandardShortcut", "Copy", "@action"), CTRL(C), CTRL(Insert), QList<QKeySequence>(), false },
-    { Paste, "Paste", QT_TRANSLATE_NOOP3("KStandardShortcut", "Paste", "@action"), CTRL(V), SHIFT(Insert), QList<QKeySequence>(), false },
-    { PasteSelection, "Paste Selection", QT_TRANSLATE_NOOP3("KStandardShortcut", "Paste Selection", "@action"), CTRLSHIFT(Insert), 0, QList<QKeySequence>(), false },
+    { Cut, "Cut", QT_TRANSLATE_NOOP3("KStandardShortcut", "Cut", "@action"), CTRL(X), SHIFT(Delete), QList<QKeySequence>(), false, Category::Edit },
+    { Copy, "Copy", QT_TRANSLATE_NOOP3("KStandardShortcut", "Copy", "@action"), CTRL(C), CTRL(Insert), QList<QKeySequence>(), false, Category::Edit},
+    { Paste, "Paste", QT_TRANSLATE_NOOP3("KStandardShortcut", "Paste", "@action"), CTRL(V), SHIFT(Insert), QList<QKeySequence>(), false, Category::Edit },
+    { PasteSelection, "Paste Selection", QT_TRANSLATE_NOOP3("KStandardShortcut", "Paste Selection", "@action"), CTRLSHIFT(Insert), 0, QList<QKeySequence>(), false, Category::Edit },
 
-    { SelectAll, "SelectAll", QT_TRANSLATE_NOOP3("KStandardShortcut", "Select All", "@action"), CTRL(A), 0, QList<QKeySequence>(), false },
-    { Deselect, "Deselect", QT_TRANSLATE_NOOP3("KStandardShortcut", "Deselect", "@action"), CTRLSHIFT(A), 0, QList<QKeySequence>(), false },
-    { DeleteWordBack, "DeleteWordBack", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete Word Backwards", "@action"), CTRL(Backspace), 0, QList<QKeySequence>(), false },
-    { DeleteWordForward, "DeleteWordForward", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete Word Forward", "@action"), CTRL(Delete), 0, QList<QKeySequence>(), false },
+    { SelectAll, "SelectAll", QT_TRANSLATE_NOOP3("KStandardShortcut", "Select All", "@action"), CTRL(A), 0, QList<QKeySequence>(), false, Category::Edit },
+    { Deselect, "Deselect", QT_TRANSLATE_NOOP3("KStandardShortcut", "Deselect", "@action"), CTRLSHIFT(A), 0, QList<QKeySequence>(), false, Category::Edit },
+    { DeleteWordBack, "DeleteWordBack", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete Word Backwards", "@action"), CTRL(Backspace), 0, QList<QKeySequence>(), false, Category::Edit },
+    { DeleteWordForward, "DeleteWordForward", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete Word Forward", "@action"), CTRL(Delete), 0, QList<QKeySequence>(), false, Category::Edit },
 
-    { Find, "Find", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find", "@action"), CTRL(F), 0, QList<QKeySequence>(), false },
-    { FindNext, "FindNext", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Next", "@action"), Qt::Key_F3, 0, QList<QKeySequence>(), false },
-    { FindPrev, "FindPrev", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Prev", "@action"), SHIFT(F3), 0, QList<QKeySequence>(), false },
-    { Replace, "Replace", QT_TRANSLATE_NOOP3("KStandardShortcut", "Replace", "@action"), CTRL(R), 0, QList<QKeySequence>(), false },
+    { Find, "Find", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find", "@action"), CTRL(F), 0, QList<QKeySequence>(), false, Category::Edit },
+    { FindNext, "FindNext", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Next", "@action"), Qt::Key_F3, 0, QList<QKeySequence>(), false, Category::Edit },
+    { FindPrev, "FindPrev", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Prev", "@action"), SHIFT(F3), 0, QList<QKeySequence>(), false, Category::Edit },
+    { Replace, "Replace", QT_TRANSLATE_NOOP3("KStandardShortcut", "Replace", "@action"), CTRL(R), 0, QList<QKeySequence>(), false, Category::Edit },
 
 //Group Navigation
-    { Home, "Home", QT_TRANSLATE_NOOP3("KStandardShortcut", "Home", "@action Go to main page"), ALT(Home), Qt::Key_HomePage, QList<QKeySequence>(), false },
-    { Begin, "Begin", QT_TRANSLATE_NOOP3("KStandardShortcut", "Begin", "@action Beginning of document"), CTRL(Home), 0, QList<QKeySequence>(), false },
-    { End, "End", QT_TRANSLATE_NOOP3("KStandardShortcut", "End", "@action End of document"), CTRL(End), 0, QList<QKeySequence>(), false },
-    { Prior, "Prior", QT_TRANSLATE_NOOP3("KStandardShortcut", "Prior", "@action"), Qt::Key_PageUp, 0, QList<QKeySequence>(), false },
-    { Next, "Next", QT_TRANSLATE_NOOP3("KStandardShortcut", "Next", "@action Opposite to Prior"), Qt::Key_PageDown, 0, QList<QKeySequence>(), false },
+    { Home, "Home", QT_TRANSLATE_NOOP3("KStandardShortcut", "Home", "@action Go to main page"), ALT(Home), Qt::Key_HomePage, QList<QKeySequence>(), false, Category::Navigation },
+    { Begin, "Begin", QT_TRANSLATE_NOOP3("KStandardShortcut", "Begin", "@action Beginning of document"), CTRL(Home), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { End, "End", QT_TRANSLATE_NOOP3("KStandardShortcut", "End", "@action End of document"), CTRL(End), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { Prior, "Prior", QT_TRANSLATE_NOOP3("KStandardShortcut", "Prior", "@action"), Qt::Key_PageUp, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { Next, "Next", QT_TRANSLATE_NOOP3("KStandardShortcut", "Next", "@action Opposite to Prior"), Qt::Key_PageDown, 0, QList<QKeySequence>(), false, Category::Navigation },
 
-    { Up, "Up", QT_TRANSLATE_NOOP3("KStandardShortcut", "Up", "@action"), ALT(Up), 0, QList<QKeySequence>(), false },
-    { Back, "Back", QT_TRANSLATE_NOOP3("KStandardShortcut", "Back", "@action"), ALT(Left), Qt::Key_Back, QList<QKeySequence>(), false },
-    { Forward, "Forward", QT_TRANSLATE_NOOP3("KStandardShortcut", "Forward", "@action"), ALT(Right), Qt::Key_Forward, QList<QKeySequence>(), false },
-    { Reload, "Reload", QT_TRANSLATE_NOOP3("KStandardShortcut", "Reload", "@action"), Qt::Key_F5, Qt::Key_Refresh, QList<QKeySequence>(), false },
+    { Up, "Up", QT_TRANSLATE_NOOP3("KStandardShortcut", "Up", "@action"), ALT(Up), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { Back, "Back", QT_TRANSLATE_NOOP3("KStandardShortcut", "Back", "@action"), ALT(Left), Qt::Key_Back, QList<QKeySequence>(), false, Category::Navigation },
+    { Forward, "Forward", QT_TRANSLATE_NOOP3("KStandardShortcut", "Forward", "@action"), ALT(Right), Qt::Key_Forward, QList<QKeySequence>(), false, Category::Navigation },
+    { Reload, "Reload", QT_TRANSLATE_NOOP3("KStandardShortcut", "Reload", "@action"), Qt::Key_F5, Qt::Key_Refresh, QList<QKeySequence>(), false, Category::Navigation },
 
-    { BeginningOfLine, "BeginningOfLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "Beginning of Line", "@action"), Qt::Key_Home, 0, QList<QKeySequence>(), false },
-    { EndOfLine, "EndOfLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "End of Line", "@action"), Qt::Key_End, 0, QList<QKeySequence>(), false },
-    { GotoLine, "GotoLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "Go to Line", "@action"), CTRL(G), 0, QList<QKeySequence>(), false },
-    { BackwardWord, "BackwardWord", QT_TRANSLATE_NOOP3("KStandardShortcut", "Backward Word", "@action"), CTRL(Left), 0, QList<QKeySequence>(), false },
-    { ForwardWord, "ForwardWord", QT_TRANSLATE_NOOP3("KStandardShortcut", "Forward Word", "@action"), CTRL(Right), 0, QList<QKeySequence>(), false },
+    { BeginningOfLine, "BeginningOfLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "Beginning of Line", "@action"), Qt::Key_Home, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { EndOfLine, "EndOfLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "End of Line", "@action"), Qt::Key_End, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { GotoLine, "GotoLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "Go to Line", "@action"), CTRL(G), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { BackwardWord, "BackwardWord", QT_TRANSLATE_NOOP3("KStandardShortcut", "Backward Word", "@action"), CTRL(Left), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { ForwardWord, "ForwardWord", QT_TRANSLATE_NOOP3("KStandardShortcut", "Forward Word", "@action"), CTRL(Right), 0, QList<QKeySequence>(), false, Category::Navigation },
 
-    { AddBookmark, "AddBookmark", QT_TRANSLATE_NOOP3("KStandardShortcut", "Add Bookmark", "@action"), CTRL(B), 0, QList<QKeySequence>(), false },
-    { ZoomIn, "ZoomIn", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom In", "@action"), CTRL(Plus), CTRL(Equal), QList<QKeySequence>(), false },
-    { ZoomOut, "ZoomOut", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom Out", "@action"), CTRL(Minus), 0, QList<QKeySequence>(), false },
-    { FullScreen, "FullScreen", QT_TRANSLATE_NOOP3("KStandardShortcut", "Full Screen Mode", "@action"), CTRLSHIFT(F), 0, QList<QKeySequence>(), false },
+    { AddBookmark, "AddBookmark", QT_TRANSLATE_NOOP3("KStandardShortcut", "Add Bookmark", "@action"), CTRL(B), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { ZoomIn, "ZoomIn", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom In", "@action"), CTRL(Plus), CTRL(Equal), QList<QKeySequence>(), false, Category::View },
+    { ZoomOut, "ZoomOut", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom Out", "@action"), CTRL(Minus), 0, QList<QKeySequence>(), false, Category::View },
+    { FullScreen, "FullScreen", QT_TRANSLATE_NOOP3("KStandardShortcut", "Full Screen Mode", "@action"), CTRLSHIFT(F), 0, QList<QKeySequence>(), false, Category::View },
 
-    { ShowMenubar, "ShowMenubar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Menu Bar", "@action"), CTRL(M), 0, QList<QKeySequence>(), false },
-    { TabNext, "Activate Next Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Next Tab", "@action"), CTRL(PageDown), CTRL(BracketRight), QList<QKeySequence>(), false },
-    { TabPrev, "Activate Previous Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Previous Tab", "@action"), CTRL(PageUp), CTRL(BracketLeft), QList<QKeySequence>(), false },
+    { ShowMenubar, "ShowMenubar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Menu Bar", "@action"), CTRL(M), 0, QList<QKeySequence>(), false, Category::View },
+    { TabNext, "Activate Next Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Next Tab", "@action"), CTRL(PageDown), CTRL(BracketRight), QList<QKeySequence>(), false, Category::Navigation  },
+    { TabPrev, "Activate Previous Tab", QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Previous Tab", "@action"), CTRL(PageUp), CTRL(BracketLeft), QList<QKeySequence>(), false, Category::Navigation  },
 
     //Group Help
-    { Help, "Help", QT_TRANSLATE_NOOP3("KStandardShortcut", "Help", "@action"), Qt::Key_F1, 0, QList<QKeySequence>(), false },
-    { WhatsThis, "WhatsThis", QT_TRANSLATE_NOOP3("KStandardShortcut", "What's This", "@action"), SHIFT(F1), 0, QList<QKeySequence>(), false },
+    { Help, "Help", QT_TRANSLATE_NOOP3("KStandardShortcut", "Help", "@action"), Qt::Key_F1, 0, QList<QKeySequence>(), false, Category::Help },
+    { WhatsThis, "WhatsThis", QT_TRANSLATE_NOOP3("KStandardShortcut", "What's This", "@action"), SHIFT(F1), 0, QList<QKeySequence>(), false, Category::Help },
 
 //Group TextCompletion
-    { TextCompletion, "TextCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Text Completion", "@action"), CTRL(E), 0, QList<QKeySequence>(), false },
-    { PrevCompletion, "PrevCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Previous Completion Match", "@action"), CTRL(Up), 0, QList<QKeySequence>(), false },
-    { NextCompletion, "NextCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Next Completion Match", "@action"), CTRL(Down), 0, QList<QKeySequence>(), false },
-    { SubstringCompletion, "SubstringCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Substring Completion", "@action"), CTRL(T), 0, QList<QKeySequence>(), false },
+    { TextCompletion, "TextCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Text Completion", "@action"), CTRL(E), 0, QList<QKeySequence>(), false, Category::Edit },
+    { PrevCompletion, "PrevCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Previous Completion Match", "@action"), CTRL(Up), 0, QList<QKeySequence>(), false, Category::Edit },
+    { NextCompletion, "NextCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Next Completion Match", "@action"), CTRL(Down), 0, QList<QKeySequence>(), false, Category::Edit },
+    { SubstringCompletion, "SubstringCompletion", QT_TRANSLATE_NOOP3("KStandardShortcut", "Substring Completion", "@action"), CTRL(T), 0, QList<QKeySequence>(), false, Category::Edit },
 
-    { RotateUp, "RotateUp", QT_TRANSLATE_NOOP3("KStandardShortcut", "Previous Item in List", "@action"), Qt::Key_Up, 0, QList<QKeySequence>(), false },
-    { RotateDown, "RotateDown", QT_TRANSLATE_NOOP3("KStandardShortcut", "Next Item in List", "@action"), Qt::Key_Down, 0, QList<QKeySequence>(), false },
+    { RotateUp, "RotateUp", QT_TRANSLATE_NOOP3("KStandardShortcut", "Previous Item in List", "@action"), Qt::Key_Up, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { RotateDown, "RotateDown", QT_TRANSLATE_NOOP3("KStandardShortcut", "Next Item in List", "@action"), Qt::Key_Down, 0, QList<QKeySequence>(), false, Category::Navigation },
 
-    { OpenRecent, "OpenRecent", QT_TRANSLATE_NOOP3("KStandardShortcut", "Open Recent", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { SaveAs, "SaveAs", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save As", "@action"), CTRLSHIFT(S), 0, QList<QKeySequence>(), false },
-    { Revert, "Revert", QT_TRANSLATE_NOOP3("KStandardShortcut", "Revert", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { PrintPreview, "PrintPreview", QT_TRANSLATE_NOOP3("KStandardShortcut", "Print Preview", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Mail, "Mail", QT_TRANSLATE_NOOP3("KStandardShortcut", "Mail", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Clear, "Clear", QT_TRANSLATE_NOOP3("KStandardShortcut", "Clear", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { ActualSize, "ActualSize", QT_TRANSLATE_NOOP3("KStandardShortcut", "Actual Size", "@action"), CTRL(0), 0, QList<QKeySequence>(), false },
-    { FitToPage, "FitToPage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Page", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { FitToWidth, "FitToWidth", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Width", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { FitToHeight, "FitToHeight", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Height", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Zoom, "Zoom", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Goto, "Goto", QT_TRANSLATE_NOOP3("KStandardShortcut", "Goto", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { GotoPage, "GotoPage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Goto Page", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { DocumentBack, "DocumentBack", QT_TRANSLATE_NOOP3("KStandardShortcut", "Document Back", "@action"), ALTSHIFT(Left), 0, QList<QKeySequence>(), false },
-    { DocumentForward, "DocumentForward", QT_TRANSLATE_NOOP3("KStandardShortcut", "Document Forward", "@action"), ALTSHIFT(Right), 0, QList<QKeySequence>(), false },
-    { EditBookmarks, "EditBookmarks", QT_TRANSLATE_NOOP3("KStandardShortcut", "Edit Bookmarks", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Spelling, "Spelling", QT_TRANSLATE_NOOP3("KStandardShortcut", "Spelling", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { ShowToolbar, "ShowToolbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Toolbar", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { ShowStatusbar, "ShowStatusbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Statusbar", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { OpenRecent, "OpenRecent", QT_TRANSLATE_NOOP3("KStandardShortcut", "Open Recent", "@action"), 0, 0, QList<QKeySequence>(), false, Category::File },
+    { SaveAs, "SaveAs", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save As", "@action"), CTRLSHIFT(S), 0, QList<QKeySequence>(), false, Category::File },
+    { Revert, "Revert", QT_TRANSLATE_NOOP3("KStandardShortcut", "Revert", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit },
+    { PrintPreview, "PrintPreview", QT_TRANSLATE_NOOP3("KStandardShortcut", "Print Preview", "@action"), 0, 0, QList<QKeySequence>(), false, Category::File },
+    { Mail, "Mail", QT_TRANSLATE_NOOP3("KStandardShortcut", "Mail", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
+    { Clear, "Clear", QT_TRANSLATE_NOOP3("KStandardShortcut", "Clear", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit },
+    { ActualSize, "ActualSize", QT_TRANSLATE_NOOP3("KStandardShortcut", "Actual Size", "@action"), CTRL(0), 0, QList<QKeySequence>(), false, Category::View },
+    { FitToPage, "FitToPage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Page", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View },
+    { FitToWidth, "FitToWidth", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Width", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View },
+    { FitToHeight, "FitToHeight", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Height", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View },
+    { Zoom, "Zoom", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View },
+    { Goto, "Goto", QT_TRANSLATE_NOOP3("KStandardShortcut", "Goto", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { GotoPage, "GotoPage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Goto Page", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { DocumentBack, "DocumentBack", QT_TRANSLATE_NOOP3("KStandardShortcut", "Document Back", "@action"), ALTSHIFT(Left), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { DocumentForward, "DocumentForward", QT_TRANSLATE_NOOP3("KStandardShortcut", "Document Forward", "@action"), ALTSHIFT(Right), 0, QList<QKeySequence>(), false, Category::Navigation },
+    { EditBookmarks, "EditBookmarks", QT_TRANSLATE_NOOP3("KStandardShortcut", "Edit Bookmarks", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Navigation },
+    { Spelling, "Spelling", QT_TRANSLATE_NOOP3("KStandardShortcut", "Spelling", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit },
+    { ShowToolbar, "ShowToolbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Toolbar", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View },
+    { ShowStatusbar, "ShowStatusbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Statusbar", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View },
 #if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 39)
-    { SaveOptions, "SaveOptions", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save Options", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { SaveOptions, "SaveOptions", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save Options", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings },
 #else
     // dummy entry
-    { SaveOptions_DEPRECATED_DO_NOT_USE, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false },
+    { SaveOptions_DEPRECATED_DO_NOT_USE, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory },
 #endif
-    { KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { Preferences, "Preferences", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Application", "@action"), CTRLSHIFT(Comma), 0, QList<QKeySequence>(), false },
-    { ConfigureToolbars, "ConfigureToolbars", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Toolbars", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { ConfigureNotifications, "ConfigureNotifications", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Notifications", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { TipofDay, "TipofDay", QT_TRANSLATE_NOOP3("KStandardShortcut", "Tip Of Day", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { ReportBug, "ReportBug", QT_TRANSLATE_NOOP3("KStandardShortcut", "Report Bug", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { SwitchApplicationLanguage, "SwitchApplicationLanguage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Language...", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { AboutApp, "AboutApp", QT_TRANSLATE_NOOP3("KStandardShortcut", "About Application", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { AboutKDE, "AboutKDE", QT_TRANSLATE_NOOP3("KStandardShortcut", "About KDE", "@action"), 0, 0, QList<QKeySequence>(), false },
+    { KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings },
+    { Preferences, "Preferences", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Application", "@action"), CTRLSHIFT(Comma), 0, QList<QKeySequence>(), false, Category::Settings },
+    { ConfigureToolbars, "ConfigureToolbars", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Toolbars", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings },
+    { ConfigureNotifications, "ConfigureNotifications", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Notifications", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings },
+    { TipofDay, "TipofDay", QT_TRANSLATE_NOOP3("KStandardShortcut", "Tip Of Day", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
+    { ReportBug, "ReportBug", QT_TRANSLATE_NOOP3("KStandardShortcut", "Report Bug", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
+    { SwitchApplicationLanguage, "SwitchApplicationLanguage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Language...", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings },
+    { AboutApp, "AboutApp", QT_TRANSLATE_NOOP3("KStandardShortcut", "About Application", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
+    { AboutKDE, "AboutKDE", QT_TRANSLATE_NOOP3("KStandardShortcut", "About KDE", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
     // Both "Cut" and "Delete" use Shift+Delete, but this is okay; see
     // https://commits.kde.org/kxmlgui/8eabbf6725386e716b7536c71a9181dfe5d959f0
-    { DeleteFile, "DeleteFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete", "@action"), SHIFT(Delete), 0, QList<QKeySequence>(), false },
-    { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false },
-    { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false },
-    { Donate, "Donate", QT_TRANSLATE_NOOP3("KStandardShortcut", "Donate", "@action"), 0, 0, QList<QKeySequence>(), false },
-    { ShowHideHiddenFiles, "ShowHideHiddenFiles", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show/Hide Hidden Files", "@action"), CTRL(H), ALT(Period), QList<QKeySequence>(), false },
+    { DeleteFile, "DeleteFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete", "@action"), SHIFT(Delete), 0, QList<QKeySequence>(), false, Category::File },
+    { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false, Category::File },
+    { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false, Category::File },
+    { Donate, "Donate", QT_TRANSLATE_NOOP3("KStandardShortcut", "Donate", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
+    { ShowHideHiddenFiles, "ShowHideHiddenFiles", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show/Hide Hidden Files", "@action"), CTRL(H), ALT(Period), QList<QKeySequence>(), false, Category::View },
 
     //dummy entry to catch simple off-by-one errors. Insert new entries before this line.
-    { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false }
+    { AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory }
 };
 
 /** Search for the KStandardShortcutInfo object associated with the given @p id.
@@ -365,6 +368,11 @@ QList<QKeySequence> hardcodedDefaultShortcut(StandardShortcut id)
     }
 
     return cut;
+}
+
+Category category(StandardShortcut id)
+{
+    return guardedStandardShortcutInfo(id)->category;
 }
 
 const QList<QKeySequence> &open()

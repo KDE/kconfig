@@ -148,6 +148,20 @@ enum StandardShortcut {
 };
 
 /**
+ * Categories in which the standard shortcuts can be classified
+ * @since 5.74
+ */
+enum class Category {
+    InvalidCategory = -1,
+    File,
+    Edit,
+    Navigation,
+    View,
+    Settings,
+    Help,
+};
+
+/**
  * Returns the keybinding for @p accel.
  * On X11, if QApplication was initialized with GUI disabled, the
  * default keybinding will always be returned.
@@ -222,6 +236,12 @@ KCONFIGGUI_EXPORT QList<QKeySequence> hardcodedDefaultShortcut(StandardShortcut 
  * Saves the new shortcut \a cut for standard accel \a id.
  */
 KCONFIGGUI_EXPORT void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut);
+
+/**
+ * Returns the appropriate category for the given StandardShortcut \p id.
+ * @since 5.73
+ */
+KCONFIGGUI_EXPORT Category category(StandardShortcut id);
 
 /**
  * Open file. Default: Ctrl-o
