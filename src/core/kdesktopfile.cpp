@@ -15,7 +15,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QUrl>
-#include <qstandardpaths.h>
+#include <QStandardPaths>
 
 #include "kauthorized.h"
 #include "kconfig_p.h"

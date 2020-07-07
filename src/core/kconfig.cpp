@@ -19,13 +19,13 @@
 #include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
-#include <qcoreapplication.h>
-#include <qprocess.h>
-#include <qstandardpaths.h>
-#include <qbytearray.h>
-#include <qfile.h>
-#include <qlocale.h>
-#include <qdir.h>
+#include <QCoreApplication>
+#include <QProcess>
+#include <QStandardPaths>
+#include <QByteArray>
+#include <QFile>
+#include <QLocale>
+#include <QDir>
 #include <QProcess>
 #include <QSet>
 #include <QBasicMutex>

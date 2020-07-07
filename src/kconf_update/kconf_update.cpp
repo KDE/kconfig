@@ -21,9 +21,9 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 
-#include <qstandardpaths.h>
-#include <qcommandlineparser.h>
-#include <qcommandlineoption.h>
+#include <QStandardPaths>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 
 #include "kconf_update_debug.h"
 #include "kconfigutils.h"

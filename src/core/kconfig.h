@@ -19,7 +19,7 @@
 #include <QVariant>
 #include <QByteArray>
 #include <QList>
-#include <qstandardpaths.h>
+#include <QStandardPaths>
 
 class KConfigGroup;
 class KEntryMap;

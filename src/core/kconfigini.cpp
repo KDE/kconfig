@@ -15,13 +15,13 @@
 #include "kconfigdata.h"
 #include "kconfig_core_log_settings.h"
 
-#include <qsavefile.h>
-#include <qlockfile.h>
-#include <qdatetime.h>
-#include <qdir.h>
-#include <qfile.h>
-#include <qfileinfo.h>
-#include <qdebug.h>
+#include <QSaveFile>
+#include <QLockFile>
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
+#include <QDebug>
 #include <qplatformdefs.h>
 
 #ifndef Q_OS_WIN
