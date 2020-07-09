@@ -245,6 +245,15 @@ The following options are read from the kcfgc file:
   and the Q_OBJECT macro will be added to the generated class.
   Note that you will also need to pass the GENERATE_MOC option to the kconfig_add_kcfg_files macro.</td>
 </tr>
+<tr>
+  <td><b>ParentInConstructor</b></td>
+  <td>bool</td>
+  <td>false</td>
+  <td>If set to true, the generated constructor will take an additional QObject* parameter that will be used as the object's parent.
+  This is useful when working with KQuickAddons::ManagedConfigModule to set it as the parent of the generated class to allow automatic settings discovery and handle the deallocation.
+  Note this parameter is incompatible with <b>Singleton</b> set to true.
+  </td>
+</tr>
 </table>
 
 
