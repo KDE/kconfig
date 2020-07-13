@@ -10,7 +10,8 @@ set(kconf_update_SRCS
 ecm_qt_declare_logging_category(kconf_update_SRCS
     HEADER kconf_update_debug.h
     IDENTIFIER KCONF_UPDATE_LOG
-    CATEGORY_NAME kf5.kconfig.update
+    CATEGORY_NAME kf.config.kconf_update
+    OLD_CATEGORY_NAMES kf5.kconfig.update
     DESCRIPTION "kconf_update"
     EXPORT KCONFIG
 )

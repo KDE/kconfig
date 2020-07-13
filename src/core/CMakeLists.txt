@@ -16,7 +16,8 @@ set(libkconfigcore_SRCS
 ecm_qt_declare_logging_category(libkconfigcore_SRCS
     HEADER kconfig_core_log_settings.h
     IDENTIFIER KCONFIG_CORE_LOG
-    CATEGORY_NAME kf5.kconfig.core
+    CATEGORY_NAME kf.config.core
+    OLD_CATEGORY_NAMES kf5.kconfig.core
     DESCRIPTION "KConfig Core"
     EXPORT KCONFIG
 )
