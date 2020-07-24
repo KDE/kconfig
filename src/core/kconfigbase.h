@@ -81,37 +81,78 @@ public:
     /**
      * Returns true if the specified group is known about.
      *
-     * @param group The group to search for.
+     * @param group name of group to search for
      * @return true if the group exists.
      */
     bool hasGroup(const QString &group) const;
+    /**
+     * Overload for hasGroup(const QString&) const
+     *
+     * @param group name of group to search for, encoded in UTF-8
+     */
     bool hasGroup(const char *group) const;
+    /**
+     * Overload for hasGroup(const QString&) const
+     *
+     * @param group name of group to search for, encoded in UTF-8
+     */
     bool hasGroup(const QByteArray &group) const;
 
     /**
      * Returns an object for the named subgroup.
      *
-     * @param group the group to open. Pass a null string on to the KConfig
+     * @param group the group to open. Pass an empty string here to the KConfig
      *   object to obtain a handle on the root group.
-     * @return The list of groups.
-     **/
-    KConfigGroup group(const QByteArray &group);
+     * @return config group object for the given group name.
+     */
     KConfigGroup group(const QString &group);
+    /**
+     * Overload for group(const QString&)
+     *
+     * @param group name of group, encoded in UTF-8
+     */
+    KConfigGroup group(const QByteArray &group);
+    /**
+     * Overload for group(const QString&)
+     *
+     * @param group name of group, encoded in UTF-8
+     */
     KConfigGroup group(const char *group);
 
     /**
-     * @overload
-     **/
-    const KConfigGroup group(const QByteArray &group) const;
+     * Const overload for group(const QString&)
+     */
     const KConfigGroup group(const QString &group) const;
+    /**
+     * Const overload for group(const QString&)
+     *
+     * @param group name of group, encoded in UTF-8
+     */
+    const KConfigGroup group(const QByteArray &group) const;
+    /**
+     * Const overload for group(const QString&)
+     *
+     * @param group name of group, encoded in UTF-8
+     */
     const KConfigGroup group(const char *group) const;
 
     /**
-     * Delete @p aGroup. This marks @p aGroup as @em deleted in the config object. This effectively
+     * Delete @p group.
+     * This marks @p group as @em deleted in the config object. This effectively
      * removes any cascaded values from config files earlier in the stack.
      */
-    void deleteGroup(const QByteArray &group, WriteConfigFlags flags = Normal);
     void deleteGroup(const QString &group, WriteConfigFlags flags = Normal);
+    /**
+     * Overload for deleteGroup(const QString&, WriteConfigFlags)
+     *
+     * @param group name of group to delete, encoded in UTF-8
+     */
+    void deleteGroup(const QByteArray &group, WriteConfigFlags flags = Normal);
+    /**
+     * Overload for deleteGroup(const QString&, WriteConfigFlags)
+     *
+     * @param group name of group to delete, encoded in UTF-8
+     */
     void deleteGroup(const char *group, WriteConfigFlags flags = Normal);
 
     /**
@@ -154,23 +195,38 @@ public:
     virtual bool isImmutable() const = 0;
 
     /**
-     * Can changes be made to the entries in @p aGroup?
+     * Can changes be made to the entries in @p group?
      *
-     * @param aGroup The group to check for immutability.
-     * @return @c false if the entries in @p aGroup can be modified.
+     * @param group The group to check for immutability.
+     * @return @c false if the entries in @p group can be modified, otherwise @c true
      */
-    bool isGroupImmutable(const QByteArray &aGroup) const;
-    bool isGroupImmutable(const QString &aGroup) const;
-    bool isGroupImmutable(const char *aGroup) const;
+    bool isGroupImmutable(const QString &group) const;
+    /**
+     * Overload for isGroupImmutable(const QString&) const
+     *
+     * @param group name of group, encoded in UTF-8
+     */
+    bool isGroupImmutable(const QByteArray &group) const;
+    /**
+     * Overload for isGroupImmutable(const QString&) const
+     *
+     * @param group name of group, encoded in UTF-8
+     */
+    bool isGroupImmutable(const char *group) const;
 
 protected:
     KConfigBase();
 
+    /// @param group name of group, encoded in UTF-8
     virtual bool hasGroupImpl(const QByteArray &group) const = 0;
-    virtual KConfigGroup groupImpl(const QByteArray &b) = 0;
-    virtual const KConfigGroup groupImpl(const QByteArray &b) const = 0;
+    /// @param group name of group, encoded in UTF-8
+    virtual KConfigGroup groupImpl(const QByteArray &group) = 0;
+    /// @param group name of group, encoded in UTF-8
+    virtual const KConfigGroup groupImpl(const QByteArray &group) const = 0;
+    /// @param group name of group, encoded in UTF-8
     virtual void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal) = 0;
-    virtual bool isGroupImmutableImpl(const QByteArray &aGroup) const = 0;
+    /// @param group name of group, encoded in UTF-8
+    virtual bool isGroupImmutableImpl(const QByteArray &group) const = 0;
 
     /** Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.

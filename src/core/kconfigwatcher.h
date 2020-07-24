@@ -50,7 +50,7 @@ Q_SIGNALS:
      * The config will be reloaded before this signal is emitted
      *
      * @arg group the config group that has changed
-     * @arg names a list of entries that have changed within that group
+     * @arg names a list of entries that have changed within that group (UTF-8 encoded)
      */
     void configChanged(const KConfigGroup &group, const QByteArrayList &names);
 
