@@ -39,6 +39,9 @@
 
 bool KConfigPrivate::mappingsRegistered = false;
 
+// For caching purposes
+static bool s_wasTestModeEnabled = false;
+
 Q_GLOBAL_STATIC(QStringList, s_globalFiles) // For caching purposes.
 static QBasicMutex s_globalFilesMutex;
 Q_GLOBAL_STATIC_WITH_ARGS(QString, sGlobalFileName, (QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals")))
@@ -56,6 +59,14 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
       bFileImmutable(false), bForceGlobal(false), bSuppressGlobal(false),
       configState(KConfigBase::NoAccess)
 {
+    const bool isTestMode = QStandardPaths::isTestModeEnabled();
+    // If sGlobalFileName was initialised and testMode has been toggled,
+    // sGlobalFileName may need to be updated to point to the correct kdeglobals file
+    if (sGlobalFileName.exists() && s_wasTestModeEnabled != isTestMode) {
+        s_wasTestModeEnabled = isTestMode;
+        *sGlobalFileName = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals");
+    }
+
     static QBasicAtomicInt use_etc_kderc = Q_BASIC_ATOMIC_INITIALIZER(-1);
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
     if (use_etc_kderc.load() < 0) {
