@@ -7,6 +7,7 @@
 
 #include "kwindowconfig.h"
 
+#include <QGuiApplication>
 #include <QScreen>
 #include <QWindow>
 
@@ -70,4 +71,61 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
     if (isMaximized) {
         window->setWindowState(Qt::WindowMaximized);
     }
+}
+
+void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options)
+{
+    // On Wayland, the compositor is solely responsible for window positioning,
+    // So this needs to be a no-op
+    if (!window || QGuiApplication::platformName() == QStringLiteral("wayland")) {
+        return;
+    }
+
+    // Prepend the names of all connected screens so that we save the position
+    // on a per-screen-arrangement basis, since people often like to have
+    // windows positioned differently depending on their screen arrangements
+    QStringList names;
+    const auto screens = QGuiApplication::screens();
+    names.reserve(screens.length());
+    for (auto screen : screens) {
+        names << screen->name();
+    }
+    const QString allScreens = names.join(QStringLiteral(" "));
+    config.writeEntry(allScreens + QStringLiteral(" XPosition"), window->x(), options);
+    config.writeEntry(allScreens + QStringLiteral(" YPosition"), window->y(), options);
+}
+
+void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &config)
+{
+    // On Wayland, the compositor is solely responsible for window positioning,
+    // So this needs to be a no-op
+    if (!window || QGuiApplication::platformName() == QStringLiteral("wayland")) {
+        return;
+    }
+
+    const QRect desk = window->screen()->geometry();
+    const bool isMaximized = config.readEntry(QStringLiteral("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
+
+    // Don't need to restore position if the window was maximized
+    if (isMaximized) {
+        window->setWindowState(Qt::WindowMaximized);
+        return;
+    }
+
+    QStringList names;
+    const auto screens = QGuiApplication::screens();
+    names.reserve(screens.length());
+    for (auto screen : screens) {
+        names << screen->name();
+    }
+    const QString allScreens = names.join(QStringLiteral(" "));
+    const int xPos = config.readEntry(allScreens + QStringLiteral(" XPosition"), -1);
+    const int yPos = config.readEntry(allScreens + QStringLiteral(" YPosition"), -1);
+
+    if (xPos == -1 || yPos == -1) {
+        return;
+    }
+
+    window->setX(xPos);
+    window->setY(yPos);
 }
