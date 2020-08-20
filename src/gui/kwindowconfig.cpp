@@ -25,15 +25,19 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
     const QSize sizeToSave = window->size();
     const bool isMaximized = window->windowState() & Qt::WindowMaximized;
 
-    const QString screenMaximizedString(QStringLiteral("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()));
+    // Prepend the names of all connected screens so that we save the size
+    // on a per-screen-arrangement basis, since people often like to have
+    // windows laid out differently depending on their screen arrangements
+    const QString allScreens = allConnectedScreens();
+    const QString screenMaximizedString(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()));
     // Save size only if window is not maximized
     if (!isMaximized) {
         const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
         const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
         const bool sizeValid = defaultSize.isValid() && defaultScreenSize.isValid();
         if (!sizeValid || (sizeValid && (defaultSize != sizeToSave || defaultScreenSize != desk.size()))) {
-            const QString wString(QStringLiteral("Width %1").arg(desk.width()));
-            const QString hString(QStringLiteral("Height %1").arg(desk.height()));
+            const QString wString(allScreens + QStringLiteral(" Width %1").arg(desk.width()));
+            const QString hString(allScreens + QStringLiteral(" Height %1").arg(desk.height()));
             config.writeEntry(wString, sizeToSave.width(), options);
             config.writeEntry(hString, sizeToSave.height(), options);
         }
@@ -54,9 +58,15 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
 
     const QRect desk = window->screen()->geometry();
 
-    const int width = config.readEntry(QStringLiteral("Width %1").arg(desk.width()), window->size().width());
-    const int height = config.readEntry(QStringLiteral("Height %1").arg(desk.height()), window->size().height());
-    const bool isMaximized = config.readEntry(QStringLiteral("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
+    // Fall back to non-per-screen-arrangement info if it's available but
+    // per-screen-arrangement information is not
+    const int fallbackWidth = config.readEntry(QStringLiteral("Width %1").arg(desk.width()), window->size().width());
+    const int fallbackHeight = config.readEntry(QStringLiteral("Height %1").arg(desk.height()), window->size().height());
+
+    const QString allScreens = allConnectedScreens();
+    const int width = config.readEntry(allScreens + QStringLiteral(" Width %1").arg(desk.width()), fallbackWidth);
+    const int height = config.readEntry(allScreens + QStringLiteral(" Height %1").arg(desk.height()), fallbackHeight);
+    const bool isMaximized = config.readEntry(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
 
     // Check default size
     const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
