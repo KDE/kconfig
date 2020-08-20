@@ -84,13 +84,7 @@ void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &conf
     // Prepend the names of all connected screens so that we save the position
     // on a per-screen-arrangement basis, since people often like to have
     // windows positioned differently depending on their screen arrangements
-    QStringList names;
-    const auto screens = QGuiApplication::screens();
-    names.reserve(screens.length());
-    for (auto screen : screens) {
-        names << screen->name();
-    }
-    const QString allScreens = names.join(QStringLiteral(" "));
+    const QString allScreens = allConnectedScreens();
     config.writeEntry(allScreens + QStringLiteral(" XPosition"), window->x(), options);
     config.writeEntry(allScreens + QStringLiteral(" YPosition"), window->y(), options);
 }
@@ -112,13 +106,7 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
         return;
     }
 
-    QStringList names;
-    const auto screens = QGuiApplication::screens();
-    names.reserve(screens.length());
-    for (auto screen : screens) {
-        names << screen->name();
-    }
-    const QString allScreens = names.join(QStringLiteral(" "));
+    const QString allScreens = allConnectedScreens();
     const int xPos = config.readEntry(allScreens + QStringLiteral(" XPosition"), -1);
     const int yPos = config.readEntry(allScreens + QStringLiteral(" YPosition"), -1);
 
@@ -128,4 +116,15 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
 
     window->setX(xPos);
     window->setY(yPos);
+}
+
+QString KWindowConfig::allConnectedScreens()
+{
+    QStringList names;
+    const auto screens = QGuiApplication::screens();
+    names.reserve(screens.length());
+    for (auto screen : screens) {
+        names << screen->name();
+    }
+    return names.join(QStringLiteral(" "));
 }
