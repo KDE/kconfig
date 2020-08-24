@@ -190,7 +190,7 @@ QString KConfigPrivate::expandString(const QString &value)
                 nEndPos++;
                 aVarName = aValue.midRef(nDollarPos + 2, nEndPos - nDollarPos - 3);
             } else {
-                while (nEndPos <= aValue.length() &&
+                while (nEndPos < aValue.length() &&
                         (aValue[nEndPos].isNumber() ||
                          aValue[nEndPos].isLetter() ||
                          aValue[nEndPos] == QLatin1Char('_'))) {
