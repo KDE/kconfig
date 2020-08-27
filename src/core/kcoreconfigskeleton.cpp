@@ -167,6 +167,12 @@ bool KConfigSkeletonItem::isSaveNeeded() const
     return d->mIsSaveNeededImpl();
 }
 
+QVariant KConfigSkeletonItem::getDefault() const
+{
+    Q_D(const KConfigSkeletonItem);
+    return d->mGetDefaultImpl();
+}
+
 void KConfigSkeletonItem::readImmutability(const KConfigGroup &group)
 {
     Q_D(KConfigSkeletonItem);
@@ -185,6 +191,12 @@ void KConfigSkeletonItem::setIsSaveNeededImpl(const std::function<bool ()> &impl
     d->mIsSaveNeededImpl = impl;
 }
 
+void KConfigSkeletonItem::setGetDefaultImpl(const std::function<QVariant ()> &impl)
+{
+    Q_D(KConfigSkeletonItem);
+    d->mGetDefaultImpl = impl;
+}
+
 KPropertySkeletonItem::KPropertySkeletonItem(QObject *object, const QByteArray &propertyName, const QVariant &defaultValue)
     : KConfigSkeletonItem(*new KPropertySkeletonItemPrivate(object, propertyName, defaultValue), {}, {})
 {
@@ -195,6 +207,10 @@ KPropertySkeletonItem::KPropertySkeletonItem(QObject *object, const QByteArray &
     setIsSaveNeededImpl([this] {
         Q_D(const KPropertySkeletonItem);
         return d->mReference != d->mLoadedValue;
+    });
+    setGetDefaultImpl([this] {
+        Q_D(const KPropertySkeletonItem);
+        return d->mDefaultValue;
     });
 }
 
@@ -1555,6 +1571,7 @@ KConfigCompilerSignallingItem::KConfigCompilerSignallingItem(KConfigSkeletonItem
 
     setIsDefaultImpl([this] { return mItem->isDefault(); });
     setIsSaveNeededImpl([this] { return mItem->isSaveNeeded(); });
+    setGetDefaultImpl([this] {return mItem->getDefault(); });
 }
 
 KConfigCompilerSignallingItem::~KConfigCompilerSignallingItem()

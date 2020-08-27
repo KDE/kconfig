@@ -54,6 +54,7 @@ public:
     // HACK: Necessary to avoid introducing new virtuals in KConfigSkeletonItem
     std::function<bool()> mIsDefaultImpl;
     std::function<bool()> mIsSaveNeededImpl;
+    std::function<QVariant()> mGetDefaultImpl;
 };
 
 class KPropertySkeletonItemPrivate : public KConfigSkeletonItemPrivate

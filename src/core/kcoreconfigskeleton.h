@@ -230,6 +230,12 @@ public:
      */
     bool isSaveNeeded() const;
 
+    /**
+     * Returns the default value
+     * @since 5.74
+     */
+    QVariant getDefault() const;
+
 protected:
     explicit KConfigSkeletonItem(KConfigSkeletonItemPrivate &dd, const QString &_group, const QString &_key);
 
@@ -247,6 +253,7 @@ protected:
     // KF6: Use proper pure virtuals in KConfigSkeletonItem
     void setIsDefaultImpl(const std::function<bool()> &impl);
     void setIsSaveNeededImpl(const std::function<bool()> &impl);
+    void setGetDefaultImpl(const std::function<QVariant()> &impl);
 
     KConfigSkeletonItemPrivate *const d_ptr;
 };
@@ -324,6 +331,8 @@ public:
     {
         setIsDefaultImpl([this] { return mReference == mDefault; });
         setIsSaveNeededImpl([this] { return mReference != mLoadedValue; });
+        setGetDefaultImpl([this] { return QVariant::fromValue(mDefault); });
+
     }
 
     /**
