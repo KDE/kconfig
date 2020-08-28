@@ -50,15 +50,15 @@ public:
         OutServerPass,
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
         /**
-         * @deprecated since Frameworks 5.0
+         * @deprecated since 5.0
          */
         OutServerType,
         /**
-         * @deprecated since Frameworks 5.0
+         * @deprecated since 5.0
          */
         OutServerCommand,
         /**
-         * @deprecated since Frameworks 5.0
+         * @deprecated since 5.0
          */
         OutServerTLS,
 #else
@@ -71,15 +71,15 @@ public:
         InServerPass,
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
         /**
-         * @deprecated since Frameworks 5.0
+         * @deprecated since 5.0
          */
         InServerType,
         /**
-         * @deprecated since Frameworks 5.0
+         * @deprecated since 5.0
          */
         InServerMBXType,
         /**
-         * @deprecated since Frameworks 5.0
+         * @deprecated since 5.0
          */
         InServerTLS
 #endif
