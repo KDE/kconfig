@@ -167,6 +167,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     // https://commits.kde.org/kxmlgui/8eabbf6725386e716b7536c71a9181dfe5d959f0
     { DeleteFile, "DeleteFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Delete", "@action"), SHIFT(Delete), 0, QList<QKeySequence>(), false, Category::File },
     { RenameFile, "RenameFile", QT_TRANSLATE_NOOP3("KStandardShortcut", "Rename", "@action"), Qt::Key_F2, 0, QList<QKeySequence>(), false, Category::File },
+    { CreateFolder, "CreateFolder", QT_TRANSLATE_NOOP3("KStandardShortcut", "Create Folder", "@action"), Qt::Key_F10, 0, QList<QKeySequence>(), false, Category::File },
     { MoveToTrash, "MoveToTrash", QT_TRANSLATE_NOOP3("KStandardShortcut", "Move to Trash", "@action"), Qt::Key_Delete, 0, QList<QKeySequence>(), false, Category::File },
     { Donate, "Donate", QT_TRANSLATE_NOOP3("KStandardShortcut", "Donate", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help },
     { ShowHideHiddenFiles, "ShowHideHiddenFiles", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show/Hide Hidden Files", "@action"), CTRL(H), ALT(Period), QList<QKeySequence>(), false, Category::View },
@@ -574,6 +575,10 @@ const QList<QKeySequence> &deleteFile()
 const QList<QKeySequence> &renameFile()
 {
     return shortcut(RenameFile);
+}
+const QList<QKeySequence> &createFolder()
+{
+    return shortcut(CreateFolder);
 }
 const QList<QKeySequence> &moveToTrash()
 {

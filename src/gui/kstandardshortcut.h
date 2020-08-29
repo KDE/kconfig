@@ -139,6 +139,7 @@ enum StandardShortcut {
     AboutKDE, ///< Display the About KDE dialog.
     DeleteFile, ///< Permanently delete files or folders. @since 5.25
     RenameFile, ///< Rename files or folders. @since 5.25
+    CreateFolder, ///< Create a folder. @since 5.74
     MoveToTrash, ///< Move files or folders to the trash. @since 5.25
     Donate, ///< Open donation page on kde.org. @since 5.26
     ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files @since 5.70
@@ -547,6 +548,13 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteFile();
  * @since 5.25
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &renameFile();
+
+/**
+ * Create a folder. Default: F10
+ * @return the shortcut of the standard accelerator
+ * @since 5.74
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &createFolder();
 
 /**
  * Moves files or folders to the trash. Default: Delete
