@@ -783,9 +783,11 @@ void KonfUpdate::gotScript(const QString &_script)
     }
 
     QTemporaryFile scriptIn;
-    scriptIn.open();
     QTemporaryFile scriptOut;
-    scriptOut.open();
+    if (!scriptIn.open() || !scriptOut.open()) {
+        qCDebugFile(KCONF_UPDATE_LOG) << "Could not create temporary file!";
+        return;
+    }
 
     int result;
     QProcess proc;
