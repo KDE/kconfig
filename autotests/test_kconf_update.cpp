@@ -6,6 +6,8 @@
 */
 #include "test_kconf_update.h"
 
+#include <memory>
+
 // Qt
 #include <QFile>
 #include <QDir>
@@ -50,9 +52,9 @@ static QString readFile(const QString &path)
     return ret;
 }
 
-static QTemporaryFile *writeUpdFile(const QString &content)
+static std::unique_ptr<QTemporaryFile> writeUpdFile(const QString &content)
 {
-    QTemporaryFile *file = new QTemporaryFile(QDir::tempPath() + QLatin1String("/test_kconf_update_XXXXXX.upd"));
+    std::unique_ptr<QTemporaryFile> file{new QTemporaryFile(QDir::tempPath() + QLatin1String("/test_kconf_update_XXXXXX.upd"))};
     bool ok = file->open();
     Q_UNUSED(ok) // silence warnings
     Q_ASSERT(ok);
@@ -326,7 +328,7 @@ void TestKConfUpdate::test()
 
     writeFile(oldConfPath, oldConfContent);
     QCOMPARE(readFile(oldConfPath), oldConfContent);
-    QSharedPointer<QTemporaryFile> updFile(writeUpdFile(updContent));
+    std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
     runKConfUpdate(updFile->fileName());
 
     QString updateInfo = QStringLiteral("%1:%2")
@@ -611,7 +613,7 @@ void TestKConfUpdate::testScript()
     // Prepend the Version and Id= field to the upd content
     updContent = QStringLiteral("Version=5\nId=%1\n").arg(QTest::currentDataTag()) + updContent;
 
-    QSharedPointer<QTemporaryFile> updFile(writeUpdFile(updContent));
+    std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
 
     const QString scriptDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kconf_update";
     QVERIFY(QDir().mkpath(scriptDir));
