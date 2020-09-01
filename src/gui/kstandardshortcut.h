@@ -139,10 +139,10 @@ enum StandardShortcut {
     AboutKDE, ///< Display the About KDE dialog.
     DeleteFile, ///< Permanently delete files or folders. @since 5.25
     RenameFile, ///< Rename files or folders. @since 5.25
-    CreateFolder, ///< Create a folder. @since 5.74
     MoveToTrash, ///< Move files or folders to the trash. @since 5.25
     Donate, ///< Open donation page on kde.org. @since 5.26
     ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files @since 5.70
+    CreateFolder, ///< Create a folder. @since 5.74
     // Insert new items here!
 
     StandardShortcutCount // number of standard shortcuts
