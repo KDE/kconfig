@@ -31,7 +31,6 @@ namespace KStandardShortcut
  *the big array g_infoStandardShortcut[] ABSOLUTELY MUST BE THE SAME.
  * !!!    !!!!   !!!!!    !!!!
  *    !!!!    !!!     !!!!    !!!!
- * Remember to also update kdoctools/genshortcutents.cpp.
  *
  * Other Rules:
  *
