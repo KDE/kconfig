@@ -88,6 +88,6 @@ KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window,  const KConfigGrou
  *
  * @since 5.75
  */
-QString allConnectedScreens();
+KCONFIGGUI_EXPORT QString allConnectedScreens();
 }
 #endif // KWINDOWCONFIG_H
