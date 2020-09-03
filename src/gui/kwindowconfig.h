@@ -82,12 +82,5 @@ KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &c
  * @since 5.74
  */
 KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window,  const KConfigGroup &config);
-
-/**
- * Convenience function to get a space-separated list of all connected screens.
- *
- * @since 5.74
- */
-QString allConnectedScreens();
 }
 #endif // KWINDOWCONFIG_H

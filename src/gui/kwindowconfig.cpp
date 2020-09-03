@@ -14,6 +14,18 @@
 static const char s_initialSizePropertyName[] = "_kconfig_initial_size";
 static const char s_initialScreenSizePropertyName[] = "_kconfig_initial_screen_size";
 
+// Convenience function to get a space-separated list of all connected screens
+static QString allConnectedScreens()
+{
+    QStringList names;
+    const auto screens = QGuiApplication::screens();
+    names.reserve(screens.length());
+    for (auto screen : screens) {
+        names << screen->name();
+    }
+    return names.join(QLatin1Char(' '));
+}
+
 void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options)
 {
     // QWindow::screen() shouldn't return null, but it sometimes does due to bugs.
@@ -126,15 +138,4 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
 
     window->setX(xPos);
     window->setY(yPos);
-}
-
-QString KWindowConfig::allConnectedScreens()
-{
-    QStringList names;
-    const auto screens = QGuiApplication::screens();
-    names.reserve(screens.length());
-    for (auto screen : screens) {
-        names << screen->name();
-    }
-    return names.join(QStringLiteral(" "));
 }
