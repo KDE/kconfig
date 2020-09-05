@@ -71,11 +71,13 @@ public:
     QStringList parseGroupString(const QString &_str);
 
 protected:
+    /** kconf_updaterc */
     KConfig *m_config;
     QString m_currentFilename;
     bool m_skip;
     bool m_skipFile;
-    bool m_debug;
+    bool m_bTestMode;
+    bool m_bDebugOutput;
     QString m_id;
 
     QString m_oldFile;
@@ -110,8 +112,8 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
 
     QStringList updateFiles;
 
-    m_debug = parser->isSet(QStringLiteral("debug"));
-    if (m_debug) {
+    m_bDebugOutput = parser->isSet(QStringLiteral("debug"));
+    if (m_bDebugOutput) {
         // The only way to enable debug reliably is through a filter rule.
         // The category itself is const, so we can't just go around changing
         // its mode. This can however be overridden by the environment, so
@@ -125,7 +127,8 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         }
     }
 
-    if (parser->isSet(QStringLiteral("testmode"))) {
+    m_bTestMode = parser->isSet(QStringLiteral("testmode"));
+    if (m_bTestMode) {
         QStandardPaths::setTestModeEnabled(true);
     }
 
@@ -141,6 +144,9 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         updateFiles.append(file);
     } else if (!parser->positionalArguments().isEmpty()) {
         updateFiles += parser->positionalArguments();
+    } else if (m_bTestMode) {
+        qWarning("Test mode enabled, but no files given.");
+        return;
     } else {
         if (cg.readEntry("autoUpdateDisabled", false)) {
             return;
@@ -294,6 +300,7 @@ bool KonfUpdate::updateFile(const QString &filename)
     m_skip = true;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
+        qWarning("Could not open update-file '%s'.", qUtf8Printable(filename));
         return false;
     }
 
@@ -358,19 +365,24 @@ bool KonfUpdate::updateFile(const QString &filename)
     // Flush.
     gotId(QString());
 
-    QFileInfo info(filename);
-    KConfigGroup cg(m_config, m_currentFilename);
-    if (info.birthTime().isValid()) {
-        cg.writeEntry("ctime", info.birthTime().toSecsSinceEpoch());
+    // Remember that this file was updated:
+    if (!m_bTestMode) {
+        QFileInfo info(filename);
+        KConfigGroup cg(m_config, m_currentFilename);
+        if (info.birthTime().isValid()) {
+            cg.writeEntry("ctime", info.birthTime().toSecsSinceEpoch());
+        }
+        cg.writeEntry("mtime", info.lastModified().toSecsSinceEpoch());
+        cg.sync();
     }
-    cg.writeEntry("mtime", info.lastModified().toSecsSinceEpoch());
-    cg.sync();
+
     return true;
 }
 
 void KonfUpdate::gotId(const QString &_id)
 {
-    if (!m_id.isEmpty() && !m_skip) {
+    // Remember that the last update group has been done:
+    if (!m_id.isEmpty() && !m_skip && !m_bTestMode) {
         KConfigGroup cg(m_config, m_currentFilename);
 
         QStringList ids = cg.readEntry("done", QStringList());
@@ -383,25 +395,26 @@ void KonfUpdate::gotId(const QString &_id)
 
     // Flush pending changes
     gotFile(QString());
-    KConfigGroup cg(m_config, m_currentFilename);
 
+    if (_id.isEmpty()) {
+        return;
+    }
+
+    // Check whether this update group needs to be done:
+    KConfigGroup cg(m_config, m_currentFilename);
     QStringList ids = cg.readEntry("done", QStringList());
-    if (!_id.isEmpty()) {
-        if (ids.contains(_id)) {
-            //qDebug("Id '%s' was already in done-list", _id.toLatin1().constData());
-            if (!m_bUseConfigInfo) {
-                m_skip = true;
-                return;
-            }
-        }
-        m_skip = false;
-        m_skipFile = false;
-        m_id = _id;
-        if (m_bUseConfigInfo) {
-            qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Checking update" << _id;
-        } else {
-            qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Found new update" << _id;
-        }
+    if (ids.contains(_id) && !m_bUseConfigInfo) {
+        //qDebug("Id '%s' was already in done-list", _id.toLatin1().constData());
+        m_skip = true;
+        return;
+    }
+    m_skip = false;
+    m_skipFile = false;
+    m_id = _id;
+    if (m_bUseConfigInfo) {
+        qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Checking update" << _id;
+    } else {
+        qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Found new update" << _id;
     }
 }
 
@@ -795,7 +808,7 @@ void KonfUpdate::gotScript(const QString &_script)
     proc.setStandardInputFile(scriptIn.fileName());
     proc.setStandardOutputFile(scriptOut.fileName());
     if (m_oldConfig1) {
-        if (m_debug) {
+        if (m_bDebugOutput) {
             //scriptIn.setAutoRemove(false);
             qCDebug(KCONF_UPDATE_LOG) << "Script input stored in" << scriptIn.fileName();
         }
@@ -818,7 +831,7 @@ void KonfUpdate::gotScript(const QString &_script)
     }
 
     qCDebug(KCONF_UPDATE_LOG) << "About to run" << cmd;
-    if (m_debug) {
+    if (m_bDebugOutput) {
         QFile scriptFile(path);
         if (scriptFile.open(QIODevice::ReadOnly)) {
             qCDebug(KCONF_UPDATE_LOG) << "Script contents is:\n" << scriptFile.readAll();
@@ -854,7 +867,7 @@ void KonfUpdate::gotScript(const QString &_script)
         return; // Nothing to merge
     }
 
-    if (m_debug) {
+    if (m_bDebugOutput) {
         //scriptOut.setAutoRemove(false);
         qCDebug(KCONF_UPDATE_LOG) << "Script output stored in" << scriptOut.fileName();
         QFile output(scriptOut.fileName());
