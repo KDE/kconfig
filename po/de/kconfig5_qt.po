@@ -1,0 +1,550 @@
+# Thomas Diehl <thd@kde.org>, 2003.
+# Thomas Reitelbach <tr@erdfunkstelle.de>, 2006, 2007, 2008.
+# Frederik Schwarzer <schwarzer@kde.org>, 2012, 2014, 2015, 2016.
+# Burkhard Lück <lueck@hube-lueck.de>, 2014, 2015, 2016, 2017, 2018, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2019-12-12 07:58+0100\n"
+"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 18.12.3\n"
+
+#: core/kconfig.cpp:937
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Bitte nehmen Sie Kontakt zu Ihrer Systemverwaltung auf."
+
+#: core/kconfigini.cpp:569
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Einrichtungsdatei „%1“ lässt sich nicht speichern.\n"
+
+#: core/kemailsettings.cpp:235 core/kemailsettings.cpp:238
+#: core/kemailsettings.cpp:246
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Standard"
+
+#: gui/kstandardshortcut.cpp:65
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Öffnen"
+
+#: gui/kstandardshortcut.cpp:66
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Neu"
+
+#: gui/kstandardshortcut.cpp:67
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Schließen"
+
+#: gui/kstandardshortcut.cpp:68
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Speichern"
+
+#: gui/kstandardshortcut.cpp:69
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "Drucken"
+
+#: gui/kstandardshortcut.cpp:70
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Beenden"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: gui/kstandardshortcut.cpp:74
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Wiederherstellen"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Ausschneiden"
+
+#: gui/kstandardshortcut.cpp:78
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Kopieren"
+
+#: gui/kstandardshortcut.cpp:79
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Einfügen"
+
+#: gui/kstandardshortcut.cpp:80
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Auswahl einfügen"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Alle auswählen"
+
+#: gui/kstandardshortcut.cpp:83
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "Auswahl aufheben"
+
+#: gui/kstandardshortcut.cpp:84
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Vorheriges Wort löschen"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Nächstes Wort löschen"
+
+#: gui/kstandardshortcut.cpp:87
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Suchen"
+
+#: gui/kstandardshortcut.cpp:88
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Weitersuchen"
+
+#: gui/kstandardshortcut.cpp:89
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Vorherige suchen"
+
+#: gui/kstandardshortcut.cpp:90
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Ersetzen"
+
+#: gui/kstandardshortcut.cpp:93
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Pos 1"
+
+#: gui/kstandardshortcut.cpp:94
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "Anfang"
+
+#: gui/kstandardshortcut.cpp:95
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "Ende"
+
+#: gui/kstandardshortcut.cpp:96
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "Vorherige"
+
+#: gui/kstandardshortcut.cpp:97
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "Weiter"
+
+#: gui/kstandardshortcut.cpp:99
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "Nach oben"
+
+#: gui/kstandardshortcut.cpp:100
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Zurück"
+
+#: gui/kstandardshortcut.cpp:101
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Vorwärts"
+
+#: gui/kstandardshortcut.cpp:102
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Neu laden"
+
+#: gui/kstandardshortcut.cpp:104
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Zeilenanfang"
+
+#: gui/kstandardshortcut.cpp:105
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Zeilenende"
+
+#: gui/kstandardshortcut.cpp:106
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Gehe zu Zeile"
+
+#: gui/kstandardshortcut.cpp:107
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Ein Wort zurück"
+
+#: gui/kstandardshortcut.cpp:108
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Ein Wort vor"
+
+#: gui/kstandardshortcut.cpp:110
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Lesezeichen hinzufügen"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Vergrößern"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Verkleinern"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Vollbildmodus"
+
+#: gui/kstandardshortcut.cpp:115
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Menüleiste anzeigen"
+
+#: gui/kstandardshortcut.cpp:116
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Nächstes Unterfenster aktivieren"
+
+#: gui/kstandardshortcut.cpp:117
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Vorheriges Unterfenster aktivieren"
+
+#: gui/kstandardshortcut.cpp:120
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Hilfe"
+
+#: gui/kstandardshortcut.cpp:121
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Was ist das"
+
+#: gui/kstandardshortcut.cpp:124
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Textvervollständigung"
+
+#: gui/kstandardshortcut.cpp:125
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Vorherige Vervollständigung"
+
+#: gui/kstandardshortcut.cpp:126
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "Nächste Vervollständigung"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Teilzeichenketten-Vervollständigung"
+
+#: gui/kstandardshortcut.cpp:129
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Vorheriges Listenelement"
+
+#: gui/kstandardshortcut.cpp:130
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Nächstes Listenelement"
+
+#: gui/kstandardshortcut.cpp:132
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Zuletzt geöffnete Dateien"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Speichern unter"
+
+#: gui/kstandardshortcut.cpp:134
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Zurücksetzen"
+
+#: gui/kstandardshortcut.cpp:135
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Druckvorschau"
+
+#: gui/kstandardshortcut.cpp:136
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Via E-Mail versenden"
+
+#: gui/kstandardshortcut.cpp:137
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Leeren"
+
+#: gui/kstandardshortcut.cpp:138
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "Tatsächliche Größe"
+
+#: gui/kstandardshortcut.cpp:139
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Auf Seite einpassen"
+
+#: gui/kstandardshortcut.cpp:140
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Auf Seitenbreite einpassen"
+
+#: gui/kstandardshortcut.cpp:141
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Auf Seitenhöhe einpassen"
+
+#: gui/kstandardshortcut.cpp:142
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Skalierung"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Gehe zu"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Gehe zu Seite"
+
+#: gui/kstandardshortcut.cpp:145
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Vorheriges Dokument"
+
+#: gui/kstandardshortcut.cpp:146
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "Nächstes Dokument"
+
+#: gui/kstandardshortcut.cpp:147
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Lesezeichen bearbeiten"
+
+#: gui/kstandardshortcut.cpp:148
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Rechtschreibung"
+
+#: gui/kstandardshortcut.cpp:149
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Werkzeugleiste anzeigen"
+
+#: gui/kstandardshortcut.cpp:150
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Statusleiste anzeigen"
+
+#: gui/kstandardshortcut.cpp:152
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Optionen speichern"
+
+#: gui/kstandardshortcut.cpp:157
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Kurzbefehle"
+
+#: gui/kstandardshortcut.cpp:158
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Application"
+msgstr "Anwendung einrichten"
+
+#: gui/kstandardshortcut.cpp:159
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Werkzeugleisten einrichten"
+
+#: gui/kstandardshortcut.cpp:160
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Benachrichtigungen festlegen"
+
+#: gui/kstandardshortcut.cpp:161
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Tipp des Tages"
+
+#: gui/kstandardshortcut.cpp:162
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Probleme oder Wünsche berichten"
+
+#: gui/kstandardshortcut.cpp:163
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Language..."
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:164
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "Über die Anwendung"
+
+#: gui/kstandardshortcut.cpp:165
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "Über KDE"
+
+#: gui/kstandardshortcut.cpp:168
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "Löschen"
+
+#: gui/kstandardshortcut.cpp:169
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "Umbenennen"
+
+#: gui/kstandardshortcut.cpp:170
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "In den Papierkorb werfen"
+
+#: gui/kstandardshortcut.cpp:171
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "Spenden"
+
+#: gui/kstandardshortcut.cpp:172
+msgctxt "KStandardShortcut|@action"
+msgid "Show/Hide Hidden Files"
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:173
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:936
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr ""
+"KDE-Dienstprogramm für die Aktualisierung von Benutzer-Konfigurationsdateien"
+
+#: kconf_update/kconf_update.cpp:938
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Skriptausgaben speichern"
+
+#: kconf_update/kconf_update.cpp:939
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr ""
+"Nur für Unittests: Test-Ordner verwenden, um die Tests von den eigentlichen "
+"Benutzerdateien zu trennen"
+
+#: kconf_update/kconf_update.cpp:940
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr ""
+"Überprüfen Sie, ob die Konfigurationsdatei selbst aktualisiert werden muss"
+
+#: kconf_update/kconf_update.cpp:941
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr "Dateien, der die Aktualisierungs-Informationen entnommen werden sollen"
+
+#: kconfig_compiler/kconfig_compiler.cpp:715
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Ordner, in dem die Dateien generiert werden [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:716
+msgctxt "main|"
+msgid "directory"
+msgstr "Ordner"
+
+#: kconfig_compiler/kconfig_compiler.cpp:720
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Zeigt die Software-Lizenz an."
+
+#: kreadconfig/kreadconfig.cpp:44 kreadconfig/kwriteconfig.cpp:24
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "<file> statt globaler Konfigurationsdatei verwenden"
+
+#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr ""
+"Zu durchsuchende Gruppe. Mehrfach verwenden zur Suche in verschachtelten "
+"Gruppen."
+
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:26
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Zu suchender Schlüssel"
+
+#: kreadconfig/kreadconfig.cpp:47
+msgctxt "main|"
+msgid "Default value"
+msgstr "Standardwert"
+
+#: kreadconfig/kreadconfig.cpp:48
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Art der Variable"
+
+#: kreadconfig/kwriteconfig.cpp:27
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Art der Variable. Verwenden Sie „bool“ für den booleschen Typ. Anderenfalls "
+"wird sie als Zeichenfolge (string) behandelt."
+
+#: kreadconfig/kwriteconfig.cpp:28
+msgctxt "main|"
+msgid "Delete the designated key if enabled"
+msgstr "Bezeichneten Schlüssel löschen, wenn er aktiviert ist"
+
+#: kreadconfig/kwriteconfig.cpp:29
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr ""
+"Zu schreibender Wert. Zwingend erforderlich. Bei Shells bitte '' verwenden, "
+"um „leer“ vorzugeben."
