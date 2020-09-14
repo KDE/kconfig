@@ -70,7 +70,11 @@ QString KDesktopFile::locateLocal(const QString &path)
     QChar plus(QLatin1Char('/'));
     // Relative to config? (e.g. for autostart)
     const QStringList lstGenericConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
-    for (const QString &dir : lstGenericConfigLocation) {
+    // Iterate from the last item since some items may be subfolders of others.
+    for (QStringList::const_reverse_iterator constIterator = lstGenericConfigLocation.crbegin(); 
+            constIterator != lstGenericConfigLocation.crend();
+            ++constIterator) {
+        const QString &dir = (*constIterator);
         if (path.startsWith(dir + plus)) {
             relativePath = path.mid(dir.length() + 1);
             return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + relativePath;
