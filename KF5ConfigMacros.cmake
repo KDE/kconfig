@@ -96,8 +96,10 @@ function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
                           MAIN_DEPENDENCY ${_tmp_FILE}
                           DEPENDS ${_kcfg_FILE} KF5::kconfig_compiler)
 
-       set_source_files_properties(${_header_FILE} PROPERTIES SKIP_AUTOMOC ON)  # don't run automoc on this file
-       set_source_files_properties(${_src_FILE} PROPERTIES SKIP_AUTOMOC ON)  # don't run automoc on this file
+       set_source_files_properties(${_header_FILE} ${_src_FILE} PROPERTIES
+           SKIP_AUTOMOC ON
+           SKIP_AUTOUIC ON
+       )
 
        if(ARG_GENERATE_MOC)
           list(APPEND sources ${_moc_FILE})
