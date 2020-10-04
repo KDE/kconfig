@@ -1,0 +1,543 @@
+#
+# Yan Shuangchun <yahzee@21cn.com>, 2003.
+# Feng Chao <chaofeng111@gmail.com>, 2014.
+# Xuetian Weng <xweng@cs.stonybrook.edu>, 2014.
+# Weng Xuetian <wengxt@gmail.com>, 2016.
+# Guo Yunhe <guoyunhebrave@gmail.com>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeorg\n"
+"PO-Revision-Date: 2020-09-23 12:18\n"
+"Language-Team: Chinese Simplified\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: kdeorg\n"
+"X-Crowdin-Project-ID: 269464\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /kf5-trunk/messages/kconfig/kconfig5_qt.pot\n"
+"X-Crowdin-File-ID: 5586\n"
+
+#: core/kconfig.cpp:937
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "请联系您的系统管理员。"
+
+#: core/kconfigini.cpp:569
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "配置文件“%1”不可写入。\n"
+
+#: core/kemailsettings.cpp:235 core/kemailsettings.cpp:238
+#: core/kemailsettings.cpp:246
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "默认"
+
+#: gui/kstandardshortcut.cpp:65
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "打开"
+
+#: gui/kstandardshortcut.cpp:66
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "新建"
+
+#: gui/kstandardshortcut.cpp:67
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "关闭"
+
+#: gui/kstandardshortcut.cpp:68
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "保存"
+
+#: gui/kstandardshortcut.cpp:69
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "打印"
+
+#: gui/kstandardshortcut.cpp:70
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "退出"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "撤销"
+
+#: gui/kstandardshortcut.cpp:74
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "重做"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "剪切"
+
+#: gui/kstandardshortcut.cpp:78
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "复制"
+
+#: gui/kstandardshortcut.cpp:79
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "粘贴"
+
+#: gui/kstandardshortcut.cpp:80
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "粘贴选中内容"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "全部选中"
+
+#: gui/kstandardshortcut.cpp:83
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "取消选择"
+
+#: gui/kstandardshortcut.cpp:84
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "删除前面的单词"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "删除后面的单词"
+
+#: gui/kstandardshortcut.cpp:87
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "查找"
+
+#: gui/kstandardshortcut.cpp:88
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "查找下一个"
+
+#: gui/kstandardshortcut.cpp:89
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "查找上一个"
+
+#: gui/kstandardshortcut.cpp:90
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "替换"
+
+#: gui/kstandardshortcut.cpp:93
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Home"
+
+#: gui/kstandardshortcut.cpp:94
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "文件头"
+
+#: gui/kstandardshortcut.cpp:95
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "End"
+
+#: gui/kstandardshortcut.cpp:96
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "优先"
+
+#: gui/kstandardshortcut.cpp:97
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "下一步"
+
+#: gui/kstandardshortcut.cpp:99
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "上箭头"
+
+#: gui/kstandardshortcut.cpp:100
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "后退"
+
+#: gui/kstandardshortcut.cpp:101
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "前进"
+
+#: gui/kstandardshortcut.cpp:102
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "重新装入"
+
+#: gui/kstandardshortcut.cpp:104
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "行首"
+
+#: gui/kstandardshortcut.cpp:105
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "行尾"
+
+#: gui/kstandardshortcut.cpp:106
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "转向至行"
+
+#: gui/kstandardshortcut.cpp:107
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "上一单词"
+
+#: gui/kstandardshortcut.cpp:108
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "下一单词"
+
+#: gui/kstandardshortcut.cpp:110
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "添加书签"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "放大"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "缩小"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "全屏模式"
+
+#: gui/kstandardshortcut.cpp:115
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "显示菜单栏"
+
+#: gui/kstandardshortcut.cpp:116
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "激活下一标签页"
+
+#: gui/kstandardshortcut.cpp:117
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "激活上一标签页"
+
+#: gui/kstandardshortcut.cpp:120
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "帮助"
+
+#: gui/kstandardshortcut.cpp:121
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "这是什么"
+
+#: gui/kstandardshortcut.cpp:124
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "文本补全"
+
+#: gui/kstandardshortcut.cpp:125
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "上一个补全匹配"
+
+#: gui/kstandardshortcut.cpp:126
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "下一个补全匹配"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "子串补全"
+
+#: gui/kstandardshortcut.cpp:129
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "在列表中的前一项"
+
+#: gui/kstandardshortcut.cpp:130
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "在列表中的后一项"
+
+#: gui/kstandardshortcut.cpp:132
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "打开最近一项"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "另存为"
+
+#: gui/kstandardshortcut.cpp:134
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "还原"
+
+#: gui/kstandardshortcut.cpp:135
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "打印预览"
+
+#: gui/kstandardshortcut.cpp:136
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "邮寄"
+
+#: gui/kstandardshortcut.cpp:137
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "清除"
+
+#: gui/kstandardshortcut.cpp:138
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "实际大小"
+
+#: gui/kstandardshortcut.cpp:139
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "适合页面"
+
+#: gui/kstandardshortcut.cpp:140
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "适合页宽"
+
+#: gui/kstandardshortcut.cpp:141
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "适合页高"
+
+#: gui/kstandardshortcut.cpp:142
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "缩放"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "转到"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "转到页"
+
+#: gui/kstandardshortcut.cpp:145
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "文档后退"
+
+#: gui/kstandardshortcut.cpp:146
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "文档前进"
+
+#: gui/kstandardshortcut.cpp:147
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "编辑书签"
+
+#: gui/kstandardshortcut.cpp:148
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "拼写处理"
+
+#: gui/kstandardshortcut.cpp:149
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "显示工具栏"
+
+#: gui/kstandardshortcut.cpp:150
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "显示状态栏"
+
+#: gui/kstandardshortcut.cpp:152
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "保存选项"
+
+#: gui/kstandardshortcut.cpp:157
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "键盘绑定"
+
+#: gui/kstandardshortcut.cpp:158
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Application"
+msgstr "配置应用程序"
+
+#: gui/kstandardshortcut.cpp:159
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "配置工具栏"
+
+#: gui/kstandardshortcut.cpp:160
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "配置通知"
+
+#: gui/kstandardshortcut.cpp:161
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "日积月累"
+
+#: gui/kstandardshortcut.cpp:162
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "报告错误"
+
+#: gui/kstandardshortcut.cpp:163
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Language..."
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:164
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "关于程序"
+
+#: gui/kstandardshortcut.cpp:165
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "关于 KDE"
+
+#: gui/kstandardshortcut.cpp:168
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "删除"
+
+#: gui/kstandardshortcut.cpp:169
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "重命名"
+
+#: gui/kstandardshortcut.cpp:170
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "移至回收站"
+
+#: gui/kstandardshortcut.cpp:171
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "捐助"
+
+#: gui/kstandardshortcut.cpp:172
+msgctxt "KStandardShortcut|@action"
+msgid "Show/Hide Hidden Files"
+msgstr "显示/隐藏隐藏的文件"
+
+#: gui/kstandardshortcut.cpp:173
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:936
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "用于更新用户配置文件的 KDE 工具"
+
+#: kconf_update/kconf_update.cpp:938
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "保留脚本的输出结果"
+
+#: kconf_update/kconf_update.cpp:939
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr "仅用于单元测试：使用测试目录来避免访问用户真实文件"
+
+#: kconf_update/kconf_update.cpp:940
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "请检查配置文件自身是否需要更新"
+
+#: kconf_update/kconf_update.cpp:941
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr "要读取更新指令的文件"
+
+#: kconfig_compiler/kconfig_compiler.cpp:715
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "在 [.] 中生成文件的目录"
+
+#: kconfig_compiler/kconfig_compiler.cpp:716
+msgctxt "main|"
+msgid "directory"
+msgstr "目录"
+
+#: kconfig_compiler/kconfig_compiler.cpp:720
+msgctxt "main|"
+msgid "Display software license."
+msgstr "显示许可协议."
+
+#: kreadconfig/kreadconfig.cpp:44 kreadconfig/kwriteconfig.cpp:24
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "使用 <file> 代替全局设置"
+
+#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "要查阅的组，对嵌套组可重复声明。"
+
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:26
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "要查询的关键字"
+
+#: kreadconfig/kreadconfig.cpp:47
+msgctxt "main|"
+msgid "Default value"
+msgstr "默认值"
+
+#: kreadconfig/kreadconfig.cpp:48
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "变量类型"
+
+#: kreadconfig/kwriteconfig.cpp:27
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr "变量类型。使用“bool”作为布尔值，否则它将被作为一个字符串来对待"
+
+#: kreadconfig/kwriteconfig.cpp:28
+msgctxt "main|"
+msgid "Delete the designated key if enabled"
+msgstr "启用时删除指定密钥"
+
+#: kreadconfig/kwriteconfig.cpp:29
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "要写入的值。在 shell 中，空格必须使用“”"
