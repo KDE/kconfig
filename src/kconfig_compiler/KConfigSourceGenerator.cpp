@@ -14,6 +14,7 @@
 #include "KConfigSourceGenerator.h"
 #include "KConfigCommonStructs.h"
 
+#include <QRegularExpression>
 
 KConfigSourceGenerator::KConfigSourceGenerator(
     const QString &inputFile,
@@ -334,7 +335,7 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
     }
 
     if (!entry->parentGroup.isEmpty()) {
-        stream() << "  " << itemVarStr << "->setGroup(cg" << QString(entry->group).remove(QRegExp(QStringLiteral("\\W"))) << ");\n";
+        stream() << "  " << itemVarStr << "->setGroup(cg" << QString(entry->group).remove(QRegularExpression(QStringLiteral("\\W"))) << ");\n";
     }
 
     stream() << "  addItem( " << itemVarStr;
@@ -421,16 +422,16 @@ void KConfigSourceGenerator::handleCurrentGroupChange(const CfgEntry *entry)
     mCurrentGroup = entry->group;
 
     if (!entry->parentGroup.isEmpty()) {
-        QString parentGroup = QString(entry->parentGroup).remove(QRegExp(QStringLiteral("\\W")));
+        QString parentGroup = QString(entry->parentGroup).remove(QRegularExpression(QStringLiteral("\\W")));
         if (!mConfigGroupList.contains(parentGroup)) {
             stream() << "  KConfigGroup cg" << parentGroup
                      << "(this->config(), " << paramString(entry->parentGroup, parseResult.parameters) << ");\n";
             mConfigGroupList << parentGroup;
         }
-        QString currentGroup = QString(mCurrentGroup).remove(QRegExp(QStringLiteral("\\W")));
+        QString currentGroup = QString(mCurrentGroup).remove(QRegularExpression(QStringLiteral("\\W")));
         if (!mConfigGroupList.contains(currentGroup)) {
             stream() << "  KConfigGroup cg" << currentGroup
-                     << " = cg" << QString(entry->parentGroup).remove(QRegExp(QStringLiteral("\\W")))
+                     << " = cg" << QString(entry->parentGroup).remove(QRegularExpression(QStringLiteral("\\W")))
                      << ".group(" << paramString(mCurrentGroup, parseResult.parameters) << ");\n";
             mConfigGroupList << currentGroup;
         }
