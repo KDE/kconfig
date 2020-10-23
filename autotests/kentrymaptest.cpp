@@ -7,7 +7,6 @@
 #include "kentrymaptest.h"
 
 #include <QtTest>
-#include "kconfigdata.h"
 
 const QByteArray group1("A Group");
 const QByteArray key1("A Key");

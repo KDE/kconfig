@@ -12,7 +12,6 @@
 */
 
 #include "KConfigXmlParser.h"
-#include "KConfigParameters.h"
 
 #include <QDomAttr>
 #include <QDomElement>

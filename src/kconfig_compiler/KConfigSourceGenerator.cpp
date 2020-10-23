@@ -12,7 +12,6 @@
 */
 
 #include "KConfigSourceGenerator.h"
-#include "KConfigCommonStructs.h"
 
 #include <QRegularExpression>
 

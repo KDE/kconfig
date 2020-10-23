@@ -8,7 +8,6 @@
 */
 
 #include <QDir>
-#include <QFile>
 #include <QProcess>
 #include <QString>
 #include <QtTest>

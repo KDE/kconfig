@@ -12,10 +12,7 @@
 */
 
 #include "KConfigCodeGeneratorBase.h"
-#include "KConfigParameters.h"
-#include "KConfigCommonStructs.h"
 
-#include <QTextStream>
 #include <QLatin1Char>
 #include <QFileInfo>
 

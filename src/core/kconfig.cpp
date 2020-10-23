@@ -21,7 +21,6 @@
 
 #include <QCoreApplication>
 #include <QProcess>
-#include <QStandardPaths>
 #include <QByteArray>
 #include <QFile>
 #include <QLocale>

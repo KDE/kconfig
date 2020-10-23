@@ -12,7 +12,6 @@
 */
 
 #include "KConfigHeaderGenerator.h"
-#include "KConfigCommonStructs.h"
 
 #include <QTextStream>
 #include <QDebug>
