@@ -70,7 +70,7 @@ bool ConfigLoaderHandler::parse(QIODevice *input)
         }
     }
 
-    if (reader.isEndDocument()) {
+    if (!reader.isEndDocument()) {
         return false;
     }
 
