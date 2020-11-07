@@ -110,6 +110,8 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
 
 KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
 {
+    // KF6 TODO: port this to XDG_STATE_HOME (default ~/.local/state)
+    // See https://gitlab.freedesktop.org/xdg/xdg-specs/-/blob/master/basedir/basedir-spec.xml
     QString fileName(_fileName);
 
     if (fileName.isEmpty()) {
