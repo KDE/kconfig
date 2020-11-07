@@ -162,6 +162,10 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
             entry.bGlobal = true;
         }
 
+        if (flags & KConfigBase::Notify) {
+            entry.bNotify = true;
+        }
+
         otherMap[newKey] = entry;
     }
 
