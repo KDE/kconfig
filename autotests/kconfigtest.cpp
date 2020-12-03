@@ -1863,7 +1863,7 @@ void KConfigTest::testThreads()
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     //futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     //futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);
-    for (QFuture<void> f : qAsConst(futures)) { // krazy:exclude=foreach
+    for (QFuture<void> f : qAsConst(futures)) {
         f.waitForFinished();
     }
 }
