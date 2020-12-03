@@ -128,7 +128,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
     const int len = source.length();
     const bool sameName = (destination == source);
 
-    // we keep this bool outside the foreach loop so that if
+    // we keep this bool outside the for loop so that if
     // the group is empty, we don't end up marking the other config
     // as dirty erroneously
     bool dirtied = false;
