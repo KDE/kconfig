@@ -58,6 +58,9 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
             const QString hString(allScreens + QStringLiteral(" Height %1").arg(desk.height()));
             config.writeEntry(wString, sizeToSave.width(), options);
             config.writeEntry(hString, sizeToSave.height(), options);
+            // Don't keep the maximized string in the file since the window is
+            // no longer maximized at this point
+            config.deleteEntry(screenMaximizedString);
         }
     }
     if ((isMaximized == false) && !config.hasDefault(screenMaximizedString)) {
