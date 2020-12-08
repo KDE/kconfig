@@ -47,7 +47,7 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
     // on a per-screen-arrangement basis, since people often like to have
     // windows laid out differently depending on their screen arrangements
     const QString allScreens = allConnectedScreens();
-    const QString screenMaximizedString(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()));
+    const QString screenMaximizedString(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.width()).arg(desk.height()));
     // Save size only if window is not maximized
     if (!isMaximized) {
         const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
@@ -84,7 +84,7 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
     const QString allScreens = allConnectedScreens();
     const int width = config.readEntry(allScreens + QStringLiteral(" Width %1").arg(desk.width()), fallbackWidth);
     const int height = config.readEntry(allScreens + QStringLiteral(" Height %1").arg(desk.height()), fallbackHeight);
-    const bool isMaximized = config.readEntry(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
+    const bool isMaximized = config.readEntry(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.width()).arg(desk.height()), false);
 
     // Check default size
     const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
