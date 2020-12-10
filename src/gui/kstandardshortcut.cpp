@@ -47,11 +47,11 @@ struct KStandardShortcutInfo {
     Category category;
 };
 
-#define CTRL(x) Qt::CTRL+Qt::Key_##x
-#define SHIFT(x) Qt::SHIFT+Qt::Key_##x
-#define CTRLSHIFT(x) Qt::CTRL+Qt::SHIFT+Qt::Key_##x
-#define ALT(x) Qt::ALT+Qt::Key_##x
-#define ALTSHIFT(x) Qt::ALT+Qt::SHIFT+Qt::Key_##x
+#define CTRL(x) Qt::CTRL|Qt::Key_##x
+#define SHIFT(x) Qt::SHIFT|Qt::Key_##x
+#define CTRLSHIFT(x) Qt::CTRL|Qt::SHIFT|Qt::Key_##x
+#define ALT(x) Qt::ALT|Qt::Key_##x
+#define ALTSHIFT(x) Qt::ALT|Qt::SHIFT|Qt::Key_##x
 
 /** Array of predefined KStandardShortcutInfo objects, which cover all
     the "standard" accelerators. Each enum value from StandardShortcut
