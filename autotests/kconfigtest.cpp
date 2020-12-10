@@ -518,7 +518,9 @@ void KConfigTest::testPath()
         QFile file(testConfigDir() + "/pathtest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         out.setCodec("UTF-8");
+#endif
         out << "[Test Group]\n"
             << "homePath=$HOME/foo\n"
             << "homePath2=file://$HOME/foo\n"
@@ -580,7 +582,9 @@ void KConfigTest::testPathQtHome()
         QFile file(testConfigDir() + "/pathtest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         out.setCodec("UTF-8");
+#endif
         out << "[Test Group]\n"
             << "dataDir[$e]=$QT_DATA_HOME/kconfigtest\n"
             << "cacheDir[$e]=$QT_CACHE_HOME/kconfigtest\n"
@@ -1020,7 +1024,9 @@ void KConfigTest::testMerge()
         QFile file(testConfigDir() + "/mergetest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         out.setCodec("UTF-8");
+#endif
         out << "[Merged Group]\n"
             << "entry1=Testing\n"
             << "entry2=More Testing\n"
@@ -1058,7 +1064,9 @@ void KConfigTest::testImmutable()
         QFile file(testConfigDir() + "/immutabletest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         out.setCodec("UTF-8");
+#endif
         out << "[$i]\n"
             << "entry1=Testing\n"
             << "[group][$i]\n"
@@ -1083,7 +1091,9 @@ void KConfigTest::testOptionOrder()
         QFile file(testConfigDir() + "/doubleattrtest");
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         out.setCodec("UTF-8");
+#endif
         out << "[group3]\n"
             << "entry2=unlocalized\n"
             << "entry2[$i][de_DE]=t2\n";

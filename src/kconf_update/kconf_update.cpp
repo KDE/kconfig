@@ -10,13 +10,16 @@
 #include <QDate>
 #include <QFile>
 #include <QTextStream>
-#include <QTextCodec>
 #include <QUrl>
 #include <QTemporaryFile>
 #include <QCoreApplication>
 #include <QDir>
 #include <QProcess>
 #include <QDebug>
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <QTextCodec>
+#endif
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
@@ -219,7 +222,11 @@ bool KonfUpdate::checkFile(const QString &filename)
     }
 
     QTextStream ts(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     ts.setCodec(QTextCodec::codecForName("ISO-8859-1"));
+#else
+    ts.setEncoding(QStringConverter::Encoding::Latin1);
+#endif
     int lineCount = 0;
     resetOptions();
     QString id;
@@ -307,7 +314,11 @@ bool KonfUpdate::updateFile(const QString &filename)
     qCDebug(KCONF_UPDATE_LOG) << "Checking update-file" << filename << "for new updates";
 
     QTextStream ts(&file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     ts.setCodec(QTextCodec::codecForName("ISO-8859-1"));
+#else
+    ts.setEncoding(QStringConverter::Encoding::Latin1);
+#endif
     m_lineCount = 0;
     resetOptions();
     bool foundVersion = false;
@@ -848,7 +859,9 @@ void KonfUpdate::gotScript(const QString &_script)
     // Copy script stderr to log file
     {
         QTextStream ts(proc.readAllStandardError());
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         ts.setCodec(QTextCodec::codecForName("UTF-8"));
+#endif
         while (!ts.atEnd()) {
             QString line = ts.readLine();
             qCDebug(KCONF_UPDATE_LOG) << "[Script]" << line;
@@ -882,7 +895,9 @@ void KonfUpdate::gotScript(const QString &_script)
         QFile output(scriptOut.fileName());
         if (output.open(QIODevice::ReadOnly)) {
             QTextStream ts(&output);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             ts.setCodec(QTextCodec::codecForName("UTF-8"));
+#endif
             while (!ts.atEnd()) {
                 QString line = ts.readLine();
                 if (line.startsWith('[')) {
