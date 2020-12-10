@@ -13,9 +13,9 @@
 
 #include <kconfigcore_export.h>
 
+#include <QStringList>
 #include <QtGlobal>
 
-class QStringList;
 class KConfigGroup;
 class KConfigBasePrivate;
 

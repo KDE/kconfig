@@ -9,8 +9,9 @@
 #ifndef KCONFIGUTILS_H
 #define KCONFIGUTILS_H
 
+#include <QStringList>
+
 class QString;
-class QStringList;
 
 class KConfig;
 class KConfigGroup;
