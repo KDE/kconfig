@@ -7,7 +7,6 @@
 
 #include <kconfiggroup.h>
 
-#include <QMutableStringListIterator>
 #include <QColor>
 #include <QDebug>
 #include <QFont>
