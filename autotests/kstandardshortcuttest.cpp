@@ -11,6 +11,15 @@ QTEST_MAIN(KStandardShortcutTest)  // GUI needed by KAccel
 
 #include <kstandardshortcut.h>
 
+#ifndef Q_OS_WIN
+void initLocale()
+{
+    setenv("LC_ALL", "en_US.utf-8", 1);
+}
+
+Q_CONSTRUCTOR_FUNCTION(initLocale)
+#endif
+
 void KStandardShortcutTest::testShortcutDefault()
 {
     QCOMPARE(QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::FullScreen)), QLatin1String("Ctrl+Shift+F"));
