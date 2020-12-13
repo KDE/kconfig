@@ -10,7 +10,7 @@
 #include <QDir>
 #include <QProcess>
 #include <QString>
-#include <QtTest>
+#include <QTest>
 #include <qstandardpaths.h>
 #include "kconfigcompiler_test.h"
 

@@ -5,7 +5,7 @@
    SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <QtTest>
+#include <QTest>
 #include <ksharedconfig.h>
 #include <kconfiggroup.h>
 

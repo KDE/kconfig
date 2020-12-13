@@ -11,7 +11,7 @@
 
 #include "kdesktopfile.h"
 
-#include <QtTest>
+#include <QTest>
 
 QTEST_MAIN(KDesktopFileTest)
 

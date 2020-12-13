@@ -12,9 +12,11 @@
 
 #include "config-kconfig.h"
 
-#include <QtTest>
+#include <QTest>
 #include <qtemporarydir.h>
 #include <QStandardPaths>
+#include <QSignalSpy>
+#include <QTemporaryFile>
 #include <kdesktopfile.h>
 
 #include <ksharedconfig.h>

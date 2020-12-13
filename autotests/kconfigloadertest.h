@@ -7,7 +7,7 @@
 #ifndef KCONFIGLOADERTEST_H
 #define KCONFIGLOADERTEST_H
 
-#include <QtTest>
+#include <QTest>
 
 class KConfigLoader;
 

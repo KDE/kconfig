@@ -6,7 +6,7 @@
 
 #include <QObject>
 
-#include <QtTest>
+#include <QTest>
 #include <QStandardPaths>
 #include <ksharedconfig.h>
 
