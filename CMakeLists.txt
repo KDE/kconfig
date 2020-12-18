@@ -10,7 +10,7 @@ feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKA
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-set(REQUIRED_QT_VERSION 5.13.0)
+set(REQUIRED_QT_VERSION 5.14.0)
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
 option(KCONFIG_USE_GUI "Build components using Qt5Gui" ON)
@@ -52,7 +52,7 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
                         SOVERSION 5)
 
 add_definitions(-DQT_NO_FOREACH)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050d00)
+add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
 
 add_subdirectory(src)
 if (BUILD_TESTING)
