@@ -21,7 +21,7 @@
 
 #include <kconfiggroup.h>
 
-#include <QMutex>
+#include <QRecursiveMutex>
 #include <QMutexLocker>
 
 extern bool kde_kiosk_exception;
@@ -160,7 +160,7 @@ class KAuthorizedPrivate
 {
 public:
     KAuthorizedPrivate()
-        :   actionRestrictions(false), blockEverything(false), mutex(QMutex::Recursive)
+        :   actionRestrictions(false), blockEverything(false)
     {
         Q_ASSERT_X(QCoreApplication::instance(), "KAuthorizedPrivate()", "There has to be an existing QCoreApplication::instance() pointer");
 
@@ -181,7 +181,7 @@ public:
     bool actionRestrictions : 1;
     bool blockEverything : 1;
     QList<URLActionRule> urlActionRestrictions;
-    QMutex mutex;
+    QRecursiveMutex mutex;
 };
 
 Q_GLOBAL_STATIC(KAuthorizedPrivate, authPrivate)
