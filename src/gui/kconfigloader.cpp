@@ -225,11 +225,7 @@ void ConfigLoaderHandler::addItem()
         //FIXME: the split() is naive and will break on lists with ,'s in them
         //empty parts are not wanted in this case
         item = m_config->addItemStringList(m_name, *d->newStringList(),
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
-                                           m_default.split(QLatin1Char(','), QString::SkipEmptyParts), m_key);
-#else
                                            m_default.split(QLatin1Char(','), Qt::SkipEmptyParts), m_key);
-#endif
     } else if (m_type == QLatin1String("uint")) {
         KConfigSkeleton::ItemUInt *uintItem =
             m_config->addItemUInt(m_name, *d->newUint(), m_default.toUInt(), m_key);
