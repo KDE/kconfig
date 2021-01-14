@@ -245,12 +245,7 @@ void KConfigHeaderGenerator::createSignals()
     for (int i = 0, end = parseResult.signalList.size(); i < end; i++) {
         auto signal = parseResult.signalList.at(i);
         stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x"
-                 <<
-            #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
-                    hex
-            #else
-                    Qt::hex
-            #endif
+                 << Qt::hex
                  << val;
         if (i != end-1) {
             stream() << ",\n";
@@ -260,12 +255,7 @@ void KConfigHeaderGenerator::createSignals()
     }
     stream() << '\n';
     stream() << whitespace() << "};"
-             <<
-            #if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
-                    dec
-            #else
-                    Qt::dec
-            #endif
+             << Qt::dec
              << "\n\n";
 
     stream() << "  Q_SIGNALS:";
