@@ -1284,7 +1284,7 @@ bool KCoreConfigSkeleton::save()
         if (!d->mConfig->sync()) {
             return false;
         }
-        emit configChanged();
+        Q_EMIT configChanged();
     }
     return true;
 }

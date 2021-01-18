@@ -96,7 +96,7 @@ void KConfigWatcher::onConfigChangeNotification(const QHash<QString, QByteArrayL
         for(const QString &groupName: parts) {
             group = group.group(groupName);
         }
-        emit configChanged(group, it.value());
+        Q_EMIT configChanged(group, it.value());
     }
 }
 
