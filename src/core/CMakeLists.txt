@@ -48,10 +48,6 @@ if(KCONFIG_USE_DBUS)
     target_link_libraries(KF5ConfigCore PRIVATE Qt5::DBus)
 endif()
 
-if(WIN32)
-    target_link_libraries(KF5ConfigCore PRIVATE ${KDEWIN_LIBRARIES})
-endif()
-
 set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION_STRING}
                                                SOVERSION ${KCONFIG_SOVERSION}
                                                EXPORT_NAME ConfigCore
