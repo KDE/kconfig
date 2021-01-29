@@ -17,7 +17,7 @@ if (BUILD_QCH)
         KF5Config_QCH
         NAME KConfig
         BASE_NAME KF5Config
-        VERSION ${KF5_VERSION}
+        VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
             ${KConfigCore_APIDOX_SRCS}
