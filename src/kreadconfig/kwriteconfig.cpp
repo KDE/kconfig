@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
     QString value;
     if (del) {
-        value = QStringLiteral("");
+        value = QString{};
     } else if (parser.positionalArguments().isEmpty()) {
         parser.showHelp(1);
     } else {

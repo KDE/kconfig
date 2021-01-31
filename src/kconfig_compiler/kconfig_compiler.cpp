@@ -371,20 +371,26 @@ QString defaultValue(const QString &t)
 
 QString itemType(const QString &type)
 {
-    QString t;
+    if (type.isEmpty()) {
+        return QString{};
+    }
 
-    t = type;
-    t.replace(0, 1, t.left(1).toUpper());
+    QString str = type;
+    str[0] = str.at(0).toUpper();
 
-    return t;
+    return str;
 }
 
 QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
 {
+    if (e->name.isEmpty()) {
+        return QString{};
+    }
+
     const QString type = cfg.inherits + "::Item" + itemType(e->type);
 
     QString fCap = e->name;
-    fCap[0] = fCap[0].toUpper();
+    fCap[0] = fCap.at(0).toUpper();
     const QString argSuffix = (!e->param.isEmpty()) ? (QStringLiteral("[%1]").arg(e->paramMax + 1)) : QString();
     QString result;
 

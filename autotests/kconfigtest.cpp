@@ -513,7 +513,7 @@ void KConfigTest::testPath()
     KConfigGroup sc3(&sc2, "Path Type");
     QCOMPARE(sc3.readPathEntry("homepath", QString()), HOMEPATH);
     QCOMPARE(sc3.readPathEntry("homepathescape", QString()), HOMEPATHESCAPE);
-    QCOMPARE(sc3.entryMap()["homepath"], HOMEPATH);
+    QCOMPARE(sc3.entryMap().value("homepath"), HOMEPATH);
 
     qputenv("WITHSLASH", "/a/");
     {

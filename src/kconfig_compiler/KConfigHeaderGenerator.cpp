@@ -56,13 +56,8 @@ void KConfigHeaderGenerator::doClassDefinition()
     createConstructor();
     createDestructor();
 
-    for (auto *entry : parseResult.entries) {
-        const QString n = entry->name;
-        const QString t = entry->type;
-
-        const QString returnType = (cfg().useEnumTypes && t == QLatin1String("Enum"))
-            ? enumType(entry, cfg().globalEnums)
-            : cppType(t);
+    for (const auto *entry : qAsConst(parseResult.entries)) {
+        const QString returnType = (cfg().useEnumTypes && entry->type == QLatin1String("Enum")) ? enumType(entry, cfg().globalEnums) : cppType(entry->type);
 
         createSetters(entry);
         createProperties(entry, returnType);
@@ -90,7 +85,7 @@ void KConfigHeaderGenerator::doClassDefinition()
     }
 
     // Class Parameters
-    for (const auto &parameter : parseResult.parameters) {
+    for (const auto &parameter : qAsConst(parseResult.parameters)) {
         stream() << whitespace() << "" << cppType(parameter.type) << " mParam" << parameter.name << ";\n";
     }
 
@@ -135,7 +130,7 @@ void KConfigHeaderGenerator::startHeaderGuards()
 {
     const bool hasNamespace = !cfg().nameSpace.isEmpty();
     const QString namespaceName = QString(QString(cfg().nameSpace).replace(QLatin1String("::"), QLatin1String("_"))).toUpper();
-    const QString namespaceStr = hasNamespace ? namespaceName + QLatin1Char('_') : QStringLiteral("");
+    const QString namespaceStr = hasNamespace ? namespaceName + QLatin1Char('_') : QString{};
     const QString defineName = namespaceStr + cfg().className.toUpper() + QStringLiteral("_H");
 
     stream() << "#ifndef " << defineName << '\n';
@@ -210,7 +205,7 @@ void KConfigHeaderGenerator::implementEnums()
         return;
     }
 
-    for (const auto entry : parseResult.entries) {
+    for (const auto *entry : qAsConst(parseResult.entries)) {
         const CfgEntry::Choices &choices = entry->choices;
         const QStringList values = entry->paramValues;
 
@@ -259,7 +254,7 @@ void KConfigHeaderGenerator::createSignals()
              << "\n\n";
 
     stream() << "  Q_SIGNALS:";
-    for (const Signal &signal : parseResult.signalList) {
+    for (const Signal &signal : qAsConst(parseResult.signalList)) {
         stream() << '\n';
         if (!signal.label.isEmpty()) {
             stream() << whitespace() << "/**\n";
@@ -272,7 +267,7 @@ void KConfigHeaderGenerator::createSignals()
             Param argument = *it;
             QString type = param(argument.type);
             if (cfg().useEnumTypes && argument.type == QLatin1String("Enum")) {
-                for (auto *entry : parseResult.entries) {
+                for (const auto *entry : qAsConst(parseResult.entries)) {
                     if (entry->name == argument.name) {
                         type = enumType(entry, cfg().globalEnums);
                         break;
@@ -301,7 +296,7 @@ void KConfigHeaderGenerator::createDPointer()
 
     // use a private class for both member variables and items
     stream() << "  private:\n";
-    for (const auto &entry : parseResult.entries) {
+    for (const auto *entry : qAsConst(parseResult.entries)) {
         if (cfg().allDefaultGetters || cfg().defaultGetters.contains(entry->name)) {
             stream() << whitespace() << "";
             if (cfg().staticAccessors) {
@@ -337,7 +332,7 @@ void KConfigHeaderGenerator::createConstructor()
     }
 
     bool first = true;
-    for (const auto parameter : parseResult.parameters) {
+    for (const auto &parameter : qAsConst(parseResult.parameters)) {
         if (first) {
             first = false;
         } else {
@@ -601,7 +596,7 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
     }
 
     QString group;
-    for (auto *entry : parseResult.entries) {
+    for (const auto *entry : qAsConst(parseResult.entries)) {
         if (entry->group != group) {
             group = entry->group;
             stream() << '\n';
@@ -628,7 +623,7 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
 
     stream() << "\n  private:\n";
     if (cfg().itemAccessors) {
-        for (auto *entry : parseResult.entries) {
+        for (const auto *entry : qAsConst(parseResult.entries)) {
             stream() << whitespace() << "Item" << itemType(entry->type) << " *" << itemVar(entry, cfg());
             if (!entry->param.isEmpty()) {
                 stream() << QStringLiteral("[%1]").arg(entry->paramMax + 1);

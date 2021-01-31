@@ -267,10 +267,10 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
 
 void KDesktopFileTest::testLocateLocal_data()
 {
-    QString systemConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation).last();
-    QString writableConfigLocation = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
-    QString systemDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).last();
-    QString writableDataLocation = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+    const QString systemConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation).constLast();
+    const QString writableConfigLocation = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+    const QString systemDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).constLast();
+    const QString writableDataLocation = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
 
     QTest::addColumn<QString>("path");
     QTest::addColumn<QString>("result");

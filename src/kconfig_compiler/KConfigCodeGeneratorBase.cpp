@@ -108,7 +108,7 @@ void KConfigCodeGeneratorBase::start()
 
 void KConfigCodeGeneratorBase::addHeaders(const QStringList &headerList)
 {
-    for (auto include : qAsConst(headerList)) {
+    for (const auto &include : headerList) {
         if (include.startsWith(QLatin1Char('"'))) {
             m_stream << "#include " << include << '\n';
         } else {
@@ -122,7 +122,8 @@ void KConfigCodeGeneratorBase::addHeaders(const QStringList &headerList)
 void KConfigCodeGeneratorBase::beginNamespaces()
 {
     if (!m_cfg.nameSpace.isEmpty()) {
-        for (const QString &ns : m_cfg.nameSpace.split(QStringLiteral("::"))) {
+        const auto nameSpaceList = m_cfg.nameSpace.split(QStringLiteral("::"));
+        for (const QString &ns : nameSpaceList) {
             m_stream << "namespace " << ns << " {\n";
         }
         m_stream << '\n';
@@ -171,9 +172,6 @@ QString KConfigCodeGeneratorBase::memberAccessorBody(const CfgEntry *e, bool glo
 
 void KConfigCodeGeneratorBase::memberImmutableBody(const CfgEntry *e, bool globalEnums)
 {
-    QString n = e->name;
-    QString t = e->type;
-
     stream() << whitespace() << "return " << m_this << "isImmutable( QStringLiteral( \"";
     if (!e->param.isEmpty()) {
         stream() << QString(e->paramName).replace(QLatin1String("$(") + e->param + QLatin1Char(')'), QLatin1String("%1")) << "\" ).arg( ";
@@ -192,15 +190,13 @@ void KConfigCodeGeneratorBase::memberImmutableBody(const CfgEntry *e, bool globa
         }
         stream() << " )";
     } else {
-        stream() << n << "\" )";
+        stream() << e->name << "\" )";
     }
     stream() << " );\n";
 }
 
 void KConfigCodeGeneratorBase::createIfSetLogic(const CfgEntry *e, const QString &varExpression)
 {
-    const QString n = e->name;
-    const QString t = e->type;
     const bool hasBody = !e->signalList.empty() || m_cfg.generateProperties;
 
     m_stream << whitespace() << "if (";
@@ -208,7 +204,7 @@ void KConfigCodeGeneratorBase::createIfSetLogic(const CfgEntry *e, const QString
         m_stream << "v != " << varExpression << " && ";
     }
 
-    const auto immutablefunction = immutableFunction(n, m_cfg.dpointer ? m_cfg.className : QString());
+    const auto immutablefunction = immutableFunction(e->name, m_cfg.dpointer ? m_cfg.className : QString{});
     m_stream << "!" << m_this << immutablefunction << "(";
     if (!e->param.isEmpty()) {
         m_stream << " i ";
@@ -218,15 +214,14 @@ void KConfigCodeGeneratorBase::createIfSetLogic(const CfgEntry *e, const QString
 
 void KConfigCodeGeneratorBase::memberMutatorBody(const CfgEntry *e)
 {
-    QString n = e->name;
-    QString t = e->type;
 
     // HACK: Don't open '{' manually, use startScope / endScope to automatically handle whitespace indentation.
     if (!e->min.isEmpty()) {
-        if (e->min != QLatin1String("0") || !isUnsigned(t)) { // skip writing "if uint<0" (#187579)
+        if (e->min != QLatin1String("0") || !isUnsigned(e->type)) { // skip writing "if uint<0" (#187579)
             m_stream << whitespace() << "if (v < " << e->min << ")\n";
             m_stream << whitespace() << "{\n";
-            m_stream << whitespace(); addDebugMethod(m_stream, m_cfg, n);
+            m_stream << whitespace();
+            addDebugMethod(m_stream, m_cfg, e->name);
             m_stream << ": value \" << v << \" is less than the minimum value of " << e->min << "\";\n";
             m_stream << whitespace() << "  v = " << e->min << ";\n";
             m_stream << whitespace() << "}\n";
@@ -237,13 +232,14 @@ void KConfigCodeGeneratorBase::memberMutatorBody(const CfgEntry *e)
         m_stream << '\n';
         m_stream << whitespace() << "if (v > " << e->max << ")\n";
         m_stream << whitespace() << "{\n";
-        m_stream << whitespace(); addDebugMethod(m_stream, m_cfg, n);
+        m_stream << whitespace();
+        addDebugMethod(m_stream, m_cfg, e->name);
         m_stream << ": value \" << v << \" is greater than the maximum value of " << e->max << "\";\n";
         m_stream << whitespace() << "  v = " << e->max << ";\n";
         m_stream << whitespace() << "}\n\n";
     }
 
-    const QString varExpression = m_this + varPath(n, m_cfg) + (e->param.isEmpty() ? QString() : QStringLiteral("[i]"));
+    const QString varExpression = m_this + varPath(e->name, m_cfg) + (e->param.isEmpty() ? QString{} : QStringLiteral("[i]"));
 
     // TODO: Remove this `hasBody` logic, always use an '{' for the if.
     const bool hasBody = !e->signalList.empty() || m_cfg.generateProperties;

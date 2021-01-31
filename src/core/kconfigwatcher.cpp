@@ -57,7 +57,8 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config):
 
     QStringList watchedPaths;
     watchedPaths << QLatin1Char('/') + d->m_config->name();
-    for (const QString &file: d->m_config->additionalConfigSources()) {
+    const auto cfgSources = d->m_config->additionalConfigSources();
+    for (const QString &file : cfgSources) {
         watchedPaths << QLatin1Char('/') + file;
     }
     if (d->m_config->openFlags() & KConfig::IncludeGlobals) {

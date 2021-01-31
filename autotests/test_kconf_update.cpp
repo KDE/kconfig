@@ -331,9 +331,7 @@ void TestKConfUpdate::test()
     std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
     runKConfUpdate(updFile->fileName());
 
-    QString updateInfo = QStringLiteral("%1:%2")
-                         .arg(updFile->fileName().section('/', -1))
-                         .arg(QTest::currentDataTag());
+    QString updateInfo = QStringLiteral("%1:%2").arg(updFile->fileName().section(QLatin1Char('/'), -1), QTest::currentDataTag());
 
     QString newConfContentAfter = readFile(newConfPath);
     if (shouldUpdateWork) {
@@ -627,9 +625,7 @@ void TestKConfUpdate::testScript()
 
     runKConfUpdate(updFile->fileName());
 
-    QString updateInfo = QStringLiteral("%1:%2")
-                         .arg(updFile->fileName().section('/', -1))
-                         .arg(QTest::currentDataTag());
+    QString updateInfo = QStringLiteral("%1:%2").arg(updFile->fileName().section(QLatin1Char('/'), -1), QTest::currentDataTag());
     QString newConfContent = readFile(confPath);
     expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
     QCOMPARE(newConfContent, expectedNewConfContent);

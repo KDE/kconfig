@@ -742,7 +742,7 @@ void KConfigPrivate::parseConfigFiles()
             files << mBackend->filePath();
         }
         if (!isSimple()) {
-            files = extraFiles.toList() + files;
+            files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
         }
 
 //        qDebug() << "parsing local files" << files;

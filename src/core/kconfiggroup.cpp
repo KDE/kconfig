@@ -1098,13 +1098,9 @@ void KConfigGroup::writeXdgListEntry(const char *key, const QStringList &list, W
 
     // XXX List serialization being a separate layer from low-level escaping is
     // probably a bug. No affected entries are defined, though.
-    QStringList::ConstIterator it = list.constBegin();
-    const QStringList::ConstIterator end = list.constEnd();
-    for (; it != end; ++it) {
-        QString val(*it);
+    for (QString val : list) { // clazy:exclude=range-loop
         val.replace(QLatin1Char('\\'), QLatin1String("\\\\")).replace(QLatin1Char(';'), QLatin1String("\\;"));
-        value += val;
-        value += QLatin1Char(';');
+        value += val + QLatin1Char(';');
     }
 
     writeEntry(key, value, flags);
