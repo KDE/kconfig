@@ -129,7 +129,8 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
     }
 
     const QRect desk = window->screen()->geometry();
-    const bool isMaximized = config.readEntry(QStringLiteral("Window-Maximized %1x%2").arg(desk.height()).arg(desk.width()), false);
+    const QString allScreens = allConnectedScreens();
+    const bool isMaximized = config.readEntry(allScreens + QStringLiteral(" Window-Maximized %1x%2").arg(desk.width()).arg(desk.height()), false);
 
     // Don't need to restore position if the window was maximized
     if (isMaximized) {
@@ -137,7 +138,6 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
         return;
     }
 
-    const QString allScreens = allConnectedScreens();
     const int xPos = config.readEntry(allScreens + QStringLiteral(" XPosition"), -1);
     const int yPos = config.readEntry(allScreens + QStringLiteral(" YPosition"), -1);
 
