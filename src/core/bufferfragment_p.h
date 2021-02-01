@@ -64,11 +64,11 @@ public:
     void trim()
     {
         while (bf_isspace(*d) && len > 0) {
-            d++;
-            len--;
+            ++d;
+            --len;
         }
         while (len > 0 && bf_isspace(d[len - 1])) {
-            len--;
+            --len;
         }
     }
 
@@ -160,7 +160,7 @@ public:
             if (d[from] == c) {
                 return from;
             } else {
-                from--;
+                --from;
             }
         return -1;
     }

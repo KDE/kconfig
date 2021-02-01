@@ -111,7 +111,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
     while (startOfLine < len) {
         BufferFragment line = contents.split('\n', &startOfLine);
         line.trim();
-        lineNo++;
+        ++lineNo;
 
         // skip empty lines and lines beginning with '#'
         if (line.isEmpty() || line.at(0) == '#') {
@@ -122,7 +122,8 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
             groupOptionImmutable = fileOptionImmutable;
 
             QByteArray newGroup;
-            int start = 1, end;
+            int start = 1;
+            int end = 0;
             do {
                 end = start;
                 for (;;) {
@@ -134,7 +135,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
                     if (line.at(end) == ']') {
                         break;
                     }
-                    end++;
+                    ++end;
                 }
                 if (end + 1 == line.length() && start + 2 == end &&
                         line.at(start) == '$' && line.at(start + 1) == 'i') {
@@ -224,7 +225,7 @@ KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entry
                         default:
                             break;
                         }
-                        i++;
+                        ++i;
                     }
                 } else { // found a locale
                     if (!locale.isNull()) {
@@ -333,7 +334,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file,
                             }
                         }
                         file.write("\\x24");
-                        start++;
+                        ++start;
                     }
                 nope:
                     file.write(stringToPrintable(currentGroup.mid(start), GroupString));
@@ -758,7 +759,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
     if (s[0] == ' ' && type != GroupString) {
         *data++ = '\\';
         *data++ = 's';
-        i++;
+        ++i;
     }
     Utf8Char utf8;
 
@@ -869,7 +870,7 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
             *r = str[i];
         } else {
             // Probable escape sequence
-            i++;
+            ++i;
             if (i >= l) { // Line ends after backslash - stop.
                 *r = '\\';
                 break;
@@ -894,13 +895,13 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
             case ';':
                 // not really an escape sequence, but allowed in .desktop files, don't strip '\;' from the string
                 *r = '\\';
-                r++;
+                ++r;
                 *r = ';';
                 break;
             case ',':
                 // not really an escape sequence, but allowed in .desktop files, don't strip '\,' from the string
                 *r = '\\';
-                r++;
+                ++r;
                 *r = ',';
                 break;
             case 'x':

@@ -177,16 +177,16 @@ QString KConfigPrivate::expandString(const QString &value)
             QStringRef aVarName;
             if (aValue[nEndPos] == QLatin1Char('{')) {
                 while ((nEndPos <= aValue.length()) && (aValue[nEndPos] != QLatin1Char('}'))) {
-                    nEndPos++;
+                    ++nEndPos;
                 }
-                nEndPos++;
+                ++nEndPos;
                 aVarName = aValue.midRef(nDollarPos + 2, nEndPos - nDollarPos - 3);
             } else {
                 while (nEndPos < aValue.length() &&
                         (aValue[nEndPos].isNumber() ||
                          aValue[nEndPos].isLetter() ||
                          aValue[nEndPos] == QLatin1Char('_'))) {
-                    nEndPos++;
+                    ++nEndPos;
                 }
                 aVarName = aValue.midRef(nDollarPos + 1, nEndPos - nDollarPos - 1);
             }
@@ -219,7 +219,7 @@ QString KConfigPrivate::expandString(const QString &value)
         } else {
             // remove one of the dollar signs
             aValue.remove(nDollarPos, 1);
-            nDollarPos++;
+            ++nDollarPos;
         }
         nDollarPos = aValue.indexOf(QLatin1Char('$'), nDollarPos);
     }

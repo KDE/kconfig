@@ -327,7 +327,7 @@ bool KonfUpdate::updateFile(const QString &filename)
         if (m_line.startsWith(QLatin1String("Version=5"))) {
             foundVersion = true;
         }
-        m_lineCount++;
+        ++m_lineCount;
         if (m_line.isEmpty() || (m_line[0] == QLatin1Char('#'))) {
             continue;
         }

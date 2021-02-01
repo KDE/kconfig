@@ -858,7 +858,7 @@ void KConfigTest::testDelete()
     const QList<QByteArray> listLines = readLines();
     for (const QByteArray &item : listLines)
         if (item.startsWith("devices|")) { // krazy:exclude=strings
-            count++;
+            ++count;
         }
     QCOMPARE(count, 2);
     cg.deleteEntry("devices|manual|/mnt/ipod");
