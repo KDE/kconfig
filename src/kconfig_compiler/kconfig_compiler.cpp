@@ -10,9 +10,6 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-// Compiling this file with this flag is just crazy
-#undef QT_NO_CAST_FROM_ASCII
-
 #include <QCoreApplication>
 #include <QFile>
 #include <QFileInfo>
@@ -52,7 +49,7 @@ QString varPath(const QString &n, const KConfigParameters &cfg)
 {
     QString result;
     if (cfg.dpointer) {
-        result = "d->" + varName(n, cfg);
+        result = QLatin1String{"d->"} + varName(n, cfg);
     } else {
         result = varName(n, cfg);
     }
@@ -145,7 +142,7 @@ QString immutableFunction(const QString &n, const QString &className)
 {
     QString result = QLatin1String("is") + n;
     result[2] = result[2].toUpper();
-    result += "Immutable";
+    result += QLatin1String{"Immutable"};
 
     if (!className.isEmpty()) {
         result = className + QLatin1String("::") + result;
@@ -187,7 +184,6 @@ QString literalString(const QString &s)
         return QLatin1String("QString::fromUtf8( ") + quoteString(s) + QLatin1String(" )");
     }
 }
-
 
 QString signalEnumName(const QString &signalName)
 {
@@ -387,7 +383,7 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
         return QString{};
     }
 
-    const QString type = cfg.inherits + "::Item" + itemType(e->type);
+    const QString type = cfg.inherits + QLatin1String{"::Item"} + itemType(e->type);
 
     QString fCap = e->name;
     fCap[0] = fCap.at(0).toUpper();
@@ -395,12 +391,12 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
     QString result;
 
     if (!cfg.itemAccessors && !cfg.dpointer) {
-        result += "  " + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type) +
-            "  *item" + fCap + argSuffix + ";\n";
+        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type)
+                  + QLatin1String{"  *item"} + fCap + argSuffix + QLatin1String{";\n"};
     }
 
     if (!e->signalList.isEmpty()) {
-        result += "  " + type + "  *" + innerItemVar(e, cfg) + argSuffix + ";\n";
+        result += QLatin1String{"  "} + type + QLatin1String{"  *"} + innerItemVar(e, cfg) + argSuffix + QLatin1String{";\n"};
     }
 
     return result;
@@ -414,14 +410,14 @@ QString itemVar(const CfgEntry *e, const KConfigParameters &cfg)
     QString result;
     if (cfg.itemAccessors) {
         if (!cfg.dpointer) {
-            result = 'm' + e->name + "Item";
+            result = QLatin1Char{'m'} + e->name + QLatin1String{"Item"};
             result[1] = result[1].toUpper();
         } else {
-            result = e->name + "Item";
+            result = e->name + QLatin1String{"Item"};
             result[0] = result[0].toLower();
         }
     } else {
-        result = "item" + e->name;
+        result = QLatin1String{"item"} + e->name;
         result[4] = result[4].toUpper();
     }
     return result;
@@ -435,7 +431,7 @@ QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg)
     if (e->signalList.isEmpty()) {
         return itemPath(e, cfg);
     } else {
-        QString result = "innerItem" + e->name;
+        QString result = QLatin1String{"innerItem"} + e->name;
         result[9] = result[9].toUpper();
         return result;
     }
@@ -445,20 +441,20 @@ QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 {
     QString result;
     if (cfg.dpointer) {
-        result = "d->" + itemVar(e, cfg);
+        result = QLatin1String{"d->"} + itemVar(e, cfg);
     } else {
         result = itemVar(e, cfg);
     }
     return result;
 }
 
-QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue,
-                const KConfigParameters &cfg, const QString &param) {
-    QString t = "new "+ cfg.inherits + "::Item" + itemType(entry->type) + "( currentGroup(), "
-            + key + ", " + varPath( entry->name, cfg ) + param;
+QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
+{
+    QString t = QLatin1String{"new "} + cfg.inherits + QLatin1String{"::Item"} + itemType(entry->type)
+                + QLatin1String{"( currentGroup(), "} + key + QLatin1String{", "} + varPath( entry->name, cfg ) + param;
 
     if (entry->type == QLatin1String("Enum")) {
-        t += ", values" + entry->name;
+        t += QLatin1String{", values"} + entry->name;
     }
     if (!defaultValue.isEmpty()) {
         t += QLatin1String(", ") + defaultValue;
@@ -492,14 +488,9 @@ QString newItem(const CfgEntry *entry, const QString &key, const QString &defaul
 QString paramString(const QString &s, const CfgEntry *e, int i)
 {
     QString result = s;
-    QString needle = "$(" + e->param + ')';
+    const QString needle = QLatin1String{"$("} + e->param + QLatin1Char{')'};
     if (result.contains(needle)) {
-        QString tmp;
-        if (e->paramType == QLatin1String("Enum")) {
-            tmp = e->paramValues.at(i);
-        } else {
-            tmp = QString::number(i);
-        }
+        const QString tmp = e->paramType == QLatin1String{"Enum"} ? e->paramValues.at(i) : QString::number(i);
 
         result.replace(needle, tmp);
     }
@@ -513,17 +504,17 @@ QString paramString(const QString &group, const QList<Param> &parameters)
     int i = 1;
     for (QList<Param>::ConstIterator it = parameters.constBegin();
             it != parameters.constEnd(); ++it) {
-        if (paramString.contains("$(" + (*it).name + ')')) {
+        if (paramString.contains(QLatin1String{"$("} + (*it).name + QLatin1Char{')'})) {
             const QString tmp = QStringLiteral("%%1").arg(i++);
-            paramString.replace("$(" + (*it).name + ')', tmp);
-            arguments += ".arg( mParam" + (*it).name + " )";
+            paramString.replace(QLatin1String{"$("} + (*it).name + QLatin1Char{')'}, tmp);
+            arguments += QLatin1String{".arg( mParam"} + (*it).name + QLatin1String{" )"};
         }
     }
     if (arguments.isEmpty()) {
-        return "QStringLiteral( \"" + group + "\" )";
+        return QLatin1String{"QStringLiteral( \""} + group + QLatin1String{"\" )"};
     }
 
-    return "QStringLiteral( \"" + paramString + "\" )" + arguments;
+    return QLatin1String{"QStringLiteral( \""} + paramString + QLatin1String{"\" )"} + arguments;
 }
 
 QString translatedString(const KConfigParameters &cfg, const QString &string, const QString &context, const QString &param, const QString &paramValue)
@@ -533,35 +524,36 @@ QString translatedString(const KConfigParameters &cfg, const QString &string, co
     switch (cfg.translationSystem) {
     case KConfigParameters::QtTranslation:
         if (!context.isEmpty()) {
-            result += "/*: " + context + " */ QCoreApplication::translate(\"";
+            result += QLatin1String{"/*: "} + context + QLatin1String{" */ QCoreApplication::translate(\""};
         } else {
-            result += QLatin1String("QCoreApplication::translate(\"");
+            result += QLatin1String{"QCoreApplication::translate(\""};
         }
-        result += cfg.className + "\", ";
+        result += cfg.className + QLatin1String{"\", "};
         break;
 
     case KConfigParameters::KdeTranslation:
         if (!cfg.translationDomain.isEmpty() && !context.isEmpty()) {
-            result += "i18ndc(" + quoteString(cfg.translationDomain) + ", " + quoteString(context) + ", ";
+            result += QLatin1String{"i18ndc("} + quoteString(cfg.translationDomain) + QLatin1String{", "}
+                      + quoteString(context) + QLatin1String{", "};
         } else if (!cfg.translationDomain.isEmpty()) {
-            result += "i18nd(" + quoteString(cfg.translationDomain) + ", ";
+            result += QLatin1String{"i18nd("} + quoteString(cfg.translationDomain) + QLatin1String{", "};
         } else if (!context.isEmpty()) {
-            result += "i18nc(" + quoteString(context) + ", ";
+            result += QLatin1String{"i18nc("} + quoteString(context) + QLatin1String{", "};
         } else {
-            result += QLatin1String("i18n(");
+            result += QLatin1String{"i18n("};
         }
         break;
     }
 
     if (!param.isEmpty()) {
         QString resolvedString = string;
-        resolvedString.replace("$(" + param + ')', paramValue);
+        resolvedString.replace(QLatin1String{"$("} + param + QLatin1Char{')'}, paramValue);
         result += quoteString(resolvedString);
     } else {
         result += quoteString(string);
     }
 
-    result += ')';
+    result += QLatin1Char{')'};
 
     return result;
 }
@@ -574,17 +566,17 @@ QString userTextsFunctions(const CfgEntry *e, const KConfigParameters &cfg, QStr
         itemVarStr = itemPath(e, cfg);
     }
     if (!e->label.isEmpty()) {
-        txt += "  " + itemVarStr + "->setLabel( ";
+        txt += QLatin1String{"  "} + itemVarStr + QLatin1String{"->setLabel( "};
         txt += translatedString(cfg, e->label, e->labelContext, e->param, i);
         txt += QLatin1String(" );\n");
     }
     if (!e->toolTip.isEmpty()) {
-        txt += "  " + itemVarStr + "->setToolTip( ";
+        txt += QLatin1String{"  "} + itemVarStr + QLatin1String{"->setToolTip( "};
         txt += translatedString(cfg, e->toolTip, e->toolTipContext, e->param, i);
         txt += QLatin1String(" );\n");
     }
     if (!e->whatsThis.isEmpty()) {
-        txt += "  " + itemVarStr + "->setWhatsThis( ";
+        txt += QLatin1String{"  "} + itemVarStr + QLatin1String{"->setWhatsThis( "};
         txt += translatedString(cfg, e->whatsThis, e->whatsThisContext, e->param, i);
         txt += QLatin1String(" );\n");
     }
@@ -625,7 +617,7 @@ QString memberGetDefaultBody(const CfgEntry *e)
         QString defaultValue = e->defaultValue;
 
         out << "  default:\n";
-        out << "    return " << defaultValue.replace("$(" + e->param + ')', QLatin1String("i")) << ";\n";
+        out << "    return " << defaultValue.replace(QLatin1String{"$("} + e->param + QLatin1Char{')'}, QLatin1String("i")) << ";\n";
         out << "  }\n";
     } else {
         out << "  return " << e->defaultValue << ';';
@@ -764,16 +756,17 @@ int main(int argc, char **argv)
     QString baseDir = parser.value(targetDirectoryOption);
 
 #ifdef Q_OS_WIN
-    if (!baseDir.endsWith('/') && !baseDir.endsWith('\\'))
+    if (!baseDir.endsWith(QLatin1Char{'/'}) && !baseDir.endsWith(QLatin1Char{'\\'})) {
 #else
-    if (!baseDir.endsWith('/'))
+    if (!baseDir.endsWith(QLatin1Char{'/'})) {
 #endif
-        baseDir.append("/");
+        baseDir.append(QLatin1Char{'/'});
+    }
 
     KConfigParameters cfg(codegenFilename);
 
     KConfigXmlParser xmlParser(cfg, inputFilename);
-    
+
     // The Xml Parser aborts in the case of an error, so if we get
     // to parseResult, we have a working Xml file.
     xmlParser.start();

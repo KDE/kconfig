@@ -13,9 +13,6 @@
 
 #include "KConfigParameters.h"
 
-// TODO: Remove this.
-#undef QT_NO_CAST_FROM_ASCII
-
 #include <QDebug>
 #include <QFileInfo>
 

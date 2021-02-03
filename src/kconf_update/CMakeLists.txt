@@ -1,5 +1,3 @@
-remove_definitions(-DQT_NO_CAST_FROM_ASCII)
-
 ########### next target ###############
 
 set(kconf_update_SRCS
