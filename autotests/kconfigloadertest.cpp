@@ -12,10 +12,10 @@
 
 Q_DECLARE_METATYPE(QList<int>)
 
-const QString TEST_NAME(QStringLiteral("kconfigloadertest"));
+static const QString s_testName(QStringLiteral("kconfigloadertest")); // clazy:exclude=non-pod-global-static
 
 #define GET_CONFIG_ITEM_VALUE(type, configName) \
-    KConfigSkeletonItem* item = cl->findItem(TEST_NAME, configName); \
+    KConfigSkeletonItem* item = cl->findItem(s_testName, configName); \
     /* Check if we got back a valid item. */ \
     QVERIFY(item != nullptr); \
     /* Cast the item to the given type. */ \
@@ -25,7 +25,7 @@ const QString TEST_NAME(QStringLiteral("kconfigloadertest"));
 
 void ConfigLoaderTest::init()
 {
-    QString fileName = TEST_NAME + QLatin1String(".xml");
+    QString fileName = s_testName + QLatin1String(".xml");
     configFile = new QFile(QFINDTESTDATA(QString::fromLatin1("/") + fileName));
     cl = new KConfigLoader(configFile->fileName(), configFile);
 }

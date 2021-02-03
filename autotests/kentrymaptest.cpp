@@ -8,11 +8,13 @@
 
 #include <QTest>
 
-const QByteArray group1("A Group");
-const QByteArray key1("A Key");
-const QByteArray key2("Another Key");
-const QByteArray value1("A value");
-const QByteArray value2("A different value");
+// clazy:excludeall=non-pod-global-static
+
+static const QByteArray group1{"A Group"};
+static const QByteArray key1{"A Key"};
+static const QByteArray key2{"Another Key"};
+static const QByteArray value1{"A value"};
+static const QByteArray value2{"A different value"};
 
 QTEST_MAIN(KEntryMapTest)
 

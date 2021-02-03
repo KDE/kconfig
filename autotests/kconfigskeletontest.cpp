@@ -12,14 +12,15 @@
 
 QTEST_MAIN(KConfigSkeletonTest)
 
-#define DEFAULT_SETTING1 false
-#define DEFAULT_SETTING2 QColor(1,2,3)
-const QString DEFAULT_SETTING4{QStringLiteral("Hello World")};
+// clazy:excludeall=non-pod-global-static
 
+static const bool s_default_setting1{false};
+static const QColor s_default_setting2{1,2,3};
+static const QString s_default_setting4{QStringLiteral("Hello World")};
 
-#define WRITE_SETTING1 true
-#define WRITE_SETTING2 QColor(3,2,1)
-const QString WRITE_SETTING4{QStringLiteral("KDE")};
+static const bool s_write_setting1{true};
+static const QColor s_write_setting2{3,2,1};
+static const QString s_write_setting4{QStringLiteral("KDE")};
 
 static QFont defaultSetting3()
 {
@@ -41,17 +42,17 @@ void KConfigSkeletonTest::init()
     QFile::remove(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String{"/kconfigskeletontestrc"});
     s = new KConfigSkeleton(QStringLiteral("kconfigskeletontestrc"));
     s->setCurrentGroup(QStringLiteral("MyGroup"));
-    itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, DEFAULT_SETTING1);
-    s->addItemColor(QStringLiteral("MySetting2"), mMyColor, DEFAULT_SETTING2);
+    itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
+    s->addItemColor(QStringLiteral("MySetting2"), mMyColor, s_default_setting2);
 
     s->setCurrentGroup(QStringLiteral("MyOtherGroup"));
     s->addItemFont(QStringLiteral("MySetting3"), mMyFont, defaultSetting3());
-    s->addItemString(QStringLiteral("MySetting4"), mMyString, DEFAULT_SETTING4);
+    s->addItemString(QStringLiteral("MySetting4"), mMyString, s_default_setting4);
 
-    QCOMPARE(mMyBool, DEFAULT_SETTING1);
-    QCOMPARE(mMyColor, DEFAULT_SETTING2);
+    QCOMPARE(mMyBool, s_default_setting1);
+    QCOMPARE(mMyColor, s_default_setting2);
     QCOMPARE(mMyFont, defaultSetting3());
-    QCOMPARE(mMyString, DEFAULT_SETTING4);
+    QCOMPARE(mMyString, s_default_setting4);
 
     QVERIFY(s->isDefaults());
     QVERIFY(!s->isSaveNeeded());
@@ -64,10 +65,10 @@ void KConfigSkeletonTest::cleanup()
 
 void KConfigSkeletonTest::testSimple()
 {
-    mMyBool = WRITE_SETTING1;
-    mMyColor = WRITE_SETTING2;
+    mMyBool = s_write_setting1;
+    mMyColor = s_write_setting2;
     mMyFont = writeSettings3();
-    mMyString = WRITE_SETTING4;
+    mMyString = s_write_setting4;
 
     QVERIFY(s->isSaveNeeded());
     QVERIFY(!s->isDefaults());
@@ -90,10 +91,10 @@ void KConfigSkeletonTest::testSimple()
     QVERIFY(!s->isSaveNeeded());
     QVERIFY(!s->isDefaults());
 
-    QCOMPARE(mMyBool, WRITE_SETTING1);
-    QCOMPARE(mMyColor, WRITE_SETTING2);
+    QCOMPARE(mMyBool, s_write_setting1);
+    QCOMPARE(mMyColor, s_write_setting2);
     QCOMPARE(mMyFont, writeSettings3());
-    QCOMPARE(mMyString, WRITE_SETTING4);
+    QCOMPARE(mMyString, s_write_setting4);
 }
 
 void KConfigSkeletonTest::testRemoveItem()
@@ -118,10 +119,10 @@ void KConfigSkeletonTest::testClear()
 
 void KConfigSkeletonTest::testDefaults()
 {
-    mMyBool = WRITE_SETTING1;
-    mMyColor = WRITE_SETTING2;
+    mMyBool = s_write_setting1;
+    mMyColor = s_write_setting2;
     mMyFont = writeSettings3();
-    mMyString = WRITE_SETTING4;
+    mMyString = s_write_setting4;
 
     QVERIFY(s->isSaveNeeded());
     QVERIFY(!s->isDefaults());
@@ -136,10 +137,10 @@ void KConfigSkeletonTest::testDefaults()
     QVERIFY(s->isSaveNeeded());
     QVERIFY(s->isDefaults());
 
-    QCOMPARE(mMyBool, DEFAULT_SETTING1);
-    QCOMPARE(mMyColor, DEFAULT_SETTING2);
+    QCOMPARE(mMyBool, s_default_setting1);
+    QCOMPARE(mMyColor, s_default_setting2);
     QCOMPARE(mMyFont, defaultSetting3());
-    QCOMPARE(mMyString, DEFAULT_SETTING4);
+    QCOMPARE(mMyString, s_default_setting4);
 
     s->save();
 

@@ -18,9 +18,9 @@ QTEST_MAIN(KConfigTest)
 
 // clazy:excludeall=non-pod-global-static
 
-const QColor COLORENTRY1(QLatin1String{"steelblue"});
-const QColor COLORENTRY2(235, 235, 100, 125);
-const QColor COLORENTRY3(234, 234, 127);
+static const QColor s_color_entry1(QLatin1String{"steelblue"});
+static const QColor s_color_entry2(235, 235, 100, 125);
+static const QColor s_color_entry3(234, 234, 127);
 
 static QFont fontEntry()
 {
@@ -38,8 +38,8 @@ void KConfigTest::initTestCase()
     KConfig sc(QStringLiteral("kconfigtest"));
 
     KConfigGroup cg(&sc, "ComplexTypes");
-    cg.writeEntry("colorEntry1", COLORENTRY1);
-    cg.writeEntry("colorEntry2", COLORENTRY2);
+    cg.writeEntry("colorEntry1", s_color_entry1);
+    cg.writeEntry("colorEntry2", s_color_entry2);
     cg.writeEntry("colorEntry3", (QList<int>() << 234 << 234 << 127));
     cg.writeEntry("colorEntry4", (QList<int>() << 235 << 235 << 100 << 125));
     cg.writeEntry("fontEntry", fontEntry());
@@ -78,11 +78,11 @@ void KConfigTest::testComplex()
     KConfigGroup sc3(&sc2, "ComplexTypes");
 
     QCOMPARE(QVariant(sc3.readEntry("colorEntry1", QColor(Qt::black))).toString(),
-             QVariant(COLORENTRY1).toString());
-    QCOMPARE(sc3.readEntry("colorEntry1", QColor()), COLORENTRY1);
-    QCOMPARE(sc3.readEntry("colorEntry2", QColor()), COLORENTRY2);
-    QCOMPARE(sc3.readEntry("colorEntry3", QColor()), COLORENTRY3);
-    QCOMPARE(sc3.readEntry("colorEntry4", QColor()), COLORENTRY2);
+             QVariant(s_color_entry1).toString());
+    QCOMPARE(sc3.readEntry("colorEntry1", QColor()), s_color_entry1);
+    QCOMPARE(sc3.readEntry("colorEntry2", QColor()), s_color_entry2);
+    QCOMPARE(sc3.readEntry("colorEntry3", QColor()), s_color_entry3);
+    QCOMPARE(sc3.readEntry("colorEntry4", QColor()), s_color_entry2);
     QCOMPARE(sc3.readEntry("defaultColorTest", QColor("black")), QColor("black"));
     if (m_fontFromStringBug) {
         QEXPECT_FAIL("", "QFont fromString bug from Qt 5.8.0", Continue);

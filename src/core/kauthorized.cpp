@@ -300,13 +300,13 @@ KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
             continue;
         }
         const QByteArray action = rule[0].toLatin1();
-        QString refProt = rule[1];
-        QString refHost = rule[2];
+        const QString refProt = rule[1];
+        const QString refHost = rule[2];
         QString refPath = rule[3];
-        QString urlProt = rule[4];
-        QString urlHost = rule[5];
+        const QString urlProt = rule[4];
+        const QString urlHost = rule[5];
         QString urlPath = rule[6];
-        bool bEnabled   = (rule[7].toLower() == QLatin1String("true"));
+        const bool bEnabled = (rule[7].toLower() == QLatin1String("true"));
 
         if (refPath.startsWith(QLatin1String("$HOME"))) {
             refPath.replace(0, 5, QDir::homePath());

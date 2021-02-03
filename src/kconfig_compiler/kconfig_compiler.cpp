@@ -24,6 +24,7 @@
 #include <ostream>
 #include <iostream>
 #include <stdlib.h>
+#include <algorithm>
 
 #include "../../kconfig_version.h"
 #include "KConfigParameters.h"
@@ -37,10 +38,10 @@ QString varName(const QString &n, const KConfigParameters &cfg)
     QString result;
     if (!cfg.dpointer) {
         result = QChar::fromLatin1('m') + n;
-        result[1] = result[1].toUpper();
+        result[1] = result.at(1).toUpper();
     } else {
         result = n;
-        result[0] = result[0].toLower();
+        result[0] = result.at(0).toLower();
     }
     return result;
 }
@@ -59,7 +60,7 @@ QString varPath(const QString &n, const KConfigParameters &cfg)
 QString enumName(const QString &n)
 {
     QString result = QLatin1String("Enum") + n;
-    result[4] = result[4].toUpper();
+    result[4] = result.at(4).toUpper();
     return result;
 }
 
@@ -68,7 +69,7 @@ QString enumName(const QString &n, const CfgEntry::Choices &c)
     QString result = c.name();
     if (result.isEmpty()) {
         result = QLatin1String("Enum") + n;
-        result[4] = result[4].toUpper();
+        result[4] = result.at(4).toUpper();
     }
     return result;
 }
@@ -81,7 +82,7 @@ QString enumType(const CfgEntry *e, bool globalEnums)
         if (!globalEnums) {
             result += QLatin1String("::type");
         }
-        result[4] = result[4].toUpper();
+        result[4] = result.at(4).toUpper();
     }
     return result;
 }
@@ -91,7 +92,7 @@ QString enumTypeQualifier(const QString &n, const CfgEntry::Choices &c)
     QString result = c.name();
     if (result.isEmpty()) {
         result = QLatin1String("Enum") + n + QLatin1String("::");
-        result[4] = result[4].toUpper();
+        result[4] = result.at(4).toUpper();
     } else if (c.external()) {
         result = c.externalQualifier();
     } else {
@@ -103,7 +104,7 @@ QString enumTypeQualifier(const QString &n, const CfgEntry::Choices &c)
 QString setFunction(const QString &n, const QString &className)
 {
     QString result = QLatin1String("set") + n;
-    result[3] = result[3].toUpper();
+    result[3] = result.at(3).toUpper();
 
     if (!className.isEmpty()) {
         result = className + QLatin1String("::") + result;
@@ -119,7 +120,7 @@ QString changeSignalName(const QString &n)
 QString getDefaultFunction(const QString &n, const QString &className)
 {
     QString result = QLatin1String("default") +  n + QLatin1String("Value");
-    result[7] = result[7].toUpper();
+    result[7] = result.at(7).toUpper();
 
     if (!className.isEmpty()) {
         result = className + QLatin1String("::") + result;
@@ -130,7 +131,7 @@ QString getDefaultFunction(const QString &n, const QString &className)
 QString getFunction(const QString &n, const QString &className)
 {
     QString result = n;
-    result[0] = result[0].toLower();
+    result[0] = result.at(0).toLower();
 
     if (!className.isEmpty()) {
         result = className + QLatin1String("::") + result;
@@ -141,7 +142,7 @@ QString getFunction(const QString &n, const QString &className)
 QString immutableFunction(const QString &n, const QString &className)
 {
     QString result = QLatin1String("is") + n;
-    result[2] = result[2].toUpper();
+    result[2] = result.at(2).toUpper();
     result += QLatin1String{"Immutable"};
 
     if (!className.isEmpty()) {
@@ -170,18 +171,14 @@ static QString quoteString(const QString &s)
     return QLatin1Char('\"') + r + QLatin1Char('\"');
 }
 
-QString literalString(const QString &s)
+QString literalString(const QString &str)
 {
-    bool isAscii = true;
-    for (int i = s.length(); i--;)
-        if (s[i].unicode() > 127) {
-            isAscii = false;
-        }
+    const bool isAscii = std::none_of(str.cbegin(), str.cend(), [](const QChar ch) { return ch.unicode() > 127; });
 
     if (isAscii) {
-        return QLatin1String("QStringLiteral( ") + quoteString(s) + QLatin1String(" )");
+        return QLatin1String{"QStringLiteral( "} + quoteString(str) + QLatin1String{" )"};
     } else {
-        return QLatin1String("QString::fromUtf8( ") + quoteString(s) + QLatin1String(" )");
+        return QLatin1String{"QString::fromUtf8( "} + quoteString(str) + QLatin1String{" )"};
     }
 }
 
@@ -189,21 +186,14 @@ QString signalEnumName(const QString &signalName)
 {
     QString result;
     result = QLatin1String("signal") + signalName;
-    result[6] = result[6].toUpper();
+    result[6] = result.at(6).toUpper();
 
     return result;
 }
 
-
 bool isUnsigned(const QString &type)
 {
-    if (type == QLatin1String("UInt")) {
-        return true;
-    }
-    if (type == QLatin1String("ULongLong")) {
-        return true;
-    }
-    return false;
+    return type == QLatin1String("UInt") || type == QLatin1String("ULongLong");
 }
 
 /**
@@ -411,14 +401,14 @@ QString itemVar(const CfgEntry *e, const KConfigParameters &cfg)
     if (cfg.itemAccessors) {
         if (!cfg.dpointer) {
             result = QLatin1Char{'m'} + e->name + QLatin1String{"Item"};
-            result[1] = result[1].toUpper();
+            result[1] = result.at(1).toUpper();
         } else {
             result = e->name + QLatin1String{"Item"};
-            result[0] = result[0].toLower();
+            result[0] = result.at(0).toLower();
         }
     } else {
         result = QLatin1String{"item"} + e->name;
-        result[4] = result[4].toUpper();
+        result[4] = result.at(4).toUpper();
     }
     return result;
 }
@@ -430,22 +420,16 @@ QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg)
 {
     if (e->signalList.isEmpty()) {
         return itemPath(e, cfg);
-    } else {
-        QString result = QLatin1String{"innerItem"} + e->name;
-        result[9] = result[9].toUpper();
-        return result;
     }
+
+    QString result = QLatin1String{"innerItem"} + e->name;
+    result[9] = result.at(9).toUpper();
+    return result;
 }
 
 QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 {
-    QString result;
-    if (cfg.dpointer) {
-        result = QLatin1String{"d->"} + itemVar(e, cfg);
-    } else {
-        result = itemVar(e, cfg);
-    }
-    return result;
+    return cfg.dpointer ? QLatin1String{"d->"} + itemVar(e, cfg) : itemVar(e, cfg);
 }
 
 QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
@@ -464,25 +448,27 @@ QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &d
     return t;
 }
 
-QString newItem(const CfgEntry *entry, const QString &key, const QString &defaultValue,
-                const KConfigParameters &cfg, const QString &param) {
-
-    QList<Signal> sigs = entry->signalList;
-    QString t;
-    if (!sigs.isEmpty()) {
-        t += QLatin1String("new KConfigCompilerSignallingItem(") + innerItemVar(entry, cfg) + param;
-        t += QLatin1String(", this, notifyFunction, ");
-        //append the signal flags
-        for (int i = 0; i < sigs.size(); ++i) {
-            if (i != 0)
-                t += QLatin1String(" | ");
-            t += signalEnumName(sigs[i].name);
-        }
-        t += QLatin1String(");");
-    } else {
-        t += newInnerItem(entry, key, defaultValue, cfg, param);
+QString newItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
+{
+    const QList<Signal> sigs = entry->signalList;
+    if (sigs.isEmpty()) {
+        return newInnerItem(entry, key, defaultValue, cfg, param);
     }
-    return t;
+
+    QString str;
+    str += QLatin1String("new KConfigCompilerSignallingItem(") + innerItemVar(entry, cfg) + param;
+    str += QLatin1String(", this, notifyFunction, ");
+    // Append the signal flags
+    const int listSize = sigs.size();
+    for (int i = 0; i < listSize; ++i) {
+        if (i != 0) {
+            str += QLatin1String(" | ");
+        }
+        str += signalEnumName(sigs[i].name);
+    }
+    str += QLatin1String(");");
+
+    return str;
 }
 
 QString paramString(const QString &s, const CfgEntry *e, int i)
@@ -502,14 +488,18 @@ QString paramString(const QString &group, const QList<Param> &parameters)
     QString paramString = group;
     QString arguments;
     int i = 1;
-    for (QList<Param>::ConstIterator it = parameters.constBegin();
-            it != parameters.constEnd(); ++it) {
-        if (paramString.contains(QLatin1String{"$("} + (*it).name + QLatin1Char{')'})) {
+    for (const auto &param : parameters) {
+        const QString paramName = param.name;
+        const QString str = QLatin1String{"$("} + paramName + QLatin1Char{')'};
+        if (paramString.contains(str)) {
             const QString tmp = QStringLiteral("%%1").arg(i++);
-            paramString.replace(QLatin1String{"$("} + (*it).name + QLatin1Char{')'}, tmp);
-            arguments += QLatin1String{".arg( mParam"} + (*it).name + QLatin1String{" )"};
+            paramString.replace(str, tmp);
+            // TODO: change the code here to get C++ code generated by KConfig to use
+            // QString::arg(QString, QString, QString) instead of QString().arg().arg()
+            arguments += QLatin1String{".arg( mParam"} + paramName + QLatin1String{" )"};
         }
     }
+
     if (arguments.isEmpty()) {
         return QLatin1String{"QStringLiteral( \""} + group + QLatin1String{"\" )"};
     }
@@ -653,7 +643,7 @@ QString indent(QString text, int spaces)
     while (!in.atEnd()) {
         currLine = in.readLine();
         if (!currLine.isEmpty())
-            for (int i = 0; i < spaces; i++) {
+            for (int i = 0; i < spaces; ++i) {
                 out << " ";
             }
         out << currLine << '\n';
@@ -783,7 +773,7 @@ int main(int argc, char **argv)
     }
 
     // remove '.kcfg' from the name.
-    const QString baseName = inputFilename.mid(0, inputFilename.size()-5);
+    const QString baseName = inputFilename.mid(0, inputFilename.size() - 5);
     KConfigHeaderGenerator headerGenerator(baseName, baseDir, cfg, parseResult);
     headerGenerator.start();
     headerGenerator.save();
