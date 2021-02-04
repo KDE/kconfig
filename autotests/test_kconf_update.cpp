@@ -65,8 +65,8 @@ static std::unique_ptr<QTemporaryFile> writeUpdFile(const QString &content)
 
 static void runKConfUpdate(const QString &updPath)
 {
-    QVERIFY(QFile::exists(KCONF_UPDATE_EXECUTABLE));
-    QCOMPARE(0, QProcess::execute(KCONF_UPDATE_EXECUTABLE, QStringList() << "--testmode" << "--debug" << updPath));
+    QVERIFY(QFile::exists(QStringLiteral(KCONF_UPDATE_EXECUTABLE)));
+    QCOMPARE(0, QProcess::execute(QStringLiteral(KCONF_UPDATE_EXECUTABLE), QStringList{QStringLiteral("--testmode"), QStringLiteral("--debug"), updPath}));
 }
 
 void TestKConfUpdate::test_data()
@@ -313,10 +313,11 @@ void TestKConfUpdate::test()
     QFETCH(bool, shouldUpdateWork);
 
     // Prepend Version and the Id= field to the upd content
-    const QString header = QStringLiteral("Id=%1\n").arg(QTest::currentDataTag());
+    const QString header = QLatin1String("Id=%1\n").arg(QLatin1String(QTest::currentDataTag()));
     updContent = header + updContent;
-    if (useVersion5)
-        updContent.prepend("Version=5\n");
+    if (useVersion5) {
+        updContent.prepend(QLatin1String{"Version=5\n"});
+    }
 
     const QString configDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
     QVERIFY(QDir().mkpath(configDir));
@@ -331,7 +332,7 @@ void TestKConfUpdate::test()
     std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
     runKConfUpdate(updFile->fileName());
 
-    QString updateInfo = QStringLiteral("%1:%2").arg(updFile->fileName().section(QLatin1Char('/'), -1), QTest::currentDataTag());
+    QString updateInfo = QLatin1String("%1:%2").arg(updFile->fileName().section(QLatin1Char('/'), -1), QLatin1String{QTest::currentDataTag()});
 
     QString newConfContentAfter = readFile(newConfPath);
     if (shouldUpdateWork) {
@@ -609,26 +610,24 @@ void TestKConfUpdate::testScript()
     QFETCH(QString, expectedNewConfContent);
 
     // Prepend the Version and Id= field to the upd content
-    updContent = QStringLiteral("Version=5\nId=%1\n").arg(QTest::currentDataTag()) + updContent;
+    updContent.prepend(QLatin1String("Version=5\nId=%1\n").arg(QLatin1String{QTest::currentDataTag()}));
 
     std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
 
-    const QString scriptDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kconf_update";
+    const QString scriptDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String{"/kconf_update"};
     QVERIFY(QDir().mkpath(scriptDir));
-    QString scriptPath = scriptDir + "/test.sh";
+    const QString scriptPath = scriptDir + QLatin1String{"/test.sh"};
     writeFile(scriptPath, updScript);
     QCOMPARE(readFile(scriptPath), updScript);
 
-    QString confPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + "testrc";
+    const QString confPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String{"/testrc"};
     writeFile(confPath, oldConfContent);
     QCOMPARE(readFile(confPath), oldConfContent);
 
     runKConfUpdate(updFile->fileName());
 
-    QString updateInfo = QStringLiteral("%1:%2").arg(updFile->fileName().section(QLatin1Char('/'), -1), QTest::currentDataTag());
+    const QString updateInfo = QLatin1String("%1:%2").arg(updFile->fileName().section(QLatin1Char{'/'}, -1), QLatin1String{QTest::currentDataTag()});
     QString newConfContent = readFile(confPath);
     expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
     QCOMPARE(newConfContent, expectedNewConfContent);
 }
-
-

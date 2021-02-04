@@ -16,10 +16,16 @@
 
 QTEST_MAIN(KConfigTest)
 
-#define COLORENTRY1 QColor("steelblue")
-#define COLORENTRY2 QColor(235, 235, 100, 125)
-#define COLORENTRY3 QColor(234, 234, 127)
-#define FONTENTRY QFont("Times", 16, QFont::Normal)
+// clazy:excludeall=non-pod-global-static
+
+const QColor COLORENTRY1(QLatin1String{"steelblue"});
+const QColor COLORENTRY2(235, 235, 100, 125);
+const QColor COLORENTRY3(234, 234, 127);
+
+static QFont fontEntry()
+{
+    return QFont{QStringLiteral("Times"), 16, QFont::Normal};
+}
 
 void KConfigTest::initTestCase()
 {
@@ -36,7 +42,7 @@ void KConfigTest::initTestCase()
     cg.writeEntry("colorEntry2", COLORENTRY2);
     cg.writeEntry("colorEntry3", (QList<int>() << 234 << 234 << 127));
     cg.writeEntry("colorEntry4", (QList<int>() << 235 << 235 << 100 << 125));
-    cg.writeEntry("fontEntry", FONTENTRY);
+    cg.writeEntry("fontEntry", fontEntry());
     QVERIFY(sc.sync());
 
     KConfig sc1(QStringLiteral("kdebugrc"));
@@ -51,7 +57,7 @@ void KConfigTest::initTestCase()
     // This is fixed by https://codereview.qt-project.org/181645
     // It's not in yet, and it depends on the app font, so rather than
     // a version check, let's do a runtime check.
-    QFont orig(FONTENTRY);
+    QFont orig(fontEntry());
     QFont f;
     f.fromString(orig.toString());
     m_fontFromStringBug = (f.toString() != orig.toString());
@@ -81,7 +87,7 @@ void KConfigTest::testComplex()
     if (m_fontFromStringBug) {
         QEXPECT_FAIL("", "QFont fromString bug from Qt 5.8.0", Continue);
     }
-    QCOMPARE(sc3.readEntry("fontEntry", QFont()), FONTENTRY);
+    QCOMPARE(sc3.readEntry("fontEntry", QFont()), fontEntry());
 }
 
 void KConfigTest::testInvalid()

@@ -122,7 +122,7 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         // its mode. This can however be overridden by the environment, so
         // we'll want to have a fallback warning if debug is not enabled
         // after setting the filter.
-        QLoggingCategory::setFilterRules(QStringLiteral("%1.debug=true").arg(KCONF_UPDATE_LOG().categoryName()));
+        QLoggingCategory::setFilterRules(QLatin1String("%1.debug=true").arg(QLatin1String{KCONF_UPDATE_LOG().categoryName()}));
         qDebug() << "Automatically enabled the debug logging category" << KCONF_UPDATE_LOG().categoryName();
         if (!KCONF_UPDATE_LOG().isDebugEnabled()) {
             qWarning("The debug logging category %s needs to be enabled manually to get debug output",
@@ -138,7 +138,8 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
     m_bUseConfigInfo = false;
     if (parser->isSet(QStringLiteral("check"))) {
         m_bUseConfigInfo = true;
-        const QString file = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kconf_update/" + parser->value(QStringLiteral("check")));
+        const QString file =
+            QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String{"kconf_update/"} + parser->value(QStringLiteral("check")));
         if (file.isEmpty()) {
             qWarning("File '%s' not found.", parser->value(QStringLiteral("check")).toLocal8Bit().data());
             qCDebug(KCONF_UPDATE_LOG) << "File" << parser->value(QStringLiteral("check")) << "passed on command line not found";
@@ -211,7 +212,7 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
 bool KonfUpdate::checkFile(const QString &filename)
 {
     m_currentFilename = filename;
-    int i = m_currentFilename.lastIndexOf('/');
+    const int i = m_currentFilename.lastIndexOf(QLatin1Char{'/'});
     if (i != -1) {
         m_currentFilename = m_currentFilename.mid(i + 1);
     }
@@ -237,7 +238,7 @@ bool KonfUpdate::checkFile(const QString &filename)
             foundVersion = true;
         }
         ++lineCount;
-        if (line.isEmpty() || (line[0] == '#')) {
+        if (line.isEmpty() || (line[0] == QLatin1Char{'#'})) {
             continue;
         }
         if (line.startsWith(QLatin1String("Id="))) {
@@ -247,7 +248,7 @@ bool KonfUpdate::checkFile(const QString &filename)
                         qUtf8Printable(filename));
                 return true;
             }
-            id = m_currentFilename + ':' + line.mid(3);
+            id = m_currentFilename + QLatin1Char{':'} + line.mid(3);
         } else if (line.startsWith(QLatin1String("File="))) {
             checkGotFile(line.mid(5), id);
         }
@@ -259,7 +260,7 @@ bool KonfUpdate::checkFile(const QString &filename)
 void KonfUpdate::checkGotFile(const QString &_file, const QString &id)
 {
     QString file;
-    int i = _file.indexOf(',');
+    const int i = _file.indexOf(QLatin1Char{','});
     if (i == -1) {
         file = _file.trimmed();
     } else {
@@ -300,7 +301,7 @@ void KonfUpdate::checkGotFile(const QString &_file, const QString &id)
 bool KonfUpdate::updateFile(const QString &filename)
 {
     m_currentFilename = filename;
-    int i = m_currentFilename.lastIndexOf('/');
+    const int i = m_currentFilename.lastIndexOf(QLatin1Char{'/'});
     if (i != -1) {
         m_currentFilename = m_currentFilename.mid(i + 1);
     }
@@ -441,7 +442,7 @@ void KonfUpdate::gotFile(const QString &_file)
 
         KConfigGroup cg(m_oldConfig2, "$Version");
         QStringList ids = cg.readEntry("update_info", QStringList());
-        QString cfg_id = m_currentFilename + ':' + m_id;
+        QString cfg_id = m_currentFilename + QLatin1Char{':'} + m_id;
         if (!ids.contains(cfg_id) && !m_skip) {
             ids.append(cfg_id);
             cg.writeEntry("update_info", ids);
@@ -463,7 +464,7 @@ void KonfUpdate::gotFile(const QString &_file)
         // Close new file.
         KConfigGroup cg(m_newConfig, "$Version");
         QStringList ids = cg.readEntry("update_info", QStringList());
-        QString cfg_id = m_currentFilename + ':' + m_id;
+        const QString cfg_id = m_currentFilename + QLatin1Char{':'} + m_id;
         if (!ids.contains(cfg_id) && !m_skip) {
             ids.append(cfg_id);
             cg.writeEntry("update_info", ids);
@@ -476,7 +477,7 @@ void KonfUpdate::gotFile(const QString &_file)
     }
     m_newConfig = nullptr;
 
-    int i = _file.indexOf(',');
+    const int i = _file.indexOf(QLatin1Char{','});
     if (i == -1) {
         m_oldFile = _file.trimmed();
     } else {
@@ -489,7 +490,7 @@ void KonfUpdate::gotFile(const QString &_file)
 
     if (!m_oldFile.isEmpty()) {
         m_oldConfig2 = new KConfig(m_oldFile, KConfig::NoGlobals);
-        QString cfg_id = m_currentFilename + ':' + m_id;
+        const QString cfg_id = m_currentFilename + QLatin1Char{':'} + m_id;
         KConfigGroup cg(m_oldConfig2, "$Version");
         QStringList ids = cg.readEntry("update_info", QStringList());
         if (ids.contains(cfg_id)) {
@@ -549,7 +550,7 @@ void KonfUpdate::gotGroup(const QString &_group)
         return;
     }
 
-    QStringList tokens = group.split(',');
+    const QStringList tokens = group.split(QLatin1Char{','});
     m_oldGroup = parseGroupString(tokens.at(0));
     if (tokens.count() == 1) {
         m_newGroup = m_oldGroup;
@@ -579,7 +580,7 @@ void KonfUpdate::gotRemoveGroup(const QString &_group)
 void KonfUpdate::gotKey(const QString &_key)
 {
     QString oldKey, newKey;
-    int i = _key.indexOf(',');
+    const int i = _key.indexOf(QLatin1Char{','});
     if (i == -1) {
         oldKey = _key.trimmed();
         newKey = oldKey;
@@ -704,7 +705,7 @@ void KonfUpdate::gotAllGroups()
 
 void KonfUpdate::gotOptions(const QString &_options)
 {
-    const QStringList options = _options.split(',');
+    const QStringList options = _options.split(QLatin1Char{','});
     for (QStringList::ConstIterator it = options.begin();
             it != options.end();
             ++it) {
@@ -750,8 +751,9 @@ void KonfUpdate::gotScriptArguments(const QString &_arguments)
 
 void KonfUpdate::gotScript(const QString &_script)
 {
-    QString script, interpreter;
-    int i = _script.indexOf(',');
+    QString script;
+    QString interpreter;
+    const int i = _script.indexOf(QLatin1Char{','});
     if (i == -1) {
         script = _script.trimmed();
     } else {
@@ -768,7 +770,7 @@ void KonfUpdate::gotScript(const QString &_script)
     QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kconf_update/") + script);
     if (path.isEmpty()) {
         if (interpreter.isEmpty()) {
-            path = CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/" + script;
+            path = QLatin1String{CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/"} + script;
             if (!QFile::exists(path)) {
                 path = QStandardPaths::findExecutable(script);
             }
@@ -899,16 +901,16 @@ void KonfUpdate::gotScript(const QString &_script)
             ts.setCodec(QTextCodec::codecForName("UTF-8"));
 #endif
             while (!ts.atEnd()) {
-                QString line = ts.readLine();
-                if (line.startsWith('[')) {
+                const QString line = ts.readLine();
+                if (line.startsWith(QLatin1Char{'['})) {
                     group = parseGroupString(line);
                 } else if (line.startsWith(QLatin1String("# DELETE "))) {
                     QString key = line.mid(9);
-                    if (key[0] == '[') {
-                        int j = key.lastIndexOf(']') + 1;
-                        if (j > 0) {
-                            group = parseGroupString(key.left(j));
-                            key = key.mid(j);
+                    if (key.startsWith(QLatin1Char{'['})) {
+                        const int idx = key.lastIndexOf(QLatin1Char{']'}) + 1;
+                        if (idx > 0) {
+                            group = parseGroupString(key.left(idx));
+                            key = key.mid(idx);
                         }
                     }
                     KConfigGroup cg = KConfigUtils::openGroup(m_oldConfig2, group);
@@ -918,7 +920,7 @@ void KonfUpdate::gotScript(const QString &_script)
                        qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Removing empty group " << m_oldFile << ":" << group;
                     } (this should be automatic)*/
                 } else if (line.startsWith(QLatin1String("# DELETEGROUP"))) {
-                    QString str = line.mid(13).trimmed();
+                    const QString str = line.mid(13).trimmed();
                     if (!str.isEmpty()) {
                         group = parseGroupString(str);
                     }

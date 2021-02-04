@@ -53,7 +53,7 @@ void KDesktopFileTest::testRead()
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
 void KDesktopFileTest::testReadDirectory()
 {
-    QTemporaryFile file("testReadDirectoryXXXXXX.directory");
+    QTemporaryFile file(QStringLiteral("testReadDirectoryXXXXXX.directory"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -178,20 +178,20 @@ void KDesktopFileTest::testActionGroup()
     KDesktopFile df(fileName);
     QCOMPARE(df.readType(), QString());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
-    QCOMPARE(df.readActions(), QStringList() << "encrypt" << "semi;colon" << "decrypt");
-    QCOMPARE(df.hasActionGroup("encrypt"), true);
-    QCOMPARE(df.hasActionGroup("semi;colon"), true);
-    QCOMPARE(df.hasActionGroup("decrypt"), true);
-    QCOMPARE(df.hasActionGroup("doesnotexist"), false);
+    QCOMPARE(df.readActions(), (QStringList{QStringLiteral("encrypt"), QStringLiteral("semi;colon"), QStringLiteral("decrypt")}));
+    QCOMPARE(df.hasActionGroup(QStringLiteral("encrypt")), true);
+    QCOMPARE(df.hasActionGroup(QStringLiteral("semi;colon")), true);
+    QCOMPARE(df.hasActionGroup(QStringLiteral("decrypt")), true);
+    QCOMPARE(df.hasActionGroup(QStringLiteral("doesnotexist")), false);
     KConfigGroup cg = df.actionGroup(QStringLiteral("encrypt"));
     QVERIFY(cg.hasKey("Name"));
-    QCOMPARE(cg.readEntry("Name"), QString("Encrypt file"));
+    QCOMPARE(cg.readEntry("Name"), QStringLiteral("Encrypt file"));
     cg = df.actionGroup(QStringLiteral("decrypt"));
     QVERIFY(cg.hasKey("Name"));
-    QCOMPARE(cg.readEntry("Name"), QString("Decrypt file"));
+    QCOMPARE(cg.readEntry("Name"), QStringLiteral("Decrypt file"));
     cg = df.actionGroup(QStringLiteral("semi;colon"));
     QVERIFY(cg.hasKey("Name"));
-    QCOMPARE(cg.readEntry("Name"), QString("With semicolon"));
+    QCOMPARE(cg.readEntry("Name"), QStringLiteral("With semicolon"));
 }
 
 void KDesktopFileTest::testIsAuthorizedDesktopFile()
@@ -275,17 +275,25 @@ void KDesktopFileTest::testLocateLocal_data()
     QTest::addColumn<QString>("path");
     QTest::addColumn<QString>("result");
 
-    QTest::newRow("configLocation, system-wide") << systemConfigLocation + "/test.desktop" << writableConfigLocation + "/test.desktop";
-    QTest::newRow("autostart, system-wide") << systemConfigLocation + "/autostart/test.desktop" << writableConfigLocation + "/autostart/test.desktop";
-    QTest::newRow("dataLocation, system-wide") << systemDataLocation + "/test.desktop" << writableDataLocation + "/test.desktop";
-    QTest::newRow("applications, system-wide") << systemDataLocation + "/applications/test.desktop" << writableDataLocation + "/applications/test.desktop";
-    QTest::newRow("desktop-directories, system-wide") << systemDataLocation + "/desktop-directories/test.directory" << writableDataLocation + "/desktop-directories/test.directory";
-    QTest::newRow("configLocation, writable") << writableConfigLocation + "/test.desktop" << writableConfigLocation + "/test.desktop";
-    QTest::newRow("autostart, writable") << writableConfigLocation + "/autostart/test.desktop" << writableConfigLocation + "/autostart/test.desktop";
-    QTest::newRow("dataLocation, writable") << writableDataLocation + "/test.desktop" << writableDataLocation + "/test.desktop";
-    QTest::newRow("applications, writable") << writableDataLocation + "/applications/test.desktop" << writableDataLocation + "/applications/test.desktop";
-    QTest::newRow("desktop-directories, writable") << writableDataLocation + "/desktop-directories/test.directory" << writableDataLocation + "/desktop-directories/test.directory";
-    QTest::newRow("unknown location") << "/test.desktop" << writableDataLocation + "/test.desktop";
+    QTest::newRow("configLocation, system-wide") << systemConfigLocation + QLatin1String{"/test.desktop"}
+                                                 << writableConfigLocation + QLatin1String{"/test.desktop"};
+    QTest::newRow("autostart, system-wide") << systemConfigLocation + QLatin1String{"/autostart/test.desktop"}
+                                            << writableConfigLocation + QLatin1String{"/autostart/test.desktop"};
+    QTest::newRow("dataLocation, system-wide") << systemDataLocation + QLatin1String{"/test.desktop"} << writableDataLocation + QLatin1String{"/test.desktop"};
+    QTest::newRow("applications, system-wide") << systemDataLocation + QLatin1String{"/applications/test.desktop"}
+                                               << writableDataLocation + QLatin1String{"/applications/test.desktop"};
+    QTest::newRow("desktop-directories, system-wide") << systemDataLocation + QLatin1String{"/desktop-directories/test.directory"}
+                                                      << writableDataLocation + QLatin1String{"/desktop-directories/test.directory"};
+    QTest::newRow("configLocation, writable") << writableConfigLocation + QLatin1String{"/test.desktop"}
+                                              << writableConfigLocation + QLatin1String{"/test.desktop"};
+    QTest::newRow("autostart, writable") << writableConfigLocation + QLatin1String{"/autostart/test.desktop"}
+                                         << writableConfigLocation + QLatin1String{"/autostart/test.desktop"};
+    QTest::newRow("dataLocation, writable") << writableDataLocation + QLatin1String{"/test.desktop"} << writableDataLocation + QLatin1String{"/test.desktop"};
+    QTest::newRow("applications, writable") << writableDataLocation + QLatin1String{"/applications/test.desktop"}
+                                            << writableDataLocation + QLatin1String{"/applications/test.desktop"};
+    QTest::newRow("desktop-directories, writable") << writableDataLocation + QLatin1String{"/desktop-directories/test.directory"}
+                                                   << writableDataLocation + QLatin1String{"/desktop-directories/test.directory"};
+    QTest::newRow("unknown location") << QStringLiteral("/test.desktop") << writableDataLocation + QLatin1String{"/test.desktop"};
 }
 
 void KDesktopFileTest::testLocateLocal()

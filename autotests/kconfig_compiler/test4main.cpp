@@ -19,7 +19,7 @@ int main(int argc, char **argv)
         group.writeEntry(QStringLiteral("foo bar"), QStringLiteral("Value"));
     }
     Test4 *t = Test4::self();
-    bool ok = QFile::exists(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/test4rc");
+    const bool ok = QFile::exists(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String{"/test4rc"});
     if (!ok) {
         qWarning() << "config file was not created!";
     }

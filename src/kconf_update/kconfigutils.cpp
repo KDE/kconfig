@@ -38,12 +38,12 @@ QStringList parseGroupString(const QString &_str, bool *ok, QString *error)
     }
 
     *ok = true;
-    if (str[0] != '[') {
+    if (!str.startsWith(QLatin1Char{'['})) {
         // Simplified notation, no '['
-        return QStringList() << str;
+        return QStringList{str};
     }
 
-    if (!str.endsWith(']')) {
+    if (!str.endsWith(QLatin1Char{']'})) {
         *ok = false;
         *error = QStringLiteral("Missing closing ']' in %1").arg(_str);
         return QStringList();
@@ -52,16 +52,16 @@ QStringList parseGroupString(const QString &_str, bool *ok, QString *error)
     str.chop(1);
     str.remove(0, 1);
 
-    return str.split(QStringLiteral("]["));
+    return str.split(QLatin1String{"]["});
 }
 
 QString unescapeString(const QString &src, bool *ok, QString *error)
 {
     QString dst;
-    int length = src.length();
+    const int length = src.length();
     for (int pos = 0; pos < length; ++pos) {
         QChar ch = src.at(pos);
-        if (ch != '\\') {
+        if (ch != QLatin1Char{'\\'}) {
             dst += ch;
         } else {
             ++pos;
@@ -70,22 +70,29 @@ QString unescapeString(const QString &src, bool *ok, QString *error)
                 *error = QStringLiteral("Unfinished escape sequence in %1").arg(src);
                 return QString();
             }
+
             ch = src.at(pos);
-            if (ch == 's') {
-                dst += ' ';
-            } else if (ch == 't') {
-                dst += '\t';
-            } else if (ch == 'n') {
-                dst += '\n';
-            } else if (ch == 'r') {
-                dst += '\r';
-            } else if (ch == '\\') {
-                dst += '\\';
-            } else if (ch == 'x') {
+            switch (ch.unicode()) {
+            case L's':
+                dst += QLatin1Char{' '};
+                break;
+            case L't':
+                dst += QLatin1Char{'\t'};
+                break;
+            case L'n':
+                dst += QLatin1Char{'\n'};
+                break;
+            case L'r':
+                dst += QLatin1Char{'\r'};
+                break;
+            case L'\\':
+                dst += QLatin1Char{'\\'};
+                break;
+            case L'x': {
                 if (pos + 2 < length) {
                     char value = src.midRef(pos + 1, 2).toInt(ok, 16);
                     if (*ok) {
-                        dst += QChar::fromLatin1(value);
+                        dst += QLatin1Char{value};
                         pos += 2;
                     } else {
                         *error = QStringLiteral("Invalid hex escape sequence at column %1 in %2").arg(pos).arg(src);
@@ -96,10 +103,14 @@ QString unescapeString(const QString &src, bool *ok, QString *error)
                     *error = QStringLiteral("Unfinished hex escape sequence at column %1 in %2").arg(pos).arg(src);
                     return QString();
                 }
-            } else {
+
+                break;
+            }
+            default: {
                 *ok = false;
                 *error = QStringLiteral("Invalid escape sequence at column %1 in %2").arg(pos).arg(src);
                 return QString();
+            }
             }
         }
     }

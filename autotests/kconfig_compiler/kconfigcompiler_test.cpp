@@ -119,8 +119,8 @@ void KConfigCompiler_Test::testBaselineComparison()
         qWarning() << "Failed to open" << fileRef.fileName() << "(" << testName << ".ref )";
         QFAIL("Can't open file for comparison");
     }
-    QString content = file.readAll();
-    QString contentRef = fileRef.readAll();
+    const QByteArray content = file.readAll();
+    const QByteArray contentRef = fileRef.readAll();
 
     if (content != contentRef)  {
         appendFileDiff(fileRef.fileName(), file.fileName());
