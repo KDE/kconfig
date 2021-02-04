@@ -77,6 +77,10 @@ private Q_SLOTS:
 
     // should be last
     void testSyncOnExit();
+
+private:
+    QString m_testConfigDir;
+    QString m_kdeGlobalsPath;
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigTest::Flags)
 
