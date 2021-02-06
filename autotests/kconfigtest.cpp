@@ -1786,7 +1786,7 @@ void KConfigTest::testQStringUtf8()
     QVERIFY(readFile.open(QFile::ReadOnly));
     QByteArray fileBytes = readFile.readAll();
 #ifdef Q_OS_WIN
-    fileBytes.replace("\r\n", "\n");
+    fileBytes.replace(QLatin1String{"\r\n"}, QLatin1String{"\n"});
 #endif
     QCOMPARE(fileBytes, QByteArrayLiteral("[General]\nkey=") + serialized + QByteArrayLiteral("\n"));
 

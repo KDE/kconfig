@@ -143,7 +143,7 @@ void KConfigCompiler_Test::testRunning()
     QFETCH(QString, testName);
 
 #ifdef Q_OS_WIN
-    testName += QStringLiteral(".exe");
+    testName += QLatin1String{".exe"};
 #endif
 
     QString program = QFINDTESTDATA(testName);

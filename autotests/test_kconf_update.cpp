@@ -47,7 +47,7 @@ static QString readFile(const QString &path)
     QString ret = QString::fromUtf8(file.readAll());
 #ifdef Q_OS_WIN
     // KConfig always writes files with the native line ending, the test comparison uses \n
-    ret.replace("\r\n", "\n");
+    ret.replace(QLatin1String{"\r\n"}, QLatin1String{"\n"});
 #endif
     return ret;
 }
