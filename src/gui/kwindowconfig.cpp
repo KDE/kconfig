@@ -168,8 +168,8 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
     // per-resolution information is not
     // TODO: Remove in KF6 or maybe even KF5.85 or something. It really only needs
     // to be here to transition existing users once they upgrade from 5.78 -> 5.79
-    const int fallbackXPosition = config.readEntry(QStringLiteral("%1 XPosition %2").arg(allConnectedScreens()).arg(desk.width()), window->size().width());
-    const int fallbackYPosition = config.readEntry(QStringLiteral("%1 YPosition %2").arg(allConnectedScreens()).arg(desk.height()), window->size().height());
+    const int fallbackXPosition = config.readEntry(QStringLiteral("%1 XPosition %2").arg(allConnectedScreens()).arg(desk.width()), -1);
+    const int fallbackYPosition = config.readEntry(QStringLiteral("%1 YPosition %2").arg(allConnectedScreens()).arg(desk.height()), -1);
     const int xPos = config.readEntry(windowXPositionString(desk), fallbackXPosition);
     const int yPos = config.readEntry(windowYPositionString(desk), fallbackYPosition);
 
