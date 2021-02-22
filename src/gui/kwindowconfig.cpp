@@ -37,7 +37,7 @@ static QString allConnectedScreens()
 static QString configFileString(const QRect &desk, const QString &key)
 {
     // We include resolution data to also save data on a per-resolution basis
-    const QString returnString =  QStringLiteral("%1 %2 %3x%4").arg(allConnectedScreens()).arg(key).arg(desk.width()).arg(desk.height());
+    const QString returnString = QStringLiteral("%1 %2 %3x%4").arg(allConnectedScreens()).arg(key).arg(desk.width()).arg(desk.height());
     return returnString;
 }
 
@@ -66,7 +66,6 @@ static QString windowYPositionString(const QRect &desk)
 {
     return configFileString(desk, QStringLiteral("YPosition"));
 }
-
 
 void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options)
 {
@@ -97,7 +96,6 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
     } else {
         config.writeEntry(screenMaximizedString(desk), isMaximized, options);
     }
-
 }
 
 void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &config)

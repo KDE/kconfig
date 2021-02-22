@@ -16,13 +16,13 @@ class QUrl;
 class QString;
 
 /**
-* The functions in this namespace provide the core of the Kiosk action
-* restriction system; the KIO and KXMLGui frameworks build on this.
-*
-* The relevant settings are read from the application's KSharedConfig
-* instance, so actions can be disabled on a per-application or global
-* basis (by using the kdeglobals file).
-*/
+ * The functions in this namespace provide the core of the Kiosk action
+ * restriction system; the KIO and KXMLGui frameworks build on this.
+ *
+ * The relevant settings are read from the application's KSharedConfig
+ * instance, so actions can be disabled on a per-application or global
+ * basis (by using the kdeglobals file).
+ */
 namespace KAuthorized
 {
 /**

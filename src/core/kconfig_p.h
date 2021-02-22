@@ -11,18 +11,19 @@
 #ifndef KCONFIG_P_H
 #define KCONFIG_P_H
 
-#include "kconfigdata.h"
 #include "kconfigbackend_p.h"
+#include "kconfigdata.h"
 #include "kconfiggroup.h"
 
-#include <QStringList>
-#include <QStack>
-#include <QFile>
 #include <QDir>
+#include <QFile>
+#include <QStack>
+#include <QStringList>
 
 class KConfigPrivate
 {
     friend class KConfig;
+
 public:
     KConfig::OpenFlags openFlags;
     QStandardPaths::StandardLocation resourceType;
@@ -31,19 +32,15 @@ public:
 
     // functions for KConfigGroup
     bool canWriteEntry(const QByteArray &group, const char *key, bool isDefault = false) const;
-    QString lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags,
-                       bool *expand) const;
+    QString lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags, bool *expand) const;
     QByteArray lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags) const;
 
-    void putData(const QByteArray &group, const char *key, const QByteArray &value,
-                 KConfigBase::WriteConfigFlags flags, bool expand = false);
-    void revertEntry(const QByteArray &group, const char *key,
-                     KConfigBase::WriteConfigFlags flags);
+    void putData(const QByteArray &group, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
+    void revertEntry(const QByteArray &group, const char *key, KConfigBase::WriteConfigFlags flags);
     QStringList groupList(const QByteArray &group) const;
     // copies the entries from @p source to @p otherGroup changing all occurrences
     // of @p source with @p destination
-    void copyGroup(const QByteArray &source, const QByteArray &destination,
-                   KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const;
+    void copyGroup(const QByteArray &source, const QByteArray &destination, KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const;
     QStringList keyListImpl(const QByteArray &theGroup) const;
     QSet<QByteArray> allSubGroups(const QByteArray &parentGroup) const;
     bool hasNonDeletedEntries(const QByteArray &group) const;
@@ -55,20 +52,19 @@ public:
 protected:
     QExplicitlySharedDataPointer<KConfigBackend> mBackend;
 
-    KConfigPrivate(KConfig::OpenFlags flags,
-                   QStandardPaths::StandardLocation type);
+    KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation type);
 
     virtual ~KConfigPrivate()
     {
     }
 
-    bool bDynamicBackend: 1; // do we own the backend?
+    bool bDynamicBackend : 1; // do we own the backend?
 private:
-    bool bDirty: 1;
-    bool bReadDefaults: 1;
-    bool bFileImmutable: 1;
-    bool bForceGlobal: 1;
-    bool bSuppressGlobal: 1;
+    bool bDirty : 1;
+    bool bReadDefaults : 1;
+    bool bFileImmutable : 1;
+    bool bForceGlobal : 1;
+    bool bSuppressGlobal : 1;
 
     static bool mappingsRegistered;
 

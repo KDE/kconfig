@@ -13,7 +13,6 @@
 
 namespace KConfigUtils
 {
-
 bool hasGroup(KConfig *config, const QStringList &lst)
 {
     KConfigGroup group = openGroup(config, lst);

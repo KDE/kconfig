@@ -38,64 +38,66 @@
 
 int main(int argc, char **argv)
 {
-	QCoreApplication app(argc, argv);
+    QCoreApplication app(argc, argv);
 
-	QCommandLineParser parser;
-    parser.addOption(QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
-    parser.addOption(QCommandLineOption(QStringLiteral("group"), QCoreApplication::translate("main", "Group to look in. Use repeatedly for nested groups."), QStringLiteral("group"), QStringLiteral("KDE")));
+    QCommandLineParser parser;
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
+    parser.addOption(QCommandLineOption(QStringLiteral("group"),
+                                        QCoreApplication::translate("main", "Group to look in. Use repeatedly for nested groups."),
+                                        QStringLiteral("group"),
+                                        QStringLiteral("KDE")));
     parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
     parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
     parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
 
-	parser.process(app);
+    parser.process(app);
 
-    const QStringList groups=parser.values(QStringLiteral("group"));
-    QString key=parser.value(QStringLiteral("key"));
-    QString file=parser.value(QStringLiteral("file"));
-    QString dflt=parser.value(QStringLiteral("default"));
-    QString type=parser.value(QStringLiteral("type")).toLower();
+    const QStringList groups = parser.values(QStringLiteral("group"));
+    QString key = parser.value(QStringLiteral("key"));
+    QString file = parser.value(QStringLiteral("file"));
+    QString dflt = parser.value(QStringLiteral("default"));
+    QString type = parser.value(QStringLiteral("type")).toLower();
 
     if (key.isNull() || !parser.positionalArguments().isEmpty()) {
-		parser.showHelp(1);
-	}
+        parser.showHelp(1);
+    }
 
-	KSharedConfig::openConfig();
+    KSharedConfig::openConfig();
 
-	KConfig *konfig;
-	bool configMustDeleted = false;
-	if (file.isEmpty())
-	   konfig = KSharedConfig::openConfig().data();
-	else
-	{
-		konfig = new KConfig( file, KConfig::NoGlobals );
-		configMustDeleted=true;
-	}
-	KConfigGroup cfgGroup = konfig->group(QString());
+    KConfig *konfig;
+    bool configMustDeleted = false;
+    if (file.isEmpty())
+        konfig = KSharedConfig::openConfig().data();
+    else {
+        konfig = new KConfig(file, KConfig::NoGlobals);
+        configMustDeleted = true;
+    }
+    KConfigGroup cfgGroup = konfig->group(QString());
     for (const QString &grp : groups)
-		cfgGroup = cfgGroup.group(grp);
-    if(type==QStringLiteral("bool")) {
-		dflt=dflt.toLower();
-        bool def=(dflt==QStringLiteral("true") || dflt==QStringLiteral("on") || dflt==QStringLiteral("yes") || dflt==QStringLiteral("1"));
-		bool retValue = !cfgGroup.readEntry(key, def);
-		if ( configMustDeleted )
-			delete konfig;
-		return retValue;
-    } else if((type==QStringLiteral("num")) || (type==QStringLiteral("int"))) {
-		int retValue = cfgGroup.readEntry(key, dflt.toInt());
-		if ( configMustDeleted )
-			delete konfig;
-		return retValue;
-    } else if (type==QStringLiteral("path")){
-		fprintf(stdout, "%s\n", cfgGroup.readPathEntry(key, dflt).toLocal8Bit().data());
-		if ( configMustDeleted )
-			delete konfig;
-		return 0;
-	} else {
-		/* Assume it's a string... */
-		fprintf(stdout, "%s\n", cfgGroup.readEntry(key, dflt).toLocal8Bit().data());
-		if ( configMustDeleted )
-			delete konfig;
-		return 0;
-	}
+        cfgGroup = cfgGroup.group(grp);
+    if (type == QStringLiteral("bool")) {
+        dflt = dflt.toLower();
+        bool def = (dflt == QStringLiteral("true") || dflt == QStringLiteral("on") || dflt == QStringLiteral("yes") || dflt == QStringLiteral("1"));
+        bool retValue = !cfgGroup.readEntry(key, def);
+        if (configMustDeleted)
+            delete konfig;
+        return retValue;
+    } else if ((type == QStringLiteral("num")) || (type == QStringLiteral("int"))) {
+        int retValue = cfgGroup.readEntry(key, dflt.toInt());
+        if (configMustDeleted)
+            delete konfig;
+        return retValue;
+    } else if (type == QStringLiteral("path")) {
+        fprintf(stdout, "%s\n", cfgGroup.readPathEntry(key, dflt).toLocal8Bit().data());
+        if (configMustDeleted)
+            delete konfig;
+        return 0;
+    } else {
+        /* Assume it's a string... */
+        fprintf(stdout, "%s\n", cfgGroup.readEntry(key, dflt).toLocal8Bit().data());
+        if (configMustDeleted)
+            delete konfig;
+        return 0;
+    }
 }
-

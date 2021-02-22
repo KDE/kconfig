@@ -8,11 +8,11 @@
 #ifndef CONVERSION_CHECK_H
 #define CONVERSION_CHECK_H
 
-#include <QString>
 #include <QDate>
 #include <QPoint>
-#include <QSize>
 #include <QRect>
+#include <QSize>
+#include <QString>
 #include <QVariant>
 
 class QColor;
@@ -20,20 +20,21 @@ class QFont;
 
 namespace ConversionCheck
 {
-
 // used to distinguish between supported/unsupported types
-struct supported { };
-struct unsupported { };
+struct supported {
+};
+struct unsupported {
+};
 
 // traits type class to define support for constraints
-template <typename T>
+template<typename T>
 struct QVconvertible {
     typedef unsupported toQString;
     typedef unsupported toQVariant;
 };
 
 // constraint classes
-template <typename T>
+template<typename T>
 struct type_toQString {
     void constraint()
     {
@@ -43,7 +44,7 @@ struct type_toQString {
     typename QVconvertible<T>::toQString y;
 };
 
-template <typename T>
+template<typename T>
 struct type_toQVariant {
     void constraint()
     {
@@ -55,7 +56,7 @@ struct type_toQVariant {
 
 // check if T is convertible to QString thru QVariant
 // if not supported can't be used in QList<T> functions
-template <typename T>
+template<typename T>
 inline void to_QString()
 {
     void (type_toQString<T>::*x)() = &type_toQString<T>::constraint;
@@ -63,7 +64,7 @@ inline void to_QString()
 }
 
 // check if T is convertible to QVariant & supported in readEntry/writeEntry
-template <typename T>
+template<typename T>
 inline void to_QVariant()
 {
     void (type_toQVariant<T>::*x)() = &type_toQVariant<T>::constraint;
@@ -74,10 +75,11 @@ inline void to_QVariant()
 // string_support - is supported by QVariant(type).toString(),
 //                  can be used in QList<T> functions
 // variant_support - has a QVariant constructor
-#define QVConversions(type, string_support, variant_support) \
-    template <> struct QVconvertible<type> {\
-        typedef string_support toQString;\
-        typedef variant_support toQVariant;\
+#define QVConversions(type, string_support, variant_support)                                                                                                   \
+    template<>                                                                                                                                                 \
+    struct QVconvertible<type> {                                                                                                                               \
+        typedef string_support toQString;                                                                                                                      \
+        typedef variant_support toQVariant;                                                                                                                    \
     }
 
 // The only types needed here are the types handled in readEntry/writeEntry
@@ -108,4 +110,3 @@ QVConversions(QList<QUrl>, unsupported, supported);
 }
 
 #endif
-

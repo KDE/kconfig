@@ -6,10 +6,10 @@
 */
 
 #include <QCoreApplication>
-#include <QtGlobal>
 #include <QTimer>
-#include <ksharedconfig.h>
+#include <QtGlobal>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 #include <stdio.h>
 
 class Tester

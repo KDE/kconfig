@@ -12,7 +12,6 @@ class KConfigSkeletonTest : public QObject
 {
     Q_OBJECT
 public:
-
 private Q_SLOTS:
     void initTestCase();
     void init();
@@ -31,7 +30,6 @@ private:
     QColor mMyColor;
     QFont mMyFont;
     QString mMyString;
-
 };
 
 #endif

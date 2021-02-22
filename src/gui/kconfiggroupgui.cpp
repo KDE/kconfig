@@ -21,14 +21,11 @@
  * @returns true if something was handled (even if output was set to clear or default)
  *          or false if nothing was handled (e.g., Core type)
  */
-static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input,
-                         QVariant &output)
+static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input, QVariant &output)
 {
     const auto errString = [&]() {
         return QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
-                              .arg(QLatin1String(key),
-                                   QLatin1String(QVariant::typeToName(input.type())),
-                                   QLatin1String(data.constData()) );
+            .arg(QLatin1String(key), QLatin1String(QVariant::typeToName(input.type())), QLatin1String(data.constData()));
     };
 
     // set in case of failure
@@ -37,7 +34,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
     switch (static_cast<QMetaType::Type>(input.type())) {
     case QMetaType::QColor: {
         if (data.isEmpty() || data == "invalid") {
-            output = QColor();  // return what was stored
+            output = QColor(); // return what was stored
             return true;
         } else if (data.at(0) == '#') {
             QColor col;
@@ -59,7 +56,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             if (count != 3 && count != 4) {
                 const QString formatError = QStringLiteral(" (wrong format: expected '%1' items, read '%2')");
                 qCritical() << qPrintable(errString()) << qPrintable(formatError.arg(QStringLiteral("3' or '4")).arg(count));
-                return true;    // return default
+                return true; // return default
             }
 
             int temp[4];
@@ -72,9 +69,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
                     return true; // return default
                 }
                 if (j < 0 || j > 255) {
-                    static const char *const components[] = {
-                        "red", "green", "blue", "alpha"
-                    };
+                    static const char *const components[] = {"red", "green", "blue", "alpha"};
                     const QString boundsError = QStringLiteral(" (bounds error: %1 component %2)");
                     qCritical() << qPrintable(errString())
                                 << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0 ? QStringLiteral("< 0") : QStringLiteral("> 255")));
@@ -114,13 +109,13 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
     case QMetaType::QCursor:
     case QMetaType::QSizePolicy:
     case QMetaType::QPen:
-    // we may want to handle these in the future
+        // we may want to handle these in the future
 
     default:
         break;
     }
 
-    return false;               // not handled
+    return false; // not handled
 }
 
 /**
@@ -129,8 +124,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
  * @returns true if something was handled (even if an empty value was written)
  *          or false if nothing was handled (e.g., Core type)
  */
-static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop,
-                          KConfigGroup::WriteConfigFlags pFlags)
+static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop, KConfigGroup::WriteConfigFlags pFlags)
 {
     switch (static_cast<QMetaType::Type>(prop.type())) {
     case QMetaType::QColor: {
@@ -161,10 +155,8 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
         // https://bugreports.qt.io/browse/QTBUG-63792
         // https://bugs.kde.org/show_bug.cgi?id=378523
         if (f.weight() == QFont::Normal
-            && (f.styleName() == QLatin1String("Regular")
-            || f.styleName() == QLatin1String("Normal")
-            || f.styleName() == QLatin1String("Book")
-            || f.styleName() == QLatin1String("Roman"))) {
+            && (f.styleName() == QLatin1String("Regular") || f.styleName() == QLatin1String("Normal") || f.styleName() == QLatin1String("Book")
+                || f.styleName() == QLatin1String("Roman"))) {
             f.setStyleName(QString());
         }
         cg->writeEntry(key, f.toString().toUtf8(), pFlags);
@@ -194,7 +186,7 @@ static int initKConfigGroupGui()
 {
     _kde_internal_KConfigGroupGui.readEntryGui = readEntryGui;
     _kde_internal_KConfigGroupGui.writeEntryGui = writeEntryGui;
-    return 42;                  // because 42 is nicer than 1 or 0
+    return 42; // because 42 is nicer than 1 or 0
 }
 
 #ifdef Q_CONSTRUCTOR_FUNCTION

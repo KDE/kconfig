@@ -4,10 +4,10 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <QTest>
 #include "kstandardshortcuttest.h"
+#include <QTest>
 
-QTEST_MAIN(KStandardShortcutTest)  // GUI needed by KAccel
+QTEST_MAIN(KStandardShortcutTest) // GUI needed by KAccel
 
 #include <kstandardshortcut.h>
 

@@ -14,28 +14,31 @@
 #ifndef KCONFIGCODEGENERATORBASE_H
 #define KCONFIGCODEGENERATORBASE_H
 
+#include <QFile>
 #include <QString>
 #include <QTextStream>
-#include <QFile>
 #include <QVector>
 
-#include "KConfigParameters.h"
 #include "KConfigCommonStructs.h"
+#include "KConfigParameters.h"
 
 class CfgEntry;
 struct ParseResult;
 
 /* This class manages the base of writing a C - Based code */
-class KConfigCodeGeneratorBase {
+class KConfigCodeGeneratorBase
+{
 public:
-    enum ScopeFinalizer {None, Semicolon,};
+    enum ScopeFinalizer {
+        None,
+        Semicolon,
+    };
 
-    KConfigCodeGeneratorBase(
-        const QString &inputFileName,  // The kcfg file
-        const QString &baseDir,        // where we should store the generated file
-        const QString &fileName,       // the name of the generated file
-        const KConfigParameters &parameters, // parameters passed to the generator
-        ParseResult &parseResult // The pre processed configuration entries
+    KConfigCodeGeneratorBase(const QString &inputFileName, // The kcfg file
+                             const QString &baseDir, // where we should store the generated file
+                             const QString &fileName, // the name of the generated file
+                             const KConfigParameters &parameters, // parameters passed to the generator
+                             ParseResult &parseResult // The pre processed configuration entries
     );
     virtual ~KConfigCodeGeneratorBase();
 
@@ -87,32 +90,53 @@ protected:
     /* reduce the number of spaces for the indentation level */
     void unindent();
 
-    QString inputFile() const { return m_inputFile; }
-    QString fileName() const { return m_fileName; }
-    QString baseDir() const { return m_baseDir; }
-    QString This() const { return m_this; }
-    QString Const() const { return m_const; }
-    KConfigParameters cfg() const { return m_cfg; }
+    QString inputFile() const
+    {
+        return m_inputFile;
+    }
+    QString fileName() const
+    {
+        return m_fileName;
+    }
+    QString baseDir() const
+    {
+        return m_baseDir;
+    }
+    QString This() const
+    {
+        return m_this;
+    }
+    QString Const() const
+    {
+        return m_const;
+    }
+    KConfigParameters cfg() const
+    {
+        return m_cfg;
+    }
 
     // Can't be const.
-    QTextStream& stream() { return m_stream; }
+    QTextStream &stream()
+    {
+        return m_stream;
+    }
 
     // HACK: This needs to be accesible because the HeaderGenerator actually modifies
     // it while running. Considering that this is a the result of the xml Parse, and not
     // the result of generating code, I consider this to be quite wrong - but moving the
     // changes away from the header generator only created more problems and I have to
     // investigate more.
-    ParseResult &parseResult;       // the result of the parsed kcfg file
+    ParseResult &parseResult; // the result of the parsed kcfg file
 
 private:
     QString m_inputFile; // the base file name, input file is based on this.
 
-    QString m_baseDir;   // Where we are going to save the file
-    QString m_fileName;  // The file name
+    QString m_baseDir; // Where we are going to save the file
+    QString m_fileName; // The file name
 
     KConfigParameters m_cfg; // The parameters passed via the kcfgc file
-    QTextStream m_stream;             // the stream that operates in the file to write data.
-    QFile m_file;                     // The file handler.
+    QTextStream m_stream; // the stream that operates in the file to write data.
+    QFile m_file; // The file handler.
 
     // Special access to `this->` and `const` thru the code.
     QString m_this;

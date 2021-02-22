@@ -26,4 +26,3 @@ int main(int, char **)
     delete t;
     return 0;
 }
-

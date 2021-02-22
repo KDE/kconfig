@@ -33,14 +33,14 @@ public:
     };
 
     // These are read from the .kcfgc configuration file
-    QString nameSpace;     // The namespace for the class to be generated
-    QString className;     // The class name to be generated
-    QString inherits;      // The class the generated class inherits (if empty, from KConfigSkeleton)
+    QString nameSpace; // The namespace for the class to be generated
+    QString className; // The class name to be generated
+    QString inherits; // The class the generated class inherits (if empty, from KConfigSkeleton)
     QString visibility;
     bool parentInConstructor; // The class has the optional parent parameter in its constructor
     bool forceStringFilename;
-    bool singleton;        // The class will be a singleton
-    bool staticAccessors;  // provide or not static accessors
+    bool singleton; // The class will be a singleton
+    bool staticAccessors; // provide or not static accessors
     bool customAddons;
     QString memberVariables;
     QStringList headerIncludes;

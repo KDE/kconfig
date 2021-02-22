@@ -24,14 +24,16 @@
 
 class KConfigIniBackend::BufferFragment
 {
-
 public:
-
-    BufferFragment() : d(nullptr), len(0)
+    BufferFragment()
+        : d(nullptr)
+        , len(0)
     {
     }
 
-    BufferFragment(char *buf, int size) : d(buf), len(size)
+    BufferFragment(char *buf, int size)
+        : d(buf)
+        , len(size)
     {
     }
 
@@ -184,7 +186,7 @@ private:
 
 uint qHash(const KConfigIniBackend::BufferFragment fragment)
 {
-    const uchar *p = reinterpret_cast<const uchar*>(fragment.constData());
+    const uchar *p = reinterpret_cast<const uchar *>(fragment.constData());
     const int len = fragment.length();
 
     // This algorithm is copied from qhash.cpp (Qt5 version).

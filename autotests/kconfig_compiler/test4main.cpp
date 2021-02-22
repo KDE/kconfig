@@ -5,9 +5,9 @@
 */
 
 #include "test4.h"
+#include <QFile>
 #include <QGuiApplication>
 #include <QStandardPaths>
-#include <QFile>
 
 int main(int argc, char **argv)
 {

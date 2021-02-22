@@ -6,8 +6,8 @@
 */
 
 #include <QTest>
-#include <ksharedconfig.h>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 class FallbackConfigResourcesTest : public QObject
 {

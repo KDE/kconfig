@@ -5,9 +5,9 @@
 */
 
 #include "test9.h"
+#include <QDebug>
 #include <QDir>
 #include <QGuiApplication>
-#include <QDebug>
 
 int main(int argc, char **argv)
 {

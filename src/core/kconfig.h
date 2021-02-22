@@ -15,11 +15,11 @@
 
 #include <kconfigcore_export.h>
 
-#include <QString>
-#include <QVariant>
 #include <QByteArray>
 #include <QList>
 #include <QStandardPaths>
+#include <QString>
+#include <QVariant>
 
 class KConfigGroup;
 class KEntryMap;
@@ -80,13 +80,13 @@ public:
      * @see OpenFlags
      */
     enum OpenFlag {
-        IncludeGlobals  = 0x01, ///< Blend kdeglobals into the config object.
-        CascadeConfig   = 0x02, ///< Cascade to system-wide config files.
+        IncludeGlobals = 0x01, ///< Blend kdeglobals into the config object.
+        CascadeConfig = 0x02, ///< Cascade to system-wide config files.
 
-        SimpleConfig    = 0x00, ///< Just a single config file.
-        NoCascade       = IncludeGlobals, ///< Include user's globals, but omit system settings.
-        NoGlobals       = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
-        FullConfig      = IncludeGlobals | CascadeConfig, ///< Fully-fledged config, including globals and cascading to system settings
+        SimpleConfig = 0x00, ///< Just a single config file.
+        NoCascade = IncludeGlobals, ///< Include user's globals, but omit system settings.
+        NoGlobals = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
+        FullConfig = IncludeGlobals | CascadeConfig, ///< Fully-fledged config, including globals and cascading to system settings
     };
     /**
      * Stores a combination of #OpenFlag values.
@@ -121,7 +121,8 @@ public:
      *
      * @sa KSharedConfig::openConfig(const QString&, OpenFlags, QStandardPaths::StandardLocation)
      */
-    explicit KConfig(const QString &file = QString(), OpenFlags mode = FullConfig,
+    explicit KConfig(const QString &file = QString(),
+                     OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     /**

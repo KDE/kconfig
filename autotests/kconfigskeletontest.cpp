@@ -6,20 +6,20 @@
 
 #include "kconfigskeletontest.h"
 
-#include <kconfig.h>
 #include <QFont>
 #include <QtTestGui>
+#include <kconfig.h>
 
 QTEST_MAIN(KConfigSkeletonTest)
 
 // clazy:excludeall=non-pod-global-static
 
 static const bool s_default_setting1{false};
-static const QColor s_default_setting2{1,2,3};
+static const QColor s_default_setting2{1, 2, 3};
 static const QString s_default_setting4{QStringLiteral("Hello World")};
 
 static const bool s_write_setting1{true};
-static const QColor s_write_setting2{3,2,1};
+static const QColor s_write_setting2{3, 2, 1};
 static const QString s_write_setting4{QStringLiteral("KDE")};
 
 static QFont defaultSetting3()
@@ -29,7 +29,7 @@ static QFont defaultSetting3()
 
 static QFont writeSettings3()
 {
- return QFont{QStringLiteral("helvetica"), 14};
+    return QFont{QStringLiteral("helvetica"), 14};
 }
 
 void KConfigSkeletonTest::initTestCase()

@@ -13,9 +13,7 @@
 
 static QString configName(const QString &id, const QString &key)
 {
-    return(QLatin1String("session/") + QGuiApplication::applicationName() +
-           QLatin1Char('_')          + id                                 +
-           QLatin1Char('_')          + key);
+    return (QLatin1String("session/") + QGuiApplication::applicationName() + QLatin1Char('_') + id + QLatin1Char('_') + key);
 }
 
 static KConfig *s_sessionConfig = nullptr;
@@ -28,9 +26,7 @@ KConfig *KConfigGui::sessionConfig()
     if (!hasSessionConfig() && qApp->isSessionRestored()) {
         // create the default instance specific config object
         // from applications' -session command line parameter
-        s_sessionConfig = new KConfig(configName(qApp->sessionId(),
-                                                 qApp->sessionKey()),
-                                      KConfig::SimpleConfig);
+        s_sessionConfig = new KConfig(configName(qApp->sessionId(), qApp->sessionKey()), KConfig::SimpleConfig);
     }
 
     return s_sessionConfig;
@@ -44,8 +40,7 @@ void KConfigGui::setSessionConfig(const QString &id, const QString &key)
     }
 
     // create a new instance specific config object from supplied id & key
-    s_sessionConfig = new KConfig(configName(id, key),
-                                  KConfig::SimpleConfig);
+    s_sessionConfig = new KConfig(configName(id, key), KConfig::SimpleConfig);
 }
 
 bool KConfigGui::hasSessionConfig()

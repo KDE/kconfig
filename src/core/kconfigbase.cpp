@@ -89,10 +89,13 @@ bool KConfigBase::isGroupImmutable(const char *aGroup) const
 }
 
 KConfigBase::~KConfigBase()
-{}
+{
+}
 
 KConfigBase::KConfigBase()
-{}
+{
+}
 
 void KConfigBase::virtual_hook(int, void *)
-{}
+{
+}

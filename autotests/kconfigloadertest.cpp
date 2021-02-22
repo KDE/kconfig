@@ -7,20 +7,20 @@
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <kconfigskeleton.h>
 #include <kconfigloader.h>
+#include <kconfigskeleton.h>
 
 Q_DECLARE_METATYPE(QList<int>)
 
 static const QString s_testName(QStringLiteral("kconfigloadertest")); // clazy:exclude=non-pod-global-static
 
-#define GET_CONFIG_ITEM_VALUE(type, configName) \
-    KConfigSkeletonItem* item = cl->findItem(s_testName, configName); \
-    /* Check if we got back a valid item. */ \
-    QVERIFY(item != nullptr); \
-    /* Cast the item to the given type. */ \
-    type typeItem = dynamic_cast<type>(item); \
-    /* Make sure the cast was successful. */ \
+#define GET_CONFIG_ITEM_VALUE(type, configName)                                                                                                                \
+    KConfigSkeletonItem *item = cl->findItem(s_testName, configName);                                                                                          \
+    /* Check if we got back a valid item. */                                                                                                                   \
+    QVERIFY(item != nullptr);                                                                                                                                  \
+    /* Cast the item to the given type. */                                                                                                                     \
+    type typeItem = dynamic_cast<type>(item);                                                                                                                  \
+    /* Make sure the cast was successful. */                                                                                                                   \
     QVERIFY(typeItem != nullptr);
 
 void ConfigLoaderTest::init()
@@ -191,4 +191,3 @@ void ConfigLoaderTest::ulongLongDefaultValue()
 }
 
 QTEST_MAIN(ConfigLoaderTest)
-

@@ -6,8 +6,8 @@
 
 #include <QObject>
 
-#include <QTest>
 #include <QStandardPaths>
+#include <QTest>
 #include <ksharedconfig.h>
 
 #include <kconfig.h>

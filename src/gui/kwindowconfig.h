@@ -54,7 +54,7 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  * @param config The config group to read from.
  * @since 5.0.
  */
-KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window,  const KConfigGroup &config);
+KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &config);
 
 /**
  * Saves the window's position either to the global or application config file.
@@ -81,6 +81,6 @@ KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &c
  * @param config The config group to read from.
  * @since 5.74
  */
-KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window,  const KConfigGroup &config);
+KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup &config);
 }
 #endif // KWINDOWCONFIG_H

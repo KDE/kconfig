@@ -28,7 +28,6 @@ private Q_SLOTS:
     void testTryExecWithAuthorizeAction();
     void testLocateLocal_data();
     void testLocateLocal();
-
 };
 
 #endif /* KDESKTOPFILETEST_H */

@@ -4,13 +4,13 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <QtTestGui>
 #include "kconfigguitest.h"
+#include <QtTestGui>
 
-#include <kconfig.h>
 #include <QDir>
 #include <QFont>
 #include <QStandardPaths>
+#include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kconfigskeleton.h>
 
@@ -77,8 +77,7 @@ void KConfigTest::testComplex()
     KConfig sc2(QStringLiteral("kconfigtest"));
     KConfigGroup sc3(&sc2, "ComplexTypes");
 
-    QCOMPARE(QVariant(sc3.readEntry("colorEntry1", QColor(Qt::black))).toString(),
-             QVariant(s_color_entry1).toString());
+    QCOMPARE(QVariant(sc3.readEntry("colorEntry1", QColor(Qt::black))).toString(), QVariant(s_color_entry1).toString());
     QCOMPARE(sc3.readEntry("colorEntry1", QColor()), s_color_entry1);
     QCOMPARE(sc3.readEntry("colorEntry2", QColor()), s_color_entry2);
     QCOMPARE(sc3.readEntry("colorEntry3", QColor()), s_color_entry3);
@@ -118,19 +117,19 @@ void KConfigTest::testInvalid()
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());     // out of bounds
+    QVERIFY(sc3.readEntry("badList", QColor()) == QColor()); // out of bounds
 
     // 4 element list
     list << 4;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());     // out of bounds
+    QVERIFY(sc3.readEntry("badList", QColor()) == QColor()); // out of bounds
 
     list[2] = -3;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());     // out of bounds
+    QVERIFY(sc3.readEntry("badList", QColor()) == QColor()); // out of bounds
 
     // 5 element list
     list[2] = 3;

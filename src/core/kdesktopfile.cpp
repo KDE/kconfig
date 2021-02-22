@@ -14,14 +14,14 @@
 
 #include <QDir>
 #include <QFileInfo>
-#include <QUrl>
 #include <QStandardPaths>
+#include <QUrl>
 
 #include "kauthorized.h"
+#include "kconfig_core_log_settings.h"
 #include "kconfig_p.h"
 #include "kconfiggroup.h"
 #include "kconfigini_p.h"
-#include "kconfig_core_log_settings.h"
 
 class KDesktopFilePrivate : public KConfigPrivate
 {
@@ -71,9 +71,8 @@ QString KDesktopFile::locateLocal(const QString &path)
     // Relative to config? (e.g. for autostart)
     const QStringList lstGenericConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
     // Iterate from the last item since some items may be subfolders of others.
-    for (QStringList::const_reverse_iterator constIterator = lstGenericConfigLocation.crbegin(); 
-            constIterator != lstGenericConfigLocation.crend();
-            ++constIterator) {
+    for (QStringList::const_reverse_iterator constIterator = lstGenericConfigLocation.crbegin(); constIterator != lstGenericConfigLocation.crend();
+         ++constIterator) {
         const QString &dir = (*constIterator);
         if (path.startsWith(dir + plus)) {
             relativePath = path.mid(dir.length() + 1);
@@ -102,16 +101,16 @@ bool KDesktopFile::isDesktopFile(const QString &path)
 bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 {
     if (path.isEmpty()) {
-        return false;    // Empty paths are not ok.
+        return false; // Empty paths are not ok.
     }
 
     if (QDir::isRelativePath(path)) {
-        return true;    // Relative paths are ok.
+        return true; // Relative paths are ok.
     }
 
     const QString realPath = QFileInfo(path).canonicalFilePath();
     if (realPath.isEmpty()) {
-        return false;    // File doesn't exist.
+        return false; // File doesn't exist.
     }
 
 #ifndef Q_OS_WIN
@@ -284,9 +283,7 @@ bool KDesktopFile::tryExec() const
     const QStringList list = d->desktopGroup.readEntry("X-KDE-AuthorizeAction", QStringList());
 
     if (!list.isEmpty()) {
-        for (QStringList::ConstIterator it = list.begin();
-                it != list.end();
-                ++it) {
+        for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it) {
             if (!KAuthorized::authorize((*it).trimmed())) {
                 return false;
             }
@@ -314,24 +311,23 @@ bool KDesktopFile::tryExec() const
 /**
  * @return the filename as passed to the constructor.
  */
-//QString KDesktopFile::fileName() const { return backEnd->fileName(); }
+// QString KDesktopFile::fileName() const { return backEnd->fileName(); }
 
 /**
  * @return the resource type as passed to the constructor.
  */
-//QString
-//KDesktopFile::resource() const { return backEnd->resource(); }
+// QString
+// KDesktopFile::resource() const { return backEnd->resource(); }
 
 #if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 42)
-QStringList
-KDesktopFile::sortOrder() const
+QStringList KDesktopFile::sortOrder() const
 {
     Q_D(const KDesktopFile);
     return d->desktopGroup.readXdgListEntry("SortOrder");
 }
 #endif
 
-//void KDesktopFile::virtual_hook( int id, void* data )
+// void KDesktopFile::virtual_hook( int id, void* data )
 //{ KConfig::virtual_hook( id, data ); }
 
 QString KDesktopFile::readDocPath() const
@@ -344,7 +340,7 @@ KDesktopFile *KDesktopFile::copyTo(const QString &file) const
 {
     KDesktopFile *config = new KDesktopFile(QString());
     this->KConfig::copyTo(file, config);
-//  config->setDesktopGroup();
+    //  config->setDesktopGroup();
     return config;
 }
 

@@ -10,14 +10,14 @@
 #include "kconfigbackend_p.h"
 
 #include <QDateTime>
-#include <QStringList>
+#include <QDebug>
 #include <QDir>
 #include <QFileInfo>
 #include <QHash>
-#include <QDebug>
+#include <QStringList>
 
-#include "kconfigini_p.h"
 #include "kconfigdata.h"
+#include "kconfigini_p.h"
 
 typedef QExplicitlySharedDataPointer<KConfigBackend> BackendPtr;
 
@@ -38,7 +38,7 @@ void KConfigBackend::registerMappings(const KEntryMap & /*entryMap*/)
 
 BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 {
-    //qDebug() << "creating a backend for file" << file << "with system" << sys;
+    // qDebug() << "creating a backend for file" << file << "with system" << sys;
     KConfigBackend *backend = nullptr;
 
 #if 0 // TODO port to Qt5 plugin loading
@@ -61,7 +61,7 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
     Q_UNUSED(sys);
 #endif
 
-    //qDebug() << "default creation of the Ini backend";
+    // qDebug() << "default creation of the Ini backend";
     backend = new KConfigIniBackend;
     backend->setFilePath(file);
     return BackendPtr(backend);

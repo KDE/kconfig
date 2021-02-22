@@ -24,6 +24,7 @@ private Q_SLOTS:
     void testBaselineComparison();
     void testRunning_data();
     void testRunning();
+
 private:
     void appendFileDiff(const QString &oldFile, const QString &newFile);
 
@@ -31,4 +32,3 @@ private:
 };
 
 #endif
-

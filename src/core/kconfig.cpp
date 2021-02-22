@@ -19,20 +19,19 @@
 #include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
-#include <QCoreApplication>
-#include <QProcess>
+#include <QBasicMutex>
 #include <QByteArray>
+#include <QCoreApplication>
+#include <QDir>
 #include <QFile>
 #include <QLocale>
-#include <QDir>
+#include <QMutexLocker>
 #include <QProcess>
 #include <QSet>
-#include <QBasicMutex>
-#include <QMutexLocker>
 
 #if KCONFIG_USE_DBUS
-#include <QDBusMessage>
 #include <QDBusConnection>
+#include <QDBusMessage>
 #include <QDBusMetaType>
 #endif
 
@@ -51,12 +50,17 @@ static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
 #endif
 
-KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
-                               QStandardPaths::StandardLocation resourceType)
-    : openFlags(flags), resourceType(resourceType), mBackend(nullptr),
-      bDynamicBackend(true),  bDirty(false), bReadDefaults(false),
-      bFileImmutable(false), bForceGlobal(false), bSuppressGlobal(false),
-      configState(KConfigBase::NoAccess)
+KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
+    : openFlags(flags)
+    , resourceType(resourceType)
+    , mBackend(nullptr)
+    , bDynamicBackend(true)
+    , bDirty(false)
+    , bReadDefaults(false)
+    , bFileImmutable(false)
+    , bForceGlobal(false)
+    , bSuppressGlobal(false)
+    , configState(KConfigBase::NoAccess)
 {
     const bool isTestMode = QStandardPaths::isTestModeEnabled();
     // If sGlobalFileName was initialised and testMode has been toggled,
@@ -68,7 +72,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 
     static QBasicAtomicInt use_etc_kderc = Q_BASIC_ATOMIC_INITIALIZER(-1);
     if (use_etc_kderc.loadRelaxed() < 0) {
-        use_etc_kderc.storeRelaxed( !qEnvironmentVariableIsSet("KDE_SKIP_KDERC"));    // for unit tests
+        use_etc_kderc.storeRelaxed(!qEnvironmentVariableIsSet("KDE_SKIP_KDERC")); // for unit tests
     }
     if (use_etc_kderc.loadRelaxed()) {
         etc_kderc =
@@ -83,20 +87,20 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
         }
     }
 
-//    if (!mappingsRegistered) {
-//        KEntryMap tmp;
-//        if (!etc_kderc.isEmpty()) {
-//            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(etc_kderc, QLatin1String("INI"));
-//            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseDefaults);
-//        }
-//        const QString kde5rc(QDir::home().filePath(".kde5rc"));
-//        if (KStandardDirs::checkAccess(kde5rc, R_OK)) {
-//            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde5rc, QLatin1String("INI"));
-//            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseOptions());
-//        }
-//        KConfigBackend::registerMappings(tmp);
-//        mappingsRegistered = true;
-//    }
+    //    if (!mappingsRegistered) {
+    //        KEntryMap tmp;
+    //        if (!etc_kderc.isEmpty()) {
+    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(etc_kderc, QLatin1String("INI"));
+    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseDefaults);
+    //        }
+    //        const QString kde5rc(QDir::home().filePath(".kde5rc"));
+    //        if (KStandardDirs::checkAccess(kde5rc, R_OK)) {
+    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde5rc, QLatin1String("INI"));
+    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseOptions());
+    //        }
+    //        KConfigBackend::registerMappings(tmp);
+    //        mappingsRegistered = true;
+    //    }
 
     setLocale(QLocale().name());
 }
@@ -110,8 +114,7 @@ bool KConfigPrivate::lockLocal()
     return true;
 }
 
-void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &destination,
-                               KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const
+void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &destination, KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const
 {
     KEntryMap &otherMap = otherGroup->config()->d_ptr->entryMap;
     const int len = source.length();
@@ -144,7 +147,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
             newKey.mGroup.replace(0, len, destination);
         }
 
-        KEntry entry = entryMap[ entryMapIt.key() ];
+        KEntry entry = entryMap[entryMapIt.key()];
         dirtied = entry.bDirty = flags & KConfigBase::Persistent;
 
         if (flags & KConfigBase::Global) {
@@ -182,10 +185,7 @@ QString KConfigPrivate::expandString(const QString &value)
                 ++nEndPos;
                 aVarName = aValue.midRef(nDollarPos + 2, nEndPos - nDollarPos - 3);
             } else {
-                while (nEndPos < aValue.length() &&
-                        (aValue[nEndPos].isNumber() ||
-                         aValue[nEndPos].isLetter() ||
-                         aValue[nEndPos] == QLatin1Char('_'))) {
+                while (nEndPos < aValue.length() && (aValue[nEndPos].isNumber() || aValue[nEndPos].isLetter() || aValue[nEndPos] == QLatin1Char('_'))) {
                     ++nEndPos;
                 }
                 aVarName = aValue.midRef(nDollarPos + 1, nEndPos - nDollarPos - 1);
@@ -227,8 +227,7 @@ QString KConfigPrivate::expandString(const QString &value)
     return aValue;
 }
 
-KConfig::KConfig(const QString &file, OpenFlags mode,
-                 QStandardPaths::StandardLocation resourceType)
+KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
     : d_ptr(new KConfigPrivate(mode, resourceType))
 {
     d_ptr->changeFileName(file); // set the local file name
@@ -298,7 +297,7 @@ QStringList KConfigPrivate::groupList(const QByteArray &group) const
 static bool isGroupOrSubGroupMatch(const QByteArray &potentialGroup, const QByteArray &group)
 {
     if (!potentialGroup.startsWith(group)) {
-      return false;
+        return false;
     }
     return potentialGroup.length() == group.length() || potentialGroup[group.length()] == '\x1d';
 }
@@ -441,7 +440,7 @@ bool KConfig::sync()
             if (d->configState == ReadWrite && !tmp->lock()) {
                 qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
 
-                //unlock the local config if we're returning early
+                // unlock the local config if we're returning early
                 if (d->mBackend->isLocked()) {
                     d->mBackend->unlock();
                 }
@@ -484,9 +483,7 @@ void KConfigPrivate::notifyClients(const QHash<QString, QByteArrayList> &changes
 
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
 
-    QDBusMessage message = QDBusMessage::createSignal(path,
-                                                                                                QStringLiteral("org.kde.kconfig.notify"),
-                                                                                                QStringLiteral("ConfigChanged"));
+    QDBusMessage message = QDBusMessage::createSignal(path, QStringLiteral("org.kde.kconfig.notify"), QStringLiteral("ConfigChanged"));
     message.setArguments({QVariant::fromValue(changes)});
     QDBusConnection::sessionBus().send(message);
 #else
@@ -520,7 +517,7 @@ void KConfig::checkUpdate(const QString &id, const QString &updateFile)
     const QString cfg_id = updateFile + QLatin1Char(':') + id;
     const QStringList ids = cg.readEntry("update_info", QStringList());
     if (!ids.contains(cfg_id)) {
-        QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList { QStringLiteral("--check"), updateFile });
+        QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList{QStringLiteral("--check"), updateFile});
         reparseConfiguration();
     }
 }
@@ -550,15 +547,13 @@ QString KConfig::name() const
     return d->fileName;
 }
 
-
 KConfig::OpenFlags KConfig::openFlags() const
 {
     Q_D(const KConfig);
     return d->openFlags;
 }
 
-struct KConfigStaticData
-{
+struct KConfigStaticData {
     QString globalMainConfigName;
     // Keep a copy so we can use it in global dtors, after qApp is gone
     QStringList appArgs;
@@ -572,7 +567,7 @@ void KConfig::setMainConfigName(const QString &str)
 
 QString KConfig::mainConfigName()
 {
-    KConfigStaticData* data = globalData();
+    KConfigStaticData *data = globalData();
     if (data->appArgs.isEmpty())
         data->appArgs = QCoreApplication::arguments();
 
@@ -690,7 +685,7 @@ QStringList KConfigPrivate::getGlobalFiles() const
 void KConfigPrivate::parseGlobalFiles()
 {
     const QStringList globalFiles = getGlobalFiles();
-//    qDebug() << "parsing global files" << globalFiles;
+    //    qDebug() << "parsing global files" << globalFiles;
 
     // TODO: can we cache the values in etc_kderc / other global files
     //       on a per-application basis?
@@ -712,7 +707,6 @@ void KConfigPrivate::parseConfigFiles()
 {
     // can only read the file if there is a backend and a file name
     if (mBackend && !fileName.isEmpty()) {
-
         bFileImmutable = false;
 
         QList<QString> files;
@@ -745,7 +739,7 @@ void KConfigPrivate::parseConfigFiles()
             files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
         }
 
-//        qDebug() << "parsing local files" << files;
+        //        qDebug() << "parsing local files" << files;
 
         const QByteArray utf8Locale = locale.toUtf8();
         for (const QString &file : qAsConst(files)) {
@@ -762,8 +756,7 @@ void KConfigPrivate::parseConfigFiles()
                 }
             } else {
                 QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
-                bFileImmutable = (backend->parseConfig(utf8Locale, entryMap,
-                                                       KConfigBackend::ParseDefaults | KConfigBackend::ParseExpansions)
+                bFileImmutable = (backend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseDefaults | KConfigBackend::ParseExpansions)
                                   == KConfigBackend::ParseImmutable);
             }
 
@@ -844,7 +837,7 @@ bool KConfig::isImmutable() const
 bool KConfig::isGroupImmutableImpl(const QByteArray &aGroup) const
 {
     Q_D(const KConfig);
-    return isImmutable() || d->entryMap.getEntryOption(aGroup, {},{}, KEntryMap::EntryImmutable);
+    return isImmutable() || d->entryMap.getEntryOption(aGroup, {}, {}, KEntryMap::EntryImmutable);
 }
 
 #if KCONFIGCORE_BUILD_DEPRECATED_SINCE(4, 0)
@@ -925,13 +918,12 @@ bool KConfig::isConfigWritable(bool warnUser)
         errorMsg += QCoreApplication::translate("KConfig", "Please contact your system administrator.");
         QString cmdToExec = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
         if (!cmdToExec.isEmpty()) {
-            QProcess::execute(cmdToExec, QStringList()
-                              << QStringLiteral("--title") << QCoreApplication::applicationName()
-                              << QStringLiteral("--msgbox") << errorMsg);
+            QProcess::execute(cmdToExec,
+                              QStringList() << QStringLiteral("--title") << QCoreApplication::applicationName() << QStringLiteral("--msgbox") << errorMsg);
         }
     }
 
-    d->configState = allWritable ?  ReadWrite : ReadOnly; // update the read/write status
+    d->configState = allWritable ? ReadWrite : ReadOnly; // update the read/write status
 
     return allWritable;
 }
@@ -948,15 +940,13 @@ bool KConfig::hasGroupImpl(const QByteArray &aGroup) const
 
 bool KConfigPrivate::canWriteEntry(const QByteArray &group, const char *key, bool isDefault) const
 {
-    if (bFileImmutable ||
-            entryMap.getEntryOption(group, key, KEntryMap::SearchLocalized, KEntryMap::EntryImmutable)) {
+    if (bFileImmutable || entryMap.getEntryOption(group, key, KEntryMap::SearchLocalized, KEntryMap::EntryImmutable)) {
         return isDefault;
     }
     return true;
 }
 
-void KConfigPrivate::putData(const QByteArray &group, const char *key,
-                             const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand)
+void KConfigPrivate::putData(const QByteArray &group, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand)
 {
     KEntryMap::EntryOptions options = convertToOptions(flags);
 
@@ -987,8 +977,7 @@ void KConfigPrivate::revertEntry(const QByteArray &group, const char *key, KConf
     }
 }
 
-QByteArray KConfigPrivate::lookupData(const QByteArray &group, const char *key,
-                                      KEntryMap::SearchFlags flags) const
+QByteArray KConfigPrivate::lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags) const
 {
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
@@ -1000,8 +989,7 @@ QByteArray KConfigPrivate::lookupData(const QByteArray &group, const char *key,
     return it->mValue;
 }
 
-QString KConfigPrivate::lookupData(const QByteArray &group, const char *key,
-                                   KEntryMap::SearchFlags flags, bool *expand) const
+QString KConfigPrivate::lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags, bool *expand) const
 {
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;

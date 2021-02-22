@@ -27,8 +27,8 @@ void ConfigLoaderPrivate::parse(KConfigLoader *loader, QIODevice *xml)
 }
 
 ConfigLoaderHandler::ConfigLoaderHandler(KConfigLoader *config, ConfigLoaderPrivate *d)
-    : m_config(config),
-      d(d)
+    : m_config(config)
+    , d(d)
 {
     resetState();
 }
@@ -86,7 +86,7 @@ bool ConfigLoaderHandler::startElement(const QStringRef &localName, const QXmlSt
         for (const auto &attr : attrs) {
             const QStringRef name = attr.name();
             if (name.compare(QLatin1String("name"), Qt::CaseInsensitive) == 0) {
-                //qDebug() << "set group to" << attrs.value(i);
+                // qDebug() << "set group to" << attrs.value(i);
                 group = attr.value().toString();
             }
         }
@@ -137,7 +137,7 @@ bool ConfigLoaderHandler::characters(const QStringRef &ch)
 
 bool ConfigLoaderHandler::endElement(const QStringRef &localName)
 {
-//     qDebug() << "ConfigLoaderHandler::endElement(" << localName << qName;
+    //     qDebug() << "ConfigLoaderHandler::endElement(" << localName << qName;
     const QStringRef tag = localName;
     if (tag.compare(QLatin1String("entry"), Qt::CaseInsensitive) == 0) {
         addItem();
@@ -189,22 +189,16 @@ void ConfigLoaderHandler::addItem()
     } else if (m_type == QLatin1String("color")) {
         item = m_config->addItemColor(m_name, *d->newColor(), QColor(m_default), m_key);
     } else if (m_type == QLatin1String("datetime")) {
-        item = m_config->addItemDateTime(m_name, *d->newDateTime(),
-                                         QDateTime::fromString(m_default), m_key);
+        item = m_config->addItemDateTime(m_name, *d->newDateTime(), QDateTime::fromString(m_default), m_key);
     } else if (m_type == QLatin1String("enum")) {
         m_key = (m_key.isEmpty()) ? m_name : m_key;
-        KConfigSkeleton::ItemEnum *enumItem =
-            new KConfigSkeleton::ItemEnum(m_config->currentGroup(),
-                                          m_key, *d->newInt(),
-                                          m_enumChoices,
-                                          m_default.toUInt());
+        KConfigSkeleton::ItemEnum *enumItem = new KConfigSkeleton::ItemEnum(m_config->currentGroup(), m_key, *d->newInt(), m_enumChoices, m_default.toUInt());
         m_config->addItem(enumItem, m_name);
         item = enumItem;
     } else if (m_type == QLatin1String("font")) {
         item = m_config->addItemFont(m_name, *d->newFont(), QFont(m_default), m_key);
     } else if (m_type == QLatin1String("int")) {
-        KConfigSkeleton::ItemInt *intItem = m_config->addItemInt(m_name, *d->newInt(),
-                                            m_default.toInt(), m_key);
+        KConfigSkeleton::ItemInt *intItem = m_config->addItemInt(m_name, *d->newInt(), m_default.toInt(), m_key);
 
         if (m_haveMin) {
             intItem->setMinValue(m_min);
@@ -222,13 +216,11 @@ void ConfigLoaderHandler::addItem()
     } else if (m_type == QLatin1String("string")) {
         item = m_config->addItemString(m_name, *d->newString(), m_default, m_key);
     } else if (m_type == QLatin1String("stringlist")) {
-        //FIXME: the split() is naive and will break on lists with ,'s in them
-        //empty parts are not wanted in this case
-        item = m_config->addItemStringList(m_name, *d->newStringList(),
-                                           m_default.split(QLatin1Char(','), Qt::SkipEmptyParts), m_key);
+        // FIXME: the split() is naive and will break on lists with ,'s in them
+        // empty parts are not wanted in this case
+        item = m_config->addItemStringList(m_name, *d->newStringList(), m_default.split(QLatin1Char(','), Qt::SkipEmptyParts), m_key);
     } else if (m_type == QLatin1String("uint")) {
-        KConfigSkeleton::ItemUInt *uintItem =
-            m_config->addItemUInt(m_name, *d->newUint(), m_default.toUInt(), m_key);
+        KConfigSkeleton::ItemUInt *uintItem = m_config->addItemUInt(m_name, *d->newUint(), m_default.toUInt(), m_key);
         if (m_haveMin) {
             uintItem->setMinValue(m_min);
         }
@@ -238,15 +230,11 @@ void ConfigLoaderHandler::addItem()
         item = uintItem;
     } else if (m_type == QLatin1String("url")) {
         m_key = (m_key.isEmpty()) ? m_name : m_key;
-        KConfigSkeleton::ItemUrl *urlItem =
-            new KConfigSkeleton::ItemUrl(m_config->currentGroup(),
-                                         m_key, *d->newUrl(),
-                                         QUrl::fromUserInput(m_default));
+        KConfigSkeleton::ItemUrl *urlItem = new KConfigSkeleton::ItemUrl(m_config->currentGroup(), m_key, *d->newUrl(), QUrl::fromUserInput(m_default));
         m_config->addItem(urlItem, m_name);
         item = urlItem;
     } else if (m_type == QLatin1String("double")) {
-        KConfigSkeleton::ItemDouble *doubleItem = m_config->addItemDouble(m_name,
-                *d->newDouble(), m_default.toDouble(), m_key);
+        KConfigSkeleton::ItemDouble *doubleItem = m_config->addItemDouble(m_name, *d->newDouble(), m_default.toDouble(), m_key);
         if (m_haveMin) {
             doubleItem->setMinValue(m_min);
         }
@@ -262,8 +250,7 @@ void ConfigLoaderHandler::addItem()
         }
         item = m_config->addItemIntList(m_name, *d->newIntList(), defaultList, m_key);
     } else if (m_type == QLatin1String("longlong")) {
-        KConfigSkeleton::ItemLongLong *longlongItem = m_config->addItemLongLong(m_name,
-                *d->newLongLong(), m_default.toLongLong(), m_key);
+        KConfigSkeleton::ItemLongLong *longlongItem = m_config->addItemLongLong(m_name, *d->newLongLong(), m_default.toLongLong(), m_key);
         if (m_haveMin) {
             longlongItem->setMinValue(m_min);
         }
@@ -288,8 +275,7 @@ void ConfigLoaderHandler::addItem()
         QRect defaultRect;
         const QStringList tmpList = m_default.split(QLatin1Char(','));
         if (tmpList.size() >= 4) {
-            defaultRect.setCoords(tmpList[0].toInt(), tmpList[1].toInt(),
-                                  tmpList[2].toInt(), tmpList[3].toInt());
+            defaultRect.setCoords(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt(), tmpList[3].toInt());
         }
         item = m_config->addItemRect(m_name, *d->newRect(), defaultRect, m_key);
     } else if (m_type == QLatin1String("size")) {
@@ -301,8 +287,7 @@ void ConfigLoaderHandler::addItem()
         }
         item = m_config->addItemSize(m_name, *d->newSize(), defaultSize, m_key);
     } else if (m_type == QLatin1String("ulonglong")) {
-        KConfigSkeleton::ItemULongLong *ulonglongItem =
-            m_config->addItemULongLong(m_name, *d->newULongLong(), m_default.toULongLong(), m_key);
+        KConfigSkeleton::ItemULongLong *ulonglongItem = m_config->addItemULongLong(m_name, *d->newULongLong(), m_default.toULongLong(), m_key);
         if (m_haveMin) {
             ulonglongItem->setMinValue(m_min);
         }
@@ -345,25 +330,25 @@ void ConfigLoaderHandler::resetState()
 }
 
 KConfigLoader::KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(configFile, parent),
-      d(new ConfigLoaderPrivate)
+    : KConfigSkeleton(configFile, parent)
+    , d(new ConfigLoaderPrivate)
 {
     d->parse(this, xml);
 }
 
 KConfigLoader::KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(std::move(config), parent),
-      d(new ConfigLoaderPrivate)
+    : KConfigSkeleton(std::move(config), parent)
+    , d(new ConfigLoaderPrivate)
 {
     d->parse(this, xml);
 }
 
-//FIXME: obviously this is broken and should be using the group as the root,
+// FIXME: obviously this is broken and should be using the group as the root,
 //       but KConfigSkeleton does not currently support this. it will eventually though,
 //       at which point this can be addressed properly
 KConfigLoader::KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(KSharedConfig::openConfig(config.config()->name(), config.config()->openFlags(), config.config()->locationType()), parent),
-      d(new ConfigLoaderPrivate)
+    : KConfigSkeleton(KSharedConfig::openConfig(config.config()->name(), config.config()->openFlags(), config.config()->locationType()), parent)
+    , d(new ConfigLoaderPrivate)
 {
     KConfigGroup group = config.parent();
     d->baseGroup = config.name();
@@ -418,7 +403,7 @@ bool KConfigLoader::usrSave()
 {
     if (d->saveDefaults) {
         const auto listItems = items();
-        for (const auto& item : listItems) {
+        for (const auto &item : listItems) {
             config()->group(item->group()).writeEntry(item->key(), "");
         }
     }

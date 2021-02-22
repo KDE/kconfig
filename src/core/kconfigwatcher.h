@@ -10,8 +10,8 @@
 #include <QObject>
 #include <QSharedPointer>
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
 #include <kconfigcore_export.h>
 
@@ -23,7 +23,7 @@ class KConfigWatcherPrivate;
  * Notifies when another client has updated this config file with the Notify flag set.
  * @since 5.51
  */
-class KCONFIGCORE_EXPORT KConfigWatcher: public QObject
+class KCONFIGCORE_EXPORT KConfigWatcher : public QObject
 {
     Q_OBJECT
 public:

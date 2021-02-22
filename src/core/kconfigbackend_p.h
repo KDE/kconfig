@@ -10,12 +10,12 @@
 #ifndef KCONFIGBACKEND_H
 #define KCONFIGBACKEND_H
 
+#include <QExplicitlySharedDataPointer>
 #include <QObject>
 #include <QString>
-#include <QExplicitlySharedDataPointer>
 
-#include <kconfigcore_export.h>
 #include <kconfigbase.h>
+#include <kconfigcore_export.h>
 class KConfigBackendPrivate;
 
 class KEntryMap;
@@ -48,8 +48,7 @@ public:
      * @param system        the configuration system to use
      * @return a KConfigBackend object to be used with KConfig
      */
-    static QExplicitlySharedDataPointer<KConfigBackend> create(const QString &fileName = QString(),
-            const QString &system = QString());
+    static QExplicitlySharedDataPointer<KConfigBackend> create(const QString &fileName = QString(), const QString &system = QString());
 
     /**
      * Registers mappings from directories/files to configuration systems
@@ -99,9 +98,7 @@ public:
      * @param options See ParseOptions
      * @return See ParseInfo
      */
-    virtual ParseInfo parseConfig(const QByteArray &locale,
-                                  KEntryMap &pWriteBackMap,
-                                  ParseOptions options = ParseOptions()) = 0;
+    virtual ParseInfo parseConfig(const QByteArray &locale, KEntryMap &pWriteBackMap, ParseOptions options = ParseOptions()) = 0;
 
     /**
      * Write the @em dirty entries to permanent storage
@@ -112,8 +109,7 @@ public:
      *
      * @return @c true if the write was successful, @c false if writing the configuration failed
      */
-    virtual bool writeConfig(const QByteArray &locale, KEntryMap &entryMap,
-                             WriteOptions options) = 0;
+    virtual bool writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options) = 0;
 
     /**
      * If isWritable() returns false, writeConfig() will always fail.
@@ -185,8 +181,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigBackend::WriteOptions)
 /**
  * Register a KConfig backend when it is contained in a loadable module
  */
-#define K_EXPORT_KCONFIGBACKEND(libname, classname) \
-    K_PLUGIN_FACTORY(factory, registerPlugin<classname>();)
+#define K_EXPORT_KCONFIGBACKEND(libname, classname) K_PLUGIN_FACTORY(factory, registerPlugin<classname>();)
 #endif
 
 #endif // KCONFIGBACKEND_H

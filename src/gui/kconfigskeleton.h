@@ -32,13 +32,11 @@ public:
     /**
      * Class for handling a color preferences item.
      */
-    class KCONFIGGUI_EXPORT ItemColor: public KConfigSkeletonGenericItem < QColor >
+    class KCONFIGGUI_EXPORT ItemColor : public KConfigSkeletonGenericItem<QColor>
     {
     public:
         /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
-        ItemColor(const QString &_group, const QString &_key,
-                  QColor &reference,
-                  const QColor &defaultValue = QColor(128, 128, 128));
+        ItemColor(const QString &_group, const QString &_key, QColor &reference, const QColor &defaultValue = QColor(128, 128, 128));
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
@@ -56,12 +54,11 @@ public:
     /**
      * Class for handling a font preferences item.
      */
-    class KCONFIGGUI_EXPORT ItemFont: public KConfigSkeletonGenericItem < QFont >
+    class KCONFIGGUI_EXPORT ItemFont : public KConfigSkeletonGenericItem<QFont>
     {
     public:
         /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
-        ItemFont(const QString &_group, const QString &_key, QFont &reference,
-                 const QFont &defaultValue = QFont());
+        ItemFont(const QString &_group, const QString &_key, QFont &reference, const QFont &defaultValue = QFont());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
@@ -103,9 +100,7 @@ public:
      * @param key Key used in config file. If key is null, name is used as key.
      * @return The created item
      */
-    ItemColor *addItemColor(const QString &name, QColor &reference,
-                            const QColor &defaultValue = QColor(128, 128, 128),
-                            const QString &key = QString());
+    ItemColor *addItemColor(const QString &name, QColor &reference, const QColor &defaultValue = QColor(128, 128, 128), const QString &key = QString());
 
     /**
      * Register an item of type QFont.
@@ -118,10 +113,7 @@ public:
      * @param key Key used in config file. If key is null, name is used as key.
      * @return The created item
      */
-    ItemFont *addItemFont(const QString &name, QFont &reference,
-                          const QFont &defaultValue = QFont(),
-                          const QString &key = QString());
-
+    ItemFont *addItemFont(const QString &name, QFont &reference, const QFont &defaultValue = QFont(), const QString &key = QString());
 };
 
 #endif

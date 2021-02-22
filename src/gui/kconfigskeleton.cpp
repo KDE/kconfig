@@ -20,9 +20,7 @@ KConfigSkeleton::KConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
 {
 }
 
-KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key,
-                                      QColor &reference,
-                                      const QColor &defaultValue)
+KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key, QColor &reference, const QColor &defaultValue)
     : KConfigSkeletonGenericItem<QColor>(_group, _key, reference, defaultValue)
 {
 }
@@ -51,9 +49,7 @@ QVariant KConfigSkeleton::ItemColor::property() const
     return QVariant(mReference);
 }
 
-KConfigSkeleton::ItemFont::ItemFont(const QString &_group, const QString &_key,
-                                    QFont &reference,
-                                    const QFont &defaultValue)
+KConfigSkeleton::ItemFont::ItemFont(const QString &_group, const QString &_key, QFont &reference, const QFont &defaultValue)
     : KConfigSkeletonGenericItem<QFont>(_group, _key, reference, defaultValue)
 {
 }
@@ -82,23 +78,18 @@ QVariant KConfigSkeleton::ItemFont::property() const
     return QVariant(mReference);
 }
 
-KConfigSkeleton::ItemColor *KConfigSkeleton::addItemColor(const QString &name, QColor &reference,
-        const QColor &defaultValue, const QString &key)
+KConfigSkeleton::ItemColor *KConfigSkeleton::addItemColor(const QString &name, QColor &reference, const QColor &defaultValue, const QString &key)
 {
     KConfigSkeleton::ItemColor *item;
-    item = new KConfigSkeleton::ItemColor(d->mCurrentGroup, key.isNull() ? name : key,
-                                          reference, defaultValue);
+    item = new KConfigSkeleton::ItemColor(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
     addItem(item, name);
     return item;
 }
 
-KConfigSkeleton::ItemFont *KConfigSkeleton::addItemFont(const QString &name, QFont &reference,
-        const QFont &defaultValue, const QString &key)
+KConfigSkeleton::ItemFont *KConfigSkeleton::addItemFont(const QString &name, QFont &reference, const QFont &defaultValue, const QString &key)
 {
     KConfigSkeleton::ItemFont *item;
-    item = new KConfigSkeleton::ItemFont(d->mCurrentGroup, key.isNull() ? name : key,
-                                         reference, defaultValue);
+    item = new KConfigSkeleton::ItemFont(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
     addItem(item, name);
     return item;
 }
-

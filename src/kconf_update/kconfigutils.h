@@ -18,7 +18,6 @@ class KConfigGroup;
 
 namespace KConfigUtils
 {
-
 bool hasGroup(KConfig *, const QStringList &);
 
 KConfigGroup openGroup(KConfig *, const QStringList &);

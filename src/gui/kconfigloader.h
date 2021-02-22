@@ -166,4 +166,4 @@ private:
     ConfigLoaderPrivate *const d;
 };
 
-#endif //multiple inclusion guard
+#endif // multiple inclusion guard

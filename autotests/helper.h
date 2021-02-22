@@ -15,13 +15,14 @@ class DefaultLocale
 {
 public:
     DefaultLocale()
-    : m_defaultLocale()
+        : m_defaultLocale()
     {
     }
     ~DefaultLocale()
     {
         QLocale::setDefault(m_defaultLocale);
     }
+
 private:
     QLocale m_defaultLocale;
 };

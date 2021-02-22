@@ -13,15 +13,11 @@
 
 #include "KConfigHeaderGenerator.h"
 
-#include <QTextStream>
 #include <QDebug>
+#include <QTextStream>
 #include <iostream>
 
-KConfigHeaderGenerator::KConfigHeaderGenerator(
-    const QString &inputFile,
-    const QString &baseDir,
-    const KConfigParameters &cfg,
-    ParseResult &result)
+KConfigHeaderGenerator::KConfigHeaderGenerator(const QString &inputFile, const QString &baseDir, const KConfigParameters &cfg, ParseResult &result)
     : KConfigCodeGeneratorBase(inputFile, baseDir, baseDir + cfg.baseName + QLatin1Char('.') + cfg.headerExtension, cfg, result)
 {
 }
@@ -78,9 +74,7 @@ void KConfigHeaderGenerator::doClassDefinition()
     }
 
     // Member variables
-    if (!cfg().memberVariables.isEmpty()
-        && cfg().memberVariables != QLatin1String("private")
-        && cfg().memberVariables != QLatin1String("dpointer")) {
+    if (!cfg().memberVariables.isEmpty() && cfg().memberVariables != QLatin1String("private") && cfg().memberVariables != QLatin1String("dpointer")) {
         stream() << "  " << cfg().memberVariables << ":\n";
     }
 
@@ -212,7 +206,7 @@ void KConfigHeaderGenerator::implementEnums()
         implementChoiceEnums(entry, choices);
         implementValueEnums(entry, values);
     }
-   stream() << '\n';
+    stream() << '\n';
 }
 
 void KConfigHeaderGenerator::createSignals()
@@ -239,19 +233,15 @@ void KConfigHeaderGenerator::createSignals()
     // a last comma, as it's valid c++.
     for (int i = 0, end = parseResult.signalList.size(); i < end; i++) {
         auto signal = parseResult.signalList.at(i);
-        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x"
-                 << Qt::hex
-                 << val;
-        if (i != end-1) {
+        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x" << Qt::hex << val;
+        if (i != end - 1) {
             stream() << ",\n";
         }
 
         val <<= 1;
     }
     stream() << '\n';
-    stream() << whitespace() << "};"
-             << Qt::dec
-             << "\n\n";
+    stream() << whitespace() << "};" << Qt::dec << "\n\n";
 
     stream() << "  Q_SIGNALS:";
     for (const Signal &signal : qAsConst(parseResult.signalList)) {
@@ -364,7 +354,7 @@ void KConfigHeaderGenerator::createForwardDeclarations()
     }
 }
 
-void KConfigHeaderGenerator::createProperties(const CfgEntry *entry, const QString& returnType)
+void KConfigHeaderGenerator::createProperties(const CfgEntry *entry, const QString &returnType)
 {
     if (!cfg().generateProperties) {
         return;
@@ -377,8 +367,8 @@ void KConfigHeaderGenerator::createProperties(const CfgEntry *entry, const QStri
         stream() << " WRITE " << setFunction(entry->name);
         stream() << " NOTIFY " << signal;
 
-        //If we have the modified signal, we'll also need
-        //the changed signal as well
+        // If we have the modified signal, we'll also need
+        // the changed signal as well
         Signal s;
         s.name = signal;
         s.modify = true;
@@ -417,12 +407,10 @@ void KConfigHeaderGenerator::createSetters(const CfgEntry *entry)
 
     stream() << whitespace() << "void " << setFunction(entry->name) << "( ";
     if (!entry->param.isEmpty()) {
-        stream() <<cppType(entry->paramType) << " i, ";
+        stream() << cppType(entry->paramType) << " i, ";
     }
 
-    stream() << (cfg().useEnumTypes && entry->type == QLatin1String("Enum")
-        ? enumType(entry, cfg().globalEnums)
-        : param(entry->type));
+    stream() << (cfg().useEnumTypes && entry->type == QLatin1String("Enum") ? enumType(entry, cfg().globalEnums) : param(entry->type));
 
     stream() << " v )";
 
@@ -481,7 +469,7 @@ void KConfigHeaderGenerator::createImmutableGetters(const CfgEntry *entry)
     stream() << whitespace() << "";
     stream() << "bool " << immutableFunction(entry->name) << "(";
     if (!entry->param.isEmpty()) {
-        stream() << " " << cppType(entry->paramType)<< " i ";
+        stream() << " " << cppType(entry->paramType) << " i ";
     }
     stream() << ")" << Const();
     // function body inline only if not using dpointer
@@ -506,11 +494,9 @@ void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QSt
         return;
     }
     stream() << whitespace() << "/**\n";
-    stream() << whitespace() << "  Get Item object corresponding to " << entry->name << "()"
-        << '\n';
+    stream() << whitespace() << "  Get Item object corresponding to " << entry->name << "()" << '\n';
     stream() << whitespace() << "*/\n";
-    stream() << whitespace() << "Item" << itemType(entry->type) << " *"
-        << getFunction(entry->name) << "Item(";
+    stream() << whitespace() << "Item" << itemType(entry->type) << " *" << getFunction(entry->name) << "Item(";
     if (!entry->param.isEmpty()) {
         stream() << " " << cppType(entry->paramType) << " i ";
     }
@@ -530,7 +516,7 @@ void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QSt
 void KConfigHeaderGenerator::createDefaultValueMember(const CfgEntry *entry)
 {
     // Default value Accessor
-    if (! ((cfg().allDefaultGetters || cfg().defaultGetters.contains(entry->name)) && !entry->defaultValue.isEmpty())) {
+    if (!((cfg().allDefaultGetters || cfg().defaultGetters.contains(entry->name)) && !entry->defaultValue.isEmpty())) {
         return;
     }
     stream() << whitespace() << "/**\n";

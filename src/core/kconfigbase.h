@@ -56,9 +56,9 @@ public:
          */
         Normal = Persistent,
         /**<
-        * Save the entry to the application specific config file without
-        * a locale tag. This is the default.
-        */
+         * Save the entry to the application specific config file without
+         * a locale tag. This is the default.
+         */
 
     };
     /**

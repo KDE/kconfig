@@ -15,8 +15,8 @@
 #define KCONFIGXMLPARSER_H
 
 #include <QDomDocument>
-#include <QString>
 #include <QRegularExpression>
+#include <QString>
 
 #include "KConfigCommonStructs.h"
 #include "KConfigParameters.h"

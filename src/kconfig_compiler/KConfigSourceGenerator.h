@@ -17,21 +17,18 @@
 #include "KConfigCodeGeneratorBase.h"
 #include "KConfigCommonStructs.h"
 
-#include <QString>
 #include <QList>
+#include <QString>
 
 class KConfigParameters;
 class CfgEntry;
 class QTextStream;
 struct ParseResult;
 
-class KConfigSourceGenerator : public KConfigCodeGeneratorBase {
+class KConfigSourceGenerator : public KConfigCodeGeneratorBase
+{
 public:
-    KConfigSourceGenerator(
-        const QString &inputFile,
-        const QString &baseDir,
-        const KConfigParameters &parameters,
-        ParseResult &parseResult);
+    KConfigSourceGenerator(const QString &inputFile, const QString &baseDir, const KConfigParameters &parameters, ParseResult &parseResult);
 
     void start() override;
 

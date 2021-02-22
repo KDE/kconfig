@@ -29,13 +29,12 @@ void KDesktopFileTest::testRead()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       "Type= Application\n"
-       "Name=My Application\n"
-       "Icon = foo\n"
-       "MimeType =text/plain;image/png;\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          "Type= Application\n"
+          "Name=My Application\n"
+          "Icon = foo\n"
+          "MimeType =text/plain;image/png;\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     QVERIFY(KDesktopFile::isDesktopFile(fileName));
@@ -44,8 +43,7 @@ void KDesktopFileTest::testRead()
     QVERIFY(df.hasApplicationType());
     QCOMPARE(df.readName(), QString::fromLatin1("My Application"));
     QCOMPARE(df.readIcon(), QString::fromLatin1("foo"));
-    QCOMPARE(df.readMimeTypes(), QStringList() << QString::fromLatin1("text/plain")
-                                              << QString::fromLatin1("image/png"));
+    QCOMPARE(df.readMimeTypes(), QStringList() << QString::fromLatin1("text/plain") << QString::fromLatin1("image/png"));
     QVERIFY(!df.hasLinkType());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
 }
@@ -57,17 +55,15 @@ void KDesktopFileTest::testReadDirectory()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       "Type=Directory\n"
-       "SortOrder=2.desktop;1.desktop;\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          "Type=Directory\n"
+          "SortOrder=2.desktop;1.desktop;\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
     QCOMPARE(df.readType(), QString::fromLatin1("Directory"));
-    QCOMPARE(df.sortOrder(), QStringList() << QString::fromLatin1("2.desktop")
-                                           << QString::fromLatin1("1.desktop"));
+    QCOMPARE(df.sortOrder(), QStringList() << QString::fromLatin1("2.desktop") << QString::fromLatin1("1.desktop"));
 }
 #endif
 
@@ -77,19 +73,19 @@ void KDesktopFileTest::testReadLocalized_data()
     QTest::addColumn<QString>("translation");
 
     const QString german = QStringLiteral("Meine Anwendung");
-    const QString swiss  = QStringLiteral("Mein Anwendungsli");
+    const QString swiss = QStringLiteral("Mein Anwendungsli");
 
-    QTest::newRow("de")           << QLocale(QLocale::German)                << german;
-    QTest::newRow("de_DE")        << QLocale(QStringLiteral("de_DE"))        << german;
+    QTest::newRow("de") << QLocale(QLocale::German) << german;
+    QTest::newRow("de_DE") << QLocale(QStringLiteral("de_DE")) << german;
     QTest::newRow("de_DE@bayern") << QLocale(QStringLiteral("de_DE@bayern")) << german;
-    QTest::newRow("de@bayern")    << QLocale(QStringLiteral("de@bayern"))    << german;
-    QTest::newRow("de@freiburg")  << QLocale(QStringLiteral("de@freiburg"))  << QStringLiteral("Mein Anwendungsle");
+    QTest::newRow("de@bayern") << QLocale(QStringLiteral("de@bayern")) << german;
+    QTest::newRow("de@freiburg") << QLocale(QStringLiteral("de@freiburg")) << QStringLiteral("Mein Anwendungsle");
     // For CH we have a special translation
-    QTest::newRow("de_CH")      << QLocale(QLocale::German, QLocale::Switzerland) << swiss;
-    QTest::newRow("de_CH@bern") << QLocale(QStringLiteral("de_CH@bern"))          << swiss;
+    QTest::newRow("de_CH") << QLocale(QLocale::German, QLocale::Switzerland) << swiss;
+    QTest::newRow("de_CH@bern") << QLocale(QStringLiteral("de_CH@bern")) << swiss;
     // Austria should fall back to "de"
-    QTest::newRow("de_AT")       << QLocale(QLocale::German, QLocale::Austria) << german;
-    QTest::newRow("de_AT@tirol") << QLocale(QStringLiteral("de_AT@tirol"))              << german;
+    QTest::newRow("de_AT") << QLocale(QLocale::German, QLocale::Austria) << german;
+    QTest::newRow("de_AT@tirol") << QLocale(QStringLiteral("de_AT@tirol")) << german;
     // no translation for French
     QTest::newRow("fr") << QLocale(QLocale::French) << QStringLiteral("My Application");
 }
@@ -100,15 +96,14 @@ void KDesktopFileTest::testReadLocalized()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       "Type=Application\n"
-       "Name=My Application\n"
-       "Name[de]=Meine Anwendung\n"
-       "Name[de@freiburg]=Mein Anwendungsle\n"
-       "Name[de_CH]=Mein Anwendungsli\n"
-       "Icon=foo\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          "Type=Application\n"
+          "Name=My Application\n"
+          "Name[de]=Meine Anwendung\n"
+          "Name[de@freiburg]=Mein Anwendungsle\n"
+          "Name[de_CH]=Mein Anwendungsli\n"
+          "Icon=foo\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     QVERIFY(KDesktopFile::isDesktopFile(fileName));
@@ -129,10 +124,9 @@ void KDesktopFileTest::testSuccessfulTryExec()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       "TryExec=whoami\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          "TryExec=whoami\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
@@ -145,10 +139,9 @@ void KDesktopFileTest::testUnsuccessfulTryExec()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       "TryExec=/does/not/exist\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          "TryExec=/does/not/exist\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
@@ -161,18 +154,17 @@ void KDesktopFileTest::testActionGroup()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       // make sure escaping of ';' using "\;" works
-       "Actions=encrypt;semi\\;colon;decrypt;\n"
-       "[Desktop Action encrypt]\n"
-       "Name=Encrypt file\n"
-       "[Desktop Action decrypt]\n"
-       "Name=Decrypt file\n"
-       // no escaping needed in group header
-       "[Desktop Action semi;colon]\n"
-       "Name=With semicolon\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          // make sure escaping of ';' using "\;" works
+          "Actions=encrypt;semi\\;colon;decrypt;\n"
+          "[Desktop Action encrypt]\n"
+          "Name=Encrypt file\n"
+          "[Desktop Action decrypt]\n"
+          "Name=Decrypt file\n"
+          // no escaping needed in group header
+          "[Desktop Action semi;colon]\n"
+          "Name=With semicolon\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
@@ -200,12 +192,11 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
-    ts <<
-       "[Desktop Entry]\n"
-       "Type=Application\n"
-       "Name=My Application\n"
-       "Exec=kfoo\n"
-       "\n";
+    ts << "[Desktop Entry]\n"
+          "Type=Application\n"
+          "Name=My Application\n"
+          "Exec=kfoo\n"
+          "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     QVERIFY(!KDesktopFile::isAuthorizedDesktopFile(fileName));
@@ -232,14 +223,13 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
         QVERIFY(file.open());
         const QString fileName = file.fileName();
         QTextStream ts(&file);
-        ts <<
-        "[Desktop Entry]\n"
-        "Type=Application\n"
-        "Name=My Application\n"
-        "Exec=kfoo\n"
-        "TryExec=bash\n"
-        "X-KDE-AuthorizeAction=someAction"
-        "\n";
+        ts << "[Desktop Entry]\n"
+              "Type=Application\n"
+              "Name=My Application\n"
+              "Exec=kfoo\n"
+              "TryExec=bash\n"
+              "X-KDE-AuthorizeAction=someAction"
+              "\n";
         file.close();
 
         KDesktopFile desktopFile(fileName);
@@ -250,14 +240,13 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
         QVERIFY(file.open());
         const QString fileName = file.fileName();
         QTextStream ts(&file);
-        ts <<
-        "[Desktop Entry]\n"
-        "Type=Application\n"
-        "Name=My Application\n"
-        "Exec=kfoo\n"
-        "TryExec=bash\n"
-        "X-KDE-AuthorizeAction=someBlockedAction"
-        "\n";
+        ts << "[Desktop Entry]\n"
+              "Type=Application\n"
+              "Name=My Application\n"
+              "Exec=kfoo\n"
+              "TryExec=bash\n"
+              "X-KDE-AuthorizeAction=someBlockedAction"
+              "\n";
         file.close();
 
         KDesktopFile desktopFile(fileName);

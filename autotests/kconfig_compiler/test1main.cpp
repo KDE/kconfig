@@ -4,9 +4,9 @@
     SPDX-License-Identifier: MIT
 */
 #include "test1.h"
-#include <QGuiApplication>
 #include <KConfig>
 #include <KConfigGroup>
+#include <QGuiApplication>
 
 int main(int argc, char **argv)
 {

@@ -9,8 +9,8 @@
 #ifndef KSTANDARDSHORTCUT_H
 #define KSTANDARDSHORTCUT_H
 
-#include <QString>
 #include <QKeySequence>
+#include <QString>
 
 #include <kconfiggui_export.h>
 
@@ -42,8 +42,8 @@ namespace KStandardShortcut
  * Defines the identifier of all standard accelerators.
  */
 enum StandardShortcut {
-    //C++ requires that the value of an enum symbol be one more than the previous one.
-    //This means that everything will be well-ordered from here on.
+    // C++ requires that the value of an enum symbol be one more than the previous one.
+    // This means that everything will be well-ordered from here on.
     AccelNone = 0,
     // File menu
     Open, ///< Open file.

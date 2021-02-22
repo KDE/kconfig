@@ -12,7 +12,10 @@
 class KEMailSettingsPrivate
 {
 public:
-    KEMailSettingsPrivate() : m_pConfig(nullptr) {}
+    KEMailSettingsPrivate()
+        : m_pConfig(nullptr)
+    {
+    }
     ~KEMailSettingsPrivate()
     {
         delete m_pConfig;
@@ -97,7 +100,7 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     };
     return QString();
 }
-void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString  &v)
+void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString &v)
 {
     KConfigGroup cg(p->m_pConfig, QLatin1String("PROFILE_") + p->m_sCurrentProfile);
     switch (s) {
@@ -191,7 +194,6 @@ void KEMailSettings::setDefault(const QString &s)
     p->m_pConfig->group("Defaults").writeEntry("Profile", s);
     p->m_pConfig->sync();
     p->m_sDefaultProfile = s;
-
 }
 
 void KEMailSettings::setProfile(const QString &s)

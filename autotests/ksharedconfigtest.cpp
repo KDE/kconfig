@@ -6,8 +6,8 @@
 */
 
 #include <QTest>
-#include <ksharedconfig.h>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 class KSharedConfigTest : public QObject
 {
@@ -18,6 +18,7 @@ private Q_SLOTS:
     void testReadWrite();
     void testReadWriteSync();
     void testQrcFile();
+
 private:
     QString m_path;
 };
@@ -26,8 +27,8 @@ void KSharedConfigTest::initTestCase()
 {
     QStandardPaths::setTestModeEnabled(true);
 
-    m_path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation)
-            + QLatin1Char('/') + QCoreApplication::applicationName() + QStringLiteral("rc");
+    m_path =
+        QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + QCoreApplication::applicationName() + QStringLiteral("rc");
     QFile::remove(m_path);
 }
 

@@ -14,20 +14,18 @@
 #ifndef KCONFIGCOMMONSTRUCTS_H
 #define KCONFIGCOMMONSTRUCTS_H
 
+#include <QList>
 #include <QString>
 #include <QVector>
-#include <QList>
 
 #include "KConfigParameters.h"
 
-struct Param
-{
+struct Param {
     QString name;
     QString type;
 };
 
-struct Signal
-{
+struct Signal {
     QString name;
     QString label;
     QList<Param> arguments;
@@ -53,9 +51,13 @@ public:
     class Choices
     {
     public:
-        Choices() {}
+        Choices()
+        {
+        }
         Choices(const QList<Choice> &d, const QString &n, const QString &p)
-            : prefix(p), choices(d), mName(n)
+            : prefix(p)
+            , choices(d)
+            , mName(n)
         {
             int i = n.indexOf(QLatin1String("::"));
             if (i >= 0) {
@@ -76,6 +78,7 @@ public:
         {
             return !mExternalQual.isEmpty();
         }
+
     private:
         QString mName;
         QString mExternalQual;
@@ -161,33 +164,18 @@ QString filenameOnly(const QString &path);
 
 QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg);
 
-QString translatedString(
-    const KConfigParameters &cfg,
-    const QString &string,
-    const QString &context = QString(),
-    const QString &param = QString(),
-    const QString &paramValue = QString());
+QString translatedString(const KConfigParameters &cfg,
+                         const QString &string,
+                         const QString &context = QString(),
+                         const QString &param = QString(),
+                         const QString &paramValue = QString());
 
 // TODO: Sanitize those functions.
-QString newItem(
-    const CfgEntry *entry,
-    const QString &key,
-    const QString &defaultValue,
-    const KConfigParameters &cfg,
-    const QString &param = QString());
+QString newItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param = QString());
 
-QString newInnerItem(
-    const CfgEntry *entry,
-    const QString &key,
-    const QString &defaultValue,
-    const KConfigParameters &cfg,
-    const QString &param = QString());
+QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param = QString());
 
-QString userTextsFunctions(
-    const CfgEntry *e,
-    const KConfigParameters &cfg,
-    QString itemVarStr = QString(),
-    const QString &i = QString());
+QString userTextsFunctions(const CfgEntry *e, const KConfigParameters &cfg, QString itemVarStr = QString(), const QString &i = QString());
 
 QString paramString(const QString &s, const CfgEntry *e, int i);
 QString paramString(const QString &group, const QList<Param> &parameters);

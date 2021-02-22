@@ -7,9 +7,9 @@
 */
 
 #include "ksharedconfig.h"
+#include "kconfig_p.h"
 #include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
-#include "kconfig_p.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QThreadStorage>
@@ -40,8 +40,8 @@ public:
 };
 
 static QThreadStorage<GlobalSharedConfigList *> s_storage;
-template <typename T>
-T * perThreadGlobalStatic()
+template<typename T>
+T *perThreadGlobalStatic()
 {
     if (!s_storage.hasLocalData()) {
         s_storage.setLocalData(new T);
@@ -50,7 +50,10 @@ T * perThreadGlobalStatic()
 }
 
 // Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList), but per thread:
-static GlobalSharedConfigList *globalSharedConfigList() { return perThreadGlobalStatic<GlobalSharedConfigList>(); }
+static GlobalSharedConfigList *globalSharedConfigList()
+{
+    return perThreadGlobalStatic<GlobalSharedConfigList>();
+}
 
 void _k_globalMainConfigSync()
 {
@@ -60,9 +63,7 @@ void _k_globalMainConfigSync()
     }
 }
 
-KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
-        OpenFlags flags,
-        QStandardPaths::StandardLocation resType)
+KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
 {
     QString fileName(_fileName);
     GlobalSharedConfigList *list = globalSharedConfigList();
@@ -78,11 +79,9 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName,
     }
 
     for (auto *cfg : qAsConst(*list)) {
-        if (cfg->name() == fileName &&
-                cfg->d_ptr->openFlags == flags &&
-                cfg->locationType() == resType
-//                cfg->backend()->type() == backend
-           ) {
+        if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType
+            //                cfg->backend()->type() == backend
+        ) {
             return KSharedConfigPtr(cfg);
         }
     }
@@ -121,9 +120,7 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
     return openConfig(fileName, SimpleConfig, QStandardPaths::AppDataLocation);
 }
 
-KSharedConfig::KSharedConfig(const QString &fileName,
-                             OpenFlags flags,
-                             QStandardPaths::StandardLocation resType)
+KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
     : KConfig(fileName, flags, resType)
 {
     globalSharedConfigList()->append(this);

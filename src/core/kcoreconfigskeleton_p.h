@@ -15,8 +15,10 @@ class KCoreConfigSkeletonPrivate
 {
 public:
     KCoreConfigSkeletonPrivate()
-        : mCurrentGroup(QStringLiteral("No Group")), mUseDefaults(false)
-    {}
+        : mCurrentGroup(QStringLiteral("No Group"))
+        , mUseDefaults(false)
+    {
+    }
     ~KCoreConfigSkeletonPrivate()
     {
         KConfigSkeletonItem::List::ConstIterator it;
@@ -40,7 +42,8 @@ public:
     KConfigSkeletonItemPrivate()
         : mIsImmutable(true)
         , mWriteFlags(KConfigBase::Normal)
-    {}
+    {
+    }
     virtual ~KConfigSkeletonItemPrivate();
     bool mIsImmutable; ///< Indicates this item is immutable
     KConfigBase::WriteConfigFlags mWriteFlags; ///< The flags to pass to calls of writeEntry() and revertToDefault()
@@ -78,6 +81,5 @@ public:
     QVariant mLoadedValue;
     std::function<void()> mNotifyFunction;
 };
-
 
 #endif

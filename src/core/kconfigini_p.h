@@ -10,15 +10,15 @@
 #ifndef KCONFIGINI_P_H
 #define KCONFIGINI_P_H
 
-#include <kconfigcore_export.h>
 #include <kconfigbackend_p.h>
+#include <kconfigcore_export.h>
 
 class QLockFile;
 class QIODevice;
 
 class KConfigIniBackend : public KConfigBackend
 {
-Q_OBJECT
+    Q_OBJECT
 private:
     QLockFile *lockFile;
 
@@ -28,15 +28,9 @@ public:
     KConfigIniBackend();
     ~KConfigIniBackend() override;
 
-    ParseInfo parseConfig(const QByteArray &locale,
-                          KEntryMap &entryMap,
-                          ParseOptions options) override;
-    ParseInfo parseConfig(const QByteArray &locale,
-                          KEntryMap &entryMap,
-                          ParseOptions options,
-                          bool merging);
-    bool writeConfig(const QByteArray &locale, KEntryMap &entryMap,
-                     WriteOptions options) override;
+    ParseInfo parseConfig(const QByteArray &locale, KEntryMap &entryMap, ParseOptions options) override;
+    ParseInfo parseConfig(const QByteArray &locale, KEntryMap &entryMap, ParseOptions options, bool merging);
+    bool writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options) override;
 
     bool isWritable() const override;
     QString nonWritableErrorMessage() const override;
@@ -48,7 +42,6 @@ public:
     bool isLocked() const override;
 
 protected:
-
     enum StringType {
         GroupString = 0,
         KeyString = 1,
@@ -62,8 +55,7 @@ protected:
     static QString warningProlog(const QFile &file, int line);
 
     void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map);
-    void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map,
-                      bool defaultGroup, bool &firstEntry);
+    void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool &firstEntry);
 };
 
 #endif // KCONFIGINI_P_H

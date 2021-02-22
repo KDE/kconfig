@@ -9,8 +9,8 @@
 #ifndef KSHAREDCONFIG_H
 #define KSHAREDCONFIG_H
 
-#include <kconfig.h>
 #include <QExplicitlySharedDataPointer>
+#include <kconfig.h>
 
 /**
  * \class KSharedConfig ksharedconfig.h <KSharedConfig>
@@ -28,7 +28,7 @@
  * using reparseConfiguration after a manual change notification, just like you have
  * to do between processes.
  */
-class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData //krazy:exclude=dpointer (only for refcounting)
+class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData // krazy:exclude=dpointer (only for refcounting)
 {
 public:
     typedef QExplicitlySharedDataPointer<KSharedConfig> Ptr;
@@ -58,9 +58,8 @@ public:
      *
      * @sa KConfig
      */
-    static KSharedConfig::Ptr openConfig(const QString &fileName = QString(),
-                                         OpenFlags mode = FullConfig,
-                                         QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+    static KSharedConfig::Ptr
+    openConfig(const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     /**
      * Creates a KSharedConfig object to manipulate a configuration file suitable
@@ -91,9 +90,7 @@ private:
     KConfigGroup groupImpl(const QByteArray &aGroup) override;
     const KConfigGroup groupImpl(const QByteArray &aGroup) const override;
 
-    KSharedConfig(const QString &file, OpenFlags mode,
-                  QStandardPaths::StandardLocation resourceType);
-
+    KSharedConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
 };
 
 typedef KSharedConfig::Ptr KSharedConfigPtr;

@@ -10,26 +10,26 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <QCommandLineOption>
+#include <QCommandLineParser>
 #include <QCoreApplication>
+#include <QDomAttr>
 #include <QFile>
 #include <QFileInfo>
-#include <QSettings>
-#include <QTextStream>
-#include <QDomAttr>
 #include <QRegularExpression>
+#include <QSettings>
 #include <QStringList>
-#include <QCommandLineParser>
-#include <QCommandLineOption>
+#include <QTextStream>
 
-#include <ostream>
-#include <iostream>
-#include <stdlib.h>
 #include <algorithm>
+#include <iostream>
+#include <ostream>
+#include <stdlib.h>
 
 #include "../../kconfig_version.h"
-#include "KConfigParameters.h"
 #include "KConfigCommonStructs.h"
 #include "KConfigHeaderGenerator.h"
+#include "KConfigParameters.h"
 #include "KConfigSourceGenerator.h"
 #include "KConfigXmlParser.h"
 
@@ -114,12 +114,12 @@ QString setFunction(const QString &n, const QString &className)
 
 QString changeSignalName(const QString &n)
 {
-    return n+QStringLiteral("Changed");
+    return n + QStringLiteral("Changed");
 }
 
 QString getDefaultFunction(const QString &n, const QString &className)
 {
-    QString result = QLatin1String("default") +  n + QLatin1String("Value");
+    QString result = QLatin1String("default") + n + QLatin1String("Value");
     result[7] = result.at(7).toUpper();
 
     if (!className.isEmpty()) {
@@ -173,7 +173,9 @@ static QString quoteString(const QString &s)
 
 QString literalString(const QString &str)
 {
-    const bool isAscii = std::none_of(str.cbegin(), str.cend(), [](const QChar ch) { return ch.unicode() > 127; });
+    const bool isAscii = std::none_of(str.cbegin(), str.cend(), [](const QChar ch) {
+        return ch.unicode() > 127;
+    });
 
     if (isAscii) {
         return QLatin1String{"QStringLiteral( "} + quoteString(str) + QLatin1String{" )"};
@@ -246,7 +248,7 @@ QString param(const QString &t)
         return QStringLiteral("const QList<QUrl> &");
     } else {
         std::cerr << "kconfig_compiler_kf5 does not support type \"" << qPrintable(type) << "\"" << std::endl;
-        return QStringLiteral("QString"); //For now, but an assert would be better
+        return QStringLiteral("QString"); // For now, but an assert would be better
     }
 }
 
@@ -300,7 +302,7 @@ QString cppType(const QString &t)
         return QStringLiteral("QList<QUrl>");
     } else {
         std::cerr << "kconfig_compiler_kf5 does not support type \"" << qPrintable(type) << "\"" << std::endl;
-        return QStringLiteral("QString"); //For now, but an assert would be better
+        return QStringLiteral("QString"); // For now, but an assert would be better
     }
 }
 
@@ -308,7 +310,7 @@ QString defaultValue(const QString &t)
 {
     const QString type = t.toLower();
     if (type == QLatin1String("string")) {
-        return QStringLiteral("\"\"");    // Use empty string, not null string!
+        return QStringLiteral("\"\""); // Use empty string, not null string!
     } else if (type == QLatin1String("stringlist")) {
         return QStringLiteral("QStringList()");
     } else if (type == QLatin1String("font")) {
@@ -340,18 +342,18 @@ QString defaultValue(const QString &t)
     } else if (type == QLatin1String("enum")) {
         return QStringLiteral("0");
     } else if (type == QLatin1String("path")) {
-        return QStringLiteral("\"\"");    // Use empty string, not null string!
+        return QStringLiteral("\"\""); // Use empty string, not null string!
     } else if (type == QLatin1String("pathlist")) {
         return QStringLiteral("QStringList()");
     } else if (type == QLatin1String("password")) {
-        return QStringLiteral("\"\"");    // Use empty string, not null string!
+        return QStringLiteral("\"\""); // Use empty string, not null string!
     } else if (type == QLatin1String("url")) {
         return QStringLiteral("QUrl()");
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("QList<QUrl>()");
     } else {
         std::cerr << "Error, kconfig_compiler_kf5 does not support the \"" << qPrintable(type) << "\" type!" << std::endl;
-        return QStringLiteral("QString"); //For now, but an assert would be better
+        return QStringLiteral("QString"); // For now, but an assert would be better
     }
 }
 
@@ -381,8 +383,8 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
     QString result;
 
     if (!cfg.itemAccessors && !cfg.dpointer) {
-        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type)
-                  + QLatin1String{"  *item"} + fCap + argSuffix + QLatin1String{";\n"};
+        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type) + QLatin1String{"  *item"} + fCap
+            + argSuffix + QLatin1String{";\n"};
     }
 
     if (!e->signalList.isEmpty()) {
@@ -434,8 +436,8 @@ QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 
 QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
 {
-    QString t = QLatin1String{"new "} + cfg.inherits + QLatin1String{"::Item"} + itemType(entry->type)
-                + QLatin1String{"( currentGroup(), "} + key + QLatin1String{", "} + varPath( entry->name, cfg ) + param;
+    QString t = QLatin1String{"new "} + cfg.inherits + QLatin1String{"::Item"} + itemType(entry->type) + QLatin1String{"( currentGroup(), "} + key
+        + QLatin1String{", "} + varPath(entry->name, cfg) + param;
 
     if (entry->type == QLatin1String("Enum")) {
         t += QLatin1String{", values"} + entry->name;
@@ -523,8 +525,7 @@ QString translatedString(const KConfigParameters &cfg, const QString &string, co
 
     case KConfigParameters::KdeTranslation:
         if (!cfg.translationDomain.isEmpty() && !context.isEmpty()) {
-            result += QLatin1String{"i18ndc("} + quoteString(cfg.translationDomain) + QLatin1String{", "}
-                      + quoteString(context) + QLatin1String{", "};
+            result += QLatin1String{"i18ndc("} + quoteString(cfg.translationDomain) + QLatin1String{", "} + quoteString(context) + QLatin1String{", "};
         } else if (!cfg.translationDomain.isEmpty()) {
             result += QLatin1String{"i18nd("} + quoteString(cfg.translationDomain) + QLatin1String{", "};
         } else if (!context.isEmpty()) {
@@ -573,20 +574,18 @@ QString userTextsFunctions(const CfgEntry *e, const KConfigParameters &cfg, QStr
     return txt;
 }
 
-
 // returns the member mutator implementation
 // which should go in the h file if inline
 // or the cpp file if not inline
-//TODO: Fix add Debug Method, it should also take the debug string.
+// TODO: Fix add Debug Method, it should also take the debug string.
 void addDebugMethod(QTextStream &out, const KConfigParameters &cfg, const QString &n)
 {
     if (cfg.qCategoryLoggingName.isEmpty()) {
-       out << "  qDebug() << \"" << setFunction(n);
+        out << "  qDebug() << \"" << setFunction(n);
     } else {
-       out << "  qCDebug(" << cfg.qCategoryLoggingName << ") << \"" << setFunction(n);
+        out << "  qCDebug(" << cfg.qCategoryLoggingName << ") << \"" << setFunction(n);
     }
 }
-
 
 // returns the member get default implementation
 // which should go in the h file if inline
@@ -633,7 +632,7 @@ QString itemAccessorBody(const CfgEntry *e, const KConfigParameters &cfg)
     return result;
 }
 
-//indents text adding X spaces per line
+// indents text adding X spaces per line
 QString indent(QString text, int spaces)
 {
     QString result;
@@ -651,7 +650,7 @@ QString indent(QString text, int spaces)
     return result;
 }
 
-bool hasErrors(KConfigXmlParser &parser, const ParseResult& parseResult, const KConfigParameters &cfg)
+bool hasErrors(KConfigXmlParser &parser, const ParseResult &parseResult, const KConfigParameters &cfg)
 {
     Q_UNUSED(parser)
 
@@ -671,18 +670,18 @@ bool hasErrors(KConfigXmlParser &parser, const ParseResult& parseResult, const K
     }
 
     /* TODO: For some reason some configuration files prefer to have *no* entries
-    * at all in it, and the generated code is mostly bogus as KConfigXT will not
-    * handle save / load / properties, etc, nothing.
-    *
-    * The first of those files that I came across are qmakebuilderconfig.kcfg from the KDevelop
-    * project.
-    * I think we should remove the possibility of creating configuration classes from configuration
-    * files that don't really have configuration in it. but I'm changing this right now to allow
-    * kdevelop files to pass.
-    *
-    * Remove for KDE 6
-    * (to make things more interesting, it failed in a code that's never used within KDevelop... )
-    */
+     * at all in it, and the generated code is mostly bogus as KConfigXT will not
+     * handle save / load / properties, etc, nothing.
+     *
+     * The first of those files that I came across are qmakebuilderconfig.kcfg from the KDevelop
+     * project.
+     * I think we should remove the possibility of creating configuration classes from configuration
+     * files that don't really have configuration in it. but I'm changing this right now to allow
+     * kdevelop files to pass.
+     *
+     * Remove for KDE 6
+     * (to make things more interesting, it failed in a code that's never used within KDevelop... )
+     */
     if (parseResult.entries.isEmpty()) {
         std::cerr << "No entries." << std::endl;
         return false;
@@ -699,13 +698,13 @@ int main(int argc, char **argv)
 
     QString inputFilename, codegenFilename;
 
-    QCommandLineOption targetDirectoryOption(QStringList { QStringLiteral("d"), QStringLiteral("directory") },
-            QCoreApplication::translate("main", "Directory to generate files in [.]"),
-            QCoreApplication::translate("main", "directory"), QStringLiteral("."));
+    QCommandLineOption targetDirectoryOption(QStringList{QStringLiteral("d"), QStringLiteral("directory")},
+                                             QCoreApplication::translate("main", "Directory to generate files in [.]"),
+                                             QCoreApplication::translate("main", "directory"),
+                                             QStringLiteral("."));
 
-    QCommandLineOption licenseOption (
-        QStringList { QStringLiteral("l"), QStringLiteral("license") },
-        QCoreApplication::translate("main", "Display software license."));
+    QCommandLineOption licenseOption(QStringList{QStringLiteral("l"), QStringLiteral("license")},
+                                     QCoreApplication::translate("main", "Display software license."));
 
     QCommandLineParser parser;
 
@@ -713,7 +712,7 @@ int main(int argc, char **argv)
     parser.addPositionalArgument(QStringLiteral("file.kcfgc"), QStringLiteral("Code generation options file"));
 
     parser.addOption(targetDirectoryOption);
-    parser.addOption (licenseOption);
+    parser.addOption(licenseOption);
 
     parser.addVersionOption();
     parser.addHelpOption();
@@ -732,7 +731,7 @@ int main(int argc, char **argv)
     const QStringList args = parser.positionalArguments();
     if (args.count() < 2) {
         std::cerr << "Too few arguments." << std::endl;
-	    return 1;
+        return 1;
     }
 
     if (args.count() > 2) {
