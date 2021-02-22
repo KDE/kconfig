@@ -21,10 +21,7 @@ public:
     }
     ~KCoreConfigSkeletonPrivate()
     {
-        KConfigSkeletonItem::List::ConstIterator it;
-        for (it = mItems.constBegin(); it != mItems.constEnd(); ++it) {
-            delete *it;
-        }
+        qDeleteAll(mItems);
     }
     QString mCurrentGroup;
 

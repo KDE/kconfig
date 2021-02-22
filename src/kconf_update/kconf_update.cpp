@@ -169,8 +169,8 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         cg.writeEntry("updateInfoAdded", true);
         updateFiles = findUpdateFiles(false);
 
-        for (QStringList::ConstIterator it = updateFiles.constBegin(); it != updateFiles.constEnd(); ++it) {
-            checkFile(*it);
+        for (const auto &file : qAsConst(updateFiles)) {
+            checkFile(file);
         }
         updateFiles.clear();
     }
@@ -689,8 +689,8 @@ void KonfUpdate::gotAllGroups()
     }
 
     const QStringList allGroups = m_oldConfig1->groupList();
-    for (QStringList::ConstIterator it = allGroups.begin(); it != allGroups.end(); ++it) {
-        m_oldGroup = QStringList() << *it;
+    for (const auto &grp : allGroups) {
+        m_oldGroup = QStringList{grp};
         m_newGroup = m_oldGroup;
         gotAllKeys();
     }
@@ -699,12 +699,12 @@ void KonfUpdate::gotAllGroups()
 void KonfUpdate::gotOptions(const QString &_options)
 {
     const QStringList options = _options.split(QLatin1Char{','});
-    for (QStringList::ConstIterator it = options.begin(); it != options.end(); ++it) {
-        if ((*it).toLower().trimmed() == QLatin1String("copy")) {
-            m_bCopy = true;
-        }
+    for (const auto &opt : options) {
+        const auto normalizedOpt = opt.toLower().trimmed();
 
-        if ((*it).toLower().trimmed() == QLatin1String("overwrite")) {
+        if (normalizedOpt == QLatin1String("copy")) {
+            m_bCopy = true;
+        } else if (normalizedOpt == QLatin1String("overwrite")) {
             m_bOverwrite = true;
         }
     }
@@ -719,8 +719,8 @@ void KonfUpdate::copyGroup(const KConfigBase *cfg1, const QString &group1, KConf
 void KonfUpdate::copyGroup(const KConfigGroup &cg1, KConfigGroup &cg2)
 {
     // Copy keys
-    QMap<QString, QString> list = cg1.entryMap();
-    for (QMap<QString, QString>::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it) {
+    const auto map = cg1.entryMap();
+    for (auto it = map.cbegin(); it != map.cend(); ++it) {
         if (m_bOverwrite || !cg2.hasKey(it.key())) {
             cg2.writeEntry(it.key(), it.value());
         }
@@ -819,8 +819,8 @@ void KonfUpdate::gotScript(const QString &_script)
         if (m_oldGroup.isEmpty()) {
             // Write all entries to tmpFile;
             const QStringList grpList = m_oldConfig1->groupList();
-            for (QStringList::ConstIterator it = grpList.begin(); it != grpList.end(); ++it) {
-                copyGroup(m_oldConfig1, *it, &cfg, *it);
+            for (const auto &grp : grpList) {
+                copyGroup(m_oldConfig1, grp, &cfg, grp);
             }
         } else {
             KConfigGroup cg1 = KConfigUtils::openGroup(m_oldConfig1, m_oldGroup);

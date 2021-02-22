@@ -126,8 +126,8 @@ QByteArray KConfigGroupPrivate::serializeList(const QList<QByteArray> &list)
     QByteArray value;
 
     if (!list.isEmpty()) {
-        QList<QByteArray>::ConstIterator it = list.constBegin();
-        const QList<QByteArray>::ConstIterator end = list.constEnd();
+        auto it = list.cbegin();
+        const auto end = list.cend();
 
         value = QByteArray(*it).replace('\\', QByteArrayLiteral("\\\\")).replace(',', QByteArrayLiteral("\\,"));
 

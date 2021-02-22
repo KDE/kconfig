@@ -27,7 +27,7 @@
 static void preProcessDefault(QString &defaultValue,
                               const QString &name,
                               const QString &type,
-                              const CfgEntry::Choices &choices,
+                              const CfgEntry::Choices &cfgChoices,
                               QString &code,
                               const KConfigParameters &cfg)
 {
@@ -51,13 +51,12 @@ static void preProcessDefault(QString &defaultValue,
             cpp << "  QStringList default" << name << ";\n";
         }
         const QStringList defaults = defaultValue.split(QLatin1Char(','));
-        QStringList::ConstIterator it;
-        for (it = defaults.constBegin(); it != defaults.constEnd(); ++it) {
+        for (const auto &val : defaults) {
             cpp << "  default" << name << ".append( ";
             if (type == QLatin1String("UrlList")) {
                 cpp << "QUrl::fromUserInput(";
             }
-            cpp << "QString::fromUtf8( \"" << *it << "\" ) ";
+            cpp << "QString::fromUtf8( \"" << val << "\" ) ";
             if (type == QLatin1String("UrlList")) {
                 cpp << ") ";
             }
@@ -66,7 +65,7 @@ static void preProcessDefault(QString &defaultValue,
         defaultValue = QLatin1String("default") + name;
 
     } else if (type == QLatin1String("Color") && !defaultValue.isEmpty()) {
-        const QRegularExpression colorRe(QRegularExpression::anchoredPattern(QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?")));
+        static const QRegularExpression colorRe(QRegularExpression::anchoredPattern(QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?")));
 
         if (colorRe.match(defaultValue).hasMatch()) {
             defaultValue = QLatin1String("QColor( ") + defaultValue + QLatin1String(" )");
@@ -75,13 +74,12 @@ static void preProcessDefault(QString &defaultValue,
         }
 
     } else if (type == QLatin1String("Enum")) {
-        QList<CfgEntry::Choice>::ConstIterator it;
-        for (it = choices.choices.constBegin(); it != choices.choices.constEnd(); ++it) {
-            if ((*it).name == defaultValue) {
-                if (cfg.globalEnums && choices.name().isEmpty()) {
-                    defaultValue.prepend(choices.prefix);
+        for (const auto &choice : cfgChoices.choices) {
+            if (choice.name == defaultValue) {
+                if (cfg.globalEnums && cfgChoices.name().isEmpty()) {
+                    defaultValue.prepend(cfgChoices.prefix);
                 } else {
-                    defaultValue.prepend(enumTypeQualifier(name, choices) + choices.prefix);
+                    defaultValue.prepend(enumTypeQualifier(name, cfgChoices) + cfgChoices.prefix);
                 }
                 break;
             }
@@ -96,9 +94,8 @@ static void preProcessDefault(QString &defaultValue,
         cpp << "  QList<int> default" << name << ";\n";
         if (!defaultValue.isEmpty()) {
             const QStringList defaults = defaultValue.split(QLatin1Char(','));
-            QStringList::ConstIterator it;
-            for (it = defaults.constBegin(); it != defaults.constEnd(); ++it) {
-                cpp << "  default" << name << ".append( " << *it << " );\n";
+            for (const auto &defaultVal : defaults) {
+                cpp << "  default" << name << ".append( " << defaultVal << " );\n";
             }
         }
         defaultValue = QLatin1String("default") + name;

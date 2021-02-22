@@ -251,9 +251,9 @@ QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
 {
     KConfigGroup cg(KSharedConfig::openConfig(), "KDE Control Module Restrictions");
     QStringList result;
-    for (QStringList::ConstIterator it = menuIds.begin(); it != menuIds.end(); ++it) {
-        if (cg.readEntry(*it, true)) {
-            result.append(*it);
+    for (const auto &id : menuIds) {
+        if (cg.readEntry(id, true)) {
+            result.append(id);
         }
     }
     return result;

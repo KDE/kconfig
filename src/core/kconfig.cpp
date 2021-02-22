@@ -125,7 +125,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
     // as dirty erroneously
     bool dirtied = false;
 
-    for (KEntryMap::ConstIterator entryMapIt(entryMap.constBegin()); entryMapIt != entryMap.constEnd(); ++entryMapIt) {
+    for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
         const QByteArray &group = entryMapIt.key().mGroup;
 
         if (!group.startsWith(source)) { // nothing to do
@@ -266,7 +266,7 @@ QStringList KConfig::groupList() const
     Q_D(const KConfig);
     QSet<QString> groups;
 
-    for (KEntryMap::ConstIterator entryMapIt(d->entryMap.constBegin()); entryMapIt != d->entryMap.constEnd(); ++entryMapIt) {
+    for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
         const QByteArray group = key.mGroup;
         if (key.mKey.isNull() && !group.isEmpty() && group != "<default>" && group != "$Version") {
@@ -283,7 +283,7 @@ QStringList KConfigPrivate::groupList(const QByteArray &group) const
     QByteArray theGroup = group + '\x1d';
     QSet<QString> groups;
 
-    for (KEntryMap::ConstIterator entryMapIt(entryMap.constBegin()); entryMapIt != entryMap.constEnd(); ++entryMapIt) {
+    for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
         if (key.mKey.isNull() && key.mGroup.startsWith(theGroup)) {
             const QString groupname = QString::fromUtf8(key.mGroup.mid(theGroup.length()));

@@ -298,8 +298,8 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
 {
     QByteArray currentGroup;
     bool groupIsImmutable = false;
-    const KEntryMapConstIterator end = map.constEnd();
-    for (KEntryMapConstIterator it = map.constBegin(); it != end; ++it) {
+    const auto end = map.cend();
+    for (auto it = map.cbegin(); it != end; ++it) {
         const KEntryKey &key = it.key();
 
         // Either process the default group or all others
@@ -746,13 +746,13 @@ public:
 
 QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, StringType type)
 {
-    if (aString.isEmpty()) {
+    const int len = aString.size();
+    if (len == 0) {
         return aString;
     }
-    const int l = aString.length();
 
-    QByteArray result; // Guesstimated that it's good to avoid data() initialization for a length of l*4
-    result.resize(l * 4); // Maximum 4x as long as source string due to \x<ab> escape sequences
+    QByteArray result; // Guesstimated that it's good to avoid data() initialization for a length of len*4
+    result.resize(len * 4); // Maximum 4x as long as source string due to \x<ab> escape sequences
     const char *s = aString.constData();
     int i = 0;
     char *data = result.data();
@@ -766,7 +766,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
     }
     Utf8Char utf8;
 
-    for (; i < l; ++i /*, r++*/) {
+    for (; i < len; ++i) {
         switch (s[i]) {
         default:
             if (utf8.addByte(s[i])) {

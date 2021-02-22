@@ -214,8 +214,8 @@ void KConfigSourceGenerator::createConstructorParameterList()
         stream() << (parseResult.parameters.isEmpty() ? "" : ",");
     }
 
-    for (QList<Param>::ConstIterator it = parseResult.parameters.constBegin(); it != parseResult.parameters.constEnd(); ++it) {
-        if (it != parseResult.parameters.constBegin()) {
+    for (auto it = parseResult.parameters.cbegin(); it != parseResult.parameters.cend(); ++it) {
+        if (it != parseResult.parameters.cbegin()) {
             stream() << ",";
         }
         stream() << " " << param((*it).type) << " " << (*it).name;
@@ -634,8 +634,9 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
 
         stream() << "  if ( " << varPath(QStringLiteral("settingsChanged"), cfg()) << " & " << signalEnumName(signal.name) << " )\n";
         stream() << "    Q_EMIT " << signal.name << "(";
-        QList<Param>::ConstIterator it, itEnd = signal.arguments.constEnd();
-        for (it = signal.arguments.constBegin(); it != itEnd;) {
+        auto it = signal.arguments.cbegin();
+        const auto itEnd = signal.arguments.cend();
+        while (it != itEnd) {
             Param argument = *it;
             bool cast = false;
             if (cfg().useEnumTypes && argument.type == QLatin1String("Enum")) {

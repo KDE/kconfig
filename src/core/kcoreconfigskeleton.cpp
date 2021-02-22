@@ -11,6 +11,8 @@
 
 #include <QUrl>
 
+#include <algorithm>
+
 static QString obscuredString(const QString &str)
 {
     QString result;
@@ -606,7 +608,7 @@ void KCoreConfigSkeleton::ItemEnum::readConfig(KConfig *config)
         int i = 0;
         mReference = -1;
         QString tmp = cg.readEntry(mKey, QString()).toLower();
-        for (QList<Choice>::ConstIterator it = mChoices.constBegin(); it != mChoices.constEnd(); ++it, ++i) {
+        for (auto it = mChoices.cbegin(); it != mChoices.cend(); ++it, ++i) {
             QString choiceName = (*it).name;
             if (valueForChoice(choiceName).toLower() == tmp) {
                 mReference = i;
@@ -1180,19 +1182,18 @@ bool KCoreConfigSkeleton::useDefaults(bool b)
     }
 
     d->mUseDefaults = b;
-    KConfigSkeletonItem::List::ConstIterator it;
-    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
-        (*it)->swapDefault();
+    for (auto *skelItem : qAsConst(d->mItems)) {
+        skelItem->swapDefault();
     }
+
     usrUseDefaults(b);
     return !d->mUseDefaults;
 }
 
 void KCoreConfigSkeleton::setDefaults()
 {
-    KConfigSkeletonItem::List::ConstIterator it;
-    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
-        (*it)->setDefault();
+    for (auto *skelItem : qAsConst(d->mItems)) {
+        skelItem->setDefault();
     }
     usrSetDefaults();
 }
@@ -1205,42 +1206,33 @@ void KCoreConfigSkeleton::load()
 
 void KCoreConfigSkeleton::read()
 {
-    KConfigSkeletonItem::List::ConstIterator it;
-    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
-        (*it)->readConfig(d->mConfig.data());
+    for (auto *skelItem : qAsConst(d->mItems)) {
+        skelItem->readConfig(d->mConfig.data());
     }
     usrRead();
 }
 
 bool KCoreConfigSkeleton::isDefaults() const
 {
-    KConfigSkeletonItem::List::ConstIterator it;
-    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
-        if (!(*it)->isDefault()) {
-            return false;
-        }
-    }
-    return true;
+    return std::all_of(d->mItems.cbegin(), d->mItems.cend(), [](KConfigSkeletonItem *skelItem) {
+        return skelItem->isDefault();
+    });
 }
 
 bool KCoreConfigSkeleton::isSaveNeeded() const
 {
-    KConfigSkeletonItem::List::ConstIterator it;
-    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
-        if ((*it)->isSaveNeeded()) {
-            return true;
-        }
-    }
-    return false;
+    return std::any_of(d->mItems.cbegin(), d->mItems.cend(), [](KConfigSkeletonItem *skelItem) {
+        return skelItem->isSaveNeeded();
+    });
 }
 
 bool KCoreConfigSkeleton::save()
 {
     // qDebug();
-    KConfigSkeletonItem::List::ConstIterator it;
-    for (it = d->mItems.constBegin(); it != d->mItems.constEnd(); ++it) {
-        (*it)->writeConfig(d->mConfig.data());
+    for (auto *skelItem : qAsConst(d->mItems)) {
+        skelItem->writeConfig(d->mConfig.data());
     }
+
     if (!usrSave()) {
         return false;
     }

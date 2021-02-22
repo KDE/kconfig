@@ -8,20 +8,22 @@
 
 #include "kdesktopfile.h"
 
-#ifndef Q_OS_WIN
-#include <unistd.h>
-#endif
+#include "kauthorized.h"
+#include "kconfig_core_log_settings.h"
+#include "kconfig_p.h"
+#include "kconfiggroup.h"
+#include "kconfigini_p.h"
 
 #include <QDir>
 #include <QFileInfo>
 #include <QStandardPaths>
 #include <QUrl>
 
-#include "kauthorized.h"
-#include "kconfig_core_log_settings.h"
-#include "kconfig_p.h"
-#include "kconfiggroup.h"
-#include "kconfigini_p.h"
+#ifndef Q_OS_WIN
+#include <unistd.h>
+#endif
+
+#include <algorithm>
 
 class KDesktopFilePrivate : public KConfigPrivate
 {
@@ -281,17 +283,15 @@ bool KDesktopFile::tryExec() const
         }
     }
     const QStringList list = d->desktopGroup.readEntry("X-KDE-AuthorizeAction", QStringList());
-
-    if (!list.isEmpty()) {
-        for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it) {
-            if (!KAuthorized::authorize((*it).trimmed())) {
-                return false;
-            }
-        }
+    const auto isNotAuthorized = std::any_of(list.cbegin(), list.cend(), [](const QString &action) {
+        return !KAuthorized::authorize(action.trimmed());
+    });
+    if (isNotAuthorized) {
+        return false;
     }
 
     // See also KService::username()
-    bool su = d->desktopGroup.readEntry("X-KDE-SubstituteUID", false);
+    const bool su = d->desktopGroup.readEntry("X-KDE-SubstituteUID", false);
     if (su) {
         QString user = d->desktopGroup.readEntry("X-KDE-Username", QString());
         if (user.isEmpty()) {

@@ -312,7 +312,7 @@ bool KEntryMap::revertEntry(const QByteArray &group, const QByteArray &key, KEnt
         KEntryKey defaultKey(entry.key());
         defaultKey.bDefault = true;
         // qDebug() << "looking up default entry with key=" << defaultKey;
-        const ConstIterator defaultEntry = constFind(defaultKey);
+        const auto defaultEntry = constFind(defaultKey);
         if (defaultEntry != constEnd()) {
             Q_ASSERT(defaultEntry.key().bDefault);
             // qDebug() << "found, update entry";

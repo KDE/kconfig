@@ -254,8 +254,10 @@ void KConfigHeaderGenerator::createSignals()
             stream() << whitespace() << "*/\n";
         }
         stream() << whitespace() << "void " << signal.name << "(";
-        QList<Param>::ConstIterator it, itEnd = signal.arguments.constEnd();
-        for (it = signal.arguments.constBegin(); it != itEnd;) {
+
+        auto it = signal.arguments.cbegin();
+        const auto itEnd = signal.arguments.cend();
+        while (it != itEnd) {
             Param argument = *it;
             QString type = param(argument.type);
             if (cfg().useEnumTypes && argument.type == QLatin1String("Enum")) {
