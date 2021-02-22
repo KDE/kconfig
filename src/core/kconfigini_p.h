@@ -52,7 +52,7 @@ protected:
     enum StringType {
         GroupString = 0,
         KeyString = 1,
-        ValueString = 2
+        ValueString = 2,
     };
     // Warning: this modifies data in-place. Other BufferFragment objects referencing the same buffer
     // fragment will get their data modified too.

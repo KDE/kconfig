@@ -70,7 +70,7 @@ public:
     enum ParseOption {
         ParseGlobal = 1, /// entries should be marked as @em global
         ParseDefaults = 2, /// entries should be marked as @em default
-        ParseExpansions = 4 /// entries are allowed to be marked as @em expandable
+        ParseExpansions = 4, /// entries are allowed to be marked as @em expandable
     };
     Q_FLAG(ParseOption)
     /// @typedef typedef QFlags<ParseOption> ParseOptions
@@ -88,7 +88,7 @@ public:
     enum ParseInfo {
         ParseOk, /// the configuration was opened read/write
         ParseImmutable, /// the configuration is @em immutable
-        ParseOpenError /// the configuration could not be opened
+        ParseOpenError, /// the configuration could not be opened
     };
 
     /**

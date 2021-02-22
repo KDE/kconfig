@@ -28,7 +28,7 @@ struct ParseResult;
 /* This class manages the base of writing a C - Based code */
 class KConfigCodeGeneratorBase {
 public:
-    enum ScopeFinalizer {None, Semicolon};
+    enum ScopeFinalizer {None, Semicolon,};
 
     KConfigCodeGeneratorBase(
         const QString &inputFileName,  // The kcfg file

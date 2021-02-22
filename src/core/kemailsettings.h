@@ -91,7 +91,7 @@ public:
     enum Extension {
         POP3,
         SMTP,
-        OTHER
+        OTHER,
     };
 
     /**

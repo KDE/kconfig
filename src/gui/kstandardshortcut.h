@@ -144,7 +144,7 @@ enum StandardShortcut {
     CreateFolder, ///< Create a folder. @since 5.74
     // Insert new items here!
 
-    StandardShortcutCount // number of standard shortcuts
+    StandardShortcutCount, // number of standard shortcuts
 };
 
 /**

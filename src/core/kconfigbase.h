@@ -54,7 +54,7 @@ public:
          * Implied persistent
          * @since 5.51
          */
-        Normal = Persistent
+        Normal = Persistent,
         /**<
         * Save the entry to the application specific config file without
         * a locale tag. This is the default.
@@ -172,7 +172,11 @@ public:
     /**
      * Possible return values for accessMode().
      */
-    enum AccessMode { NoAccess, ReadOnly, ReadWrite };
+    enum AccessMode {
+        NoAccess,
+        ReadOnly,
+        ReadWrite,
+    };
 
     /**
      * Returns the access mode of the app-config object.

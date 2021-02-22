@@ -543,7 +543,11 @@ public:
     class KCONFIGCORE_EXPORT ItemString: public KConfigSkeletonGenericItem < QString >
     {
     public:
-        enum Type { Normal, Password, Path };
+        enum Type {
+            Normal,
+            Password,
+            Path,
+        };
 
         /** @enum Type
             The type of string that is held in this item

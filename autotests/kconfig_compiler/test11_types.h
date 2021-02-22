@@ -10,7 +10,12 @@
 class TimePeriod
 {
 public:
-    enum Units { Minutes, HoursMinutes, Days, Weeks };
+    enum Units {
+        Minutes,
+        HoursMinutes,
+        Days,
+        Weeks,
+    };
 };
 
 #endif

@@ -29,7 +29,7 @@ public:
 public:
     enum TranslationSystem {
         QtTranslation,
-        KdeTranslation
+        KdeTranslation,
     };
 
     // These are read from the .kcfgc configuration file

@@ -154,7 +154,7 @@ class KEntryMap : public QMap<KEntryKey, KEntry>
 public:
     enum SearchFlag {
         SearchDefaults = 1,
-        SearchLocalized = 2
+        SearchLocalized = 2,
     };
     Q_DECLARE_FLAGS(SearchFlags, SearchFlag)
 
@@ -168,7 +168,7 @@ public:
         EntryLocalizedCountry = 64,
         EntryNotify = 128,
         EntryDefault = (SearchDefaults << 16),
-        EntryLocalized = (SearchLocalized << 16)
+        EntryLocalized = (SearchLocalized << 16),
     };
     Q_DECLARE_FLAGS(EntryOptions, EntryOption)
 

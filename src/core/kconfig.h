@@ -86,7 +86,7 @@ public:
         SimpleConfig    = 0x00, ///< Just a single config file.
         NoCascade       = IncludeGlobals, ///< Include user's globals, but omit system settings.
         NoGlobals       = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
-        FullConfig      = IncludeGlobals | CascadeConfig ///< Fully-fledged config, including globals and cascading to system settings
+        FullConfig      = IncludeGlobals | CascadeConfig, ///< Fully-fledged config, including globals and cascading to system settings
     };
     /**
      * Stores a combination of #OpenFlag values.
