@@ -133,7 +133,11 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
                     }
                     ++end;
                 }
-                if (end + 1 == line.length() && start + 2 == end && line.at(start) == '$' && line.at(start + 1) == 'i') {
+                /* clang-format off */
+                if (end + 1 == line.length()
+                    && start + 2 == end
+                    && line.at(start) == '$'
+                    && line.at(start + 1) == 'i') { /* clang-format on */
                     if (newGroup.isEmpty()) {
                         fileOptionImmutable = !kde_kiosk_exception;
                     } else {

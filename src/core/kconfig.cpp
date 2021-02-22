@@ -756,8 +756,8 @@ void KConfigPrivate::parseConfigFiles()
                 }
             } else {
                 QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
-                bFileImmutable = (backend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseDefaults | KConfigBackend::ParseExpansions)
-                                  == KConfigBackend::ParseImmutable);
+                constexpr auto parseOpts = KConfigBackend::ParseDefaults | KConfigBackend::ParseExpansions;
+                bFileImmutable = backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigBackend::ParseImmutable;
             }
 
             if (bFileImmutable) {
@@ -918,8 +918,7 @@ bool KConfig::isConfigWritable(bool warnUser)
         errorMsg += QCoreApplication::translate("KConfig", "Please contact your system administrator.");
         QString cmdToExec = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
         if (!cmdToExec.isEmpty()) {
-            QProcess::execute(cmdToExec,
-                              QStringList() << QStringLiteral("--title") << QCoreApplication::applicationName() << QStringLiteral("--msgbox") << errorMsg);
+            QProcess::execute(cmdToExec, QStringList{QStringLiteral("--title"), QCoreApplication::applicationName(), QStringLiteral("--msgbox"), errorMsg});
         }
     }
 

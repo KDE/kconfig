@@ -74,7 +74,9 @@ void KConfigHeaderGenerator::doClassDefinition()
     }
 
     // Member variables
-    if (!cfg().memberVariables.isEmpty() && cfg().memberVariables != QLatin1String("private") && cfg().memberVariables != QLatin1String("dpointer")) {
+    if (!cfg().memberVariables.isEmpty() //
+        && cfg().memberVariables != QLatin1String("private") //
+        && cfg().memberVariables != QLatin1String("dpointer")) {
         stream() << "  " << cfg().memberVariables << ":\n";
     }
 

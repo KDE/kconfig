@@ -154,9 +154,12 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
         // than the former. For more details see:
         // https://bugreports.qt.io/browse/QTBUG-63792
         // https://bugs.kde.org/show_bug.cgi?id=378523
+        /* clang-format off */
         if (f.weight() == QFont::Normal
-            && (f.styleName() == QLatin1String("Regular") || f.styleName() == QLatin1String("Normal") || f.styleName() == QLatin1String("Book")
-                || f.styleName() == QLatin1String("Roman"))) {
+            && (f.styleName() == QLatin1String("Regular")
+                || f.styleName() == QLatin1String("Normal")
+                || f.styleName() == QLatin1String("Book")
+                || f.styleName() == QLatin1String("Roman"))) { /* clang-format on */
             f.setStyleName(QString());
         }
         cg->writeEntry(key, f.toString().toUtf8(), pFlags);

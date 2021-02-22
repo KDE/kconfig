@@ -59,16 +59,23 @@ int main(int argc, char **argv)
         konfig = new KConfig(file, KConfig::NoGlobals);
 
     KConfigGroup cfgGroup = konfig->group(QString());
-    for (const QString &grp : groups)
+    for (const QString &grp : groups) {
         cfgGroup = cfgGroup.group(grp);
-    if (konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable(key))
+    }
+
+    if (konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable(key)) {
         return 2;
+    }
 
     if (del) {
         cfgGroup.deleteEntry(key);
     } else if (type == QStringLiteral("bool")) {
         // For symmetry with kreadconfig we accept a wider range of values as true than Qt
-        bool boolvalue = (value == QStringLiteral("true") || value == QStringLiteral("on") || value == QStringLiteral("yes") || value == QStringLiteral("1"));
+        /* clang-format off */
+        bool boolvalue = value == QStringLiteral("true")
+                         || value == QStringLiteral("on")
+                         || value == QStringLiteral("yes")
+                         || value == QStringLiteral("1"); /* clang-format on */
         cfgGroup.writeEntry(key, boolvalue);
     } else if (type == QStringLiteral("path")) {
         cfgGroup.writePathEntry(key, value);

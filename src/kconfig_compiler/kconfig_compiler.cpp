@@ -383,8 +383,8 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
     QString result;
 
     if (!cfg.itemAccessors && !cfg.dpointer) {
-        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type) + QLatin1String{"  *item"} + fCap
-            + argSuffix + QLatin1String{";\n"};
+        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type);
+        result += QLatin1String{"  *item"} + fCap + argSuffix + QLatin1String{";\n"};
     }
 
     if (!e->signalList.isEmpty()) {
@@ -436,8 +436,8 @@ QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 
 QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
 {
-    QString t = QLatin1String{"new "} + cfg.inherits + QLatin1String{"::Item"} + itemType(entry->type) + QLatin1String{"( currentGroup(), "} + key
-        + QLatin1String{", "} + varPath(entry->name, cfg) + param;
+    QString t = QLatin1String{"new "} + cfg.inherits + QLatin1String{"::Item"} + itemType(entry->type);
+    t += QLatin1String{"( currentGroup(), "} + key + QLatin1String{", "} + varPath(entry->name, cfg) + param;
 
     if (entry->type == QLatin1String("Enum")) {
         t += QLatin1String{", values"} + entry->name;

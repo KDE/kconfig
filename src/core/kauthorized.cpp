@@ -77,11 +77,14 @@ public:
     bool baseMatch(const QUrl &url, const QString &protClass) const
     {
         if (baseProtWildCard) {
-            if (!baseProt.isEmpty() && !url.scheme().startsWith(baseProt) && (protClass.isEmpty() || (protClass != baseProt))) {
+            if (!baseProt.isEmpty() //
+                && !url.scheme().startsWith(baseProt) //
+                && (protClass.isEmpty() || (protClass != baseProt))) {
                 return false;
             }
         } else {
-            if ((url.scheme() != baseProt) && (protClass.isEmpty() || (protClass != baseProt))) {
+            if (url.scheme() != baseProt //
+                && (protClass.isEmpty() || (protClass != baseProt))) {
                 return false;
             }
         }
@@ -109,15 +112,19 @@ public:
     bool destMatch(const QUrl &url, const QString &protClass, const QUrl &base, const QString &baseClass) const
     {
         if (destProtEqual) {
-            if ((url.scheme() != base.scheme()) && (protClass.isEmpty() || baseClass.isEmpty() || protClass != baseClass)) {
+            if (url.scheme() != base.scheme() //
+                && (protClass.isEmpty() || baseClass.isEmpty() || protClass != baseClass)) {
                 return false;
             }
         } else if (destProtWildCard) {
-            if (!destProt.isEmpty() && !url.scheme().startsWith(destProt) && (protClass.isEmpty() || (protClass != destProt))) {
+            if (!destProt.isEmpty() //
+                && !url.scheme().startsWith(destProt) //
+                && (protClass.isEmpty() || (protClass != destProt))) {
                 return false;
             }
         } else {
-            if ((url.scheme() != destProt) && (protClass.isEmpty() || (protClass != destProt))) {
+            if (url.scheme() != destProt //
+                && (protClass.isEmpty() || (protClass != destProt))) {
                 return false;
             }
         }

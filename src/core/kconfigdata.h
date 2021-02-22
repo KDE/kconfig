@@ -79,7 +79,13 @@ struct KEntry {
 // omits the dirty/notify flag from the comparison.
 inline bool operator==(const KEntry &k1, const KEntry &k2)
 {
-    return k1.bGlobal == k2.bGlobal && k1.bImmutable == k2.bImmutable && k1.bDeleted == k2.bDeleted && k1.bExpand == k2.bExpand && k1.mValue == k2.mValue;
+    /* clang-format off */
+    return k1.bGlobal == k2.bGlobal
+        && k1.bImmutable == k2.bImmutable
+        && k1.bDeleted == k2.bDeleted
+        && k1.bExpand == k2.bExpand
+        && k1.mValue == k2.mValue;
+    /* clang-format on */
 }
 
 inline bool operator!=(const KEntry &k1, const KEntry &k2)

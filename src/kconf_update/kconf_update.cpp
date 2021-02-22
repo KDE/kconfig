@@ -199,7 +199,9 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
             KConfigGroup cg(m_config, fileName);
             const QDateTime ctime = QDateTime::fromSecsSinceEpoch(cg.readEntry("ctime", 0u));
             const QDateTime mtime = QDateTime::fromSecsSinceEpoch(cg.readEntry("mtime", 0u));
-            if (!dirtyOnly || (ctime.isValid() && ctime != info.birthTime()) || mtime != info.lastModified()) {
+            if (!dirtyOnly //
+                || (ctime.isValid() && ctime != info.birthTime()) //
+                || mtime != info.lastModified()) {
                 result.append(file);
             }
         }
