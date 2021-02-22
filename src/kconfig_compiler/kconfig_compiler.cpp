@@ -114,7 +114,7 @@ QString setFunction(const QString &n, const QString &className)
 
 QString changeSignalName(const QString &n)
 {
-    return n + QStringLiteral("Changed");
+    return n + QLatin1String{"Changed"};
 }
 
 QString getDefaultFunction(const QString &n, const QString &className)

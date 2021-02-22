@@ -37,7 +37,7 @@ static QString allConnectedScreens()
 static QString configFileString(const QRect &desk, const QString &key)
 {
     // We include resolution data to also save data on a per-resolution basis
-    const QString returnString = QStringLiteral("%1 %2 %3x%4").arg(allConnectedScreens()).arg(key).arg(desk.width()).arg(desk.height());
+    const QString returnString = QStringLiteral("%1 %2 %3x%4").arg(allConnectedScreens(), key, QString::number(desk.width()), QString::number(desk.height()));
     return returnString;
 }
 
@@ -136,7 +136,7 @@ void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &conf
 {
     // On Wayland, the compositor is solely responsible for window positioning,
     // So this needs to be a no-op
-    if (!window || QGuiApplication::platformName() == QStringLiteral("wayland")) {
+    if (!window || QGuiApplication::platformName() == QLatin1String{"wayland"}) {
         return;
     }
 
@@ -149,7 +149,7 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
 {
     // On Wayland, the compositor is solely responsible for window positioning,
     // So this needs to be a no-op
-    if (!window || QGuiApplication::platformName() == QStringLiteral("wayland")) {
+    if (!window || QGuiApplication::platformName() == QLatin1String{"wayland"}) {
         return;
     }
 
@@ -166,8 +166,8 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
     // per-resolution information is not
     // TODO: Remove in KF6 or maybe even KF5.85 or something. It really only needs
     // to be here to transition existing users once they upgrade from 5.78 -> 5.79
-    const int fallbackXPosition = config.readEntry(QStringLiteral("%1 XPosition %2").arg(allConnectedScreens()).arg(desk.width()), -1);
-    const int fallbackYPosition = config.readEntry(QStringLiteral("%1 YPosition %2").arg(allConnectedScreens()).arg(desk.height()), -1);
+    const int fallbackXPosition = config.readEntry(QStringLiteral("%1 XPosition %2").arg(allConnectedScreens(), QString::number(desk.width())), -1);
+    const int fallbackYPosition = config.readEntry(QStringLiteral("%1 YPosition %2").arg(allConnectedScreens(), QString::number(desk.height())), -1);
     const int xPos = config.readEntry(windowXPositionString(desk), fallbackXPosition);
     const int yPos = config.readEntry(windowYPositionString(desk), fallbackYPosition);
 

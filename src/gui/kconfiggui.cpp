@@ -13,7 +13,7 @@
 
 static QString configName(const QString &id, const QString &key)
 {
-    return (QLatin1String("session/") + QGuiApplication::applicationName() + QLatin1Char('_') + id + QLatin1Char('_') + key);
+    return QLatin1String("session/%1_%2_%3").arg(QGuiApplication::applicationName(), id, key);
 }
 
 static KConfig *s_sessionConfig = nullptr;

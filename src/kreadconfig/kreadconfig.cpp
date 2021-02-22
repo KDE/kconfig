@@ -74,21 +74,23 @@ int main(int argc, char **argv)
         configMustDeleted = true;
     }
     KConfigGroup cfgGroup = konfig->group(QString());
-    for (const QString &grp : groups)
+    for (const QString &grp : groups) {
         cfgGroup = cfgGroup.group(grp);
-    if (type == QStringLiteral("bool")) {
+    }
+
+    if (type == QLatin1String{"bool"}) {
         dflt = dflt.toLower();
-        bool def = (dflt == QStringLiteral("true") || dflt == QStringLiteral("on") || dflt == QStringLiteral("yes") || dflt == QStringLiteral("1"));
+        bool def = (dflt == QLatin1String{"true"} || dflt == QLatin1String{"on"} || dflt == QLatin1String{"yes"} || dflt == QLatin1String{"1"});
         bool retValue = !cfgGroup.readEntry(key, def);
         if (configMustDeleted)
             delete konfig;
         return retValue;
-    } else if ((type == QStringLiteral("num")) || (type == QStringLiteral("int"))) {
+    } else if (type == QLatin1String{"num"} || type == QLatin1String{"int"}) {
         int retValue = cfgGroup.readEntry(key, dflt.toInt());
         if (configMustDeleted)
             delete konfig;
         return retValue;
-    } else if (type == QStringLiteral("path")) {
+    } else if (type == QLatin1String{"path"}) {
         fprintf(stdout, "%s\n", cfgGroup.readPathEntry(key, dflt).toLocal8Bit().data());
         if (configMustDeleted)
             delete konfig;

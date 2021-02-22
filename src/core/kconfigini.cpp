@@ -44,6 +44,8 @@ static QByteArray lookup(const KConfigIniBackend::BufferFragment fragment, QHash
 
 QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 {
+    // %2 then %1 i.e. int before QString, so that the QString is last
+    // This avoids a wrong substitution if the fileName itself contains %1
     return QStringLiteral("KConfigIni: In file %2, line %1: ").arg(line).arg(file.fileName());
 }
 

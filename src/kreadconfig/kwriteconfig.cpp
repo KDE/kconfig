@@ -69,15 +69,15 @@ int main(int argc, char **argv)
 
     if (del) {
         cfgGroup.deleteEntry(key);
-    } else if (type == QStringLiteral("bool")) {
+    } else if (type == QLatin1String{"bool"}) {
         // For symmetry with kreadconfig we accept a wider range of values as true than Qt
         /* clang-format off */
-        bool boolvalue = value == QStringLiteral("true")
-                         || value == QStringLiteral("on")
-                         || value == QStringLiteral("yes")
-                         || value == QStringLiteral("1"); /* clang-format on */
+        bool boolvalue = value == QLatin1String{"true"}
+                         || value == QLatin1String{"on"}
+                         || value == QLatin1String{"yes"}
+                         || value == QLatin1String{"1"}; /* clang-format on */
         cfgGroup.writeEntry(key, boolvalue);
-    } else if (type == QStringLiteral("path")) {
+    } else if (type == QLatin1String{"path"}) {
         cfgGroup.writePathEntry(key, value);
     } else {
         cfgGroup.writeEntry(key, value);

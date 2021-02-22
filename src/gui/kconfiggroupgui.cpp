@@ -54,8 +54,9 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             const int count = list.count();
 
             if (count != 3 && count != 4) {
-                const QString formatError = QStringLiteral(" (wrong format: expected '%1' items, read '%2')");
-                qCritical() << qPrintable(errString()) << qPrintable(formatError.arg(QStringLiteral("3' or '4")).arg(count));
+                qCritical() //
+                    << qPrintable(errString()) //
+                    << qPrintable(QStringLiteral(" (wrong format: expected '%1' items, read '%2')").arg(QStringLiteral("3' or '4")).arg(count));
                 return true; // return default
             }
 
@@ -70,9 +71,10 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
                 }
                 if (j < 0 || j > 255) {
                     static const char *const components[] = {"red", "green", "blue", "alpha"};
-                    const QString boundsError = QStringLiteral(" (bounds error: %1 component %2)");
                     qCritical() << qPrintable(errString())
-                                << qPrintable(boundsError.arg(QLatin1String(components[i])).arg(j < 0 ? QStringLiteral("< 0") : QStringLiteral("> 255")));
+                                << qPrintable(QStringLiteral(" (bounds error: %1 component %2)")
+                                                  .arg(QLatin1String(components[i]), //
+                                                       j < 0 ? QStringLiteral("< 0") : QStringLiteral("> 255")));
                     return true; // return default
                 }
             }
