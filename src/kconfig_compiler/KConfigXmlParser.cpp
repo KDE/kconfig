@@ -38,7 +38,7 @@ static void preProcessDefault(QString &defaultValue,
         defaultValue = literalString(defaultValue);
     } else if (type == QLatin1String("Url") && !defaultValue.isEmpty()) {
         // Use fromUserInput in order to support absolute paths and absolute urls, like KDE4's KUrl(QString) did.
-        defaultValue = QLatin1String("QUrl::fromUserInput( ") + literalString(defaultValue) + QLatin1Char(')');
+        defaultValue = QLatin1String("QUrl::fromUserInput( %1)").arg(literalString(defaultValue));
     } else if ((type == QLatin1String("UrlList") || type == QLatin1String("StringList") || type == QLatin1String("PathList")) && !defaultValue.isEmpty()) {
         QTextStream cpp(&code, QIODevice::WriteOnly | QIODevice::Append);
         if (!code.isEmpty()) {
@@ -68,9 +68,9 @@ static void preProcessDefault(QString &defaultValue,
         static const QRegularExpression colorRe(QRegularExpression::anchoredPattern(QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?")));
 
         if (colorRe.match(defaultValue).hasMatch()) {
-            defaultValue = QLatin1String("QColor( ") + defaultValue + QLatin1String(" )");
+            defaultValue = QLatin1String("QColor( %1 )").arg(defaultValue);
         } else {
-            defaultValue = QLatin1String("QColor( \"") + defaultValue + QLatin1String("\" )");
+            defaultValue = QLatin1String("QColor( \"%1\" )").arg(defaultValue);
         }
 
     } else if (type == QLatin1String("Enum")) {

@@ -180,7 +180,7 @@ void KConfigCodeGeneratorBase::memberImmutableBody(const CfgEntry *e, bool globa
 {
     stream() << whitespace() << "return " << m_this << "isImmutable( QStringLiteral( \"";
     if (!e->param.isEmpty()) {
-        stream() << QString(e->paramName).replace(QLatin1String("$(") + e->param + QLatin1Char(')'), QLatin1String("%1")) << "\" ).arg( ";
+        stream() << QString(e->paramName).replace(QLatin1String("$(%1)").arg(e->param), QLatin1String("%1")) << "\" ).arg( ";
         if (e->paramType == QLatin1String("Enum")) {
             stream() << "QLatin1String( ";
 

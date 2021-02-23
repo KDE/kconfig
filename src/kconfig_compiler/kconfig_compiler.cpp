@@ -119,11 +119,11 @@ QString changeSignalName(const QString &n)
 
 QString getDefaultFunction(const QString &n, const QString &className)
 {
-    QString result = QLatin1String("default") + n + QLatin1String("Value");
+    QString result = QLatin1String("default%1Value").arg(n);
     result[7] = result.at(7).toUpper();
 
     if (!className.isEmpty()) {
-        result = className + QLatin1String("::") + result;
+        result.prepend(className + QLatin1String("::"));
     }
     return result;
 }
@@ -134,7 +134,7 @@ QString getFunction(const QString &n, const QString &className)
     result[0] = result.at(0).toLower();
 
     if (!className.isEmpty()) {
-        result = className + QLatin1String("::") + result;
+        result.prepend(className + QLatin1String("::"));
     }
     return result;
 }
@@ -146,7 +146,7 @@ QString immutableFunction(const QString &n, const QString &className)
     result += QLatin1String{"Immutable"};
 
     if (!className.isEmpty()) {
-        result = className + QLatin1String("::") + result;
+        result.prepend(className + QLatin1String("::"));
     }
     return result;
 }
@@ -178,9 +178,9 @@ QString literalString(const QString &str)
     });
 
     if (isAscii) {
-        return QLatin1String{"QStringLiteral( "} + quoteString(str) + QLatin1String{" )"};
+        return QLatin1String("QStringLiteral( %1 )").arg(quoteString(str));
     } else {
-        return QLatin1String{"QString::fromUtf8( "} + quoteString(str) + QLatin1String{" )"};
+        return QLatin1String("QString::fromUtf8( %1 )").arg(quoteString(str));
     }
 }
 
@@ -384,11 +384,11 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
 
     if (!cfg.itemAccessors && !cfg.dpointer) {
         result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type);
-        result += QLatin1String{"  *item"} + fCap + argSuffix + QLatin1String{";\n"};
+        result += QLatin1String("  *item%1;\n").arg(fCap + argSuffix);
     }
 
     if (!e->signalList.isEmpty()) {
-        result += QLatin1String{"  "} + type + QLatin1String{"  *"} + innerItemVar(e, cfg) + argSuffix + QLatin1String{";\n"};
+        result += QLatin1String("  %1  *%2;\n").arg(type, innerItemVar(e, cfg) + argSuffix);
     }
 
     return result;
@@ -402,7 +402,7 @@ QString itemVar(const CfgEntry *e, const KConfigParameters &cfg)
     QString result;
     if (cfg.itemAccessors) {
         if (!cfg.dpointer) {
-            result = QLatin1Char{'m'} + e->name + QLatin1String{"Item"};
+            result = QLatin1String("m%1Item").arg(e->name);
             result[1] = result.at(1).toUpper();
         } else {
             result = e->name + QLatin1String{"Item"};
@@ -436,18 +436,18 @@ QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 
 QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
 {
-    QString t = QLatin1String{"new "} + cfg.inherits + QLatin1String{"::Item"} + itemType(entry->type);
-    t += QLatin1String{"( currentGroup(), "} + key + QLatin1String{", "} + varPath(entry->name, cfg) + param;
+    QString str = QLatin1String("new %1::Item%2").arg(cfg.inherits, itemType(entry->type));
+    str += QLatin1String("( currentGroup(), %1, %2").arg(key, varPath(entry->name, cfg) + param);
 
     if (entry->type == QLatin1String("Enum")) {
-        t += QLatin1String{", values"} + entry->name;
+        str += QLatin1String{", values"} + entry->name;
     }
     if (!defaultValue.isEmpty()) {
-        t += QLatin1String(", ") + defaultValue;
+        str += QLatin1String(", ") + defaultValue;
     }
-    t += QLatin1String(" );");
+    str += QLatin1String(" );");
 
-    return t;
+    return str;
 }
 
 QString newItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
@@ -458,8 +458,7 @@ QString newItem(const CfgEntry *entry, const QString &key, const QString &defaul
     }
 
     QString str;
-    str += QLatin1String("new KConfigCompilerSignallingItem(") + innerItemVar(entry, cfg) + param;
-    str += QLatin1String(", this, notifyFunction, ");
+    str += QLatin1String("new KConfigCompilerSignallingItem(%1, this, notifyFunction, ").arg(innerItemVar(entry, cfg) + param);
     // Append the signal flags
     const int listSize = sigs.size();
     for (int i = 0; i < listSize; ++i) {
@@ -476,7 +475,7 @@ QString newItem(const CfgEntry *entry, const QString &key, const QString &defaul
 QString paramString(const QString &s, const CfgEntry *e, int i)
 {
     QString result = s;
-    const QString needle = QLatin1String{"$("} + e->param + QLatin1Char{')'};
+    const QString needle = QLatin1String("$(%1)").arg(e->param);
     if (result.contains(needle)) {
         const QString tmp = e->paramType == QLatin1String{"Enum"} ? e->paramValues.at(i) : QString::number(i);
 
@@ -493,7 +492,7 @@ QString paramString(const QString &group, const QList<Param> &parameters)
     bool firstArg = true;
     for (const auto &param : parameters) {
         const QString paramName = param.name;
-        const QString str = QLatin1String{"$("} + paramName + QLatin1Char{')'};
+        const QString str = QLatin1String("$(%1)").arg(paramName);
         if (paramString.contains(str)) {
             const QString tmp = QStringLiteral("%%1").arg(i++);
             paramString.replace(str, tmp);
@@ -503,7 +502,7 @@ QString paramString(const QString &group, const QList<Param> &parameters)
                 firstArg = false;
             }
 
-            arguments += QLatin1String{"mParam"} + paramName + QLatin1String{", "};
+            arguments += QLatin1String("mParam%1, ").arg(paramName);
         }
     }
 
@@ -514,10 +513,10 @@ QString paramString(const QString &group, const QList<Param> &parameters)
         // Close the ".arg( "
         arguments += QLatin1String{" )"};
     } else {
-        return QLatin1String{"QStringLiteral( \""} + group + QLatin1String{"\" )"};
+        return QLatin1String("QStringLiteral( \"%1\" )").arg(group);
     }
 
-    return QLatin1String{"QStringLiteral( \""} + paramString + QLatin1String{"\" )"} + arguments;
+    return QLatin1String("QStringLiteral( \"%1\" )%2").arg(paramString, arguments);
 }
 
 QString translatedString(const KConfigParameters &cfg, const QString &string, const QString &context, const QString &param, const QString &paramValue)
@@ -527,20 +526,20 @@ QString translatedString(const KConfigParameters &cfg, const QString &string, co
     switch (cfg.translationSystem) {
     case KConfigParameters::QtTranslation:
         if (!context.isEmpty()) {
-            result += QLatin1String{"/*: "} + context + QLatin1String{" */ QCoreApplication::translate(\""};
+            result += QLatin1String("/*: %1 */ QCoreApplication::translate(\"").arg(context);
         } else {
             result += QLatin1String{"QCoreApplication::translate(\""};
         }
-        result += cfg.className + QLatin1String{"\", "};
+        result += QLatin1String("%1\", ").arg(cfg.className);
         break;
 
     case KConfigParameters::KdeTranslation:
         if (!cfg.translationDomain.isEmpty() && !context.isEmpty()) {
-            result += QLatin1String{"i18ndc("} + quoteString(cfg.translationDomain) + QLatin1String{", "} + quoteString(context) + QLatin1String{", "};
+            result += QLatin1String("i18ndc(%1, %2, ").arg(quoteString(cfg.translationDomain), quoteString(context));
         } else if (!cfg.translationDomain.isEmpty()) {
-            result += QLatin1String{"i18nd("} + quoteString(cfg.translationDomain) + QLatin1String{", "};
+            result += QLatin1String("i18nd(%1, ").arg(quoteString(cfg.translationDomain));
         } else if (!context.isEmpty()) {
-            result += QLatin1String{"i18nc("} + quoteString(context) + QLatin1String{", "};
+            result += QLatin1String("i18nc(%1, ").arg(quoteString(context));
         } else {
             result += QLatin1String{"i18n("};
         }
@@ -549,7 +548,7 @@ QString translatedString(const KConfigParameters &cfg, const QString &string, co
 
     if (!param.isEmpty()) {
         QString resolvedString = string;
-        resolvedString.replace(QLatin1String{"$("} + param + QLatin1Char{')'}, paramValue);
+        resolvedString.replace(QLatin1String("$(%1)").arg(param), paramValue);
         result += quoteString(resolvedString);
     } else {
         result += quoteString(string);
@@ -568,19 +567,13 @@ QString userTextsFunctions(const CfgEntry *e, const KConfigParameters &cfg, QStr
         itemVarStr = itemPath(e, cfg);
     }
     if (!e->label.isEmpty()) {
-        txt += QLatin1String{"  "} + itemVarStr + QLatin1String{"->setLabel( "};
-        txt += translatedString(cfg, e->label, e->labelContext, e->param, i);
-        txt += QLatin1String(" );\n");
+        txt += QLatin1String("  %1->setLabel( %2 );\n").arg(itemVarStr, translatedString(cfg, e->label, e->labelContext, e->param, i));
     }
     if (!e->toolTip.isEmpty()) {
-        txt += QLatin1String{"  "} + itemVarStr + QLatin1String{"->setToolTip( "};
-        txt += translatedString(cfg, e->toolTip, e->toolTipContext, e->param, i);
-        txt += QLatin1String(" );\n");
+        txt += QLatin1String("  %1->setToolTip( %2 );\n").arg(itemVarStr, translatedString(cfg, e->toolTip, e->toolTipContext, e->param, i));
     }
     if (!e->whatsThis.isEmpty()) {
-        txt += QLatin1String{"  "} + itemVarStr + QLatin1String{"->setWhatsThis( "};
-        txt += translatedString(cfg, e->whatsThis, e->whatsThisContext, e->param, i);
-        txt += QLatin1String(" );\n");
+        txt += QLatin1String("  %1->setWhatsThis( %2 );\n").arg(itemVarStr, translatedString(cfg, e->whatsThis, e->whatsThisContext, e->param, i));
     }
     return txt;
 }
@@ -617,7 +610,7 @@ QString memberGetDefaultBody(const CfgEntry *e)
         QString defaultValue = e->defaultValue;
 
         out << "  default:\n";
-        out << "    return " << defaultValue.replace(QLatin1String{"$("} + e->param + QLatin1Char{')'}, QLatin1String("i")) << ";\n";
+        out << "    return " << defaultValue.replace(QLatin1String("$(%1)").arg(e->param), QLatin1String("i")) << ";\n";
         out << "  }\n";
     } else {
         out << "  return " << e->defaultValue << ';';
