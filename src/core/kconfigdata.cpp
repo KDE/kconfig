@@ -48,7 +48,7 @@ QMap<KEntryKey, KEntry>::Iterator KEntryMap::findEntry(const QByteArray &group, 
     return find(theKey);
 }
 
-QMap<KEntryKey, KEntry>::ConstIterator KEntryMap::findEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags) const
+QMap<KEntryKey, KEntry>::ConstIterator KEntryMap::constFindEntry(const QByteArray &group, const QByteArray &key, SearchFlags flags) const
 {
     KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
 
@@ -56,14 +56,15 @@ QMap<KEntryKey, KEntry>::ConstIterator KEntryMap::findEntry(const QByteArray &gr
     if (flags & SearchLocalized) {
         theKey.bLocal = true;
 
-        ConstIterator it = find(theKey);
-        if (it != constEnd()) {
+        auto it = constFind(theKey);
+        if (it != cend()) {
             return it;
         }
 
         theKey.bLocal = false;
     }
-    return find(theKey);
+
+    return constFind(theKey);
 }
 
 bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const QByteArray &value, KEntryMap::EntryOptions options)
@@ -105,7 +106,7 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
     } else {
         // make sure the group marker is in the map
         KEntryMap const *that = this;
-        ConstIterator cit = that->findEntry(group);
+        auto cit = that->constFindEntry(group);
         if (cit == constEnd()) {
             insert(KEntryKey(group), KEntry());
         } else if (cit->bImmutable) {
@@ -212,7 +213,7 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
 
 QString KEntryMap::getEntry(const QByteArray &group, const QByteArray &key, const QString &defaultValue, KEntryMap::SearchFlags flags, bool *expand) const
 {
-    const ConstIterator it = findEntry(group, key, flags);
+    const auto it = constFindEntry(group, key, flags);
     QString theValue = defaultValue;
 
     if (it != constEnd() && !it->bDeleted) {
@@ -230,7 +231,7 @@ QString KEntryMap::getEntry(const QByteArray &group, const QByteArray &key, cons
 
 bool KEntryMap::hasEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags) const
 {
-    const ConstIterator it = findEntry(group, key, flags);
+    const auto it = constFindEntry(group, key, flags);
     if (it == constEnd()) {
         return false;
     }

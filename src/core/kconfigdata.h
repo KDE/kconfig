@@ -192,7 +192,12 @@ public:
 
     Iterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
 
-    ConstIterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
+    ConstIterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const
+    {
+        return constFindEntry(group, key, flags);
+    }
+
+    ConstIterator constFindEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
 
     /**
      * Returns true if the entry gets dirtied or false in other case

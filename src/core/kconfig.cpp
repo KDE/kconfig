@@ -332,8 +332,8 @@ QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
 {
     QStringList keys;
 
-    const KEntryMapConstIterator theEnd = entryMap.constEnd();
-    KEntryMapConstIterator it = entryMap.findEntry(theGroup);
+    const auto theEnd = entryMap.constEnd();
+    auto it = entryMap.constFindEntry(theGroup);
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
@@ -363,8 +363,8 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     QMap<QString, QString> theMap;
     const QByteArray theGroup(aGroup.isEmpty() ? "<default>" : aGroup.toUtf8());
 
-    const KEntryMapConstIterator theEnd = d->entryMap.constEnd();
-    KEntryMapConstIterator it = d->entryMap.findEntry(theGroup, {}, {});
+    const auto theEnd = d->entryMap.constEnd();
+    auto it = d->entryMap.constFindEntry(theGroup, {}, {});
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
@@ -981,7 +981,7 @@ QByteArray KConfigPrivate::lookupData(const QByteArray &group, const char *key, 
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
     }
-    const KEntryMapConstIterator it = entryMap.findEntry(group, key, flags);
+    const auto it = entryMap.constFindEntry(group, key, flags);
     if (it == entryMap.constEnd()) {
         return QByteArray();
     }
