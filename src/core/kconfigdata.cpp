@@ -24,13 +24,13 @@ QDebug operator<<(QDebug dbg, const KEntry &entry)
     return dbg.space();
 }
 
-QMap<KEntryKey, KEntry>::Iterator KEntryMap::findExactEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
+KEntryMapIterator KEntryMap::findExactEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
 {
     KEntryKey theKey(group, key, bool(flags & SearchLocalized), bool(flags & SearchDefaults));
     return find(theKey);
 }
 
-QMap<KEntryKey, KEntry>::Iterator KEntryMap::findEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
+KEntryMapIterator KEntryMap::findEntry(const QByteArray &group, const QByteArray &key, KEntryMap::SearchFlags flags)
 {
     KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
 
@@ -48,7 +48,7 @@ QMap<KEntryKey, KEntry>::Iterator KEntryMap::findEntry(const QByteArray &group, 
     return find(theKey);
 }
 
-QMap<KEntryKey, KEntry>::ConstIterator KEntryMap::constFindEntry(const QByteArray &group, const QByteArray &key, SearchFlags flags) const
+KEntryMapConstIterator KEntryMap::constFindEntry(const QByteArray &group, const QByteArray &key, SearchFlags flags) const
 {
     KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
 
@@ -245,7 +245,7 @@ bool KEntryMap::hasEntry(const QByteArray &group, const QByteArray &key, KEntryM
     return true;
 }
 
-bool KEntryMap::getEntryOption(const QMap<KEntryKey, KEntry>::ConstIterator &it, KEntryMap::EntryOption option) const
+bool KEntryMap::getEntryOption(const KEntryMapConstIterator &it, KEntryMap::EntryOption option) const
 {
     if (it != constEnd()) {
         switch (option) {
@@ -271,7 +271,7 @@ bool KEntryMap::getEntryOption(const QMap<KEntryKey, KEntry>::ConstIterator &it,
     return false;
 }
 
-void KEntryMap::setEntryOption(QMap<KEntryKey, KEntry>::Iterator it, KEntryMap::EntryOption option, bool bf)
+void KEntryMap::setEntryOption(KEntryMapIterator it, KEntryMap::EntryOption option, bool bf)
 {
     if (it != end()) {
         switch (option) {
