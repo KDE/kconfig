@@ -38,7 +38,9 @@ KConfigCodeGeneratorBase::KConfigCodeGeneratorBase(const QString &inputFile,
         exit(1);
     }
     m_stream.setDevice(&m_file);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     m_stream.setCodec("utf-8");
+#endif
 
     if (m_cfg.staticAccessors) {
         m_this = QStringLiteral("self()->");
