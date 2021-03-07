@@ -15,6 +15,8 @@
 
 #include <QRegularExpression>
 
+static const QRegularExpression nonWordRe = QRegularExpression(QStringLiteral("\\W"), QRegularExpression::UseUnicodePropertiesOption);
+
 KConfigSourceGenerator::KConfigSourceGenerator(const QString &inputFile, const QString &baseDir, const KConfigParameters &cfg, ParseResult &parseResult)
     : KConfigCodeGeneratorBase(inputFile, baseDir, baseDir + cfg.baseName + QLatin1Char('.') + cfg.sourceExtension, cfg, parseResult)
 {
@@ -319,7 +321,7 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
     }
 
     if (!entry->parentGroup.isEmpty()) {
-        stream() << "  " << itemVarStr << "->setGroup(cg" << QString(entry->group).remove(QRegularExpression(QStringLiteral("\\W"))) << ");\n";
+        stream() << "  " << itemVarStr << "->setGroup(cg" << QString(entry->group).remove(nonWordRe) << ");\n";
     }
 
     stream() << "  addItem( " << itemVarStr;
@@ -405,15 +407,15 @@ void KConfigSourceGenerator::handleCurrentGroupChange(const CfgEntry *entry)
     mCurrentGroup = entry->group;
 
     if (!entry->parentGroup.isEmpty()) {
-        QString parentGroup = QString(entry->parentGroup).remove(QRegularExpression(QStringLiteral("\\W")));
+        QString parentGroup = QString(entry->parentGroup).remove(nonWordRe);
         if (!mConfigGroupList.contains(parentGroup)) {
             stream() << "  KConfigGroup cg" << parentGroup << "(this->config(), " << paramString(entry->parentGroup, parseResult.parameters) << ");\n";
             mConfigGroupList << parentGroup;
         }
-        QString currentGroup = QString(mCurrentGroup).remove(QRegularExpression(QStringLiteral("\\W")));
+        QString currentGroup = QString(mCurrentGroup).remove(nonWordRe);
         if (!mConfigGroupList.contains(currentGroup)) {
-            stream() << "  KConfigGroup cg" << currentGroup << " = cg" << QString(entry->parentGroup).remove(QRegularExpression(QStringLiteral("\\W")))
-                     << ".group(" << paramString(mCurrentGroup, parseResult.parameters) << ");\n";
+            stream() << "  KConfigGroup cg" << currentGroup << " = cg" << QString(entry->parentGroup).remove(nonWordRe) << ".group("
+                     << paramString(mCurrentGroup, parseResult.parameters) << ");\n";
             mConfigGroupList << currentGroup;
         }
     } else {
