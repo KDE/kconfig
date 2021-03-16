@@ -512,7 +512,4 @@ for a signal, the signal name will suffice.
 
 You can also use the generic configChanged() signal from KConfigSkeleton to notify your application
 about configuration changes.
-
-If you have questions or comments please contact Cornelius Schumacher
-<schumacher@kde.org> or Waldo Bastian <bastian@kde.org>
 */
