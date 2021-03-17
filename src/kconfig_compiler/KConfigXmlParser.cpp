@@ -13,6 +13,7 @@
 
 #include "KConfigXmlParser.h"
 
+#include <QDebug>
 #include <QDomAttr>
 #include <QDomElement>
 #include <QDomNode>
@@ -446,6 +447,9 @@ KConfigXmlParser::KConfigXmlParser(const KConfigParameters &cfg, const QString &
 void KConfigXmlParser::start()
 {
     QFile input(mInputFileName);
+    if (!input.open(QIODevice::ReadOnly)) {
+        qFatal("Could not open input file: %s", qUtf8Printable(mInputFileName));
+    }
     QDomDocument doc;
     QString errorMsg;
     int errorRow;
