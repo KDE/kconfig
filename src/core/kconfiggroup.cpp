@@ -27,6 +27,7 @@
 #include <QUrl>
 
 #include <stdlib.h>
+#include <math.h>
 
 class KConfigGroupPrivate : public QSharedData
 {
@@ -325,14 +326,18 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         return size;
     }
     case QMetaType::QDateTime: {
-        const auto list = asIntList(value);
-        if (list.count() != 6) {
+        const auto list = asRealList(value);
+        if (list.count() < 6) {
             qCWarning(KCONFIG_CORE_LOG) << errString(pKey, value, aDefault)
                        << formatError(6, list.count());
             return aDefault;
         }
         const QDate date(list.at(0), list.at(1), list.at(2));
-        const QTime time(list.at(3), list.at(4), list.at(5));
+        const qreal totalSeconds = list.at(5);
+        qreal seconds;
+        const qreal fractional = modf(totalSeconds, &seconds);
+        const qreal milliseconds = round(fractional * 1000.0);
+        const QTime time(list.at(3), list.at(4), seconds, milliseconds);
         const QDateTime dt(date, time);
         if (!dt.isValid()) {
             qCWarning(KCONFIG_CORE_LOG) << errString(pKey, value, aDefault);
@@ -1044,7 +1049,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value,
 
             time.hour(),
             time.minute(),
-            time.second(),
+            time.second() + time.msec()/1000.0,
         };
 
         writeEntry(key, list, flags);

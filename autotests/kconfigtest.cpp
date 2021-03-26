@@ -66,6 +66,7 @@ static QString homePath()
 #define SIZEENTRY QSize( 10, 20 )
 #define RECTENTRY QRect( 10, 23, 5321, 13 )
 #define DATETIMEENTRY QDateTime( QDate( 2002, 06, 23 ), QTime( 12, 55, 40 ) )
+#define DATETIMEWITHMSENTRY QDateTime( QDate( 2002, 06, 23 ), QTime( 12, 55, 40, 532 ) )
 #define STRINGLISTENTRY (QStringList( "Hello," ) << " World")
 #define STRINGLISTEMPTYENTRY QStringList()
 #define STRINGLISTJUSTEMPTYELEMENT QStringList(QString())
@@ -154,6 +155,7 @@ void KConfigTest::initTestCase()
     cg.writeEntry("sizeEntry", SIZEENTRY);
     cg.writeEntry("dateTimeEntry", DATETIMEENTRY);
     cg.writeEntry("dateEntry", DATETIMEENTRY.date());
+    cg.writeEntry("dateTimeWithMSEntry", DATETIMEWITHMSENTRY);
 
     KConfigGroup ct = cg;
     cg = KConfigGroup(&ct, "Nested Group 1");
@@ -620,10 +622,12 @@ void KConfigTest::testComplex()
     QCOMPARE(sc3.readEntry("pointEntry", QPoint()), POINTENTRY);
     QCOMPARE(sc3.readEntry("sizeEntry", SIZEENTRY), SIZEENTRY);
     QCOMPARE(sc3.readEntry("rectEntry", QRect(1, 2, 3, 4)), RECTENTRY);
-    QCOMPARE(sc3.readEntry("dateTimeEntry", QDateTime()).toString(Qt::ISODate),
-             DATETIMEENTRY.toString(Qt::ISODate));
+    QCOMPARE(sc3.readEntry("dateTimeEntry", QDateTime()).toString(Qt::ISODateWithMs),
+             DATETIMEENTRY.toString(Qt::ISODateWithMs));
     QCOMPARE(sc3.readEntry("dateEntry", QDate()).toString(Qt::ISODate),
              DATETIMEENTRY.date().toString(Qt::ISODate));
+    QCOMPARE(sc3.readEntry("dateTimeWithMSEntry", QDateTime()).toString(Qt::ISODateWithMs),
+             DATETIMEWITHMSENTRY.toString(Qt::ISODateWithMs));
     QCOMPARE(sc3.readEntry("dateTimeEntry", QDate()), DATETIMEENTRY.date());
 }
 
