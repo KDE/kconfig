@@ -15,7 +15,7 @@ class Test5 : public KConfigSkeleton
     static const char* const EnumButtonToString[];
 
     static Test5 *self();
-    ~Test5();
+    ~Test5() override;
 
     /**
       Set Block colors.

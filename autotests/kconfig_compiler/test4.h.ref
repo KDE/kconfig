@@ -23,7 +23,7 @@ class Test4 : public KConfigSkeleton
     };
 
     static Test4 *self();
-    ~Test4();
+    ~Test4() override;
 
     /**
       Set Block colors.

@@ -13,7 +13,7 @@ class Test12 : public KConfigSkeleton
   public:
 
     Test12( );
-    ~Test12();
+    ~Test12() override;
 
     /**
       Get RnRSource

@@ -14,7 +14,7 @@ class TestQCategory : public KConfigSkeleton
   public:
 
     TestQCategory( int Number );
-    ~TestQCategory();
+    ~TestQCategory() override;
 
     /**
       Set Block colors.

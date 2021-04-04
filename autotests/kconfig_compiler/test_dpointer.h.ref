@@ -19,7 +19,7 @@ class TestDPointer : public KConfigSkeleton
     };
 
     static TestDPointer *self();
-    ~TestDPointer();
+    ~TestDPointer() override;
 
     /**
       Set Enable automatic saving of calendar

@@ -14,7 +14,7 @@ class Test13 : public KConfigSkeleton
   public:
 
     Test13( );
-    ~Test13();
+    ~Test13() override;
 
     Q_PROPERTY(QUrl picturesDir READ picturesDir CONSTANT)
     Q_PROPERTY(bool isPicturesDirImmutable READ isPicturesDirImmutable CONSTANT)

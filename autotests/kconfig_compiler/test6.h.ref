@@ -12,7 +12,7 @@ class Test6 : public KConfigSkeleton
   public:
 
     Test6( const QString & Number );
-    ~Test6();
+    ~Test6() override;
 
     /**
       Set Block colors.

@@ -14,7 +14,7 @@ class Test8b : public Test8a
   public:
 
     static Test8b *self();
-    ~Test8b();
+    ~Test8b() override;
 
     /**
       Set Something

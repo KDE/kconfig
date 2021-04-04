@@ -16,7 +16,7 @@ class Test3a : public KConfigSkeleton
   public:
 
     Test3a( );
-    ~Test3a();
+    ~Test3a() override;
 
     /**
       Set Enable automatic saving of calendar

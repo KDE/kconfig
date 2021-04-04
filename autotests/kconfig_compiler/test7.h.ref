@@ -12,7 +12,7 @@ class Test7 : public KConfigSkeleton
   public:
 
     Test7( int Number );
-    ~Test7();
+    ~Test7() override;
 
     /**
       Set Block colors.

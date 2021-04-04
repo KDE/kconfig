@@ -14,7 +14,7 @@ class Test9 : public KConfigSkeleton
   public:
 
     Test9( const QString & transport, const QString & folder );
-    ~Test9();
+    ~Test9() override;
 
     /**
       Set MyStringList

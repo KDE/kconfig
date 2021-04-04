@@ -23,7 +23,7 @@ class Test11 : public MyPrefs
     enum MailClient { sendmail, kmail };
 
     Test11( QObject *parent = nullptr );
-    ~Test11();
+    ~Test11() override;
 
     /**
       Set Enable automatic saving of calendar

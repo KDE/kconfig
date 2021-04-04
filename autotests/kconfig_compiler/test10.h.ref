@@ -12,7 +12,7 @@ class Test10 : public KConfigSkeleton
   public:
 
     static Test10 *self();
-    ~Test10();
+    ~Test10() override;
 
     /**
       Get foo bar

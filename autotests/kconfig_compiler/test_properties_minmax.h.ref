@@ -14,7 +14,7 @@ class TestPropertiesMinMax : public KConfigSkeleton
   public:
 
     TestPropertiesMinMax( KSharedConfig::Ptr config = KSharedConfig::openConfig() );
-    ~TestPropertiesMinMax();
+    ~TestPropertiesMinMax() override;
 
     /**
       Set bar

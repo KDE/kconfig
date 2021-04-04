@@ -13,7 +13,7 @@ class Test8a : public KConfigSkeleton
   public:
 
     Test8a( KSharedConfig::Ptr config = KSharedConfig::openConfig(), QObject *parent = nullptr );
-    ~Test8a();
+    ~Test8a() override;
 
     /**
       Set Font

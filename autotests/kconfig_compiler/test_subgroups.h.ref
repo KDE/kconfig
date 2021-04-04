@@ -12,7 +12,7 @@ class TestSubgroups : public KConfigSkeleton
   public:
 
     TestSubgroups( const QString & GeneralGroup, const QString & SubGroup, const QString & AnotherSubGroup );
-    ~TestSubgroups();
+    ~TestSubgroups() override;
 
     /**
       Get Foo

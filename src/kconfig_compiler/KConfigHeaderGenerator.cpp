@@ -347,7 +347,7 @@ void KConfigHeaderGenerator::createConstructor()
 
 void KConfigHeaderGenerator::createDestructor()
 {
-    stream() << whitespace() << "~" << cfg().className << "();\n\n";
+    stream() << whitespace() << "~" << cfg().className << "() override;\n\n";
 }
 
 void KConfigHeaderGenerator::createForwardDeclarations()

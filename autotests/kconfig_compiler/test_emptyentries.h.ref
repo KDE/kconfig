@@ -15,7 +15,7 @@ class QMakeBuilderSettings : public KConfigSkeleton
     static QMakeBuilderSettings *self();
     static void instance(const QString& cfgfilename);
     static void instance(KSharedConfig::Ptr config);
-    ~QMakeBuilderSettings();
+    ~QMakeBuilderSettings() override;
 
   protected:
     QMakeBuilderSettings(KSharedConfig::Ptr config);

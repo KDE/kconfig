@@ -14,7 +14,7 @@ class Test8c : public KConfigSkeleton
     static Test8c *self();
     static void instance(const QString& cfgfilename);
     static void instance(KSharedConfig::Ptr config);
-    ~Test8c();
+    ~Test8c() override;
 
     /**
       Set Font

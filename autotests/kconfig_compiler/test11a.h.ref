@@ -23,7 +23,7 @@ class Test11a : public MyPrefs
     enum MailClient { sendmail, kmail };
 
     Test11a( );
-    ~Test11a();
+    ~Test11a() override;
 
     /**
       Set Enable automatic saving of calendar

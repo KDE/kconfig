@@ -16,7 +16,7 @@ class Test2 : public MyPrefs
     enum EnumDestination { standardDestination, askDestination, argl1, argl2, argl3 };
 
     Test2( );
-    ~Test2();
+    ~Test2() override;
 
     /**
       Set Enable automatic saving of calendar

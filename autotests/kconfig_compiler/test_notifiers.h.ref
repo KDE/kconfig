@@ -12,7 +12,7 @@ class TestNotifiers : public KConfigSkeleton
   public:
 
     TestNotifiers( int Number );
-    ~TestNotifiers();
+    ~TestNotifiers() override;
 
     /**
       Set Block colors.
