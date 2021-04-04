@@ -227,8 +227,13 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
               "Type=Application\n"
               "Name=My Application\n"
               "Exec=kfoo\n"
-              "TryExec=bash\n"
-              "X-KDE-AuthorizeAction=someAction"
+              "TryExec=";
+#ifdef Q_OS_WIN
+        ts << "cmd\n";
+#else
+        ts << "bash\n";
+#endif
+        ts << "X-KDE-AuthorizeAction=someAction"
               "\n";
         file.close();
 
