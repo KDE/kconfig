@@ -4,7 +4,7 @@
     SPDX-FileCopyrightText: 2000 Nicolas Hadacek <hadacek@kde.org>
     SPDX-FileCopyrightText: 2001, 2002 Ellis Whitehead <ellis@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-only
+    SPDX-License-Identifier: LGPL-2.0-or-later
 */
 #ifndef KSTANDARDSHORTCUT_H
 #define KSTANDARDSHORTCUT_H
