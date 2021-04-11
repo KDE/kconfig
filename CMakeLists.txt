@@ -60,9 +60,7 @@ if (BUILD_TESTING)
 endif()
 
 include (ECMPoQmTools)
-if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
-   ecm_install_po_files_as_qm(po)
-endif()
+ecm_install_po_files_as_qm(po)
 
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
