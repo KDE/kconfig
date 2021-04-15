@@ -12,7 +12,7 @@
 #define KCONFIG_P_H
 
 #include "kconfigbackend_p.h"
-#include "kconfigdata.h"
+#include "kconfigdata_p.h"
 #include "kconfiggroup.h"
 
 #include <QDir>

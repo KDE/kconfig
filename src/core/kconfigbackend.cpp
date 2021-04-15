@@ -16,7 +16,7 @@
 #include <QHash>
 #include <QStringList>
 
-#include "kconfigdata.h"
+#include "kconfigdata_p.h"
 #include "kconfigini_p.h"
 
 typedef QExplicitlySharedDataPointer<KConfigBackend> BackendPtr;

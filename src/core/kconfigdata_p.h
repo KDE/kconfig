@@ -7,8 +7,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KCONFIGDATA_H
-#define KCONFIGDATA_H
+#ifndef KCONFIGDATA_P_H
+#define KCONFIGDATA_P_H
 
 #include <QByteArray>
 #include <QDebug>

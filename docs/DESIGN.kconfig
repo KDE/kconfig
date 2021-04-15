@@ -1,4 +1,4 @@
-kconfigdata.h contains definitions of the data formats used by kconfig.
+kconfigdata_p.h contains definitions of the data formats used by kconfig.
 
 Configuration entries are stored as "KEntry". They are indexed with "KEntryKey".
 The primary store is a "KEntryMap" which is defined as a QMap from "KEntryKey"

@@ -13,7 +13,7 @@
 #include "kconfig.h"
 #include "kconfig_core_log_settings.h"
 #include "kconfig_p.h"
-#include "kconfigdata.h"
+#include "kconfigdata_p.h"
 #include "ksharedconfig.h"
 
 #include <QDate>
