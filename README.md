@@ -10,7 +10,7 @@ KConfigCore and KConfigGui.
 KConfigCore provides access to the configuration files themselves. It features:
 
 - Code generation: describe your configuration in an XML file, and use
-  `kconfig_compiler to generate classes that read and write configuration
+  kconfig_compiler to generate classes that read and write configuration
   entries.
 - Cascading configuration files (global settings overridden by local settings).
 - Optional shell expansion support (see [docs/options.md](@ref options)).
