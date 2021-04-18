@@ -206,11 +206,13 @@ QString KDesktopFile::readPath() const
     return d->desktopGroup.readEntry("Path", QString());
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 82)
 QString KDesktopFile::readDevice() const
 {
     Q_D(const KDesktopFile);
     return d->desktopGroup.readEntry("Dev", QString());
 }
+#endif
 
 QString KDesktopFile::readUrl() const
 {

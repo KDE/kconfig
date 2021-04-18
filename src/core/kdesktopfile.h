@@ -129,11 +129,16 @@ public:
      */
     QString readPath() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 82)
     /**
      * Returns the value of the "Dev=" entry.
      * @return the device or QString() if not specified
+     * @deprecated since 5.82, for lack of usage, the FSDevice .desktop template
+     * hadn't been installed for a long time.
      */
+    KCONFIGCORE_DEPRECATED_VERSION(5, 82, "For lack of usage.")
     QString readDevice() const;
+#endif
 
     /**
      * Returns the value of the "URL=" entry.
