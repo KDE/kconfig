@@ -52,15 +52,15 @@ public:
         /**
          * @deprecated since 5.0
          */
-        OutServerType,
+        OutServerType KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
         /**
          * @deprecated since 5.0
          */
-        OutServerCommand,
+        OutServerCommand KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
         /**
          * @deprecated since 5.0
          */
-        OutServerTLS,
+        OutServerTLS KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
 #else
         OutServerType_DEPRECATED_DO_NOT_USE,
         OutServerCommand_DEPRECATED_DO_NOT_USE,
@@ -73,15 +73,15 @@ public:
         /**
          * @deprecated since 5.0
          */
-        InServerType,
+        InServerType KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
         /**
          * @deprecated since 5.0
          */
-        InServerMBXType,
+        InServerMBXType KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
         /**
          * @deprecated since 5.0
          */
-        InServerTLS
+        InServerTLS KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users")
 #endif
     };
 

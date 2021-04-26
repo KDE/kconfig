@@ -123,7 +123,8 @@ enum StandardShortcut {
     ShowToolbar, ///< Show/Hide the toolbar.
     ShowStatusbar, ///< Show/Hide the statusbar.
 #if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 39)
-    SaveOptions, ///< @deprecated since 5.39
+    SaveOptions ///< @deprecated since 5.39
+        KCONFIGGUI_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 39, "No known users"),
 #else
     SaveOptions_DEPRECATED_DO_NOT_USE,
 #endif
