@@ -233,6 +233,8 @@ public:
 
     /**
      * Updates the state of this object to match the persistent storage.
+     * Note that if this object has pending changes, this method will
+     * call sync() first so as not to lose those changes.
      */
     void reparseConfiguration();
 
