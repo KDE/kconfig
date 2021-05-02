@@ -23,7 +23,7 @@ target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INS
 
 target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
 
-set_target_properties(KF5ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION_STRING}
+set_target_properties(KF5ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION}
                                               SOVERSION ${KCONFIG_SOVERSION}
                                               EXPORT_NAME ConfigGui
 )

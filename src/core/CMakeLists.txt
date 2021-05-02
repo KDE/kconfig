@@ -48,7 +48,7 @@ if(KCONFIG_USE_DBUS)
     target_link_libraries(KF5ConfigCore PRIVATE Qt5::DBus)
 endif()
 
-set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION_STRING}
+set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION}
                                                SOVERSION ${KCONFIG_SOVERSION}
                                                EXPORT_NAME ConfigCore
 )
