@@ -174,21 +174,21 @@ QString KConfigPrivate::expandString(const QString &value)
     int nDollarPos = aValue.indexOf(QLatin1Char('$'));
     while (nDollarPos != -1 && nDollarPos + 1 < aValue.length()) {
         // there is at least one $
-        if (aValue.at(nDollarPos + 1) != QLatin1Char('$')) {
+        if (aValue[nDollarPos + 1] != QLatin1Char('$')) {
             int nEndPos = nDollarPos + 1;
             // the next character is not $
-            QStringView aVarName;
-            if (aValue.at(nEndPos) == QLatin1Char('{')) {
+            QStringRef aVarName;
+            if (aValue[nEndPos] == QLatin1Char('{')) {
                 while ((nEndPos <= aValue.length()) && (aValue[nEndPos] != QLatin1Char('}'))) {
                     ++nEndPos;
                 }
                 ++nEndPos;
-                aVarName = QStringView(aValue).mid(nDollarPos + 2, nEndPos - nDollarPos - 3);
+                aVarName = aValue.midRef(nDollarPos + 2, nEndPos - nDollarPos - 3);
             } else {
                 while (nEndPos < aValue.length() && (aValue[nEndPos].isNumber() || aValue[nEndPos].isLetter() || aValue[nEndPos] == QLatin1Char('_'))) {
                     ++nEndPos;
                 }
-                aVarName = QStringView(aValue).mid(nDollarPos + 1, nEndPos - nDollarPos - 1);
+                aVarName = aValue.midRef(nDollarPos + 1, nEndPos - nDollarPos - 1);
             }
             QString env;
             if (!aVarName.isEmpty()) {

@@ -17,8 +17,9 @@ public:
 
     bool parse(QIODevice *input);
 
-    void startElement(const QStringView localName, const QXmlStreamAttributes &attrs);
-    void endElement(const QStringView localName);
+    bool startElement(const QStringRef &localName, const QXmlStreamAttributes &attrs);
+    bool endElement(const QStringRef &localName);
+    bool characters(const QStringRef &ch);
 
 private:
     void addItem();

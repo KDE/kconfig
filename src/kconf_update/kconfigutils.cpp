@@ -89,11 +89,7 @@ QString unescapeString(const QString &src, bool *ok, QString *error)
                 break;
             case L'x': {
                 if (pos + 2 < length) {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-                    char value = QStringView(src).mid(pos + 1, 2).toInt(ok, 16);
-#else
                     char value = src.midRef(pos + 1, 2).toInt(ok, 16);
-#endif
                     if (*ok) {
                         dst += QLatin1Char{value};
                         pos += 2;
