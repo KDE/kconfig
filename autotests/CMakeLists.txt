@@ -22,7 +22,7 @@ ecm_add_test(${kentrymaptest_SRCS}
 target_include_directories(kentrymaptest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/core)
 
 # compile KConfigUtils into the test since it's not exported
-set(test_kconfigutils_SRCS test_kconfigutils ../src/kconf_update/kconfigutils.cpp)
+set(test_kconfigutils_SRCS test_kconfigutils.cpp ../src/kconf_update/kconfigutils.cpp)
 ecm_add_test(${test_kconfigutils_SRCS}
   TEST_NAME test_kconfigutils
   LINK_LIBRARIES KF5::ConfigCore Qt5::Test
@@ -31,18 +31,18 @@ target_include_directories(test_kconfigutils PRIVATE ../src/kconf_update)
 
 qt5_add_resources(sharedconfigresources sharedconfigresources.qrc)
 
-ecm_add_test(ksharedconfigtest ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
+ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
 
 # test for fallback to :/kconfig/xxxx config resource
 qt5_add_resources(fallbackconfigresources fallbackconfigresources.qrc)
-ecm_add_test(fallbackconfigresourcestest ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
+ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
 
 ecm_add_tests(
    kconfignokdehometest.cpp
    kconfigtest.cpp
    kdesktopfiletest.cpp
    test_kconf_update.cpp
-   ksharedconfig_in_global_object
+   ksharedconfig_in_global_object.cpp
    NAME_PREFIX kconfigcore-
    LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent
 )
