@@ -140,6 +140,12 @@ void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &conf
         return;
     }
 
+    // If the window is maximized, saving the position will only serve to mis-position
+    // it once de-maximized, so let's not do that
+    if (window->windowState() & Qt::WindowMaximized) {
+        return;
+    }
+
     const QRect desk = window->screen()->geometry();
     config.writeEntry(windowXPositionString(desk), window->x(), options);
     config.writeEntry(windowYPositionString(desk), window->y(), options);
