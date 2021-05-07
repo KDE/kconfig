@@ -110,8 +110,9 @@ KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
  * @see authorize()
  * @deprecated since 5.24, use authorizeAction() instead.
  */
+KCONFIGCORE_EXPORT
 KCONFIGCORE_DEPRECATED_VERSION(5, 24, "Use KAuthorized::authorizeAction(const QString&)")
-KCONFIGCORE_EXPORT bool authorizeKAction(const QString &action);
+bool authorizeKAction(const QString &action);
 #endif
 
 /**

@@ -53,8 +53,9 @@ KCONFIGGUI_EXPORT bool hasSessionConfig();
  * @return the application session name
  * @deprecated since 5.11, use sessionConfig()->name()
  */
+KCONFIGGUI_EXPORT
 KCONFIGGUI_DEPRECATED_VERSION(5, 11, "Use KConfigGui::sessionConfig()->name()")
-KCONFIGGUI_EXPORT QString sessionConfigName();
+QString sessionConfigName();
 #endif
 }
 

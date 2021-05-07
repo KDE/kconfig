@@ -211,8 +211,9 @@ KCONFIGGUI_EXPORT StandardShortcut find(const QKeySequence &keySeq);
  *          is none
  * @deprecated since 5.71, use findByName(const QString &name) instead
  */
+KCONFIGGUI_EXPORT
 KCONFIGGUI_DEPRECATED_VERSION(5, 71, "Use findByName(const QString &name) instead")
-KCONFIGGUI_EXPORT StandardShortcut find(const char *keyName);
+StandardShortcut find(const char *keyName);
 #endif
 
 /**
