@@ -25,7 +25,7 @@
  * The openConfig() method is threadsafe: every thread gets a separate repository
  * of shared KConfig objects. This means, however, that you'll be responsible for
  * synchronizing the instances of KConfig for the same filename between threads,
- * using reparseConfiguration after a manual change notification, just like you have
+ * using KConfig::reparseConfiguration() after a manual change notification, just like you have
  * to do between processes.
  */
 class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData // krazy:exclude=dpointer (only for refcounting)
