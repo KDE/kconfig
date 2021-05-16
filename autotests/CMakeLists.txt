@@ -29,12 +29,12 @@ ecm_add_test(${test_kconfigutils_SRCS}
 )
 target_include_directories(test_kconfigutils PRIVATE ../src/kconf_update)
 
-qt5_add_resources(sharedconfigresources sharedconfigresources.qrc)
+qt_add_resources(sharedconfigresources sharedconfigresources.qrc)
 
 ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
 
 # test for fallback to :/kconfig/xxxx config resource
-qt5_add_resources(fallbackconfigresources fallbackconfigresources.qrc)
+qt_add_resources(fallbackconfigresources fallbackconfigresources.qrc)
 ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF5::ConfigCore Qt5::Test Qt5::Concurrent)
 
 ecm_add_tests(
