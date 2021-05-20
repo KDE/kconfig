@@ -802,7 +802,7 @@ void KConfigTest::testDelete()
     delgr.deleteGroup();
     QVERIFY(!delgr.exists());
     QVERIFY(!ct.hasGroup("Nested Group 3"));
-    QVERIFY(ct.groupList().contains(QStringLiteral("Nested Group 3")));
+    QVERIFY(!ct.groupList().contains(QStringLiteral("Nested Group 3")));
 
     KConfigGroup ng(&ct, "Nested Group 2");
     QVERIFY(sc.hasGroup("Complex Types"));
