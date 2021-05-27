@@ -1,15 +1,17 @@
-set(libkconfiggui_SRCS
-   kconfiggui.cpp
-   kconfiggroupgui.cpp
-   kconfigloader.cpp
-   kconfigskeleton.cpp
-   kstandardshortcut.cpp
-   kwindowconfig.cpp
-)
-ecm_create_qm_loader(libkconfiggui_SRCS kconfig5_qt)
-
-add_library(KF5ConfigGui ${libkconfiggui_SRCS})
+add_library(KF5ConfigGui)
 add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
+
+ecm_create_qm_loader(KF5ConfigGui kconfig5_qt)
+
+target_sources(KF5ConfigGui PRIVATE
+    kconfiggui.cpp
+    kconfiggroupgui.cpp
+    kconfigloader.cpp
+    kconfigskeleton.cpp
+    kstandardshortcut.cpp
+    kwindowconfig.cpp
+)
+
 ecm_generate_export_header(KF5ConfigGui
     BASE_NAME KConfigGui
     GROUP_BASE_NAME KF

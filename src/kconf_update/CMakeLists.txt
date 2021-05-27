@@ -1,11 +1,12 @@
-########### next target ###############
+add_executable(kconf_update)
+add_executable(KF5::kconf_update ALIAS kconf_update)
 
-set(kconf_update_SRCS
+target_sources(kconf_update PRIVATE
     kconf_update.cpp
     kconfigutils.cpp
-    )
+)
 
-ecm_qt_declare_logging_category(kconf_update_SRCS
+ecm_qt_declare_logging_category(kconf_update
     HEADER kconf_update_debug.h
     IDENTIFIER KCONF_UPDATE_LOG
     CATEGORY_NAME kf.config.kconf_update
@@ -14,8 +15,6 @@ ecm_qt_declare_logging_category(kconf_update_SRCS
     EXPORT KCONFIG
 )
 
-add_executable(kconf_update ${kconf_update_SRCS})
-add_executable(KF5::kconf_update ALIAS kconf_update)
 target_link_libraries(kconf_update Qt5::Core KF5::ConfigCore)
 include(ECMMarkNonGuiExecutable)
 ecm_mark_nongui_executable(kconf_update)

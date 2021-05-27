@@ -1,4 +1,7 @@
-set(libkconfigcore_SRCS
+add_library(KF5ConfigCore)
+add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
+
+target_sources(KF5ConfigCore PRIVATE
    kconfig.cpp
    kconfigbase.cpp
    kconfigdata.cpp
@@ -13,7 +16,7 @@ set(libkconfigcore_SRCS
    kconfigwatcher.cpp
 )
 
-ecm_qt_declare_logging_category(libkconfigcore_SRCS
+ecm_qt_declare_logging_category(KF5ConfigCore
     HEADER kconfig_core_log_settings.h
     IDENTIFIER KCONFIG_CORE_LOG
     CATEGORY_NAME kf.config.core
@@ -24,8 +27,6 @@ ecm_qt_declare_logging_category(libkconfigcore_SRCS
 
 configure_file(config-kconfig.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconfig.h )
 
-add_library(KF5ConfigCore ${libkconfigcore_SRCS})
-add_library(KF5::ConfigCore ALIAS KF5ConfigCore)
 ecm_generate_export_header(KF5ConfigCore
     BASE_NAME KConfigCore
     GROUP_BASE_NAME KF
