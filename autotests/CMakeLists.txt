@@ -14,16 +14,18 @@ if(NOT Qt5Concurrent_FOUND)
 endif()
 
 # compile KEntryMap into the test since it's not exported
-set(kentrymaptest_SRCS kentrymaptest.cpp ../src/core/kconfigdata.cpp)
-ecm_add_test(${kentrymaptest_SRCS}
+ecm_add_test(
+  kentrymaptest.cpp
+  ../src/core/kconfigdata.cpp
   TEST_NAME kentrymaptest
   LINK_LIBRARIES Qt5::Test
 )
 target_include_directories(kentrymaptest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/core)
 
 # compile KConfigUtils into the test since it's not exported
-set(test_kconfigutils_SRCS test_kconfigutils.cpp ../src/kconf_update/kconfigutils.cpp)
-ecm_add_test(${test_kconfigutils_SRCS}
+ecm_add_test(
+  test_kconfigutils.cpp
+  ../src/kconf_update/kconfigutils.cpp
   TEST_NAME test_kconfigutils
   LINK_LIBRARIES KF5::ConfigCore Qt5::Test
 )
