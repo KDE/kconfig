@@ -4,6 +4,7 @@
 #    Use optional GENERATE_MOC to generate moc if you use signals in your kcfg files.
 #    Use optional USE_RELATIVE_PATH to generate the classes in the build following the given
 #    relative path to the file.
+#    <target> must not be an alias.
 #
 # SPDX-FileCopyrightText: 2006-2009 Alexander Neundorf <neundorf@kde.org>
 # SPDX-FileCopyrightText: 2006, 2007, Laurent Montel <montel@kde.org>
@@ -16,6 +17,13 @@ include(CMakeParseArguments)
 function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
    set(options GENERATE_MOC USE_RELATIVE_PATH)
    cmake_parse_arguments(ARG "${options}" "" "" ${ARGN})
+
+   if (TARGET ${_target_or_source_var})
+       get_target_property(aliased_target ${_target_or_source_var} ALIASED_TARGET)
+       if(aliased_target)
+           message(FATAL_ERROR "Target argument passed to kconfig_add_kcfg_files must not be an alias: ${_target_or_source_var}")
+       endif()
+   endif()
 
    set(sources)
    foreach (_current_FILE ${ARG_UNPARSED_ARGUMENTS})
