@@ -960,6 +960,7 @@ void KConfigTest::testCascadingWithLocale()
 #ifdef Q_XDG_PLATFORM
     QTemporaryDir middleDir;
     QTemporaryDir globalDir;
+    const QByteArray oldConfigDirs = qgetenv("XDG_CONFIG_DIRS");
     qputenv("XDG_CONFIG_DIRS", qPrintable(middleDir.path() + QLatin1Char(':') + globalDir.path()));
 
     const QString globalConfigDir = globalDir.path() + QLatin1Char('/') + s_test_subdir;
@@ -999,6 +1000,7 @@ void KConfigTest::testCascadingWithLocale()
     QCOMPARE(group.readEntry("FromLocal"), QStringLiteral("vrai"));
     QCOMPARE(group.readEntry("Name"), QStringLiteral("FR"));
     QCOMPARE(group.readEntry("Other"), QStringLiteral("English Only")); // Global_FR is locally overriden
+    qputenv("XDG_CONFIG_DIRS", oldConfigDirs);
 #endif
 }
 
