@@ -31,6 +31,8 @@
 #include <QSet>
 #include <QThreadStorage>
 
+#include <set>
+
 #if KCONFIG_USE_DBUS
 #include <QDBusConnection>
 #include <QDBusMessage>
@@ -347,14 +349,14 @@ QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
-        QSet<QString> tmp;
+        std::set<QString> tmp; // unique set, sorted for unittests
         for (; it != theEnd && it.key().mGroup == theGroup; ++it) {
             const KEntryKey &key = it.key();
             if (!key.mKey.isNull() && !it->bDeleted) {
-                tmp << QString::fromUtf8(key.mKey);
+                tmp.insert(QString::fromUtf8(key.mKey));
             }
         }
-        keys = tmp.values();
+        keys = QList<QString>(tmp.begin(), tmp.end());
     }
 
     return keys;
