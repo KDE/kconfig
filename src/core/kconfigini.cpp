@@ -437,7 +437,7 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
             } else {
                 KEntryKey defaultKey = key;
                 defaultKey.bDefault = true;
-                if (!entryMap.contains(defaultKey)) {
+                if (!entryMap.contains(defaultKey) && !it->bOverridesGlobal) {
                     writeMap.remove(key); // remove the deleted entry if there is no default
                     // qDebug() << "Detected as deleted=>removed:" << key.mGroup << key.mKey << "global=" << bGlobal;
                 } else {
