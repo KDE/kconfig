@@ -116,9 +116,15 @@ void KConfigTest::initTestCase()
 
     KConfig sc(s_kconfig_test_subdir);
 
-    KConfigGroup cg(&sc, "AAA");
+    KConfigGroup cg(&sc, "AAA"); // deleted later by testDelete
     cg.writeEntry("stringEntry1", s_string_entry1, KConfig::Persistent | KConfig::Global);
-    cg.deleteEntry("stringEntry2", KConfig::Global);
+
+    cg = KConfigGroup(&sc, "GlobalGroup");
+    cg.writeEntry("globalEntry", s_string_entry1, KConfig::Persistent | KConfig::Global);
+    cg.deleteEntry("globalEntry2", KConfig::Global);
+
+    cg = KConfigGroup(&sc, "LocalGroupToBeDeleted"); // deleted later by testDelete
+    cg.writeEntry("stringEntry1", s_string_entry1);
 
     cg = KConfigGroup(&sc, "Hello");
     cg.writeEntry("boolEntry1", s_bool_entry1);
@@ -339,16 +345,16 @@ void KConfigTest::testSimple()
         QVERIFY(!group.contains(QChar(0x1d)));
     }
 
-    KConfigGroup sc3(&sc2, "AAA");
+    KConfigGroup sc3(&sc2, "GlobalGroup");
 
-    QVERIFY(sc3.hasKey("stringEntry1")); // from kdeglobals
-    QVERIFY(!sc3.isEntryImmutable("stringEntry1"));
-    QCOMPARE(sc3.readEntry("stringEntry1"), s_string_entry1);
+    QVERIFY(sc3.hasKey("globalEntry")); // from kdeglobals
+    QVERIFY(!sc3.isEntryImmutable("globalEntry"));
+    QCOMPARE(sc3.readEntry("globalEntry"), s_string_entry1);
 
-    QVERIFY(!sc3.hasKey("stringEntry2"));
-    QCOMPARE(sc3.readEntry("stringEntry2", QStringLiteral("bla")), QStringLiteral("bla"));
+    QVERIFY(!sc3.hasKey("globalEntry2"));
+    QCOMPARE(sc3.readEntry("globalEntry2", QStringLiteral("bla")), QStringLiteral("bla"));
 
-    QVERIFY(!sc3.hasDefault("stringEntry1"));
+    QVERIFY(!sc3.hasDefault("globalEntry"));
 
     sc3 = KConfigGroup(&sc2, "Hello");
     QCOMPARE(sc3.readEntry("Test", QByteArray()), QByteArray(s_utf8bit_entry));
@@ -824,6 +830,8 @@ void KConfigTest::testDelete()
     QVERIFY(!sc.entryMap(QStringLiteral("Hello")).isEmpty()); // not deleted group
     QVERIFY(sc.entryMap(QStringLiteral("FooBar")).isEmpty()); // inexistent group
 
+    KConfigGroup(&sc, "LocalGroupToBeDeleted").deleteGroup();
+
     QVERIFY(cg.sync());
     // Check what happens on disk
     const QList<QByteArray> lines = readLines();
@@ -832,7 +840,8 @@ void KConfigTest::testDelete()
     QVERIFY(!lines.contains("[Complex Types][Nested Group 1]\n"));
     QVERIFY(!lines.contains("[Complex Types][Nested Group 2]\n"));
     QVERIFY(!lines.contains("[Complex Types][Nested Group 2.1]\n"));
-    QVERIFY(!lines.contains("[AAA]\n"));
+    QVERIFY(!lines.contains("[LocalGroupToBeDeleted]\n"));
+    QVERIFY(lines.contains("[AAA]\n")); // deleted from kconfigtest, but present in kdeglobals, so [$d]
     QVERIFY(lines.contains("[Hello]\n")); // a group that was not deleted
 
     // test for entries that are marked as deleted when there is no default
@@ -1712,8 +1721,57 @@ void KConfigTest::testKdeGlobals()
         const KConfigGroup generalNoGlob(&globReadNoGlob, "General");
         QCOMPARE(generalNoGlob.readEntry("testKG"), QStringLiteral("2"));
     }
+}
 
-    // TODO now use kconfigtest and writeEntry(,Global) -> should go into kdeglobals
+void KConfigTest::testLocalDeletion()
+{
+    // Prepare kdeglobals
+    {
+        KConfig glob(QStringLiteral("kdeglobals"));
+        KConfigGroup general(&glob, "OwnTestGroup");
+        general.writeEntry("GlobalKey", "DontTouchMe");
+        QVERIFY(glob.sync());
+    }
+
+    QStringList expectedKeys{QStringLiteral("LocalKey")};
+    expectedKeys.prepend(QStringLiteral("GlobalWrite"));
+
+    // Write into kconfigtest, including deleting GlobalKey
+    {
+        KConfig mainConfig(s_kconfig_test_subdir);
+        KConfigGroup mainGroup(&mainConfig, "OwnTestGroup");
+        mainGroup.writeEntry("LocalKey", QStringLiteral("LocalValue"));
+        mainGroup.writeEntry("GlobalWrite", QStringLiteral("GlobalValue"), KConfig::Persistent | KConfig::Global); // goes to kdeglobals
+        QCOMPARE(mainGroup.readEntry("GlobalKey"), QStringLiteral("DontTouchMe"));
+        mainGroup.deleteEntry("GlobalKey"); // local deletion ([$d]), kdeglobals is unchanged
+        QCOMPARE(mainGroup.readEntry("GlobalKey", "Default"), QStringLiteral("Default")); // key is gone
+        QCOMPARE(mainGroup.keyList(), expectedKeys);
+    }
+
+    // Check what ended up in kconfigtest
+    const QList<QByteArray> lines = readLines();
+    QVERIFY(lines.contains("[OwnTestGroup]\n"));
+    QVERIFY(lines.contains("GlobalKey[$d]\n"));
+
+    // Check what ended up in kdeglobals
+    {
+        KConfig globReadNoGlob(QStringLiteral("kdeglobals"), KConfig::NoGlobals);
+        const KConfigGroup generalNoGlob(&globReadNoGlob, "OwnTestGroup");
+        QCOMPARE(generalNoGlob.readEntry("GlobalKey"), QStringLiteral("DontTouchMe"));
+        QCOMPARE(generalNoGlob.readEntry("GlobalWrite"), QStringLiteral("GlobalValue"));
+        QVERIFY(!generalNoGlob.hasKey("LocalValue"));
+        QStringList expectedGlobalKeys{QStringLiteral("GlobalKey")};
+        expectedGlobalKeys.append(QStringLiteral("GlobalWrite"));
+        QCOMPARE(generalNoGlob.keyList(), expectedGlobalKeys);
+    }
+
+    // Check what we see when re-reading the config file
+    {
+        KConfig mainConfig(s_kconfig_test_subdir);
+        KConfigGroup mainGroup(&mainConfig, "OwnTestGroup");
+        QCOMPARE(mainGroup.readEntry("GlobalKey", "Default"), QStringLiteral("Default")); // key is gone
+        QCOMPARE(mainGroup.keyList(), expectedKeys);
+    }
 }
 
 void KConfigTest::testAnonymousConfig()

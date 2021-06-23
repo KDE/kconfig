@@ -18,8 +18,9 @@ QDebug operator<<(QDebug dbg, const KEntryKey &key)
 
 QDebug operator<<(QDebug dbg, const KEntry &entry)
 {
-    dbg.nospace() << "[" << entry.mValue << (entry.bDirty ? " dirty" : "") << (entry.bGlobal ? " global" : "") << (entry.bImmutable ? " immutable" : "")
-                  << (entry.bDeleted ? " deleted" : "") << (entry.bReverted ? " reverted" : "") << (entry.bExpand ? " expand" : "") << "]";
+    dbg.nospace() << "[" << entry.mValue << (entry.bDirty ? " dirty" : "") << (entry.bGlobal ? " global" : "")
+                  << (entry.bOverridesGlobal ? " overrides global" : "") << (entry.bImmutable ? " immutable" : "") << (entry.bDeleted ? " deleted" : "")
+                  << (entry.bReverted ? " reverted" : "") << (entry.bExpand ? " expand" : "") << "]";
 
     return dbg.space();
 }
@@ -164,7 +165,7 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
             }
         }
         if (it.value() != e) {
-            // qDebug() << "changing" << k << "from" << e.mValue << "to" << value;
+            // qDebug() << "changing" << k << "from" << it.value().mValue << "to" << value << e;
             it.value() = e;
             if (k.bDefault) {
                 KEntryKey nonDefaultKey(k);
