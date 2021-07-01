@@ -21,6 +21,7 @@
 
 #include <QBasicMutex>
 #include <QByteArray>
+#include <QCache>
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
@@ -28,6 +29,7 @@
 #include <QMutexLocker>
 #include <QProcess>
 #include <QSet>
+#include <QThreadStorage>
 
 #if KCONFIG_USE_DBUS
 #include <QDBusConnection>
@@ -43,6 +45,14 @@ static bool s_wasTestModeEnabled = false;
 Q_GLOBAL_STATIC(QStringList, s_globalFiles) // For caching purposes.
 static QBasicMutex s_globalFilesMutex;
 Q_GLOBAL_STATIC_WITH_ARGS(QString, sGlobalFileName, (QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals")))
+
+using ParseCacheKey = std::pair<QStringList, QString>;
+struct ParseCacheValue {
+    KEntryMap entries;
+    QDateTime parseTime;
+};
+using ParseCache = QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>>;
+Q_GLOBAL_STATIC(ParseCache, sGlobalParse)
 
 #ifndef Q_OS_WIN
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
@@ -687,8 +697,25 @@ void KConfigPrivate::parseGlobalFiles()
     const QStringList globalFiles = getGlobalFiles();
     //    qDebug() << "parsing global files" << globalFiles;
 
-    // TODO: can we cache the values in etc_kderc / other global files
-    //       on a per-application basis?
+    Q_ASSERT(entryMap.isEmpty());
+    const ParseCacheKey key = {globalFiles, locale};
+    auto data = sGlobalParse->localData().object(key);
+    QDateTime newest;
+    for (const auto &file : globalFiles) {
+        const auto fileDate = QFileInfo(file).lastModified();
+        if (fileDate > newest) {
+            newest = fileDate;
+        }
+    }
+    if (data) {
+        if (data->parseTime < newest) {
+            data = nullptr;
+        } else {
+            entryMap = data->entries;
+            return;
+        }
+    }
+
     const QByteArray utf8Locale = locale.toUtf8();
     for (const QString &file : globalFiles) {
         KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
@@ -701,6 +728,7 @@ void KConfigPrivate::parseGlobalFiles()
             break;
         }
     }
+    sGlobalParse->localData().insert(key, new ParseCacheValue({entryMap, newest}));
 }
 
 void KConfigPrivate::parseConfigFiles()
