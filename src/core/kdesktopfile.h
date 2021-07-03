@@ -43,8 +43,6 @@ public:
     /**
      * Constructs a KDesktopFile object.
      *
-     * See QStandardPaths for more information on resources.
-     *
      * @param fileName       The name or path of the desktop file. If it
      *                       is not absolute, it will be located
      *                       using the resource type ApplicationsLocation
