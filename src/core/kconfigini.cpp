@@ -68,20 +68,13 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
 // merge changes in the on-disk file with the changes in the KConfig object.
 KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options, bool merging)
 {
-    if (filePath().isEmpty() || !QFile::exists(filePath())) {
+    if (filePath().isEmpty()) {
         return ParseOk;
     }
 
-    const QByteArray currentLanguage = currentLocale.split('_').first();
-
-    bool bDefault = options & ParseDefaults;
-    bool allowExecutableValues = options & ParseExpansions;
-
-    QByteArray currentGroup("<default>");
-
     QFile file(filePath());
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return ParseOpenError;
+        return file.exists() ? ParseOpenError : ParseOk;
     }
 
     QList<QByteArray> immutableGroups;
@@ -97,6 +90,11 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     BufferFragment contents(buffer.data(), buffer.size());
     unsigned int len = contents.length();
     unsigned int startOfLine = 0;
+    const QByteArray currentLanguage = currentLocale.split('_').first();
+
+    QByteArray currentGroup("<default>");
+    bool bDefault = options & ParseDefaults;
+    bool allowExecutableValues = options & ParseExpansions;
 
     // Reduce memory overhead by making use of implicit sharing
     // This assumes that config files contain only a small amount of
