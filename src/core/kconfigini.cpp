@@ -90,7 +90,9 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     BufferFragment contents(buffer.data(), buffer.size());
     unsigned int len = contents.length();
     unsigned int startOfLine = 0;
-    const QByteArray currentLanguage = currentLocale.split('_').first();
+
+    const int langIdx = currentLocale.indexOf('_');
+    const QByteArray currentLanguage = langIdx >= 0 ? currentLocale.left(langIdx) : currentLocale;
 
     QByteArray currentGroup("<default>");
     bool bDefault = options & ParseDefaults;
