@@ -272,6 +272,19 @@ The following options are read from the kcfgc file:
     settings discovery and handle the deallocation.
     Note this parameter is incompatible with <b>Singleton</b> set to true.
   </dd>
+
+  <dt>TranslationSystem=\<string\></dt>
+  <dd>
+    Default: qt \n
+    Set the translation system for label, tooltip and whatsthis text in generated KConfigSkeleton.
+    Set the value to <b>kde</b> to use the KDE Framework translation system, see KI18n.
+  </dd>
+
+  <dt>TranslationDomain=\<value\></dt>
+  <dd>
+    When <b>TranslationSystem=kde</b> is set, allow to specify the domain in which to look for translations.
+  </dd>
+
 </dl>
 
 
@@ -512,4 +525,20 @@ for a signal, the signal name will suffice.
 
 You can also use the generic configChanged() signal from KConfigSkeleton to notify your application
 about configuration changes.
+
+\subsection translation_context Translation context
+
+In the kcfg file you can specify the translation's context for \<tooltip\>, \<whatsthis\> and \<label\> element for an entry.
+
+\code{.xml}
+<entry type="Bool" key="Auto Save">
+  <label>Enable automatic saving of calendar</label>
+  <whatsthis context="@info:whatsthis">Enable automatic saving of calendars to have calendars saved automatically.</whatsthis>
+  <default>false</default>
+</entry>
+\endcode
+
+For more information on translation context and how to write good translatable text,
+please refer to https://api.kde.org/frameworks/ki18n/html/prg_guide.html
+
 */
