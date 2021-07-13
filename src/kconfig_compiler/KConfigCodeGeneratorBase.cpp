@@ -149,7 +149,7 @@ void KConfigCodeGeneratorBase::endNamespaces()
     }
 }
 
-// returns the member accesor implementation
+// returns the member accessor implementation
 // which should go in the h file if inline
 // or the cpp file if not inline
 QString KConfigCodeGeneratorBase::memberAccessorBody(const CfgEntry *e, bool globalEnums) const

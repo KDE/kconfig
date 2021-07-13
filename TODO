@@ -14,7 +14,7 @@ wishes
 ======
 
 - use lazy loading
-  - load as soon as the first KConfigGroup is instanciated
+  - load as soon as the first KConfigGroup is instantiated
   - lazy parsing of values is interesting, too - see kconfig_take2 branch
 - add $\\VAR and $\\(cmd) escapes to list-quote expanded string
 - possibly:
@@ -75,18 +75,18 @@ create a submap). however, keeping that consistent with deletions would
 be a nightmare, and with the rescan changing the groups underneath
 impossible without each map having a list of referring configgroups.
 therefore it might make more sense to always create a corresponding tree
-of empty maps when a configroup for a non-existing group is instanciated
+of empty maps when a configroup for a non-existing group is instantiated
 - these groups won't be written out (they have no entries and cannot be
 immutable) and access to non-existing groups (esp. without an subsequent
 write that would actually create it) is rare, so the performance and
 memory overhead of this "eager" approach is likely to be negligible. as
 a middle way one could use a pointer and lazily populate it on first
-access whithout putting semantics into the pointer being already set,
+access without putting semantics into the pointer being already set,
 but i don't think the added complexity will pay off.
 
 4)
 > > > > hmm, wait. maybe it would be better if the map did not do actual
-> > > > permission checking. the frontent is peppered with asserts already
+> > > > permission checking. the frontend is peppered with asserts already
 > > >
 > > > that's the group doing permission checking, if this group is immutable
 > > > then the entry can't be changed. plus, now that KEntryKey doesn't know

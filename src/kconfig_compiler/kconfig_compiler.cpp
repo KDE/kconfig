@@ -619,7 +619,7 @@ QString memberGetDefaultBody(const CfgEntry *e)
     return result;
 }
 
-// returns the item accesor implementation
+// returns the item accessor implementation
 // which should go in the h file if inline
 // or the cpp file if not inline
 QString itemAccessorBody(const CfgEntry *e, const KConfigParameters &cfg)

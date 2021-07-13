@@ -65,7 +65,7 @@
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="parameter" type="kcfg:parameter" minOccurs="0" maxOccurs="unbounded" />
-                            <!-- FIXME: Are really unbounded occurances of parameter allowed? -->
+                            <!-- FIXME: Are really unbounded occurrences of parameter allowed? -->
                         </xsd:sequence>
                         <xsd:attribute name="name" type="xsd:string" use="optional"/>
                         <xsd:attribute name="arg" type="xsd:boolean" use="optional"/>

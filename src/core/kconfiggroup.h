@@ -113,7 +113,7 @@ public:
     QString name() const;
 
     /**
-     * Check whether the containing KConfig object acutally contains a
+     * Check whether the containing KConfig object actually contains a
      * group with this name.
      */
     bool exists() const;

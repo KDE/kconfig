@@ -121,7 +121,7 @@ protected:
         return m_stream;
     }
 
-    // HACK: This needs to be accesible because the HeaderGenerator actually modifies
+    // HACK: This needs to be accessible because the HeaderGenerator actually modifies
     // it while running. Considering that this is a the result of the xml Parse, and not
     // the result of generating code, I consider this to be quite wrong - but moving the
     // changes away from the header generator only created more problems and I have to

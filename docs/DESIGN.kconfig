@@ -53,8 +53,8 @@ void deleteEntry(key); // Remove entry
 Note that there is a subtle difference between revertToDefault() and deleteEntry().
 revertToDefault() will change the entry to the default value set by the system 
 administrator (Via e.g. $KDEDIR/share/config) or, if no such default was set,
-non-existant.
-deleteEntry() will make the entry non-existant.
+non-existent.
+deleteEntry() will make the entry non-existent.
 
 Entries are marked "immutable" if the key is followed by [$i]. This means
 that a user can not override these entries.
@@ -103,7 +103,7 @@ KConfig XT
 ==========
 
 My buzzword picker offered KConfig XT ("eXtended Technology") and KConfig NG 
-("Next Generation").  Since the planned changes are ment to be evolutionary 
+("Next Generation").  Since the planned changes are meant to be evolutionary 
 rather than revolutionary, KConfig NG was dropped.
 
 Goals
@@ -216,7 +216,7 @@ myconfig.kcfg-codegen: Implementation specific code generation instructions
                        choses the actual name.
 
 KConfigDialogManager: Class that links widgets in a dialog up with their
-                      corresponding confguration options in a configuration
+                      corresponding configuration options in a configuration
                       object derived from KConfigSkeleton.
 
 MyConfigWidget: Dialog generated from a .ui description file. Widget names

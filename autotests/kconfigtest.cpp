@@ -822,7 +822,7 @@ void KConfigTest::testDelete()
     QVERIFY(sc.entryMap(QStringLiteral("Complex Types")).isEmpty());
     QVERIFY(sc.entryMap(QStringLiteral("AAA")).isEmpty());
     QVERIFY(!sc.entryMap(QStringLiteral("Hello")).isEmpty()); // not deleted group
-    QVERIFY(sc.entryMap(QStringLiteral("FooBar")).isEmpty()); // inexistant group
+    QVERIFY(sc.entryMap(QStringLiteral("FooBar")).isEmpty()); // inexistent group
 
     QVERIFY(cg.sync());
     // Check what happens on disk
@@ -999,7 +999,7 @@ void KConfigTest::testCascadingWithLocale()
     QCOMPARE(group.readEntry("FromGlobal"), QStringLiteral("vrai"));
     QCOMPARE(group.readEntry("FromLocal"), QStringLiteral("vrai"));
     QCOMPARE(group.readEntry("Name"), QStringLiteral("FR"));
-    QCOMPARE(group.readEntry("Other"), QStringLiteral("English Only")); // Global_FR is locally overriden
+    QCOMPARE(group.readEntry("Other"), QStringLiteral("English Only")); // Global_FR is locally overridden
     qputenv("XDG_CONFIG_DIRS", oldConfigDirs);
 #endif
 }

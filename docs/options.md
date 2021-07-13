@@ -48,11 +48,11 @@ Once this is done, the immutable entries or groups cannot be overridden by later
 files of the same name (and, if the file is immutable, later files will be
 ignored entirely).
 
-Note that a similar effect to file immutability can be acheived by using file
+Note that a similar effect to file immutability can be achieved by using file
 system permissions to prevent the user from writing to their local versions of
 the configuration file, although (since this is normally a setup error), the
 user will be warned that the configuration file is not writable.  This warning
-can be supressed by adding the following setting to either the relevant
+can be suppressed by adding the following setting to either the relevant
 configuration file or the `kdeglobals` file:
 
     [General]
