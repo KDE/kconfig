@@ -11,9 +11,9 @@
 #ifndef KCONFIG_P_H
 #define KCONFIG_P_H
 
-#include "kconfigbackend_p.h"
 #include "kconfigdata_p.h"
 #include "kconfiggroup.h"
+#include "kconfigini_p.h"
 
 #include <QDir>
 #include <QFile>
@@ -57,7 +57,7 @@ public:
     static QString expandString(const QString &value);
 
 protected:
-    QExplicitlySharedDataPointer<KConfigBackend> mBackend;
+    QExplicitlySharedDataPointer<KConfigIni> mBackend;
 
     KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation type);
 
@@ -65,7 +65,6 @@ protected:
     {
     }
 
-    bool bDynamicBackend : 1; // do we own the backend?
 private:
     bool bDirty : 1;
     bool bReadDefaults : 1;
@@ -76,7 +75,6 @@ private:
     static bool mappingsRegistered;
 
     KEntryMap entryMap;
-    QString backendType;
     QStack<QString> extraFiles;
 
     QString locale;

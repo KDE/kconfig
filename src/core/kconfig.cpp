@@ -16,7 +16,6 @@
 #include <cstdlib>
 #include <fcntl.h>
 
-#include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
 #include <QBasicMutex>
@@ -70,7 +69,6 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
     : openFlags(flags)
     , resourceType(resourceType)
     , mBackend(nullptr)
-    , bDynamicBackend(true)
     , bDirty(false)
     , bReadDefaults(false)
     , bFileImmutable(false)
@@ -102,21 +100,6 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
             etc_kderc.clear();
         }
     }
-
-    //    if (!mappingsRegistered) {
-    //        KEntryMap tmp;
-    //        if (!etc_kderc.isEmpty()) {
-    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(etc_kderc, QLatin1String("INI"));
-    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseDefaults);
-    //        }
-    //        const QString kde5rc(QDir::home().filePath(".kde5rc"));
-    //        if (KStandardDirs::checkAccess(kde5rc, R_OK)) {
-    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde5rc, QLatin1String("INI"));
-    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseOptions());
-    //        }
-    //        KConfigBackend::registerMappings(tmp);
-    //        mappingsRegistered = true;
-    //    }
 
     setLocale(QLocale().name());
 }
@@ -253,14 +236,9 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
 }
 
 KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)
-    : d_ptr(new KConfigPrivate(SimpleConfig, resourceType))
+    : KConfig(file, KConfig::FullConfig, resourceType)
 {
-    d_ptr->mBackend = KConfigBackend::create(file, backend);
-    d_ptr->bDynamicBackend = false;
-    d_ptr->changeFileName(file); // set the local file name
-
-    // read initial information off disk
-    reparseConfiguration();
+    Q_UNUSED(backend);
 }
 
 KConfig::KConfig(KConfigPrivate &d)
@@ -463,7 +441,7 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            QExplicitlySharedDataPointer<KConfigBackend> tmp = KConfigBackend::create(*sGlobalFileName);
+            QExplicitlySharedDataPointer<KConfigIni> tmp = KConfigIni::create(*sGlobalFileName);
             if (d->configState == ReadWrite && !tmp->lock()) {
                 qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
 
@@ -475,7 +453,7 @@ bool KConfig::sync()
                 d->bDirty = true;
                 return false;
             }
-            if (!tmp->writeConfig(utf8Locale, d->entryMap, KConfigBackend::WriteGlobal)) {
+            if (!tmp->writeConfig(utf8Locale, d->entryMap, KConfigIni::WriteGlobal)) {
                 d->bDirty = true;
             }
             if (tmp->isLocked()) {
@@ -484,7 +462,7 @@ bool KConfig::sync()
         }
 
         if (writeLocals) {
-            if (!d->mBackend->writeConfig(utf8Locale, d->entryMap, KConfigBackend::WriteOptions())) {
+            if (!d->mBackend->writeConfig(utf8Locale, d->entryMap, KConfigIni::WriteOptions())) {
                 d->bDirty = true;
             }
         }
@@ -647,8 +625,8 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    if (bDynamicBackend || !mBackend) { // allow dynamic changing of backend
-        mBackend = KConfigBackend::create(file);
+    if (!mBackend) {
+        mBackend = KConfigIni::create(file);
     } else {
         mBackend->setFilePath(file);
     }
@@ -736,14 +714,14 @@ void KConfigPrivate::parseGlobalFiles()
 
     const QByteArray utf8Locale = locale.toUtf8();
     for (const QString &file : globalFiles) {
-        KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
+        KConfigIni::ParseOptions parseOpts = KConfigIni::ParseGlobal | KConfigIni::ParseExpansions;
 
         if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0) {
-            parseOpts |= KConfigBackend::ParseDefaults;
+            parseOpts |= KConfigIni::ParseDefaults;
         }
 
-        QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
-        if (backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigBackend::ParseImmutable) {
+        QExplicitlySharedDataPointer<KConfigIni> backend = KConfigIni::create(file);
+        if (backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIni::ParseImmutable) {
             break;
         }
     }
@@ -791,20 +769,20 @@ void KConfigPrivate::parseConfigFiles()
         const QByteArray utf8Locale = locale.toUtf8();
         for (const QString &file : std::as_const(files)) {
             if (file.compare(mBackend->filePath(), sPathCaseSensitivity) == 0) {
-                switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseExpansions)) {
-                case KConfigBackend::ParseOk:
+                switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigIni::ParseExpansions)) {
+                case KConfigIni::ParseOk:
                     break;
-                case KConfigBackend::ParseImmutable:
+                case KConfigIni::ParseImmutable:
                     bFileImmutable = true;
                     break;
-                case KConfigBackend::ParseOpenError:
+                case KConfigIni::ParseOpenError:
                     configState = KConfigBase::NoAccess;
                     break;
                 }
             } else {
-                QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
-                constexpr auto parseOpts = KConfigBackend::ParseDefaults | KConfigBackend::ParseExpansions;
-                bFileImmutable = backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigBackend::ParseImmutable;
+                QExplicitlySharedDataPointer<KConfigIni> backend = KConfigIni::create(file);
+                constexpr auto parseOpts = KConfigIni::ParseDefaults | KConfigIni::ParseExpansions;
+                bFileImmutable = backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIni::ParseImmutable;
             }
 
             if (bFileImmutable) {

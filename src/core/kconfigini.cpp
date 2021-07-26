@@ -12,7 +12,6 @@
 #include "bufferfragment_p.h"
 #include "kconfig.h"
 #include "kconfig_core_log_settings.h"
-#include "kconfigbackend_p.h"
 #include "kconfigdata_p.h"
 
 #include <QDateTime>
@@ -32,7 +31,7 @@
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
 
-static QByteArray lookup(const KConfigIniBackend::BufferFragment fragment, QHash<KConfigIniBackend::BufferFragment, QByteArray> *cache)
+static QByteArray lookup(const KConfigIni::BufferFragment fragment, QHash<KConfigIni::BufferFragment, QByteArray> *cache)
 {
     auto it = cache->constFind(fragment);
     if (it != cache->constEnd()) {
@@ -42,31 +41,33 @@ static QByteArray lookup(const KConfigIniBackend::BufferFragment fragment, QHash
     return cache->insert(fragment, fragment.toByteArray()).value();
 }
 
-QString KConfigIniBackend::warningProlog(const QFile &file, int line)
+QString KConfigIni::warningProlog(const QFile &file, int line)
 {
     // %2 then %1 i.e. int before QString, so that the QString is last
     // This avoids a wrong substitution if the fileName itself contains %1
     return QStringLiteral("KConfigIni: In file %2, line %1: ").arg(line).arg(file.fileName());
 }
 
-KConfigIniBackend::KConfigIniBackend()
-    : KConfigBackend()
-    , lockFile(nullptr)
+QExplicitlySharedDataPointer<KConfigIni> KConfigIni::create(const QString &file)
+{
+    KConfigIni *instance = new KConfigIni;
+    instance->setFilePath(file);
+    return QExplicitlySharedDataPointer<KConfigIni>(instance);
+}
+
+KConfigIni::KConfigIni()
+    : lockFile(nullptr)
 {
 }
 
-KConfigIniBackend::~KConfigIniBackend()
-{
-}
-
-KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options)
+KConfigIni::ParseInfo KConfigIni::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options)
 {
     return parseConfig(currentLocale, entryMap, options, false);
 }
 
 // merging==true is the merging that happens at the beginning of writeConfig:
 // merge changes in the on-disk file with the changes in the KConfig object.
-KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options, bool merging)
+KConfigIni::ParseInfo KConfigIni::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options, bool merging)
 {
     if (filePath().isEmpty()) {
         return ParseOk;
@@ -294,7 +295,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     return fileOptionImmutable ? ParseImmutable : ParseOk;
 }
 
-void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool &firstEntry)
+void KConfigIni::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool &firstEntry)
 {
     QByteArray currentGroup;
     bool groupIsImmutable = false;
@@ -386,7 +387,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
     }
 }
 
-void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map)
+void KConfigIni::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map)
 {
     bool firstEntry = true;
 
@@ -397,7 +398,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
     writeEntries(locale, file, map, false, firstEntry);
 }
 
-bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options)
+bool KConfigIni::writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options)
 {
     Q_ASSERT(!filePath().isEmpty());
 
@@ -531,7 +532,7 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
     return true;
 }
 
-bool KConfigIniBackend::isWritable() const
+bool KConfigIni::isWritable() const
 {
     const QString filePath = this->filePath();
     if (!filePath.isEmpty()) {
@@ -557,12 +558,12 @@ bool KConfigIniBackend::isWritable() const
     return false;
 }
 
-QString KConfigIniBackend::nonWritableErrorMessage() const
+QString KConfigIni::nonWritableErrorMessage() const
 {
-    return tr("Configuration file \"%1\" not writable.\n").arg(filePath());
+    return QObject::tr("Configuration file \"%1\" not writable.\n").arg(filePath());
 }
 
-void KConfigIniBackend::createEnclosing()
+void KConfigIni::createEnclosing()
 {
     const QString file = filePath();
     if (file.isEmpty()) {
@@ -574,7 +575,7 @@ void KConfigIniBackend::createEnclosing()
     dir.mkpath(QFileInfo(file).absolutePath());
 }
 
-void KConfigIniBackend::setFilePath(const QString &file)
+void KConfigIni::setFilePath(const QString &file)
 {
     if (file.isEmpty()) {
         return;
@@ -595,7 +596,7 @@ void KConfigIniBackend::setFilePath(const QString &file)
     }
 }
 
-KConfigBase::AccessMode KConfigIniBackend::accessMode() const
+KConfigBase::AccessMode KConfigIni::accessMode() const
 {
     if (filePath().isEmpty()) {
         return KConfigBase::NoAccess;
@@ -608,7 +609,7 @@ KConfigBase::AccessMode KConfigIniBackend::accessMode() const
     return KConfigBase::ReadOnly;
 }
 
-bool KConfigIniBackend::lock()
+bool KConfigIni::lock()
 {
     Q_ASSERT(!filePath().isEmpty());
 
@@ -633,14 +634,14 @@ bool KConfigIniBackend::lock()
     return lockFile->isLocked();
 }
 
-void KConfigIniBackend::unlock()
+void KConfigIni::unlock()
 {
     lockFile->unlock();
     delete lockFile;
     lockFile = nullptr;
 }
 
-bool KConfigIniBackend::isLocked() const
+bool KConfigIni::isLocked() const
 {
     return lockFile && lockFile->isLocked();
 }
@@ -753,7 +754,7 @@ public:
 };
 }
 
-QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, StringType type)
+QByteArray KConfigIni::stringToPrintable(const QByteArray &aString, StringType type)
 {
     const int len = aString.size();
     if (len == 0) {
@@ -843,7 +844,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
     return result;
 }
 
-char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line)
+char KConfigIni::charFromHex(const char *str, const QFile &file, int line)
 {
     unsigned char ret = 0;
     for (int i = 0; i < 2; i++) {
@@ -867,7 +868,7 @@ char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line
     return char(ret);
 }
 
-void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &file, int line)
+void KConfigIni::printableToString(BufferFragment *aString, const QFile &file, int line)
 {
     if (aString->isEmpty() || aString->indexOf('\\') == -1) {
         return;
@@ -932,4 +933,14 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
         }
     }
     aString->truncate(r - aString->constData());
+}
+
+QString KConfigIni::filePath() const
+{
+    return localFileName;
+}
+
+void KConfigIni::setLocalFilePath(const QString &file)
+{
+    localFileName = file;
 }

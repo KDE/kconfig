@@ -22,7 +22,7 @@
 // - split() works more like strtok_r than QByteArray.split()
 // - truncateLeft() and mid() require position argument to be valid
 
-class KConfigIniBackend::BufferFragment
+class KConfigIni::BufferFragment
 {
 public:
     BufferFragment()
@@ -184,7 +184,7 @@ private:
     unsigned int len;
 };
 
-uint qHash(const KConfigIniBackend::BufferFragment fragment)
+uint qHash(const KConfigIni::BufferFragment fragment)
 {
     const uchar *p = reinterpret_cast<const uchar *>(fragment.constData());
     const int len = fragment.length();

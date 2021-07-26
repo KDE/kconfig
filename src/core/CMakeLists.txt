@@ -6,7 +6,6 @@ target_sources(KF5ConfigCore PRIVATE
    kconfigbase.cpp
    kconfigdata.cpp
    kconfiggroup.cpp
-   kconfigbackend.cpp
    kconfigini.cpp
    kdesktopfile.cpp
    ksharedconfig.cpp
@@ -32,7 +31,7 @@ ecm_generate_export_header(KF5ConfigCore
     GROUP_BASE_NAME KF
     VERSION ${KF_VERSION}
     DEPRECATED_BASE_VERSION 0
-    DEPRECATION_VERSIONS 4.0 5.0 5.24 5.42 5.82 5.89
+    DEPRECATION_VERSIONS 4.0 5.0 5.24 5.42 5.82 5.89 5.97
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
