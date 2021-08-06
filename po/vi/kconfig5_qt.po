@@ -1,0 +1,546 @@
+# Vietnamese translation for kwriteconfig.
+# Copyright © 2006 Free Software Foundation, Inc.
+#
+# Phan Vĩnh Thịnh <teppi82@gmail.com>, 2006.
+# Lê Hoàng Phương <herophuong93@gmail.com>, 2012.
+# Phu Hung Nguyen <phuhnguyen@disroot.org>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2020-11-28 16:51+0100\n"
+"Last-Translator: Phu Hung Nguyen <phuhnguyen@disroot.org>\n"
+"Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.08.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Qt-Contexts: true\n"
+
+#: core/kconfig.cpp:948
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Vui lòng liên hệ với quản trị viên hệ thống của bạn."
+
+#: core/kconfigini.cpp:567
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Tệp cấu hình \"%1\" không ghi được.\n"
+
+#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
+#: core/kemailsettings.cpp:248
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Mặc định"
+
+#: gui/kstandardshortcut.cpp:67
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Mở"
+
+#: gui/kstandardshortcut.cpp:68
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Tạo"
+
+#: gui/kstandardshortcut.cpp:69
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Đóng"
+
+#: gui/kstandardshortcut.cpp:70
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Lưu"
+
+#: gui/kstandardshortcut.cpp:71
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "In"
+
+#: gui/kstandardshortcut.cpp:72
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Thoát"
+
+#: gui/kstandardshortcut.cpp:75
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Đảo ngược"
+
+#: gui/kstandardshortcut.cpp:76
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Làm lại"
+
+#: gui/kstandardshortcut.cpp:79
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Cắt"
+
+#: gui/kstandardshortcut.cpp:80
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Chép"
+
+#: gui/kstandardshortcut.cpp:81
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Dán"
+
+#: gui/kstandardshortcut.cpp:84
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Dán phần chọn"
+
+#: gui/kstandardshortcut.cpp:91
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Chọn tất cả"
+
+#: gui/kstandardshortcut.cpp:92
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "Bỏ chọn"
+
+#: gui/kstandardshortcut.cpp:95
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Xoá từ lùi"
+
+#: gui/kstandardshortcut.cpp:103
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Xoá từ tiến"
+
+#: gui/kstandardshortcut.cpp:110
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Tìm"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Tìm về sau"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Tìm về trước"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Thay thế"
+
+#: gui/kstandardshortcut.cpp:118
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Nhà"
+
+#: gui/kstandardshortcut.cpp:126
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "Đầu"
+
+#: gui/kstandardshortcut.cpp:132
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "Cuối"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "Trước"
+
+#: gui/kstandardshortcut.cpp:136
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "Sau"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "Lên"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Lùi"
+
+#: gui/kstandardshortcut.cpp:147
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Tiến"
+
+#: gui/kstandardshortcut.cpp:155
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Tải lại"
+
+#: gui/kstandardshortcut.cpp:164
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Đầu dòng"
+
+#: gui/kstandardshortcut.cpp:172
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Cuối dòng"
+
+#: gui/kstandardshortcut.cpp:178
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Đi đến dòng"
+
+#: gui/kstandardshortcut.cpp:181
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Lùi từng từ"
+
+#: gui/kstandardshortcut.cpp:189
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Tiến từng từ"
+
+#: gui/kstandardshortcut.cpp:198
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Thêm dấu nhớ"
+
+#: gui/kstandardshortcut.cpp:204
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Phóng to"
+
+#: gui/kstandardshortcut.cpp:205
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Thu nhỏ"
+
+#: gui/kstandardshortcut.cpp:208
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Chế độ toàn màn hình"
+
+#: gui/kstandardshortcut.cpp:215
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Hiện thanh trình đơn"
+
+#: gui/kstandardshortcut.cpp:218
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Kích hoạt thẻ sau"
+
+#: gui/kstandardshortcut.cpp:226
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Kích hoạt thẻ trước"
+
+#: gui/kstandardshortcut.cpp:234
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Trợ giúp"
+
+#: gui/kstandardshortcut.cpp:235
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Đây là cái gì"
+
+#: gui/kstandardshortcut.cpp:240
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Hoàn tất văn bản"
+
+#: gui/kstandardshortcut.cpp:248
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Phần khớp hoàn tất trước"
+
+#: gui/kstandardshortcut.cpp:256
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "Phần khớp hoàn tất sau"
+
+#: gui/kstandardshortcut.cpp:264
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Hoàn tất chuỗi con"
+
+#: gui/kstandardshortcut.cpp:273
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Mục trước trong danh sách"
+
+#: gui/kstandardshortcut.cpp:281
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Mục sau trong danh sách"
+
+#: gui/kstandardshortcut.cpp:288
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Mở gần đây"
+
+#: gui/kstandardshortcut.cpp:289
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Lưu thành"
+
+#: gui/kstandardshortcut.cpp:290
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Hoàn nguyên"
+
+#: gui/kstandardshortcut.cpp:291
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Xem thử bản in"
+
+#: gui/kstandardshortcut.cpp:292
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Thư"
+
+#: gui/kstandardshortcut.cpp:293
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Làm trống"
+
+#: gui/kstandardshortcut.cpp:294
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "Kích cỡ thật"
+
+#: gui/kstandardshortcut.cpp:295
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Vừa cho trang"
+
+#: gui/kstandardshortcut.cpp:296
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Vừa cho chiều rộng"
+
+#: gui/kstandardshortcut.cpp:297
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Vừa cho chiều cao"
+
+#: gui/kstandardshortcut.cpp:298
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Thu phóng"
+
+#: gui/kstandardshortcut.cpp:299
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Đi đến"
+
+#: gui/kstandardshortcut.cpp:300
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Đi đến trang"
+
+#: gui/kstandardshortcut.cpp:303
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Tài liệu trước"
+
+#: gui/kstandardshortcut.cpp:311
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "Tài liệu sau"
+
+#: gui/kstandardshortcut.cpp:319
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Sửa dấu nhớ"
+
+#: gui/kstandardshortcut.cpp:325
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Đánh vần"
+
+#: gui/kstandardshortcut.cpp:326
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Hiện thanh công cụ"
+
+#: gui/kstandardshortcut.cpp:327
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Hiện thanh trạng thái"
+
+#: gui/kstandardshortcut.cpp:329
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Lưu các lựa chọn"
+
+#: gui/kstandardshortcut.cpp:334
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Kết buộc phím"
+
+#: gui/kstandardshortcut.cpp:337
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Application"
+msgstr "Cấu hình ứng dụng"
+
+#: gui/kstandardshortcut.cpp:345
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Cấu hình thanh công cụ"
+
+#: gui/kstandardshortcut.cpp:353
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Cấu hình thông báo"
+
+#: gui/kstandardshortcut.cpp:359
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Mẹo của ngày"
+
+#: gui/kstandardshortcut.cpp:360
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Báo lỗi"
+
+#: gui/kstandardshortcut.cpp:363
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Language..."
+msgstr "Cấu hình ngôn ngữ..."
+
+#: gui/kstandardshortcut.cpp:369
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "Về ứng dụng"
+
+#: gui/kstandardshortcut.cpp:370
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "Về KDE"
+
+#: gui/kstandardshortcut.cpp:373
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "Xoá"
+
+#: gui/kstandardshortcut.cpp:374
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: gui/kstandardshortcut.cpp:377
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "Chuyển vào thùng rác"
+
+#: gui/kstandardshortcut.cpp:383
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "Quyên góp"
+
+#: gui/kstandardshortcut.cpp:386
+msgctxt "KStandardShortcut|@action"
+msgid "Show/Hide Hidden Files"
+msgstr "Hiện/ẩn tệp ẩn"
+
+#: gui/kstandardshortcut.cpp:394
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr "Tạo thư mục"
+
+#: kconf_update/kconf_update.cpp:953
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "Công cụ KDE để cập nhật các tệp cấu hình của người dùng"
+
+#: kconf_update/kconf_update.cpp:955
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Giữ lại các kết quả đầu ra từ các kịch bản"
+
+#: kconf_update/kconf_update.cpp:958
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr ""
+"Chỉ dành cho kiểm thử đơn vị: dùng các thư mục kiểm thử để không động đến "
+"các tệp thực tế của người dùng"
+
+#: kconf_update/kconf_update.cpp:960
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Kiểm tra liệu chính tệp cấu hình có cần cập nhật không"
+
+#: kconf_update/kconf_update.cpp:963
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr "(Các) tệp để từ đó đọc ra hướng dẫn cập nhật"
+
+#: kconfig_compiler/kconfig_compiler.cpp:706
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Thư mục để tạo tệp ở trong [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:707
+msgctxt "main|"
+msgid "directory"
+msgstr "thư mục"
+
+#: kconfig_compiler/kconfig_compiler.cpp:711
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Hiển thị giấy phép phần mềm."
+
+#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Dùng <file> thay cho cấu hình toàn cục"
+
+#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Tìm trong nhóm nào. Dùng lặp lại để được các nhóm lồng nhau."
+
+#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Khoá cần tìm"
+
+#: kreadconfig/kreadconfig.cpp:51
+msgctxt "main|"
+msgid "Default value"
+msgstr "Giá trị mặc định"
+
+#: kreadconfig/kreadconfig.cpp:52
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Kiểu biến"
+
+#: kreadconfig/kwriteconfig.cpp:33
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Kiểu biến. Dùng \"bool\" cho một biến luận lí, ngược lại nó sẽ được coi là "
+"một chuỗi."
+
+#: kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Delete the designated key if enabled"
+msgstr "Nếu bật, xoá khoá được chỉ định"
+
+#: kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Giá trị để ghi. Bắt buộc, trên một hệ vỏ dùng '' cho giá trị rỗng"
