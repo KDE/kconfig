@@ -371,24 +371,24 @@ CfgEntry *KConfigXmlParser::parseEntry(const QString &group, const QString &pare
     readParamDefaultValues(readEntry, element);
 
     if (!mValidNameRegexp.match(readEntry.name).hasMatch()) {
-        if (nameIsEmpty)
+        if (nameIsEmpty) {
             std::cerr << "The key '" << qPrintable(readEntry.key)
                       << "' can not be used as name for the entry because "
                          "it is not a valid name. You need to specify a valid name for this entry."
                       << std::endl;
-        else {
+        } else {
             std::cerr << "The name '" << qPrintable(readEntry.name) << "' is not a valid name for an entry." << std::endl;
         }
         exit(1);
     }
 
     if (mAllNames.contains(readEntry.name)) {
-        if (nameIsEmpty)
+        if (nameIsEmpty) {
             std::cerr << "The key '" << qPrintable(readEntry.key)
                       << "' can not be used as name for the entry because "
                          "it does not result in a unique name. You need to specify a unique name for this entry."
                       << std::endl;
-        else {
+        } else {
             std::cerr << "The name '" << qPrintable(readEntry.name) << "' is not unique." << std::endl;
         }
         exit(1);

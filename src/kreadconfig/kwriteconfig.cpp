@@ -53,10 +53,11 @@ int main(int argc, char **argv)
     }
 
     KConfig *konfig;
-    if (file.isEmpty())
+    if (file.isEmpty()) {
         konfig = new KConfig(QStringLiteral("kdeglobals"), KConfig::NoGlobals);
-    else
+    } else {
         konfig = new KConfig(file, KConfig::NoGlobals);
+    }
 
     KConfigGroup cfgGroup = konfig->group(QString());
     for (const QString &grp : groups) {

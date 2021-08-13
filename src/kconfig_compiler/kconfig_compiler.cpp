@@ -645,10 +645,11 @@ QString indent(QString text, int spaces)
     QString currLine;
     while (!in.atEnd()) {
         currLine = in.readLine();
-        if (!currLine.isEmpty())
+        if (!currLine.isEmpty()) {
             for (int i = 0; i < spaces; ++i) {
                 out << " ";
             }
+        }
         out << currLine << '\n';
     }
     return result;
@@ -700,7 +701,8 @@ int main(int argc, char **argv)
     app.setApplicationName(QStringLiteral("kconfig_compiler"));
     app.setApplicationVersion(QStringLiteral(KCONFIG_VERSION_STRING));
 
-    QString inputFilename, codegenFilename;
+    QString inputFilename;
+    QString codegenFilename;
 
     QCommandLineOption targetDirectoryOption(QStringList{QStringLiteral("d"), QStringLiteral("directory")},
                                              QCoreApplication::translate("main", "Directory to generate files in [.]"),

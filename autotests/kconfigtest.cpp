@@ -853,10 +853,11 @@ void KConfigTest::testDelete()
 
     int count = 0;
     const QList<QByteArray> listLines = readLines();
-    for (const QByteArray &item : listLines)
+    for (const QByteArray &item : listLines) {
         if (item.startsWith("devices|")) { // krazy:exclude=strings
             ++count;
         }
+    }
     QCOMPARE(count, 2);
     cg.deleteEntry("devices|manual|/mnt/ipod");
     QVERIFY(cf.sync());
@@ -1364,7 +1365,8 @@ static void ageTimeStamp(const QString &path, int nsec)
 
 void KConfigTest::testWriteOnSync()
 {
-    QDateTime oldStamp, newStamp;
+    QDateTime oldStamp;
+    QDateTime newStamp;
     KConfig sc(s_kconfig_test_subdir, KConfig::IncludeGlobals);
 
     // Age the timestamp of global config file a few sec, and collect it.
@@ -1411,8 +1413,9 @@ void KConfigTest::testFailOnReadOnlyFileSync()
     QVERIFY(f.setPermissions(QFileDevice::ReadOwner));
 
 #ifndef Q_OS_WIN
-    if (::getuid() == 0)
+    if (::getuid() == 0) {
         QSKIP("Root can write to read-only files");
+    }
 #endif
     cgLocal.writeEntry("someLocalString", "whatever2");
     QVERIFY(!cgLocal.sync());
@@ -1423,7 +1426,8 @@ void KConfigTest::testFailOnReadOnlyFileSync()
 
 void KConfigTest::testDirtyOnEqual()
 {
-    QDateTime oldStamp, newStamp;
+    QDateTime oldStamp;
+    QDateTime newStamp;
     KConfig sc(s_kconfig_test_subdir);
 
     // Initialize value

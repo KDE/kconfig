@@ -592,10 +592,11 @@ void KConfigIniBackend::setFilePath(const QString &file)
         setLocalFilePath(info.canonicalFilePath());
     } else {
         const QString dir = info.dir().canonicalPath();
-        if (!dir.isEmpty())
+        if (!dir.isEmpty()) {
             setLocalFilePath(dir + QLatin1Char('/') + info.fileName());
-        else
+        } else {
             setLocalFilePath(file);
+        }
     }
 }
 

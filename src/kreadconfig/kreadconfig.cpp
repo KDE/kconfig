@@ -67,9 +67,9 @@ int main(int argc, char **argv)
 
     KConfig *konfig;
     bool configMustDeleted = false;
-    if (file.isEmpty())
+    if (file.isEmpty()) {
         konfig = KSharedConfig::openConfig().data();
-    else {
+    } else {
         konfig = new KConfig(file, KConfig::NoGlobals);
         configMustDeleted = true;
     }
@@ -82,24 +82,28 @@ int main(int argc, char **argv)
         dflt = dflt.toLower();
         bool def = (dflt == QLatin1String{"true"} || dflt == QLatin1String{"on"} || dflt == QLatin1String{"yes"} || dflt == QLatin1String{"1"});
         bool retValue = !cfgGroup.readEntry(key, def);
-        if (configMustDeleted)
+        if (configMustDeleted) {
             delete konfig;
+        }
         return retValue;
     } else if (type == QLatin1String{"num"} || type == QLatin1String{"int"}) {
         int retValue = cfgGroup.readEntry(key, dflt.toInt());
-        if (configMustDeleted)
+        if (configMustDeleted) {
             delete konfig;
+        }
         return retValue;
     } else if (type == QLatin1String{"path"}) {
         fprintf(stdout, "%s\n", cfgGroup.readPathEntry(key, dflt).toLocal8Bit().data());
-        if (configMustDeleted)
+        if (configMustDeleted) {
             delete konfig;
+        }
         return 0;
     } else {
         /* Assume it's a string... */
         fprintf(stdout, "%s\n", cfgGroup.readEntry(key, dflt).toLocal8Bit().data());
-        if (configMustDeleted)
+        if (configMustDeleted) {
             delete konfig;
+        }
         return 0;
     }
 }

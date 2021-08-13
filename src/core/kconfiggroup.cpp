@@ -935,10 +935,11 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
         data = value.toString().toUtf8();
         break;
     case QMetaType::QVariantList:
-        if (!value.canConvert(QMetaType::QStringList))
+        if (!value.canConvert(QMetaType::QStringList)) {
             qCWarning(KCONFIG_CORE_LOG) << "not all types in \"" << key
                                         << "\" can convert to QString,"
                                            " information will be lost";
+        }
         Q_FALLTHROUGH();
     case QMetaType::QStringList:
         writeEntry(key, value.toList(), flags);

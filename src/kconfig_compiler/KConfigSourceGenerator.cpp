@@ -674,11 +674,13 @@ void KConfigSourceGenerator::createSignalFlagsHandler()
     stream() << '\n';
     stream() << "void " << cfg().className << "::"
              << "itemChanged(quint64 flags) {\n";
-    if (parseResult.hasNonModifySignals)
+    if (parseResult.hasNonModifySignals) {
         stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " |= flags;\n";
+    }
 
-    if (!parseResult.signalList.isEmpty())
+    if (!parseResult.signalList.isEmpty()) {
         stream() << '\n';
+    }
 
     for (const Signal &signal : qAsConst(parseResult.signalList)) {
         if (signal.modify) {

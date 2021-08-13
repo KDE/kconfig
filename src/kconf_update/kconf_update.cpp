@@ -575,7 +575,8 @@ void KonfUpdate::gotRemoveGroup(const QString &_group)
 
 void KonfUpdate::gotKey(const QString &_key)
 {
-    QString oldKey, newKey;
+    QString oldKey;
+    QString newKey;
     const int i = _key.indexOf(QLatin1Char{','});
     if (i == -1) {
         oldKey = _key.trimmed();

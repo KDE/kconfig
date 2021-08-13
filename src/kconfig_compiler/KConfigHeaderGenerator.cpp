@@ -319,10 +319,11 @@ void KConfigHeaderGenerator::createConstructor()
 
     stream() << whitespace() << "" << cfg().className << "(";
     if (parseResult.cfgFileNameArg) {
-        if (cfg().forceStringFilename)
+        if (cfg().forceStringFilename) {
             stream() << " const QString &cfgfilename" << (parseResult.parameters.isEmpty() ? " = QString()" : ", ");
-        else
+        } else {
             stream() << " KSharedConfig::Ptr config" << (parseResult.parameters.isEmpty() ? " = KSharedConfig::openConfig()" : ", ");
+        }
     }
 
     bool first = true;

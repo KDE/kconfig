@@ -580,8 +580,9 @@ void KConfig::setMainConfigName(const QString &str)
 QString KConfig::mainConfigName()
 {
     KConfigStaticData *data = globalData();
-    if (data->appArgs.isEmpty())
+    if (data->appArgs.isEmpty()) {
         data->appArgs = QCoreApplication::arguments();
+    }
 
     // --config on the command line overrides everything else
     const QStringList args = data->appArgs;
@@ -722,8 +723,9 @@ void KConfigPrivate::parseGlobalFiles()
     for (const QString &file : globalFiles) {
         KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
 
-        if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0)
+        if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0) {
             parseOpts |= KConfigBackend::ParseDefaults;
+        }
 
         QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
         if (backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigBackend::ParseImmutable) {
