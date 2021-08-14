@@ -159,6 +159,9 @@ void KConfigHeaderGenerator::implementChoiceEnums(const CfgEntry *entry, const C
     if (choices.name().isEmpty()) {
         if (cfg().globalEnums) {
             stream() << whitespace() << "enum " << enumName(entry->name, entry->choices) << " { " << values.join(QStringLiteral(", ")) << " };\n";
+            if (cfg().generateProperties) {
+                stream() << whitespace() << "Q_ENUM(" << enumName(entry->name, entry->choices) << ")\n";
+            }
         } else {
             // Create an automatically named enum
             stream() << whitespace() << "class " << enumName(entry->name, entry->choices) << '\n';
