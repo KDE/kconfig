@@ -49,20 +49,14 @@ bool ConfigLoaderHandler::parse(QIODevice *input)
 
         switch (reader.tokenType()) {
         case QXmlStreamReader::StartElement:
-            if (!startElement(reader.name(), reader.attributes())) {
-                return false;
-            }
+            startElement(reader.name(), reader.attributes());
             break;
         case QXmlStreamReader::EndElement:
-            if (!endElement(reader.name())) {
-                return false;
-            }
+            endElement(reader.name());
             break;
         case QXmlStreamReader::Characters:
             if (!reader.isWhitespace() && !reader.text().trimmed().isEmpty()) {
-                if (!characters(reader.text())) {
-                    return false;
-                }
+                m_cdata.append(reader.text());
             }
             break;
         default:
@@ -77,15 +71,19 @@ bool ConfigLoaderHandler::parse(QIODevice *input)
     return true;
 }
 
-bool ConfigLoaderHandler::startElement(const QStringRef &localName, const QXmlStreamAttributes &attrs)
+static bool caseInsensitiveCompare(const QStringView a, const QLatin1String b)
+{
+    return a.compare(b, Qt::CaseInsensitive) == 0;
+}
+
+void ConfigLoaderHandler::startElement(const QStringView localName, const QXmlStreamAttributes &attrs)
 {
     // qDebug() << "ConfigLoaderHandler::startElement(" << localName << qName;
-    const QString tag = localName.toString().toLower();
-    if (tag == QLatin1String("group")) {
+    if (caseInsensitiveCompare(localName, QLatin1String("group"))) {
         QString group;
         for (const auto &attr : attrs) {
-            const QStringRef name = attr.name();
-            if (name.compare(QLatin1String("name"), Qt::CaseInsensitive) == 0) {
+            const auto attrName = attr.name();
+            if (caseInsensitiveCompare(attrName, QLatin1String("name"))) {
                 // qDebug() << "set group to" << attrs.value(i);
                 group = attr.value().toString();
             }
@@ -102,71 +100,61 @@ bool ConfigLoaderHandler::startElement(const QStringRef &localName, const QXmlSt
         if (m_config) {
             m_config->setCurrentGroup(group);
         }
-    } else if (tag == QLatin1String("entry")) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("entry"))) {
         for (const auto &attr : attrs) {
-            const QStringRef name = attr.name();
-            if (name.compare(QLatin1String("name"), Qt::CaseInsensitive) == 0) {
+            const auto attrName = attr.name();
+            if (caseInsensitiveCompare(attrName, QLatin1String("name"))) {
                 m_name = attr.value().trimmed().toString();
-            } else if (name.compare(QLatin1String("type"), Qt::CaseInsensitive) == 0) {
+            } else if (caseInsensitiveCompare(attrName, QLatin1String("type"))) {
                 m_type = attr.value().toString().toLower();
-            } else if (name.compare(QLatin1String("key"), Qt::CaseInsensitive) == 0) {
+            } else if (caseInsensitiveCompare(attrName, QLatin1String("key"))) {
                 m_key = attr.value().trimmed().toString();
             }
         }
-    } else if (tag == QLatin1String("choice")) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("choice"))) {
         m_choice.name.clear();
         m_choice.label.clear();
         m_choice.whatsThis.clear();
         for (const auto &attr : attrs) {
-            const QStringRef name = attr.name();
-            if (name.compare(QLatin1String("name"), Qt::CaseInsensitive) == 0) {
+            const auto attrName = attr.name();
+            if (caseInsensitiveCompare(attrName, QLatin1String("name"))) {
                 m_choice.name = attr.value().toString();
             }
         }
         m_inChoice = true;
     }
-
-    return true;
 }
 
-bool ConfigLoaderHandler::characters(const QStringRef &ch)
-{
-    m_cdata.append(ch.toString());
-    return true;
-}
-
-bool ConfigLoaderHandler::endElement(const QStringRef &localName)
+void ConfigLoaderHandler::endElement(const QStringView localName)
 {
     //     qDebug() << "ConfigLoaderHandler::endElement(" << localName << qName;
-    const QStringRef tag = localName;
-    if (tag.compare(QLatin1String("entry"), Qt::CaseInsensitive) == 0) {
+    if (caseInsensitiveCompare(localName, QLatin1String("entry"))) {
         addItem();
         resetState();
-    } else if (tag.compare(QLatin1String("label"), Qt::CaseInsensitive) == 0) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("label"))) {
         if (m_inChoice) {
             m_choice.label = m_cdata.trimmed();
         } else {
             m_label = m_cdata.trimmed();
         }
-    } else if (tag.compare(QLatin1String("whatsthis"), Qt::CaseInsensitive) == 0) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("whatsthis"))) {
         if (m_inChoice) {
             m_choice.whatsThis = m_cdata.trimmed();
         } else {
             m_whatsThis = m_cdata.trimmed();
         }
-    } else if (tag.compare(QLatin1String("default"), Qt::CaseInsensitive) == 0) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("default"))) {
         m_default = m_cdata.trimmed();
-    } else if (tag.compare(QLatin1String("min"), Qt::CaseInsensitive) == 0) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("min"))) {
         m_min = m_cdata.toInt(&m_haveMin);
-    } else if (tag.compare(QLatin1String("max"), Qt::CaseInsensitive) == 0) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("max"))) {
         m_max = m_cdata.toInt(&m_haveMax);
-    } else if (tag.compare(QLatin1String("choice"), Qt::CaseInsensitive) == 0) {
+    } else if (caseInsensitiveCompare(localName, QLatin1String("choice"))) {
         m_enumChoices.append(m_choice);
         m_inChoice = false;
     }
 
     m_cdata.clear();
-    return true;
 }
 
 void ConfigLoaderHandler::addItem()
