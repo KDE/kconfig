@@ -378,7 +378,7 @@ authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QU
     QUrl destURL(_destURL);
     destURL.setPath(QDir::cleanPath(destURL.path()));
 
-    for (const URLActionRule &rule : qAsConst(d->urlActionRestrictions)) {
+    for (const URLActionRule &rule : std::as_const(d->urlActionRestrictions)) {
         if ((result != rule.permission) && // No need to check if it doesn't make a difference
             (action == QLatin1String(rule.action.constData())) && rule.baseMatch(baseURL, baseClass)
             && rule.destMatch(destURL, destClass, baseURL, baseClass)) {

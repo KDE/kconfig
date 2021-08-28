@@ -78,7 +78,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
         list->mainConfig = nullptr;
     }
 
-    for (auto *cfg : qAsConst(*list)) {
+    for (auto *cfg : std::as_const(*list)) {
         if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType
             //                cfg->backend()->type() == backend
         ) {

@@ -774,7 +774,7 @@ void KConfigPrivate::parseConfigFiles()
         //        qDebug() << "parsing local files" << files;
 
         const QByteArray utf8Locale = locale.toUtf8();
-        for (const QString &file : qAsConst(files)) {
+        for (const QString &file : std::as_const(files)) {
             if (file.compare(mBackend->filePath(), sPathCaseSensitivity) == 0) {
                 switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseExpansions)) {
                 case KConfigBackend::ParseOk:

@@ -66,7 +66,7 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
         watchedPaths << QStringLiteral("/kdeglobals");
     }
 
-    for (const QString &path : qAsConst(watchedPaths)) {
+    for (const QString &path : std::as_const(watchedPaths)) {
         QDBusConnection::sessionBus().connect(QString(),
                                               path,
                                               QStringLiteral("org.kde.kconfig.notify"),

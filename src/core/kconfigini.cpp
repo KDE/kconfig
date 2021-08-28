@@ -287,7 +287,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     }
 
     // now make sure immutable groups are marked immutable
-    for (const QByteArray &group : qAsConst(immutableGroups)) {
+    for (const QByteArray &group : std::as_const(immutableGroups)) {
         entryMap.setEntry(group, QByteArray(), QByteArray(), KEntryMap::EntryImmutable);
     }
 

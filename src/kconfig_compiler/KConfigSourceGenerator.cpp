@@ -92,7 +92,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
     stream() << "  public:\n";
 
     // Create Members
-    for (const auto *entry : qAsConst(parseResult.entries)) {
+    for (const auto *entry : std::as_const(parseResult.entries)) {
         if (entry->group != group) {
             group = entry->group;
             stream() << '\n';
@@ -107,7 +107,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
     stream() << "\n    // items\n";
 
     // Create Items.
-    for (const auto *entry : qAsConst(parseResult.entries)) {
+    for (const auto *entry : std::as_const(parseResult.entries)) {
         const QString declType = entry->signalList.isEmpty() ? QString(cfg().inherits + QStringLiteral("::Item") + itemType(entry->type))
                                                              : QStringLiteral("KConfigCompilerSignallingItem");
 
@@ -187,7 +187,7 @@ void KConfigSourceGenerator::createSingletonImplementation()
 void KConfigSourceGenerator::createPreamble()
 {
     QString cppPreamble;
-    for (const auto *entry : qAsConst(parseResult.entries)) {
+    for (const auto *entry : std::as_const(parseResult.entries)) {
         if (entry->paramValues.isEmpty()) {
             continue;
         }
@@ -250,7 +250,7 @@ void KConfigSourceGenerator::createParentConstructorCall()
 
 void KConfigSourceGenerator::createInitializerList()
 {
-    for (const auto &parameter : qAsConst(parseResult.parameters)) {
+    for (const auto &parameter : std::as_const(parseResult.parameters)) {
         stream() << "  , mParam" << parameter.name << "(" << parameter.name << ")\n";
     }
 
@@ -266,7 +266,7 @@ void KConfigSourceGenerator::createEnums(const CfgEntry *entry)
     }
     stream() << "  QList<" << cfg().inherits << "::ItemEnum::Choice> values" << entry->name << ";\n";
 
-    for (const auto &choice : qAsConst(entry->choices.choices)) {
+    for (const auto &choice : std::as_const(entry->choices.choices)) {
         stream() << "  {\n";
         stream() << "    " << cfg().inherits << "::ItemEnum::Choice choice;\n";
         stream() << "    choice.name = QStringLiteral(\"" << choice.name << "\");\n";
@@ -312,7 +312,7 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
         stream() << "  " << itemVarStr << "->setWriteFlags(KConfigBase::Notify);\n";
     }
 
-    for (const CfgEntry::Choice &choice : qAsConst(entry->choices.choices)) {
+    for (const CfgEntry::Choice &choice : std::as_const(entry->choices.choices)) {
         if (!choice.val.isEmpty()) {
             stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val << "\" ));\n";
         }
@@ -361,7 +361,7 @@ void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QSt
             stream() << "  " << innerItemVarStr << "->setMaxValue(" << entry->max << ");\n";
         }
 
-        for (const CfgEntry::Choice &choice : qAsConst(entry->choices.choices)) {
+        for (const CfgEntry::Choice &choice : std::as_const(entry->choices.choices)) {
             if (!choice.val.isEmpty()) {
                 stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val
                          << "\" ));\n";
@@ -461,7 +461,7 @@ void KConfigSourceGenerator::doConstructor()
         stream() << '\n';
     }
 
-    for (const auto *entry : qAsConst(parseResult.entries)) {
+    for (const auto *entry : std::as_const(parseResult.entries)) {
         handleCurrentGroupChange(entry);
 
         const QString key = paramString(entry->key, parseResult.parameters);
@@ -572,7 +572,7 @@ void KConfigSourceGenerator::doGetterSetterDPointerMode()
     }
 
     // setters and getters go in Cpp if in dpointer mode
-    for (const auto *entry : qAsConst(parseResult.entries)) {
+    for (const auto *entry : std::as_const(parseResult.entries)) {
         createSetterDPointerMode(entry);
         createGetterDPointerMode(entry);
         createImmutableGetterDPointerMode(entry);
@@ -584,7 +584,7 @@ void KConfigSourceGenerator::doGetterSetterDPointerMode()
 void KConfigSourceGenerator::createDefaultValueGetterSetter()
 {
     // default value getters always go in Cpp
-    for (const auto *entry : qAsConst(parseResult.entries)) {
+    for (const auto *entry : std::as_const(parseResult.entries)) {
         QString n = entry->name;
         QString t = entry->type;
 
@@ -627,7 +627,7 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
     startScope();
     stream() << "  const bool res = " << cfg().inherits << "::usrSave();\n";
     stream() << "  if (!res) return false;\n\n";
-    for (const Signal &signal : qAsConst(parseResult.signalList)) {
+    for (const Signal &signal : std::as_const(parseResult.signalList)) {
         if (signal.modify) {
             continue;
         }
@@ -682,7 +682,7 @@ void KConfigSourceGenerator::createSignalFlagsHandler()
         stream() << '\n';
     }
 
-    for (const Signal &signal : qAsConst(parseResult.signalList)) {
+    for (const Signal &signal : std::as_const(parseResult.signalList)) {
         if (signal.modify) {
             stream() << "  if ( flags & " << signalEnumName(signal.name) << " ) {\n";
             stream() << "    Q_EMIT " << signal.name << "();\n";

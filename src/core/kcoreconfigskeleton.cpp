@@ -1038,7 +1038,7 @@ void KCoreConfigSkeleton::ItemUrlList::readConfig(KConfig *config)
         mReference = mDefault;
     } else {
         QStringList strList;
-        for (const QUrl &url : qAsConst(mDefault)) {
+        for (const QUrl &url : std::as_const(mDefault)) {
             strList.append(url.toString());
         }
         mReference.clear();
@@ -1060,7 +1060,7 @@ void KCoreConfigSkeleton::ItemUrlList::writeConfig(KConfig *config)
             cg.revertToDefault(mKey, writeFlags());
         } else {
             QStringList strList;
-            for (const QUrl &url : qAsConst(mReference)) {
+            for (const QUrl &url : std::as_const(mReference)) {
                 strList.append(url.toString());
             }
             cg.writeEntry<QStringList>(mKey, strList, writeFlags());
@@ -1183,7 +1183,7 @@ bool KCoreConfigSkeleton::useDefaults(bool b)
     }
 
     d->mUseDefaults = b;
-    for (auto *skelItem : qAsConst(d->mItems)) {
+    for (auto *skelItem : std::as_const(d->mItems)) {
         skelItem->swapDefault();
     }
 
@@ -1193,7 +1193,7 @@ bool KCoreConfigSkeleton::useDefaults(bool b)
 
 void KCoreConfigSkeleton::setDefaults()
 {
-    for (auto *skelItem : qAsConst(d->mItems)) {
+    for (auto *skelItem : std::as_const(d->mItems)) {
         skelItem->setDefault();
     }
     usrSetDefaults();
@@ -1207,7 +1207,7 @@ void KCoreConfigSkeleton::load()
 
 void KCoreConfigSkeleton::read()
 {
-    for (auto *skelItem : qAsConst(d->mItems)) {
+    for (auto *skelItem : std::as_const(d->mItems)) {
         skelItem->readConfig(d->mConfig.data());
     }
     usrRead();
@@ -1230,7 +1230,7 @@ bool KCoreConfigSkeleton::isSaveNeeded() const
 bool KCoreConfigSkeleton::save()
 {
     // qDebug();
-    for (auto *skelItem : qAsConst(d->mItems)) {
+    for (auto *skelItem : std::as_const(d->mItems)) {
         skelItem->writeConfig(d->mConfig.data());
     }
 

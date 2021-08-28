@@ -1057,7 +1057,7 @@ void KConfigTest::testMerge()
               << "entry[fr]=French\n";
         QFile file(m_testConfigDir + QLatin1String("/mergetest"));
         file.open(QIODevice::ReadOnly | QIODevice::Text);
-        for (const QByteArray &line : qAsConst(lines)) {
+        for (const QByteArray &line : std::as_const(lines)) {
             QCOMPARE(line, file.readLine());
         }
     }
@@ -1124,7 +1124,7 @@ void KConfigTest::testOptionOrder()
 
         QFile file(m_testConfigDir + QLatin1String("/doubleattrtest"));
         file.open(QIODevice::ReadOnly | QIODevice::Text);
-        for (const QByteArray &line : qAsConst(lines)) {
+        for (const QByteArray &line : std::as_const(lines)) {
             QCOMPARE(line, file.readLine());
         }
     }
@@ -1943,7 +1943,7 @@ void KConfigTest::testThreads()
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     // futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     // futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);
-    for (QFuture<void> f : qAsConst(futures)) {
+    for (QFuture<void> f : std::as_const(futures)) {
         f.waitForFinished();
     }
 }

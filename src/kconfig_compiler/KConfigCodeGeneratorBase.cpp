@@ -255,7 +255,7 @@ void KConfigCodeGeneratorBase::memberMutatorBody(const CfgEntry *e)
     m_stream << whitespace() << "  " << varExpression << " = v;\n";
 
     const auto listSignal = e->signalList;
-    for (const Signal &signal : qAsConst(listSignal)) {
+    for (const Signal &signal : std::as_const(listSignal)) {
         if (signal.modify) {
             m_stream << whitespace() << "  Q_EMIT " << m_this << signal.name << "();\n";
         } else {

@@ -161,7 +161,7 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         updateAll = true;
     }
 
-    for (const QString &file : qAsConst(updateFiles)) {
+    for (const QString &file : std::as_const(updateFiles)) {
         updateFile(file);
     }
 
@@ -169,7 +169,7 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         cg.writeEntry("updateInfoAdded", true);
         updateFiles = findUpdateFiles(false);
 
-        for (const auto &file : qAsConst(updateFiles)) {
+        for (const auto &file : std::as_const(updateFiles)) {
             checkFile(file);
         }
         updateFiles.clear();

@@ -773,7 +773,7 @@ int main(int argc, char **argv)
     }
 
     // TODO: Move this to somewhere saner.
-    for (const auto &signal : qAsConst(parseResult.signalList)) {
+    for (const auto &signal : std::as_const(parseResult.signalList)) {
         parseResult.hasNonModifySignals |= !signal.modify;
     }
 
