@@ -51,6 +51,7 @@ struct KStandardShortcutInfo {
 
 #define CTRL(x) Qt::CTRL | Qt::Key_##x
 #define SHIFT(x) Qt::SHIFT | Qt::Key_##x
+#define CTRLALT(x) Qt::CTRL | Qt::ALT | Qt::Key_##x
 #define CTRLSHIFT(x) Qt::CTRL | Qt::SHIFT | Qt::Key_##x
 #define ALT(x) Qt::ALT | Qt::Key_##x
 #define ALTSHIFT(x) Qt::ALT | Qt::SHIFT | Qt::Key_##x
@@ -331,7 +332,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     // dummy entry
     {SaveOptions_DEPRECATED_DO_NOT_USE, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory},
 #endif
-    {KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings},
+    {KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), CTRLALT(Comma), 0, QList<QKeySequence>(), false, Category::Settings},
     {Preferences,
      "Preferences",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Application", "@action"),
