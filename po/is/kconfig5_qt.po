@@ -1,0 +1,553 @@
+# translation of kwriteconfig.po to icelandic
+# Icelandic translation of kwriteconfig
+# Copyright (C) 2004, 2008 Free Software Foundation, Inc.
+#
+# Richard Allen <ra@ra.is>, 2004.
+# Sveinn í Felli <sv1@fellsnet.is>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kwriteconfig\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-11 02:17+0000\n"
+"PO-Revision-Date: 2016-11-19 23:43+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Qt-Contexts: true\n"
+
+#: core/kconfig.cpp:950
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "Vinsamlega hafðu sambandi við kerfisstjóra."
+
+#: core/kconfigini.cpp:567
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "Stillingaskráin \"%1\" er ekki ritanleg.\n"
+
+#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
+#: core/kemailsettings.cpp:248
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "Sjálfgefið"
+
+#: gui/kstandardshortcut.cpp:68
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "Opna"
+
+#: gui/kstandardshortcut.cpp:69
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "Nýtt"
+
+#: gui/kstandardshortcut.cpp:70
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "Loka"
+
+#: gui/kstandardshortcut.cpp:71
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "Vista"
+
+#: gui/kstandardshortcut.cpp:72
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "Prenta"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "Hætta"
+
+#: gui/kstandardshortcut.cpp:76
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "Afturkalla"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "Endurtaka"
+
+#: gui/kstandardshortcut.cpp:80
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "Klippa"
+
+#: gui/kstandardshortcut.cpp:81
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Afrita"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Líma"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Líma valið"
+
+#: gui/kstandardshortcut.cpp:92
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "Velja allt"
+
+#: gui/kstandardshortcut.cpp:93
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "Afvelja"
+
+#: gui/kstandardshortcut.cpp:96
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "Eyða orði til vinstri"
+
+#: gui/kstandardshortcut.cpp:104
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "Eyða orði til hægri"
+
+#: gui/kstandardshortcut.cpp:111
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "Finna"
+
+#: gui/kstandardshortcut.cpp:112
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "Finna næsta"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "Finna fyrra"
+
+#: gui/kstandardshortcut.cpp:114
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "Skipta út"
+
+#: gui/kstandardshortcut.cpp:119
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "Heim"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "Byrjun"
+
+#: gui/kstandardshortcut.cpp:133
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "Endir"
+
+#: gui/kstandardshortcut.cpp:134
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "Fyrri"
+
+#: gui/kstandardshortcut.cpp:137
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "Næsta"
+
+#: gui/kstandardshortcut.cpp:144
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "Upp"
+
+#: gui/kstandardshortcut.cpp:145
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "Til baka"
+
+#: gui/kstandardshortcut.cpp:148
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "Áfram"
+
+#: gui/kstandardshortcut.cpp:156
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "Endurlesa"
+
+#: gui/kstandardshortcut.cpp:165
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "Byrjun línu"
+
+#: gui/kstandardshortcut.cpp:173
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "Endir línu"
+
+#: gui/kstandardshortcut.cpp:179
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "Fara að línu"
+
+#: gui/kstandardshortcut.cpp:182
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "Aftur á bak um orð"
+
+#: gui/kstandardshortcut.cpp:190
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "Áfram um orð"
+
+#: gui/kstandardshortcut.cpp:199
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "Setja bókamerki"
+
+#: gui/kstandardshortcut.cpp:205
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "Renna að"
+
+#: gui/kstandardshortcut.cpp:206
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "Renna frá"
+
+#: gui/kstandardshortcut.cpp:209
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "Fylla skjá"
+
+#: gui/kstandardshortcut.cpp:216
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "Sýna valslá"
+
+#: gui/kstandardshortcut.cpp:219
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "Virkja næsta flipa"
+
+#: gui/kstandardshortcut.cpp:227
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "Virkja fyrri flipa"
+
+#: gui/kstandardshortcut.cpp:235
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "Hjálp"
+
+#: gui/kstandardshortcut.cpp:236
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "Hvað er þetta"
+
+#: gui/kstandardshortcut.cpp:241
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "Textaklárun"
+
+#: gui/kstandardshortcut.cpp:249
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "Fyrri textaklárunarmöguleiki"
+
+#: gui/kstandardshortcut.cpp:257
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "Næsti textaklárunarmöguleiki"
+
+#: gui/kstandardshortcut.cpp:265
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "Textaklárun strenghluta"
+
+#: gui/kstandardshortcut.cpp:274
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Fyrri liður í listanum"
+
+#: gui/kstandardshortcut.cpp:282
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Næsti liður í listanum"
+
+#: gui/kstandardshortcut.cpp:289
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "Opna nýlegt"
+
+#: gui/kstandardshortcut.cpp:290
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "Vista sem"
+
+#: gui/kstandardshortcut.cpp:291
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "Afturkalla"
+
+#: gui/kstandardshortcut.cpp:292
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "Forskoðun"
+
+#: gui/kstandardshortcut.cpp:293
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Póstur"
+
+#: gui/kstandardshortcut.cpp:294
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "Hreinsa"
+
+#: gui/kstandardshortcut.cpp:295
+msgctxt "KStandardShortcut|@action"
+msgid "Actual Size"
+msgstr "Raunveruleg stærð"
+
+#: gui/kstandardshortcut.cpp:296
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "Laga að síðu"
+
+#: gui/kstandardshortcut.cpp:297
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "Laga að breidd"
+
+#: gui/kstandardshortcut.cpp:298
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Laga að hæð"
+
+#: gui/kstandardshortcut.cpp:299
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Aðdráttur"
+
+#: gui/kstandardshortcut.cpp:300
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Fara á"
+
+#: gui/kstandardshortcut.cpp:301
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Fara á síðu"
+
+#: gui/kstandardshortcut.cpp:304
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Til baka í skjali"
+
+#: gui/kstandardshortcut.cpp:312
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "Áfram í skjali"
+
+#: gui/kstandardshortcut.cpp:320
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Breyta bókamerkjum"
+
+#: gui/kstandardshortcut.cpp:326
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Stafsetning"
+
+#: gui/kstandardshortcut.cpp:327
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "Sýna tækjaslá"
+
+#: gui/kstandardshortcut.cpp:328
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "Birta stöðuslá"
+
+#: gui/kstandardshortcut.cpp:330
+msgctxt "KStandardShortcut|@action"
+msgid "Save Options"
+msgstr "Valkostir vistunar"
+
+#: gui/kstandardshortcut.cpp:335
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "Lyklabindingar"
+
+#: gui/kstandardshortcut.cpp:338
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Configure Notifications"
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Application"
+msgstr "Stilla tilkynningar"
+
+#: gui/kstandardshortcut.cpp:346
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "Stilla verkfæraslár"
+
+#: gui/kstandardshortcut.cpp:354
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Stilla tilkynningar"
+
+#: gui/kstandardshortcut.cpp:360
+msgctxt "KStandardShortcut|@action"
+msgid "Tip Of Day"
+msgstr "Vísbending dagsins"
+
+#: gui/kstandardshortcut.cpp:361
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "Senda villutilkynningu"
+
+#: gui/kstandardshortcut.cpp:364
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Language..."
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:370
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "Um forritið"
+
+#: gui/kstandardshortcut.cpp:371
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "Um KDE"
+
+#: gui/kstandardshortcut.cpp:374
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Delete File"
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "Eyða skrá"
+
+#: gui/kstandardshortcut.cpp:375
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Rename File"
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "Endurnefna skrá"
+
+#: gui/kstandardshortcut.cpp:378
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "Setja í ruslið"
+
+#: gui/kstandardshortcut.cpp:384
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "Gefa"
+
+#: gui/kstandardshortcut.cpp:387
+msgctxt "KStandardShortcut|@action"
+msgid "Show/Hide Hidden Files"
+msgstr ""
+
+#: gui/kstandardshortcut.cpp:395
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:954
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "KDE tól til að uppfæra stilliskrár notenda"
+
+#: kconf_update/kconf_update.cpp:956
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "Halda úttökum frá skriftum"
+
+#: kconf_update/kconf_update.cpp:959
+msgctxt "main|"
+msgid ""
+"For unit tests only: use test directories to stay away from the user's real "
+"files"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:961
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "Athugaðu hvort stillingaskráin þarfnast uppfærslu"
+
+#: kconf_update/kconf_update.cpp:964
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr "Skrá(r) sem leiðbeiningar um uppfærslu eru lesnar úr"
+
+#: kconfig_compiler/kconfig_compiler.cpp:708
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Mappa sem á að búa til skrárnar í [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:709
+msgctxt "main|"
+msgid "directory"
+msgstr "mappa"
+
+#: kconfig_compiler/kconfig_compiler.cpp:713
+msgctxt "main|"
+msgid "Display software license."
+msgstr "Birta notkunarleyfi hugbúnaðar"
+
+#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "Nota <skrá> í stað víðværra stillinga"
+
+#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+msgctxt "main|"
+msgid "Group to look in. Use repeatedly for nested groups."
+msgstr "Hópur sem leita á í. Nota endurtekið fyrir faldaða hópa."
+
+#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Lykill sem leita á að"
+
+#: kreadconfig/kreadconfig.cpp:51
+msgctxt "main|"
+msgid "Default value"
+msgstr "Sjálfgefið gildi"
+
+#: kreadconfig/kreadconfig.cpp:52
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "Tegund breytu"
+
+#: kreadconfig/kwriteconfig.cpp:33
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr ""
+"Tegund breytu. Notið \"bool\" fyrir satt/ósatt. Að öðru leyti er farið með "
+"breytuna sem streng"
+
+#: kreadconfig/kwriteconfig.cpp:35
+msgctxt "main|"
+msgid "Delete the designated key if enabled"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "Gildið sem skrifa skal. Í skeljum verður að nota '' ef það er tómt"
