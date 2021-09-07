@@ -510,19 +510,14 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
         if (fd < 0) {
             return false;
         }
-        FILE *fp = ::fdopen(fd, "w");
-        if (!fp) {
-            QT_CLOSE(fd);
-            return false;
-        }
         QFile f;
-        if (!f.open(fp, QIODevice::WriteOnly)) {
-            fclose(fp);
+        if (!f.open(fd, QIODevice::WriteOnly)) {
+            QT_CLOSE(fd);
             return false;
         }
         writeEntries(locale, f, writeMap);
         f.close();
-        fclose(fp);
+        QT_CLOSE(fd);
 #else
         QFile f(filePath());
         // XXX This is broken - it DOES create the file if it is suddenly gone.
