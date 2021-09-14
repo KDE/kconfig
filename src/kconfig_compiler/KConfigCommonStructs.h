@@ -114,6 +114,7 @@ public:
 struct ParseResult {
     QString cfgFileName;
     bool cfgFileNameArg = false;
+    bool cfgStateConfig = false;
     QList<Param> parameters;
     QList<Signal> signalList;
     QStringList includes;

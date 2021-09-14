@@ -324,9 +324,16 @@ void KConfigHeaderGenerator::createConstructor()
     if (parseResult.cfgFileNameArg) {
         if (cfg().forceStringFilename) {
             stream() << " const QString &cfgfilename" << (parseResult.parameters.isEmpty() ? " = QString()" : ", ");
+        } else if (parseResult.cfgStateConfig) {
+            stream() << " KSharedConfig::Ptr config" << (parseResult.parameters.isEmpty() ? " = KSharedConfig::openStateConfig()" : ", ");
         } else {
             stream() << " KSharedConfig::Ptr config" << (parseResult.parameters.isEmpty() ? " = KSharedConfig::openConfig()" : ", ");
         }
+    }
+    if (cfg().forceStringFilename && parseResult.cfgStateConfig) {
+        std::cerr << "One can not use ForceStringFilename and use the stateConfig attribute, consider "
+                     "removing the ForceStringFilename kcfgc option if you want to use state data"
+                  << std::endl;
     }
 
     bool first = true;

@@ -68,6 +68,7 @@
                             <!-- FIXME: Are really unbounded occurrences of parameter allowed? -->
                         </xsd:sequence>
                         <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                        <xsd:attribute name="stateConfig" type="xsd:boolean" use="optional"/>
                         <xsd:attribute name="arg" type="xsd:boolean" use="optional"/>
                     </xsd:complexType>
                 </xsd:element>

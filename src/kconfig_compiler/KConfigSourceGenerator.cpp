@@ -170,7 +170,9 @@ void KConfigSourceGenerator::createSingletonImplementation()
             stream() << "     return;\n";
             stream() << "  }\n";
             stream() << "  new " << cfg().className << "(";
-            if (isString) {
+            if (parseResult.cfgStateConfig) {
+                stream() << "KSharedConfig::openStateConfig(" << arg << ")";
+            } else if (isString) {
                 stream() << "KSharedConfig::openConfig(" << arg << ")";
             } else {
                 stream() << "std::move(" << arg << ")";
@@ -232,7 +234,9 @@ void KConfigSourceGenerator::createConstructorParameterList()
 void KConfigSourceGenerator::createParentConstructorCall()
 {
     stream() << cfg().inherits << "(";
-    if (!parseResult.cfgFileName.isEmpty()) {
+    if (parseResult.cfgStateConfig) {
+        stream() << " KSharedConfig::openStateConfig(QStringLiteral( \"" << parseResult.cfgFileName << "\") ";
+    } else if (!parseResult.cfgFileName.isEmpty()) {
         stream() << " QStringLiteral( \"" << parseResult.cfgFileName << "\" ";
     }
     if (parseResult.cfgFileNameArg) {

@@ -172,6 +172,15 @@ target_link_libraries(test13 KF5::ConfigGui)
 
 ########### next target ###############
 
+set(test_state_config_SRCS test_state_config_main.cpp)
+
+gen_kcfg_test_source(test_state_config test_state_config_SRCS GENERATE_MOC)
+
+ecm_add_test(TEST_NAME test_state_config ${test_state_config_SRCS})
+target_link_libraries(test_state_config KF5::ConfigGui Qt5::Test)
+
+########### next target ###############
+
 set(test_emptyentries_SRCS test_emptyentries_main.cpp )
 
 gen_kcfg_test_source(test_emptyentries test_emptyentries_SRCS GENERATE_MOC)

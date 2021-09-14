@@ -385,6 +385,11 @@ Example 1:
 In this case passing "Group2" as the 'groupname' parameter to the generated class
 will make it use group "Group2" for the entry "Text".
 
+By setting the stateConfig attribute of kcfgfile to "true", KSharedConfig::openStateConfig is used.
+This should be used when one stores volatile data, like window sizes or autocompletion texts.
+It is recommended to have at least two separate kcfg files for the different kinds of data.
+NOTE: This option is ignored when ForceStringFilename is set.
+
 \subsection enums Enums
 
 By default, if <b>GlobalEnums</b> is set to false, a separate named enum will be generated

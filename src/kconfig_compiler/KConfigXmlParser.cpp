@@ -522,6 +522,7 @@ void KConfigXmlParser::readGroupTag(const QDomElement &e)
 void KConfigXmlParser::readKcfgfileTag(const QDomElement &e)
 {
     mParseResult.cfgFileName = e.attribute(QStringLiteral("name"));
+    mParseResult.cfgStateConfig = e.attribute(QStringLiteral("stateConfig")).toLower() == QLatin1String("true");
     mParseResult.cfgFileNameArg = e.attribute(QStringLiteral("arg")).toLower() == QLatin1String("true");
     for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
         if (e2.tagName() == QLatin1String("parameter")) {
