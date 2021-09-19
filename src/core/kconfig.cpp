@@ -1010,14 +1010,19 @@ void KConfigPrivate::revertEntry(const QByteArray &group, const char *key, KConf
 
 QByteArray KConfigPrivate::lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags) const
 {
+    return lookupInternalEntry(group, key, flags).mValue;
+}
+
+KEntry KConfigPrivate::lookupInternalEntry(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags) const
+{
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
     }
     const auto it = entryMap.constFindEntry(group, key, flags);
     if (it == entryMap.constEnd()) {
-        return QByteArray();
+        return {};
     }
-    return it->mValue;
+    return it.value();
 }
 
 QString KConfigPrivate::lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags, bool *expand) const
