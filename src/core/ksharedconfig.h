@@ -18,7 +18,7 @@
  * KConfig variant using shared memory
  *
  * KSharedConfig provides a shared (reference counted) variant
- * of KConfig.  This allows you to use manipulate the same configuration
+ * of KConfig. This allows you to use/manipulate the same configuration
  * files from different places in your code without worrying about
  * accidentally overwriting changes.
  *
