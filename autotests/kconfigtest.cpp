@@ -16,6 +16,7 @@
 #include <kdesktopfile.h>
 #include <qtemporarydir.h>
 
+#include <kauthorized.h>
 #include <kconfiggroup.h>
 #include <kconfigwatcher.h>
 #include <ksharedconfig.h>
@@ -2069,6 +2070,18 @@ void KConfigTest::testNotify()
     QCOMPARE(otherWatcherSpy.count(), 1);
     QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
+}
+
+void KConfigTest::testKAuthorizeEnums()
+{
+    KSharedConfig::Ptr config = KSharedConfig::openConfig();
+    KConfigGroup actionRestrictions = config->group("KDE Action Restrictions");
+    actionRestrictions.writeEntry("shell_access", false);
+    actionRestrictions.writeEntry("action/open_with", false);
+
+    QVERIFY(!KAuthorized::authorize(KAuthorized::SHELL_ACCESS));
+    QVERIFY(!KAuthorized::authorizeAction(KAuthorized::OPEN_WITH));
+    actionRestrictions.deleteGroup();
 }
 
 void KConfigTest::testKdeglobalsVsDefault()

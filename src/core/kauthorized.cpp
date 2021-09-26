@@ -218,6 +218,15 @@ bool KAuthorized::authorize(const QString &genericAction)
     return cg.readEntry(genericAction, true);
 }
 
+bool KAuthorized::authorize(KAuthorized::GenericRestriction action)
+{
+    const QMetaEnum metaEnum = QMetaEnum::fromType<KAuthorized::GenericRestriction>();
+    if (metaEnum.isValid()) {
+        return KAuthorized::authorize(QString::fromLatin1(metaEnum.valueToKey(action)).toLower());
+    }
+    return false;
+}
+
 bool KAuthorized::authorizeAction(const QString &action)
 {
     MY_D if (d->blockEverything)
@@ -229,6 +238,15 @@ bool KAuthorized::authorizeAction(const QString &action)
     }
 
     return authorize(QLatin1String("action/") + action);
+}
+
+bool KAuthorized::authorizeAction(KAuthorized::GenericAction action)
+{
+    const QMetaEnum metaEnum = QMetaEnum::fromType<KAuthorized::GenericAction>();
+    if (metaEnum.isValid()) {
+        return KAuthorized::authorizeAction(QString::fromLatin1(metaEnum.valueToKey(action)).toLower());
+    }
+    return false;
 }
 
 #if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 24)

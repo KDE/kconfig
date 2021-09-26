@@ -10,7 +10,10 @@
 
 #include <kconfigcore_export.h>
 
+#include <QMetaEnum>
+#include <QObject>
 #include <QStringList>
+#include <QVariant>
 
 class QUrl;
 class QString;
@@ -25,6 +28,39 @@ class QString;
  */
 namespace KAuthorized
 {
+Q_NAMESPACE_EXPORT(KCONFIGCORE_EXPORT);
+
+/**
+ * The enum values lower cased represent the action that is authorized
+ * For example the SHELL_ACCESS value is converted to the "shell_access" string.
+ *
+ * @since 5.88
+ */
+enum GenericRestriction {
+    SHELL_ACCESS, // if the user is authorized to open a shell or execute shell commands
+    GHNS, /// if the collaborative data sharing framework KNewStuff is authorized
+    // GUI behavior
+    LINEEDIT_REVEAL_PASSWORD, /// if typed characters in password fields can be made visible
+    LINEEDIT_TEXT_COMPLETION, /// if line edits should be allowed to display completions
+    MOVABLE_TOOLBARS, /// if toolbars of of apps should be movable
+    RUN_DESKTOP_FILES, /// if .desktop files should be run as executables when clicked
+};
+Q_ENUM_NS(GenericRestriction)
+
+/**
+ *
+ * @since 5.88
+ */
+enum GenericAction {
+    OPEN_WITH, /// if the open-with menu should be shown for files etc.
+    EDITFILETYPE, /// if mime-type accociations are allowed to be configured
+
+    OPTIONS_SHOW_TOOLBAR, /// if the toolbar should be displayed in apps
+    SWITCH_APPLICATION_LANGUAGE, /// if an action to switch the app language should be shown
+    BOOKMARKS, /// saving bookmarks is allowed
+};
+Q_ENUM_NS(GenericAction)
+
 /**
  * Returns whether the user is permitted to perform a certain action.
  *
@@ -58,6 +94,16 @@ namespace KAuthorized
 KCONFIGCORE_EXPORT bool authorize(const QString &action);
 
 /**
+ * Returns whether the user is permitted to perform a common action.
+ * The enum values lower cased represent the action that is
+ * passed in to @p authorize(QString)
+ *
+ * @overload
+ * @since 5.88
+ */
+KCONFIGCORE_EXPORT bool authorize(GenericRestriction action);
+
+/**
  * Returns whether the user is permitted to perform a certain action.
  *
  * This behaves like authorize(), except that "action/" is prepended to
@@ -83,6 +129,14 @@ KCONFIGCORE_EXPORT bool authorize(const QString &action);
  * @see authorize()
  */
 KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
+
+/**
+ * Overload to authorize common actions.
+ *
+ * @overload
+ * @since 5.88
+ */
+KCONFIGCORE_EXPORT bool authorizeAction(GenericAction action);
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 24)
 /**
