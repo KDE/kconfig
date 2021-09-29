@@ -505,7 +505,7 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
         }
     } else {
         // Open existing file. *DON'T* create it if it suddenly does not exist!
-#ifdef Q_OS_UNIX
+#if defined(Q_OS_UNIX) && !defined(Q_OS_ANDROID)
         int fd = QT_OPEN(QFile::encodeName(filePath()).constData(), O_WRONLY | O_TRUNC);
         if (fd < 0) {
             return false;
@@ -613,7 +613,20 @@ bool KConfigIniBackend::lock()
     Q_ASSERT(!filePath().isEmpty());
 
     if (!lockFile) {
-        lockFile = new QLockFile(filePath() + QLatin1String(".lock"));
+#ifdef Q_OS_ANDROID
+        // handle content Uris properly
+        if (filePath().startsWith(QLatin1String("content://"))) {
+            // we can't create file at an arbitrary location, so use internal storage to create one
+
+            // NOTE: filename can be the same, but because this lock is short lived we may never have a collision
+            lockFile = new QLockFile(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)
+                                     + QLatin1String("/") + QFileInfo(filePath()).fileName() + QLatin1String(".lock"));
+        } else {
+#endif
+            lockFile = new QLockFile(filePath() + QLatin1String(".lock"));
+#ifdef Q_OS_ANDROID
+        }
+#endif
     }
 
     lockFile->lock();
