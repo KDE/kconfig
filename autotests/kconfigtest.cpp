@@ -2082,6 +2082,9 @@ void KConfigTest::testKAuthorizeEnums()
     QVERIFY(!KAuthorized::authorize(KAuthorized::SHELL_ACCESS));
     QVERIFY(!KAuthorized::authorizeAction(KAuthorized::OPEN_WITH));
     actionRestrictions.deleteGroup();
+
+    QVERIFY(!KAuthorized::authorize((KAuthorized::GenericRestriction)0));
+    QVERIFY(!KAuthorized::authorizeAction((KAuthorized::GenericAction)0));
 }
 
 void KConfigTest::testKdeglobalsVsDefault()

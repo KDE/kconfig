@@ -37,7 +37,7 @@ Q_NAMESPACE_EXPORT(KCONFIGCORE_EXPORT);
  * @since 5.88
  */
 enum GenericRestriction {
-    SHELL_ACCESS, // if the user is authorized to open a shell or execute shell commands
+    SHELL_ACCESS = 1, // if the user is authorized to open a shell or execute shell commands
     GHNS, /// if the collaborative data sharing framework KNewStuff is authorized
     // GUI behavior
     LINEEDIT_REVEAL_PASSWORD, /// if typed characters in password fields can be made visible
@@ -52,7 +52,7 @@ Q_ENUM_NS(GenericRestriction)
  * @since 5.88
  */
 enum GenericAction {
-    OPEN_WITH, /// if the open-with menu should be shown for files etc.
+    OPEN_WITH = 1, /// if the open-with menu should be shown for files etc.
     EDITFILETYPE, /// if mime-type accociations are allowed to be configured
 
     OPTIONS_SHOW_TOOLBAR, /// if the toolbar should be displayed in apps

@@ -7,10 +7,12 @@
 
 #include "kauthorized.h"
 
+#include <QDebug>
 #include <QDir>
 #include <QList>
 #include <QUrl>
 
+#include "kconfig_core_log_settings.h"
 #include <QCoreApplication>
 #include <ksharedconfig.h>
 #include <stdlib.h> // srand(), rand()
@@ -221,9 +223,11 @@ bool KAuthorized::authorize(const QString &genericAction)
 bool KAuthorized::authorize(KAuthorized::GenericRestriction action)
 {
     const QMetaEnum metaEnum = QMetaEnum::fromType<KAuthorized::GenericRestriction>();
-    if (metaEnum.isValid()) {
+
+    if (metaEnum.isValid() && action != 0) {
         return KAuthorized::authorize(QString::fromLatin1(metaEnum.valueToKey(action)).toLower());
     }
+    qCWarning(KCONFIG_CORE_LOG) << "Invalid GenericRestriction requested" << action;
     return false;
 }
 
@@ -243,9 +247,10 @@ bool KAuthorized::authorizeAction(const QString &action)
 bool KAuthorized::authorizeAction(KAuthorized::GenericAction action)
 {
     const QMetaEnum metaEnum = QMetaEnum::fromType<KAuthorized::GenericAction>();
-    if (metaEnum.isValid()) {
+    if (metaEnum.isValid() && action != 0) {
         return KAuthorized::authorizeAction(QString::fromLatin1(metaEnum.valueToKey(action)).toLower());
     }
+    qCWarning(KCONFIG_CORE_LOG) << "Invalid GenericAction requested" << action;
     return false;
 }
 
