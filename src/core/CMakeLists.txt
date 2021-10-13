@@ -81,7 +81,6 @@ if (PythonModuleGeneration_FOUND)
     SIP_DEPENDS
       QtCore/QtCoremod.sip
     HEADERS
-      kauthorized.h
       kconfig.h
       kconfigbase.h
       kconfiggroup.h
