@@ -62,6 +62,8 @@ def local_container_rules():
 
 def local_function_rules():
     return [
+        ["KAuthorized", "authorize", ".*", ".*", ".*", rules_engine.function_discard],
+        ["KAuthorized", "authorizeAction", ".*", ".*", ".*", rules_engine.function_discard],
         ["KConfigBase", "group", ".*", ".*", ".*const char.*", rules_engine.function_discard],
         ["KConfigBase", "group", ".*", ".*", ".*QByteArray.*", rules_engine.function_discard],
         ["KConfigBase", "group", ".*", "const KConfigGroup", ".*", rules_engine.function_discard],

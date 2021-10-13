@@ -101,7 +101,7 @@ KCONFIGCORE_EXPORT bool authorize(const QString &action);
  * @overload
  * @since 5.88
  */
-KCONFIGCORE_EXPORT bool authorize(GenericRestriction action);
+KCONFIGCORE_EXPORT bool authorize(KAuthorized::GenericRestriction action);
 
 /**
  * Returns whether the user is permitted to perform a certain action.
@@ -136,7 +136,7 @@ KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
  * @overload
  * @since 5.88
  */
-KCONFIGCORE_EXPORT bool authorizeAction(GenericAction action);
+KCONFIGCORE_EXPORT bool authorizeAction(KAuthorized::GenericAction action);
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 24)
 /**
