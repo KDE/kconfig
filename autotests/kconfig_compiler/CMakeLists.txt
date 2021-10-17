@@ -303,3 +303,11 @@ gen_kcfg_test_source(test_fileextensions test_fileextensions_SRCS)
 
 ecm_add_test(TEST_NAME test_fileextensions ${test_fileextensions_SRCS})
 target_link_libraries(test_fileextensions KF5::ConfigGui)
+
+
+####### next target ##########
+## This test fails the compilation - to showcase that the generated code is broken.
+set(test_enums_and_properties_SRCS test10main.cpp)
+gen_kcfg_test_source(test_enums_and_properties test_enums_and_properties_SRCS GENERATE_MOC)
+add_library(test_enums_and_properties ${test_enums_and_properties_SRCS})
+target_link_libraries(test_enums_and_properties KF5::ConfigGui)
