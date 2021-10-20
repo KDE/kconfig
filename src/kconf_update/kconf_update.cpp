@@ -812,7 +812,6 @@ void KonfUpdate::gotScript(const QString &_script)
     proc.setStandardOutputFile(scriptOut.fileName());
     if (m_oldConfig1) {
         if (m_bDebugOutput) {
-            // scriptIn.setAutoRemove(false);
             qCDebug(KCONF_UPDATE_LOG) << "Script input stored in" << scriptIn.fileName();
         }
         KConfig cfg(scriptIn.fileName(), KConfig::SimpleConfig);
@@ -871,7 +870,6 @@ void KonfUpdate::gotScript(const QString &_script)
     }
 
     if (m_bDebugOutput) {
-        // scriptOut.setAutoRemove(false);
         qCDebug(KCONF_UPDATE_LOG) << "Script output stored in" << scriptOut.fileName();
         QFile output(scriptOut.fileName());
         if (output.open(QIODevice::ReadOnly)) {

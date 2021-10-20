@@ -310,17 +310,6 @@ bool KDesktopFile::tryExec() const
     return true;
 }
 
-/**
- * @return the filename as passed to the constructor.
- */
-// QString KDesktopFile::fileName() const { return backEnd->fileName(); }
-
-/**
- * @return the resource type as passed to the constructor.
- */
-// QString
-// KDesktopFile::resource() const { return backEnd->resource(); }
-
 #if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 42)
 QStringList KDesktopFile::sortOrder() const
 {
@@ -328,9 +317,6 @@ QStringList KDesktopFile::sortOrder() const
     return d->desktopGroup.readXdgListEntry("SortOrder");
 }
 #endif
-
-// void KDesktopFile::virtual_hook( int id, void* data )
-//{ KConfig::virtual_hook( id, data ); }
 
 QString KDesktopFile::readDocPath() const
 {
