@@ -318,7 +318,8 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
 
     for (const CfgEntry::Choice &choice : std::as_const(entry->choices.choices)) {
         if (!choice.val.isEmpty()) {
-            stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val << "\" ));\n";
+            stream() << "  " << innerItemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val
+                     << "\" ));\n";
         }
     }
 
