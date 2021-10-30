@@ -68,31 +68,31 @@ KConfigGroup KDesktopFile::desktopGroup() const
 
 QString KDesktopFile::locateLocal(const QString &path)
 {
-    QString relativePath;
-    QChar plus(QLatin1Char('/'));
+    static const QLatin1Char slash('/');
+
     // Relative to config? (e.g. for autostart)
-    const QStringList lstGenericConfigLocation = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
+    const QStringList genericConfig = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
     // Iterate from the last item since some items may be subfolders of others.
-    for (QStringList::const_reverse_iterator constIterator = lstGenericConfigLocation.crbegin(); constIterator != lstGenericConfigLocation.crend();
-         ++constIterator) {
-        const QString &dir = (*constIterator);
-        if (path.startsWith(dir + plus)) {
-            relativePath = path.mid(dir.length() + 1);
-            return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + relativePath;
-        }
+    auto it = std::find_if(genericConfig.crbegin(), genericConfig.crend(), [&path](const QString &dir) {
+        return path.startsWith(dir + slash);
+    });
+    if (it != genericConfig.crend()) {
+        return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + slash + QStringView(path).mid(it->size() + 1);
     }
+
+    QString relativePath;
     // Relative to xdg data dir? (much more common)
     const QStringList lstGenericDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
     for (const QString &dir : lstGenericDataLocation) {
-        if (path.startsWith(dir + plus)) {
+        if (path.startsWith(dir + slash)) {
             relativePath = path.mid(dir.length() + 1);
         }
     }
     if (relativePath.isEmpty()) {
         // What now? The desktop file doesn't come from XDG_DATA_DIRS. Use filename only and hope for the best.
-        relativePath = path.mid(path.lastIndexOf(QLatin1Char('/')) + 1);
+        relativePath = path.mid(path.lastIndexOf(slash) + 1);
     }
-    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + relativePath;
+    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + slash + relativePath;
 }
 
 bool KDesktopFile::isDesktopFile(const QString &path)
@@ -123,30 +123,40 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     // Check if the .desktop file is installed as part of KDE or XDG.
     const QStringList appsDirs = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation);
-    for (const QString &prefix : appsDirs) {
-        if (QDir(prefix).exists() && realPath.startsWith(QFileInfo(prefix).canonicalFilePath(), sensitivity)) {
-            return true;
-        }
+    auto it = std::find_if(appsDirs.cbegin(), appsDirs.cend(), [&realPath](const QString &prefix) {
+        QFileInfo info(prefix);
+        return info.exists() && info.isDir() && realPath.startsWith(info.canonicalFilePath(), sensitivity);
+    });
+    if (it != appsDirs.cend()) {
+        return true;
     }
+
     const QString servicesDir = QStringLiteral("kservices5/"); // KGlobal::dirs()->xdgDataRelativePath("services")
-    const QStringList lstGenericDataLocation = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-    for (const QString &xdgDataPrefix : lstGenericDataLocation) {
-        if (QDir(xdgDataPrefix).exists()) {
-            const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
-            if (realPath.startsWith(prefix + QLatin1Char('/') + servicesDir, sensitivity)) {
-                return true;
-            }
+    const QStringList genericData = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+    auto genericIt = std::find_if(genericData.cbegin(), genericData.cend(), [&realPath, &servicesDir](const QString &xdgDataPrefix) {
+        QFileInfo info(xdgDataPrefix);
+        if (info.exists() && info.isDir()) {
+            const QString prefix = info.canonicalFilePath();
+            return realPath.startsWith(prefix + QLatin1Char('/') + servicesDir, sensitivity);
         }
+        return false;
+    });
+    if (genericIt != genericData.cend()) {
+        return true;
     }
+
     const QString autostartDir = QStringLiteral("autostart/");
     const QStringList lstConfigPath = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
-    for (const QString &xdgDataPrefix : lstConfigPath) {
-        if (QDir(xdgDataPrefix).exists()) {
-            const QString prefix = QFileInfo(xdgDataPrefix).canonicalFilePath();
-            if (realPath.startsWith(prefix + QLatin1Char('/') + autostartDir, sensitivity)) {
-                return true;
-            }
+    auto configIt = std::find_if(lstConfigPath.cbegin(), lstConfigPath.cend(), [&realPath, &autostartDir](const QString &xdgDataPrefix) {
+        QFileInfo info(xdgDataPrefix);
+        if (info.exists() && info.isDir()) {
+            const QString prefix = info.canonicalFilePath();
+            return realPath.startsWith(prefix + QLatin1Char('/') + autostartDir, sensitivity);
         }
+        return false;
+    });
+    if (configIt != lstConfigPath.cend()) {
+        return true;
     }
 
     // Forbid desktop files outside of standard locations if kiosk is set so
