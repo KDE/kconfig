@@ -139,7 +139,7 @@ public:
      */
     KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
-    virtual ~KConfig();
+    ~KConfig() override;
 
     /**
      * Returns the standard location enum passed to the constructor.

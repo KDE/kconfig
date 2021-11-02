@@ -56,7 +56,7 @@ public:
      *
      * Writes back any dirty configuration entries.
      */
-    virtual ~KDesktopFile();
+    ~KDesktopFile() override;
 
     /**
      * Checks whether this is really a desktop file.

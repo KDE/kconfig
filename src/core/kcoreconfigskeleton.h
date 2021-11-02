@@ -1131,7 +1131,7 @@ public:
     /**
      * Destructor
      */
-    virtual ~KCoreConfigSkeleton();
+    ~KCoreConfigSkeleton() override;
 
     /**
      * Set all registered items to their default values.

@@ -63,7 +63,7 @@ public:
     static void registerMappings(const KEntryMap &entryMap);
 
     /** Destroys the backend */
-    virtual ~KConfigBackend();
+    ~KConfigBackend() override;
 
     /** Allows the behaviour of parseConfig() to be tuned */
     enum ParseOption {

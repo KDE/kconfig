@@ -92,7 +92,7 @@ public:
     KConfigGroup(const KConfigGroup &);
     KConfigGroup &operator=(const KConfigGroup &);
 
-    ~KConfigGroup();
+    ~KConfigGroup() override;
 
     /**
      * Whether the group is valid.
