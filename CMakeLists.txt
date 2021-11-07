@@ -17,6 +17,7 @@ option(KCONFIG_USE_GUI "Build components using Qt5Gui" ON)
 if(KCONFIG_USE_GUI)
     find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
 endif()
+find_package(Qt5 ${REQUIRED_QT_VERSION} OPTIONAL_COMPONENTS Qml)
 
 if (NOT ANDROID)
     option(KCONFIG_USE_DBUS "Build components using Qt5DBus" ON)
