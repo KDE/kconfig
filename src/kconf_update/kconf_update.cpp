@@ -35,6 +35,11 @@
 // the file.
 #define qCDebugFile(CATEGORY) qCDebug(CATEGORY) << m_currentFilename << ':' << m_lineCount << ":'" << m_line << "': "
 
+static bool caseInsensitiveCompare(const QStringView &a, const QLatin1String &b)
+{
+    return a.compare(b, Qt::CaseInsensitive) == 0;
+}
+
 class KonfUpdate
 {
 public:
@@ -701,11 +706,11 @@ void KonfUpdate::gotOptions(const QString &_options)
 {
     const QStringList options = _options.split(QLatin1Char{','});
     for (const auto &opt : options) {
-        const auto normalizedOpt = opt.toLower().trimmed();
+        const auto normalizedOpt = QStringView(opt).trimmed();
 
-        if (normalizedOpt == QLatin1String("copy")) {
+        if (caseInsensitiveCompare(normalizedOpt, QLatin1String("copy"))) {
             m_bCopy = true;
-        } else if (normalizedOpt == QLatin1String("overwrite")) {
+        } else if (caseInsensitiveCompare(normalizedOpt, QLatin1String("overwrite"))) {
             m_bOverwrite = true;
         }
     }

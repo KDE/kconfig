@@ -608,10 +608,10 @@ void KCoreConfigSkeleton::ItemEnum::readConfig(KConfig *config)
     } else {
         int i = 0;
         mReference = -1;
-        QString tmp = cg.readEntry(mKey, QString()).toLower();
+        const QString entryString = cg.readEntry(mKey, QString());
         for (auto it = mChoices.cbegin(); it != mChoices.cend(); ++it, ++i) {
             QString choiceName = (*it).name;
-            if (valueForChoice(choiceName).toLower() == tmp) {
+            if (valueForChoice(choiceName).compare(entryString, Qt::CaseInsensitive) == 0) {
                 mReference = i;
                 break;
             }

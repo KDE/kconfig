@@ -172,7 +172,7 @@ void ConfigLoaderHandler::addItem()
     KConfigSkeletonItem *item = nullptr;
 
     if (m_type == QLatin1String("bool")) {
-        bool defaultValue = m_default.toLower() == QLatin1String("true");
+        const bool defaultValue = caseInsensitiveCompare(m_default, QLatin1String("true"));
         item = m_config->addItemBool(m_name, *d->newBool(), defaultValue, m_key);
     } else if (m_type == QLatin1String("color")) {
         item = m_config->addItemColor(m_name, *d->newColor(), QColor(m_default), m_key);

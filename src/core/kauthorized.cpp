@@ -332,7 +332,7 @@ KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
         const QString urlProt = rule[4];
         const QString urlHost = rule[5];
         QString urlPath = rule[6];
-        const bool bEnabled = (rule[7].toLower() == QLatin1String("true"));
+        const bool bEnabled = (rule[7].compare(QLatin1String("true"), Qt::CaseInsensitive) == 0);
 
         if (refPath.startsWith(QLatin1String("$HOME"))) {
             refPath.replace(0, 5, QDir::homePath());

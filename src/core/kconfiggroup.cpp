@@ -26,6 +26,8 @@
 #include <QTextStream>
 #include <QUrl>
 
+#include <algorithm>
+#include <array>
 #include <math.h>
 #include <stdlib.h>
 
@@ -234,11 +236,11 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     case QMetaType::QByteArray:
         return value;
     case QMetaType::Bool: {
-        const QByteArray lower(value.toLower());
-        if (lower == "false" || lower == "no" || lower == "off" || lower == "0") {
-            return false;
-        }
-        return true;
+        static const std::array<const char *, 4> negatives = {"false", "no", "off", "0"};
+
+        return std::all_of(negatives.begin(), negatives.end(), [value](const char *negativeString) {
+            return value.compare(negativeString, Qt::CaseInsensitive) != 0;
+        });
     }
     case QMetaType::Double:
     case QMetaType::Float:
