@@ -307,7 +307,7 @@ target_link_libraries(test_fileextensions KF5::ConfigGui)
 
 ####### next target ##########
 ## If this to compiles, we are sure that the generation is correct.
-set(test_enums_and_properties_SRCS empty_main.cpp)
+set(test_enums_and_properties_SRCS enum_group_main.cpp)
 gen_kcfg_test_source(test_enums_and_properties test_enums_and_properties_SRCS GENERATE_MOC)
 add_library(test_enums_and_properties ${test_enums_and_properties_SRCS})
 target_link_libraries(test_enums_and_properties KF5::ConfigGui)
