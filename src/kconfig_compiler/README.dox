@@ -531,6 +531,8 @@ for a signal, the signal name will suffice.
 You can also use the generic configChanged() signal from KConfigSkeleton to notify your application
 about configuration changes.
 
+Note that you will also need to pass the GENERATE_MOC option to the kconfig_add_kcfg_files macro.
+
 \subsection translation_context Translation context
 
 In the kcfg file you can specify the translation's context for \<tooltip\>, \<whatsthis\> and \<label\> element for an entry.
