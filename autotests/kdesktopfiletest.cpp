@@ -13,6 +13,10 @@
 
 #include <QTest>
 
+#if defined(Q_OS_UNIX)
+#include <unistd.h>
+#endif
+
 QTEST_MAIN(KDesktopFileTest)
 
 void KDesktopFileTest::initTestCase()
@@ -199,6 +203,24 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
           "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
+
+#if defined(Q_OS_UNIX)
+    // Try to fix test failing in docker running as root
+    const QFileInfo entryInfo(fileName);
+    if (entryInfo.ownerId() == 0) {
+        // try to find a valid user/group combination
+        for (int i = 1; i < 100; ++i) {
+            if (chown(fileName.toLocal8Bit().constData(), i, i) == 0) {
+                break;
+            }
+        }
+        const QFileInfo entryInfo1(fileName);
+        if (entryInfo1.ownerId() == 0) {
+            QEXPECT_FAIL("", "Running test as root and could not find a non root user to change the ownership of the file too", Continue);
+        }
+    }
+#endif
+
     QVERIFY(!KDesktopFile::isAuthorizedDesktopFile(fileName));
 
     const QString installedFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("/kservices5/http_cache_cleaner.desktop"));
