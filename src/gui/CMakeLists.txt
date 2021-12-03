@@ -21,9 +21,9 @@ ecm_generate_export_header(KF5ConfigGui
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui>")
+target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
 
-target_link_libraries(KF5ConfigGui PUBLIC Qt5::Gui Qt5::Xml KF5::ConfigCore)
+target_link_libraries(KF5ConfigGui PUBLIC Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Xml KF5::ConfigCore)
 
 set_target_properties(KF5ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION}
                                               SOVERSION ${KCONFIG_SOVERSION}
@@ -68,7 +68,7 @@ install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAU
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
 )
 
 # make available to ecm_add_qch in parent folder
@@ -76,5 +76,5 @@ set(KConfigGui_APIDOX_SRCS ${KConfigGui_HEADERS} PARENT_SCOPE)
 set(KConfigGui_APIDOX_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigGui)
+ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

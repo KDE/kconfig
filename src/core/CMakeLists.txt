@@ -41,12 +41,12 @@ target_compile_definitions(KF5ConfigCore
         KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF5}/$<TARGET_FILE_NAME:KF5::kconf_update>"
 )
 
-target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore>")
+target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>")
 
-target_link_libraries(KF5ConfigCore PUBLIC Qt5::Core)
+target_link_libraries(KF5ConfigCore PUBLIC Qt${QT_MAJOR_VERSION}::Core)
 
 if(KCONFIG_USE_DBUS)
-    target_link_libraries(KF5ConfigCore PRIVATE Qt5::DBus)
+    target_link_libraries(KF5ConfigCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
 endif()
 
 set_target_properties(KF5ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION}
@@ -98,7 +98,7 @@ install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFA
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
   ${KConfigCore_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore COMPONENT Devel
 )
 
 # make available to ecm_add_qch in parent folder
@@ -106,5 +106,5 @@ set(KConfigCore_APIDOX_SRCS ${KConfigCore_HEADERS} PARENT_SCOPE)
 set(KConfigCore_APIDOX_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KConfigCore LIB_NAME KF5ConfigCore DEPS "core" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigCore)
+ecm_generate_pri_file(BASE_NAME KConfigCore LIB_NAME KF5ConfigCore DEPS "core" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

@@ -16,7 +16,7 @@ ecm_generate_export_header(KF5ConfigQml
 target_link_libraries(KF5ConfigQml
   PUBLIC
     KF5::ConfigCore # KCoreConfigSkeleton, in ConfigPropertyMap
-    Qt5::Qml
+    Qt${QT_MAJOR_VERSION}::Qml
 )
 set_target_properties(KF5ConfigQml PROPERTIES VERSION     ${KCONFIG_VERSION}
                                               SOVERSION   ${KCONFIG_SOVERSION}
@@ -29,11 +29,11 @@ ecm_generate_headers(KConfigQml_HEADERS
 
     REQUIRED_HEADERS KConfigQml_HEADERS
 )
-target_include_directories(KF5ConfigQml INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigQml>")
+target_include_directories(KF5ConfigQml INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml>")
 
 install(TARGETS KF5ConfigQml EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigqml_export.h
   ${KConfigQml_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KConfigQml COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml COMPONENT Devel
 )

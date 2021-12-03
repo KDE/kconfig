@@ -15,7 +15,7 @@ ecm_qt_declare_logging_category(kconf_update
     EXPORT KCONFIG
 )
 
-target_link_libraries(kconf_update Qt5::Core KF5::ConfigCore)
+target_link_libraries(kconf_update Qt${QT_MAJOR_VERSION}::Core KF5::ConfigCore)
 include(ECMMarkNonGuiExecutable)
 ecm_mark_nongui_executable(kconf_update)
 

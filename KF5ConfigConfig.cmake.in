@@ -6,10 +6,10 @@ include("${CMAKE_CURRENT_LIST_DIR}/KF5ConfigTargets.cmake")
 @PACKAGE_INCLUDE_QCHTARGETS@
 
 include(CMakeFindDependencyMacro)
-find_dependency(Qt5Xml "@REQUIRED_QT_VERSION@")
+find_dependency(Qt@QT_MAJOR_VERSION@Xml @REQUIRED_QT_VERSION@)
 
 if(@KCONFIG_USE_DBUS@)
-    find_dependency(Qt5DBus "@REQUIRED_QT_VERSION@")
+    find_dependency(Qt@QT_MAJOR_VERSION@DBus "@REQUIRED_QT_VERSION@")
 endif()
 
 if(CMAKE_CROSSCOMPILING AND KF5_HOST_TOOLING)

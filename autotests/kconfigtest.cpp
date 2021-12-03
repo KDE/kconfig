@@ -1974,18 +1974,30 @@ void KConfigTest::testXdgListEntry()
 void KConfigTest::testThreads()
 {
     QThreadPool::globalInstance()->setMaxThreadCount(6);
-    QList<QFuture<void>> futures;
     // Run in parallel some tests that work on different config files,
     // otherwise unexpected things might indeed happen.
-    futures << QtConcurrent::run(this, &KConfigTest::testAddConfigSources);
-    futures << QtConcurrent::run(this, &KConfigTest::testSimple);
-    futures << QtConcurrent::run(this, &KConfigTest::testDefaults);
-    futures << QtConcurrent::run(this, &KConfigTest::testSharedConfig);
-    futures << QtConcurrent::run(this, &KConfigTest::testSharedConfig);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    const QList<QFuture<void>> futures = {
+        QtConcurrent::run(&KConfigTest::testAddConfigSources, this),
+        QtConcurrent::run(&KConfigTest::testSimple, this),
+        QtConcurrent::run(&KConfigTest::testDefaults, this),
+        QtConcurrent::run(&KConfigTest::testSharedConfig, this),
+        QtConcurrent::run(&KConfigTest::testSharedConfig, this),
+    };
+#else
+    const QList<QFuture<void>> futures = {
+        QtConcurrent::run(this, &KConfigTest::testAddConfigSources),
+        QtConcurrent::run(this, &KConfigTest::testSimple),
+        QtConcurrent::run(this, &KConfigTest::testDefaults),
+        QtConcurrent::run(this, &KConfigTest::testSharedConfig),
+        QtConcurrent::run(this, &KConfigTest::testSharedConfig),
+    };
+#endif
+
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     // futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     // futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);
-    for (QFuture<void> f : std::as_const(futures)) {
+    for (QFuture<void> f : futures) {
         f.waitForFinished();
     }
 }

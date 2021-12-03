@@ -21,7 +21,7 @@ set_target_properties(kconfig_compiler PROPERTIES
     OUTPUT_NAME "kconfig_compiler_kf5"
 )
 
-target_link_libraries(kconfig_compiler Qt5::Xml)
+target_link_libraries(kconfig_compiler Qt${QT_MAJOR_VERSION}::Xml)
 
 ecm_mark_nongui_executable(kconfig_compiler)
 
