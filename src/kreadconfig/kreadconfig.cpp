@@ -41,12 +41,14 @@ int main(int argc, char **argv)
     QCoreApplication app(argc, argv);
 
     QCommandLineParser parser;
+    parser.addHelpOption();
     parser.addOption(
         QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
-    parser.addOption(QCommandLineOption(QStringLiteral("group"),
-                                        QCoreApplication::translate("main", "Group to look in. Use repeatedly for nested groups."),
-                                        QStringLiteral("group"),
-                                        QStringLiteral("KDE")));
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("group"),
+                           QCoreApplication::translate("main", "Group to look in. Use \"<default>\" for the root group, or use repeatedly for nested groups."),
+                           QStringLiteral("group"),
+                           QStringLiteral("KDE")));
     parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
     parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
     parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
@@ -75,6 +77,16 @@ int main(int argc, char **argv)
     }
     KConfigGroup cfgGroup = konfig->group(QString());
     for (const QString &grp : groups) {
+        if (grp.isEmpty()) {
+            fprintf(stderr,
+                    "%s: %s\n",
+                    qPrintable(QCoreApplication::applicationName()),
+                    qPrintable(QCoreApplication::translate("main", "Group name cannot be empty, use \"<default>\" for the root group")));
+            if (configMustDeleted) {
+                delete konfig;
+            }
+            return 2;
+        }
         cfgGroup = cfgGroup.group(grp);
     }
 
