@@ -28,7 +28,6 @@ QMakeBuilderSettings *QMakeBuilderSettings::self()
 void QMakeBuilderSettings::instance(const QString& cfgfilename)
 {
   if (s_globalQMakeBuilderSettings()->q) {
-     qDebug() << "QMakeBuilderSettings::instance called after the first use - ignoring";
      return;
   }
   new QMakeBuilderSettings(KSharedConfig::openConfig(cfgfilename));
@@ -38,7 +37,6 @@ void QMakeBuilderSettings::instance(const QString& cfgfilename)
 void QMakeBuilderSettings::instance(KSharedConfig::Ptr config)
 {
   if (s_globalQMakeBuilderSettings()->q) {
-     qDebug() << "QMakeBuilderSettings::instance called after the first use - ignoring";
      return;
   }
   new QMakeBuilderSettings(std::move(config));

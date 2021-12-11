@@ -28,7 +28,6 @@ Test8c *Test8c::self()
 void Test8c::instance(const QString& cfgfilename)
 {
   if (s_globalTest8c()->q) {
-     qDebug() << "Test8c::instance called after the first use - ignoring";
      return;
   }
   new Test8c(KSharedConfig::openConfig(cfgfilename));
@@ -38,7 +37,6 @@ void Test8c::instance(const QString& cfgfilename)
 void Test8c::instance(KSharedConfig::Ptr config)
 {
   if (s_globalTest8c()->q) {
-     qDebug() << "Test8c::instance called after the first use - ignoring";
      return;
   }
   new Test8c(std::move(config));

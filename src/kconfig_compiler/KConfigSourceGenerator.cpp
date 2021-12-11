@@ -166,7 +166,6 @@ void KConfigSourceGenerator::createSingletonImplementation()
             stream() << "void " << cfg().className << "::instance(" << type << " " << arg << ")\n";
             stream() << "{\n";
             stream() << "  if (s_global" << cfg().className << "()->q) {\n";
-            stream() << "     qDebug() << \"" << cfg().className << "::instance called after the first use - ignoring\";\n";
             stream() << "     return;\n";
             stream() << "  }\n";
             stream() << "  new " << cfg().className << "(";
