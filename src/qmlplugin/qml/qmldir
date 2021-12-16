@@ -1,0 +1,4 @@
+module org.kde.kconfig
+plugin kconfigqmlplugin
+classname KConfigQMLPlugin
+typeinfo plugins.qmltypes
