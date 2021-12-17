@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 Carson Black
+//
+// SPDX-License-Identifier: LGPL-2.1-or-later
+
 import QtQuick.Window 2.10
 import QtQuick 2.0
 import QtTest 1.2

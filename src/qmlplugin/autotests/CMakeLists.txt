@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2021 Carson Black
+#
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
 find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED QuickTest)
 
 add_executable(qtest test_main.cpp)
