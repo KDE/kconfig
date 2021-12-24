@@ -280,7 +280,7 @@ QStringList KConfig::groupList() const
 
     for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
-        const QByteArray group = key.mGroup;
+        const QByteArray &group = key.mGroup;
         if (key.mKey.isNull() && !group.isEmpty() && group != "<default>" && group != "$Version") {
             const QString groupname = QString::fromUtf8(group);
             groups << groupname.left(groupname.indexOf(QLatin1Char('\x1d')));
@@ -292,7 +292,7 @@ QStringList KConfig::groupList() const
 
 QStringList KConfigPrivate::groupList(const QByteArray &group) const
 {
-    QByteArray theGroup = group + '\x1d';
+    const QByteArray theGroup = group + '\x1d';
     QSet<QString> groups;
 
     for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
