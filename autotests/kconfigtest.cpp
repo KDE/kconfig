@@ -806,19 +806,25 @@ void KConfigTest::testDelete()
     KConfigGroup delgr(&ct, "Nested Group 3");
     QVERIFY(delgr.exists());
     QVERIFY(ct.hasGroup("Nested Group 3"));
+    QVERIFY(ct.groupList().contains(QStringLiteral("Nested Group 3")));
     delgr.deleteGroup();
     QVERIFY(!delgr.exists());
     QVERIFY(!ct.hasGroup("Nested Group 3"));
-    QVERIFY(ct.groupList().contains(QStringLiteral("Nested Group 3")));
+    QVERIFY(!ct.groupList().contains(QStringLiteral("Nested Group 3")));
 
     KConfigGroup ng(&ct, "Nested Group 2");
     QVERIFY(sc.hasGroup("Complex Types"));
+    QVERIFY(sc.groupList().contains(QStringLiteral("Complex Types")));
     QVERIFY(!sc.hasGroup("Does not exist"));
+    QVERIFY(ct.hasGroup("Nested Group 1"));
+    QVERIFY(ct.groupList().contains(QStringLiteral("Nested Group 1")));
     sc.deleteGroup("Complex Types");
     QCOMPARE(sc.group("Complex Types").keyList().count(), 0);
     QVERIFY(!sc.hasGroup("Complex Types")); // #192266
     QVERIFY(!sc.group("Complex Types").exists());
+    QVERIFY(!sc.groupList().contains(QStringLiteral("Complex Types")));
     QVERIFY(!ct.hasGroup("Nested Group 1"));
+    QVERIFY(!ct.groupList().contains(QStringLiteral("Nested Group 1")));
 
     QCOMPARE(ct.group("Nested Group 1").keyList().count(), 0);
     QCOMPARE(ct.group("Nested Group 2").keyList().count(), 0);
