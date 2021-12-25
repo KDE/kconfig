@@ -130,10 +130,16 @@ bool KConfigPrivate::lockLocal()
     return true;
 }
 
+static bool isGroupOrSubGroupMatch(KEntryMapConstIterator entryMapIt, const QByteArray &group)
+{
+    const QByteArray &entryGroup = entryMapIt.key().mGroup;
+    Q_ASSERT_X(entryGroup.startsWith(group), Q_FUNC_INFO, "Precondition");
+    return entryGroup.size() == group.size() || entryGroup[group.size()] == '\x1d';
+}
+
 void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &destination, KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const
 {
     KEntryMap &otherMap = otherGroup->config()->d_ptr->entryMap;
-    const int len = source.length();
     const bool sameName = (destination == source);
 
     // we keep this bool outside the for loop so that if
@@ -141,16 +147,10 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
     // as dirty erroneously
     bool dirtied = false;
 
-    for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
-        const QByteArray &group = entryMapIt.key().mGroup;
-
-        if (!group.startsWith(source)) { // nothing to do
-            continue;
-        }
-
+    entryMap.forEachEntryWhoseGroupStartsWith(source, [&source, &destination, flags, &otherMap, sameName, &dirtied](KEntryMapConstIterator entryMapIt) {
         // don't copy groups that start with the same prefix, but are not sub-groups
-        if (group.length() > len && group[len] != '\x1d') {
-            continue;
+        if (!isGroupOrSubGroupMatch(entryMapIt, source)) {
+            return;
         }
 
         KEntryKey newKey = entryMapIt.key();
@@ -160,7 +160,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
         }
 
         if (!sameName) {
-            newKey.mGroup.replace(0, len, destination);
+            newKey.mGroup.replace(0, source.size(), destination);
         }
 
         KEntry entry = entryMapIt.value();
@@ -175,7 +175,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
         }
 
         otherMap[newKey] = entry;
-    }
+    });
 
     if (dirtied) {
         otherGroup->config()->d_ptr->bDirty = true;
@@ -318,24 +318,16 @@ QStringList KConfigPrivate::groupList(const QByteArray &group) const
     const QByteArray theGroup = group + '\x1d';
     ByteArrayViewSet groups;
 
-    for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
+    entryMap.forEachEntryWhoseGroupStartsWith(theGroup, [&theGroup, &groups](KEntryMapConstIterator entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
-        if (!key.mKey.isNull() && !entryMapIt->bDeleted && key.mGroup.startsWith(theGroup)) {
+        if (!key.mKey.isNull() && !entryMapIt->bDeleted) {
             const auto subgroupStartPos = theGroup.size();
             const auto subgroupEndPos = findFirstGroupEndPos(key.mGroup, subgroupStartPos);
             groups.emplace(key.mGroup.constData() + subgroupStartPos, subgroupEndPos - subgroupStartPos);
         }
-    }
+    });
 
     return stringListFromUtf8Collection(groups);
-}
-
-static bool isGroupOrSubGroupMatch(const QByteArray &potentialGroup, const QByteArray &group)
-{
-    if (!potentialGroup.startsWith(group)) {
-        return false;
-    }
-    return potentialGroup.length() == group.length() || potentialGroup[group.length()] == '\x1d';
 }
 
 /// Returns @p parentGroup itself, all its subgroups, subsubgroups, and so on, including deleted groups.
@@ -343,25 +335,21 @@ QSet<QByteArray> KConfigPrivate::allSubGroups(const QByteArray &parentGroup) con
 {
     QSet<QByteArray> groups;
 
-    for (KEntryMap::const_iterator entryMapIt = entryMap.begin(); entryMapIt != entryMap.end(); ++entryMapIt) {
+    entryMap.forEachEntryWhoseGroupStartsWith(parentGroup, [&parentGroup, &groups](KEntryMapConstIterator entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
-        if (key.mKey.isNull() && isGroupOrSubGroupMatch(key.mGroup, parentGroup)) {
+        if (key.mKey.isNull() && isGroupOrSubGroupMatch(entryMapIt, parentGroup)) {
             groups << key.mGroup;
         }
-    }
+    });
+
     return groups;
 }
 
 bool KConfigPrivate::hasNonDeletedEntries(const QByteArray &group) const
 {
-    for (KEntryMap::const_iterator it = entryMap.begin(); it != entryMap.end(); ++it) {
-        const KEntryKey &key = it.key();
-        // Check for any non-deleted entry
-        if (isGroupOrSubGroupMatch(key.mGroup, group) && !key.mKey.isNull() && !it->bDeleted) {
-            return true;
-        }
-    }
-    return false;
+    return entryMap.anyEntryWhoseGroupStartsWith(group, [&group](KEntryMapConstIterator entryMapIt) {
+        return isGroupOrSubGroupMatch(entryMapIt, group) && !entryMapIt.key().mKey.isNull() && !entryMapIt->bDeleted;
+    });
 }
 
 QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const

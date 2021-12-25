@@ -155,6 +155,17 @@ inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
     return (!k1.bDefault && k2.bDefault);
 }
 
+/**
+ * Returns the minimum key that has @a mGroup == @p group.
+ *
+ * @note The returned "minimum key" is consistent with KEntryKey's operator<().
+ *       The return value of this function can be passed to KEntryMap::lowerBound().
+ */
+inline KEntryKey minimumGroupKey(const QByteArray &group)
+{
+    return KEntryKey(group, QByteArray{}, true, false);
+}
+
 QDebug operator<<(QDebug dbg, const KEntryKey &key);
 QDebug operator<<(QDebug dbg, const KEntry &entry);
 
@@ -230,6 +241,25 @@ public:
     }
 
     bool revertEntry(const QByteArray &group, const QByteArray &key, EntryOptions options, SearchFlags flags = SearchFlags());
+
+    template<typename ConstIteratorUser>
+    void forEachEntryWhoseGroupStartsWith(const QByteArray &groupPrefix, ConstIteratorUser callback) const
+    {
+        for (auto it = lowerBound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it.key().mGroup.startsWith(groupPrefix); ++it) {
+            callback(it);
+        }
+    }
+
+    template<typename ConstIteratorPredicate>
+    bool anyEntryWhoseGroupStartsWith(const QByteArray &groupPrefix, ConstIteratorPredicate predicate) const
+    {
+        for (auto it = lowerBound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it.key().mGroup.startsWith(groupPrefix); ++it) {
+            if (predicate(it)) {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::SearchFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)
