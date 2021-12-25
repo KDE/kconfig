@@ -163,7 +163,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
             newKey.mGroup.replace(0, len, destination);
         }
 
-        KEntry entry = entryMap[entryMapIt.key()];
+        KEntry entry = entryMapIt.value();
         dirtied = entry.bDirty = flags & KConfigBase::Persistent;
 
         if (flags & KConfigBase::Global) {
