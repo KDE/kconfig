@@ -31,7 +31,11 @@
 #include <QSet>
 #include <QThreadStorage>
 
+#include <algorithm>
+#include <iterator>
 #include <set>
+#include <string_view>
+#include <unordered_set>
 
 #if KCONFIG_USE_DBUS
 #include <QDBusConnection>
@@ -273,37 +277,57 @@ KConfig::~KConfig()
     delete d;
 }
 
+static int findFirstGroupEndPos(const QByteArray &groupFullName, int from = 0)
+{
+    const auto index = groupFullName.indexOf('\x1d', from);
+    return index == -1 ? groupFullName.size() : index;
+}
+
+// std::string_view is used because QByteArrayView does not exist in Qt 5.
+// std::unordered_set rather than QSet is used because there is no qHash() overload for std::string_view in Qt 5.
+using ByteArrayViewSet = std::unordered_set<std::string_view>;
+
+static QStringList stringListFromUtf8Collection(const ByteArrayViewSet &source)
+{
+    QStringList list;
+    list.reserve(source.size());
+    std::transform(source.cbegin(), source.cend(), std::back_inserter(list), [](std::string_view view) {
+        return QString::fromUtf8(view.data(), view.size());
+    });
+    return list;
+}
+
 QStringList KConfig::groupList() const
 {
     Q_D(const KConfig);
-    QSet<QString> groups;
+    ByteArrayViewSet groups;
 
     for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
         const QByteArray &group = key.mGroup;
         if (!key.mKey.isNull() && !entryMapIt->bDeleted && !group.isEmpty() && group != "<default>" && group != "$Version") {
-            const QString groupname = QString::fromUtf8(group);
-            groups << groupname.left(groupname.indexOf(QLatin1Char('\x1d')));
+            groups.emplace(group.constData(), findFirstGroupEndPos(group));
         }
     }
 
-    return groups.values();
+    return stringListFromUtf8Collection(groups);
 }
 
 QStringList KConfigPrivate::groupList(const QByteArray &group) const
 {
     const QByteArray theGroup = group + '\x1d';
-    QSet<QString> groups;
+    ByteArrayViewSet groups;
 
     for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
         if (!key.mKey.isNull() && !entryMapIt->bDeleted && key.mGroup.startsWith(theGroup)) {
-            const QString groupname = QString::fromUtf8(key.mGroup.mid(theGroup.length()));
-            groups << groupname.left(groupname.indexOf(QLatin1Char('\x1d')));
+            const auto subgroupStartPos = theGroup.size();
+            const auto subgroupEndPos = findFirstGroupEndPos(key.mGroup, subgroupStartPos);
+            groups.emplace(key.mGroup.constData() + subgroupStartPos, subgroupEndPos - subgroupStartPos);
         }
     }
 
-    return groups.values();
+    return stringListFromUtf8Collection(groups);
 }
 
 static bool isGroupOrSubGroupMatch(const QByteArray &potentialGroup, const QByteArray &group)
