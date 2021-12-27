@@ -338,7 +338,7 @@ static bool isGroupOrSubGroupMatch(const QByteArray &potentialGroup, const QByte
     return potentialGroup.length() == group.length() || potentialGroup[group.length()] == '\x1d';
 }
 
-// List all sub groups, including subsubgroups
+/// Returns @p parentGroup itself, all its subgroups, subsubgroups, and so on, including deleted groups.
 QSet<QByteArray> KConfigPrivate::allSubGroups(const QByteArray &parentGroup) const
 {
     QSet<QByteArray> groups;
