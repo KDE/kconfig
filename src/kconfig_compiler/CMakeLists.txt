@@ -1,6 +1,6 @@
 add_executable(kconfig_compiler)
 
-if(CMAKE_TOOLCHAIN_FILE)
+if(CMAKE_CROSSCOMPILING)
     if(BUILD_TESTING)
         message(WARNING "Testing should be disabled on cross-compilation")
     endif()
