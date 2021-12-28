@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 
 #include <QPointer>
+#include <QTimer>
 #include <QWindow>
 
 #include <KConfig>
@@ -17,11 +18,16 @@ struct WindowStateSaver::Private
     QPointer<QWindow> window;
     QString name;
     QString configName;
+    QScopedPointer<QTimer> timer;
 };
 
 WindowStateSaver::WindowStateSaver(QObject* parent) : QObject(parent), d(new Private)
 {
-
+    d->timer.reset(new QTimer);
+    d->timer->setInterval(100);
+    connect(d->timer.get(), &QTimer::timeout, this, [=]() {
+        save();
+    });
 }
 
 WindowStateSaver::~WindowStateSaver()
@@ -36,8 +42,23 @@ QWindow* WindowStateSaver::window() const
 
 void WindowStateSaver::setWindow(QWindow* window)
 {
-    if (d->window == window)
+    if (d->window == window) {
         return;
+    }
+
+    if (d->window) {
+        disconnect(d->window, nullptr, this, nullptr);
+    }
+
+    if (window) {
+        auto deferredSave = [this] {
+            d->timer->start();
+        };
+        connect(window, &QWindow::widthChanged, this, deferredSave);
+        connect(window, &QWindow::heightChanged, this, deferredSave);
+        connect(window, &QWindow::xChanged, this, deferredSave);
+        connect(window, &QWindow::yChanged, this, deferredSave);
+    }
 
     d->window = window;
     Q_EMIT windowChanged();
@@ -59,8 +80,9 @@ QString WindowStateSaver::windowName() const
 
 void WindowStateSaver::setWindowName(const QString& name)
 {
-    if (d->name == name)
+    if (d->name == name) {
         return;
+    }
 
     d->name = name;
     Q_EMIT windowNameChanged();
@@ -73,8 +95,9 @@ QString WindowStateSaver::configName() const
 
 void WindowStateSaver::setConfigName(const QString& name)
 {
-    if (d->configName == name)
+    if (d->configName == name) {
         return;
+    }
 
     d->configName = name;
     Q_EMIT configNameChanged();
@@ -82,10 +105,11 @@ void WindowStateSaver::setConfigName(const QString& name)
 
 void WindowStateSaver::save()
 {
-    if (!d->window || d->name.isEmpty())
+    if (!d->window || d->name.isEmpty()) {
         return;
+    }
 
-    KSharedConfigPtr cfg(KSharedConfig::openConfig(d->configName));
+    KSharedConfigPtr cfg(KSharedConfig::openConfig(d->configName, KConfig::SimpleConfig, QStandardPaths::AppDataLocation));
 
     auto group = cfg->group("KConfig QML").group("Window States").group(d->name);
 
@@ -95,8 +119,9 @@ void WindowStateSaver::save()
 
 void WindowStateSaver::restore()
 {
-    if (!d->window || d->name.isEmpty())
+    if (!d->window || d->name.isEmpty()) {
         return;
+    }
 
     KSharedConfigPtr cfg(KSharedConfig::openConfig(d->configName));
 
