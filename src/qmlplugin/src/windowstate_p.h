@@ -12,6 +12,16 @@ class QWindow;
 /**
  * @brief WindowStateSaver saves the geometry of the provided window
  *
+ * If you're migrating from an application-specific implementation of this,
+ * see https://techbase.kde.org/Development/Tutorials/Updating_KConfig_Files
+ * for how to write a migration script.
+ *
+ * WindowStateSaver saves the configuration of the windows in the
+ * "KConfig QML" / "Window States" / windowName group of the
+ * config file specified by configName, as if you had used
+ * KWindowConfig::saveWindowPosition and KWindowConfig::saveWindowSize
+ * on the group manually.
+ *
  * @example qml/Saver.qml
  */
 class WindowStateSaver : public QObject, public QQmlParserStatus
