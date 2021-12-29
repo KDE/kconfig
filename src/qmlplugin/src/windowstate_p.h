@@ -9,6 +9,11 @@
 
 class QWindow;
 
+/**
+ * @brief WindowStateSaver saves the geometry of the provided window
+ *
+ * @example qml/Saver.qml
+ */
 class WindowStateSaver : public QObject, public QQmlParserStatus
 {
 
@@ -18,8 +23,24 @@ class WindowStateSaver : public QObject, public QQmlParserStatus
     struct Private;
     QScopedPointer<Private> d;
 
+    /**
+     * The window that WindowStateSaver will load and save the state of.
+     */
     Q_PROPERTY(QWindow* window READ window WRITE setWindow NOTIFY windowChanged)
+
+    /**
+     * A unique name for the window that can be used to distinguish it from other
+     * windows in your application.
+     *
+     * This is required for proper functionality.
+     */
     Q_PROPERTY(QString windowName READ windowName WRITE setWindowName NOTIFY windowNameChanged)
+
+    /**
+     * The name of the config file the WindowStateSaver will read and write to.
+     * This will default to the one used by the rest of your application, e.g.
+     * one derived from properties of the QApplication.
+     */
     Q_PROPERTY(QString configName READ configName WRITE setConfigName NOTIFY configNameChanged)
 
 public:
@@ -41,7 +62,16 @@ public:
     void classBegin() override { }
     void componentComplete() override;
 
+    /**
+     * Manually save the window's state. This is normally not needed
+     * in normal operation, as the WindowStateSaver does this automatically.
+     */
     Q_INVOKABLE void save();
+
+    /**
+     * Manually restore the window's state. This is normally not needed
+     * in normal operation, as the WindowStateSaver does this automatically.
+     */
     Q_INVOKABLE void restore();
 
 };
