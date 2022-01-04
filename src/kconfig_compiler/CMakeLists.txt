@@ -25,4 +25,4 @@ target_link_libraries(kconfig_compiler Qt${QT_MAJOR_VERSION}::Xml)
 
 ecm_mark_nongui_executable(kconfig_compiler)
 
-install(TARGETS kconfig_compiler EXPORT KF5ConfigCompilerTargets DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF5})
+install(TARGETS kconfig_compiler EXPORT KF5ConfigCompilerTargets DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF})
