@@ -57,6 +57,7 @@ ecm_add_tests(
    kconfigloadertest.cpp
    kconfigskeletontest.cpp
    kstandardshortcuttest.cpp
+   kstandardshortcutwatchertest.cpp
    NAME_PREFIX kconfiggui-
    LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test
 )

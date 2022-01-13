@@ -8,8 +8,10 @@
 */
 
 #include "kstandardshortcut.h"
+#include "kstandardshortcutwatcher.h"
 
 #include "kconfig.h"
+#include "kconfigwatcher.h"
 #include "ksharedconfig.h"
 #include <kconfiggroup.h>
 
@@ -437,7 +439,7 @@ static void sanitizeShortcutList(QList<QKeySequence> *list)
     On X11, if QApplication was initialized with GUI disabled,
     the default will always be used.
 */
-static void initialize(StandardShortcut id)
+void initialize(StandardShortcut id)
 {
     KStandardShortcutInfo *info = guardedStandardShortcutInfo(id);
 
@@ -483,7 +485,8 @@ void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut)
         // If the shortcut is the equal to the hardcoded one we remove it from
         // kdeglobal if necessary and return.
         if (cg.hasKey(info->name)) {
-            cg.deleteEntry(info->name, KConfig::Global | KConfig::Persistent);
+            cg.deleteEntry(info->name, KConfig::Global | KConfig::Persistent | KConfig::Notify);
+            cg.sync();
         }
 
         return;
@@ -491,7 +494,8 @@ void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut)
 
     // Write the changed shortcut to kdeglobals
     sanitizeShortcutList(&info->cut);
-    cg.writeEntry(info->name, QKeySequence::listToString(info->cut), KConfig::Global | KConfig::Persistent);
+    cg.writeEntry(info->name, QKeySequence::listToString(info->cut), KConfig::Global | KConfig::Persistent | KConfig::Notify);
+    cg.sync();
 }
 
 QString name(StandardShortcut id)

@@ -9,6 +9,7 @@ target_sources(KF5ConfigGui PRIVATE
     kconfigloader.cpp
     kconfigskeleton.cpp
     kstandardshortcut.cpp
+    kstandardshortcutwatcher.cpp
     kwindowconfig.cpp
 )
 
@@ -37,6 +38,7 @@ ecm_generate_headers(KConfigGui_HEADERS
   KConfigLoader
   KConfigSkeleton
   KStandardShortcut
+  KStandardShortcutWatcher
   KWindowConfig
 
    REQUIRED_HEADERS KConfigGui_HEADERS
@@ -60,6 +62,7 @@ if (PythonModuleGeneration_FOUND)
       kconfigloader.h
       kconfigskeleton.h
       kstandardshortcut.h
+      kstandardshortcutwatcher.h
       kwindowconfig.h
   )
 endif()
