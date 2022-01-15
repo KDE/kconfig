@@ -41,7 +41,9 @@ target_compile_definitions(KF5ConfigCore
         KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF}/$<TARGET_FILE_NAME:KF5::kconf_update>"
 )
 
-target_include_directories(KF5ConfigCore INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>")
+target_include_directories(KF5ConfigCore
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>"
+)
 
 target_link_libraries(KF5ConfigCore PUBLIC Qt${QT_MAJOR_VERSION}::Core)
 

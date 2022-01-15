@@ -21,7 +21,8 @@ ecm_generate_export_header(KF5ConfigGui
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
+target_include_directories(KF5ConfigGui
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
 
 target_link_libraries(KF5ConfigGui PUBLIC Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Xml KF5::ConfigCore)
 
