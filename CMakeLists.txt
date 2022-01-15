@@ -22,6 +22,7 @@ include(ECMMarkNonGuiExecutable)
 include(ECMPoQmTools)
 include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
+include(ECMDeprecationSettings)
 
 set(REQUIRED_QT_VERSION 5.15.2)
 
@@ -51,7 +52,9 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5ConfigConfigVersion.cmake"
                         SOVERSION 5)
 
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
+ecm_set_disabled_deprecation_versions(
+    QT 5.15.2
+)
 
 add_subdirectory(src)
 if (BUILD_TESTING)
