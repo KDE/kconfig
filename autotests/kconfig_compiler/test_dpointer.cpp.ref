@@ -49,7 +49,7 @@ class TestDPointerHelper
 {
   public:
     TestDPointerHelper() : q(nullptr) {}
-    ~TestDPointerHelper() { delete q; }
+    ~TestDPointerHelper() { delete q; q = nullptr; }
     TestDPointerHelper(const TestDPointerHelper&) = delete;
     TestDPointerHelper& operator=(const TestDPointerHelper&) = delete;
     TestDPointer *q;
@@ -414,6 +414,8 @@ KConfigSkeleton::ItemFont *TestDPointer::timeBarFontItem()
 TestDPointer::~TestDPointer()
 {
   delete d;
-  s_globalTestDPointer()->q = nullptr;
+  if (s_globalTestDPointer.exists() && !s_globalTestDPointer.isDestroyed()) {
+    s_globalTestDPointer()->q = nullptr;
+  }
 }
 

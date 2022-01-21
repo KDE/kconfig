@@ -138,7 +138,7 @@ void KConfigSourceGenerator::createSingletonImplementation()
     stream() << '{' << '\n';
     stream() << "  public:\n";
     stream() << "    " << cfg().className << "Helper() : q(nullptr) {}\n";
-    stream() << "    ~" << cfg().className << "Helper() { delete q; }\n";
+    stream() << "    ~" << cfg().className << "Helper() { delete q; q = nullptr; }\n";
     stream() << "    " << cfg().className << "Helper(const " << cfg().className << "Helper&) = delete;\n";
     stream() << "    " << cfg().className << "Helper& operator=(const " << cfg().className << "Helper&) = delete;\n";
     stream() << "    " << cfg().className << " *q;\n";
@@ -616,7 +616,10 @@ void KConfigSourceGenerator::createDestructor()
         stream() << "  delete d;\n";
     }
     if (cfg().singleton) {
-        stream() << "  s_global" << cfg().className << "()->q = nullptr;\n";
+        const QString qgs = QLatin1String("s_global") + cfg().className;
+        stream() << "  if (" << qgs << ".exists() && !" << qgs << ".isDestroyed()) {\n";
+        stream() << "    " << qgs << "()->q = nullptr;\n";
+        stream() << "  }\n";
     }
     endScope();
     stream() << '\n';

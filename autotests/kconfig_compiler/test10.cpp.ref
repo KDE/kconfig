@@ -10,7 +10,7 @@ class Test10Helper
 {
   public:
     Test10Helper() : q(nullptr) {}
-    ~Test10Helper() { delete q; }
+    ~Test10Helper() { delete q; q = nullptr; }
     Test10Helper(const Test10Helper&) = delete;
     Test10Helper& operator=(const Test10Helper&) = delete;
     Test10 *q;
@@ -43,6 +43,8 @@ Test10::Test10( )
 
 Test10::~Test10()
 {
-  s_globalTest10()->q = nullptr;
+  if (s_globalTest10.exists() && !s_globalTest10.isDestroyed()) {
+    s_globalTest10()->q = nullptr;
+  }
 }
 

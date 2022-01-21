@@ -12,7 +12,7 @@ class Test8cHelper
 {
   public:
     Test8cHelper() : q(nullptr) {}
-    ~Test8cHelper() { delete q; }
+    ~Test8cHelper() { delete q; q = nullptr; }
     Test8cHelper(const Test8cHelper&) = delete;
     Test8cHelper& operator=(const Test8cHelper&) = delete;
     Test8c *q;
@@ -63,6 +63,8 @@ Test8c::Test8c( KSharedConfig::Ptr config, QObject *parent )
 
 Test8c::~Test8c()
 {
-  s_globalTest8c()->q = nullptr;
+  if (s_globalTest8c.exists() && !s_globalTest8c.isDestroyed()) {
+    s_globalTest8c()->q = nullptr;
+  }
 }
 

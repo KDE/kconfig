@@ -12,7 +12,7 @@ class QMakeBuilderSettingsHelper
 {
   public:
     QMakeBuilderSettingsHelper() : q(nullptr) {}
-    ~QMakeBuilderSettingsHelper() { delete q; }
+    ~QMakeBuilderSettingsHelper() { delete q; q = nullptr; }
     QMakeBuilderSettingsHelper(const QMakeBuilderSettingsHelper&) = delete;
     QMakeBuilderSettingsHelper& operator=(const QMakeBuilderSettingsHelper&) = delete;
     QMakeBuilderSettings *q;
@@ -54,6 +54,8 @@ QMakeBuilderSettings::QMakeBuilderSettings( KSharedConfig::Ptr config )
 
 QMakeBuilderSettings::~QMakeBuilderSettings()
 {
-  s_globalQMakeBuilderSettings()->q = nullptr;
+  if (s_globalQMakeBuilderSettings.exists() && !s_globalQMakeBuilderSettings.isDestroyed()) {
+    s_globalQMakeBuilderSettings()->q = nullptr;
+  }
 }
 

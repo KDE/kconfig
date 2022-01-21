@@ -10,7 +10,7 @@ class Test4Helper
 {
   public:
     Test4Helper() : q(nullptr) {}
-    ~Test4Helper() { delete q; }
+    ~Test4Helper() { delete q; q = nullptr; }
     Test4Helper(const Test4Helper&) = delete;
     Test4Helper& operator=(const Test4Helper&) = delete;
     Test4 *q;
@@ -178,6 +178,8 @@ QColor defaultColor[4] = { Qt::red, Qt::blue, Qt::green, Qt::black };
 
 Test4::~Test4()
 {
-  s_globalTest4()->q = nullptr;
+  if (s_globalTest4.exists() && !s_globalTest4.isDestroyed()) {
+    s_globalTest4()->q = nullptr;
+  }
 }
 

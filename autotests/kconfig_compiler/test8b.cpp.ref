@@ -10,7 +10,7 @@ class Test8bHelper
 {
   public:
     Test8bHelper() : q(nullptr) {}
-    ~Test8bHelper() { delete q; }
+    ~Test8bHelper() { delete q; q = nullptr; }
     Test8bHelper(const Test8bHelper&) = delete;
     Test8bHelper& operator=(const Test8bHelper&) = delete;
     Test8b *q;
@@ -49,6 +49,8 @@ Test8b::Test8b( )
 
 Test8b::~Test8b()
 {
-  s_globalTest8b()->q = nullptr;
+  if (s_globalTest8b.exists() && !s_globalTest8b.isDestroyed()) {
+    s_globalTest8b()->q = nullptr;
+  }
 }
 
