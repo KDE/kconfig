@@ -37,7 +37,7 @@ Q_SIGNALS:
 
 private:
     explicit StandardShortcutWatcher(QObject *parent = nullptr);
-    friend StandardShortcutWatcher *shortcutWatcher();
+    friend KCONFIGGUI_EXPORT StandardShortcutWatcher *shortcutWatcher();
     std::unique_ptr<StandardShortcutWatcherPrivate> d;
 };
 
