@@ -57,10 +57,20 @@ ecm_add_tests(
    kconfigloadertest.cpp
    kconfigskeletontest.cpp
    kstandardshortcuttest.cpp
-   kstandardshortcutwatchertest.cpp
    NAME_PREFIX kconfiggui-
    LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test
 )
+
+ecm_add_test(
+   kstandardshortcutwatchertest.cpp
+   # add sources instead of linking so we can use the unexported initialize()
+   ../src/gui/kstandardshortcut.cpp
+   ../src/gui/kstandardshortcutwatcher.cpp
+   LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Test
+   TEST_NAME kstandardshortcutwatchertest
+   NAME_PREFIX kconfiggui-
+)
+target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF5ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
 
 # These tests do a global cleanup of ~/.qttest, so they can't run in parallel
 set_tests_properties(kconfigcore-kconfigtest PROPERTIES RUN_SERIAL TRUE)

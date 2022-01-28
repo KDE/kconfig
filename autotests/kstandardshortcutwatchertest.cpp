@@ -7,6 +7,7 @@
 #include "kstandardshortcutwatcher.h"
 #include "kconfiggroup.h"
 #include "ksharedconfig.h"
+#include "kstandardshortcut_p.h"
 
 #include <QSignalSpy>
 #include <QStandardPaths>
@@ -35,7 +36,10 @@ void KStandardShortcutWatcherTest::initTestCase()
 
 void KStandardShortcutWatcherTest::init()
 {
-    KStandardShortcut::saveShortcut(KStandardShortcut::Open, KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::Open));
+    KConfigGroup group(KSharedConfig::openConfig(), "Shortcuts");
+    group.writeEntry("Open", QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::Open)), KConfig::Global);
+    group.sync();
+    KStandardShortcut::initialize(KStandardShortcut::Open);
 }
 
 void KStandardShortcutWatcherTest::testSignal()
@@ -54,7 +58,7 @@ void KStandardShortcutWatcherTest::testDataUpdated()
     // Writing manually to forego automatic update in saveShortcut()
     KConfigGroup group(KSharedConfig::openConfig(), "Shortcuts");
     group.writeEntry("Open", QKeySequence::listToString(newShortcut), KConfig::Global | KConfig::Notify);
-    group.config()->sync();
+    group.sync();
     QTRY_COMPARE(signalSpy.count(), 1);
     QCOMPARE(KStandardShortcut::open(), newShortcut);
 }
