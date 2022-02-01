@@ -34,7 +34,6 @@ public:
     KConfigPropertyMap *q;
     QPointer<KCoreConfigSkeleton> config;
     bool updatingConfigValue = false;
-    bool autosave = true;
     bool notify = false;
 };
 
@@ -122,11 +121,6 @@ void KConfigPropertyMapPrivate::writeConfig()
         item->setProperty(q->value(item->key()));
     }
 
-    if (autosave) {
-        updatingConfigValue = true;
-        config.data()->save();
-        updatingConfigValue = false;
-    }
 }
 
 void KConfigPropertyMapPrivate::writeConfigValue(const QString &key, const QVariant &value)
@@ -136,12 +130,6 @@ void KConfigPropertyMapPrivate::writeConfigValue(const QString &key, const QVari
         updatingConfigValue = true;
         item->setWriteFlags(notify ? KConfigBase::Notify : KConfigBase::Normal);
         item->setProperty(value);
-        if (autosave) {
-            config.data()->save();
-            // why read? read will update KConfigSkeletonItem::mLoadedValue,
-            // allowing a write operation to be performed next time
-            config.data()->read();
-        }
         updatingConfigValue = false;
     }
 }
