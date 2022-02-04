@@ -71,6 +71,7 @@ ecm_add_test(
    NAME_PREFIX kconfiggui-
 )
 target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF5ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
+target_compile_definitions(kstandardshortcutwatchertest PRIVATE "-DKCONFIGGUI_STATIC_DEFINE")
 
 # These tests do a global cleanup of ~/.qttest, so they can't run in parallel
 set_tests_properties(kconfigcore-kconfigtest PROPERTIES RUN_SERIAL TRUE)
