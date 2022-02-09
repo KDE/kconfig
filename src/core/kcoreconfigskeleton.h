@@ -26,7 +26,7 @@ class KCoreConfigSkeletonPrivate;
 
 class KConfigSkeletonItemPrivate;
 /**
- * \class KConfigSkeletonItem kcoreconfigskeleton.h <KConfigSkeletonItem>
+ * \class KConfigSkeletonItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @short Class for storing a preferences setting
  * @author Cornelius Schumacher
@@ -65,7 +65,7 @@ public:
     void setGroup(const QString &_group);
 
     /**
-     * Return config file group.
+     * Return name of config file group.
      */
     QString group() const;
 
@@ -77,10 +77,10 @@ public:
     void setGroup(const KConfigGroup &cg);
 
     /**
-     * Return a KConfigGroup, the one provided by setGroup(KConfigGroup) if it's valid,
-     * or make one from @param config and item's group
-     * @sa setGroup(const QString &_group)
-     * @sa setGroup(KConfigGroup cg)
+     * Return a KConfigGroup, the one provided by setGroup(const KConfigGroup&) if it's valid,
+     * or make one from @p config and item's group.
+     * @see setGroup(const QString &_group)
+     * @see setGroup(KConfigGroup cg)
      * @since 5.68
      */
     KConfigGroup configGroup(KConfig *config) const;
@@ -106,48 +106,51 @@ public:
     QString name() const;
 
     /**
-      Set label providing a translated one-line description of the item.
-    */
+     * Set label providing a translated one-line description of the item.
+     */
     void setLabel(const QString &l);
 
     /**
-      Return label of item. See setLabel().
-    */
+     * Return the label of the item.
+     * @see setLabel()
+     */
     QString label() const;
 
     /**
-      Set ToolTip description of item.
-      @since 4.2
-    */
+     * Set ToolTip description of item.
+     * @since 4.2
+     */
     void setToolTip(const QString &t);
 
     /**
-      Return ToolTip description of item. See setToolTip().
-      @since 4.2
-    */
+     * Return ToolTip description of item.
+     * @see setToolTip()
+     * @since 4.2
+     */
     QString toolTip() const;
 
     /**
-      Set WhatsThis description of item.
-    */
+     * Set WhatsThis description of item.
+     */
     void setWhatsThis(const QString &w);
 
     /**
-      Return WhatsThis description of item. See setWhatsThis().
-    */
+     * Return WhatsThis description of item.
+     * @see setWhatsThis()
+     */
     QString whatsThis() const;
 
     /**
-      The write flags to be used when writing configuration.
-      @since 5.58
-    */
+     * The write flags to be used when writing configuration.
+     * @since 5.58
+     */
     void setWriteFlags(KConfigBase::WriteConfigFlags flags);
 
     /**
-      Return write flags to be used when writing configuration.
-      They should be passed to every call of writeEntry() and revertToDefault().
-      @since 5.58
-    */
+     * Return write flags to be used when writing configuration.
+     * They should be passed to every call of KConfigGroup::writeEntry() and KConfigGroup::revertToDefault().
+     * @since 5.58
+     */
     KConfigBase::WriteConfigFlags writeFlags() const;
 
     /**
@@ -159,7 +162,7 @@ public:
     /**
      * This function is called by @ref KCoreConfigSkeleton to write the value of this setting
      * to a config file.
-     * Make sure to pass writeFlags() to every call of writeEntry() and revertToDefault().
+     * Make sure to pass writeFlags() to every call of KConfigGroup::writeEntry() and KConfigGroup::revertToDefault().
      */
     virtual void writeConfig(KConfig *) = 0;
 
@@ -174,13 +177,13 @@ public:
     virtual void setProperty(const QVariant &p) = 0;
 
     /**
-     * Check whether the item is equal to p.
+     * Check whether the item is equal to @p p.
      *
      * Use this function to compare items that use custom types,
      * because QVariant::operator== will not work for those.
      *
      * @param p QVariant to compare to
-     * @return true if the item is equal to p, false otherwise
+     * @return @c true if the item is equal to @p p, @c false otherwise
      */
     virtual bool isEqual(const QVariant &p) const = 0;
 
@@ -240,7 +243,7 @@ protected:
     explicit KConfigSkeletonItem(KConfigSkeletonItemPrivate &dd, const QString &_group, const QString &_key);
 
     /**
-     * sets mIsImmutable to true if mKey in config is immutable
+     * Sets mIsImmutable to @c true if mKey in config is immutable.
      * @param group KConfigGroup to check if mKey is immutable in
      */
     void readImmutability(const KConfigGroup &group);
@@ -314,15 +317,18 @@ public:
 };
 
 /**
- * \class KConfigSkeletonGenericItem kcoreconfigskeleton.h <KConfigSkeletonGenericItem>
+ * \class KConfigSkeletonGenericItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
+ *
+ * @short Base class for storing a preferences setting of type @p T.
  */
 template<typename T>
 class KConfigSkeletonGenericItem : public KConfigSkeletonItem
 {
 public:
-    /** @copydoc KConfigSkeletonItem(const QString&, const QString&)
-         @param reference The initial value to hold in the item
-         @param defaultValue The default value for the item
+    /**
+     * @copydoc KConfigSkeletonItem(const QString&, const QString&)
+     * @param reference The initial value to hold in the item
+     * @param defaultValue The default value for the item
      */
     KConfigSkeletonGenericItem(const QString &_group, const QString &_key, T &reference, T defaultValue)
         : KConfigSkeletonItem(_group, _key)
@@ -366,15 +372,15 @@ public:
     }
 
     /**
-      Set default value for this item.
-    */
+     * Set default value for this item.
+     */
     virtual void setDefaultValue(const T &v)
     {
         mDefault = v;
     }
 
     /**
-      Set the value for this item to the default value
+     * Set the value for this item to the default value
      */
     void setDefault() override
     {
@@ -422,14 +428,14 @@ protected:
  * \class KConfigSkeletonChangeNotifyingItem kcoreconfigskeleton.h <KConfigSkeletonChangeNotifyingItem>
  *
  * @author Alex Richardson
- * @see KConfigSkeletonItem
- *
  *
  * This class wraps a @ref KConfigSkeletonItem and invokes a function whenever the value changes.
  * That function must take one quint64 parameter. Whenever the property value of the wrapped KConfigSkeletonItem
  * changes this function will be invoked with the stored user data passed in the constructor.
- * It does not call a function with the new value since this class is designed solely for the kconfig_compiler generated
+ * It does not call a function with the new value since this class is designed solely for the \ref kconfig_compiler generated
  * code and is therefore probably not suited for any other usecases.
+ *
+ * @see KConfigSkeletonItem
  */
 class KCONFIGCORE_EXPORT KConfigCompilerSignallingItem : public KConfigSkeletonItem
 {
@@ -484,7 +490,6 @@ private:
  *
  * @short Class for handling preferences settings for an application.
  * @author Cornelius Schumacher
- * @see KConfigSkeletonItem
  *
  * This class provides an interface to preferences settings. Preferences items
  * can be registered by the addItem() function corresponding to the data type of
@@ -537,6 +542,8 @@ private:
  * generate the C++ code from an XML description of the configuration options.
  *
  * Use KConfigSkeleton if you need GUI types as well.
+ *
+ * @see KConfigSkeletonItem
  */
 class KCONFIGCORE_EXPORT KCoreConfigSkeleton : public QObject
 {
@@ -548,27 +555,16 @@ public:
     class KCONFIGCORE_EXPORT ItemString : public KConfigSkeletonGenericItem<QString>
     {
     public:
+        /** The type of string that is held in this item */
         enum Type {
-            Normal,
-            Password,
-            Path,
+            Normal, ///< A normal string
+            Password, ///< A password string
+            Path, ///< A path to a file or directory
         };
 
-        /** @enum Type
-            The type of string that is held in this item
-
-            @var ItemString::Type ItemString::Normal
-            A normal string
-
-            @var ItemString::Type ItemString::Password
-            A password string
-
-            @var ItemString::Type ItemString::Path
-            A path to a file or directory
-         */
-
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
-            @param type The type of string held by the item
+        /**
+         * @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
+         * @param type The type of string held by the item
          */
         ItemString(const QString &_group,
                    const QString &_key,
@@ -622,8 +618,7 @@ public:
     class KCONFIGCORE_EXPORT ItemUrl : public KConfigSkeletonGenericItem<QUrl>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
-         */
+        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemUrl(const QString &_group, const QString &_key, QUrl &reference, const QUrl &defaultValue = QUrl());
 
         /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
@@ -710,13 +705,15 @@ public:
         /** Get the maximum value this is allowed to be stored in this item */
         QVariant maxValue() const override;
 
-        /** Set the minimum value for the item
-            @sa minValue()
+        /**
+         * Set the minimum value for the item.
+         * @see minValue()
          */
         void setMinValue(qint32);
 
-        /** Set the maximum value for the item
-            @sa maxValue
+        /**
+         * Set the maximum value for the item.
+         * @see maxValue
          */
         void setMaxValue(qint32);
 
@@ -783,9 +780,10 @@ public:
             QString whatsThis;
         };
 
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
-            @param choices The list of enums that can be stored in this item
-          */
+        /**
+         * @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
+         * @param choices The list of enums that can be stored in this item
+         */
         ItemEnum(const QString &_group, const QString &_key, qint32 &reference, const QList<Choice> &choices, qint32 defaultValue = 0);
 
         QList<Choice> choices() const;
@@ -802,12 +800,12 @@ public:
         QList<Choice> choices2() const;
 
         /**
-         * Returns the value for for the choice with the given name
+         * Returns the value for for the choice with the given @p name
          */
         QString valueForChoice(const QString &name) const;
 
         /**
-         * Stores a choice value for name
+         * Stores a choice value for @p name
          */
         void setValueForChoice(const QString &name, const QString &valueForChoice);
 
@@ -1204,15 +1202,16 @@ public:
     QString currentGroup() const;
 
     /**
-     * Register a custom @ref KConfigSkeletonItem with a given name.
+     * Register a custom @ref KConfigSkeletonItem @p item with a given @p name.
      *
-     * If the name parameter is null, take the name from KConfigSkeletonItem::key().
-     * Note that all names must be unique but that multiple entries can have
+     * If @p name is a null string, take the name from KConfigSkeletonItem::key().
+     *
+     * @note All names must be unique but multiple entries can have
      * the same key if they reside in different groups.
      *
-     * KCoreConfigSkeleton takes ownership of the KConfigSkeletonItem.
+     * KCoreConfigSkeleton takes ownership of @p item.
      */
-    void addItem(KConfigSkeletonItem *, const QString &name = QString());
+    void addItem(KConfigSkeletonItem *item, const QString &name = QString());
 
     /**
      * Register an item of type QString.
@@ -1222,7 +1221,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemString *addItemString(const QString &name,
@@ -1232,37 +1231,40 @@ public:
 
     /**
      * Register a password item of type QString. The string value is written
-     * encrypted to the config file. Note that the current encryption scheme
-     * is very weak.
+     * encrypted to the config file.
+     *
+     * @note The current encryption scheme is very weak.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemPassword *addItemPassword(const QString &name, QString &reference, const QString &defaultValue = QLatin1String(""), const QString &key = QString());
 
     /**
      * Register a path item of type QString. The string value is interpreted
-     * as a path. This means, dollar expension is activated for this value, so
-     * that e.g. $HOME gets expanded.
+     * as a path. This means, dollar expansion is activated for this value, so
+     * that e.g. @c $HOME gets expanded.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemPath *addItemPath(const QString &name, QString &reference, const QString &defaultValue = QLatin1String(""), const QString &key = QString());
 
     /**
-     * Register a property item of type QVariant. Note that only the following
-     * QVariant types are allowed: String, StringList, Font, Point, Rect, Size,
+     * Register a property item of type QVariant.
+     *
+     * @note The following QVariant types are allowed:
+     * String, StringList, Font, Point, Rect, Size,
      * Color, Int, UInt, Bool, Double, DateTime and Date.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1270,58 +1272,58 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemProperty *addItemProperty(const QString &name, QVariant &reference, const QVariant &defaultValue = QVariant(), const QString &key = QString());
     /**
-     * Register an item of type bool.
+     * Register an item of type @c bool.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemBool *addItemBool(const QString &name, bool &reference, bool defaultValue = false, const QString &key = QString());
 
     /**
-     * Register an item of type qint32.
+     * Register an item of type @c qint32.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemInt *addItemInt(const QString &name, qint32 &reference, qint32 defaultValue = 0, const QString &key = QString());
 
     /**
-     * Register an item of type quint32.
+     * Register an item of type @c quint32.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemUInt *addItemUInt(const QString &name, quint32 &reference, quint32 defaultValue = 0, const QString &key = QString());
 
     /**
-     * Register an item of type qint64.
+     * Register an item of type @c qint64.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemLongLong *addItemLongLong(const QString &name, qint64 &reference, qint64 defaultValue = 0, const QString &key = QString());
@@ -1335,14 +1337,14 @@ public:
 #endif
 
     /**
-     * Register an item of type quint64
+     * Register an item of type @c quint64.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemULongLong *addItemULongLong(const QString &name, quint64 &reference, quint64 defaultValue = 0, const QString &key = QString());
@@ -1356,14 +1358,14 @@ public:
 #endif
 
     /**
-     * Register an item of type double.
+     * Register an item of type @c double.
      *
      * @param name Name used to identify this setting. Names must be unique.
      * @param reference Pointer to the variable, which is set by readConfig()
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemDouble *addItemDouble(const QString &name, double &reference, double defaultValue = 0.0, const QString &key = QString());
@@ -1376,7 +1378,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemRect *addItemRect(const QString &name, QRect &reference, const QRect &defaultValue = QRect(), const QString &key = QString());
@@ -1389,7 +1391,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemPoint *addItemPoint(const QString &name, QPoint &reference, const QPoint &defaultValue = QPoint(), const QString &key = QString());
@@ -1402,7 +1404,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemSize *addItemSize(const QString &name, QSize &reference, const QSize &defaultValue = QSize(), const QString &key = QString());
@@ -1415,7 +1417,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemDateTime *addItemDateTime(const QString &name, QDateTime &reference, const QDateTime &defaultValue = QDateTime(), const QString &key = QString());
@@ -1428,7 +1430,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemStringList *
@@ -1442,7 +1444,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemIntList *addItemIntList(const QString &name, QList<int> &reference, const QList<int> &defaultValue = QList<int>(), const QString &key = QString());
@@ -1504,8 +1506,8 @@ public:
      * usrUseDefaults() directly.
      * If you don't have control whether useDefaults() or usrUseDefaults() is
      * called override useDefaults() directly.
-     * @param b true to make this object reflect the default values,
-     *          false to make it reflect the actual values.
+     * @param b @c true to make this object reflect the default values,
+     *          @c false to make it reflect the actual values.
      * @return The state prior to this call
      */
     virtual bool useDefaults(bool b);
@@ -1542,8 +1544,8 @@ protected:
      * Implemented by subclasses that use special defaults.
      * It replaces the default values with the actual values and
      * vice versa.  Called from @ref useDefaults()
-     * @param b true to make this object reflect the default values,
-     *          false to make it reflect the actual values.
+     * @param b @c true to make this object reflect the default values,
+     *          @c false to make it reflect the actual values.
      * @return The state prior to this call
      */
     virtual bool usrUseDefaults(bool b);

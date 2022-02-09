@@ -23,7 +23,6 @@
  * @author Cornelius Schumacher
  *
  * This class extends KCoreConfigSkeleton by support for GUI types.
- *
  */
 class KCONFIGGUI_EXPORT KConfigSkeleton : public KCoreConfigSkeleton
 {
@@ -97,7 +96,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemColor *addItemColor(const QString &name, QColor &reference, const QColor &defaultValue = QColor(128, 128, 128), const QString &key = QString());
@@ -110,7 +109,7 @@ public:
      * calls and read by save() calls.
      * @param defaultValue Default value, which is used when the config file
      * does not yet contain the key of this item.
-     * @param key Key used in config file. If key is null, name is used as key.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
      * @return The created item
      */
     ItemFont *addItemFont(const QString &name, QFont &reference, const QFont &defaultValue = QFont(), const QString &key = QString());
