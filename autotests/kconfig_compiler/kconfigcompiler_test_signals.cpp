@@ -8,6 +8,7 @@
 #include "signals_test_no_singleton_dpointer.h"
 #include "signals_test_singleton.h"
 #include "signals_test_singleton_dpointer.h"
+#include "signals_test_singleton_itemaccessors.h"
 #include <QDebug>
 #include <QFileInfo>
 #include <QSharedPointer>
@@ -40,15 +41,18 @@ void KConfigCompiler_Test_Signals::initTestCase()
     QTemporaryFile *tempFile2 = new QTemporaryFile(this);
     QTemporaryFile *tempFile3 = new QTemporaryFile(this);
     QTemporaryFile *tempFile4 = new QTemporaryFile(this);
+    QTemporaryFile *tempFile5 = new QTemporaryFile(this);
     QVERIFY(tempFile1->open());
     QVERIFY(tempFile2->open());
     QVERIFY(tempFile3->open());
     QVERIFY(tempFile4->open());
+    QVERIFY(tempFile5->open());
 
     SignalsTestSingleton::instance(QFileInfo(*tempFile1).absoluteFilePath());
     SignalsTestSingletonDpointer::instance(QFileInfo(*tempFile2).absoluteFilePath());
     noSingleton = new SignalsTestNoSingleton(KSharedConfig::openConfig(QFileInfo(*tempFile3).absoluteFilePath(), KConfig::SimpleConfig));
     noSingletonDpointer = new SignalsTestNoSingletonDpointer(KSharedConfig::openConfig(QFileInfo(*tempFile4).absoluteFilePath(), KConfig::SimpleConfig));
+    SignalsTestSingletonItemAccessors::instance(QFileInfo(*tempFile5).absoluteFilePath());
 }
 
 void KConfigCompiler_Test_Signals::cleanupTestCase()
@@ -58,6 +62,7 @@ void KConfigCompiler_Test_Signals::cleanupTestCase()
     delete noSingletonDpointer;
     delete SignalsTestSingleton::self();
     delete SignalsTestSingletonDpointer::self();
+    delete SignalsTestSingletonItemAccessors::self();
 }
 
 struct TestSettersArg {
@@ -96,6 +101,7 @@ void KConfigCompiler_Test_Signals::testSetters_data()
     QTest::newRow("singleton dpointer") << TestSettersArg(SignalsTestSingletonDpointer::self());
     QTest::newRow("non-singleton") << TestSettersArg(noSingleton);
     QTest::newRow("non-singleton dpointer") << TestSettersArg(noSingleton);
+    QTest::newRow("singleton itemaccessors") << TestSettersArg(SignalsTestSingletonItemAccessors::self());
 }
 
 /** Ensure that a signal is emitted whenever the data is changed by using the generated setters */
@@ -154,6 +160,7 @@ void KConfigCompiler_Test_Signals::testSetProperty_data()
     QTest::newRow("singleton dpointer") << static_cast<KCoreConfigSkeleton *>(SignalsTestSingletonDpointer::self());
     QTest::newRow("non-singleton") << static_cast<KCoreConfigSkeleton *>(noSingleton);
     QTest::newRow("non-singleton dpointer") << static_cast<KCoreConfigSkeleton *>(noSingletonDpointer);
+    QTest::newRow("singleton itemaccessors") << static_cast<KCoreConfigSkeleton *>(SignalsTestSingletonItemAccessors::self());
 }
 
 /** Test that the signal is emitted when modifying the values using the underlying KConfigSkeletonItem (bypassing the setters) */
