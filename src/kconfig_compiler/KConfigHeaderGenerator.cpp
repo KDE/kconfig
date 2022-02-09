@@ -508,10 +508,14 @@ void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QSt
     if (!cfg().itemAccessors) {
         return;
     }
+
+    const QString declType =
+        entry->signalList.isEmpty() ? QStringLiteral("Item") + itemType(entry->type) : QStringLiteral("KConfigSkeletonChangeNotifyingItem");
+
     stream() << whitespace() << "/**\n";
     stream() << whitespace() << "  Get Item object corresponding to " << entry->name << "()" << '\n';
     stream() << whitespace() << "*/\n";
-    stream() << whitespace() << "Item" << itemType(entry->type) << " *" << getFunction(entry->name) << "Item(";
+    stream() << whitespace() << declType << " *" << getFunction(entry->name) << "Item(";
     if (!entry->param.isEmpty()) {
         stream() << " " << cppType(entry->paramType) << " i ";
     }
@@ -625,7 +629,9 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
     stream() << "\n  private:\n";
     if (cfg().itemAccessors) {
         for (const auto *entry : std::as_const(parseResult.entries)) {
-            stream() << whitespace() << "Item" << itemType(entry->type) << " *" << itemVar(entry, cfg());
+            const QString declType =
+                entry->signalList.isEmpty() ? QStringLiteral("Item") + itemType(entry->type) : QStringLiteral("KConfigSkeletonChangeNotifyingItem");
+            stream() << whitespace() << declType << " *" << itemVar(entry, cfg());
             if (!entry->param.isEmpty()) {
                 stream() << QStringLiteral("[%1]").arg(entry->paramMax + 1);
             }
