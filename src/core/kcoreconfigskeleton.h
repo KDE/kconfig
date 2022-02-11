@@ -425,7 +425,7 @@ protected:
 };
 
 /**
- * \class KConfigSkeletonChangeNotifyingItem kcoreconfigskeleton.h <KConfigSkeletonChangeNotifyingItem>
+ * \class KConfigCompilerSignallingItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @author Alex Richardson
  *
