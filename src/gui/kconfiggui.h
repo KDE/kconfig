@@ -22,6 +22,10 @@ namespace KConfigGui
 /**
  * Returns the current application session config object.
  *
+ * @note If Qt is built without session manager support,
+ * this by default will return nullptr, unless a custom config
+ * has been set via @c setSessionConfig.
+ *
  * @return A pointer to the application's instance specific
  * KConfig object.
  * @see KConfig

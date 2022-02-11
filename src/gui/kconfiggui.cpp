@@ -6,6 +6,7 @@
 */
 
 #include "kconfiggui.h"
+#include "kconfig_gui_log_settings.h"
 
 #include <QGuiApplication>
 
@@ -21,13 +22,14 @@ static KConfig *s_sessionConfig = nullptr;
 KConfig *KConfigGui::sessionConfig()
 {
 #ifdef QT_NO_SESSIONMANAGER
-#error QT_NO_SESSIONMANAGER was set, this will not compile. Reconfigure Qt with Session management support.
-#endif
+    qCWarning(KCONFIG_GUI_LOG) << "Qt is built without session manager support";
+#else
     if (!hasSessionConfig() && qApp->isSessionRestored()) {
         // create the default instance specific config object
         // from applications' -session command line parameter
         s_sessionConfig = new KConfig(configName(qApp->sessionId(), qApp->sessionKey()), KConfig::SimpleConfig);
     }
+#endif
 
     return s_sessionConfig;
 }
