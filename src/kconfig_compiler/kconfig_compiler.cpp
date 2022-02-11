@@ -383,7 +383,7 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
     QString result;
 
     if (!cfg.itemAccessors && !cfg.dpointer) {
-        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigCompilerSignallingItem") : type);
+        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigSkeletonChangeNotifyingItem") : type);
         result += QLatin1String("  *item%1;\n").arg(fCap + argSuffix);
     }
 
@@ -416,7 +416,7 @@ QString itemVar(const CfgEntry *e, const KConfigParameters &cfg)
 }
 
 // returns the name of the local inner item if there is one
-// (before wrapping with KConfigCompilerSignallingItem)
+// (before wrapping with KConfigSkeletonChangeNotifyingItem)
 // Otherwise return itemVar()
 QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg)
 {
@@ -458,7 +458,7 @@ QString newItem(const CfgEntry *entry, const QString &key, const QString &defaul
     }
 
     QString str;
-    str += QLatin1String("new KConfigCompilerSignallingItem(%1, this, notifyFunction, ").arg(innerItemVar(entry, cfg) + param);
+    str += QLatin1String("new KConfigSkeletonChangeNotifyingItem(%1, this, notifyFunction, ").arg(innerItemVar(entry, cfg) + param);
     // Append the signal flags
     const int listSize = sigs.size();
     for (int i = 0; i < listSize; ++i) {

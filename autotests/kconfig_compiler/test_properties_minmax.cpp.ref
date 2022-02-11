@@ -6,14 +6,14 @@
 TestPropertiesMinMax::TestPropertiesMinMax( KSharedConfig::Ptr config )
   : KConfigSkeleton( std::move( config ) )
 {
-  KConfigCompilerSignallingItem::NotifyFunction notifyFunction = static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&TestPropertiesMinMax::itemChanged);
+  KConfigSkeletonChangeNotifyingItem::NotifyFunction notifyFunction = static_cast<KConfigSkeletonChangeNotifyingItem::NotifyFunction>(&TestPropertiesMinMax::itemChanged);
 
   setCurrentGroup( QStringLiteral( "Something" ) );
 
-  KConfigCompilerSignallingItem  *itemBar;
+  KConfigSkeletonChangeNotifyingItem  *itemBar;
   KConfigSkeleton::ItemInt  *innerItemBar;
   innerItemBar = new KConfigSkeleton::ItemInt( currentGroup(), QStringLiteral( "bar" ), mBar, 42 );
-  itemBar = new KConfigCompilerSignallingItem(innerItemBar, this, notifyFunction, signalBarChanged);
+  itemBar = new KConfigSkeletonChangeNotifyingItem(innerItemBar, this, notifyFunction, signalBarChanged);
   innerItemBar->setMinValue(36);
   innerItemBar->setMaxValue(102);
   addItem( itemBar, QStringLiteral( "bar" ) );

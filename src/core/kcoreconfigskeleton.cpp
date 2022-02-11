@@ -1481,6 +1481,122 @@ KConfigSkeletonItem *KCoreConfigSkeleton::findItem(const QString &name) const
     return d->mItemDict.value(name);
 }
 
+KConfigSkeletonChangeNotifyingItem::KConfigSkeletonChangeNotifyingItem(KConfigSkeletonItem *item,
+                                                                       QObject *object,
+                                                                       KConfigSkeletonChangeNotifyingItem::NotifyFunction targetFunction,
+                                                                       quint64 userData)
+    : KConfigSkeletonItem(*new KConfigSkeletonChangeNotifyingItemPrivate(item, object, targetFunction, userData), item->group(), item->key())
+{
+    setIsDefaultImpl([this] {
+        Q_D(const KConfigSkeletonChangeNotifyingItem);
+        return d->mItem->isDefault();
+    });
+    setIsSaveNeededImpl([this] {
+        Q_D(const KConfigSkeletonChangeNotifyingItem);
+        return d->mItem->isSaveNeeded();
+    });
+    setGetDefaultImpl([this] {
+        Q_D(const KConfigSkeletonChangeNotifyingItem);
+        return d->mItem->getDefault();
+    });
+}
+
+KConfigSkeletonChangeNotifyingItem::~KConfigSkeletonChangeNotifyingItem() = default;
+
+bool KConfigSkeletonChangeNotifyingItem::isEqual(const QVariant &p) const
+{
+    Q_D(const KConfigSkeletonChangeNotifyingItem);
+    return d->mItem->isEqual(p);
+}
+
+QVariant KConfigSkeletonChangeNotifyingItem::property() const
+{
+    Q_D(const KConfigSkeletonChangeNotifyingItem);
+    return d->mItem->property();
+}
+
+void KConfigSkeletonChangeNotifyingItem::readConfig(KConfig *c)
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    QVariant oldValue = d->mItem->property();
+    d->mItem->readConfig(c);
+    // readConfig() changes mIsImmutable, update it here as well
+    KConfigGroup cg = configGroup(c);
+    readImmutability(cg);
+    if (!d->mItem->isEqual(oldValue)) {
+        d->invokeNotifyFunction();
+    }
+}
+
+void KConfigSkeletonChangeNotifyingItem::readDefault(KConfig *c)
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    d->mItem->readDefault(c);
+    // readDefault() changes mIsImmutable, update it here as well
+    KConfigGroup cg = configGroup(c);
+    readImmutability(cg);
+}
+
+void KConfigSkeletonChangeNotifyingItem::writeConfig(KConfig *c)
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    d->mItem->writeConfig(c);
+}
+
+void KConfigSkeletonChangeNotifyingItem::setDefault()
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    QVariant oldValue = d->mItem->property();
+    d->mItem->setDefault();
+    if (!d->mItem->isEqual(oldValue)) {
+        d->invokeNotifyFunction();
+    }
+}
+
+void KConfigSkeletonChangeNotifyingItem::setProperty(const QVariant &p)
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    if (!d->mItem->isEqual(p)) {
+        d->mItem->setProperty(p);
+        d->invokeNotifyFunction();
+    }
+}
+
+void KConfigSkeletonChangeNotifyingItem::swapDefault()
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    QVariant oldValue = d->mItem->property();
+    d->mItem->swapDefault();
+    if (!d->mItem->isEqual(oldValue)) {
+        d->invokeNotifyFunction();
+    }
+}
+
+void KConfigSkeletonChangeNotifyingItem::setWriteFlags(KConfigBase::WriteConfigFlags flags)
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    d->mItem->setWriteFlags(flags);
+}
+
+KConfigBase::WriteConfigFlags KConfigSkeletonChangeNotifyingItem::writeFlags() const
+{
+    Q_D(const KConfigSkeletonChangeNotifyingItem);
+    return d->mItem->writeFlags();
+}
+
+void KConfigSkeletonChangeNotifyingItem::setGroup(const KConfigGroup &cg)
+{
+    Q_D(KConfigSkeletonChangeNotifyingItem);
+    d->mItem->setGroup(cg);
+}
+
+KConfigGroup KConfigSkeletonChangeNotifyingItem::configGroup(KConfig *config) const
+{
+    Q_D(const KConfigSkeletonChangeNotifyingItem);
+    return d->mItem->configGroup(config);
+}
+
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 92)
 KConfigCompilerSignallingItem::KConfigCompilerSignallingItem(KConfigSkeletonItem *item,
                                                              QObject *object,
                                                              KConfigCompilerSignallingItem::NotifyFunction targetFunction,
@@ -1590,3 +1706,4 @@ KConfigGroup KConfigCompilerSignallingItem::configGroup(KConfig *config) const
 {
     return mItem->configGroup(config);
 }
+#endif

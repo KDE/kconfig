@@ -424,8 +424,9 @@ protected:
     T mLoadedValue;
 };
 
+class KConfigSkeletonChangeNotifyingItemPrivate;
 /**
- * \class KConfigCompilerSignallingItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
+ * \class KConfigSkeletonChangeNotifyingItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @author Alex Richardson
  *
@@ -436,6 +437,58 @@ protected:
  * code and is therefore probably not suited for any other usecases.
  *
  * @see KConfigSkeletonItem
+ * @since 5.92
+ */
+class KCONFIGCORE_EXPORT KConfigSkeletonChangeNotifyingItem : public KConfigSkeletonItem
+{
+    Q_DECLARE_PRIVATE(KConfigSkeletonChangeNotifyingItem)
+public:
+    typedef void (QObject::*NotifyFunction)(quint64 arg);
+    /**
+     * Constructor.
+     *
+     * @param item the KConfigSkeletonItem to wrap
+     * @param targetFunction the method to invoke whenever the value of @p item changes
+     * @param object The object on which the method is invoked.
+     * @param userData This data will be passed to @p targetFunction on every property change
+     */
+    KConfigSkeletonChangeNotifyingItem(KConfigSkeletonItem *item, QObject *object, NotifyFunction targetFunction, quint64 userData);
+    ~KConfigSkeletonChangeNotifyingItem() override;
+
+    void readConfig(KConfig *) override;
+    void writeConfig(KConfig *) override;
+    void readDefault(KConfig *) override;
+    void setProperty(const QVariant &p) override;
+    bool isEqual(const QVariant &p) const override;
+    QVariant property() const override;
+    void setDefault() override;
+    void swapDefault() override;
+    // KF6 TODO - fix this
+    // Ideally we would do this in an overload of KConfigSkeletonItem, but
+    // given we can't, I've shadowed the method. This isn't pretty, but given
+    // the docs say it should generally only be used from auto generated code,
+    // should be fine.
+    void setWriteFlags(KConfigBase::WriteConfigFlags flags);
+    KConfigBase::WriteConfigFlags writeFlags() const;
+    void setGroup(const KConfigGroup &cg);
+    KConfigGroup configGroup(KConfig *config) const;
+    // END TODO
+};
+
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 92)
+/**
+ * \class KConfigCompilerSignallingItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
+ *
+ * @author Alex Richardson
+ *
+ * This class wraps a @ref KConfigSkeletonItem and invokes a function whenever the value changes.
+ * That function must take one quint64 parameter. Whenever the property value of the wrapped KConfigSkeletonItem
+ * changes this function will be invoked with the stored user data passed in the constructor.
+ * It does not call a function with the new value since this class is designed solely for the kconfig_compiler generated
+ * code and is therefore probably not suited for any other usecases.
+ *
+ * @see KConfigSkeletonItem
+ * @deprecated Since 5.92, use KConfigSkeletonChangeNotifyingItem instead
  */
 class KCONFIGCORE_EXPORT KConfigCompilerSignallingItem : public KConfigSkeletonItem
 {
@@ -449,6 +502,7 @@ public:
      * @param object The object on which the method is invoked.
      * @param userData This data will be passed to @p targetFunction on every property change
      */
+    KCONFIGCORE_DEPRECATED_VERSION(5, 92, "Use KConfigSkeletonChangeNotifyingItem instead")
     KConfigCompilerSignallingItem(KConfigSkeletonItem *item, QObject *object, NotifyFunction targetFunction, quint64 userData);
     ~KConfigCompilerSignallingItem() override;
 
@@ -484,6 +538,7 @@ private:
     QObject *mObject;
     quint64 mUserData;
 };
+#endif
 
 /**
  * \class KCoreConfigSkeleton kcoreconfigskeleton.h <KCoreConfigSkeleton>
