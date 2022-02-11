@@ -79,4 +79,34 @@ public:
     std::function<void()> mNotifyFunction;
 };
 
+class KConfigSkeletonChangeNotifyingItemPrivate : public KConfigSkeletonItemPrivate
+{
+public:
+    KConfigSkeletonChangeNotifyingItemPrivate(KConfigSkeletonItem *item,
+                                              QObject *object,
+                                              KConfigSkeletonChangeNotifyingItem::NotifyFunction targetFunction,
+                                              quint64 userData)
+        : KConfigSkeletonItemPrivate()
+        , mItem(item)
+        , mTargetFunction(targetFunction)
+        , mObject(object)
+        , mUserData(userData)
+    {
+        Q_ASSERT(mTargetFunction);
+        Q_ASSERT(mItem);
+        Q_ASSERT(mObject);
+    }
+
+    inline void invokeNotifyFunction()
+    {
+        // call the pointer to member function using the strange ->* operator
+        (mObject->*mTargetFunction)(mUserData);
+    }
+
+    QScopedPointer<KConfigSkeletonItem> mItem;
+    KConfigSkeletonChangeNotifyingItem::NotifyFunction mTargetFunction;
+    QObject *mObject;
+    quint64 mUserData;
+};
+
 #endif

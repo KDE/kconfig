@@ -56,6 +56,7 @@ def local_container_rules():
         [".*", "KSharedConfig", ".*", ".*", ".*", rules_engine.discard_QSharedData_base],
 
         [".*", "KConfigCompilerSignallingItem", ".*", ".*", ".*", rules_engine.container_discard],
+        [".*", "KConfigSkeletonChangeNotifyingItem", ".*", ".*", ".*", rules_engine.container_discard],
 
         [".*", "KEntryMap", ".*", ".*", ".*", discard_base],
     ]

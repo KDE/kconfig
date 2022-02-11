@@ -109,7 +109,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
     // Create Items.
     for (const auto *entry : std::as_const(parseResult.entries)) {
         const QString declType = entry->signalList.isEmpty() ? QString(cfg().inherits + QStringLiteral("::Item") + itemType(entry->type))
-                                                             : QStringLiteral("KConfigCompilerSignallingItem");
+                                                             : QStringLiteral("KConfigSkeletonChangeNotifyingItem");
 
         stream() << "    " << declType << " *" << itemVar(entry, cfg());
         if (!entry->param.isEmpty()) {
@@ -338,7 +338,7 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
 
 // TODO : Some compiler option won't work or generate bogus settings file.
 // * Does not manage properly Notifiers=true kcfgc option for parameterized entries :
-// ** KConfigCompilerSignallingItem generated with wrong userData parameter (4th one).
+// ** KConfigSkeletonChangeNotifyingItem generated with wrong userData parameter (4th one).
 // ** setWriteFlags() is missing.
 // * Q_PROPERTY signal won't work
 void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QString &key)
@@ -460,8 +460,8 @@ void KConfigSourceGenerator::doConstructor()
     if (!parseResult.signalList.isEmpty()) {
         // this cast to base-class pointer-to-member is valid C++
         // https://stackoverflow.com/questions/4272909/is-it-safe-to-upcast-a-method-pointer-and-use-it-with-base-class-pointer/
-        stream() << "  KConfigCompilerSignallingItem::NotifyFunction notifyFunction ="
-                 << " static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&" << cfg().className << "::itemChanged);\n";
+        stream() << "  KConfigSkeletonChangeNotifyingItem::NotifyFunction notifyFunction ="
+                 << " static_cast<KConfigSkeletonChangeNotifyingItem::NotifyFunction>(&" << cfg().className << "::itemChanged);\n";
 
         stream() << '\n';
     }

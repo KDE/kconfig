@@ -6,17 +6,17 @@
 Test13::Test13( )
   : KConfigSkeleton( QStringLiteral( "muondatasourcesrc" ) )
 {
-  KConfigCompilerSignallingItem::NotifyFunction notifyFunction = static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&Test13::itemChanged);
+  KConfigSkeletonChangeNotifyingItem::NotifyFunction notifyFunction = static_cast<KConfigSkeletonChangeNotifyingItem::NotifyFunction>(&Test13::itemChanged);
 
   setCurrentGroup( QStringLiteral( "kamoso" ) );
 
   KConfigSkeleton::ItemUrl  *itemPicturesDir;
   itemPicturesDir = new KConfigSkeleton::ItemUrl( currentGroup(), QStringLiteral( "picturesDir" ), mPicturesDir );
   addItem( itemPicturesDir, QStringLiteral( "picturesDir" ) );
-  KConfigCompilerSignallingItem  *itemBrightness;
+  KConfigSkeletonChangeNotifyingItem  *itemBrightness;
   KConfigSkeleton::ItemDouble  *innerItemBrightness;
   innerItemBrightness = new KConfigSkeleton::ItemDouble( currentGroup(), QStringLiteral( "brightness" ), mBrightness );
-  itemBrightness = new KConfigCompilerSignallingItem(innerItemBrightness, this, notifyFunction, signalBrightnessChanged);
+  itemBrightness = new KConfigSkeletonChangeNotifyingItem(innerItemBrightness, this, notifyFunction, signalBrightnessChanged);
   addItem( itemBrightness, QStringLiteral( "brightness" ) );
   KConfigSkeleton::ItemBool  *itemStartsWithUppercase;
   itemStartsWithUppercase = new KConfigSkeleton::ItemBool( currentGroup(), QStringLiteral( "StartsWithUppercase" ), mStartsWithUppercase );

@@ -155,7 +155,7 @@ QString varPath(const QString &n, const KConfigParameters &cfg);
 QString itemVar(const CfgEntry *e, const KConfigParameters &cfg);
 
 // returns the name of the local inner item if there is one
-// (before wrapping with KConfigCompilerSignallingItem)
+// (before wrapping with KConfigSkeletonChangeNotifyingItem)
 // Otherwise return itemVar()
 QString innerItemVar(const CfgEntry *e, const KConfigParameters &cfg);
 
