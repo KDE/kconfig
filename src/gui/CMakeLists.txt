@@ -13,6 +13,14 @@ target_sources(KF5ConfigGui PRIVATE
     kwindowconfig.cpp
 )
 
+ecm_qt_declare_logging_category(KF5ConfigGui
+    HEADER kconfig_gui_log_settings.h
+    IDENTIFIER KCONFIG_GUI_LOG
+    CATEGORY_NAME kf.config.gui
+    DESCRIPTION "KConfig Gui"
+    EXPORT KCONFIG
+)
+
 ecm_generate_export_header(KF5ConfigGui
     BASE_NAME KConfigGui
     GROUP_BASE_NAME KF
