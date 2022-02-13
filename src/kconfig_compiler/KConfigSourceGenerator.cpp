@@ -108,10 +108,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
 
     // Create Items.
     for (const auto *entry : std::as_const(parseResult.entries)) {
-        const QString declType = entry->signalList.isEmpty() ? QString(cfg().inherits + QStringLiteral("::Item") + itemType(entry->type))
-                                                             : QStringLiteral("KConfigSkeletonChangeNotifyingItem");
-
-        stream() << "    " << declType << " *" << itemVar(entry, cfg());
+        stream() << "    " << classNamespacedItemMemberType(entry, cfg()) << " *" << itemVar(entry, cfg());
         if (!entry->param.isEmpty()) {
             stream() << QStringLiteral("[%1]").arg(entry->paramMax + 1);
         }
@@ -560,7 +557,7 @@ void KConfigSourceGenerator::createItemGetterDPointerMode(const CfgEntry *entry)
         return;
     }
     stream() << '\n';
-    stream() << cfg().inherits << "::Item" << itemType(entry->type) << " *" << getFunction(entry->name, cfg().className) << "Item(";
+    stream() << classNamespacedItemType(entry, cfg()) << " *" << getFunction(entry->name, cfg().className) << "Item(";
     if (!entry->param.isEmpty()) {
         stream() << " " << cppType(entry->paramType) << " i ";
     }

@@ -357,16 +357,34 @@ QString defaultValue(const QString &t)
     }
 }
 
-QString itemType(const QString &type)
+static QString itemType(const CfgEntry *entry)
 {
-    if (type.isEmpty()) {
+    if (!entry || entry->type.isEmpty()) {
         return QString{};
     }
 
-    QString str = type;
-    str[0] = str.at(0).toUpper();
+    return QLatin1String("Item") + entry->type.at(0).toUpper() + QStringView(entry->type).mid(1);
+}
 
-    return str;
+QString classNamespacedItemType(const CfgEntry *entry, const KConfigParameters &cfg)
+{
+    return cfg.inherits + QLatin1String("::") + itemType(entry);
+}
+
+QString itemMemberType(const CfgEntry *entry)
+{
+    if (entry->signalList.isEmpty()) {
+        return itemType(entry);
+    }
+    return QStringLiteral("KConfigSkeletonChangeNotifyingItem");
+}
+
+QString classNamespacedItemMemberType(const CfgEntry *entry, const KConfigParameters &cfg)
+{
+    if (entry->signalList.isEmpty()) {
+        return classNamespacedItemType(entry, cfg);
+    }
+    return QStringLiteral("KConfigSkeletonChangeNotifyingItem");
 }
 
 QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
@@ -375,20 +393,18 @@ QString itemDeclaration(const CfgEntry *e, const KConfigParameters &cfg)
         return QString{};
     }
 
-    const QString type = cfg.inherits + QLatin1String{"::Item"} + itemType(e->type);
-
     QString fCap = e->name;
     fCap[0] = fCap.at(0).toUpper();
     const QString argSuffix = (!e->param.isEmpty()) ? (QStringLiteral("[%1]").arg(e->paramMax + 1)) : QString();
     QString result;
 
     if (!cfg.itemAccessors && !cfg.dpointer) {
-        result += QLatin1String{"  "} + (!e->signalList.isEmpty() ? QStringLiteral("KConfigSkeletonChangeNotifyingItem") : type);
+        result += QLatin1String{"  "} + classNamespacedItemMemberType(e, cfg);
         result += QLatin1String("  *item%1;\n").arg(fCap + argSuffix);
     }
 
     if (!e->signalList.isEmpty()) {
-        result += QLatin1String("  %1  *%2;\n").arg(type, innerItemVar(e, cfg) + argSuffix);
+        result += QLatin1String("  %1  *%2;\n").arg(classNamespacedItemType(e, cfg), innerItemVar(e, cfg) + argSuffix);
     }
 
     return result;
@@ -436,7 +452,7 @@ QString itemPath(const CfgEntry *e, const KConfigParameters &cfg)
 
 QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &defaultValue, const KConfigParameters &cfg, const QString &param)
 {
-    QString str = QLatin1String("new %1::Item%2").arg(cfg.inherits, itemType(entry->type));
+    QString str = QLatin1String("new ") + classNamespacedItemType(entry, cfg);
     str += QLatin1String("( currentGroup(), %1, %2").arg(key, varPath(entry->name, cfg) + param);
 
     if (entry->type == QLatin1String("Enum")) {

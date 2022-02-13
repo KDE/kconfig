@@ -127,8 +127,14 @@ QString enumName(const QString &n);
 QString enumName(const QString &n, const CfgEntry::Choices &c);
 QString param(const QString &t);
 QString cppType(const QString &t);
-QString itemType(const QString &type);
 QString changeSignalName(const QString &n);
+
+// Returns "InheritedClass"::Item"Type"
+QString classNamespacedItemType(const CfgEntry *entry, const KConfigParameters &cfg);
+// Returns Item"Type" or KConfigSkeletonChangeNotifyingItem if there are signals
+QString itemMemberType(const CfgEntry *entry);
+// Returns "InheritedClass"::Item"Type" or KConfigSkeletonChangeNotifyingItem if there are signals
+QString classNamespacedItemMemberType(const CfgEntry *entry, const KConfigParameters &cfg);
 
 QString enumType(const CfgEntry *e, bool globalEnums);
 
