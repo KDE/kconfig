@@ -82,3 +82,8 @@ if (NOT CMAKE_CROSSCOMPILING)
     add_subdirectory(kconfig_compiler)
 endif()
 endif()
+
+find_package(Qt${QT_MAJOR_VERSION} OPTIONAL_COMPONENTS Widgets)
+if (TARGET Qt${QT_MAJOR_VERSION}::Widgets)
+    ecm_add_test(kwindowstatesavertest.cpp LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Widgets)
+endif()

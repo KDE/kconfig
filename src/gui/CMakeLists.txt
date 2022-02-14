@@ -11,6 +11,7 @@ target_sources(KF5ConfigGui PRIVATE
     kstandardshortcut.cpp
     kstandardshortcutwatcher.cpp
     kwindowconfig.cpp
+    kwindowstatesaver.cpp
 )
 
 ecm_qt_declare_logging_category(KF5ConfigGui
@@ -48,6 +49,7 @@ ecm_generate_headers(KConfigGui_HEADERS
   KStandardShortcut
   KStandardShortcutWatcher
   KWindowConfig
+  KWindowStateSaver
 
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
