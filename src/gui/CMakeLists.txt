@@ -54,29 +54,6 @@ ecm_generate_headers(KConfigGui_HEADERS
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
-find_package(PythonModuleGeneration)
-
-if (PythonModuleGeneration_FOUND)
-  ecm_generate_python_binding(
-    TARGET KF5::ConfigGui
-    PYTHONNAMESPACE PyKF5
-    MODULENAME KConfigGui
-    RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
-    SIP_INCLUDES
-      "${CMAKE_BINARY_DIR}/src/core/sip"
-    SIP_DEPENDS
-      QtGui/QtGuimod.sip
-      PyKF5/KConfigCore/KConfigCoremod.sip
-    HEADERS
-      kconfiggui.h
-      kconfigloader.h
-      kconfigskeleton.h
-      kstandardshortcut.h
-      kstandardshortcutwatcher.h
-      kwindowconfig.h
-  )
-endif()
-
 install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
