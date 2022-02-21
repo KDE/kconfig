@@ -28,7 +28,7 @@ class QString;
  */
 namespace KAuthorized
 {
-Q_NAMESPACE_EXPORT(KCONFIGCORE_EXPORT);
+Q_NAMESPACE_EXPORT(KCONFIGCORE_EXPORT)
 
 /**
  * The enum values lower cased represent the action that is authorized
