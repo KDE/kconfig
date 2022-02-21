@@ -202,11 +202,11 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
             QFileInfo info(file);
 
             KConfigGroup cg(m_config, fileName);
-            const QDateTime ctime = QDateTime::fromSecsSinceEpoch(cg.readEntry("ctime", 0u));
-            const QDateTime mtime = QDateTime::fromSecsSinceEpoch(cg.readEntry("mtime", 0u));
+            const qint64 ctime = cg.readEntry("ctime", 0);
+            const qint64 mtime = cg.readEntry("mtime", 0);
             if (!dirtyOnly //
-                || (ctime.isValid() && ctime != info.birthTime()) //
-                || mtime != info.lastModified()) {
+                || (ctime != 0 && ctime != info.birthTime().toSecsSinceEpoch()) //
+                || mtime != info.lastModified().toSecsSinceEpoch()) {
                 result.append(file);
             }
         }
