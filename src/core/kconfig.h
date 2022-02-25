@@ -366,6 +366,12 @@ public:
      */
     static void setMainConfigName(const QString &str);
 
+    /**
+     * Get the name of application config file.
+     * @since 5.93
+     */
+    static QString mainConfigName();
+
 protected:
     bool hasGroupImpl(const QByteArray &group) const override;
     KConfigGroup groupImpl(const QByteArray &b) override;
@@ -390,11 +396,6 @@ private:
     friend class KConfigTest;
 
     QStringList keyList(const QString &aGroup = QString()) const;
-
-    /**
-     * @internal for KSharedConfig. Could be made public if needed, though.
-     */
-    static QString mainConfigName();
 
     Q_DISABLE_COPY(KConfig)
 
