@@ -12,15 +12,37 @@
 class QMakeBuilderSettings : public KConfigSkeleton
 {
   public:
+
     static QMakeBuilderSettings *self();
     static void instance(const QString& cfgfilename);
     static void instance(KSharedConfig::Ptr config);
     ~QMakeBuilderSettings() override;
 
+    /**
+      Get test_entry
+    */
+    static
+    QString test_entry()
+    {
+      return self()->mTest_entry;
+    }
+
+    /**
+      Is test_entry Immutable
+    */
+    static
+    bool isTest_entryImmutable()
+    {
+      return self()->isImmutable( QStringLiteral( "test_entry" ) );
+    }
+
   protected:
     QMakeBuilderSettings(KSharedConfig::Ptr config);
     friend class QMakeBuilderSettingsHelper;
 
+
+    // test_group
+    QString mTest_entry;
 
   private:
 };

@@ -6,7 +6,7 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile arg="true"/>
   <group name="Something">
-    <entry name="Foo$(myparam)" type="double" key="foo_#$(myparam)">
+    <entry name="Foo$(myparam)" type="Double" key="foo_#$(myparam)">
       <parameter name="myparam" type="Int" max="5"/>
       <default>1.23</default>
       <min>0.01</min>
