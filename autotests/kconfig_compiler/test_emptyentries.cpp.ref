@@ -50,6 +50,11 @@ QMakeBuilderSettings::QMakeBuilderSettings( KSharedConfig::Ptr config )
 {
   Q_ASSERT(!s_globalQMakeBuilderSettings()->q);
   s_globalQMakeBuilderSettings()->q = this;
+  setCurrentGroup( QStringLiteral( "test_group" ) );
+
+  KConfigSkeleton::ItemString  *itemTest_entry;
+  itemTest_entry = new KConfigSkeleton::ItemString( currentGroup(), QStringLiteral( "test_entry" ), mTest_entry );
+  addItem( itemTest_entry, QStringLiteral( "test_entry" ) );
 }
 
 QMakeBuilderSettings::~QMakeBuilderSettings()

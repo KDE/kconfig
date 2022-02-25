@@ -6,7 +6,7 @@
   <kcfgfile name="muondatasourcesrc"/>
   <group name="kamoso">
     <entry name="picturesDir" type="Url" />
-    <entry name="brightness" type="double" />
-    <entry name="StartsWithUppercase" type="bool" />
+    <entry name="brightness" type="Double" />
+    <entry name="StartsWithUppercase" type="Bool" />
   </group>
 </kcfg>
