@@ -4,8 +4,10 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test_dpointer.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+
+#include "test_dpointer.h"
 
 int main(int argc, char **argv)
 {

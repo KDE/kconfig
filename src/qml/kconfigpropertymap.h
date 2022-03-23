@@ -9,7 +9,10 @@
 #ifndef KCONFIGPROPERTYMAP_H
 #define KCONFIGPROPERTYMAP_H
 
+#include <QObject>
 #include <QQmlPropertyMap>
+#include <QString>
+#include <QVariant>
 #include <memory>
 
 class KCoreConfigSkeleton;

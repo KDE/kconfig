@@ -11,13 +11,19 @@
 #ifndef KCONFIGGROUP_H
 #define KCONFIGGROUP_H
 
-#include "kconfigbase.h"
-
-#include <kconfigcore_export.h>
-
+#include <QByteArray>
 #include <QExplicitlySharedDataPointer>
+#include <QFunctionPointer>
+#include <QList>
+#include <QMap>
+#include <QString>
 #include <QStringList>
 #include <QVariant>
+#include <QVariantList>
+#include <QtCore/qglobal.h>
+#include <kconfigcore_export.h>
+
+#include "kconfigbase.h"
 
 class KConfig;
 class KConfigGroupPrivate;

@@ -6,6 +6,10 @@
 #ifndef KCONFIGSKELETONTEST_H
 #define KCONFIGSKELETONTEST_H
 
+#include <QColor>
+#include <QFont>
+#include <QObject>
+#include <QString>
 #include <kconfigskeleton.h>
 
 class KConfigSkeletonTest : public QObject

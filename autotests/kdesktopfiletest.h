@@ -8,6 +8,7 @@
 #define KDESKTOPFILETEST_H
 
 #include <QObject>
+#include <QString>
 #include <kconfigcore_export.h>
 
 class KDesktopFileTest : public QObject

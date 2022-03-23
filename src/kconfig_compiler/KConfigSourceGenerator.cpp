@@ -13,7 +13,19 @@
 
 #include "KConfigSourceGenerator.h"
 
+#include <QLatin1Char>
+#include <QLatin1String>
+#include <QList>
 #include <QRegularExpression>
+#include <QStaticStringData>
+#include <QStringBuilder>
+#include <QStringLiteral>
+#include <QTextStream>
+#include <type_traits>
+#include <utility>
+
+#include "KConfigCommonStructs.h"
+#include "KConfigParameters.h"
 
 KConfigSourceGenerator::KConfigSourceGenerator(const QString &inputFile, const QString &baseDir, const KConfigParameters &cfg, ParseResult &parseResult)
     : KConfigCodeGeneratorBase(inputFile, baseDir, baseDir + cfg.baseName + QLatin1Char('.') + cfg.sourceExtension, cfg, parseResult)

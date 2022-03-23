@@ -4,8 +4,10 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test_notifiers.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+
+#include "test_notifiers.h"
 
 int main(int argc, char **argv)
 {

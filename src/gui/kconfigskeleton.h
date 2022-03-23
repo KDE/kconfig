@@ -9,12 +9,17 @@
 #ifndef KCONFIGSKELETON_H
 #define KCONFIGSKELETON_H
 
-#include <kconfiggui_export.h>
-
-#include <kcoreconfigskeleton.h>
-
 #include <QColor>
 #include <QFont>
+#include <QObject>
+#include <QString>
+#include <QVariant>
+#include <kconfiggui_export.h>
+#include <kcoreconfigskeleton.h>
+
+#include "ksharedconfig.h"
+
+class KConfig;
 
 /**
  * @class KConfigSkeleton kconfigskeleton.h <KConfigSkeleton>

@@ -8,6 +8,13 @@
 #include "kconfigutils.h"
 
 // KDE
+#include <QChar>
+#include <QLatin1Char>
+#include <QLatin1String>
+#include <QStaticStringData>
+#include <QStringLiteral>
+#include <QStringRef>
+#include <QtCore>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 

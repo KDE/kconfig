@@ -8,8 +8,8 @@
 #define _KEMAILSETTINGS_H
 
 #include <QCoreApplication> // Q_DECLARE_TR_FUNCTIONS
+#include <QString>
 #include <QStringList>
-
 #include <kconfigcore_export.h>
 
 class KEMailSettingsPrivate;

@@ -6,7 +6,14 @@
 
 #include "kstandardshortcutwatcher.h"
 
+#include <QByteArrayList>
+#include <QList>
+#include <QStaticStringData>
+#include <QStringLiteral>
+
+#include "kconfiggroup.h"
 #include "kconfigwatcher.h"
+#include "ksharedconfig.h"
 #include "kstandardshortcut_p.h"
 
 namespace KStandardShortcut

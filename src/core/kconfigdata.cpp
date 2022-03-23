@@ -7,6 +7,13 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <QByteArray>
+#include <QDebug>
+#include <QFlags>
+#include <QString>
+#include <QtCore/qglobal.h>
+#include <QtCore>
+
 #include "kconfigdata_p.h"
 
 QDebug operator<<(QDebug dbg, const KEntryKey &key)

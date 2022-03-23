@@ -10,8 +10,8 @@
 #define KSTANDARDSHORTCUT_H
 
 #include <QKeySequence>
+#include <QList>
 #include <QString>
-
 #include <kconfiggui_export.h>
 
 /**

@@ -4,10 +4,21 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test4.h"
+#include <QDebug>
 #include <QFile>
+#include <QFunctionPointer>
 #include <QGuiApplication>
+#include <QLatin1String>
 #include <QStandardPaths>
+#include <QStaticStringData>
+#include <QString>
+#include <QStringBuilder>
+#include <QStringLiteral>
+#include <QtCore/qglobal.h>
+
+#include "kconfig.h"
+#include "kconfiggroup.h"
+#include "test4.h"
 
 int main(int argc, char **argv)
 {

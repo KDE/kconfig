@@ -3,8 +3,10 @@
 
     SPDX-License-Identifier: MIT
 */
-#include "test_enums_and_properties.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+
+#include "test_enums_and_properties.h"
 
 int main(int argc, char **argv)
 {

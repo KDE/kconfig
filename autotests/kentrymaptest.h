@@ -7,8 +7,10 @@
 #ifndef KENTRYMAPTEST_H
 #define KENTRYMAPTEST_H
 
-#include "kconfigdata_p.h"
 #include <QObject>
+#include <QString>
+
+#include "kconfigdata_p.h"
 
 class KEntryMapTest : public QObject
 {

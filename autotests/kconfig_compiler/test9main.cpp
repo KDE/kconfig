@@ -4,10 +4,17 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test9.h"
 #include <QDebug>
 #include <QDir>
+#include <QFunctionPointer>
 #include <QGuiApplication>
+#include <QLatin1String>
+#include <QString>
+#include <QStringBuilder>
+#include <QStringList>
+#include <QtCore/qglobal.h>
+
+#include "test9.h"
 
 int main(int argc, char **argv)
 {

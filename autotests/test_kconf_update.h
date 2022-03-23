@@ -8,6 +8,7 @@
 #define TEST_KCONF_UPDATE_H
 
 #include <QObject>
+#include <QString>
 
 class TestKConfUpdate : public QObject
 {

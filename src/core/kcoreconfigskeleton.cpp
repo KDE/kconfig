@@ -7,11 +7,17 @@
 */
 
 #include "kcoreconfigskeleton.h"
-#include "kcoreconfigskeleton_p.h"
 
+#include <QChar>
 #include <QUrl>
-
 #include <algorithm>
+#include <type_traits>
+#include <utility>
+
+#include "kconfigcore_export.h"
+#include "kconfiggroup.h"
+#include "kcoreconfigskeleton_p.h"
+#include "ksharedconfig.h"
 
 static QString obscuredString(const QString &str)
 {

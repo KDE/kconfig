@@ -4,8 +4,12 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test_emptyentries.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+#include <QStaticStringData>
+#include <QStringLiteral>
+
+#include "test_emptyentries.h"
 
 int main(int argc, char **argv)
 {

@@ -4,8 +4,10 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test_fileextensions.hxx"
 #include <QGuiApplication>
+#include <QFunctionPointer>
+
+#include "test_fileextensions.hxx"
 
 int main(int argc, char **argv)
 {

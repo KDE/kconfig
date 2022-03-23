@@ -3,8 +3,10 @@
 
     SPDX-License-Identifier: MIT
 */
-#include "test3.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+
+#include "test3.h"
 
 int main(int argc, char **argv)
 {

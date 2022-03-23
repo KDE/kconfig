@@ -7,6 +7,7 @@
 #define KCONFIGTEST_H
 
 #include <QObject>
+#include <QString>
 
 class KConfigTest : public QObject
 {

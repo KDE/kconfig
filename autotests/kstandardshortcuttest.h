@@ -8,6 +8,7 @@
 #define KSTDACCELTEST_H
 
 #include <QObject>
+#include <QString>
 
 class KStandardShortcutTest : public QObject
 {

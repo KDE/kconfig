@@ -9,6 +9,11 @@
 #include "kconfigskeleton.h"
 
 #include <kcoreconfigskeleton_p.h>
+#include <utility>
+
+#include "kconfig.h"
+#include "kconfiggroup.h"
+#include "kcoreconfigskeleton.h"
 
 KConfigSkeleton::KConfigSkeleton(const QString &configname, QObject *parent)
     : KCoreConfigSkeleton(configname, parent)

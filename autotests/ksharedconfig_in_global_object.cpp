@@ -6,6 +6,8 @@
 */
 
 #include <QCoreApplication>
+#include <QGlobalStatic>
+#include <QObject>
 #include <QTimer>
 #include <QtGlobal>
 #include <kconfiggroup.h>

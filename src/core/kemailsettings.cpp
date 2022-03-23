@@ -6,8 +6,16 @@
 
 #include "kemailsettings.h"
 
+#include <QLatin1String>
+#include <QList>
+#include <QStaticStringData>
+#include <QStringBuilder>
+#include <QStringLiteral>
+#include <QVariant>
 #include <kconfig.h>
 #include <kconfiggroup.h>
+
+#include "kconfigcore_export.h"
 
 class KEMailSettingsPrivate
 {

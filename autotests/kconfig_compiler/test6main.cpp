@@ -4,8 +4,11 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test6.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+#include <QString>
+
+#include "test6.h"
 
 int main(int argc, char **argv)
 {

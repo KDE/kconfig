@@ -4,8 +4,10 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test_qdebugcategory.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+
+#include "test_qdebugcategory.h"
 
 int main(int argc, char **argv)
 {

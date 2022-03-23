@@ -4,10 +4,15 @@
 */
 
 #include "kwindowstatesaver.h"
+
+#include <QEvent>
+#include <QFunctionPointer>
+#include <QTimerEvent>
+#include <QWindow>
+
+#include "kconfiggroup.h"
 #include "ksharedconfig.h"
 #include "kwindowconfig.h"
-
-#include <QWindow>
 
 class KWindowStateSaverPrivate
 {

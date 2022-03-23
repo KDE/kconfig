@@ -8,8 +8,21 @@
 #include "kwindowconfig.h"
 
 #include <QGuiApplication>
+#include <QLatin1Char>
+#include <QLatin1String>
+#include <QList>
+#include <QRect>
 #include <QScreen>
+#include <QSize>
+#include <QStaticStringData>
+#include <QString>
+#include <QStringList>
+#include <QStringLiteral>
+#include <QVariant>
 #include <QWindow>
+#include <Qt>
+
+#include "kconfiggroup.h"
 
 static const char s_initialSizePropertyName[] = "_kconfig_initial_size";
 static const char s_initialScreenSizePropertyName[] = "_kconfig_initial_screen_size";

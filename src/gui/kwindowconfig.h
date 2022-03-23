@@ -11,6 +11,8 @@
 #include <kconfiggroup.h>
 #include <kconfiggui_export.h>
 
+#include "kconfigbase.h"
+
 class QWindow;
 
 /**

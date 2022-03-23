@@ -7,7 +7,14 @@
 #ifndef KDESKTOPFILE_H
 #define KDESKTOPFILE_H
 
+#include <QFunctionPointer>
+#include <QObject>
+#include <QStandardPaths>
+#include <QString>
+#include <QStringList>
 #include <kconfig.h>
+
+#include "kconfigcore_export.h"
 
 class KConfigGroup;
 class KDesktopFilePrivate;

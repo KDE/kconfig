@@ -4,8 +4,10 @@
     SPDX-License-Identifier: MIT
 */
 
-#include "test_translation_kde.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+
+#include "test_translation_kde.h"
 
 int main(int argc, char **argv)
 {

@@ -7,13 +7,16 @@
 #ifndef KSTANDARDSHORTCUTWATCHER_H
 #define KSTANDARDSHORTCUTWATCHER_H
 
-#include "kstandardshortcut.h"
-
 #include <QObject>
-
+#include <QString>
+#include <kconfiggui_export.h>
 #include <memory>
 
-#include <kconfiggui_export.h>
+#include "kstandardshortcut.h"
+
+class QKeySequence;
+template<typename T>
+class QList;
 
 namespace KStandardShortcut
 {

@@ -9,8 +9,16 @@
 #ifndef KSHAREDCONFIG_H
 #define KSHAREDCONFIG_H
 
+#include <QByteArray>
 #include <QExplicitlySharedDataPointer>
+#include <QObject>
+#include <QSharedData>
+#include <QStandardPaths>
+#include <QString>
 #include <kconfig.h>
+
+#include "kconfigcore_export.h"
+#include "kconfiggroup.h"
 
 /**
  * \class KSharedConfig ksharedconfig.h <KSharedConfig>

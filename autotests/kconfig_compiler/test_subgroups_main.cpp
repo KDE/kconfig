@@ -19,8 +19,12 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include "test_subgroups.h"
+#include <QFunctionPointer>
 #include <QGuiApplication>
+#include <QStaticStringData>
+#include <QStringLiteral>
+
+#include "test_subgroups.h"
 
 int main(int argc, char **argv)
 {

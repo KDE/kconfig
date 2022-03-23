@@ -8,6 +8,7 @@
 #define TEST_KCONFIGUTILS_H
 
 #include <QObject>
+#include <QString>
 
 class TestKConfigUtils : public QObject
 {

@@ -5,13 +5,23 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <kconfiggroup.h>
-
+#include <QByteArray>
 #include <QColor>
 #include <QDebug>
 #include <QFont>
-
+#include <QFunctionPointer>
+#include <QLatin1String>
+#include <QList>
+#include <QMetaType>
+#include <QStaticStringData>
+#include <QString>
+#include <QStringLiteral>
+#include <QVariant>
+#include <QtCore/qglobal.h>
+#include <kconfiggroup.h>
 #include <kconfiggroup_p.h>
+
+#include "kconfigbase.h"
 
 /**
  * Try to read a GUI type from config group @p cg at key @p key.
