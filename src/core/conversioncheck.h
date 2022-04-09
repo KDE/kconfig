@@ -14,6 +14,7 @@
 #include <QSize>
 #include <QString>
 #include <QVariant>
+#include <QUuid>
 
 class QColor;
 class QFont;
@@ -107,6 +108,7 @@ QVConversions(QStringList, unsupported, supported);
 QVConversions(QVariantList, unsupported, supported);
 QVConversions(QUrl, supported, supported);
 QVConversions(QList<QUrl>, unsupported, supported);
+QVConversions(QUuid, supported, supported);
 }
 
 #endif

@@ -25,6 +25,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QUrl>
+#include <QUuid>
 
 #include <algorithm>
 #include <array>
@@ -230,6 +231,8 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         // imho if processed string is wanted should call
         // readEntry(key, QString) not readEntry(key, QVariant)
         return QString::fromUtf8(value);
+    case QMetaType::QUuid:
+        return QUuid::fromString(QString::fromUtf8(value));
     case QMetaType::QVariantList:
     case QMetaType::QStringList:
         return KConfigGroupPrivate::deserializeList(QString::fromUtf8(value));
@@ -984,6 +987,10 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
         const QVariantList list{rSize.width(), rSize.height()};
 
         writeEntry(key, list, flags);
+        return;
+    }
+    case QMetaType::QUuid: {
+        writeEntry(key, value.toString(), flags);
         return;
     }
     case QMetaType::QSizeF: {
