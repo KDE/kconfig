@@ -83,6 +83,7 @@ static const QVariantList s_variantlist_entry2{s_point_entry, s_size_entry};
 
 static const QString s_homepath{homePath() + QLatin1String{"/foo"}};
 static const QString s_homepath_escape{homePath() + QLatin1String("/foo/$HOME")};
+static const QString s_canonical_homepath{QFileInfo(homePath()).canonicalFilePath() + QLatin1String("/foo")};
 static const QString s_dollargroup{QStringLiteral("$i")};
 static const QString s_test_subdir{QStringLiteral("kconfigtest_subdir/")};
 static const QString s_kconfig_test_subdir(s_test_subdir + QLatin1String("kconfigtest"));
@@ -189,6 +190,7 @@ void KConfigTest::initTestCase()
     cg = KConfigGroup(&sc, "Path Type");
     cg.writePathEntry("homepath", s_homepath);
     cg.writePathEntry("homepathescape", s_homepath_escape);
+    cg.writePathEntry("canonicalHomePath", s_canonical_homepath);
 
     cg = KConfigGroup(&sc, "Enum Types");
 #if defined(_MSC_VER) && _MSC_VER == 1600
@@ -507,6 +509,7 @@ void KConfigTest::testPath()
     KConfigGroup sc3(&sc2, "Path Type");
     QCOMPARE(sc3.readPathEntry(QStringLiteral("homepath"), QString{}), s_homepath);
     QCOMPARE(sc3.readPathEntry(QStringLiteral("homepathescape"), QString{}), s_homepath_escape);
+    QCOMPARE(sc3.readPathEntry(QStringLiteral("canonicalHomePath"), QString{}), s_canonical_homepath);
     QCOMPARE(sc3.entryMap().value(QStringLiteral("homepath")), s_homepath);
 
     qputenv("WITHSLASH", "/a/");
