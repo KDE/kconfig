@@ -44,6 +44,9 @@ void KStandardShortcutWatcherTest::init()
 
 void KStandardShortcutWatcherTest::testSignal()
 {
+#ifdef Q_OS_WIN
+    QSKIP("KConfig is built without DBus on Windows");
+#endif
     QSignalSpy signalSpy(KStandardShortcut::shortcutWatcher(), &KStandardShortcut::StandardShortcutWatcher::shortcutChanged);
     KStandardShortcut::saveShortcut(KStandardShortcut::Open, newShortcut);
     QTRY_COMPARE(signalSpy.count(), 1);
@@ -54,6 +57,9 @@ void KStandardShortcutWatcherTest::testSignal()
 
 void KStandardShortcutWatcherTest::testDataUpdated()
 {
+#ifdef Q_OS_WIN
+    QSKIP("KConfig is built without DBus on Windows");
+#endif
     QSignalSpy signalSpy(KStandardShortcut::shortcutWatcher(), &KStandardShortcut::StandardShortcutWatcher::shortcutChanged);
     // Writing manually to forego automatic update in saveShortcut()
     KConfigGroup group(KSharedConfig::openConfig(), "Shortcuts");
