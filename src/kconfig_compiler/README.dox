@@ -400,8 +400,8 @@ this allows the same Enum value names to be used in different enums. For example
 \code{.xml}
 <entry name="KeepData" type="Enum">
   <choices>
-    <choice name="Do">
-    <choice name="Dont" value="Don't">
+    <choice name="Do"/>
+    <choice name="Dont" value="Don't"/>
   </choices>
 </entry>
 \endcode
@@ -429,8 +429,8 @@ is set to true, the .kcfg entry
 \code{.xml}
 <entry name="KeepData" type="Enum">
   <choices prefix="Keep_">
-    <choice name="Do">
-    <choice name="Dont" value="Don't">
+    <choice name="Do"/>
+    <choice name="Dont" value="Don't"/>
   </choices>
 </entry>
 \endcode
@@ -453,8 +453,8 @@ An example of a specifically named enum:
 \code{.xml}
 <entry name="KeepData" type="Enum">
   <choices name="Types">
-    <choice name="Do">
-    <choice name="Dont">
+    <choice name="Do"/>
+    <choice name="Dont"/>
   </choices>
 </entry>
 \endcode
