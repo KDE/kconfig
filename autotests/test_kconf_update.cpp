@@ -13,7 +13,6 @@
 #include <QDir>
 #include <QFile>
 #include <QProcess>
-#include <QSharedPointer>
 #include <qstandardpaths.h>
 #include <qtemporaryfile.h>
 

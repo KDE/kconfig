@@ -11,7 +11,6 @@
 #include "signals_test_singleton_itemaccessors.h"
 #include <QDebug>
 #include <QFileInfo>
-#include <QSharedPointer>
 #include <QSignalSpy>
 #include <QTemporaryFile>
 #include <QtGlobal>
