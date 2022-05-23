@@ -212,12 +212,18 @@ QString param(const QString &t)
         return QStringLiteral("const QFont &");
     } else if (type == QLatin1String("rect")) {
         return QStringLiteral("const QRect &");
+    } else if (type == QLatin1String("rectf")) {
+        return QStringLiteral("const QRectF &");
     } else if (type == QLatin1String("size")) {
         return QStringLiteral("const QSize &");
+    } else if (type == QLatin1String("sizef")) {
+        return QStringLiteral("const QSizeF &");
     } else if (type == QLatin1String("color")) {
         return QStringLiteral("const QColor &");
     } else if (type == QLatin1String("point")) {
         return QStringLiteral("const QPoint &");
+    } else if (type == QLatin1String("pointf")) {
+        return QStringLiteral("const QPointF &");
     } else if (type == QLatin1String("int")) {
         return QStringLiteral("int");
     } else if (type == QLatin1String("uint")) {
@@ -266,12 +272,18 @@ QString cppType(const QString &t)
         return QStringLiteral("QFont");
     } else if (type == QLatin1String("rect")) {
         return QStringLiteral("QRect");
+    } else if (type == QLatin1String("rectf")) {
+        return QStringLiteral("QRectF");
     } else if (type == QLatin1String("size")) {
         return QStringLiteral("QSize");
+    } else if (type == QLatin1String("sizef")) {
+        return QStringLiteral("QSizeF");
     } else if (type == QLatin1String("color")) {
         return QStringLiteral("QColor");
     } else if (type == QLatin1String("point")) {
         return QStringLiteral("QPoint");
+    } else if (type == QLatin1String("pointf")) {
+        return QStringLiteral("QPointF");
     } else if (type == QLatin1String("int")) {
         return QStringLiteral("int");
     } else if (type == QLatin1String("uint")) {
@@ -317,12 +329,18 @@ QString defaultValue(const QString &t)
         return QStringLiteral("QFont()");
     } else if (type == QLatin1String("rect")) {
         return QStringLiteral("QRect()");
+    } else if (type == QLatin1String("rectf")) {
+        return QStringLiteral("QRectF()");
     } else if (type == QLatin1String("size")) {
         return QStringLiteral("QSize()");
+    } else if (type == QLatin1String("sizef")) {
+        return QStringLiteral("QSizeF()");
     } else if (type == QLatin1String("color")) {
         return QStringLiteral("QColor(128, 128, 128)");
     } else if (type == QLatin1String("point")) {
         return QStringLiteral("QPoint()");
+    } else if (type == QLatin1String("pointf")) {
+        return QStringLiteral("QPointF()");
     } else if (type == QLatin1String("int")) {
         return QStringLiteral("0");
     } else if (type == QLatin1String("uint")) {
