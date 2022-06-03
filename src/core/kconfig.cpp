@@ -288,11 +288,8 @@ static int findFirstGroupEndPos(const QByteArray &groupFullName, int from = 0)
     return index == -1 ? groupFullName.size() : index;
 }
 
-// std::string_view is used because QByteArrayView does not exist in Qt 5.
-// std::unordered_set rather than QSet is used because there is no qHash() overload for std::string_view in Qt 5.
-using ByteArrayViewSet = std::unordered_set<std::string_view>;
-
-static QStringList stringListFromUtf8Collection(const ByteArrayViewSet &source)
+// std::string_view is used because QByteArrayView does not exist in Qt 5
+static QStringList stringListFromUtf8Collection(const std::vector<std::string_view> &source)
 {
     QStringList list;
     list.reserve(source.size());
@@ -302,35 +299,44 @@ static QStringList stringListFromUtf8Collection(const ByteArrayViewSet &source)
     return list;
 }
 
+static void removeDupes(std::vector<std::string_view> &vec)
+{
+    std::sort(vec.begin(), vec.end());
+    auto it = std::unique(vec.begin(), vec.end());
+    vec.erase(it, vec.end());
+}
+
 QStringList KConfig::groupList() const
 {
     Q_D(const KConfig);
-    ByteArrayViewSet groups;
+    std::vector<std::string_view> groups;
 
     for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
         const QByteArray &group = entryMapIt.key().mGroup;
         if (isNonDeletedKey(entryMapIt) && !group.isEmpty() && group != "<default>" && group != "$Version") {
-            groups.emplace(group.constData(), findFirstGroupEndPos(group));
+            groups.emplace_back(group.constData(), findFirstGroupEndPos(group));
         }
     }
 
+    removeDupes(groups);
     return stringListFromUtf8Collection(groups);
 }
 
 QStringList KConfigPrivate::groupList(const QByteArray &group) const
 {
     const QByteArray theGroup = group + '\x1d';
-    ByteArrayViewSet groups;
+    std::vector<std::string_view> groups;
 
     entryMap.forEachEntryWhoseGroupStartsWith(theGroup, [&theGroup, &groups](KEntryMapConstIterator entryMapIt) {
         if (isNonDeletedKey(entryMapIt)) {
             const QByteArray &entryGroup = entryMapIt.key().mGroup;
             const auto subgroupStartPos = theGroup.size();
             const auto subgroupEndPos = findFirstGroupEndPos(entryGroup, subgroupStartPos);
-            groups.emplace(entryGroup.constData() + subgroupStartPos, subgroupEndPos - subgroupStartPos);
+            groups.emplace_back(entryGroup.constData() + subgroupStartPos, subgroupEndPos - subgroupStartPos);
         }
     });
 
+    removeDupes(groups);
     return stringListFromUtf8Collection(groups);
 }
 
