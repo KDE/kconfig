@@ -1,0 +1,4 @@
+File=test_bug436712.kcfg
+ClassName=FooSettings
+Mutators=true
+GenerateProperties=true

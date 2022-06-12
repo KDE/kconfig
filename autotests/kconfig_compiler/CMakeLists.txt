@@ -312,3 +312,9 @@ set(test_enums_and_properties_SRCS enum_group_main.cpp)
 gen_kcfg_test_source(test_enums_and_properties test_enums_and_properties_SRCS GENERATE_MOC)
 ecm_add_test(TEST_NAME test_enums_and_properties ${test_enums_and_properties_SRCS})
 target_link_libraries(test_enums_and_properties KF5::ConfigGui)
+
+##############################
+set(test_bug436712_SRCS test_bug436712main.cpp)
+gen_kcfg_test_source(test_bug436712 test_bug436712_SRCS GENERATE_MOC)
+ecm_add_test(TEST_NAME test_bug436712 ${test_bug436712_SRCS})
+target_link_libraries(test_bug436712 KF5::ConfigGui)
