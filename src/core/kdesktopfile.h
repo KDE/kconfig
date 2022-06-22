@@ -54,7 +54,7 @@ public:
     /**
      * Destructs the KDesktopFile object.
      *
-     * Writes back any dirty configuration entries.
+     * Writes back any changed configuration entries.
      */
     ~KDesktopFile() override;
 
@@ -91,6 +91,9 @@ public:
      */
     static QString locateLocal(const QString &path);
 
+    /**
+     * Returns the main config group (named "Desktop Entry") in a .desktop file.
+     */
     KConfigGroup desktopGroup() const;
 
     /**
@@ -165,6 +168,7 @@ public:
      */
     KConfigGroup actionGroup(const QString &group);
 
+    // TODO KF6, don't return by const value
     const KConfigGroup actionGroup(const QString &group) const;
 
     /**
