@@ -16,10 +16,12 @@
 
 void _k_globalMainConfigSync();
 
-class GlobalSharedConfigList : public QList<KSharedConfig *>
+using SharedConfigList = QList<KSharedConfig *>;
+
+class GlobalSharedConfig
 {
 public:
-    GlobalSharedConfigList()
+    GlobalSharedConfig()
         : wasTestModeEnabled(false)
     {
         if (!qApp || QThread::currentThread() == qApp->thread()) {
@@ -33,13 +35,14 @@ public:
         // the thread exits.
     }
 
+    SharedConfigList configList;
     // in addition to the list, we need to hold the main config,
     // so that it's not created and destroyed all the time.
     KSharedConfigPtr mainConfig;
     bool wasTestModeEnabled;
 };
 
-static QThreadStorage<GlobalSharedConfigList *> s_storage;
+static QThreadStorage<GlobalSharedConfig *> s_storage;
 template<typename T>
 T *perThreadGlobalStatic()
 {
@@ -50,14 +53,14 @@ T *perThreadGlobalStatic()
 }
 
 // Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList), but per thread:
-static GlobalSharedConfigList *globalSharedConfigList()
+static GlobalSharedConfig *globalSharedConfig()
 {
-    return perThreadGlobalStatic<GlobalSharedConfigList>();
+    return perThreadGlobalStatic<GlobalSharedConfig>();
 }
 
 void _k_globalMainConfigSync()
 {
-    KSharedConfigPtr mainConfig = globalSharedConfigList()->mainConfig;
+    KSharedConfigPtr mainConfig = globalSharedConfig()->mainConfig;
     if (mainConfig) {
         mainConfig->sync();
     }
@@ -66,19 +69,19 @@ void _k_globalMainConfigSync()
 KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
 {
     QString fileName(_fileName);
-    GlobalSharedConfigList *list = globalSharedConfigList();
+    GlobalSharedConfig *global = globalSharedConfig();
     if (fileName.isEmpty() && !flags.testFlag(KConfig::SimpleConfig)) {
         // Determine the config file name that KConfig will make up (see KConfigPrivate::changeFileName)
         fileName = KConfig::mainConfigName();
     }
 
-    if (!list->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
-        list->wasTestModeEnabled = true;
-        list->clear();
-        list->mainConfig = nullptr;
+    if (!global->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
+        global->wasTestModeEnabled = true;
+        global->configList.clear();
+        global->mainConfig = nullptr;
     }
 
-    for (auto *cfg : std::as_const(*list)) {
+    for (auto *cfg : std::as_const(global->configList)) {
         if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType
             //                cfg->backend()->type() == backend
         ) {
@@ -89,7 +92,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
     KSharedConfigPtr ptr(new KSharedConfig(fileName, flags, resType));
 
     if (_fileName.isEmpty() && flags == FullConfig && resType == QStandardPaths::GenericConfigLocation) {
-        list->mainConfig = ptr;
+        global->mainConfig = ptr;
 
         const bool isMainThread = !qApp || QThread::currentThread() == qApp->thread();
         static bool userWarned = false;
@@ -123,13 +126,13 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
 KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
     : KConfig(fileName, flags, resType)
 {
-    globalSharedConfigList()->append(this);
+    globalSharedConfig()->configList.append(this);
 }
 
 KSharedConfig::~KSharedConfig()
 {
     if (s_storage.hasLocalData()) {
-        globalSharedConfigList()->removeAll(this);
+        globalSharedConfig()->configList.removeAll(this);
     }
 }
 
