@@ -154,62 +154,64 @@ bool KEntryMap::setEntry(const QByteArray &group, const QByteArray &key, const Q
         }
         // TODO check for presence of unlocalized key
         return true;
-    } else {
-        //                KEntry e2 = it.value();
-        if (options & EntryLocalized) {
-            // fast exit checks for cases where the existing entry is more specific
-            const KEntry &e2 = it.value();
-            if (e2.bLocalizedCountry && !e.bLocalizedCountry) {
-                // lang_COUNTRY > lang
-                return false;
-            }
-        }
-        if (it.value() != e) {
-            // qDebug() << "changing" << k << "from" << it.value().mValue << "to" << value << e;
-            it.value() = e;
-            if (k.bDefault) {
-                KEntryKey nonDefaultKey(k);
-                nonDefaultKey.bDefault = false;
-                insert(nonDefaultKey, e);
-            }
-            if (!(options & EntryLocalized)) {
-                KEntryKey theKey(group, key, true, false);
-                // qDebug() << "non-localized entry, remove localized one:" << theKey;
-                remove(theKey);
-                if (k.bDefault) {
-                    theKey.bDefault = true;
-                    remove(theKey);
-                }
-            }
-            return true;
-        } else {
-            // qDebug() << k << "was already set to" << e.mValue;
-            if (!(options & EntryLocalized)) {
-                // qDebug() << "unchanged non-localized entry, remove localized one.";
-                KEntryKey theKey(group, key, true, false);
-                bool ret = false;
-                Iterator cit = find(theKey);
-                if (cit != end()) {
-                    erase(cit);
-                    ret = true;
-                }
-                if (k.bDefault) {
-                    theKey.bDefault = true;
-                    Iterator cit = find(theKey);
-                    if (cit != end()) {
-                        erase(cit);
-                        return true;
-                    }
-                }
-                return ret;
-            }
-            // qDebug() << "localized entry, unchanged, return false";
-            // When we are writing a default, we know that the non-
-            // default is the same as the default, so we can simply
-            // use the same branch.
+    }
+
+    // KEntry e2 = it.value();
+    if (options & EntryLocalized) {
+        // fast exit checks for cases where the existing entry is more specific
+        const KEntry &e2 = it.value();
+        if (e2.bLocalizedCountry && !e.bLocalizedCountry) {
+            // lang_COUNTRY > lang
             return false;
         }
     }
+
+    if (it.value() != e) {
+        // qDebug() << "changing" << k << "from" << it.value().mValue << "to" << value << e;
+        it.value() = e;
+        if (k.bDefault) {
+            KEntryKey nonDefaultKey(k);
+            nonDefaultKey.bDefault = false;
+            insert(nonDefaultKey, e);
+        }
+        if (!(options & EntryLocalized)) {
+            KEntryKey theKey(group, key, true, false);
+            // qDebug() << "non-localized entry, remove localized one:" << theKey;
+            remove(theKey);
+            if (k.bDefault) {
+                theKey.bDefault = true;
+                remove(theKey);
+            }
+        }
+        return true;
+    }
+
+    // qDebug() << k << "was already set to" << e.mValue;
+    if (!(options & EntryLocalized)) {
+        // qDebug() << "unchanged non-localized entry, remove localized one.";
+        KEntryKey theKey(group, key, true, false);
+        bool ret = false;
+        Iterator cit = find(theKey);
+        if (cit != end()) {
+            erase(cit);
+            ret = true;
+        }
+        if (k.bDefault) {
+            theKey.bDefault = true;
+            Iterator cit = find(theKey);
+            if (cit != end()) {
+                erase(cit);
+                return true;
+            }
+        }
+        return ret;
+    }
+
+    // qDebug() << "localized entry, unchanged, return false";
+    // When we are writing a default, we know that the non-
+    // default is the same as the default, so we can simply
+    // use the same branch.
+    return false;
 }
 
 QString KEntryMap::getEntry(const QByteArray &group, const QByteArray &key, const QString &defaultValue, KEntryMap::SearchFlags flags, bool *expand) const
@@ -248,55 +250,57 @@ bool KEntryMap::hasEntry(const QByteArray &group, const QByteArray &key, KEntryM
 
 bool KEntryMap::getEntryOption(const KEntryMapConstIterator &it, KEntryMap::EntryOption option) const
 {
-    if (it != constEnd()) {
-        switch (option) {
-        case EntryDirty:
-            return it->bDirty;
-        case EntryLocalized:
-            return it.key().bLocal;
-        case EntryGlobal:
-            return it->bGlobal;
-        case EntryImmutable:
-            return it->bImmutable;
-        case EntryDeleted:
-            return it->bDeleted;
-        case EntryExpansion:
-            return it->bExpand;
-        case EntryNotify:
-            return it->bNotify;
-        default:
-            break; // fall through
-        }
+    if (it == cend()) {
+        return false;
     }
 
-    return false;
+    switch (option) {
+    case EntryDirty:
+        return it->bDirty;
+    case EntryLocalized:
+        return it.key().bLocal;
+    case EntryGlobal:
+        return it->bGlobal;
+    case EntryImmutable:
+        return it->bImmutable;
+    case EntryDeleted:
+        return it->bDeleted;
+    case EntryExpansion:
+        return it->bExpand;
+    case EntryNotify:
+        return it->bNotify;
+    default:
+        return false;
+    }
 }
 
 void KEntryMap::setEntryOption(KEntryMapIterator it, KEntryMap::EntryOption option, bool bf)
 {
-    if (it != end()) {
-        switch (option) {
-        case EntryDirty:
-            it->bDirty = bf;
-            break;
-        case EntryGlobal:
-            it->bGlobal = bf;
-            break;
-        case EntryImmutable:
-            it->bImmutable = bf;
-            break;
-        case EntryDeleted:
-            it->bDeleted = bf;
-            break;
-        case EntryExpansion:
-            it->bExpand = bf;
-            break;
-        case EntryNotify:
-            it->bNotify = bf;
-            break;
-        default:
-            break; // fall through
-        }
+    if (it == end()) {
+        return;
+    }
+
+    switch (option) {
+    case EntryDirty:
+        it->bDirty = bf;
+        return;
+    case EntryGlobal:
+        it->bGlobal = bf;
+        return;
+    case EntryImmutable:
+        it->bImmutable = bf;
+        return;
+    case EntryDeleted:
+        it->bDeleted = bf;
+        return;
+    case EntryExpansion:
+        it->bExpand = bf;
+        return;
+    case EntryNotify:
+        it->bNotify = bf;
+        return;
+    default:
+        return; // fall through
     }
 }
 
@@ -304,29 +308,30 @@ bool KEntryMap::revertEntry(const QByteArray &group, const QByteArray &key, KEnt
 {
     Q_ASSERT((flags & KEntryMap::SearchDefaults) == 0);
     Iterator entry = findEntry(group, key, flags);
-    if (entry != end()) {
-        // qDebug() << "reverting" << entry.key() << " = " << entry->mValue;
-        if (entry->bReverted) { // already done before
-            return false;
-        }
-
-        KEntryKey defaultKey(entry.key());
-        defaultKey.bDefault = true;
-        // qDebug() << "looking up default entry with key=" << defaultKey;
-        const auto defaultEntry = constFind(defaultKey);
-        if (defaultEntry != constEnd()) {
-            Q_ASSERT(defaultEntry.key().bDefault);
-            // qDebug() << "found, update entry";
-            *entry = *defaultEntry; // copy default value, for subsequent lookups
-        } else {
-            entry->mValue = QByteArray();
-        }
-        entry->bNotify = entry->bNotify || (options & EntryNotify);
-        entry->bDirty = true;
-        entry->bReverted = true; // skip it when writing out to disk
-
-        // qDebug() << "Here's what we have now:" << *this;
-        return true;
+    if (entry == end()) {
+        return false;
     }
-    return false;
+
+    // qDebug() << "reverting" << entry.key() << " = " << entry->mValue;
+    if (entry->bReverted) { // already done before
+        return false;
+    }
+
+    KEntryKey defaultKey(entry.key());
+    defaultKey.bDefault = true;
+    // qDebug() << "looking up default entry with key=" << defaultKey;
+    const auto defaultEntry = constFind(defaultKey);
+    if (defaultEntry != constEnd()) {
+        Q_ASSERT(defaultEntry.key().bDefault);
+        // qDebug() << "found, update entry";
+        *entry = *defaultEntry; // copy default value, for subsequent lookups
+    } else {
+        entry->mValue = QByteArray();
+    }
+    entry->bNotify = entry->bNotify || (options & EntryNotify);
+    entry->bDirty = true;
+    entry->bReverted = true; // skip it when writing out to disk
+
+    // qDebug() << "Here's what we have now:" << *this;
+    return true;
 }

@@ -56,12 +56,13 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
     qDBusRegisterMetaType<QByteArrayList>();
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
 
-    QStringList watchedPaths;
-    watchedPaths << QLatin1Char('/') + d->m_config->name();
-    const auto cfgSources = d->m_config->additionalConfigSources();
-    for (const QString &file : cfgSources) {
-        watchedPaths << QLatin1Char('/') + file;
+
+    QStringList watchedPaths = d->m_config->additionalConfigSources();
+    for (QString &file : watchedPaths) {
+        file.prepend(QLatin1Char('/'));
     }
+    watchedPaths.prepend(QLatin1Char('/') + d->m_config->name());
+
     if (d->m_config->openFlags() & KConfig::IncludeGlobals) {
         watchedPaths << QStringLiteral("/kdeglobals");
     }

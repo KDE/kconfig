@@ -534,27 +534,26 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
 bool KConfigIniBackend::isWritable() const
 {
     const QString filePath = this->filePath();
-    if (!filePath.isEmpty()) {
-        QFileInfo file(filePath);
-        if (!file.exists()) {
-            // If the file does not exist, check if the deepest
-            // existing dir is writable.
-            QFileInfo dir(file.absolutePath());
-            while (!dir.exists()) {
-                QString parent = dir.absolutePath(); // Go up. Can't use cdUp() on non-existing dirs.
-                if (parent == dir.filePath()) {
-                    // no parent
-                    return false;
-                }
-                dir.setFile(parent);
-            }
-            return dir.isDir() && dir.isWritable();
-        } else {
-            return file.isWritable();
-        }
+    if (filePath.isEmpty()) {
+        return false;
     }
 
-    return false;
+    QFileInfo file(filePath);
+    if (file.exists()) {
+        return file.isWritable();
+    }
+
+    // If the file does not exist, check if the deepest existing dir is writable
+    QFileInfo dir(file.absolutePath());
+    while (!dir.exists()) {
+        QString parent = dir.absolutePath(); // Go up. Can't use cdUp() on non-existing dirs.
+        if (parent == dir.filePath()) {
+            // no parent
+            return false;
+        }
+        dir.setFile(parent);
+    }
+    return dir.isDir() && dir.isWritable();
 }
 
 QString KConfigIniBackend::nonWritableErrorMessage() const
@@ -570,28 +569,28 @@ void KConfigIniBackend::createEnclosing()
     }
 
     // Create the containing dir, maybe it wasn't there
-    QDir dir;
-    dir.mkpath(QFileInfo(file).absolutePath());
+    QDir().mkpath(QFileInfo(file).absolutePath());
 }
 
-void KConfigIniBackend::setFilePath(const QString &file)
+void KConfigIniBackend::setFilePath(const QString &path)
 {
-    if (file.isEmpty()) {
+    if (path.isEmpty()) {
         return;
     }
 
-    Q_ASSERT(QDir::isAbsolutePath(file));
+    Q_ASSERT(QDir::isAbsolutePath(path));
 
-    const QFileInfo info(file);
+    const QFileInfo info(path);
     if (info.exists()) {
         setLocalFilePath(info.canonicalFilePath());
+        return;
+    }
+
+    if (QString filePath = info.dir().canonicalPath(); !filePath.isEmpty()) {
+        filePath += QLatin1Char('/') + info.fileName();
+        setLocalFilePath(filePath);
     } else {
-        const QString dir = info.dir().canonicalPath();
-        if (!dir.isEmpty()) {
-            setLocalFilePath(dir + QLatin1Char('/') + info.fileName());
-        } else {
-            setLocalFilePath(file);
-        }
+        setLocalFilePath(path);
     }
 }
 
@@ -612,22 +611,24 @@ bool KConfigIniBackend::lock()
 {
     Q_ASSERT(!filePath().isEmpty());
 
-    if (!lockFile) {
 #ifdef Q_OS_ANDROID
+    if (!lockFile) {
         // handle content Uris properly
         if (filePath().startsWith(QLatin1String("content://"))) {
             // we can't create file at an arbitrary location, so use internal storage to create one
 
             // NOTE: filename can be the same, but because this lock is short lived we may never have a collision
-            lockFile = new QLockFile(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)
-                                     + QLatin1String("/") + QFileInfo(filePath()).fileName() + QLatin1String(".lock"));
+            lockFile = new QLockFile(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/")
+                                     + QFileInfo(filePath()).fileName() + QLatin1String(".lock"));
         } else {
-#endif
             lockFile = new QLockFile(filePath() + QLatin1String(".lock"));
-#ifdef Q_OS_ANDROID
         }
-#endif
     }
+#else
+    if (!lockFile) {
+        lockFile = new QLockFile(filePath() + QLatin1String(".lock"));
+    }
+#endif
 
     lockFile->lock();
     return lockFile->isLocked();
