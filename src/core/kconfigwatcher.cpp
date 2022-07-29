@@ -49,12 +49,12 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
     , d(new KConfigWatcherPrivate)
 {
     Q_ASSERT(config);
+    d->m_config = config;
+
 #if KCONFIG_USE_DBUS
 
     qDBusRegisterMetaType<QByteArrayList>();
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
-
-    d->m_config = config;
 
     QStringList watchedPaths;
     watchedPaths << QLatin1Char('/') + d->m_config->name();
