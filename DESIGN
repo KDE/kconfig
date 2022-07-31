@@ -37,8 +37,11 @@ non-existent.
 deleteEntry() will make the entry non-existent. If if the system administrator
 has specified a default value, the local entry is marked with [$d].
 
-Entries are marked "immutable" if the key is followed by [$i]. This means
-that a user can not override these entries.
+Entries are marked "immutable" if the key is followed by [$i] (e.g. 'key[$i]=value');
+groups are marked "immutable" if the group is followed by [$i] (.e.g '[GroupName][$i]').
+An "immutable" entry/group cannot be overriden by the user.
+
+For more details see docs/options.md.
 
 
 ------------------------------------------------------------------------------
