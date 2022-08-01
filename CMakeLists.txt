@@ -31,7 +31,12 @@ option(KCONFIG_USE_GUI "Build components using Qt${QT_MAJOR_VERSION}Gui" ON)
 if(KCONFIG_USE_GUI)
     find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
 endif()
-find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} OPTIONAL_COMPONENTS Qml)
+
+option(KCONFIG_USE_QML "Build components using Qt${QT_MAJOR_VERSION}Qml" ON)
+
+if(KCONFIG_USE_QML)
+    find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
+endif()
 
 if (NOT ANDROID)
     set(default_kconfig_use_dbus ON)
