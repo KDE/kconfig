@@ -730,6 +730,7 @@ private:
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);
     friend class KServicePrivate; // XXX yeah, ugly^5
+    friend class KServiceAction;
 };
 
 #define KCONFIGGROUP_ENUMERATOR_ERROR(ENUM) "The Qt MetaObject system does not seem to know about \"" ENUM "\" please use Q_ENUM or Q_FLAG to register it."
