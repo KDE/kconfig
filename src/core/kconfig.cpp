@@ -43,6 +43,8 @@
 #include <QDBusMetaType>
 #endif
 
+#include "registry_win_p.h"
+
 bool KConfigPrivate::mappingsRegistered = false;
 
 // For caching purposes
@@ -577,12 +579,23 @@ struct KConfigStaticData {
     QString globalMainConfigName;
     // Keep a copy so we can use it in global dtors, after qApp is gone
     QStringList appArgs;
+    QString globalRegKey;
 };
 Q_GLOBAL_STATIC(KConfigStaticData, globalData)
 
 void KConfig::setMainConfigName(const QString &str)
 {
     globalData()->globalMainConfigName = str;
+}
+
+void KConfig::setWindowsRegistryKey(const QString &regKey)
+{
+    globalData()->globalRegKey = regKey;
+}
+
+QString KConfig::windowsRegistryKey()
+{
+    return globalData()->globalRegKey;
 }
 
 QString KConfig::mainConfigName()
@@ -675,6 +688,9 @@ void KConfig::reparseConfiguration()
         d->parseGlobalFiles();
     }
 
+    // Parse the windows registry defaults if desired
+    d->parseWindowsDefaults();
+
     d->parseConfigFiles();
 }
 
@@ -741,6 +757,14 @@ void KConfigPrivate::parseGlobalFiles()
         }
     }
     sGlobalParse->localData().insert(key, new ParseCacheValue({entryMap, newest}));
+}
+
+void KConfigPrivate::parseWindowsDefaults()
+{
+    const QString regKey = KConfig::windowsRegistryKey ();
+    if (!regKey.isEmpty()) {
+        parseWindowsRegistry(regKey, entryMap);
+    }
 }
 
 void KConfigPrivate::parseConfigFiles()

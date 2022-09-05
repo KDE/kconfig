@@ -372,6 +372,34 @@ public:
      */
     static QString mainConfigName();
 
+    /**
+     * Optionally add a Windows registry key to use.
+     *
+     * Keys below this key are treated as configuration
+     * groups. Values below this key are treated as values
+     * of the default group.
+     *
+     * To add a key to a group create a subkey under regKey and
+     * add the value in this group with type REG_SZ.
+     *
+     * Immutable groups or values can be suffixed with [$i].
+     *
+     * The values are read both form HKLM and HKCU
+     * and are treated as defaults. The use case for this is
+     * that Group Policies can set defaults for specific
+     * users and groups. User configuration is still stored
+     * in the main config file.
+     *
+     * @since 5.98
+     */
+    static void setWindowsRegistryKey(const QString &regKey);
+
+    /**
+     * Get the registry key under which additional values are parsed.
+     * @since 5.98
+     */
+    static QString windowsRegistryKey();
+
 protected:
     bool hasGroupImpl(const QByteArray &group) const override;
     KConfigGroup groupImpl(const QByteArray &b) override;
