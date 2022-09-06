@@ -1520,6 +1520,16 @@ QVariant KConfigCompilerSignallingItem::property() const
     return mItem->property();
 }
 
+QVariant KConfigCompilerSignallingItem::minValue() const
+{
+    return mItem->minValue();
+}
+
+QVariant KConfigCompilerSignallingItem::maxValue() const
+{
+    return mItem->maxValue();
+}
+
 void KConfigCompilerSignallingItem::readConfig(KConfig *c)
 {
     QVariant oldValue = mItem->property();

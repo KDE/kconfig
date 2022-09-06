@@ -458,6 +458,8 @@ public:
     void setProperty(const QVariant &p) override;
     bool isEqual(const QVariant &p) const override;
     QVariant property() const override;
+    QVariant minValue() const override;
+    QVariant maxValue() const override;
     void setDefault() override;
     void swapDefault() override;
     // KF6 TODO - fix this
