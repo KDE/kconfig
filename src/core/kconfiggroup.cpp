@@ -41,6 +41,9 @@ public:
         , bImmutable(isImmutable)
         , bConst(isConst)
     {
+        if (Q_UNLIKELY(mOwner->accessMode() == KConfigBase::NoAccess)) {
+            qCWarning(KCONFIG_CORE_LOG) << "Created a KConfigGroup on an inaccessible config location" << mOwner->name() << name;
+        }
     }
 
     KConfigGroupPrivate(const KSharedConfigPtr &owner, const QByteArray &name)
@@ -50,6 +53,9 @@ public:
         , bImmutable(name.isEmpty() ? owner->isImmutable() : owner->isGroupImmutable(name))
         , bConst(false)
     {
+        if (Q_UNLIKELY(mOwner->accessMode() == KConfigBase::NoAccess)) {
+            qCWarning(KCONFIG_CORE_LOG) << "Created a KConfigGroup on an inaccessible config location" << mOwner->name() << name;
+        }
     }
 
     KConfigGroupPrivate(KConfigGroup *parent, bool isImmutable, bool isConst, const QByteArray &name)
