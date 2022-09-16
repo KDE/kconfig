@@ -72,7 +72,7 @@ ecm_generate_headers(KConfigCore_HEADERS
   REQUIRED_HEADERS KConfigCore_HEADERS
 )
 
-install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5ConfigCore EXPORT KF5ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
