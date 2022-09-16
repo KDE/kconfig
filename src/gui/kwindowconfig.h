@@ -12,6 +12,7 @@
 #include <kconfiggui_export.h>
 
 class QWindow;
+class QScreen;
 
 /**
  * Save and load window sizes into a config
@@ -71,7 +72,7 @@ KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &co
 KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
 /**
- * Restores the window's position from the configuration.
+ * Restores the window's screen position from the configuration and calls restoreWindowScreenPosition.
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.
  *
@@ -82,5 +83,19 @@ KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &c
  * @since 5.74
  */
 KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup &config);
+
+/**
+ * Restores the window's position on provided screen from the configuration.
+ * This function has no effect on Wayland, where the compositor is responsible
+ * for window positioning.
+ *
+ * @note the group must be set before calling
+ *
+ * @param window The window whose position to restore.
+ * @param screen Screen on which window should be placed.
+ * @param config The config group to read from.
+ * @since 5.99
+ */
+KCONFIGGUI_EXPORT void restoreWindowScreenPosition(QWindow *window, const QScreen *screen, const KConfigGroup &config);
 }
 #endif // KWINDOWCONFIG_H
