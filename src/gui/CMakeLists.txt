@@ -54,7 +54,7 @@ ecm_generate_headers(KConfigGui_HEADERS
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
-install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h

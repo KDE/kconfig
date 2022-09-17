@@ -32,7 +32,7 @@ ecm_generate_headers(KConfigQml_HEADERS
 target_include_directories(KF5ConfigQml
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml>")
 
-install(TARGETS KF5ConfigQml EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5ConfigQml EXPORT KF5ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigqml_export.h
   ${KConfigQml_HEADERS}
