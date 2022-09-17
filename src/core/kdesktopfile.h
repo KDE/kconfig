@@ -150,6 +150,13 @@ public:
     QString readUrl() const;
 
     /**
+     * Returns the value of the "TryExec=" entry.
+     * @return the URL or QString() if not specified
+     * @since 5.100
+     */
+    QString readTryExec() const;
+
+    /**
      * Returns a list of the "Actions=" entries.
      * @return the list of actions
      */

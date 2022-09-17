@@ -240,6 +240,12 @@ QString KDesktopFile::readUrl() const
     }
 }
 
+QString KDesktopFile::readTryExec() const
+{
+    Q_D(const KDesktopFile);
+    return d->desktopGroup.readEntry("TryExec", QString());
+}
+
 QStringList KDesktopFile::readActions() const
 {
     Q_D(const KDesktopFile);
