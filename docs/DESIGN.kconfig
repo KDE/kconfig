@@ -115,7 +115,7 @@ not uncommon to have them defined in three places:
   2) In the settings dialog when reading the setting
   3) In the settings dialog when selecting "Use defaults".
 
-* Provide type-information about config entries to facilate "KConfEdit" like 
+* Provide type-information about config entries to facilitate "KConfEdit" like 
 tools. Ideally type-information also includes range-information; this is even
 mandatory if enums become an explicit type.
 
