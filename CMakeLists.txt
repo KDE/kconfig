@@ -71,7 +71,7 @@ if (BUILD_TESTING)
 endif()
 
 include (ECMPoQmTools)
-ecm_install_po_files_as_qm(po)
+ecm_install_po_files_as_qm(poqm)
 
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
