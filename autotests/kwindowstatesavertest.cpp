@@ -37,9 +37,9 @@ void KWindowStateSaverTest::testTopLevelDialog()
         QFontDialog dlg;
         new KWindowStateSaver(&dlg, "topLevelDialogTest");
         dlg.show();
-        QTest::qWait(10); // give the window time to show up, so we simulate a user-triggered resize
+        QTest::qWait(100); // give the window time to show up, so we simulate a user-triggered resize
         dlg.resize(dlgSize);
-        QTest::qWait(500); // give the state saver time to trigger
+        QTest::qWait(900); // give the state saver time to trigger
         QCOMPARE(dlg.size(), dlgSize);
     }
 
@@ -49,7 +49,7 @@ void KWindowStateSaverTest::testTopLevelDialog()
         QFontDialog dlg;
         new KWindowStateSaver(&dlg, "topLevelDialogTest");
         dlg.show();
-        QTest::qWait(100); // give the window time to show up properly
+        QTest::qWait(400); // give the window time to show up properly
         QCOMPARE(dlg.size(), dlgSize);
     }
 }
@@ -68,9 +68,9 @@ void KWindowStateSaverTest::testSubDialog()
         auto dlg = new QFontDialog(&mainWindow);
         new KWindowStateSaver(dlg, "subDialogTest");
         dlg->show();
-        QTest::qWait(10); // give the window time to show up, so we simulate a user-triggered resize
+        QTest::qWait(100); // give the window time to show up, so we simulate a user-triggered resize
         dlg->resize(dlgSize);
-        QTest::qWait(500); // give the state saver time to trigger
+        QTest::qWait(900); // give the state saver time to trigger
         QCOMPARE(dlg->size(), dlgSize);
         delete dlg;
     }
@@ -81,7 +81,7 @@ void KWindowStateSaverTest::testSubDialog()
         auto dlg = new QFontDialog(&mainWindow);
         new KWindowStateSaver(dlg, "subDialogTest");
         dlg->show();
-        QTest::qWait(100); // give the window time to show up properly
+        QTest::qWait(400); // give the window time to show up properly
         QCOMPARE(dlg->size(), dlgSize);
     }
 }

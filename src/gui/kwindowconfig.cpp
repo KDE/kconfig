@@ -136,8 +136,37 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
     const int fallbackWidth = config.readEntry(QStringLiteral("Width %1").arg(screen->geometry().width()), window->size().width());
     const int fallbackHeight = config.readEntry(QStringLiteral("Height %1").arg(screen->geometry().height()), window->size().height());
 
-    const int width = config.readEntry(windowWidthString(screen), fallbackWidth);
-    const int height = config.readEntry(windowHeightString(screen), fallbackHeight);
+    int width = fallbackWidth;
+    int height = fallbackHeight;
+
+    // Lookup width and height from the config. Start first with the window->screen().
+    // If that doesn't work, check every QGuiApplication::screens() until one is found as valid key.
+    const auto screens = QGuiApplication::screens();
+    if (config.hasKey(windowWidthString(screen))) {
+        width = config.readEntry(windowWidthString(screen), fallbackWidth);
+    } else {
+        for (auto s : screens) {
+            if (!config.hasKey(windowWidthString(s))) {
+                continue;
+            } else {
+                width = config.readEntry(windowWidthString(s), fallbackWidth);
+                break;
+            }
+        }
+    }
+    if (config.hasKey(windowHeightString(screen))) {
+        height = config.readEntry(windowHeightString(screen), fallbackHeight);
+    } else {
+        for (auto s : screens) {
+            if (!config.hasKey(windowHeightString(s))) {
+                continue;
+            } else {
+                height = config.readEntry(windowHeightString(s), fallbackHeight);
+                break;
+            }
+        }
+    }
+
     const bool isMaximized = config.readEntry(configFileString(screen, QStringLiteral("Window-Maximized")), false);
 
     // Check default size
