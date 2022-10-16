@@ -54,11 +54,19 @@ ecm_generate_headers(KConfigGui_HEADERS
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
+if (NOT BUILD_SHARED_LIBS)
+    target_sources(KF5ConfigGui PUBLIC 
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/kconfigguistaticinitializer.cpp>
+        $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui/kconfigguistaticinitializer.cpp>
+    )
+endif()
+
 install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
+  kconfigguistaticinitializer.cpp
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
 )
 

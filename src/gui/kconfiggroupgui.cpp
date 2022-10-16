@@ -187,7 +187,8 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
     return false;
 }
 
-static int initKConfigGroupGui()
+// Not static, because for static builds we use it in the kconfigguistaticinitializer.cpp file
+int initKConfigGroupGui()
 {
     _kde_internal_KConfigGroupGui.readEntryGui = readEntryGui;
     _kde_internal_KConfigGroupGui.writeEntryGui = writeEntryGui;
