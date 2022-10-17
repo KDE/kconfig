@@ -522,7 +522,7 @@ msgstr ""
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
-msgstr "Clau que cal buscar"
+msgstr "Clau que s'ha de buscar"
 
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
@@ -560,5 +560,5 @@ msgstr "Suprimix la clau designada, si està activada"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
-"El valor que cal escriure. És obligatori. En l'intèrpret d'ordres utilitzar "
-"'' si està buit"
+"El valor que s'escriurà. És obligatori. En l'intèrpret d'ordres utilitzar '' "
+"si està buit"
