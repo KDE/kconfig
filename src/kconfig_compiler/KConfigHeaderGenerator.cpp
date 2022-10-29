@@ -217,16 +217,14 @@ void KConfigHeaderGenerator::implementEnums()
 void KConfigHeaderGenerator::createSignals()
 {
     // Signal definition.
-    const bool hasSignals = !parseResult.signalList.isEmpty();
+    if (parseResult.signalList.isEmpty()) {
+        return;
+    }
 
     unsigned val = 1 << parseResult.signalList.size();
     if (!val) {
         std::cerr << "Too many signals to create unique bit masks" << std::endl;
         exit(1);
-    }
-
-    if (!hasSignals) {
-        return;
     }
 
     stream() << "\n    enum {\n";
