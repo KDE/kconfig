@@ -1,0 +1,5 @@
+# Code generation options for kconfig_compiler_kf5
+File=test_64_entries.kcfg
+ClassName=Test64Entries
+GenerateProperties=true
+Mutators=true

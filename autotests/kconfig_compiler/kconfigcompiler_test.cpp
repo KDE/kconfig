@@ -75,6 +75,8 @@ static CompilerTestSet testCases = {"test1.cpp",
                                     "test_param_minmax.h",
                                     "test_subgroups.cpp",
                                     "test_subgroups.h",
+                                    "test_64_entries.cpp",
+                                    "test_64_entries.h",
                                     nullptr};
 
 static CompilerTestSet testCasesToRun = {"test1",
@@ -102,6 +104,7 @@ static CompilerTestSet testCasesToRun = {"test1",
                                          "test_properties_minmax",
                                          "test_param_minmax",
                                          "test_subgroups",
+                                         "test_64_entries",
                                          nullptr};
 
 #if 0

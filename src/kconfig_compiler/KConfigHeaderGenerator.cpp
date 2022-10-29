@@ -221,14 +221,13 @@ void KConfigHeaderGenerator::createSignals()
         return;
     }
 
-    unsigned val = 1 << parseResult.signalList.size();
-    if (!val) {
-        std::cerr << "Too many signals to create unique bit masks" << std::endl;
+    if (parseResult.signalList.size() > sizeof(quint64) * 8) {
+        std::cerr << "Too many signals to create unique bit masks (" << parseResult.signalList.size() << ")" << std::endl;
         exit(1);
     }
 
     stream() << "\n    enum {\n";
-    val = 1;
+    quint64 val = 1;
 
     // HACK: Use C-Style for add a comma in all but the last element,
     // just to make the source generated code equal to the old one.
