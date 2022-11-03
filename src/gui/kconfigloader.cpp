@@ -231,8 +231,8 @@ void ConfigLoaderHandler::addItem()
         }
         item = doubleItem;
     } else if (m_type == QLatin1String("intlist")) {
-        const QStringList tmpList = m_default.split(QLatin1Char(','));
         QList<int> defaultList;
+        const QStringList tmpList = m_default.split(QLatin1Char(','), Qt::SkipEmptyParts);
         for (const QString &tmp : tmpList) {
             defaultList.append(tmp.toInt());
         }
