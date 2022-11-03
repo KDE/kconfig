@@ -49,6 +49,9 @@
                 <entry name="DefaultDoubleItem" type="Double">
                         <default>13.37</default>
                 </entry>
+                <entry name="EmptyDefaultIntListItem" type="IntList">
+                        <default></default>
+                </entry>
                 <entry name="DefaultIntListItem" type="IntList">
                         <default>1,1,2,3,5,8</default>
                 </entry>

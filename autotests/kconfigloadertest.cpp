@@ -151,6 +151,13 @@ void ConfigLoaderTest::intListDefaultValue()
     QVERIFY(typeItem->isEqual(QVariant::fromValue(expected)));
 }
 
+void ConfigLoaderTest::intListEmptyDefaultValue()
+{
+    GET_CONFIG_ITEM_VALUE(KCoreConfigSkeleton::ItemIntList *, QStringLiteral("EmptyDefaultIntListItem"));
+
+    QVERIFY(typeItem->value().isEmpty());
+}
+
 void ConfigLoaderTest::longLongDefaultValue()
 {
     GET_CONFIG_ITEM_VALUE(KCoreConfigSkeleton::ItemLongLong *, QStringLiteral("DefaultLongLongItem"));

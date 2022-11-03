@@ -35,6 +35,7 @@ private Q_SLOTS:
     void uintDefaultValue();
     void urlDefaultValue();
     void doubleDefaultValue();
+    void intListEmptyDefaultValue();
     void intListDefaultValue();
     void longLongDefaultValue();
     void pointDefaultValue();
