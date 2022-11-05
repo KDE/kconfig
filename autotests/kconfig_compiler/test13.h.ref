@@ -83,14 +83,14 @@ class Test13 : public KConfigSkeleton
 
 
     enum {
-      signalBrightnessChanged = 0x1
+      signalBrightnessChanged = 1
     };
 
   Q_SIGNALS:
     void brightnessChanged();
 
   private:
-    void itemChanged(quint64 flags);
+    void itemChanged(quint64 signalFlag);
 
   protected:
 

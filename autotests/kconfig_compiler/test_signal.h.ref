@@ -6,6 +6,7 @@
 #include <kconfigskeleton.h>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QSet>
 
 class TestSignal : public KConfigSkeleton
 {
@@ -23,7 +24,7 @@ class TestSignal : public KConfigSkeleton
     {
       if (v != self()->mEmoticonTheme && !self()->isEmoticonThemeImmutable()) {
         self()->mEmoticonTheme = v;
-        self()->mSettingsChanged |= signalEmoticonSettingsChanged;
+        self()->mSettingsChanged.insert(signalEmoticonSettingsChanged);
       }
     }
 
@@ -53,7 +54,7 @@ class TestSignal : public KConfigSkeleton
     {
       if (v != self()->mUseEmoticon && !self()->isUseEmoticonImmutable()) {
         self()->mUseEmoticon = v;
-        self()->mSettingsChanged |= signalEmoticonSettingsChanged;
+        self()->mSettingsChanged.insert(signalEmoticonSettingsChanged);
       }
     }
 
@@ -83,7 +84,7 @@ class TestSignal : public KConfigSkeleton
     {
       if (v != self()->mEmoticonRequireSpace && !self()->isEmoticonRequireSpaceImmutable()) {
         self()->mEmoticonRequireSpace = v;
-        self()->mSettingsChanged |= signalEmoticonSettingsChanged;
+        self()->mSettingsChanged.insert(signalEmoticonSettingsChanged);
       }
     }
 
@@ -113,7 +114,7 @@ class TestSignal : public KConfigSkeleton
     {
       if (v != self()->mStylePath && !self()->isStylePathImmutable()) {
         self()->mStylePath = v;
-        self()->mSettingsChanged |= signalStyleChanged;
+        self()->mSettingsChanged.insert(signalStyleChanged);
       }
     }
 
@@ -165,8 +166,8 @@ class TestSignal : public KConfigSkeleton
 
 
     enum {
-      signalEmoticonSettingsChanged = 0x1,
-      signalStyleChanged = 0x2
+      signalEmoticonSettingsChanged = 1,
+      signalStyleChanged = 2
     };
 
   Q_SIGNALS:
@@ -178,7 +179,7 @@ class TestSignal : public KConfigSkeleton
     void styleChanged(const QString & stylePath, const QString & StyleCSSVariant);
 
   private:
-    void itemChanged(quint64 flags);
+    void itemChanged(quint64 signalFlag);
 
   protected:
     TestSignal();
@@ -194,7 +195,7 @@ class TestSignal : public KConfigSkeleton
     QString mStyleCSSVariant;
 
   private:
-    uint mSettingsChanged;
+    QSet<quint64> mSettingsChanged;
 };
 
 #endif

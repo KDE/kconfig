@@ -114,6 +114,9 @@ void KConfigHeaderGenerator::createHeaders()
     }
 
     addHeaders({QStringLiteral("QCoreApplication"), QStringLiteral("QDebug")});
+    if (!cfg().dpointer && parseResult.hasNonModifySignals) {
+        addHeaders({QStringLiteral("QSet")});
+    }
     stream() << '\n';
 
     addHeaders(parseResult.includes);
@@ -221,13 +224,7 @@ void KConfigHeaderGenerator::createSignals()
         return;
     }
 
-    if (parseResult.signalList.size() > sizeof(quint64) * 8) {
-        std::cerr << "Too many signals to create unique bit masks (" << parseResult.signalList.size() << ")" << std::endl;
-        exit(1);
-    }
-
     stream() << "\n    enum {\n";
-    quint64 val = 1;
 
     // HACK: Use C-Style for add a comma in all but the last element,
     // just to make the source generated code equal to the old one.
@@ -235,15 +232,13 @@ void KConfigHeaderGenerator::createSignals()
     // a last comma, as it's valid c++.
     for (int i = 0, end = parseResult.signalList.size(); i < end; i++) {
         auto signal = parseResult.signalList.at(i);
-        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x" << Qt::hex << val;
+        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = " << (i + 1);
         if (i != end - 1) {
             stream() << ",\n";
         }
-
-        val <<= 1;
     }
     stream() << '\n';
-    stream() << whitespace() << "};" << Qt::dec << "\n\n";
+    stream() << whitespace() << "};\n\n";
 
     stream() << "  Q_SIGNALS:";
     for (const Signal &signal : std::as_const(parseResult.signalList)) {
@@ -278,7 +273,7 @@ void KConfigHeaderGenerator::createSignals()
     stream() << '\n';
 
     stream() << "  private:\n";
-    stream() << whitespace() << "void itemChanged(quint64 flags);\n";
+    stream() << whitespace() << "void itemChanged(quint64 signalFlag);\n";
     stream() << '\n';
 }
 
@@ -636,6 +631,6 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
     }
 
     if (parseResult.hasNonModifySignals) {
-        stream() << whitespace() << "uint " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
+        stream() << whitespace() << "QSet<quint64> " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
     }
 }

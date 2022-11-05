@@ -59,14 +59,14 @@ class TestPropertiesMinMax : public KConfigSkeleton
 
 
     enum {
-      signalBarChanged = 0x1
+      signalBarChanged = 1
     };
 
   Q_SIGNALS:
     void barChanged();
 
   private:
-    void itemChanged(quint64 flags);
+    void itemChanged(quint64 signalFlag);
 
   protected:
 

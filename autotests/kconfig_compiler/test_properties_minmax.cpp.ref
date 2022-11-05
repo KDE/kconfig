@@ -24,10 +24,12 @@ TestPropertiesMinMax::~TestPropertiesMinMax()
 }
 
 
-void TestPropertiesMinMax::itemChanged(quint64 flags) {
+void TestPropertiesMinMax::itemChanged(quint64 signalFlag) {
 
-  if ( flags & signalBarChanged ) {
+  switch (signalFlag) {
+  case signalBarChanged:
     Q_EMIT barChanged();
+    break;
   }
 }
 

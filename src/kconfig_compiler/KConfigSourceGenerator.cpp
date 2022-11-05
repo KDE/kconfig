@@ -73,6 +73,10 @@ void KConfigSourceGenerator::createHeaders()
         addHeaders({QStringLiteral("QDebug")});
     }
 
+    if (cfg().dpointer && parseResult.hasNonModifySignals) {
+        addHeaders({QStringLiteral("QSet")});
+    }
+
     if (cfg().singleton) {
         stream() << '\n';
     }
@@ -119,7 +123,7 @@ void KConfigSourceGenerator::createPrivateDPointerImplementation()
     }
 
     if (parseResult.hasNonModifySignals) {
-        stream() << "    uint " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
+        stream() << "    QSet<quint64> " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
     }
 
     stream() << "};\n\n";
@@ -256,10 +260,6 @@ void KConfigSourceGenerator::createInitializerList()
 {
     for (const auto &parameter : std::as_const(parseResult.parameters)) {
         stream() << "  , mParam" << parameter.name << "(" << parameter.name << ")\n";
-    }
-
-    if (parseResult.hasNonModifySignals && !cfg().dpointer) {
-        stream() << "  , " << varName(QStringLiteral("settingsChanged"), cfg()) << "(0)\n";
     }
 }
 
@@ -445,9 +445,6 @@ void KConfigSourceGenerator::doConstructor()
 
     if (cfg().dpointer) {
         stream() << "  d = new " << cfg().className << "Private;\n";
-        if (parseResult.hasNonModifySignals) {
-            stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " = 0;\n";
-        }
     }
 
     // Needed in case the singleton class is used as baseclass for
@@ -640,7 +637,7 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
             continue;
         }
 
-        stream() << "  if ( " << varPath(QStringLiteral("settingsChanged"), cfg()) << " & " << signalEnumName(signal.name) << " )\n";
+        stream() << "  if (" << varPath(QStringLiteral("settingsChanged"), cfg()) << ".contains(" << signalEnumName(signal.name) << "))\n";
         stream() << "    Q_EMIT " << signal.name << "(";
         auto it = signal.arguments.cbegin();
         const auto itEnd = signal.arguments.cend();
@@ -668,7 +665,7 @@ void KConfigSourceGenerator::createNonModifyingSignalsHelper()
         stream() << ");\n";
     }
 
-    stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " = 0;\n";
+    stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << ".clear();\n";
     stream() << "  return true;\n";
     endScope();
 }
@@ -681,21 +678,29 @@ void KConfigSourceGenerator::createSignalFlagsHandler()
 
     stream() << '\n';
     stream() << "void " << cfg().className << "::"
-             << "itemChanged(quint64 flags) {\n";
+             << "itemChanged(quint64 signalFlag) {\n";
     if (parseResult.hasNonModifySignals) {
-        stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << " |= flags;\n";
+        stream() << "  " << varPath(QStringLiteral("settingsChanged"), cfg()) << ".insert(signalFlag);\n";
     }
 
     if (!parseResult.signalList.isEmpty()) {
         stream() << '\n';
     }
 
+    bool modifySignalsWritten = false;
     for (const Signal &signal : std::as_const(parseResult.signalList)) {
         if (signal.modify) {
-            stream() << "  if ( flags & " << signalEnumName(signal.name) << " ) {\n";
+            if (!modifySignalsWritten) {
+                stream() << "  switch (signalFlag) {\n";
+                modifySignalsWritten = true;
+            }
+            stream() << "  case " << signalEnumName(signal.name) << ":\n";
             stream() << "    Q_EMIT " << signal.name << "();\n";
-            stream() << "  }\n";
+            stream() << "    break;\n";
         }
+    }
+    if (modifySignalsWritten) {
+        stream() << "  }\n";
     }
 
     stream() << "}\n";

@@ -259,7 +259,7 @@ void KConfigCodeGeneratorBase::memberMutatorBody(const CfgEntry *e)
         if (signal.modify) {
             m_stream << whitespace() << "  Q_EMIT " << m_this << signal.name << "();\n";
         } else {
-            m_stream << whitespace() << "  " << m_this << varPath(QStringLiteral("settingsChanged"), m_cfg) << " |= " << signalEnumName(signal.name) << ";\n";
+            m_stream << whitespace() << "  " << m_this << varPath(QStringLiteral("settingsChanged"), m_cfg) << ".insert(" << signalEnumName(signal.name) << ");\n";
         }
     }
     if (hasBody) {

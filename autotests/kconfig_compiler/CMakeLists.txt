@@ -312,13 +312,3 @@ set(test_enums_and_properties_SRCS enum_group_main.cpp)
 gen_kcfg_test_source(test_enums_and_properties test_enums_and_properties_SRCS GENERATE_MOC)
 ecm_add_test(TEST_NAME test_enums_and_properties ${test_enums_and_properties_SRCS})
 target_link_libraries(test_enums_and_properties KF5::ConfigGui)
-
-########### next target ###############
-
-set(test_64_entries_SRCS test_64_entries_main.cpp)
-gen_kcfg_test_source(test_64_entries test_64_entries_SRCS GENERATE_MOC)
-
-ecm_add_test(${test_64_entries_SRCS}
-    TEST_NAME test_64_entries
-    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test KF5::ConfigGui
-)

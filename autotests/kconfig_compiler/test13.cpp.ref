@@ -28,10 +28,12 @@ Test13::~Test13()
 }
 
 
-void Test13::itemChanged(quint64 flags) {
+void Test13::itemChanged(quint64 signalFlag) {
 
-  if ( flags & signalBrightnessChanged ) {
+  switch (signalFlag) {
+  case signalBrightnessChanged:
     Q_EMIT brightnessChanged();
+    break;
   }
 }
 
