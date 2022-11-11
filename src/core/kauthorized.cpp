@@ -299,7 +299,7 @@ KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
     d->urlActionRestrictions.append(URLActionRule("redirect", Any, Any, Any, QStringLiteral(":internet"), Any, Any, true));
 
     // We allow redirections to file: but not from internet protocols, redirecting to file:
-    // is very popular among io-slaves and we don't want to break them
+    // is very popular among KIO workers and we don't want to break them
     d->urlActionRestrictions.append(URLActionRule("redirect", Any, Any, Any, QStringLiteral("file"), Any, Any, true));
     d->urlActionRestrictions.append(URLActionRule("redirect", QStringLiteral(":internet"), Any, Any, QStringLiteral("file"), Any, Any, false));
 
