@@ -2,20 +2,21 @@
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2006, 2007, 2008.
 # Frederik Schwarzer <schwarzer@kde.org>, 2012, 2014, 2015, 2016, 2020, 2022.
 # Burkhard Lück <lueck@hube-lueck.de>, 2014, 2015, 2016, 2017, 2018, 2019, 2021.
+# Frank Steinmetzger <dev-kde@felsenfleischer.de>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-06-10 00:05+0200\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2022-11-10 21:00+0100\n"
+"Last-Translator: Frank Steinmetzger <dev-kde@felsenfleischer.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:965
@@ -507,16 +508,13 @@ msgid "Use <file> instead of global config"
 msgstr "<file> statt globaler Konfigurationsdatei verwenden"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
 msgstr ""
 "Zu durchsuchende Gruppe. Mehrfach verwenden zur Suche in verschachtelten "
-"Gruppen."
+"Gruppen, oder „<default>“ für die Wurzelgruppe."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -537,6 +535,8 @@ msgstr "Art der Variable"
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"Der Gruppenname darf nicht leer sein, benutzen Sie „<default>“ für die "
+"Wurzelgruppe"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
