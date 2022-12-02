@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: core/kconfig.cpp:965
 msgctxt "KConfig|"
@@ -453,12 +453,12 @@ msgstr "საქაღალდის შექმნა"
 #: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
-msgstr ""
+msgstr "KDE-ის პროგრამა მომხმარებლის კონფიგურაციის ფაილების განახლებისთვის"
 
 #: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr ""
+msgstr "გამოტანილი შედეგების სკრიპტებისგან დამალვა"
 
 #: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
@@ -466,21 +466,23 @@ msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
 "files"
 msgstr ""
+"მხოლოდ ერთეულის ტესტირებისთვის: გამოიყენეთ სატესტო საქაღალდეები, რათა "
+"მომხმარებლის რეალურ ფაილებს არ შეეხოთ"
 
 #: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
-msgstr ""
+msgstr "შემოწმება, კონფიგურაციის ფაილი თვითონ ხომ არ ითხოვს განახლებას"
 
 #: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
-msgstr ""
+msgstr "განახლების ინსტრუქციების ფაილი"
 
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr ""
+msgstr "ფაილების დასაგენერირებელი საქაღალდე [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
@@ -495,7 +497,7 @@ msgstr "სალიცენზიო შეთანხმების ჩვ�
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
-msgstr ""
+msgstr "გლობალური კონფიგურაციის მაგიერ<file> -ის გამოყენება"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
@@ -503,6 +505,8 @@ msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
 msgstr ""
+"მოსაძებნი ჯგუფი. გამოიყენეთ\"<default>\" საწყისი ჯგუფისთვის ან გამოიყენეთ "
+"გამეორებით, ჩალაგებული ჯგუფებისთვის."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -523,6 +527,7 @@ msgstr "ცვლადის ტიპი"
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"ჯგუფის სახელი ცარიელი ვერ იქნება. საწყისი ჯგუფისთვის გამოიყენეთ \"<default>\""
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
@@ -530,13 +535,15 @@ msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
 "string"
 msgstr ""
+"ცვლადის ტიპი. გამოიყენეთ \"bool\" ლოგიკური მნიშვნელობისთვის. წინააღმდეგ "
+"შემთხვევაში ის სტრიქონად აღიქმება"
 
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr ""
+msgstr "გამოყოფილი გასაღების წაშლა, თუ ჩართულია"
 
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr ""
+msgstr "ჩასაწერი მნიშვნელობა. გარსში, ცარიელისთვის გამოიყენეთ ''"
