@@ -611,6 +611,7 @@ bool KConfigIniBackend::lock()
 {
     Q_ASSERT(!filePath().isEmpty());
 
+    m_mutex.lock();
 #ifdef Q_OS_ANDROID
     if (!lockFile) {
         // handle content Uris properly
@@ -639,6 +640,7 @@ void KConfigIniBackend::unlock()
     lockFile->unlock();
     delete lockFile;
     lockFile = nullptr;
+    m_mutex.unlock();
 }
 
 bool KConfigIniBackend::isLocked() const

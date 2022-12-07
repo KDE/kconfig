@@ -12,6 +12,7 @@
 
 #include <kconfigbackend_p.h>
 #include <kconfigcore_export.h>
+#include <QMutex>
 
 class QLockFile;
 class QIODevice;
@@ -21,6 +22,7 @@ class KConfigIniBackend : public KConfigBackend
     Q_OBJECT
 private:
     QLockFile *lockFile;
+    QMutex m_mutex;
 
 public:
     class BufferFragment;
