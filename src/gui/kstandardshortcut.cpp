@@ -293,7 +293,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {Revert, "Revert", QT_TRANSLATE_NOOP3("KStandardShortcut", "Revert", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit},
     {PrintPreview, "PrintPreview", QT_TRANSLATE_NOOP3("KStandardShortcut", "Print Preview", "@action"), 0, 0, QList<QKeySequence>(), false, Category::File},
     {Mail, "Mail", QT_TRANSLATE_NOOP3("KStandardShortcut", "Mail", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help},
-    {Clear, "Clear", QT_TRANSLATE_NOOP3("KStandardShortcut", "Clear", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit},
+    {Clear, "Clear", QT_TRANSLATE_NOOP3("KStandardShortcut", "Clear", "@action"), CTRL(K), 0, QList<QKeySequence>(), false, Category::Edit},
     {ActualSize, "ActualSize", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom to Actual Size", "@action"), CTRL(0), 0, QList<QKeySequence>(), false, Category::View},
     {FitToPage, "FitToPage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Page", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
     {FitToWidth, "FitToWidth", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Width", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
