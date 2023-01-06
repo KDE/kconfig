@@ -5,27 +5,27 @@
 # Spiros Georgaras <sng@hellug.gr>, 2007.
 # Spiros Georgaras <sngeorgaras@otenet.gr>, 2008.
 # Dimitris Kardarakos <dimkard@gmail.com>, 2015, 2016.
-# Stelios <sstavra@gmail.com>, 2020.
+# Stelios <sstavra@gmail.com>, 2020, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2020-09-05 16:19+0300\n"
+"PO-Revision-Date: 2023-01-05 11:39+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:965
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr "Παρακαλώ επικοινωνήστε με τον διαχειριστή του συστήματός σας."
+msgstr "Επικοινωνήστε με τον διαχειριστή του συστήματός σας."
 
 #: core/kconfigini.cpp:561
 #, qt-format
@@ -272,7 +272,7 @@ msgstr "Επόμενο ταίριασμα συμπλήρωσης"
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
-msgstr "Συμπλήρωση υποσυμβολοσειράς"
+msgstr "Συμπλήρωση υπο-συμβολοσειράς"
 
 #: gui/kstandardshortcut.cpp:276
 msgctxt "KStandardShortcut|@action"
@@ -315,12 +315,9 @@ msgid "Clear"
 msgstr "Καθαρισμός"
 
 #: gui/kstandardshortcut.cpp:297
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Πραγματικό μέγεθος"
+msgstr "Εστίαση στο πραγματικό μέγεθος"
 
 #: gui/kstandardshortcut.cpp:298
 msgctxt "KStandardShortcut|@action"
@@ -395,7 +392,7 @@ msgstr "Πλήκτρα συνδυασμών"
 #: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
-msgstr "Διαμόρφωση εφαρμοφγής"
+msgstr "Διαμόρφωση εφαρμογής"
 
 #: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
@@ -513,15 +510,13 @@ msgid "Use <file> instead of global config"
 msgstr "Χρήση <αρχείου> αντί καθολικής διαμόρφωσης"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
 msgstr ""
-"Ομάδα στην οποία θα γίνει η αναζήτηση. Επαναλάβετε για εμφωλευμένες ομάδες."
+"Ομάδα στην οποία θα γίνει η αναζήτηση. Χρησιμοποιήστε \"<default>\" για την "
+"ομάδα του root ή επαναληπτικά για εμφωλευμένες ομάδες."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -542,6 +537,8 @@ msgstr "Τύπος μεταβλητής"
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"Το όνομα της ομάδας δεν μπορεί να είναι κενό, χρησιμοποιήστε \"<default>\" "
+"για την ομάδα του root"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
