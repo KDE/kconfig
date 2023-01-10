@@ -476,7 +476,18 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
     if (createNew) {
         QSaveFile file(filePath());
         if (!file.open(QIODevice::WriteOnly)) {
+#ifdef Q_OS_ANDROID
+            // HACK: when we are dealing with content:// URIs, QSaveFile has to rely on DirectWrite.
+            // Otherwise this method returns a false and we're done.
+            file.setDirectWriteFallback(true);
+            if (!file.open(QIODevice::WriteOnly)) {
+                qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << filePath() << ". Error:" << file.errorString();
+                return false;
+            }
+#else
+            qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << filePath() << ". Error:" << file.errorString();
             return false;
+#endif
         }
 
         file.setTextModeEnabled(true); // to get eol translation
