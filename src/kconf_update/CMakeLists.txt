@@ -19,10 +19,6 @@ target_link_libraries(kconf_update Qt${QT_MAJOR_VERSION}::Core KF5::ConfigCore)
 include(ECMMarkNonGuiExecutable)
 ecm_mark_nongui_executable(kconf_update)
 
-file(
-  GENERATE OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/kconf-exec.h
-  CONTENT "#define KCONF_UPDATE_EXECUTABLE \"$<TARGET_FILE:kconf_update>\""
-)
 configure_file(config-kconf.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconf.h )
 
 # Although this is mostly an internal binary (hence installing it in

@@ -64,8 +64,9 @@ static std::unique_ptr<QTemporaryFile> writeUpdFile(const QString &content)
 
 static void runKConfUpdate(const QString &updPath)
 {
-    QVERIFY(QFile::exists(QStringLiteral(KCONF_UPDATE_EXECUTABLE)));
-    QCOMPARE(0, QProcess::execute(QStringLiteral(KCONF_UPDATE_EXECUTABLE), QStringList{QStringLiteral("--testmode"), QStringLiteral("--debug"), updPath}));
+    const QString kconfUpdateExecutable = QFINDTESTDATA("kconf_update");
+    QVERIFY(QFile::exists(kconfUpdateExecutable));
+    QCOMPARE(0, QProcess::execute(kconfUpdateExecutable, QStringList{QStringLiteral("--testmode"), QStringLiteral("--debug"), updPath}));
 }
 
 void TestKConfUpdate::test_data()
