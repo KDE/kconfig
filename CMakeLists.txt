@@ -24,7 +24,7 @@ include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 
-set(REQUIRED_QT_VERSION 5.15.2)
+set(REQUIRED_QT_VERSION 6.4.0)
 
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
 option(KCONFIG_USE_GUI "Build components using Qt${QT_MAJOR_VERSION}Gui" ON)
