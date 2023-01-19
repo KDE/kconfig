@@ -3,7 +3,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-    <kcfgfile name="kconfig_compiler_kf5_test_rc">
+    <kcfgfile name="kconfig_compiler_kf6_test_rc">
         <parameter name="GeneralGroup" />
         <parameter name="SubGroup"/>
         <parameter name="AnotherSubGroup"/>

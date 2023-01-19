@@ -13,10 +13,10 @@ deprecated: false
 release: true
 libraries:
  - qmake: KConfigCore
-   cmake: "KF5::ConfigCore"
+   cmake: "KF6::ConfigCore"
  - qmake: KConfigGui
-   cmake: "KF5::ConfigGui"
-cmakename: KF5Config
+   cmake: "KF6::ConfigGui"
+cmakename: KF6Config
 
 public_lib: true
 group: Frameworks

@@ -103,7 +103,7 @@
 
   <group name="QueueRates">
     <entry name="queueRate$(QueueIndex)" type="IntList" key="EmptyingRate $(QueueIndex)">
-        <!-- kconfig_compiler_kf5 really should do this for me... -->
+        <!-- kconfig_compiler_kf6 really should do this for me... -->
         <code>  QList&lt; QList&lt;int&gt; &gt; defaultRate;
   QList&lt; int &gt; defaultRateInit;
 

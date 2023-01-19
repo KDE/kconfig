@@ -1,9 +1,9 @@
-add_library(KF5ConfigGui)
-add_library(KF5::ConfigGui ALIAS KF5ConfigGui)
+add_library(KF6ConfigGui)
+add_library(KF6::ConfigGui ALIAS KF6ConfigGui)
 
-ecm_create_qm_loader(KF5ConfigGui kconfig5_qt)
+ecm_create_qm_loader(KF6ConfigGui kconfig5_qt)
 
-target_sources(KF5ConfigGui PRIVATE
+target_sources(KF6ConfigGui PRIVATE
     kconfiggui.cpp
     kconfiggroupgui.cpp
     kconfigloader.cpp
@@ -14,7 +14,7 @@ target_sources(KF5ConfigGui PRIVATE
     kwindowstatesaver.cpp
 )
 
-ecm_qt_declare_logging_category(KF5ConfigGui
+ecm_qt_declare_logging_category(KF6ConfigGui
     HEADER kconfig_gui_log_settings.h
     IDENTIFIER KCONFIG_GUI_LOG
     CATEGORY_NAME kf.config.gui
@@ -22,7 +22,7 @@ ecm_qt_declare_logging_category(KF5ConfigGui
     EXPORT KCONFIG
 )
 
-ecm_generate_export_header(KF5ConfigGui
+ecm_generate_export_header(KF6ConfigGui
     BASE_NAME KConfigGui
     GROUP_BASE_NAME KF
     VERSION ${KF_VERSION}
@@ -31,12 +31,12 @@ ecm_generate_export_header(KF5ConfigGui
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5ConfigGui
+target_include_directories(KF6ConfigGui
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
 
-target_link_libraries(KF5ConfigGui PUBLIC Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Xml KF5::ConfigCore)
+target_link_libraries(KF6ConfigGui PUBLIC Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Xml KF6::ConfigCore)
 
-set_target_properties(KF5ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION}
+set_target_properties(KF6ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION}
                                               SOVERSION ${KCONFIG_SOVERSION}
                                               EXPORT_NAME ConfigGui
 )
@@ -55,13 +55,13 @@ ecm_generate_headers(KConfigGui_HEADERS
 )
 
 if (NOT BUILD_SHARED_LIBS)
-    target_sources(KF5ConfigGui PUBLIC 
+    target_sources(KF6ConfigGui PUBLIC 
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/kconfigguistaticinitializer.cpp>
         $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui/kconfigguistaticinitializer.cpp>
     )
 endif()
 
-install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF6ConfigGui EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
@@ -75,5 +75,5 @@ set(KConfigGui_APIDOX_SRCS ${KConfigGui_HEADERS} PARENT_SCOPE)
 set(KConfigGui_APIDOX_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF5ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui)
+ecm_generate_pri_file(BASE_NAME KConfigGui LIB_NAME KF6ConfigGui DEPS "gui xml KConfigCore" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})

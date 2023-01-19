@@ -17,9 +17,9 @@ ecm_qt_install_logging_categories(
 
 if (BUILD_QCH)
     ecm_add_qch(
-        KF5Config_QCH
+        KF6Config_QCH
         NAME KConfig
-        BASE_NAME KF5Config
+        BASE_NAME KF6Config
         VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API

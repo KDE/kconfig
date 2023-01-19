@@ -247,7 +247,7 @@ QString param(const QString &t)
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("const QList<QUrl> &");
     } else {
-        std::cerr << "kconfig_compiler_kf5 does not support type \"" << qPrintable(type) << "\"" << std::endl;
+        std::cerr << "kconfig_compiler_kf6 does not support type \"" << qPrintable(type) << "\"" << std::endl;
         return QStringLiteral("QString"); // For now, but an assert would be better
     }
 }
@@ -301,7 +301,7 @@ QString cppType(const QString &t)
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("QList<QUrl>");
     } else {
-        std::cerr << "kconfig_compiler_kf5 does not support type \"" << qPrintable(type) << "\"" << std::endl;
+        std::cerr << "kconfig_compiler_kf6 does not support type \"" << qPrintable(type) << "\"" << std::endl;
         return QStringLiteral("QString"); // For now, but an assert would be better
     }
 }
@@ -352,7 +352,7 @@ QString defaultValue(const QString &t)
     } else if (type == QLatin1String("urllist")) {
         return QStringLiteral("QList<QUrl>()");
     } else {
-        std::cerr << "Error, kconfig_compiler_kf5 does not support the \"" << qPrintable(type) << "\" type!" << std::endl;
+        std::cerr << "Error, kconfig_compiler_kf6 does not support the \"" << qPrintable(type) << "\" type!" << std::endl;
         return QStringLiteral("QString"); // For now, but an assert would be better
     }
 }

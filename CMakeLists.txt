@@ -58,8 +58,8 @@ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt 
 
 ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
                         VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h"
-                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5ConfigConfigVersion.cmake"
-                        SOVERSION 5)
+                        PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfigVersion.cmake"
+                        SOVERSION 6)
 
 ecm_set_disabled_deprecation_versions(
     QT 5.15.2
@@ -75,38 +75,38 @@ ecm_install_po_files_as_qm(poqm)
 
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5Config")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Config")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
-        TARGETS KF5Config_QCH
-        FILE KF5ConfigQchTargets.cmake
+        TARGETS KF6Config_QCH
+        FILE KF6ConfigQchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF5ConfigQchTargets.cmake\")")
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6ConfigQchTargets.cmake\")")
 endif()
 
 include(CMakePackageConfigHelpers)
 
-configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF5ConfigConfig.cmake.in"
-                              "${CMAKE_CURRENT_BINARY_DIR}/KF5ConfigConfig.cmake"
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6ConfigConfig.cmake.in"
+                              "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfig.cmake"
                               INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
                               )
 
-install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF5ConfigConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KF5ConfigConfigVersion.cmake"
-               "${CMAKE_CURRENT_SOURCE_DIR}/KF5ConfigMacros.cmake"
+install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfig.cmake"
+               "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfigVersion.cmake"
+               "${CMAKE_CURRENT_SOURCE_DIR}/KF6ConfigMacros.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel )
 
 
-install(EXPORT KF5ConfigTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE KF5ConfigTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
+install(EXPORT KF6ConfigTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KF6ConfigTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 
 
-install(EXPORT KF5ConfigCompilerTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE KF5ConfigCompilerTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
+install(EXPORT KF6ConfigCompilerTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KF6ConfigCompilerTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfig COMPONENT Devel)

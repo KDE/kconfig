@@ -27,17 +27,17 @@ ecm_add_test(
   test_kconfigutils.cpp
   ../src/kconf_update/kconfigutils.cpp
   TEST_NAME test_kconfigutils
-  LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Test
+  LINK_LIBRARIES KF6::ConfigCore Qt${QT_MAJOR_VERSION}::Test
 )
 target_include_directories(test_kconfigutils PRIVATE ../src/kconf_update)
 
 qt_add_resources(sharedconfigresources sharedconfigresources.qrc)
 
-ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent)
+ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF6::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent)
 
 # test for fallback to :/kconfig/xxxx config resource
 qt_add_resources(fallbackconfigresources fallbackconfigresources.qrc)
-ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent)
+ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF6::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent)
 
 ecm_add_tests(
    kconfignokdehometest.cpp
@@ -46,7 +46,7 @@ ecm_add_tests(
    test_kconf_update.cpp
    ksharedconfig_in_global_object.cpp
    NAME_PREFIX kconfigcore-
-   LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent
+   LINK_LIBRARIES KF6::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent
 )
 
 target_include_directories(test_kconf_update PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../src/kconf_update)
@@ -58,7 +58,7 @@ ecm_add_tests(
    kconfigskeletontest.cpp
    kstandardshortcuttest.cpp
    NAME_PREFIX kconfiggui-
-   LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test
+   LINK_LIBRARIES KF6::ConfigGui Qt${QT_MAJOR_VERSION}::Test
 )
 
 ecm_add_test(
@@ -66,11 +66,11 @@ ecm_add_test(
    # add sources instead of linking so we can use the unexported initialize()
    ../src/gui/kstandardshortcut.cpp
    ../src/gui/kstandardshortcutwatcher.cpp
-   LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Test
+   LINK_LIBRARIES KF6::ConfigCore Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Test
    TEST_NAME kstandardshortcutwatchertest
    NAME_PREFIX kconfiggui-
 )
-target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF5ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
+target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF6ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
 target_compile_definitions(kstandardshortcutwatchertest PRIVATE "-DKCONFIGGUI_STATIC_DEFINE")
 
 # These tests do a global cleanup of ~/.qttest, so they can't run in parallel
@@ -85,5 +85,5 @@ endif()
 
 find_package(Qt${QT_MAJOR_VERSION} OPTIONAL_COMPONENTS Widgets)
 if (TARGET Qt${QT_MAJOR_VERSION}::Widgets)
-    ecm_add_test(kwindowstatesavertest.cpp LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Widgets)
+    ecm_add_test(kwindowstatesavertest.cpp LINK_LIBRARIES KF6::ConfigGui Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Widgets)
 endif()
