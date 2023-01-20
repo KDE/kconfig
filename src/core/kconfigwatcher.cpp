@@ -73,7 +73,10 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
                                               QStringLiteral("org.kde.kconfig.notify"),
                                               QStringLiteral("ConfigChanged"),
                                               this,
-                                              SLOT(onConfigChangeNotification(QHash<QString, QByteArrayList>)));
+                                              // clang-format off
+                                              SLOT(onConfigChangeNotification(QHash<QString,QByteArrayList>))
+                                              // clang-format on
+        );
     }
 #else
     qCWarning(KCONFIG_CORE_LOG) << "Use of KConfigWatcher without DBus support. You will not receive updates";
