@@ -42,7 +42,7 @@ enum GenericRestriction {
     // GUI behavior
     LINEEDIT_REVEAL_PASSWORD, /// if typed characters in password fields can be made visible
     LINEEDIT_TEXT_COMPLETION, /// if line edits should be allowed to display completions
-    MOVABLE_TOOLBARS, /// if toolbars of of apps should be movable
+    MOVABLE_TOOLBARS, /// if toolbars of apps should be movable
     RUN_DESKTOP_FILES, /// if .desktop files should be run as executables when clicked
 };
 Q_ENUM_NS(GenericRestriction)

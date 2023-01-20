@@ -802,7 +802,7 @@ public:
         QList<Choice> choices2() const;
 
         /**
-         * Returns the value for for the choice with the given @p name
+         * Returns the value for the choice with the given @p name
          */
         QString valueForChoice(const QString &name) const;
 
