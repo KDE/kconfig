@@ -25,13 +25,13 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
 {
     const auto errString = [&]() {
         return QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
-            .arg(QLatin1String(key), QLatin1String(QVariant::typeToName(input.type())), QLatin1String(data.constData()));
+            .arg(QLatin1String(key), QLatin1String(input.typeName()), QLatin1String(data.constData()));
     };
 
     // set in case of failure
     output = input;
 
-    switch (static_cast<QMetaType::Type>(input.type())) {
+    switch (static_cast<QMetaType::Type>(input.userType())) {
     case QMetaType::QColor: {
         if (data.isEmpty() || data == "invalid") {
             output = QColor(); // return what was stored
@@ -94,7 +94,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
 
     case QMetaType::QFont: {
         QVariant tmp = QString::fromUtf8(data.constData(), data.length());
-        if (tmp.convert(QMetaType::QFont)) {
+        if (tmp.canConvert<QFont>()) {
             output = tmp;
         } else {
             qCritical() << qPrintable(errString());
@@ -128,7 +128,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
  */
 static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop, KConfigGroup::WriteConfigFlags pFlags)
 {
-    switch (static_cast<QMetaType::Type>(prop.type())) {
+    switch (static_cast<QMetaType::Type>(prop.userType())) {
     case QMetaType::QColor: {
         const QColor rColor = prop.value<QColor>();
 

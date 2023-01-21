@@ -267,7 +267,7 @@ static QList<QByteArray> readLinesFrom(const QString &path)
     const bool opened = file.open(QIODevice::ReadOnly | QIODevice::Text);
     QList<QByteArray> lines;
     if (!opened) {
-        QWARN(qPrintable(QLatin1String("Failed to open ") + path));
+        qWarning() << "Failed to open" << path;
         return lines;
     }
     QByteArray line;

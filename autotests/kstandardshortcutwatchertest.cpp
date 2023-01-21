@@ -25,7 +25,7 @@ private Q_SLOTS:
 
 Q_DECLARE_METATYPE(KStandardShortcut::StandardShortcut)
 
-const QList<QKeySequence> newShortcut = {Qt::CTRL + Qt::Key_Adiaeresis};
+const QList<QKeySequence> newShortcut = {Qt::CTRL | Qt::Key_Adiaeresis};
 
 void KStandardShortcutWatcherTest::initTestCase()
 {

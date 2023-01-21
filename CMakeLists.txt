@@ -62,7 +62,7 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
                         SOVERSION 6)
 
 ecm_set_disabled_deprecation_versions(
-    QT 5.15.2
+    QT 6.4
 )
 
 add_subdirectory(src)

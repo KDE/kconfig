@@ -216,7 +216,7 @@ static QVector<qreal> asRealList(const QByteArray &string)
 static QString errString(const char *pKey, const QByteArray &value, const QVariant &aDefault)
 {
     return QStringLiteral("\"%1\" - conversion of \"%3\" to %2 failed")
-        .arg(QString::fromLatin1(pKey), QString::fromLatin1(QVariant::typeToName(aDefault.type())), QString::fromLatin1(value));
+        .arg(QString::fromLatin1(pKey), QString::fromLatin1(aDefault.typeName()), QString::fromLatin1(value));
 }
 
 static QString formatError(int expected, int got)
@@ -229,7 +229,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     // if a type handler is added here you must add a QVConversions definition
     // to conversioncheck.h, or ConversionCheck::to_QVariant will not allow
     // readEntry<T> to convert to QVariant.
-    switch (static_cast<QMetaType::Type>(aDefault.type())) {
+    switch (static_cast<QMetaType::Type>(aDefault.userType())) {
     case QMetaType::UnknownType:
         return QVariant();
     case QMetaType::QString:
@@ -258,7 +258,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     case QMetaType::LongLong:
     case QMetaType::ULongLong: {
         QVariant tmp = value;
-        if (!tmp.convert(aDefault.type())) {
+        if (!tmp.convert(aDefault.metaType())) {
             tmp = aDefault;
         }
         return tmp;
@@ -884,7 +884,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariantList &list, WriteCo
     data.reserve(list.count());
 
     for (const QVariant &v : list) {
-        if (v.type() == QVariant::ByteArray) {
+        if (v.userType() == QMetaType::QByteArray) {
             data << v.toByteArray();
         } else {
             data << v.toString().toUtf8();
@@ -907,7 +907,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
     // if a type handler is added here you must add a QVConversions definition
     // to conversioncheck.h, or ConversionCheck::to_QVariant will not allow
     // writeEntry<T> to convert to QVariant.
-    switch (static_cast<QMetaType::Type>(value.type())) {
+    switch (static_cast<QMetaType::Type>(value.userType())) {
     case QMetaType::UnknownType:
         data = "";
         break;
@@ -925,7 +925,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
         data = value.toString().toUtf8();
         break;
     case QMetaType::QVariantList:
-        if (!value.canConvert(QMetaType::QStringList)) {
+        if (!value.canConvert<QStringList>()) {
             qCWarning(KCONFIG_CORE_LOG) << "not all types in \"" << key
                                         << "\" can convert to QString,"
                                            " information will be lost";
