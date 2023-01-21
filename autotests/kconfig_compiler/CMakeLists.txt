@@ -177,7 +177,7 @@ set(test_state_config_SRCS test_state_config_main.cpp)
 gen_kcfg_test_source(test_state_config test_state_config_SRCS GENERATE_MOC)
 
 ecm_add_test(TEST_NAME test_state_config ${test_state_config_SRCS})
-target_link_libraries(test_state_config KF6::ConfigGui Qt${QT_MAJOR_VERSION}::Test)
+target_link_libraries(test_state_config KF6::ConfigGui Qt6::Test)
 
 ########### next target ###############
 
@@ -235,7 +235,7 @@ gen_kcfg_test_source(signals_test_singleton_itemaccessors kconfigcompiler_test_s
 
 ecm_add_test(${kconfigcompiler_test_signals_SRCS}
     TEST_NAME kconfigcompiler-signals-test
-    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test KF6::ConfigGui
+    LINK_LIBRARIES Qt6::Test KF6::ConfigGui
 )
 
 ########### next target ###############
@@ -262,7 +262,7 @@ ecm_add_test(${test_param_minmax_SRCS}
 
 ecm_add_test(kconfigcompiler_test.cpp
     TEST_NAME kconfigcompiler-basic-test
-    LINK_LIBRARIES Qt${QT_MAJOR_VERSION}::Test
+    LINK_LIBRARIES Qt6::Test
 )
 
 

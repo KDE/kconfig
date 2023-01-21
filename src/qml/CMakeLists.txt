@@ -16,7 +16,7 @@ ecm_generate_export_header(KF6ConfigQml
 target_link_libraries(KF6ConfigQml
   PUBLIC
     KF6::ConfigCore # KCoreConfigSkeleton, in ConfigPropertyMap
-    Qt${QT_MAJOR_VERSION}::Qml
+    Qt6::Qml
 )
 set_target_properties(KF6ConfigQml PROPERTIES VERSION     ${KCONFIG_VERSION}
                                               SOVERSION   ${KCONFIG_SOVERSION}

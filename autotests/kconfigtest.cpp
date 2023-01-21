@@ -517,9 +517,6 @@ void KConfigTest::testPath()
         QFile file(m_testConfigDir + QLatin1String("/pathtest"));
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        out.setCodec("UTF-8");
-#endif
         out << "[Test Group]\n"
             << "homePath=$HOME/foo\n"
             << "homePath2=file://$HOME/foo\n"
@@ -581,9 +578,6 @@ void KConfigTest::testPathQtHome()
         QFile file(m_testConfigDir + QLatin1String("/pathtest"));
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        out.setCodec("UTF-8");
-#endif
         out << "[Test Group]\n"
             << "dataDir[$e]=$QT_DATA_HOME/kconfigtest\n"
             << "cacheDir[$e]=$QT_CACHE_HOME/kconfigtest\n"
@@ -1039,9 +1033,6 @@ void KConfigTest::testMerge()
         QFile file(m_testConfigDir + QLatin1String("/mergetest"));
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        out.setCodec("UTF-8");
-#endif
         out << "[Merged Group]\n"
             << "entry1=Testing\n"
             << "entry2=More Testing\n"
@@ -1079,9 +1070,6 @@ void KConfigTest::testImmutable()
         QFile file(m_testConfigDir + QLatin1String("/immutabletest"));
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        out.setCodec("UTF-8");
-#endif
         out << "[$i]\n"
             << "entry1=Testing\n"
             << "[group][$i]\n"
@@ -1106,9 +1094,6 @@ void KConfigTest::testOptionOrder()
         QFile file(m_testConfigDir + QLatin1String("/doubleattrtest"));
         file.open(QIODevice::WriteOnly | QIODevice::Text);
         QTextStream out(&file);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        out.setCodec("UTF-8");
-#endif
         out << "[group3]\n"
             << "entry2=unlocalized\n"
             << "entry2[$i][de_DE]=t2\n";
@@ -1985,7 +1970,6 @@ void KConfigTest::testThreads()
     QThreadPool::globalInstance()->setMaxThreadCount(6);
     // Run in parallel some tests that work on different config files,
     // otherwise unexpected things might indeed happen.
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     const QList<QFuture<void>> futures = {
         QtConcurrent::run(&KConfigTest::testAddConfigSources, this),
         QtConcurrent::run(&KConfigTest::testSimple, this),
@@ -1993,15 +1977,6 @@ void KConfigTest::testThreads()
         QtConcurrent::run(&KConfigTest::testSharedConfig, this),
         QtConcurrent::run(&KConfigTest::testSharedConfig, this),
     };
-#else
-    const QList<QFuture<void>> futures = {
-        QtConcurrent::run(this, &KConfigTest::testAddConfigSources),
-        QtConcurrent::run(this, &KConfigTest::testSimple),
-        QtConcurrent::run(this, &KConfigTest::testDefaults),
-        QtConcurrent::run(this, &KConfigTest::testSharedConfig),
-        QtConcurrent::run(this, &KConfigTest::testSharedConfig),
-    };
-#endif
 
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     // futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);

@@ -1,5 +1,5 @@
 add_subdirectory(core)
-if(TARGET Qt${QT_MAJOR_VERSION}::Gui)
+if(TARGET Qt6::Gui)
     add_subdirectory(gui)
 endif()
 if(KCONFIG_USE_QML)

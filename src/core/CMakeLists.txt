@@ -45,10 +45,10 @@ target_include_directories(KF6ConfigCore
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>"
 )
 
-target_link_libraries(KF6ConfigCore PUBLIC Qt${QT_MAJOR_VERSION}::Core)
+target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
 
 if(KCONFIG_USE_DBUS)
-    target_link_libraries(KF6ConfigCore PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
+    target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)
 endif()
 
 set_target_properties(KF6ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION}

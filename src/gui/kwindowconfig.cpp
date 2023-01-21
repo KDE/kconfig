@@ -12,15 +12,6 @@
 #include <QScreen>
 #include <QWindow>
 
-// QScreen::name() returns garbage on Windows; see https://bugreports.qt.io/browse/QTBUG-74317
-// So we use the screens' serial numbers to identify them instead
-// FIXME: remove this once we can depend on Qt 6.4, where this is fixed
-#if defined(Q_OS_WINDOWS) && QT_VERSION < QT_VERSION_CHECK(6, 4, 0)
-#define SCREENNAME serialNumber
-#else
-#define SCREENNAME name
-#endif
-
 static const char s_initialSizePropertyName[] = "_kconfig_initial_size";
 static const char s_initialScreenSizePropertyName[] = "_kconfig_initial_screen_size";
 
@@ -31,7 +22,7 @@ static QString allConnectedScreens()
     const auto screens = QGuiApplication::screens();
     names.reserve(screens.length());
     for (auto screen : screens) {
-        names << screen->SCREENNAME();
+        names << screen->name();
     }
     return names.join(QLatin1Char(' '));
 }
@@ -40,11 +31,11 @@ static QString allConnectedScreens()
 // returns current window screen if not found
 static QScreen *findScreenByName(const QWindow *window, const QString screenName)
 {
-    if (screenName == window->screen()->SCREENNAME()) {
+    if (screenName == window->screen()->name()) {
         return window->screen();
     }
     for (QScreen *s : window->screen()->virtualSiblings()) {
-        if (s->SCREENNAME() == screenName) {
+        if (s->name() == screenName) {
             return s;
         }
     }
@@ -58,7 +49,7 @@ static QString configFileString(const QScreen *screen, const QString &key)
     // We include resolution data to also save data on a per-resolution basis
     const QString returnString =
         QStringLiteral("%1 %2 %3x%4 %5")
-            .arg(allConnectedScreens(), key, QString::number(screen->geometry().width()), QString::number(screen->geometry().height()), screen->SCREENNAME());
+            .arg(allConnectedScreens(), key, QString::number(screen->geometry().width()), QString::number(screen->geometry().height()), screen->name());
     return returnString;
 }
 
@@ -129,7 +120,7 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
         return;
     }
 
-    const QString screenName = config.readEntry(windowScreenPositionString(), window->screen()->SCREENNAME());
+    const QString screenName = config.readEntry(windowScreenPositionString(), window->screen()->name());
     const QScreen *screen = findScreenByName(window, screenName);
 
     // Fall back to non-per-screen-arrangement info if it's available but
@@ -175,7 +166,7 @@ void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &conf
     const QScreen *screen = window->screen();
     config.writeEntry(windowXPositionString(screen), window->x(), options);
     config.writeEntry(windowYPositionString(screen), window->y(), options);
-    config.writeEntry(windowScreenPositionString(), screen->SCREENNAME(), options);
+    config.writeEntry(windowScreenPositionString(), screen->name(), options);
 }
 
 void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &config)
@@ -196,8 +187,8 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
     }
 
     // Move window to proper screen
-    const QString screenName = config.readEntry(windowScreenPositionString(), screen->SCREENNAME());
-    if (screenName != screen->SCREENNAME()) {
+    const QString screenName = config.readEntry(windowScreenPositionString(), screen->name());
+    if (screenName != screen->name()) {
         QScreen *screenConf = findScreenByName(window, screenName);
         window->setScreen(screenConf);
         restoreWindowScreenPosition(window, screenConf, config);
