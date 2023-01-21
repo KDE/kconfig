@@ -1258,32 +1258,12 @@ void KCoreConfigSkeleton::usrSetDefaults()
 
 void KCoreConfigSkeleton::usrRead()
 {
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-    usrReadConfig();
-#endif
 }
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-void KCoreConfigSkeleton::usrReadConfig()
-{
-}
-#endif
 
 bool KCoreConfigSkeleton::usrSave()
 {
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-    return usrWriteConfig();
-#else
-    return true;
-#endif
-}
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-bool KCoreConfigSkeleton::usrWriteConfig()
-{
     return true;
 }
-#endif
 
 void KCoreConfigSkeleton::addItem(KConfigSkeletonItem *item, const QString &name)
 {
@@ -1389,13 +1369,6 @@ KCoreConfigSkeleton::ItemLongLong *KCoreConfigSkeleton::addItemLongLong(const QS
     return item;
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-KCoreConfigSkeleton::ItemLongLong *KCoreConfigSkeleton::addItemInt64(const QString &name, qint64 &reference, qint64 defaultValue, const QString &key)
-{
-    return addItemLongLong(name, reference, defaultValue, key);
-}
-#endif
-
 KCoreConfigSkeleton::ItemULongLong *KCoreConfigSkeleton::addItemULongLong(const QString &name, quint64 &reference, quint64 defaultValue, const QString &key)
 {
     KCoreConfigSkeleton::ItemULongLong *item;
@@ -1403,13 +1376,6 @@ KCoreConfigSkeleton::ItemULongLong *KCoreConfigSkeleton::addItemULongLong(const 
     addItem(item, name);
     return item;
 }
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-KCoreConfigSkeleton::ItemULongLong *KCoreConfigSkeleton::addItemUInt64(const QString &name, quint64 &reference, quint64 defaultValue, const QString &key)
-{
-    return addItemULongLong(name, reference, defaultValue, key);
-}
-#endif
 
 KCoreConfigSkeleton::ItemDouble *KCoreConfigSkeleton::addItemDouble(const QString &name, double &reference, double defaultValue, const QString &key)
 {

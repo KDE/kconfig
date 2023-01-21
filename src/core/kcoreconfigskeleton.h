@@ -765,9 +765,6 @@ public:
         qint64 mMin;
         qint64 mMax;
     };
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    typedef KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use ItemLongLong") ItemLongLong ItemInt64;
-#endif
 
     /**
      * Class for handling enums.
@@ -894,9 +891,6 @@ public:
         quint64 mMin;
         quint64 mMax;
     };
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    typedef KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use ItemULongLong") ItemULongLong ItemUInt64;
-#endif
 
     /**
      * Class for handling a floating point preference item.
@@ -1152,18 +1146,6 @@ public:
      */
     void load();
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * @deprecated since 5.0, call load() instead (to reload from disk) or just read()
-     * if the underlying KConfig object is already up-to-date.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::load() or KCoreConfigSkeleton::read()")
-    void readConfig()
-    {
-        load();
-    }
-#endif
-
     /**
      * Read preferences from the KConfig object.
      * This method assumes that the KConfig object was previously loaded,
@@ -1330,14 +1312,6 @@ public:
      */
     ItemLongLong *addItemLongLong(const QString &name, qint64 &reference, qint64 defaultValue = 0, const QString &key = QString());
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * @deprecated Since 5.0, use addItemLongLong().
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::addItemLongLong(...)")
-    ItemLongLong *addItemInt64(const QString &name, qint64 &reference, qint64 defaultValue = 0, const QString &key = QString());
-#endif
-
     /**
      * Register an item of type @c quint64.
      *
@@ -1350,14 +1324,6 @@ public:
      * @return The created item
      */
     ItemULongLong *addItemULongLong(const QString &name, quint64 &reference, quint64 defaultValue = 0, const QString &key = QString());
-
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * @deprecated Since 5.0, use addItemULongLong().
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::addItemULongLong(...)")
-    ItemULongLong *addItemUInt64(const QString &name, quint64 &reference, quint64 defaultValue = 0, const QString &key = QString());
-#endif
 
     /**
      * Register an item of type @c double.
@@ -1524,17 +1490,6 @@ public Q_SLOTS:
      */
     bool save();
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * @deprecated since 5.0, call save() instead.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Use KCoreConfigSkeleton::save()")
-    void writeConfig()
-    {
-        save();
-    }
-#endif
-
 Q_SIGNALS:
     /**
      * This signal is emitted when the configuration change.
@@ -1572,24 +1527,6 @@ protected:
      * Called from @ref save()
      */
     virtual bool usrSave();
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-    /**
-     * @deprecated since 5.0, override usrRead instead.  This method is still called from usrRead
-     * for compatibility.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Override KCoreConfigSkeleton::usrRead()")
-    virtual void usrReadConfig();
-#endif
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-    /**
-     * @deprecated since 5.0, override usrSave instead.  This method is still called from usrSave
-     * for compatibility.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Override KCoreConfigSkeleton::usrSave()")
-    virtual bool usrWriteConfig();
-#endif
 
 private:
     KCoreConfigSkeletonPrivate *const d;

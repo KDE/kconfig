@@ -294,7 +294,14 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {PrintPreview, "PrintPreview", QT_TRANSLATE_NOOP3("KStandardShortcut", "Print Preview", "@action"), 0, 0, QList<QKeySequence>(), false, Category::File},
     {Mail, "Mail", QT_TRANSLATE_NOOP3("KStandardShortcut", "Mail", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help},
     {Clear, "Clear", QT_TRANSLATE_NOOP3("KStandardShortcut", "Clear", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit},
-    {ActualSize, "ActualSize", QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom to Actual Size", "@action"), CTRL(0), 0, QList<QKeySequence>(), false, Category::View},
+    {ActualSize,
+     "ActualSize",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Zoom to Actual Size", "@action"),
+     CTRL(0),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::View},
     {FitToPage, "FitToPage", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Page", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
     {FitToWidth, "FitToWidth", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Width", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
     {FitToHeight, "FitToHeight", QT_TRANSLATE_NOOP3("KStandardShortcut", "Fit To Height", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
@@ -328,13 +335,14 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {Spelling, "Spelling", QT_TRANSLATE_NOOP3("KStandardShortcut", "Spelling", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Edit},
     {ShowToolbar, "ShowToolbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Toolbar", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
     {ShowStatusbar, "ShowStatusbar", QT_TRANSLATE_NOOP3("KStandardShortcut", "Show Statusbar", "@action"), 0, 0, QList<QKeySequence>(), false, Category::View},
-#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 39)
-    {SaveOptions, "SaveOptions", QT_TRANSLATE_NOOP3("KStandardShortcut", "Save Options", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Settings},
-#else
-    // dummy entry
-    {SaveOptions_DEPRECATED_DO_NOT_USE, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory},
-#endif
-    {KeyBindings, "KeyBindings", QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"), CTRLALT(Comma), 0, QList<QKeySequence>(), false, Category::Settings},
+    {KeyBindings,
+     "KeyBindings",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Key Bindings", "@action"),
+     CTRLALT(Comma),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Settings},
     {Preferences,
      "Preferences",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Application", "@action"),
@@ -535,11 +543,7 @@ StandardShortcut find(const QKeySequence &seq)
     if (!seq.isEmpty()) {
         for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
             const StandardShortcut id = shortcutInfo.id;
-#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 39)
             if (id != AccelNone) {
-#else
-            if (id != AccelNone && id != SaveOptions_DEPRECATED_DO_NOT_USE) {
-#endif
                 if (!shortcutInfo.isInitialized) {
                     initialize(id);
                 }
@@ -551,19 +555,6 @@ StandardShortcut find(const QKeySequence &seq)
     }
     return AccelNone;
 }
-
-#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 71)
-StandardShortcut find(const char *keyName)
-{
-    for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
-        if (qstrcmp(shortcutInfo.name, keyName) == 0) {
-            return shortcutInfo.id;
-        }
-    }
-
-    return AccelNone;
-}
-#endif
 
 StandardShortcut findByName(const QString &name)
 {

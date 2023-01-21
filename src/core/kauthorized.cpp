@@ -254,13 +254,6 @@ bool KAuthorized::authorizeAction(KAuthorized::GenericAction action)
     return false;
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 24)
-bool KAuthorized::authorizeKAction(const QString &action)
-{
-    return authorizeAction(action);
-}
-#endif
-
 bool KAuthorized::authorizeControlModule(const QString &menuId)
 {
     if (menuId.isEmpty() || kde_kiosk_exception) {

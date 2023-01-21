@@ -568,24 +568,6 @@ void KConfigGroup::deleteGroup(WriteConfigFlags flags)
     config()->deleteGroup(d->fullName(), flags);
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-void KConfigGroup::changeGroup(const QString &group)
-{
-    Q_ASSERT_X(isValid(), "KConfigGroup::changeGroup", "accessing an invalid group");
-    d.detach();
-    d->mName = group.toUtf8();
-}
-#endif
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 0)
-void KConfigGroup::changeGroup(const char *group)
-{
-    Q_ASSERT_X(isValid(), "KConfigGroup::changeGroup", "accessing an invalid group");
-    d.detach();
-    d->mName = group;
-}
-#endif
-
 QString KConfigGroup::name() const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::name", "accessing an invalid group");

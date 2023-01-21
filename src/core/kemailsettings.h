@@ -48,41 +48,9 @@ public:
         OutServer,
         OutServerLogin,
         OutServerPass,
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-        /**
-         * @deprecated since 5.0
-         */
-        OutServerType KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
-        /**
-         * @deprecated since 5.0
-         */
-        OutServerCommand KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
-        /**
-         * @deprecated since 5.0
-         */
-        OutServerTLS KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
-#else
-        OutServerType_DEPRECATED_DO_NOT_USE,
-        OutServerCommand_DEPRECATED_DO_NOT_USE,
-        OutServerTLS_DEPRECATED_DO_NOT_USE,
-#endif
         InServer,
         InServerLogin,
         InServerPass,
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-        /**
-         * @deprecated since 5.0
-         */
-        InServerType KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
-        /**
-         * @deprecated since 5.0
-         */
-        InServerMBXType KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users"),
-        /**
-         * @deprecated since 5.0
-         */
-        InServerTLS KCONFIGCORE_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 5, 0, "No known users")
-#endif
     };
 
     /**
@@ -113,17 +81,6 @@ public:
      * @return the list of profiles
      **/
     QStringList profiles() const;
-
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * Returns the name of the current profile.
-     * @returns what profile we're currently using
-     * @deprecated Since 5.0
-     **/
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "API planned to be changed")
-    QString currentProfileName() const;
-    // see https://git.reviewboard.kde.org/r/111910/
-#endif
 
     /**
      * Change the current profile.

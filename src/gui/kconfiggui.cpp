@@ -49,14 +49,3 @@ bool KConfigGui::hasSessionConfig()
 {
     return s_sessionConfig != nullptr;
 }
-
-#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 11)
-QString KConfigGui::sessionConfigName()
-{
-    if (sessionConfig()) {
-        return sessionConfig()->name();
-    } else {
-        return QString();
-    }
-}
-#endif

@@ -216,14 +216,6 @@ QString KDesktopFile::readPath() const
     return d->desktopGroup.readEntry("Path", QString());
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 82)
-QString KDesktopFile::readDevice() const
-{
-    Q_D(const KDesktopFile);
-    return d->desktopGroup.readEntry("Dev", QString());
-}
-#endif
-
 QString KDesktopFile::readUrl() const
 {
     Q_D(const KDesktopFile);
@@ -320,14 +312,6 @@ bool KDesktopFile::tryExec() const
     return true;
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 42)
-QStringList KDesktopFile::sortOrder() const
-{
-    Q_D(const KDesktopFile);
-    return d->desktopGroup.readXdgListEntry("SortOrder");
-}
-#endif
-
 QString KDesktopFile::readDocPath() const
 {
     Q_D(const KDesktopFile);
@@ -341,14 +325,6 @@ KDesktopFile *KDesktopFile::copyTo(const QString &file) const
     //  config->setDesktopGroup();
     return config;
 }
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 89)
-QStandardPaths::StandardLocation KDesktopFile::resource() const
-{
-    Q_D(const KDesktopFile);
-    return d->resourceType;
-}
-#endif
 
 QString KDesktopFile::fileName() const
 {
