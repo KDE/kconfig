@@ -1,5 +1,5 @@
 add_executable(kconf_update)
-add_executable(KF6::kconf_update ALIAS kconf_update)
+add_executable(KF5::kconf_update ALIAS kconf_update)
 
 target_sources(kconf_update PRIVATE
     kconf_update.cpp
@@ -27,4 +27,4 @@ configure_file(config-kconf.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconf.h )
 
 # Although this is mostly an internal binary (hence installing it in
 # KF6_LIBEXEC_INSTALL_DIR), it is used by kded, and so we export its location
-install(TARGETS kconf_update EXPORT KF6ConfigCompilerTargets DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF})
+install(TARGETS kconf_update EXPORT KF5ConfigCompilerTargets DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF})
