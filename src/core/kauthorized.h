@@ -138,37 +138,6 @@ KCONFIGCORE_EXPORT bool authorizeAction(const QString &action);
  */
 KCONFIGCORE_EXPORT bool authorizeAction(GenericAction action);
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 24)
-/**
- * Returns whether the user is permitted to perform a certain action.
- *
- * This behaves like authorize(), except that "action/" is prepended to
- * @p action.  So if kdeglobals contains
- * @verbatim
-   [KDE Action Restrictions][$i]
-   action/file_new=false
-   @endverbatim
- * then
- * @code
- * KAuthorized::authorizeKAction("file_new");
- * @endcode
- * will return @c false.
- *
- * KXMLGui-based applications should not normally need to call this
- * function, as KActionCollection will do it automatically.
- *
- * @param action  The name of a KAction action.
- * @return        @c true if the KAction is authorized, @c false
- *                otherwise.
- *
- * @see authorize()
- * @deprecated since 5.24, use authorizeAction() instead.
- */
-KCONFIGCORE_EXPORT
-KCONFIGCORE_DEPRECATED_VERSION(5, 24, "Use KAuthorized::authorizeAction(const QString&)")
-bool authorizeKAction(const QString &action);
-#endif
-
 /**
  * Returns whether the user is permitted to use a certain control
  * module.

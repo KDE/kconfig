@@ -16,9 +16,6 @@ class KDesktopFileTest : public QObject
 private Q_SLOTS:
     void initTestCase();
     void testRead();
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    void testReadDirectory();
-#endif
     void testReadLocalized_data();
     void testReadLocalized();
     void testUnsuccessfulTryExec();

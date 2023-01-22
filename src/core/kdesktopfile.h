@@ -132,17 +132,6 @@ public:
      */
     QString readPath() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 82)
-    /**
-     * Returns the value of the "Dev=" entry.
-     * @return the device or QString() if not specified
-     * @deprecated since 5.82, for lack of usage, the FSDevice .desktop template
-     * hadn't been installed for a long time.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 82, "For lack of usage.")
-    QString readDevice() const;
-#endif
-
     /**
      * Returns the value of the "URL=" entry.
      * @return the URL or QString() if not specified
@@ -211,18 +200,6 @@ public:
      */
     QString readDocPath() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 42)
-    /**
-     * Returns the entry of the "SortOrder=" entry.
-     * @return the value of the "SortOrder=" entry.
-     * @deprecated since 5.42
-     * SortOrder was used to specify the order of menu items, but
-     * the Desktop Menu Specification defines another mechanism for it.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 42, "Not recommended, Desktop Menu Specification defines another mechanism")
-    QStringList sortOrder() const;
-#endif
-
     /**
      * Whether the entry should be suppressed in menus.
      * This handles the NoDisplay key, but also OnlyShowIn / NotShowIn.
@@ -246,14 +223,6 @@ public:
      * Returns the name of the .desktop file that was used to construct this KDesktopFile.
      */
     QString fileName() const;
-
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 89)
-    /**
-     * @deprecated Since 5.89, use locationType() instead.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 89, "Use locationType() instead.")
-    QStandardPaths::StandardLocation resource() const;
-#endif
 
 private:
     Q_DISABLE_COPY(KDesktopFile)

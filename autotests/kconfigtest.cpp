@@ -746,27 +746,12 @@ void KConfigTest::testChangeGroup()
     KConfigGroup sc3(&sc, "Hello");
     QCOMPARE(sc3.name(), QStringLiteral("Hello"));
     KConfigGroup newGroup(sc3);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    newGroup.changeGroup("FooBar"); // deprecated!
-    QCOMPARE(newGroup.name(), QStringLiteral("FooBar"));
-    QCOMPARE(sc3.name(), QStringLiteral("Hello")); // unchanged
-
-    // Write into the "changed group" and check that it works
-    newGroup.writeEntry("InFooBar", "FB");
-    QCOMPARE(KConfigGroup(&sc, "FooBar").entryMap().value(QStringLiteral("InFooBar")), QStringLiteral("FB"));
-    QCOMPARE(KConfigGroup(&sc, "Hello").entryMap().value(QStringLiteral("InFooBar")), QString{});
-#endif
 
     KConfigGroup rootGroup(sc.group(""));
     QCOMPARE(rootGroup.name(), QStringLiteral("<default>"));
     KConfigGroup sc32(rootGroup.group("Hello"));
     QCOMPARE(sc32.name(), QStringLiteral("Hello"));
     KConfigGroup newGroup2(sc32);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    newGroup2.changeGroup("FooBar"); // deprecated!
-    QCOMPARE(newGroup2.name(), QStringLiteral("FooBar"));
-    QCOMPARE(sc32.name(), QStringLiteral("Hello")); // unchanged
-#endif
 }
 
 // Simple test for deleteEntry

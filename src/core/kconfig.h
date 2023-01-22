@@ -317,33 +317,6 @@ public:
     bool isImmutable() const override;
     /// @}
 
-    /// @{ global
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(4, 0)
-    /**
-     * Forces all following write-operations to be performed on @c kdeglobals,
-     * independent of the @c Global flag in writeEntry().
-     *
-     * @param force true to force writing to kdeglobals
-     * @see forceGlobal
-     * @deprecated Since 4.0
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(4, 0, "Not recommended")
-    void setForceGlobal(bool force);
-#endif
-
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(4, 0)
-    /**
-     * Returns whether all entries are being written to @c kdeglobals.
-     *
-     * @return @c true if all entries are being written to @c kdeglobals
-     * @see setForceGlobal
-     * @deprecated Since 4.0
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(4, 0, "Not recommended")
-    bool forceGlobal() const;
-#endif
-    /// @}
-
     /// @reimp
     QStringList groupList() const override;
 

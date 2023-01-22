@@ -140,30 +140,6 @@ public:
      */
     const KConfig *config() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * Changes the group of the object
-     *
-     * @deprecated Since 5.0
-     * Create another KConfigGroup from the parent of this group instead.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Create another KConfigGroup from the parent of this group")
-    void changeGroup(const QString &group);
-#endif
-
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * Overload for changeGroup(const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     *
-     * @deprecated Since 5.0.
-     * Create another KConfigGroup from the parent of this group instead.
-     */
-    KCONFIGCORE_DEPRECATED_VERSION(5, 0, "Create another KConfigGroup from the parent of this group")
-    void changeGroup(const char *group);
-#endif
-
     /**
      * Copies the entries in this group to another configuration object
      *
