@@ -29,9 +29,9 @@ if (BUILD_QCH)
             "${CMAKE_SOURCE_DIR}/docs/options.md"
         MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
         LINK_QCHS
-            Qt5Core_QCH
-            Qt5Xml_QCH
-            Qt5Gui_QCH
+            Qt6Core_QCH
+            Qt6Xml_QCH
+            Qt6Gui_QCH
         INCLUDE_DIRS
             ${KConfigCore_APIDOX_INCLUDE_DIRS}
             ${KConfigGui_APIDOX_INCLUDE_DIRS}
