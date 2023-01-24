@@ -34,7 +34,7 @@ ecm_generate_export_header(KF6ConfigGui
 target_include_directories(KF6ConfigGui
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
 
-target_link_libraries(KF6ConfigGui PUBLIC Qt6::Gui Qt6::Xml KF6::ConfigCore)
+target_link_libraries(KF6ConfigGui PUBLIC Qt6::Gui KF6::ConfigCore PRIVATE Qt6::Xml)
 
 set_target_properties(KF6ConfigGui PROPERTIES VERSION   ${KCONFIG_VERSION}
                                               SOVERSION ${KCONFIG_SOVERSION}
