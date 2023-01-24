@@ -7,6 +7,8 @@
 
 #include <config-kconf.h> // CMAKE_INSTALL_FULL_LIBDIR
 
+#include <cstdlib>
+
 #include <QCoreApplication>
 #include <QDate>
 #include <QDebug>
@@ -863,7 +865,7 @@ void KonfUpdate::gotScript(const QString &_script)
     }
     proc.close();
 
-    if (result) {
+    if (result != EXIT_SUCCESS) {
         qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": !! An error occurred while running" << cmd;
         return;
     }
