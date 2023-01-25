@@ -38,7 +38,7 @@ ecm_generate_export_header(KF6ConfigCore
 
 target_compile_definitions(KF6ConfigCore
     PRIVATE
-        KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF}/$<TARGET_FILE_NAME:KF5::kconf_update>"
+        KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF}/$<TARGET_FILE_NAME:KF6::kconf_update>"
 )
 
 target_include_directories(KF6ConfigCore
