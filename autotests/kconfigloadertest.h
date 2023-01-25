@@ -26,6 +26,7 @@ private Q_SLOTS:
     void colorDefaultValue();
     void dateTimeDefaultValue();
     void enumDefaultValue();
+    void enumDefaultValueString();
     void fontDefaultValue();
     void intDefaultValue();
     void passwordDefaultValue();

@@ -64,6 +64,13 @@ void ConfigLoaderTest::enumDefaultValue()
     QVERIFY(typeItem->isEqual(3));
 }
 
+void ConfigLoaderTest::enumDefaultValueString()
+{
+    GET_CONFIG_ITEM_VALUE(KConfigSkeleton::ItemEnum *, QStringLiteral("DefaultEnumItemString"));
+
+    QVERIFY(typeItem->isEqual(2));
+}
+
 void ConfigLoaderTest::fontDefaultValue()
 {
     GET_CONFIG_ITEM_VALUE(KConfigSkeleton::ItemFont *, QStringLiteral("DefaultFontItem"));

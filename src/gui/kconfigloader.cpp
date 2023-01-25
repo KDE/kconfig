@@ -180,7 +180,19 @@ void ConfigLoaderHandler::addItem()
         item = m_config->addItemDateTime(m_name, *d->newDateTime(), QDateTime::fromString(m_default), m_key);
     } else if (m_type == QLatin1String("enum")) {
         m_key = (m_key.isEmpty()) ? m_name : m_key;
-        KConfigSkeleton::ItemEnum *enumItem = new KConfigSkeleton::ItemEnum(m_config->currentGroup(), m_key, *d->newInt(), m_enumChoices, m_default.toUInt());
+
+        bool ok = false;
+        int defaultValue = m_default.toInt(&ok);
+        if (!ok) {
+            for (int i = 0; i < m_enumChoices.size(); i++) {
+                if (m_default == m_enumChoices[i].name) {
+                    defaultValue = i;
+                    break;
+                }
+            }
+        }
+
+        KConfigSkeleton::ItemEnum *enumItem = new KConfigSkeleton::ItemEnum(m_config->currentGroup(), m_key, *d->newInt(), m_enumChoices, defaultValue);
         m_config->addItem(enumItem, m_name);
         item = enumItem;
     } else if (m_type == QLatin1String("font")) {
