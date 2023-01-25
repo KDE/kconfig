@@ -810,8 +810,21 @@ void KonfUpdate::gotScript(const QString &_script)
         return;
     }
 
+    // Shell variables might have been inherited from the parent process
+    QProcessEnvironment environment = QProcessEnvironment::systemEnvironment();
+    auto isShellVariable = [](const QByteArray &name) {
+        return name == "_" || name == "SHELL" || name.startsWith("SHLVL");
+    };
+    const QStringList keys = environment.keys();
+    for (auto &name : keys) {
+        if (isShellVariable(name.toLocal8Bit())) {
+            environment.remove(name);
+        }
+    }
+
     int result;
     QProcess proc;
+    proc.setProcessEnvironment(environment);
     proc.setProcessChannelMode(QProcess::SeparateChannels);
     proc.setStandardInputFile(scriptIn.fileName());
     proc.setStandardOutputFile(scriptOut.fileName());
