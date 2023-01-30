@@ -66,10 +66,13 @@ ecm_generate_headers(KConfigCore_HEADERS
   KSharedConfig
   KCoreConfigSkeleton
   KEMailSettings
-  ConversionCheck
   KConfigWatcher
 
   REQUIRED_HEADERS KConfigCore_HEADERS
+)
+
+list(APPEND KConfigCore_HEADERS
+  ${CMAKE_CURRENT_SOURCE_DIR}/kconfigconversioncheck_p.h # helper header included by kconfiggroup.h
 )
 
 install(TARGETS KF6ConfigCore EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})

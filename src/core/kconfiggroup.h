@@ -769,20 +769,20 @@ private:
         writeEntry(key, QByteArray(M_enum.valueToKeys(value)), flags);                                                                                         \
     }
 
-#include "conversioncheck.h"
+#include "kconfigconversioncheck_p.h"
 
 template<typename T>
 T KConfigGroup::readEntry(const char *key, const T &defaultValue) const
 {
-    ConversionCheck::to_QVariant<T>();
+    KConfigConversionCheck::to_QVariant<T>();
     return qvariant_cast<T>(readEntry(key, QVariant::fromValue(defaultValue)));
 }
 
 template<typename T>
 QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) const
 {
-    ConversionCheck::to_QVariant<T>();
-    ConversionCheck::to_QString<T>();
+    KConfigConversionCheck::to_QVariant<T>();
+    KConfigConversionCheck::to_QString<T>();
 
     QVariantList data;
 
@@ -803,15 +803,15 @@ QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) 
 template<typename T>
 void KConfigGroup::writeEntry(const char *key, const T &value, WriteConfigFlags pFlags)
 {
-    ConversionCheck::to_QVariant<T>();
+    KConfigConversionCheck::to_QVariant<T>();
     writeEntry(key, QVariant::fromValue(value), pFlags);
 }
 
 template<typename T>
 void KConfigGroup::writeEntry(const char *key, const QList<T> &list, WriteConfigFlags pFlags)
 {
-    ConversionCheck::to_QVariant<T>();
-    ConversionCheck::to_QString<T>();
+    KConfigConversionCheck::to_QVariant<T>();
+    KConfigConversionCheck::to_QString<T>();
     QVariantList data;
     for (const T &value : list) {
         data.append(QVariant::fromValue(value));

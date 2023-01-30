@@ -5,21 +5,21 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef CONVERSION_CHECK_H
-#define CONVERSION_CHECK_H
+#ifndef KCONFIG_CONVERSION_CHECK_P_H
+#define KCONFIG_CONVERSION_CHECK_P_H
 
 #include <QDate>
 #include <QPoint>
 #include <QRect>
 #include <QSize>
 #include <QString>
-#include <QVariant>
 #include <QUuid>
+#include <QVariant>
 
 class QColor;
 class QFont;
 
-namespace ConversionCheck
+namespace KConfigConversionCheck
 {
 // used to distinguish between supported/unsupported types
 struct supported {
