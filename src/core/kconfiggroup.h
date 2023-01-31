@@ -731,10 +731,6 @@ private:
         const QByteArray M_data = readEntry(key, QByteArray(M_enum.valueToKey(def)));                                                                          \
         return static_cast<Class::Enum>(M_enum.keyToValue(M_data.constData()));                                                                                \
     }                                                                                                                                                          \
-    inline Class::Enum KCONFIGCORE_DECL_DEPRECATED readEntry(const KConfigGroup &group, const char *key, const Class::Enum &def)                               \
-    {                                                                                                                                                          \
-        return group.readEntry(key, def);                                                                                                                      \
-    }                                                                                                                                                          \
     template<>                                                                                                                                                 \
     void KConfigGroup::writeEntry(const char *key, const Class::Enum &value, KConfigBase::WriteConfigFlags flags)                                              \
     {                                                                                                                                                          \
@@ -744,13 +740,6 @@ private:
             qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Enum));                                                                                                      \
         const QMetaEnum M_enum = M_obj->enumerator(M_index);                                                                                                   \
         writeEntry(key, QByteArray(M_enum.valueToKey(value)), flags);                                                                                          \
-    }                                                                                                                                                          \
-    inline void KCONFIGCORE_DECL_DEPRECATED writeEntry(KConfigGroup &group,                                                                                    \
-                                                       const char *key,                                                                                        \
-                                                       const Class::Enum &value,                                                                               \
-                                                       KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)                                              \
-    {                                                                                                                                                          \
-        group.writeEntry(key, value, flags);                                                                                                                   \
     }
 
 /**
@@ -769,10 +758,6 @@ private:
         const QByteArray M_data = readEntry(key, QByteArray(M_enum.valueToKeys(def)));                                                                         \
         return static_cast<Class::Flags>(M_enum.keysToValue(M_data.constData()));                                                                              \
     }                                                                                                                                                          \
-    inline Class::Flags KCONFIGCORE_DECL_DEPRECATED readEntry(const KConfigGroup &group, const char *key, const Class::Flags &def)                             \
-    {                                                                                                                                                          \
-        return group.readEntry(key, def);                                                                                                                      \
-    }                                                                                                                                                          \
     template<>                                                                                                                                                 \
     void KConfigGroup::writeEntry(const char *key, const Class::Flags &value, KConfigBase::WriteConfigFlags flags)                                             \
     {                                                                                                                                                          \
@@ -782,13 +767,6 @@ private:
             qFatal(KCONFIGGROUP_ENUMERATOR_ERROR(#Flags));                                                                                                     \
         const QMetaEnum M_enum = M_obj->enumerator(M_index);                                                                                                   \
         writeEntry(key, QByteArray(M_enum.valueToKeys(value)), flags);                                                                                         \
-    }                                                                                                                                                          \
-    inline void KCONFIGCORE_DECL_DEPRECATED writeEntry(KConfigGroup &group,                                                                                    \
-                                                       const char *key,                                                                                        \
-                                                       const Class::Flags &value,                                                                              \
-                                                       KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)                                              \
-    {                                                                                                                                                          \
-        group.writeEntry(key, value, flags);                                                                                                                   \
     }
 
 #include "conversioncheck.h"
