@@ -645,10 +645,12 @@ QList<KCoreConfigSkeleton::ItemEnum::Choice> KCoreConfigSkeleton::ItemEnum::choi
     return mChoices;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 103)
 QList<KCoreConfigSkeleton::ItemEnum::Choice> KCoreConfigSkeleton::ItemEnum::choices2() const
 {
     return mChoices;
 }
+#endif
 
 KCoreConfigSkeleton::ItemUInt::ItemUInt(const QString &_group, const QString &_key, quint32 &reference, quint32 defaultValue)
     : KConfigSkeletonGenericItem<quint32>(_group, _key, reference, defaultValue)
