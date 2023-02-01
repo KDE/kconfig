@@ -793,11 +793,6 @@ public:
         /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
         void writeConfig(KConfig *config) override;
 
-        // Source compatibility with 4.x
-        // TODO KF6 remove
-        typedef Choice Choice2;
-        QList<Choice> choices2() const;
-
         /**
          * Returns the value for the choice with the given @p name
          */

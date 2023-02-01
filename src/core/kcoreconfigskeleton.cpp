@@ -645,11 +645,6 @@ QList<KCoreConfigSkeleton::ItemEnum::Choice> KCoreConfigSkeleton::ItemEnum::choi
     return mChoices;
 }
 
-QList<KCoreConfigSkeleton::ItemEnum::Choice> KCoreConfigSkeleton::ItemEnum::choices2() const
-{
-    return mChoices;
-}
-
 KCoreConfigSkeleton::ItemUInt::ItemUInt(const QString &_group, const QString &_key, quint32 &reference, quint32 defaultValue)
     : KConfigSkeletonGenericItem<quint32>(_group, _key, reference, defaultValue)
     , mHasMin(false)
