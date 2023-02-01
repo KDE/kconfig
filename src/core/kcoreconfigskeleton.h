@@ -798,7 +798,7 @@ public:
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 103)
         // Source compatibility with 4.x
-        typedef Choice Choice2;
+        typedef KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 103, 5, 0, "Use Choice") Choice Choice2;
         /**
          * @deprecated since 5.0, use choices() const.
          */
