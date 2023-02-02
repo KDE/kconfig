@@ -5,7 +5,7 @@
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
-#include <config-kconf.h> // CMAKE_INSTALL_PREFIX
+#include <config-kconf.h> // CMAKE_INSTALL_FULL_LIBDIR
 
 #include <QCoreApplication>
 #include <QDate>
@@ -765,7 +765,7 @@ void KonfUpdate::gotScript(const QString &_script)
     QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kconf_update/") + script);
     if (path.isEmpty()) {
         if (interpreter.isEmpty()) {
-            path = QLatin1String{CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/"} + script;
+            path = QStringLiteral("%1/kconf_update_bin/%2").arg(QStringLiteral(CMAKE_INSTALL_FULL_LIBDIR), script);
             if (!QFile::exists(path)) {
                 path = QStandardPaths::findExecutable(script);
             }
