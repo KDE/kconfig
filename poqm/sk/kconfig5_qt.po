@@ -459,17 +459,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Vytvoriť priečinok"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE nástroj na aktualizáciu konfiguračných súborov používateľa"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Ponechať výstupné výsledky zo skriptov"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -478,12 +478,12 @@ msgstr ""
 "Len pre unit testy: použite adresáre testov na oddelenie od reálnych súborov "
 "používateľa"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Skontrolovať, či samotný konfiguračný súbor potrebuje aktualizáciu"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Súbor(y) na čítanie inštrukcií aktualizácie z nich"

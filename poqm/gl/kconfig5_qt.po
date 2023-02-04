@@ -463,18 +463,18 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "Ferramenta de KDE para actualizar os ficheiros de configuración do usuario"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Conservar a saída dos scripts"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -483,12 +483,12 @@ msgstr ""
 "Só para probas unitarias: usar directorios de proba para evitar os ficheiros "
 "reais do usuario."
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Comprobar se o ficheiro de configuración en si precisa actualizarse"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Ficheiros dos que ler as instrucións de actualización."

@@ -452,29 +452,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "创建文件夹"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE 的用户配置文件更新工具"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "保留脚本的输出结果"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
 "files"
 msgstr "仅用于单元测试：使用测试目录以避免访问用户实际文件"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "检查配置文件本身是否需要更新"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要读取更新指令的文件"

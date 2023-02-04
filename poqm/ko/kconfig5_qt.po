@@ -456,17 +456,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "폴더 만들기"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "사용자 설정 파일을 업데이트하는 KDE 도구"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "스크립트 출력 결과 저장"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -474,12 +474,12 @@ msgid ""
 msgstr ""
 "유닛 테스트 전용: 사용자의 실제 파일에 접근하지 않도록 테스트 디렉터리 사용"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "설정 파일이 업데이트가 필요한 지 여부 확인"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "업데이트 동작을 읽을 파일"

@@ -461,17 +461,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Crea una carpeta"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Eina de KDE per a actualitzar els fitxers de configuració d'usuari"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Conserva els resultats de l'eixida dels scripts"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -480,12 +480,12 @@ msgstr ""
 "Només per a les proves unitàries: utilitza directoris per a proves que es "
 "mantenen allunyats dels fitxers reals de l'usuari"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Comproveu si cal actualitzar el fitxer de configuració"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fitxers per a llegir les instruccions d'actualització des de"

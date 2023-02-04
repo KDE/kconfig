@@ -461,17 +461,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Ustvari mapo"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Orodje KDE za posodabljanje uporabniških nastavitvenih datotek"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Ohrani rezultate izpisa skriptov"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -480,12 +480,12 @@ msgstr ""
 "Samo za preizkuse enot: uporabite preizkusne mape, da ne vplivate na "
 "uporabnikove datoteke"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Preveri, če nastavitvena datoteka potrebuje posodobitev"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Datoteke, iz katerih bodo prebrana navodila za posodobitev"
