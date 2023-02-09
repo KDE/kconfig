@@ -1,9 +1,9 @@
-add_executable(kreadconfig5 kreadconfig.cpp)
-ecm_mark_nongui_executable(kreadconfig5)
+add_executable(kreadconfig6 kreadconfig.cpp)
+ecm_mark_nongui_executable(kreadconfig6)
 
-target_link_libraries(kreadconfig5 KF6::ConfigCore)
+target_link_libraries(kreadconfig6 KF6::ConfigCore)
 
-install(TARGETS kreadconfig5 ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kreadconfig6 ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### next target ###############
 

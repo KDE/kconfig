@@ -16,13 +16,13 @@
  * If --type is not set, the value of the key is simply printed to stdout.
  *
  * Usage examples:
- *	if kreadconfig5 --group KDE --key macStyle --type bool; then
+ *	if kreadconfig6 --group KDE --key macStyle --type bool; then
  *		echo "We're using Mac-Style menus."
  *	else
  *		echo "We're using normal menus."
  *	fi
  *
- *	TRASH=`kreadconfig5 --group Paths --key Trash`
+ *	TRASH=`kreadconfig6 --group Paths --key Trash`
  *	if test -n "$TRASH"; then
  *		mv someFile "$TRASH"
  *	else
