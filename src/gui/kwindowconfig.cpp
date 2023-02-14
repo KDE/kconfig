@@ -33,6 +33,12 @@ static QString allConnectedScreens()
     for (auto screen : screens) {
         names << screen->SCREENNAME();
     }
+    // A string including the connector names is used in the config file key for
+    // storing per-screen-arrangement size and position data, which means we
+    // need this string to be consistent for the same screen arrangement. But
+    // connector order is non-deterministic. We need to sort the list to keep a
+    // consistent order and avoid losing multi-screen size and position data.
+    names.sort();
     return names.join(QLatin1Char(' '));
 }
 
