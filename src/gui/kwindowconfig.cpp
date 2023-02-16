@@ -52,16 +52,19 @@ static QScreen *findScreenByName(const QWindow *window, const QString screenName
 // save window size, position, or maximization information.
 static QString configFileString(const QScreen *screen, const QString &key)
 {
-    // For single-screen setups, we include resolution data to also save data on
-    // a per-resolution basis. We don't do this for multi-screen setups because
-    // screen order (and hence resolutions) are volatile due to
-    // https://bugreports.qt.io/browse/QTBUG-50788
+    Q_UNUSED(screen);
     QString returnString;
-    if (QGuiApplication::screens().length() == 1) {
-        returnString = QStringLiteral("%1 %2x%3 %4")
-                           .arg(allConnectedScreens(), QString::number(screen->geometry().width()), QString::number(screen->geometry().height()), key);
+    const int numberOfScreens = QGuiApplication::screens().length();
+
+    if (numberOfScreens == 1) {
+        // For single-screen setups, we save data on a per-resolution basis.
+        const QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
+        returnString = QStringLiteral("%1x%2 screen: %3").arg(QString::number(screenGeometry.width()), QString::number(screenGeometry.height()), key);
     } else {
-        returnString = QStringLiteral("%1 %2").arg(allConnectedScreens(), key);
+        // For multi-screen setups, we save data based on the number of screens.
+        // Distinguishing individual screens based on their names is unreliable
+        // due to name strings being inherently volatile.
+        returnString = QStringLiteral("%1 screens: %2").arg(QString::number(numberOfScreens), key);
     }
     return returnString;
 }
