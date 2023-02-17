@@ -263,7 +263,7 @@ void TestKConfUpdate::testScript()
     QFETCH(QString, expectedNewConfContent);
 
     // Prepend the Version and Id= field to the upd content
-    updContent.prepend(QLatin1String("Version=5\nId=%1\n").arg(QLatin1String{QTest::currentDataTag()}));
+    updContent.prepend(QLatin1String("Version=6\nId=%1\n").arg(QLatin1String{QTest::currentDataTag()}));
 
     std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
 

@@ -226,7 +226,7 @@ bool KonfUpdate::checkFile(const QString &filename)
     bool foundVersion = false;
     while (!ts.atEnd()) {
         const QString line = ts.readLine().trimmed();
-        if (line.startsWith(QLatin1String("Version=5"))) {
+        if (line.startsWith(QLatin1String("Version=6"))) {
             foundVersion = true;
         }
         ++lineCount;
@@ -235,7 +235,7 @@ bool KonfUpdate::checkFile(const QString &filename)
         }
         if (line.startsWith(QLatin1String("Id="))) {
             if (!foundVersion) {
-                qCDebug(KCONF_UPDATE_LOG, "Missing 'Version=5', file '%s' will be skipped.", qUtf8Printable(filename));
+                qCDebug(KCONF_UPDATE_LOG, "Missing 'Version=6', file '%s' will be skipped.", qUtf8Printable(filename));
                 return true;
             }
             id = m_currentFilename + QLatin1Char{':'} + line.mid(3);
@@ -311,7 +311,7 @@ bool KonfUpdate::updateFile(const QString &filename)
     bool foundVersion = false;
     while (!ts.atEnd()) {
         m_line = ts.readLine().trimmed();
-        if (m_line.startsWith(QLatin1String("Version=5"))) {
+        if (m_line.startsWith(QLatin1String("Version=6"))) {
             foundVersion = true;
         }
         ++m_lineCount;
@@ -320,7 +320,7 @@ bool KonfUpdate::updateFile(const QString &filename)
         }
         if (m_line.startsWith(QLatin1String("Id="))) {
             if (!foundVersion) {
-                qCDebug(KCONF_UPDATE_LOG, "Missing 'Version=5', file '%s' will be skipped.", qUtf8Printable(filename));
+                qCDebug(KCONF_UPDATE_LOG, "Missing 'Version=6', file '%s' will be skipped.", qUtf8Printable(filename));
                 break;
             }
             gotId(m_line.mid(3));
