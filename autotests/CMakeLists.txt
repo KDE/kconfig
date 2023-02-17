@@ -22,15 +22,6 @@ ecm_add_test(
 )
 target_include_directories(kentrymaptest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/core)
 
-# compile KConfigUtils into the test since it's not exported
-ecm_add_test(
-  test_kconfigutils.cpp
-  ../src/kconf_update/kconfigutils.cpp
-  TEST_NAME test_kconfigutils
-  LINK_LIBRARIES KF6::ConfigCore Qt6::Test
-)
-target_include_directories(test_kconfigutils PRIVATE ../src/kconf_update)
-
 qt_add_resources(sharedconfigresources sharedconfigresources.qrc)
 
 ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent)

@@ -27,16 +27,10 @@
 #include <QStandardPaths>
 
 #include "kconf_update_debug.h"
-#include "kconfigutils.h"
 
 // Convenience wrapper around qCDebug to prefix the output with metadata of
 // the file.
 #define qCDebugFile(CATEGORY) qCDebug(CATEGORY) << m_currentFilename << ':' << m_lineCount << ":'" << m_line << "': "
-
-static bool caseInsensitiveCompare(const QStringView &a, const QLatin1String &b)
-{
-    return a.compare(b, Qt::CaseInsensitive) == 0;
-}
 
 class KonfUpdate
 {
@@ -55,40 +49,19 @@ public:
     bool updateFile(const QString &filename);
 
     void gotId(const QString &_id);
-    void gotFile(const QString &_file);
-    void gotGroup(const QString &_group);
-    void gotOptions(const QString &_options);
     void gotScript(const QString &_script);
     void gotScriptArguments(const QString &_arguments);
     void resetOptions();
-
-    void copyGroup(const KConfigBase *cfg1, const QString &group1, KConfigBase *cfg2, const QString &group2);
-    void copyGroup(const KConfigGroup &cg1, KConfigGroup &cg2);
-
-    QStringList parseGroupString(const QString &_str);
 
 protected:
     /** kconf_updaterc */
     KConfig *m_config;
     QString m_currentFilename;
     bool m_skip;
-    bool m_skipFile;
     bool m_bTestMode;
     bool m_bDebugOutput;
     QString m_id;
 
-    QString m_oldFile;
-    QString m_newFile;
-    QString m_newFileName;
-    KConfig *m_oldConfig1; // Config to read keys from.
-    KConfig *m_oldConfig2; // Config to delete keys from.
-    KConfig *m_newConfig;
-
-    QStringList m_oldGroup;
-    QStringList m_newGroup;
-
-    bool m_bCopy;
-    bool m_bOverwrite;
     bool m_bUseConfigInfo;
     QString m_arguments;
     QTextStream *m_textStream;
@@ -98,12 +71,7 @@ protected:
 };
 
 KonfUpdate::KonfUpdate(QCommandLineParser *parser)
-    : m_oldConfig1(nullptr)
-    , m_oldConfig2(nullptr)
-    , m_newConfig(nullptr)
-    , m_bCopy(false)
-    , m_bOverwrite(false)
-    , m_textStream(nullptr)
+    : m_textStream(nullptr)
     , m_file(nullptr)
     , m_lineCount(-1)
 {
@@ -239,54 +207,18 @@ bool KonfUpdate::checkFile(const QString &filename)
                 return true;
             }
             id = m_currentFilename + QLatin1Char{':'} + line.mid(3);
-        } else if (line.startsWith(QLatin1String("File="))) {
-            checkGotFile(line.mid(5), id);
         }
     }
 
     return true;
 }
 
-void KonfUpdate::checkGotFile(const QString &_file, const QString &id)
-{
-    QString file;
-    const int i = _file.indexOf(QLatin1Char{','});
-    if (i == -1) {
-        file = _file.trimmed();
-    } else {
-        file = _file.mid(i + 1).trimmed();
-    }
-
-    //   qDebug("File %s, id %s", file.toLatin1().constData(), id.toLatin1().constData());
-
-    KConfig cfg(file, KConfig::SimpleConfig);
-    KConfigGroup cg = cfg.group("$Version");
-    QStringList ids = cg.readEntry("update_info", QStringList());
-    if (ids.contains(id)) {
-        return;
-    }
-    ids.append(id);
-    cg.writeEntry("update_info", ids);
-}
-
 /**
  * Syntax:
  * # Comment
  * Id=id
- * File=oldfile[,newfile]
- * AllGroups
- * Group=oldgroup[,newgroup]
- * RemoveGroup=oldgroup
- * Options=[copy,][overwrite,]
- * Key=oldkey[,newkey]
- * RemoveKey=ldkey
- * AllKeys
- * Keys= [Options](AllKeys|(Key|RemoveKey)*)
  * ScriptArguments=arguments
  * Script=scriptfile[,interpreter]
- *
- * Sequence:
- * (Id,(File(Group,Keys)*)*)*
  **/
 bool KonfUpdate::updateFile(const QString &filename)
 {
@@ -326,14 +258,6 @@ bool KonfUpdate::updateFile(const QString &filename)
             gotId(m_line.mid(3));
         } else if (m_skip) {
             continue;
-        } else if (m_line.startsWith(QLatin1String("Options="))) {
-            gotOptions(m_line.mid(8));
-        } else if (m_line.startsWith(QLatin1String("File="))) {
-            gotFile(m_line.mid(5));
-        } else if (m_skipFile) {
-            continue;
-        } else if (m_line.startsWith(QLatin1String("Group="))) {
-            gotGroup(m_line.mid(6));
         } else if (m_line.startsWith(QLatin1String("Script="))) {
             gotScript(m_line.mid(7));
             resetOptions();
@@ -374,9 +298,6 @@ void KonfUpdate::gotId(const QString &_id)
         }
     }
 
-    // Flush pending changes
-    gotFile(QString());
-
     if (_id.isEmpty()) {
         return;
     }
@@ -390,178 +311,11 @@ void KonfUpdate::gotId(const QString &_id)
         return;
     }
     m_skip = false;
-    m_skipFile = false;
     m_id = _id;
     if (m_bUseConfigInfo) {
         qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Checking update" << _id;
     } else {
         qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Found new update" << _id;
-    }
-}
-
-void KonfUpdate::gotFile(const QString &_file)
-{
-    // Reset group
-    gotGroup(QString());
-
-    if (!m_oldFile.isEmpty()) {
-        // Close old file.
-        delete m_oldConfig1;
-        m_oldConfig1 = nullptr;
-
-        KConfigGroup cg(m_oldConfig2, "$Version");
-        QStringList ids = cg.readEntry("update_info", QStringList());
-        QString cfg_id = m_currentFilename + QLatin1Char{':'} + m_id;
-        if (!ids.contains(cfg_id) && !m_skip) {
-            ids.append(cfg_id);
-            cg.writeEntry("update_info", ids);
-        }
-        cg.sync();
-        delete m_oldConfig2;
-        m_oldConfig2 = nullptr;
-
-        QString file = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + m_oldFile;
-        QFileInfo info(file);
-        if (info.exists() && info.size() == 0) {
-            // Delete empty file.
-            QFile::remove(file);
-        }
-
-        m_oldFile.clear();
-    }
-    if (!m_newFile.isEmpty()) {
-        // Close new file.
-        KConfigGroup cg(m_newConfig, "$Version");
-        QStringList ids = cg.readEntry("update_info", QStringList());
-        const QString cfg_id = m_currentFilename + QLatin1Char{':'} + m_id;
-        if (!ids.contains(cfg_id) && !m_skip) {
-            ids.append(cfg_id);
-            cg.writeEntry("update_info", ids);
-        }
-        m_newConfig->sync();
-        delete m_newConfig;
-        m_newConfig = nullptr;
-
-        m_newFile.clear();
-    }
-    m_newConfig = nullptr;
-
-    const int i = _file.indexOf(QLatin1Char{','});
-    if (i == -1) {
-        m_oldFile = _file.trimmed();
-    } else {
-        m_oldFile = _file.left(i).trimmed();
-        m_newFile = _file.mid(i + 1).trimmed();
-        if (m_oldFile == m_newFile) {
-            m_newFile.clear();
-        }
-    }
-
-    if (!m_oldFile.isEmpty()) {
-        m_oldConfig2 = new KConfig(m_oldFile, KConfig::NoGlobals);
-        const QString cfg_id = m_currentFilename + QLatin1Char{':'} + m_id;
-        KConfigGroup cg(m_oldConfig2, "$Version");
-        QStringList ids = cg.readEntry("update_info", QStringList());
-        if (ids.contains(cfg_id)) {
-            m_skip = true;
-            m_newFile.clear();
-            qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Skipping update" << m_id;
-        }
-
-        if (!m_newFile.isEmpty()) {
-            m_newConfig = new KConfig(m_newFile, KConfig::NoGlobals);
-            KConfigGroup cg(m_newConfig, "$Version");
-            ids = cg.readEntry("update_info", QStringList());
-            if (ids.contains(cfg_id)) {
-                m_skip = true;
-                qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Skipping update" << m_id;
-            }
-        } else {
-            m_newConfig = m_oldConfig2;
-        }
-
-        m_oldConfig1 = new KConfig(m_oldFile, KConfig::NoGlobals);
-    } else {
-        m_newFile.clear();
-    }
-    m_newFileName = m_newFile;
-    if (m_newFileName.isEmpty()) {
-        m_newFileName = m_oldFile;
-    }
-
-    m_skipFile = false;
-    if (!m_oldFile.isEmpty()) { // if File= is specified, it doesn't exist, is empty or contains only kconf_update's [$Version] group, skip
-        if (m_oldConfig1 != nullptr
-            && (m_oldConfig1->groupList().isEmpty()
-                || (m_oldConfig1->groupList().count() == 1 && m_oldConfig1->groupList().at(0) == QLatin1String("$Version")))) {
-            qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": File" << m_oldFile << "does not exist or empty, skipping";
-            m_skipFile = true;
-        }
-    }
-}
-
-QStringList KonfUpdate::parseGroupString(const QString &str)
-{
-    bool ok;
-    QString error;
-    QStringList lst = KConfigUtils::parseGroupString(str, &ok, &error);
-    if (!ok) {
-        qCDebugFile(KCONF_UPDATE_LOG) << error;
-    }
-    return lst;
-}
-
-void KonfUpdate::gotGroup(const QString &_group)
-{
-    QString group = _group.trimmed();
-    if (group.isEmpty()) {
-        m_oldGroup = m_newGroup = QStringList();
-        return;
-    }
-
-    const QStringList tokens = group.split(QLatin1Char{','});
-    m_oldGroup = parseGroupString(tokens.at(0));
-    if (tokens.count() == 1) {
-        m_newGroup = m_oldGroup;
-    } else {
-        m_newGroup = parseGroupString(tokens.at(1));
-    }
-}
-
-void KonfUpdate::gotOptions(const QString &_options)
-{
-    const QStringList options = _options.split(QLatin1Char{','});
-    for (const auto &opt : options) {
-        const auto normalizedOpt = QStringView(opt).trimmed();
-
-        if (caseInsensitiveCompare(normalizedOpt, QLatin1String("copy"))) {
-            m_bCopy = true;
-        } else if (caseInsensitiveCompare(normalizedOpt, QLatin1String("overwrite"))) {
-            m_bOverwrite = true;
-        }
-    }
-}
-
-void KonfUpdate::copyGroup(const KConfigBase *cfg1, const QString &group1, KConfigBase *cfg2, const QString &group2)
-{
-    KConfigGroup cg2 = cfg2->group(group2);
-    copyGroup(cfg1->group(group1), cg2);
-}
-
-void KonfUpdate::copyGroup(const KConfigGroup &cg1, KConfigGroup &cg2)
-{
-    // Copy keys
-    const auto map = cg1.entryMap();
-    for (auto it = map.cbegin(); it != map.cend(); ++it) {
-        if (m_bOverwrite || !cg2.hasKey(it.key())) {
-            cg2.writeEntry(it.key(), it.value());
-        }
-    }
-
-    // Copy subgroups
-    const QStringList lstGroup = cg1.groupList();
-    for (const QString &group : lstGroup) {
-        copyGroup(&cg1, group, &cg2, group);
     }
 }
 
@@ -629,38 +383,7 @@ void KonfUpdate::gotScript(const QString &_script)
         args += m_arguments;
     }
 
-    QTemporaryFile scriptIn;
-    QTemporaryFile scriptOut;
-    if (!scriptIn.open() || !scriptOut.open()) {
-        qCDebugFile(KCONF_UPDATE_LOG) << "Could not create temporary file!";
-        return;
-    }
-
     int result;
-    QProcess proc;
-    proc.setProcessChannelMode(QProcess::SeparateChannels);
-    proc.setStandardInputFile(scriptIn.fileName());
-    proc.setStandardOutputFile(scriptOut.fileName());
-    if (m_oldConfig1) {
-        if (m_bDebugOutput) {
-            qCDebug(KCONF_UPDATE_LOG) << "Script input stored in" << scriptIn.fileName();
-        }
-        KConfig cfg(scriptIn.fileName(), KConfig::SimpleConfig);
-
-        if (m_oldGroup.isEmpty()) {
-            // Write all entries to tmpFile;
-            const QStringList grpList = m_oldConfig1->groupList();
-            for (const auto &grp : grpList) {
-                copyGroup(m_oldConfig1, grp, &cfg, grp);
-            }
-        } else {
-            KConfigGroup cg1 = KConfigUtils::openGroup(m_oldConfig1, m_oldGroup);
-            KConfigGroup cg2(&cfg, QString());
-            copyGroup(cg1, cg2);
-        }
-        cfg.sync();
-    }
-
     qCDebug(KCONF_UPDATE_LOG) << "About to run" << cmd;
     if (m_bDebugOutput) {
         QFile scriptFile(path);
@@ -668,6 +391,7 @@ void KonfUpdate::gotScript(const QString &_script)
             qCDebug(KCONF_UPDATE_LOG) << "Script contents is:\n" << scriptFile.readAll();
         }
     }
+    QProcess proc;
     proc.start(cmd, args);
     if (!proc.waitForFinished(60000)) {
         qCDebugFile(KCONF_UPDATE_LOG) << "update script did not terminate within 60 seconds:" << cmd;
@@ -692,78 +416,10 @@ void KonfUpdate::gotScript(const QString &_script)
     }
 
     qCDebug(KCONF_UPDATE_LOG) << "Successfully ran" << cmd;
-
-    if (!m_oldConfig1) {
-        return; // Nothing to merge
-    }
-
-    if (m_bDebugOutput) {
-        qCDebug(KCONF_UPDATE_LOG) << "Script output stored in" << scriptOut.fileName();
-        QFile output(scriptOut.fileName());
-        if (output.open(QIODevice::ReadOnly)) {
-            qCDebug(KCONF_UPDATE_LOG) << "Script output is:\n" << output.readAll();
-        }
-    }
-
-    // Deleting old entries
-    {
-        QStringList group = m_oldGroup;
-        QFile output(scriptOut.fileName());
-        if (output.open(QIODevice::ReadOnly)) {
-            QTextStream ts(&output);
-            while (!ts.atEnd()) {
-                const QString line = ts.readLine();
-                if (line.startsWith(QLatin1Char{'['})) {
-                    group = parseGroupString(line);
-                } else if (line.startsWith(QLatin1String("# DELETE "))) {
-                    QString key = line.mid(9);
-                    if (key.startsWith(QLatin1Char{'['})) {
-                        const int idx = key.lastIndexOf(QLatin1Char{']'}) + 1;
-                        if (idx > 0) {
-                            group = parseGroupString(key.left(idx));
-                            key = key.mid(idx);
-                        }
-                    }
-                    KConfigGroup cg = KConfigUtils::openGroup(m_oldConfig2, group);
-                    cg.deleteEntry(key);
-                    qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Script removes" << m_oldFile << ":" << group << ":" << key;
-                    /*if (m_oldConfig2->deleteGroup(group, KConfig::Normal)) { // Delete group if empty.
-                       qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Removing empty group " << m_oldFile << ":" << group;
-                    } (this should be automatic)*/
-                } else if (line.startsWith(QLatin1String("# DELETEGROUP"))) {
-                    const QString str = line.mid(13).trimmed();
-                    if (!str.isEmpty()) {
-                        group = parseGroupString(str);
-                    }
-                    KConfigGroup cg = KConfigUtils::openGroup(m_oldConfig2, group);
-                    cg.deleteGroup();
-                    qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Script removes group" << m_oldFile << ":" << group;
-                }
-            }
-        }
-    }
-
-    // Merging in new entries.
-    KConfig scriptOutConfig(scriptOut.fileName(), KConfig::NoGlobals);
-    if (m_newGroup.isEmpty()) {
-        // Copy "default" keys as members of "default" keys
-        copyGroup(&scriptOutConfig, QString(), m_newConfig, QString());
-    } else {
-        // Copy default keys as members of m_newGroup
-        KConfigGroup srcCg = KConfigUtils::openGroup(&scriptOutConfig, QStringList());
-        KConfigGroup dstCg = KConfigUtils::openGroup(m_newConfig, m_newGroup);
-        copyGroup(srcCg, dstCg);
-    }
-    const QStringList lstGroup = scriptOutConfig.groupList();
-    for (const QString &group : lstGroup) {
-        copyGroup(&scriptOutConfig, group, m_newConfig, group);
-    }
 }
 
 void KonfUpdate::resetOptions()
 {
-    m_bCopy = false;
-    m_bOverwrite = false;
     m_arguments.clear();
 }
 

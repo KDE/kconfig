@@ -1,10 +1,5 @@
-add_executable(kconf_update)
+add_executable(kconf_update kconf_update.cpp)
 add_executable(KF6::kconf_update ALIAS kconf_update)
-
-target_sources(kconf_update PRIVATE
-    kconf_update.cpp
-    kconfigutils.cpp
-)
 
 ecm_qt_declare_logging_category(kconf_update
     HEADER kconf_update_debug.h
