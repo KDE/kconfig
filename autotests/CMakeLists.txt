@@ -40,7 +40,7 @@ ecm_add_tests(
    LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent
 )
 
-target_include_directories(test_kconf_update PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/../src/kconf_update)
+add_dependencies(test_kconf_update kconf_update)
 
 if(TARGET Qt6::Gui)
 ecm_add_tests(
