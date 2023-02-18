@@ -13,9 +13,9 @@
 #include <QDir>
 #include <QFile>
 #include <QProcess>
+#include <qglobal.h>
 #include <qstandardpaths.h>
 #include <qtemporaryfile.h>
-
 #include <qtest.h>
 
 QTEST_GUILESS_MAIN(TestKConfUpdate)
@@ -65,7 +65,10 @@ static std::unique_ptr<QTemporaryFile> writeUpdFile(const QString &content)
 static void runKConfUpdate(const QString &updPath)
 {
     QVERIFY(QFile::exists(QStringLiteral(KCONF_UPDATE_EXECUTABLE)));
-    QCOMPARE(0, QProcess::execute(QStringLiteral(KCONF_UPDATE_EXECUTABLE), QStringList{QStringLiteral("--testmode"), QStringLiteral("--debug"), updPath}));
+    QProcess p;
+    p.start(QStringLiteral(KCONF_UPDATE_EXECUTABLE), QStringList{QStringLiteral("--testmode"), QStringLiteral("--debug"), updPath});
+    QVERIFY(p.waitForFinished());
+    QCOMPARE(p.exitCode(), 0);
 }
 
 void TestKConfUpdate::testScript_data()
@@ -74,6 +77,26 @@ void TestKConfUpdate::testScript_data()
     QTest::addColumn<QString>("updScript");
     QTest::addColumn<QString>("oldConfContent");
     QTest::addColumn<QString>("expectedNewConfContent");
+
+    const QString scriptSpecification = QStringLiteral("Script=test.sh,sh\n");
+
+    const QString updVersionIdPrefix = QLatin1String("Version=6\nId=%1\n").arg(QLatin1String{QTest::currentDataTag()});
+    const QString confPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String{"/testrc"};
+    const QString scriptContent = QStringLiteral("sed -i 's/firstVal=abc/firstVal=xyz/' %1").arg(confPath);
+
+    QTest::newRow("should reject script due to version missmatch")
+        << scriptSpecification + QLatin1String("Version=5\nId=12345") << scriptContent << QString() << QString();
+
+    const QString updContent = updVersionIdPrefix + scriptSpecification;
+    const QString configIn = QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=xyz\n");
+    const QString configOut = QStringLiteral("[grp]\nfirstVal=xyz\nsecondVal=xyz\n");
+
+    QTest::newRow("should run command and modify file") << updContent << scriptContent << configIn << configOut;
+
+    const QString argScriptContent = QStringLiteral("sed -i \"s/secondVal=$1/secondVal=abc/\" %1; echo %1 $1").arg(confPath);
+    const QString argConfigOut = QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=abc\n");
+    QTest::newRow("should run command with argument and modify file")
+        << QStringLiteral("ScriptArguments=xyz\n") + updContent << argScriptContent << configIn << argConfigOut;
 }
 
 void TestKConfUpdate::testScript()
@@ -87,9 +110,6 @@ void TestKConfUpdate::testScript()
     QFETCH(QString, updScript);
     QFETCH(QString, oldConfContent);
     QFETCH(QString, expectedNewConfContent);
-
-    // Prepend the Version and Id= field to the upd content
-    updContent.prepend(QLatin1String("Version=6\nId=%1\n").arg(QLatin1String{QTest::currentDataTag()}));
 
     std::unique_ptr<QTemporaryFile> updFile(writeUpdFile(updContent));
 
@@ -105,8 +125,5 @@ void TestKConfUpdate::testScript()
 
     runKConfUpdate(updFile->fileName());
 
-    const QString updateInfo = QLatin1String("%1:%2").arg(updFile->fileName().section(QLatin1Char{'/'}, -1), QLatin1String{QTest::currentDataTag()});
-    QString newConfContent = readFile(confPath);
-    expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
-    QCOMPARE(newConfContent, expectedNewConfContent);
+    QCOMPARE(readFile(confPath), expectedNewConfContent);
 }
