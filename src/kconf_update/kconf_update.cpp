@@ -43,14 +43,10 @@ public:
 
     QStringList findUpdateFiles(bool dirtyOnly);
 
-    bool checkFile(const QString &filename);
-    void checkGotFile(const QString &_file, const QString &id);
-
     bool updateFile(const QString &filename);
 
     void gotId(const QString &_id);
     void gotScript(const QString &_script);
-    void resetOptions();
 
 protected:
     /** kconf_updaterc */
@@ -131,11 +127,6 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
     if (updateAll && !cg.readEntry("updateInfoAdded", false)) {
         cg.writeEntry("updateInfoAdded", true);
         updateFiles = findUpdateFiles(false);
-
-        for (const auto &file : std::as_const(updateFiles)) {
-            checkFile(file);
-        }
-        updateFiles.clear();
     }
 }
 
@@ -172,45 +163,6 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
     return result;
 }
 
-bool KonfUpdate::checkFile(const QString &filename)
-{
-    m_currentFilename = filename;
-    const int i = m_currentFilename.lastIndexOf(QLatin1Char{'/'});
-    if (i != -1) {
-        m_currentFilename = m_currentFilename.mid(i + 1);
-    }
-    m_skip = true;
-    QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly)) {
-        return false;
-    }
-
-    QTextStream ts(&file);
-    ts.setEncoding(QStringConverter::Encoding::Latin1);
-    resetOptions();
-    QString id;
-    bool foundVersion = false;
-    while (!ts.atEnd()) {
-        const QString line = ts.readLine().trimmed();
-        if (line.startsWith(QLatin1String("Version=6"))) {
-            foundVersion = true;
-        }
-        if (line.isEmpty() || (line[0] == QLatin1Char{'#'})) {
-            continue;
-        }
-        if (line.startsWith(QLatin1String("Id="))) {
-            if (!foundVersion) {
-                qCDebug(KCONF_UPDATE_LOG, "Missing 'Version=6', file '%s' will be skipped.", qUtf8Printable(filename));
-                return true;
-            }
-            id = m_currentFilename + QLatin1Char{':'} + line.mid(3);
-        }
-    }
-
-    m_skip = false;
-    return true;
-}
-
 /**
  * Syntax:
  * # Comment
@@ -236,7 +188,6 @@ bool KonfUpdate::updateFile(const QString &filename)
     QTextStream ts(&file);
     ts.setEncoding(QStringConverter::Encoding::Latin1);
     m_lineCount = 0;
-    resetOptions();
     bool foundVersion = false;
     while (!ts.atEnd()) {
         m_line = ts.readLine().trimmed();
@@ -258,7 +209,7 @@ bool KonfUpdate::updateFile(const QString &filename)
             continue;
         } else if (m_line.startsWith(QLatin1String("Script="))) {
             gotScript(m_line.mid(7));
-            resetOptions();
+            m_arguments.clear();
         } else if (m_line.startsWith(QLatin1String("ScriptArguments="))) {
             const QString argLine = m_line.mid(16);
             m_arguments = QProcess::splitCommand(argLine);
@@ -399,11 +350,6 @@ void KonfUpdate::gotScript(const QString &_script)
     }
 
     qCDebug(KCONF_UPDATE_LOG) << "Successfully ran" << cmd;
-}
-
-void KonfUpdate::resetOptions()
-{
-    m_arguments.clear();
 }
 
 int main(int argc, char **argv)
