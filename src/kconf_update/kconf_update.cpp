@@ -189,9 +189,15 @@ bool KonfUpdate::updateFile(const QString &filename)
     bool foundVersion = false;
     while (!ts.atEnd()) {
         m_line = ts.readLine().trimmed();
-        if (m_line.startsWith(QLatin1String("Version=6"))) {
-            foundVersion = true;
-            continue;
+        const QLatin1String versionPrefix("Version=");
+        if (m_line.startsWith(versionPrefix)) {
+            if (m_line.mid(versionPrefix.length()) == QLatin1Char('6')) {
+                foundVersion = true;
+                continue;
+            } else {
+                qWarning(KCONF_UPDATE_LOG).noquote() << filename << "defined" << m_line << "but Version=6 was expected";
+                return false;
+            }
         }
         ++m_lineCount;
         if (m_line.isEmpty() || (m_line[0] == QLatin1Char('#'))) {
