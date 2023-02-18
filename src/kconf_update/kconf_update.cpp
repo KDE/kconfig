@@ -5,6 +5,7 @@
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
+#include "../../kconfig_version.h"
 #include <cstdlib>
 
 #include <QCoreApplication>
@@ -358,7 +359,7 @@ void KonfUpdate::gotScript(const QString &_script)
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    app.setApplicationVersion(QStringLiteral("1.1"));
+    app.setApplicationVersion(QStringLiteral(KCONFIG_VERSION_STRING));
 
     QCommandLineParser parser;
     parser.addVersionOption();
