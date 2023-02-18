@@ -93,10 +93,15 @@ void TestKConfUpdate::testScript_data()
 
     QTest::newRow("should run command and modify file") << updContent << scriptContent << configIn << configOut;
 
-    const QString argScriptContent = QStringLiteral("sed -i \"s/secondVal=$1/secondVal=abc/\" %1; echo %1 $1").arg(confPath);
+    const QString argScriptContent = QStringLiteral("sed -i \"s/secondVal=$1/secondVal=abc/\" %1").arg(confPath);
     const QString argConfigOut = QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=abc\n");
     QTest::newRow("should run command with argument and modify file")
         << QStringLiteral("ScriptArguments=xyz\n") + updContent << argScriptContent << configIn << argConfigOut;
+
+    const QString argScriptContent2 = QStringLiteral("sed -i \"s/secondVal=$1/secondVal=$2/\" %1").arg(confPath);
+    const QString argConfigOut2 = QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=abc\n");
+    QTest::newRow("should run command with arguments and modify file")
+        << QStringLiteral("ScriptArguments=xyz abc\n") + updContent << argScriptContent << configIn << argConfigOut;
 }
 
 void TestKConfUpdate::testScript()

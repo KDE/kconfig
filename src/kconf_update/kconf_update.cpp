@@ -50,7 +50,6 @@ public:
 
     void gotId(const QString &_id);
     void gotScript(const QString &_script);
-    void gotScriptArguments(const QString &_arguments);
     void resetOptions();
 
 protected:
@@ -63,7 +62,7 @@ protected:
     QString m_id;
 
     bool m_bUseConfigInfo;
-    QString m_arguments;
+    QStringList m_arguments;
     QTextStream *m_textStream;
     QFile *m_file;
     QString m_line;
@@ -261,7 +260,8 @@ bool KonfUpdate::updateFile(const QString &filename)
             gotScript(m_line.mid(7));
             resetOptions();
         } else if (m_line.startsWith(QLatin1String("ScriptArguments="))) {
-            gotScriptArguments(m_line.mid(16));
+            const QString argLine = m_line.mid(16);
+            m_arguments = QProcess::splitCommand(argLine);
         } else {
             qCDebugFile(KCONF_UPDATE_LOG) << "Parse error";
         }
@@ -318,11 +318,6 @@ void KonfUpdate::gotId(const QString &_id)
     }
 }
 
-void KonfUpdate::gotScriptArguments(const QString &_arguments)
-{
-    m_arguments = _arguments;
-}
-
 void KonfUpdate::gotScript(const QString &_script)
 {
     QString script;
@@ -357,7 +352,7 @@ void KonfUpdate::gotScript(const QString &_script)
         }
     }
 
-    if (!m_arguments.isNull()) {
+    if (!m_arguments.isEmpty()) {
         qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Running script" << script << "with arguments" << m_arguments;
     } else {
         qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": Running script" << script;
@@ -378,9 +373,7 @@ void KonfUpdate::gotScript(const QString &_script)
         args << path;
     }
 
-    if (!m_arguments.isNull()) {
-        args += m_arguments;
-    }
+    args += m_arguments;
 
     int result;
     qCDebug(KCONF_UPDATE_LOG) << "About to run" << cmd;
