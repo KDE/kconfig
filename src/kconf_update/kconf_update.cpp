@@ -365,9 +365,9 @@ int main(int argc, char **argv)
     parser.setApplicationDescription(QCoreApplication::translate("main", "KDE Tool for updating user configuration files"));
     parser.addHelpOption();
     parser.addOption(QCommandLineOption(QStringList{QStringLiteral("debug")}, QCoreApplication::translate("main", "Keep output results from scripts")));
-    parser.addOption(
-        QCommandLineOption(QStringList{QStringLiteral("testmode")},
-                           QCoreApplication::translate("main", "For unit tests only: use test directories to stay away from the user's real files")));
+    parser.addOption(QCommandLineOption(
+        QStringList{QStringLiteral("testmode")},
+        QCoreApplication::translate("main", "For unit tests only: do not write the done entries, so that with every re-run, the scripts are executed again")));
     parser.addOption(QCommandLineOption(QStringList{QStringLiteral("check")},
                                         QCoreApplication::translate("main", "Check whether config file itself requires updating"),
                                         QStringLiteral("update-file")));
