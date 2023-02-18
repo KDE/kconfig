@@ -57,7 +57,7 @@ protected:
     /** kconf_updaterc */
     KConfig *m_config;
     QString m_currentFilename;
-    bool m_skip;
+    bool m_skip = false;
     bool m_bTestMode;
     bool m_bDebugOutput;
     QString m_id;
@@ -188,7 +188,6 @@ bool KonfUpdate::checkFile(const QString &filename)
 
     QTextStream ts(&file);
     ts.setEncoding(QStringConverter::Encoding::Latin1);
-    int lineCount = 0;
     resetOptions();
     QString id;
     bool foundVersion = false;
@@ -197,7 +196,6 @@ bool KonfUpdate::checkFile(const QString &filename)
         if (line.startsWith(QLatin1String("Version=6"))) {
             foundVersion = true;
         }
-        ++lineCount;
         if (line.isEmpty() || (line[0] == QLatin1Char{'#'})) {
             continue;
         }
@@ -210,6 +208,7 @@ bool KonfUpdate::checkFile(const QString &filename)
         }
     }
 
+    m_skip = false;
     return true;
 }
 
@@ -227,7 +226,6 @@ bool KonfUpdate::updateFile(const QString &filename)
     if (i != -1) {
         m_currentFilename = m_currentFilename.mid(i + 1);
     }
-    m_skip = true;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning("Could not open update-file '%s'.", qUtf8Printable(filename));
@@ -245,6 +243,7 @@ bool KonfUpdate::updateFile(const QString &filename)
         m_line = ts.readLine().trimmed();
         if (m_line.startsWith(QLatin1String("Version=6"))) {
             foundVersion = true;
+            continue;
         }
         ++m_lineCount;
         if (m_line.isEmpty() || (m_line[0] == QLatin1Char('#'))) {
@@ -399,15 +398,6 @@ void KonfUpdate::gotScript(const QString &_script)
         return;
     }
     result = proc.exitCode();
-
-    // Copy script stderr to log file
-    {
-        QTextStream ts(proc.readAllStandardError());
-        while (!ts.atEnd()) {
-            QString line = ts.readLine();
-            qCDebug(KCONF_UPDATE_LOG) << "[Script]" << line;
-        }
-    }
     proc.close();
 
     if (result != EXIT_SUCCESS) {
