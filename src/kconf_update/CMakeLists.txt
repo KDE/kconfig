@@ -1,6 +1,7 @@
 add_executable(kconf_update kconf_update.cpp)
 add_executable(KF6::kconf_update ALIAS kconf_update)
 
+target_compile_definitions(kconf_update PRIVATE -DCMAKE_INSTALL_FULL_LIBDIR="${CMAKE_INSTALL_FULL_LIBDIR}")
 ecm_qt_declare_logging_category(kconf_update
     HEADER kconf_update_debug.h
     IDENTIFIER KCONF_UPDATE_LOG
@@ -18,7 +19,6 @@ file(
   GENERATE OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/kconf-exec.h
   CONTENT "#define KCONF_UPDATE_EXECUTABLE \"$<TARGET_FILE:kconf_update>\""
 )
-configure_file(config-kconf.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kconf.h )
 
 # Although this is mostly an internal binary (hence installing it in
 # KF6_LIBEXEC_INSTALL_DIR), it is used by kded, and so we export its location

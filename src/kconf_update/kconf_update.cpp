@@ -5,8 +5,6 @@
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
-#include <config-kconf.h> // CMAKE_INSTALL_FULL_LIBDIR
-
 #include <cstdlib>
 
 #include <QCoreApplication>
@@ -26,6 +24,7 @@
 #include <QCommandLineParser>
 #include <QStandardPaths>
 
+#include "kconf-exec.h"
 #include "kconf_update_debug.h"
 
 // Convenience wrapper around qCDebug to prefix the output with metadata of
@@ -57,7 +56,7 @@ protected:
     bool m_bDebugOutput;
     QString m_id;
 
-    bool m_bUseConfigInfo;
+    bool m_bUseConfigInfo = false;
     QStringList m_arguments;
     QTextStream *m_textStream;
     QFile *m_file;
@@ -96,7 +95,6 @@ KonfUpdate::KonfUpdate(QCommandLineParser *parser)
         QStandardPaths::setTestModeEnabled(true);
     }
 
-    m_bUseConfigInfo = false;
     if (parser->isSet(QStringLiteral("check"))) {
         m_bUseConfigInfo = true;
         const QString file =
@@ -361,11 +359,11 @@ int main(int argc, char **argv)
     parser.addVersionOption();
     parser.setApplicationDescription(QCoreApplication::translate("main", "KDE Tool for updating user configuration files"));
     parser.addHelpOption();
-    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("debug"), QCoreApplication::translate("main", "Keep output results from scripts")));
+    parser.addOption(QCommandLineOption(QStringList{QStringLiteral("debug")}, QCoreApplication::translate("main", "Keep output results from scripts")));
     parser.addOption(
-        QCommandLineOption(QStringList() << QStringLiteral("testmode"),
+        QCommandLineOption(QStringList{QStringLiteral("testmode")},
                            QCoreApplication::translate("main", "For unit tests only: use test directories to stay away from the user's real files")));
-    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("check"),
+    parser.addOption(QCommandLineOption(QStringList{QStringLiteral("check")},
                                         QCoreApplication::translate("main", "Check whether config file itself requires updating"),
                                         QStringLiteral("update-file")));
     parser.addPositionalArgument(QStringLiteral("files"),
