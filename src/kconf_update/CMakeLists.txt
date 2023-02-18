@@ -15,11 +15,6 @@ target_link_libraries(kconf_update Qt6::Core KF6::ConfigCore)
 include(ECMMarkNonGuiExecutable)
 ecm_mark_nongui_executable(kconf_update)
 
-file(
-  GENERATE OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/kconf-exec.h
-  CONTENT "#define KCONF_UPDATE_EXECUTABLE \"$<TARGET_FILE:kconf_update>\""
-)
-
 # Although this is mostly an internal binary (hence installing it in
 # KF6_LIBEXEC_INSTALL_DIR), it is used by kded, and so we export its location
 install(TARGETS kconf_update EXPORT KF6ConfigCompilerTargets DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF})

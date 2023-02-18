@@ -24,7 +24,6 @@
 #include <QCommandLineParser>
 #include <QStandardPaths>
 
-#include "kconf-exec.h"
 #include "kconf_update_debug.h"
 
 // Convenience wrapper around qCDebug to prefix the output with metadata of
