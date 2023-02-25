@@ -487,7 +487,7 @@ bool KConfig::sync()
     }
 
     if (!notifyGroupsLocal.isEmpty()) {
-        d->notifyClients(notifyGroupsLocal, QLatin1Char('/') + name());
+        d->notifyClients(notifyGroupsLocal, QLatin1Char('/') + name().replace(QLatin1Char('-'), QLatin1Char('_')));
     }
     if (!notifyGroupsGlobal.isEmpty()) {
         d->notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));

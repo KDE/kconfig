@@ -82,6 +82,7 @@ private Q_SLOTS:
     void testNewlines();
     void testXdgListEntry();
     void testNotify();
+    void testNotifyIllegalObjectPath();
     void testKAuthorizeEnums();
 
     void testThreads();
