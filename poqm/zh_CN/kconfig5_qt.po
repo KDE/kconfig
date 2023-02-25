@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2023-02-15 11:04\n"
+"PO-Revision-Date: 2023-02-24 12:43\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -190,7 +190,7 @@ msgstr "行尾"
 #: gui/kstandardshortcut.cpp:181
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr "转到行号"
+msgstr "跳转到行"
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
@@ -255,12 +255,12 @@ msgstr "文本补全"
 #: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
-msgstr "上一个补全匹配"
+msgstr "上一条补全匹配"
 
 #: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
-msgstr "下一个补全匹配"
+msgstr "下一条补全匹配"
 
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
@@ -280,7 +280,7 @@ msgstr "列表中的后一项"
 #: gui/kstandardshortcut.cpp:291
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr "打开最近文件"
+msgstr "打开最近项目"
 
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
@@ -300,7 +300,7 @@ msgstr "打印预览"
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr "发送邮件"
+msgstr "发送电子邮件"
 
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
@@ -315,17 +315,17 @@ msgstr "缩放为实际大小"
 #: gui/kstandardshortcut.cpp:298
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
-msgstr "适合页面"
+msgstr "适合整个页面"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
-msgstr "适合页宽"
+msgstr "适合页面宽度"
 
 #: gui/kstandardshortcut.cpp:300
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
-msgstr "适合页高"
+msgstr "适合页面高度"
 
 #: gui/kstandardshortcut.cpp:301
 msgctxt "KStandardShortcut|@action"
@@ -335,12 +335,12 @@ msgstr "缩放"
 #: gui/kstandardshortcut.cpp:302
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
-msgstr "转到"
+msgstr "跳转到"
 
 #: gui/kstandardshortcut.cpp:303
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
-msgstr "转到页码"
+msgstr "跳转到页面"
 
 #: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
@@ -360,7 +360,7 @@ msgstr "编辑书签"
 #: gui/kstandardshortcut.cpp:328
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
-msgstr "拼写检查"
+msgstr "拼写"
 
 #: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
@@ -435,7 +435,7 @@ msgstr "重命名"
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr "移至回收站"
+msgstr "移动到回收站"
 
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
@@ -482,7 +482,7 @@ msgstr "要读取更新指令的文件"
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr "在 [.] 中生成文件的目录"
+msgstr "用于生成文件的目录，格式为 [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
@@ -492,7 +492,7 @@ msgstr "目录"
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr "显示软件的许可证。"
+msgstr "显示软件许可证。"
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
@@ -509,7 +509,7 @@ msgstr "要查看的组。根组使用“<default>”，嵌套组可重复使用
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
-msgstr "要查询的项"
+msgstr "要查询的键"
 
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
@@ -541,4 +541,4 @@ msgstr "启用时删除指定项"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr "要写入的值。此为必填项。在命令行中应使用 \" 代表空值。"
+msgstr "要写入的值。此为必填项。在 shell 中应使用 \" 代表空值。"
