@@ -87,6 +87,7 @@ static const QString s_canonical_homepath{QFileInfo(homePath()).canonicalFilePat
 static const QString s_dollargroup{QStringLiteral("$i")};
 static const QString s_test_subdir{QStringLiteral("kconfigtest_subdir/")};
 static const QString s_kconfig_test_subdir(s_test_subdir + QLatin1String("kconfigtest"));
+static const QString s_kconfig_test_illegal_object_path(s_test_subdir + QLatin1String("kconfig-test"));
 
 #ifndef Q_OS_WIN
 void initLocale()
@@ -2091,6 +2092,28 @@ void KConfigTest::testNotify()
     QCOMPARE(otherWatcherSpy.count(), 1);
     QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
+}
+
+void KConfigTest::testNotifyIllegalObjectPath()
+{
+#if !KCONFIG_USE_DBUS
+    QSKIP("KConfig notification requires DBus");
+#endif
+
+    KConfig config(s_kconfig_test_illegal_object_path);
+    auto myConfigGroup = KConfigGroup(&config, "General");
+
+    // mimics a config in another process, which is watching for events
+    auto remoteConfig = KSharedConfig::openConfig(s_kconfig_test_illegal_object_path);
+    KConfigWatcher::Ptr watcher = KConfigWatcher::create(remoteConfig);
+
+    QSignalSpy watcherSpy(watcher.data(), &KConfigWatcher::configChanged);
+
+    // write entries in a group and subgroup
+    myConfigGroup.writeEntry("entryA", "foo", KConfig::Persistent | KConfig::Notify);
+    config.sync();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.size(), 1);
 }
 
 void KConfigTest::testKAuthorizeEnums()
