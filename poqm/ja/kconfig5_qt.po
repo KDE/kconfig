@@ -1,10 +1,11 @@
+# Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2007-07-06 23:00+0900\n"
-"Last-Translator: Yukiko Bando <ybando@k6.dion.ne.jp>\n"
+"PO-Revision-Date: 2023-02-23 18:21+0900\n"
+"Last-Translator: Ryuichi Yamada <ryuichi_ya220@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -14,93 +15,94 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #: core/kconfig.cpp:965
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr ""
+msgstr "システム管理者に連絡してください。"
 
 #: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr ""
+msgstr "設定ファイル \"%1\" は書き込み可能ではありません。\n"
 
 #: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
 #: core/kemailsettings.cpp:248
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr ""
+msgstr "デフォルト"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
-msgstr ""
+msgstr "開く"
 
 #: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "New"
-msgstr ""
+msgstr "新規"
 
 #: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
-msgstr ""
+msgstr "印刷"
 
 #: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
-msgstr ""
+msgstr "終了"
 
 #: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
-msgstr ""
+msgstr "元に戻す"
 
 #: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr ""
+msgstr "やり直す"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
-msgstr ""
+msgstr "切り取り"
 
 #: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
 #: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
-msgstr ""
+msgstr "貼り付け"
 
 #: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
-msgstr ""
+msgstr "選択を貼り付け"
 
 #: gui/kstandardshortcut.cpp:94
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
-msgstr ""
+msgstr "すべて選択"
 
 #: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
-msgstr ""
+msgstr "選択解除"
 
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
@@ -150,32 +152,32 @@ msgstr ""
 #: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
-msgstr ""
+msgstr "前"
 
 #: gui/kstandardshortcut.cpp:139
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 #: gui/kstandardshortcut.cpp:146
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
-msgstr ""
+msgstr "上へ"
 
 #: gui/kstandardshortcut.cpp:147
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 #: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
-msgstr ""
+msgstr "進む"
 
 #: gui/kstandardshortcut.cpp:158
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr ""
+msgstr "再読み込み"
 
 #: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
@@ -210,42 +212,42 @@ msgstr ""
 #: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
-msgstr ""
+msgstr "拡大"
 
 #: gui/kstandardshortcut.cpp:208
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
-msgstr ""
+msgstr "縮小"
 
 #: gui/kstandardshortcut.cpp:211
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
-msgstr ""
+msgstr "フルスクリーンモード"
 
 #: gui/kstandardshortcut.cpp:218
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
-msgstr ""
+msgstr "メニューバーを表示"
 
 #: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
-msgstr ""
+msgstr "次のタブをアクティベート"
 
 #: gui/kstandardshortcut.cpp:229
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
-msgstr ""
+msgstr "前のタブをアクティベート"
 
 #: gui/kstandardshortcut.cpp:237
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: gui/kstandardshortcut.cpp:238
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
-msgstr ""
+msgstr "これは何"
 
 #: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
@@ -285,52 +287,52 @@ msgstr ""
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
-msgstr ""
+msgstr "名前を付けて保存"
 
 #: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
-msgstr ""
+msgstr "元に戻す"
 
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr ""
+msgstr "印刷プレビュー"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr ""
+msgstr "メール"
 
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr ""
+msgstr "クリア"
 
 #: gui/kstandardshortcut.cpp:297
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr ""
+msgstr "実際のサイズに拡大"
 
 #: gui/kstandardshortcut.cpp:298
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
-msgstr ""
+msgstr "ページに合わせる"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
-msgstr ""
+msgstr "幅に合わせる"
 
 #: gui/kstandardshortcut.cpp:300
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
-msgstr ""
+msgstr "高さに合わせる"
 
 #: gui/kstandardshortcut.cpp:301
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
-msgstr ""
+msgstr "拡大"
 
 #: gui/kstandardshortcut.cpp:302
 msgctxt "KStandardShortcut|@action"
@@ -405,52 +407,52 @@ msgstr ""
 #: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr ""
+msgstr "バグを報告"
 
 #: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr ""
+msgstr "言語を設定..."
 
 #: gui/kstandardshortcut.cpp:372
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr ""
+msgstr "アプリケーションについて"
 
 #: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr ""
+msgstr "KDE について"
 
 #: gui/kstandardshortcut.cpp:376
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: gui/kstandardshortcut.cpp:377
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
-msgstr ""
+msgstr "名前変更"
 
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr ""
+msgstr "ごみ箱に移動"
 
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr ""
+msgstr "寄付"
 
 #: gui/kstandardshortcut.cpp:389
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
-msgstr ""
+msgstr "隠しファイルを表示/隠す"
 
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
-msgstr ""
+msgstr "フォルダを作成"
 
 #: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
