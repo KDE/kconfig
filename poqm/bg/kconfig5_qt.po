@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Моля, свържете се със системния си администратор."
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "Конфигурационният файл \"%1\" не може да се записва.\n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "По подразбиране"
@@ -311,163 +311,158 @@ msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Изчистване"
 
-#: gui/kstandardshortcut.cpp:297
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "Мащабиране до действителен размер"
 
-#: gui/kstandardshortcut.cpp:298
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Напасване на цяла страница"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Напасване по ширина"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Напасване на височина"
 
-#: gui/kstandardshortcut.cpp:301
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Мащабиране"
 
-#: gui/kstandardshortcut.cpp:302
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Отиване"
 
-#: gui/kstandardshortcut.cpp:303
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Отиване на страница"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Назад на документа"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Препращане на документ"
 
-#: gui/kstandardshortcut.cpp:322
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Редактиране на отметки"
 
-#: gui/kstandardshortcut.cpp:328
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Правопис"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Показване на лентата с инструменти"
 
-#: gui/kstandardshortcut.cpp:330
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Показване на лентата на състоянието"
 
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "Запазване на опциите"
-
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Клавишни комбинации"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Конфигуриране на приложението"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Конфигуриране на ленти с инструменти"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Конфигуриране на известията"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "Съвет на деня"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Подаване на сигнал за грешка"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "Конфигуриране на език..."
 
-#: gui/kstandardshortcut.cpp:372
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Относно приложението"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Относно KDE"
 
-#: gui/kstandardshortcut.cpp:376
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Изтриване"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Преименуване"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Преместване в кошчето"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Дарение"
 
-#: gui/kstandardshortcut.cpp:389
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Показване/скриване на скрити файлове"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Създаване на папка"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "KDE инструмент за актуализиране на потребителски конфигурационни файлове"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Задържане на изходните резултати от скриптове"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -476,12 +471,12 @@ msgstr ""
 "Само за модулни тестове: използване на тестови директории, за да не се "
 "променят истинските файлове на потребителя"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Проверяване, дали самият конфигурационен файл изисква актуализиране"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл или файлове с инструкции за актуализиране"
@@ -555,3 +550,7 @@ msgstr "Изтриване на посочения ключ, ако е акти�
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Стойност за запис. Изисква се, в терминал използвайте '' за празно"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "Запазване на опциите"

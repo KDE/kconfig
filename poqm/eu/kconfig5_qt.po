@@ -22,19 +22,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.04.3\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Jarri kontaktuan zure sistemaren administratzailearekin."
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "\"%1\" konfigurazio fitxategia ezin da idatzi.\n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "Lehenetsia"
@@ -314,162 +314,157 @@ msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Garbitu"
 
-#: gui/kstandardshortcut.cpp:297
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "Zoom benetako neurrira"
 
-#: gui/kstandardshortcut.cpp:298
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Doitu orriari"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Doitu zabalerara"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Doitu garaierara"
 
-#: gui/kstandardshortcut.cpp:301
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Zooma"
 
-#: gui/kstandardshortcut.cpp:302
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Joan hona"
 
-#: gui/kstandardshortcut.cpp:303
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Joan orrira"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Dokumentua atzera"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Dokumentua aurrera"
 
-#: gui/kstandardshortcut.cpp:322
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Editatu gogokoak"
 
-#: gui/kstandardshortcut.cpp:328
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Ortografia"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Erakutsi tresna-barra"
 
-#: gui/kstandardshortcut.cpp:330
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Erakutsi egoera-barra"
 
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "Gorde aukerak"
-
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Tekla-konbinazioak"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Konfiguratu aplikazioa"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Konfiguratu tresna-barrak"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Konfiguratu jakinarazpenak"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "Eguneko aholkua"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Eman errorearen berri"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "Konfiguratu hizkuntza..."
 
-#: gui/kstandardshortcut.cpp:372
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Aplikazioari buruz"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "KDEri buruz"
 
-#: gui/kstandardshortcut.cpp:376
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Berrizendatu"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Bota zakarrontzira"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Egin dohaintza"
 
-#: gui/kstandardshortcut.cpp:389
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Erakutsi/ezkutatu ezkutuko fitxategiak"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Sortu karpeta"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Konfigurazio fitxategiak eguneratzeko KDE tresna"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Mantendu scriptaren irteera emaitzak"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -478,13 +473,13 @@ msgstr ""
 "Unitate probatarako bakarrik: erabili proba karpetak salbu mantentzeko "
 "erabiltzailearen fitxategi errealak."
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr ""
 "Egiaztatu ea konfigurazio fitxategiak bere burua eguneratzea eskatzen duen. "
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Eguneratzeko jarraibideak irakurtzeko fitxategia(k)"
@@ -559,6 +554,10 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Idatzi beharreko balioa. Derrigorrezkoa da. Shell-etan, erabili '' hutsik "
 "uzteko"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "Gorde aukerak"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Switch Application Language"

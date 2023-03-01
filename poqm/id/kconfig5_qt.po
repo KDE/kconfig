@@ -22,19 +22,19 @@ msgstr ""
 "X-Generator: Lokalize 21.12.3\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Silakan kontak pengurus sistem anda."
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "File konfigurasi \"%1\" tidak dapat ditulis.\n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "Baku"
@@ -314,162 +314,157 @@ msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Bersihkan"
 
-#: gui/kstandardshortcut.cpp:297
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "Zoom ke Ukuran Sebenarnya"
 
-#: gui/kstandardshortcut.cpp:298
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Paskan Ke Halaman"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Paskan Ke Lebar"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Paskan Ke Tinggi"
 
-#: gui/kstandardshortcut.cpp:301
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Zoom "
 
-#: gui/kstandardshortcut.cpp:302
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Ke"
 
-#: gui/kstandardshortcut.cpp:303
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Ke Halaman"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Dokumen Mundur"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Dokumen Maju"
 
-#: gui/kstandardshortcut.cpp:322
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Edit Markah"
 
-#: gui/kstandardshortcut.cpp:328
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Pengejaan"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Tampilkan Bilah Alat"
 
-#: gui/kstandardshortcut.cpp:330
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Tampilkan Bilah Status"
 
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "Opsi Simpan"
-
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Pengikat Tuts"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Konfigurasikan Aplikasi"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Konfigurasikan Bilah Alat"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Konfigurasikan Notifikasi"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "Tip Hari Ini"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Laporkan Bug"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "Konfigurasikan Bahasa..."
 
-#: gui/kstandardshortcut.cpp:372
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Tentang Aplikasi"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Tentang KDE"
 
-#: gui/kstandardshortcut.cpp:376
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Hapus"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Ubah Nama"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Pindah ke Tong Sampah"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Donasi"
 
-#: gui/kstandardshortcut.cpp:389
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Tampilkan/Sembunyikan File Yang Tersembunyi"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Ciptakan Folder"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Alat KDE untuk memperbarui file konfigurasi pengguna"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Jaga output dihasilkan dari skrip"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -478,12 +473,12 @@ msgstr ""
 "Untuk uji unit saja: gunakan direktori uji agar menjauh dari file asli "
 "pengguna"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Cek apakah file konfigurasi itu sendiri memerlukan peningkatan"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "File untuk membaca instruksi pembaruan dari"
@@ -556,6 +551,10 @@ msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Nilai untuk penulisan. Seharusnya, di shell gunakan '' bagi yang kosong"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "Opsi Simpan"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Switch Application Language"

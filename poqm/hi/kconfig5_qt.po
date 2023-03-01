@@ -21,19 +21,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "कृपया अपने तंत्र व्यवस्थापक से संपर्क करें। "
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "कॉन्फ़िगरेशन फ़ाइल \"%1\" लेखन योग्य नहीं है। \n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "पूर्वन्यस्त"
@@ -313,7 +313,7 @@ msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "साफ करें"
 
-#: gui/kstandardshortcut.cpp:297
+#: gui/kstandardshortcut.cpp:299
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Actual Size"
@@ -321,157 +321,152 @@ msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "वास्तविक आकार"
 
-#: gui/kstandardshortcut.cpp:298
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "पृष्ठ के अनुरूप"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "चौड़ाई के अनुरूप"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "ऊँचाई के अनुरूप"
 
-#: gui/kstandardshortcut.cpp:301
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "ज़ूम"
 
-#: gui/kstandardshortcut.cpp:302
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "में जाएँ"
 
-#: gui/kstandardshortcut.cpp:303
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "पृष्ठ में जाएँ"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "पिछला दस्तावेज़"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "अगला दस्तावेज़"
 
-#: gui/kstandardshortcut.cpp:322
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "पुस्तचिह्न संपादित करें"
 
-#: gui/kstandardshortcut.cpp:328
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "वर्तनी"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "औज़ार पट्टी दिखाएँ"
 
-#: gui/kstandardshortcut.cpp:330
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "स्थिति-पट्टी दिखाएँ"
 
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "विकल्पों को सहेजें"
-
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "कुंजी बाइंडिंग"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "अनुप्रयोग विन्यस्त करें"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "औज़ार पट्टी विन्यस्त करें"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "सूचनाएँ विन्यस्त करें"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "आज का सुझाव "
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "त्रुटि दर्ज करें"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "भाषा विन्यस्त करें..."
 
-#: gui/kstandardshortcut.cpp:372
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "अनुप्रयोग के बोरे में"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "केडीई के बारे में"
 
-#: gui/kstandardshortcut.cpp:376
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "मिटाएँ"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "नाम बदलें"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "कूडे में डालें"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "दान करें"
 
-#: gui/kstandardshortcut.cpp:389
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "छुपी फ़ाइलें दिखाएँ/छुपाएँ"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "फ़ोल्डर बनाएँ"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "उपयोगकर्ता कॉन्फ़िगरेशन फ़ाइलों को अद्यतन करने के लिए केडीई उपकरण "
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "स्क्रिप्ट से आउटपुट परिणाम रखें "
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -480,12 +475,12 @@ msgstr ""
 "केवल यूनिट परीक्षणों के लिए: उपयोगकर्ता की वास्तविक फ़ाइलों से दूर रहने के लिए परीक्षण "
 "निर्देशिकाओं का उपयोग करें "
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "जांचें कि क्या कॉन्फ़िगर फ़ाइल को अपडेट करने की आवश्यकता है "
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "फ़ाइल (लों) से अद्यतन निर्देश पढ़ने के लिए "
@@ -557,6 +552,10 @@ msgstr "सक्षम होने पर निर्दिष्ट कु�
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "मूल्य जो लिखा जाना है. अनिवार्य है, शेल में खाली के लिए ''  का इस्तेमाल करें"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "विकल्पों को सहेजें"
 
 #~ msgid "KWriteConfig"
 #~ msgstr "के-राइट-कॉन्फ़िग"

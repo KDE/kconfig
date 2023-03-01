@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Лутфан, бо маъмури низоми худ дар тамос шавед."
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "Файли танзимии \"%1\" навишташаванда намебошад.\n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "Стандартӣ"
@@ -311,7 +311,7 @@ msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Пок кардан"
 
-#: gui/kstandardshortcut.cpp:297
+#: gui/kstandardshortcut.cpp:299
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Actual Size"
@@ -319,157 +319,152 @@ msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "Андозаи ҳақиқӣ"
 
-#: gui/kstandardshortcut.cpp:298
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Ба саҳифа ғунҷидан"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Ба паҳноӣ ғунҷидан"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Ба баландӣ ғунҷидан"
 
-#: gui/kstandardshortcut.cpp:301
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Интихоби андоза"
 
-#: gui/kstandardshortcut.cpp:302
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Гузариш ба"
 
-#: gui/kstandardshortcut.cpp:303
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Гузариш ба саҳифа"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Санади қаблӣ"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Санади навбатӣ"
 
-#: gui/kstandardshortcut.cpp:322
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Таҳрир кардани хатчӯб"
 
-#: gui/kstandardshortcut.cpp:328
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Санҷиши имло"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Нишон додани навори абзорҳо"
 
-#: gui/kstandardshortcut.cpp:330
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Нишон додани навори вазъият"
 
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "Имконоти нигоҳдорӣ"
-
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Иртиботи тугмаҳо"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Танзимоти барнома"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Танзимоти навори абзорҳо"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Танзимоти огоҳиномаҳо"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "Маслиҳати рӯз"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Гузориш дар бораи хато"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:372
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Дар бораи барнома"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Дар бораи KDE"
 
-#: gui/kstandardshortcut.cpp:376
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Нест кардан"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Номро иваз кардан"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Интиқол додан ба сабад"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Дастгирии молӣ"
 
-#: gui/kstandardshortcut.cpp:389
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Абзори KDE барои навсозии файлҳои танзимии корбар"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Нигоҳ доштани натиҷаҳои барориши нақшҳо (скриптҳо)"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -478,12 +473,12 @@ msgstr ""
 "Танҳо барои санҷишҳои воҳидӣ: барои гузаронидани санҷишҳо дур аз файлҳои "
 "ҳақиқии корбар аз ҷузвадонҳои санҷишӣ истифода баред"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Ниёзи навсозӣ намудани худи файли танзимиро санҷед"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл(ҳо)е ки дастурамали навсозӣ аз он(ҳо) иҷро мешаванд"
@@ -558,6 +553,10 @@ msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Қимат барои навиштан. Ҳатман, дар ҷилд аз '' барои ҷои холӣ истифода баред"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "Имконоти нигоҳдорӣ"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Switch Application Language"

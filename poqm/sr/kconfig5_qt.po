@@ -19,374 +19,372 @@ msgstr ""
 "X-Environment: kde\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:926
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Обратите се систем-администратору."
 
-#: core/kconfigini.cpp:569
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "Не може се писати у поставни фајл „%1“.\n"
 
-#: core/kemailsettings.cpp:235 core/kemailsettings.cpp:238
-#: core/kemailsettings.cpp:246
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "Подразумевано"
 
-#: gui/kstandardshortcut.cpp:62
+#: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
 msgstr "Отвори"
 
-#: gui/kstandardshortcut.cpp:63
+#: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "New"
 msgstr "Ново"
 
-#: gui/kstandardshortcut.cpp:64
+#: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
 msgstr "Затвори"
 
-#: gui/kstandardshortcut.cpp:65
+#: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
 msgstr "Сачувај"
 
-#: gui/kstandardshortcut.cpp:66
+#: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
 msgstr "Штампај"
 
-#: gui/kstandardshortcut.cpp:67
+#: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
 msgstr "Напусти"
 
-#: gui/kstandardshortcut.cpp:70
+#: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
 msgstr "Опозови"
 
-#: gui/kstandardshortcut.cpp:71
+#: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
 msgstr "Понови"
 
-#: gui/kstandardshortcut.cpp:74
+#: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
 msgstr "Исеци"
 
-#: gui/kstandardshortcut.cpp:75
+#: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
 msgstr "Копирај"
 
-#: gui/kstandardshortcut.cpp:76
+#: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
 msgstr "Налепи"
 
-#: gui/kstandardshortcut.cpp:77
+#: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
 msgstr "Налепи избор"
 
-#: gui/kstandardshortcut.cpp:79
+#: gui/kstandardshortcut.cpp:94
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
 msgstr "Изабери све"
 
-#: gui/kstandardshortcut.cpp:80
+#: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
 msgstr "Поништи избор"
 
-#: gui/kstandardshortcut.cpp:81
+#: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
 msgstr "Обриши реч уназад"
 
-#: gui/kstandardshortcut.cpp:82
+#: gui/kstandardshortcut.cpp:106
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
 msgstr "Обриши реч унапред"
 
-#: gui/kstandardshortcut.cpp:84
+#: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "Нађи"
 
-#: gui/kstandardshortcut.cpp:85
+#: gui/kstandardshortcut.cpp:114
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "Нађи следеће"
 
-#: gui/kstandardshortcut.cpp:86
+#: gui/kstandardshortcut.cpp:115
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "Нађи претходно"
 
-#: gui/kstandardshortcut.cpp:87
+#: gui/kstandardshortcut.cpp:116
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "Замени"
 
-#: gui/kstandardshortcut.cpp:90
+#: gui/kstandardshortcut.cpp:121
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "Домаће"
 
-#: gui/kstandardshortcut.cpp:91
+#: gui/kstandardshortcut.cpp:129
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "Почетак"
 
-#: gui/kstandardshortcut.cpp:92
+#: gui/kstandardshortcut.cpp:135
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "Крај"
 
-#: gui/kstandardshortcut.cpp:93
+#: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "Претходно"
 
-#: gui/kstandardshortcut.cpp:94
+#: gui/kstandardshortcut.cpp:139
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "Следеће"
 
-#: gui/kstandardshortcut.cpp:96
+#: gui/kstandardshortcut.cpp:146
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "Горе"
 
-#: gui/kstandardshortcut.cpp:97
+#: gui/kstandardshortcut.cpp:147
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "Назад"
 
-#: gui/kstandardshortcut.cpp:98
+#: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "Напред"
 
-#: gui/kstandardshortcut.cpp:99
+#: gui/kstandardshortcut.cpp:158
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "Учитај поново"
 
-#: gui/kstandardshortcut.cpp:101
+#: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "Почетак реда"
 
-#: gui/kstandardshortcut.cpp:102
+#: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "Крај реда"
 
-#: gui/kstandardshortcut.cpp:103
+#: gui/kstandardshortcut.cpp:181
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "Иди на ред"
 
-#: gui/kstandardshortcut.cpp:104
+#: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "Реч уназад"
 
-#: gui/kstandardshortcut.cpp:105
+#: gui/kstandardshortcut.cpp:192
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "Реч унапред"
 
-#: gui/kstandardshortcut.cpp:107
+#: gui/kstandardshortcut.cpp:201
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "Додај обележивач"
 
-#: gui/kstandardshortcut.cpp:108
+#: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "Увеличај"
 
-#: gui/kstandardshortcut.cpp:109
+#: gui/kstandardshortcut.cpp:208
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "Умањи"
 
-#: gui/kstandardshortcut.cpp:110
+#: gui/kstandardshortcut.cpp:211
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "Режим целог екрана"
 
-#: gui/kstandardshortcut.cpp:112
+#: gui/kstandardshortcut.cpp:218
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "Прикажи траку менија"
 
-#: gui/kstandardshortcut.cpp:113
+#: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "Активирај следећи језичак"
 
-#: gui/kstandardshortcut.cpp:114
+#: gui/kstandardshortcut.cpp:229
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "Активирај претходни језичак"
 
-#: gui/kstandardshortcut.cpp:117
+#: gui/kstandardshortcut.cpp:237
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "Помоћ"
 
-#: gui/kstandardshortcut.cpp:118
+#: gui/kstandardshortcut.cpp:238
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "Шта је ово"
 
-#: gui/kstandardshortcut.cpp:121
+#: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "Допуна текста"
 
-#: gui/kstandardshortcut.cpp:122
+#: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr "Претходно поклапање за допуну"
 
-#: gui/kstandardshortcut.cpp:123
+#: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr "Следеће поклапање за допуну"
 
-#: gui/kstandardshortcut.cpp:124
+#: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr "Допуна подниске"
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:276
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "Претходна ставка на списку"
 
-#: gui/kstandardshortcut.cpp:127
+#: gui/kstandardshortcut.cpp:284
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "Следећа ставка на списку"
 
-#: gui/kstandardshortcut.cpp:129
+#: gui/kstandardshortcut.cpp:291
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "Отвори недавни"
 
-#: gui/kstandardshortcut.cpp:130
+#: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "Сачувај као"
 
-#: gui/kstandardshortcut.cpp:131
+#: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "Врати"
 
-#: gui/kstandardshortcut.cpp:132
+#: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "Преглед пред штампање"
 
-#: gui/kstandardshortcut.cpp:133
+#: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "Пошта"
 
-#: gui/kstandardshortcut.cpp:134
+#: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Очисти"
 
-#: gui/kstandardshortcut.cpp:135
+#: gui/kstandardshortcut.cpp:299
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
-msgid "Actual Size"
+msgid "Zoom to Actual Size"
 msgstr "Стварна величина"
 
-#: gui/kstandardshortcut.cpp:136
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Уклопи у страницу"
 
-#: gui/kstandardshortcut.cpp:137
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Уклопи у ширину"
 
-#: gui/kstandardshortcut.cpp:138
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Уклопи у висину"
 
-#: gui/kstandardshortcut.cpp:139
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Увеличај"
 
-#: gui/kstandardshortcut.cpp:140
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Иди на"
 
-#: gui/kstandardshortcut.cpp:141
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Иди на страницу"
 
-#: gui/kstandardshortcut.cpp:142
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Документ назад"
 
-#: gui/kstandardshortcut.cpp:143
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Документ напред"
 
-#: gui/kstandardshortcut.cpp:144
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Уреди обележиваче"
 
-#: gui/kstandardshortcut.cpp:145
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Правопис"
 
-#: gui/kstandardshortcut.cpp:146
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Прикажи траку алатки"
 
-#: gui/kstandardshortcut.cpp:147
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Прикажи траку стања"
 
-#: gui/kstandardshortcut.cpp:149
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "Сачувај опције"
-
-#: gui/kstandardshortcut.cpp:154
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Свезе тастера"
 
-#: gui/kstandardshortcut.cpp:155
+#: gui/kstandardshortcut.cpp:348
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Notifications"
@@ -394,77 +392,82 @@ msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Подеси обавештења"
 
-#: gui/kstandardshortcut.cpp:156
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Подеси траке алатки"
 
-#: gui/kstandardshortcut.cpp:157
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Подеси обавештења"
 
-#: gui/kstandardshortcut.cpp:158
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "Савет дана"
 
-#: gui/kstandardshortcut.cpp:159
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Пријави грешку"
 
-#: gui/kstandardshortcut.cpp:160
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
-msgid "Switch Application Language"
-msgstr "Промени језик програма"
+msgid "Configure Language..."
+msgstr ""
 
-#: gui/kstandardshortcut.cpp:161
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "О програму"
 
-#: gui/kstandardshortcut.cpp:162
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "О КДЕ‑у"
 
-#: gui/kstandardshortcut.cpp:165
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Обриши"
 
-#: gui/kstandardshortcut.cpp:166
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Преименуј"
 
-#: gui/kstandardshortcut.cpp:167
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Премести у смеће"
 
-#: gui/kstandardshortcut.cpp:168
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Донација"
 
-#: gui/kstandardshortcut.cpp:169
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:934
+#: gui/kstandardshortcut.cpp:405
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr ""
+
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "КДЕ‑ова алатка за ажурирање корисничких поставних фајлова"
 
-#: kconf_update/kconf_update.cpp:936
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Задржи излазне резултате из скрипти"
 
-#: kconf_update/kconf_update.cpp:937
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -473,57 +476,67 @@ msgstr ""
 "Само за јединичне пробе: користи пробне фасцикле да не би дирао корисникове "
 "праве фајлове"
 
-#: kconf_update/kconf_update.cpp:938
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Провери да ли са̑м поставни фајл захтева ажурирање"
 
-#: kconf_update/kconf_update.cpp:939
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Фајлови из којих се читају инструкције за ажурирање"
 
-#: kconfig_compiler/kconfig_compiler.cpp:715
+#: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Фасцикла у којој се стварају фајлови [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:716
+#: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
 msgid "directory"
 msgstr "фасцикла"
 
-#: kconfig_compiler/kconfig_compiler.cpp:720
+#: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Прикажи лиценцу софтвера"
 
-#: kreadconfig/kreadconfig.cpp:44 kreadconfig/kwriteconfig.cpp:24
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Користи овај фајл уместо глобалне поставе"
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
 msgstr "Група у којој се тражи. Понављајте за угнежђене групе."
 
-#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:26
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Кључ који треба потражити"
 
-#: kreadconfig/kreadconfig.cpp:47
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Подразумевана вредност"
 
-#: kreadconfig/kreadconfig.cpp:48
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Тип променљиве"
 
-#: kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -532,13 +545,21 @@ msgstr ""
 "Тип променљиве. Задајте „bool“ за логичке, у супротном се узима као "
 "„string“ (ниска)"
 
-#: kreadconfig/kwriteconfig.cpp:28
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr ""
 
 # rewrite-msgid: /on a shell//
-#: kreadconfig/kwriteconfig.cpp:29
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Вредност која се уписује. Обавезно, задајте '' за празну"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "Сачувај опције"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Switch Application Language"
+#~ msgstr "Промени језик програма"

@@ -1,15 +1,13 @@
-# translation of kwriteconfig.po to Belarusian
-#
 # Darafei Praliaskouski <symbol@akeeri.tk>, 2006.
 # Darafei Praliaskouski <komzpa@licei2.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: kwriteconfig\n"
+"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2007-08-14 10:56+0000\n"
+"PO-Revision-Date: 2023-02-16 10:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,496 +17,492 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
+"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
+"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /main/be/kconfig/kconfig5_qt.po\n"
+"X-Crowdin-File-ID: 7795\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr ""
+msgstr "Звярніцеся да сістэмнага адміністратара."
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr ""
+msgstr "Файл канфігурацыі \"%1\" недаступны для запісу.\n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr ""
+msgstr "Прадвызначана"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
-msgstr ""
+msgstr "Адкрыць"
 
 #: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "New"
-msgstr ""
+msgstr "Новы"
 
 #: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
-msgstr ""
+msgstr "Закрыць"
 
 #: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
-msgstr ""
+msgstr "Захаваць"
 
 #: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
-msgstr ""
+msgstr "Друкаваць"
 
 #: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
-msgstr ""
+msgstr "Выйсці"
 
 #: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
-msgstr ""
+msgstr "Адрабіць"
 
 #: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr ""
+msgstr "Паўтарыць"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
-msgstr ""
+msgstr "Выразаць"
 
 #: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
-msgstr ""
+msgstr "Капіяваць"
 
 #: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
-msgstr ""
+msgstr "Уставіць"
 
 #: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
-msgstr ""
+msgstr "Уставіць абранае"
 
 #: gui/kstandardshortcut.cpp:94
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
-msgstr ""
+msgstr "Абраць усё"
 
 #: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
-msgstr ""
+msgstr "Адкінуць выбар"
 
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
-msgstr ""
+msgstr "Выдаліць папярэдняе слова"
 
 #: gui/kstandardshortcut.cpp:106
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
-msgstr ""
+msgstr "Выдаліць наступнае слова"
 
 #: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
-msgstr ""
+msgstr "Знайсці"
 
 #: gui/kstandardshortcut.cpp:114
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
-msgstr ""
+msgstr "Шукаць наступнае"
 
 #: gui/kstandardshortcut.cpp:115
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
-msgstr ""
+msgstr "Шукаць папярэдняе"
 
 #: gui/kstandardshortcut.cpp:116
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
-msgstr ""
+msgstr "Замяніць"
 
 #: gui/kstandardshortcut.cpp:121
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
-msgstr ""
+msgstr "Хатняя старонка"
 
 #: gui/kstandardshortcut.cpp:129
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
-msgstr ""
+msgstr "У пачатак"
 
 #: gui/kstandardshortcut.cpp:135
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
-msgstr ""
+msgstr "У канец"
 
 #: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
-msgstr ""
+msgstr "Папярэдняе"
 
 #: gui/kstandardshortcut.cpp:139
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
-msgstr ""
+msgstr "Далей"
 
 #: gui/kstandardshortcut.cpp:146
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
-msgstr ""
+msgstr "Уверх"
 
 #: gui/kstandardshortcut.cpp:147
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
-msgstr ""
+msgstr "Наперад"
 
 #: gui/kstandardshortcut.cpp:158
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr ""
+msgstr "Перазагрузіць"
 
 #: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
-msgstr ""
+msgstr "Пачатак радка"
 
 #: gui/kstandardshortcut.cpp:175
-#, fuzzy
-#| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
-msgstr "Група для пошуку"
+msgstr "Канец радка"
 
 #: gui/kstandardshortcut.cpp:181
-#, fuzzy
-#| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr "Група для пошуку"
+msgstr "Перайсці да радка"
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
-msgstr ""
+msgstr "Папярэдняе слова"
 
 #: gui/kstandardshortcut.cpp:192
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
-msgstr ""
+msgstr "Наступнае слова"
 
 #: gui/kstandardshortcut.cpp:201
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Дадаць закладку"
 
 #: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
-msgstr ""
+msgstr "Наблізіць"
 
 #: gui/kstandardshortcut.cpp:208
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
-msgstr ""
+msgstr "Аддаліць"
 
 #: gui/kstandardshortcut.cpp:211
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
-msgstr ""
+msgstr "Поўнаэкранны рэжым"
 
 #: gui/kstandardshortcut.cpp:218
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
-msgstr ""
+msgstr "Паказваць панэль меню"
 
 #: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
-msgstr ""
+msgstr "Актываваць наступную ўкладку"
 
 #: gui/kstandardshortcut.cpp:229
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
-msgstr ""
+msgstr "Актываваць папярэднюю ўкладку"
 
 #: gui/kstandardshortcut.cpp:237
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
-msgstr ""
+msgstr "Даведка"
 
 #: gui/kstandardshortcut.cpp:238
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
-msgstr ""
+msgstr "Што гэта"
 
 #: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
-msgstr ""
+msgstr "Запаўненне тэксту"
 
 #: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
-msgstr ""
+msgstr "Папярэдняе супадзенне для запаўнення"
 
 #: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
-msgstr ""
+msgstr "Наступнае супадзенне для запаўнення"
 
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
-msgstr ""
+msgstr "Запаўненне радкоў"
 
 #: gui/kstandardshortcut.cpp:276
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
-msgstr ""
+msgstr "Папярэдні элемент у спісе"
 
 #: gui/kstandardshortcut.cpp:284
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
-msgstr ""
+msgstr "Наступны элемент у спісе"
 
 #: gui/kstandardshortcut.cpp:291
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr ""
+msgstr "Адкрыць нядаўнія"
 
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
-msgstr ""
+msgstr "Захаваць як"
 
 #: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
-msgstr ""
+msgstr "Інвертаваць"
 
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr ""
+msgstr "Папярэдні прагляд для друку"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr ""
+msgstr "Пошта"
 
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:297
-msgctxt "KStandardShortcut|@action"
-msgid "Zoom to Actual Size"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:298
-msgctxt "KStandardShortcut|@action"
-msgid "Fit To Page"
-msgstr ""
+msgstr "Ачысціць"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
-msgid "Fit To Width"
-msgstr ""
+msgid "Zoom to Actual Size"
+msgstr "Маштабаваць да сапраўднага памеру"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
-msgid "Fit To Height"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:301
-msgctxt "KStandardShortcut|@action"
-msgid "Zoom"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:302
-msgctxt "KStandardShortcut|@action"
-msgid "Goto"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:303
-msgctxt "KStandardShortcut|@action"
-msgid "Goto Page"
-msgstr ""
+msgid "Fit To Page"
+msgstr "Па памеры старонкі"
 
 #: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
-msgid "Document Back"
-msgstr ""
+msgid "Fit To Width"
+msgstr "Па шырыні"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:307
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "Па вышыні"
+
+#: gui/kstandardshortcut.cpp:308
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "Маштаб"
+
+#: gui/kstandardshortcut.cpp:309
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "Перайсці"
+
+#: gui/kstandardshortcut.cpp:310
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "Перайсці да старонкі"
+
+#: gui/kstandardshortcut.cpp:313
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "Папярэдні дакумент"
+
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:322
-msgctxt "KStandardShortcut|@action"
-msgid "Edit Bookmarks"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:328
-msgctxt "KStandardShortcut|@action"
-msgid "Spelling"
-msgstr ""
+msgstr "Наступны дакумент"
 
 #: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "Рэдагаваць закладкі"
+
+#: gui/kstandardshortcut.cpp:335
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "Правапіс"
+
+#: gui/kstandardshortcut.cpp:336
+msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:330
-msgctxt "KStandardShortcut|@action"
-msgid "Show Statusbar"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr ""
+msgstr "Паказваць панэль інструментаў"
 
 #: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
-msgid "Key Bindings"
-msgstr ""
+msgid "Show Statusbar"
+msgstr "Паказваць панэль стану"
 
 #: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Application"
-msgstr ""
+msgid "Key Bindings"
+msgstr "Прывязванне клавіш"
 
 #: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Toolbars"
-msgstr ""
+msgid "Configure Application"
+msgstr "Наладжванне праграмы"
 
 #: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Notifications"
-msgstr ""
+msgid "Configure Toolbars"
+msgstr "Наладжванне панэляў інструментаў"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:364
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "Наладжванне апавяшчэнняў"
+
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
-msgstr ""
+msgstr "Карысная парада"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr ""
+msgstr "Паведаміць пра хібу"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:372
-msgctxt "KStandardShortcut|@action"
-msgid "About Application"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:373
-msgctxt "KStandardShortcut|@action"
-msgid "About KDE"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:376
-msgctxt "KStandardShortcut|@action"
-msgid "Delete"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:377
-msgctxt "KStandardShortcut|@action"
-msgid "Rename"
-msgstr ""
+msgstr "Наладжванне мовы..."
 
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
-msgid "Move to Trash"
-msgstr ""
+msgid "About Application"
+msgstr "Пра праграму"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:381
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "Пра KDE"
+
+#: gui/kstandardshortcut.cpp:384
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: gui/kstandardshortcut.cpp:385
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "Змяніць назву"
+
+#: gui/kstandardshortcut.cpp:388
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "Перамясціць у сметніцу"
+
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr ""
-
-#: gui/kstandardshortcut.cpp:389
-msgctxt "KStandardShortcut|@action"
-msgid "Show/Hide Hidden Files"
-msgstr ""
+msgstr "Ахвяраваць"
 
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
-msgid "Create Folder"
-msgstr ""
+msgid "Show/Hide Hidden Files"
+msgstr "Паказаць/Схаваць схаваныя файлы"
 
-#: kconf_update/kconf_update.cpp:957
+#: gui/kstandardshortcut.cpp:405
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr "Стварыць каталог"
+
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
-msgstr ""
+msgstr "Інструмент KDE для абнаўлення карыстальніцкіх файлаў канфігурацыі"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr ""
+msgstr "Пакідаць вынікі вываду са скрыптоў"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
 "files"
 msgstr ""
+"Толькі для тэстаў модуляў: выкарыстоўваць тэставыя каталогі, каб не чапаць "
+"рэальныя файлы карыстальніка"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
-msgstr ""
+msgstr "Праверце, ці трэба абнавіць сам файл канфігурацыі"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
-msgstr ""
+msgstr "Файл(ы), з якога трэба чытаць інструкцыі па абнаўленні"
 
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr ""
+msgstr "Каталог для стварэння файлаў у [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
 msgid "directory"
-msgstr ""
+msgstr "каталог"
 
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr ""
+msgstr "Паказаць ліцэнзіі праграмнага забеспячэння."
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
-#, fuzzy
-#| msgid "Use <file> instead of global config"
 msgctxt "main|"
 msgid "Use <file> instead of global config"
-msgstr "Выкарыстаць <файл> замест глабальнага файлу настаўленняў"
+msgstr "Выкарыстоўваць <file> замест глабальнай канфігурацыі"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
@@ -516,10 +510,10 @@ msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
 msgstr ""
+"Група для прагляду. Выкарыстоўваць \"<default>\" для каранёвай групы або "
+"паўторна для ўкладзеных груп."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
-#, fuzzy
-#| msgid "Key to look for"
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Ключ для пошуку"
@@ -527,44 +521,44 @@ msgstr "Ключ для пошуку"
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
-msgstr ""
+msgstr "Прадвызначанае значэнне"
 
 #: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
-msgstr ""
+msgstr "Тып зменнай"
 
 #: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"Назва групы не можа быць пустой, для каранёвай групы выкарыстоўвайце "
+"\"<default>\""
 
 #: kreadconfig/kwriteconfig.cpp:34
-#, fuzzy
-#| msgid ""
-#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
-#| "a string"
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
 "string"
 msgstr ""
-"Тып пераменнай. Карыстайцеся \"bool\" для лагічных, іншы будуць лічыцца "
-"радкамі."
+"Тып зменнай. Выкарыстоўвайце \"bool\" для лагічнага значэння, інакш яно "
+"будзе разглядацца як радок"
 
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr ""
+msgstr "Выдаліць прызначаны ключ, калі ён уключаны"
 
 #: kreadconfig/kwriteconfig.cpp:37
-#, fuzzy
-#| msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
-"Значэнне для запісу. Па жаданні, у абалонцы выкарыстоўвайце '' для пустога "
-"радку"
+"Значэнне, якое трэба ўпісаць. Для пустога ў абалонцы абавязкова "
+"выкарыстоўвайце ''"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "Захаваць параметры"
 
 #~ msgid "KWriteConfig"
 #~ msgstr "KWriteConfig"

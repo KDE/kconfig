@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2023-01-02 07:11\n"
+"PO-Revision-Date: 2023-02-24 12:43\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -15,19 +15,19 @@ msgstr ""
 "X-Crowdin-File: /kf5-trunk/messages/kconfig/kconfig5_qt.pot\n"
 "X-Crowdin-File-ID: 5586\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "请联系您的系统管理员。"
 
-#: core/kconfigini.cpp:561
+#: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "配置文件“%1”不可写入。\n"
 
-#: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
-#: core/kemailsettings.cpp:248
+#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
+#: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "默认"
@@ -190,7 +190,7 @@ msgstr "行尾"
 #: gui/kstandardshortcut.cpp:181
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr "转到行号"
+msgstr "跳转到行"
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
@@ -255,12 +255,12 @@ msgstr "文本补全"
 #: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
-msgstr "上一个补全匹配"
+msgstr "上一条补全匹配"
 
 #: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
-msgstr "下一个补全匹配"
+msgstr "下一条补全匹配"
 
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
@@ -280,7 +280,7 @@ msgstr "列表中的后一项"
 #: gui/kstandardshortcut.cpp:291
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr "打开最近文件"
+msgstr "打开最近项目"
 
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
@@ -300,181 +300,176 @@ msgstr "打印预览"
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr "发送邮件"
+msgstr "发送电子邮件"
 
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "清空"
 
-#: gui/kstandardshortcut.cpp:297
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "缩放为实际大小"
 
-#: gui/kstandardshortcut.cpp:298
+#: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
-msgstr "适合页面"
+msgstr "适合整个页面"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
-msgstr "适合页宽"
+msgstr "适合页面宽度"
 
-#: gui/kstandardshortcut.cpp:300
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
-msgstr "适合页高"
+msgstr "适合页面高度"
 
-#: gui/kstandardshortcut.cpp:301
+#: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "缩放"
 
-#: gui/kstandardshortcut.cpp:302
+#: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
-msgstr "转到"
+msgstr "跳转到"
 
-#: gui/kstandardshortcut.cpp:303
+#: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
-msgstr "转到页码"
+msgstr "跳转到页面"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "文档后退"
 
-#: gui/kstandardshortcut.cpp:314
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "文档前进"
 
-#: gui/kstandardshortcut.cpp:322
+#: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "编辑书签"
 
-#: gui/kstandardshortcut.cpp:328
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
-msgstr "拼写检查"
+msgstr "拼写"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "显示工具栏"
 
-#: gui/kstandardshortcut.cpp:330
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "显示状态栏"
 
-#: gui/kstandardshortcut.cpp:332
-msgctxt "KStandardShortcut|@action"
-msgid "Save Options"
-msgstr "保存选项"
-
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "键位绑定"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "配置应用程序"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "配置工具栏"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "配置通知"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
 msgstr "每日提示"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "报告程序缺陷"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "配置语言..."
 
-#: gui/kstandardshortcut.cpp:372
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "关于应用程序"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "关于 KDE"
 
-#: gui/kstandardshortcut.cpp:376
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "删除"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "重命名"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr "移至回收站"
+msgstr "移动到回收站"
 
-#: gui/kstandardshortcut.cpp:386
+#: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "捐款"
 
-#: gui/kstandardshortcut.cpp:389
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "显示/隐藏隐藏文件"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "创建文件夹"
 
-#: kconf_update/kconf_update.cpp:957
+#: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE 的用户配置文件更新工具"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "保留脚本的输出结果"
 
-#: kconf_update/kconf_update.cpp:962
+#: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
 "files"
 msgstr "仅用于单元测试：使用测试目录以避免访问用户实际文件"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "检查配置文件本身是否需要更新"
 
-#: kconf_update/kconf_update.cpp:967
+#: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要读取更新指令的文件"
@@ -482,7 +477,7 @@ msgstr "要读取更新指令的文件"
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr "在 [.] 中生成文件的目录"
+msgstr "用于生成文件的目录，格式为 [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
@@ -492,7 +487,7 @@ msgstr "目录"
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr "显示软件的许可证。"
+msgstr "显示软件许可证。"
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
@@ -509,7 +504,7 @@ msgstr "要查看的组。根组使用“<default>”，嵌套组可重复使用
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
-msgstr "要查询的项"
+msgstr "要查询的键"
 
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
@@ -541,4 +536,8 @@ msgstr "启用时删除指定项"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr "要写入的值。此为必填项。在命令行中应使用 \" 代表空值。"
+msgstr "要写入的值。此为必填项。在 shell 中应使用 \" 代表空值。"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Save Options"
+#~ msgstr "保存选项"
