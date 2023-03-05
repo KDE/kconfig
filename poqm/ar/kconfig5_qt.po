@@ -417,7 +417,7 @@ msgstr "عن التطبيق"
 #: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr "عن كدي"
+msgstr "عن كِيدِي"
 
 #: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
@@ -452,7 +452,7 @@ msgstr "أنشئ مجلّدًا"
 #: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
-msgstr "أداة «كدي» لتحديث ملفات ضبط المستخدم"
+msgstr "أداة «كِيدِي» لتحديث ملفات ضبط المستخدم"
 
 #: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
