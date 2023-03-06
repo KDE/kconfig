@@ -23,7 +23,7 @@ void KDesktopFileTest::initTestCase()
 {
     QStandardPaths::setTestModeEnabled(true);
 
-    KConfigGroup actionRestrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
+    KConfigGroup actionRestrictions(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KDE Action Restrictions");
     actionRestrictions.writeEntry("someBlockedAction", false);
 }
 

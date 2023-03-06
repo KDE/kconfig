@@ -34,8 +34,8 @@ void KSharedConfigTest::initTestCase()
 
 void KSharedConfigTest::testUnicity()
 {
-    KSharedConfig::Ptr cfg1 = KSharedConfig::openConfig();
-    KSharedConfig::Ptr cfg2 = KSharedConfig::openConfig();
+    KSharedConfig::Ptr cfg1 = KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp);
+    KSharedConfig::Ptr cfg2 = KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp);
     QCOMPARE(cfg1.data(), cfg2.data());
 }
 
@@ -43,11 +43,11 @@ void KSharedConfigTest::testReadWrite()
 {
     const int value = 1;
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KSharedConfigTest");
         cg.writeEntry("NumKey", value);
     }
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KSharedConfigTest");
         QCOMPARE(cg.readEntry("NumKey", 0), 1);
     }
 }
@@ -56,14 +56,14 @@ void KSharedConfigTest::testReadWriteSync()
 {
     const int value = 1;
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KSharedConfigTest");
         cg.writeEntry("NumKey", value);
     }
     QVERIFY(!QFile::exists(m_path));
-    QVERIFY(KSharedConfig::openConfig()->sync());
+    QVERIFY(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp)->sync());
     QVERIFY(QFile::exists(m_path));
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KSharedConfigTest");
         QCOMPARE(cg.readEntry("NumKey", 0), 1);
     }
 }
@@ -71,7 +71,7 @@ void KSharedConfigTest::testReadWriteSync()
 void KSharedConfigTest::testQrcFile()
 {
     QVERIFY(QFile::exists(QStringLiteral(":/testdata/test.ini")));
-    KSharedConfig::Ptr sharedConfig = KSharedConfig::openConfig(QStringLiteral(":/testdata/test.ini"), KConfig::NoGlobals);
+    KSharedConfig::Ptr sharedConfig = KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, QStringLiteral(":/testdata/test.ini"), KConfig::NoGlobals);
     QVERIFY(sharedConfig);
 
     KConfigGroup cfg(sharedConfig, QStringLiteral("MainSection"));

@@ -40,7 +40,7 @@ void KConfigSkeletonTest::initTestCase()
 void KConfigSkeletonTest::init()
 {
     QFile::remove(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String{"/kconfigskeletontestrc"});
-    s = new KConfigSkeleton(QStringLiteral("kconfigskeletontestrc"));
+    s = new KConfigSkeleton(KConfig::ConfigAssociation::KdeApp, QStringLiteral("kconfigskeletontestrc"));
     s->setCurrentGroup(QStringLiteral("MyGroup"));
     itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
     s->addItemColor(QStringLiteral("MySetting2"), mMyColor, s_default_setting2);

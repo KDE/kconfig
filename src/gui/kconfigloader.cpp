@@ -342,7 +342,11 @@ KConfigLoader::KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *p
 //       but KConfigSkeleton does not currently support this. it will eventually though,
 //       at which point this can be addressed properly
 KConfigLoader::KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(KSharedConfig::openConfig(KConfig::ConfigAssociation::NoAssociation, config.config()->name(), config.config()->openFlags(), config.config()->locationType()), parent)
+    : KConfigSkeleton(KSharedConfig::openConfig(KConfig::ConfigAssociation::NoAssociation,
+                                                config.config()->name(),
+                                                config.config()->openFlags(),
+                                                config.config()->locationType()),
+                      parent)
     , d(new ConfigLoaderPrivate)
 {
     setupConfigGroup(config, xml);
@@ -358,7 +362,8 @@ KConfigLoader::KConfigLoader(KConfig::ConfigAssociation association, const KConf
     setupConfigGroup(config, xml);
 }
 
-void KConfigLoader::setupConfigGroup(const KConfigGroup &config, QIODevice *xml) {
+void KConfigLoader::setupConfigGroup(const KConfigGroup &config, QIODevice *xml)
+{
     KConfigGroup group = config.parent();
     d->baseGroup = config.name();
     while (group.isValid() && group.name() != QLatin1String("<default>")) {
@@ -367,7 +372,6 @@ void KConfigLoader::setupConfigGroup(const KConfigGroup &config, QIODevice *xml)
     }
     d->parse(this, xml);
 }
-
 
 KConfigLoader::~KConfigLoader()
 {

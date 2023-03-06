@@ -1115,8 +1115,9 @@ public:
     /**
      * This constructor is deprecated
      */
-    [[deprecated("This constructor is deprecated, please specify association by calling KCoreConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent = nullptr)")]]
-    explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
+    [[deprecated(
+        "This constructor is deprecated, please specify association by calling KCoreConfigSkeleton(KConfig::ConfigAssociation association, const QString "
+        "&configname = QString(), QObject *parent = nullptr)")]] explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
 
     /**
      * Constructor.

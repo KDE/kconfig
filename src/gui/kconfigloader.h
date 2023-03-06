@@ -103,8 +103,9 @@ public:
     /**
      * This constructor is deprecated.
      */
-    [[deprecated("Please specify association by calling KConfigLoader(KConfig::ConfigAssociation association, const QString &configFile, QIODevice *xml, QObject *parent = nullptr)")]]
-    KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
+    [[deprecated(
+        "Please specify association by calling KConfigLoader(KConfig::ConfigAssociation association, const QString &configFile, QIODevice *xml, QObject "
+        "*parent = nullptr)")]] KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
     /**
      * Creates a KConfigSkeleton populated using the definition found in
@@ -131,8 +132,9 @@ public:
     /**
      * deprecated constructor
      **/
-    [[deprecated("Please specify association by calling KConfigLoader(KConfig::ConfigAssociation associatoin, const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr) instead.")]]
-    KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
+    [[deprecated(
+        "Please specify association by calling KConfigLoader(KConfig::ConfigAssociation associatoin, const KConfigGroup &config, QIODevice *xml, QObject "
+        "*parent = nullptr) instead.")]] KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
     ~KConfigLoader() override;
 

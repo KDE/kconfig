@@ -136,12 +136,18 @@ public:
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     /**
-     * This is the old and deprecated constructor, please use KConfig(ConfigAssociation association, const QString &file = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation)
+     * This is the old and deprecated constructor, please use KConfig(ConfigAssociation association, const QString &file = QString(), OpenFlags mode =
+     * FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation)
      */
-    [[deprecated("This constructor is deprecated, please specify config association by calling KConfig(ConfigAssociation association, const QString &file = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation)" )]]
-    explicit KConfig(const QString &file = QString(),
-                     OpenFlags mode = FullConfig,
-                     QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+    [[deprecated(
+        "This constructor is deprecated, please specify config association by calling KConfig(ConfigAssociation association, const QString &file = QString(), "
+        "OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation)")]] explicit KConfig(const QString &file =
+                                                                                                                                              QString(),
+                                                                                                                                          OpenFlags mode =
+                                                                                                                                              FullConfig,
+                                                                                                                                          QStandardPaths::StandardLocation
+                                                                                                                                              type = QStandardPaths::
+                                                                                                                                                  GenericConfigLocation);
 
     /**
      * @internal

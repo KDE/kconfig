@@ -61,14 +61,18 @@ public:
      *
      * @sa KConfig
      */
-    static KSharedConfig::Ptr
-    openConfig(KConfig::ConfigAssociation association, const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+    static KSharedConfig::Ptr openConfig(KConfig::ConfigAssociation association,
+                                         const QString &fileName = QString(),
+                                         OpenFlags mode = FullConfig,
+                                         QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     /**
-       This method is deprecated, please specify config association by calling openConfig(KConfig::ConfigAssociation association, const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+       This method is deprecated, please specify config association by calling openConfig(KConfig::ConfigAssociation association, const QString &fileName =
+       QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
      */
-    [[deprecated("This method is deprecated, please specify config association by calling openConfig(KConfig::ConfigAssociation association, const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);")]]
-    static KSharedConfig::Ptr
+    [[deprecated(
+        "This method is deprecated, please specify config association by calling openConfig(KConfig::ConfigAssociation association, const QString &fileName = "
+        "QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);")]] static KSharedConfig::Ptr
     openConfig(const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     /**
@@ -102,7 +106,6 @@ private:
     static std::optional<KSharedConfig::Ptr> tryGetGlobalConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType);
 
     KSharedConfig(KConfig::ConfigAssociation association, const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
-
 };
 
 typedef KSharedConfig::Ptr KSharedConfigPtr;

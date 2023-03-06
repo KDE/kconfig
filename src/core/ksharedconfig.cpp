@@ -66,8 +66,8 @@ void _k_globalMainConfigSync()
     }
 }
 
-
-static void makeMainConfig(KSharedConfig::Ptr ptr) {
+static void makeMainConfig(KSharedConfig::Ptr ptr)
+{
     globalSharedConfig()->mainConfig = ptr;
     const bool isMainThread = !qApp || QThread::currentThread() == qApp->thread();
     static bool userWarned = false;
@@ -82,7 +82,8 @@ static void makeMainConfig(KSharedConfig::Ptr ptr) {
     }
 }
 
-std::optional<KSharedConfigPtr> KSharedConfig::tryGetGlobalConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType) {
+std::optional<KSharedConfigPtr> KSharedConfig::tryGetGlobalConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
+{
     GlobalSharedConfig *global = globalSharedConfig();
     if (!global->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
         global->wasTestModeEnabled = true;
@@ -100,8 +101,9 @@ std::optional<KSharedConfigPtr> KSharedConfig::tryGetGlobalConfig(const QString 
     return std::nullopt;
 }
 
-
-KSharedConfig::Ptr KSharedConfig::openConfig(KConfig::ConfigAssociation association, const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType) {
+KSharedConfig::Ptr
+KSharedConfig::openConfig(KConfig::ConfigAssociation association, const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
+{
     QString fileName(_fileName);
     if (fileName.isEmpty() && !flags.testFlag(KConfig::SimpleConfig)) {
         // Determine the config file name that KConfig will make up (see KConfigPrivate::changeFileName)
@@ -153,13 +155,11 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
     return openConfig(KConfig::ConfigAssociation::NoAssociation, fileName, SimpleConfig, QStandardPaths::AppDataLocation);
 }
 
-
 KSharedConfig::KSharedConfig(KConfig::ConfigAssociation association, const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
     : KConfig(association, fileName, flags, resType)
 {
     globalSharedConfig()->configList.append(this);
 }
-
 
 KSharedConfig::~KSharedConfig()
 {

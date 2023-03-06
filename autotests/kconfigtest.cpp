@@ -1902,7 +1902,8 @@ void KConfigTest::testMoveValuesTo()
     QTemporaryFile targetFile;
     QVERIFY(targetFile.open());
     targetFile.close();
-    KConfigGroup targetGroup = KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, targetFile.fileName(), KConfig::SimpleConfig)->group("MoveToGroup");
+    KConfigGroup targetGroup =
+        KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, targetFile.fileName(), KConfig::SimpleConfig)->group("MoveToGroup");
 
     grp.moveValuesTo({"test1", "test_empty", "does_not_exist", "my_path", "GlobalKey"}, targetGroup);
     QVERIFY(grp.config()->isDirty());

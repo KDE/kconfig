@@ -27,7 +27,7 @@ void ConfigLoaderTest::init()
 {
     QString fileName = s_testName + QLatin1String(".xml");
     configFile = new QFile(QFINDTESTDATA(QString::fromLatin1("/") + fileName));
-    cl = new KConfigLoader(configFile->fileName(), configFile);
+    cl = new KConfigLoader(KConfig::ConfigAssociation::KdeApp, configFile->fileName(), configFile);
 }
 
 void ConfigLoaderTest::cleanup()

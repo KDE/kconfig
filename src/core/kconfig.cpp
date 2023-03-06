@@ -611,8 +611,8 @@ QString KConfig::mainConfigName()
     return appName + QLatin1String("rc");
 }
 
-
-std::optional<QString> getPrefix(KConfig::ConfigAssociation association) {
+std::optional<QString> getPrefix(KConfig::ConfigAssociation association)
+{
     switch (association) {
     case KConfig::ConfigAssociation::KdeApp:
         return std::make_optional(QString::fromUtf8("kde-app"));
@@ -621,13 +621,13 @@ std::optional<QString> getPrefix(KConfig::ConfigAssociation association) {
     case KConfig::ConfigAssociation::NoAssociation:
         return std::nullopt;
     default:
-        Q_ASSERT(false);  // report an error in debug builds, this switch should be exhaustive.
+        Q_ASSERT(false); // report an error in debug builds, this switch should be exhaustive.
         return std::nullopt;
     }
 }
 
-
-QString makeNewFileNameAndMigrate(const QString dir, std::optional<QString> prefix, const QString &fileName) {
+QString makeNewFileNameAndMigrate(const QString dir, std::optional<QString> prefix, const QString &fileName)
+{
     QString old = dir + QLatin1Char('/') + fileName;
     QString file = dir + QLatin1Char('/') + prefix.value_or(QString()) + fileName;
     if (QFileInfo::exists(old))

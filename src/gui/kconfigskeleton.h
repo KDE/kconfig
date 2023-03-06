@@ -85,8 +85,9 @@ public:
     /**
      * This constructor is deprecated.
      */
-    [[deprecated("Please specify association by calling KConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent = nullptr) instead.")]]
-    explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
+    [[deprecated(
+        "Please specify association by calling KConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent "
+        "= nullptr) instead.")]] explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
     /**
      * Constructor.
      *

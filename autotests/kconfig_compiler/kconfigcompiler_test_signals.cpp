@@ -49,8 +49,10 @@ void KConfigCompiler_Test_Signals::initTestCase()
 
     SignalsTestSingleton::instance(QFileInfo(*tempFile1).absoluteFilePath());
     SignalsTestSingletonDpointer::instance(QFileInfo(*tempFile2).absoluteFilePath());
-    noSingleton = new SignalsTestNoSingleton(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, QFileInfo(*tempFile3).absoluteFilePath(), KConfig::SimpleConfig));
-    noSingletonDpointer = new SignalsTestNoSingletonDpointer(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, QFileInfo(*tempFile4).absoluteFilePath(), KConfig::SimpleConfig));
+    noSingleton = new SignalsTestNoSingleton(
+        KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, QFileInfo(*tempFile3).absoluteFilePath(), KConfig::SimpleConfig));
+    noSingletonDpointer = new SignalsTestNoSingletonDpointer(
+        KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp, QFileInfo(*tempFile4).absoluteFilePath(), KConfig::SimpleConfig));
     SignalsTestSingletonItemAccessors::instance(QFileInfo(*tempFile5).absoluteFilePath());
 }
 
