@@ -27,7 +27,7 @@ Test10 *Test10::self()
 }
 
 Test10::Test10( )
-  : KConfigSkeleton( QStringLiteral( "test10rc" ) )
+  : KConfigSkeleton(KConfig::ConfigAssociation::KdeApp, QStringLiteral( "test10rc" ) )
 {
   Q_ASSERT(!s_globalTest10()->q);
   s_globalTest10()->q = this;

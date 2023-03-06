@@ -48,6 +48,9 @@ public:
      * to influence the values returned by this object.  See KConfig::OpenFlags for
      * more details.
      *
+     * @param association  the config group associated with this config -
+     *                     is it a KDE application, a Plasma component or neither?
+     *
      * @param fileName     the configuration file to open. If empty, it will be determined
      *                     automatically (from --config on the command line, otherwise
      *                     from the application name + "rc")
@@ -58,6 +61,13 @@ public:
      *
      * @sa KConfig
      */
+    static KSharedConfig::Ptr
+    openConfig(KConfig::ConfigAssociation association, const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+
+    /**
+       This method is deprecated, please specify config association by calling openConfig(KConfig::ConfigAssociation association, const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+     */
+    [[deprecated("This method is deprecated, please specify config association by calling openConfig(KConfig::ConfigAssociation association, const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);")]]
     static KSharedConfig::Ptr
     openConfig(const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
@@ -89,8 +99,10 @@ private:
     Q_DISABLE_COPY(KSharedConfig)
     KConfigGroup groupImpl(const QByteArray &aGroup) override;
     const KConfigGroup groupImpl(const QByteArray &aGroup) const override;
+    static std::optional<KSharedConfig::Ptr> tryGetGlobalConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType);
 
-    KSharedConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
+    KSharedConfig(KConfig::ConfigAssociation association, const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
+
 };
 
 typedef KSharedConfig::Ptr KSharedConfigPtr;

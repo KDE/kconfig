@@ -6,7 +6,7 @@
 using namespace TestNameSpace;
 
 Test3::Test3( )
-  : KConfigSkeleton( QStringLiteral( "test3rc" ) )
+  : KConfigSkeleton( KConfig::ConfigAssociation::KdeApp, QStringLiteral( "test3rc" ) )
 {
   setCurrentGroup( QStringLiteral( "General" ) );
 

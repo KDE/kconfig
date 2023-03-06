@@ -29,7 +29,7 @@ Test4 *Test4::self()
 const char* const Test4::EnumButton::enumToString[] = { "right", "mid", "left" };
 
 Test4::Test4( )
-  : KConfigSkeleton( QStringLiteral( "test4rc" ) )
+  : KConfigSkeleton( KConfig::ConfigAssociation::KdeApp, QStringLiteral( "test4rc" ) )
 {
   Q_ASSERT(!s_globalTest4()->q);
   s_globalTest4()->q = this;

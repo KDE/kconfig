@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     Q_UNUSED(app);
 
     {
-        KConfig initialConfig(QStringLiteral("examplerc"));
+        KConfig initialConfig(KConfig::ConfigAssociation::KdeApp, QStringLiteral("examplerc"));
         KConfigGroup group = initialConfig.group(QStringLiteral("MyOptions"));
         group.writeEntry(QStringLiteral("MyString"), QStringLiteral("The String"));
     }

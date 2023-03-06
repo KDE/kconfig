@@ -32,10 +32,10 @@ void KConfigTest::initTestCase()
     QStandardPaths::setTestModeEnabled(true);
 
     // cheat the linker on windows to link against kconfiggui
-    KConfigSkeleton foo;
+    KConfigSkeleton foo(KConfig::ConfigAssociation::KdeApp);
     Q_UNUSED(foo);
 
-    KConfig sc(QStringLiteral("kconfigtest"));
+    KConfig sc(KConfig::ConfigAssociation::KdeApp, QStringLiteral("kconfigtest"));
 
     KConfigGroup cg(&sc, "ComplexTypes");
     cg.writeEntry("colorEntry1", s_color_entry1);
@@ -45,7 +45,7 @@ void KConfigTest::initTestCase()
     cg.writeEntry("fontEntry", fontEntry());
     QVERIFY(sc.sync());
 
-    KConfig sc1(QStringLiteral("kdebugrc"));
+    KConfig sc1(KConfig::ConfigAssociation::KdeApp, QStringLiteral("kdebugrc"));
     KConfigGroup sg0(&sc1, "0");
     sg0.writeEntry("AbortFatal", false);
     sg0.writeEntry("WarnOutput", 0);
@@ -74,7 +74,7 @@ void KConfigTest::cleanupTestCase()
 
 void KConfigTest::testComplex()
 {
-    KConfig sc2(QStringLiteral("kconfigtest"));
+    KConfig sc2(KConfig::ConfigAssociation::KdeApp, QStringLiteral("kconfigtest"));
     KConfigGroup sc3(&sc2, "ComplexTypes");
 
     QCOMPARE(QVariant(sc3.readEntry("colorEntry1", QColor(Qt::black))).toString(), QVariant(s_color_entry1).toString());
@@ -91,7 +91,7 @@ void KConfigTest::testComplex()
 
 void KConfigTest::testInvalid()
 {
-    KConfig sc(QStringLiteral("kconfigtest"));
+    KConfig sc(KConfig::ConfigAssociation::KdeApp, QStringLiteral("kconfigtest"));
 
     // all of these should print a message to the kdebug.dbg file
     KConfigGroup sc3(&sc, "InvalidTypes");

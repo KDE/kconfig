@@ -94,6 +94,12 @@ public:
     Q_DECLARE_FLAGS(OpenFlags, OpenFlag)
 
     /**
+     * Describes which configuration family this configuration belongs to.
+     * This would determine the default location of the configuration file, if the file path is not absolute.
+     * It would make KConfig prepend kde-app and plasma, accordingly, to the configuration path.
+     */
+    enum class ConfigAssociation { NoAssociation, KdeApp, Plasma };
+    /**
      * Creates a KConfig object to manipulate a configuration file for the
      * current application.
      *
@@ -110,6 +116,9 @@ public:
      *
      * @note You probably want to use KSharedConfig::openConfig instead.
      *
+     * @param association  the config group associated with this config -
+     *                     is it a KDE application, or a Plasma component?
+     *
      * @param file         the name of the file. If an empty string is passed in
      *                     and SimpleConfig is passed in for the OpenFlags, then an in-memory
      *                     KConfig object is created which will not write out to file nor which
@@ -119,8 +128,17 @@ public:
      * @param type         The standard directory to look for the configuration
      *                     file in
      *
-     * @sa KSharedConfig::openConfig(const QString&, OpenFlags, QStandardPaths::StandardLocation)
+     * @sa KSharedConfig::openConfig(ConfigAssociation association, const QString&, OpenFlags, QStandardPaths::StandardLocation)
      */
+    explicit KConfig(ConfigAssociation association,
+                     const QString &file = QString(),
+                     OpenFlags mode = FullConfig,
+                     QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+
+    /**
+     * This is the old and deprecated constructor, please use KConfig(ConfigAssociation association, const QString &file = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation)
+     */
+    [[deprecated("This constructor is deprecated, please specify config association by calling KConfig(ConfigAssociation association, const QString &file = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation)" )]]
     explicit KConfig(const QString &file = QString(),
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
@@ -366,6 +384,8 @@ protected:
     KConfig(KConfigPrivate &d);
 
 private:
+    void _KConfig(const QString &file);
+
     friend class KConfigTest;
 
     QStringList keyList(const QString &aGroup = QString()) const;

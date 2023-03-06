@@ -45,7 +45,7 @@ class ConfigLoaderPrivate;
  * \code
  * QDialog *dialog = new QDialog();
  * QFile xmlFile("path/to/kconfigxt.xml");
- * KConfigGroup cg = KSharedConfig::openConfig()->group(QString());
+ * KConfigGroup cg = KSharedConfig::openConfig(KConfig::ConfigAssociation::NoAssociation)->group(QString());
  * KConfigLoader *configLoader = new KConfigLoader(cg, &xmlFile, this);
  *
  * // load the ui file
@@ -92,10 +92,18 @@ public:
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
+     * @param association - is it a kde application, a plasma component, or neither?
+     *                This would determine the path the config file is located if configFile isn't an absolute path
      * @param configFile path to the configuration file to use
      * @param xml the xml data; must be valid KConfigXT data
      * @param parent optional QObject parent
      **/
+    KConfigLoader(KConfig::ConfigAssociation association, const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
+
+    /**
+     * This constructor is deprecated.
+     */
+    [[deprecated("Please specify association by calling KConfigLoader(KConfig::ConfigAssociation association, const QString &configFile, QIODevice *xml, QObject *parent = nullptr)")]]
     KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
     /**
@@ -112,10 +120,18 @@ public:
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
+     * @param association - is it a kde application, a plasma component, or neither?
+     *                This would determine the path the config file is located if configFile isn't an absolute path
      * @param config the group to use as the root for configuration items
      * @param xml the xml data; must be valid KConfigXT data
      * @param parent optional QObject parent
      **/
+    KConfigLoader(KConfig::ConfigAssociation associatoin, const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
+
+    /**
+     * deprecated constructor
+     **/
+    [[deprecated("Please specify association by calling KConfigLoader(KConfig::ConfigAssociation associatoin, const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr) instead.")]]
     KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
     ~KConfigLoader() override;
@@ -157,6 +173,7 @@ protected:
 
 private:
     ConfigLoaderPrivate *const d;
+    void setupConfigGroup(const KConfigGroup &config, QIODevice *xml);
 };
 
 #endif // multiple inclusion guard

@@ -18,6 +18,7 @@
 
 #include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
+#include "qglobal.h"
 
 #include <QBasicMutex>
 #include <QByteArray>
@@ -66,7 +67,7 @@ static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
 #endif
 
-KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
+KConfigPrivate::KConfigPrivate(KConfig::ConfigAssociation association, KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
     : openFlags(flags)
     , resourceType(resourceType)
     , mBackend(nullptr)
@@ -77,6 +78,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
     , bForceGlobal(false)
     , bSuppressGlobal(false)
     , configState(KConfigBase::NoAccess)
+    , association(association)
 {
     const bool isTestMode = QStandardPaths::isTestModeEnabled();
     // If sGlobalFileName was initialised and testMode has been toggled,
@@ -102,21 +104,6 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
             etc_kderc.clear();
         }
     }
-
-    //    if (!mappingsRegistered) {
-    //        KEntryMap tmp;
-    //        if (!etc_kderc.isEmpty()) {
-    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(etc_kderc, QLatin1String("INI"));
-    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseDefaults);
-    //        }
-    //        const QString kde5rc(QDir::home().filePath(".kde5rc"));
-    //        if (KStandardDirs::checkAccess(kde5rc, R_OK)) {
-    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde5rc, QLatin1String("INI"));
-    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseOptions());
-    //        }
-    //        KConfigBackend::registerMappings(tmp);
-    //        mappingsRegistered = true;
-    //    }
 
     setLocale(QLocale().name());
 }
@@ -243,8 +230,17 @@ QString KConfigPrivate::expandString(const QString &value)
     return aValue;
 }
 
+KConfig::KConfig(KConfig::ConfigAssociation association, const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
+    : d_ptr(new KConfigPrivate(association, mode, resourceType))
+{
+    d_ptr->changeFileName(file); // set the local file name
+
+    // read initial information off disk
+    reparseConfiguration();
+}
+
 KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
-    : d_ptr(new KConfigPrivate(mode, resourceType))
+    : d_ptr(new KConfigPrivate(KConfig::ConfigAssociation::NoAssociation, mode, resourceType))
 {
     d_ptr->changeFileName(file); // set the local file name
 
@@ -253,7 +249,7 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
 }
 
 KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)
-    : d_ptr(new KConfigPrivate(SimpleConfig, resourceType))
+    : d_ptr(new KConfigPrivate(KConfig::ConfigAssociation::NoAssociation, SimpleConfig, resourceType))
 {
     d_ptr->mBackend = KConfigBackend::create(file, backend);
     d_ptr->bDynamicBackend = false;
@@ -553,7 +549,7 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
 {
     Q_D(const KConfig);
     if (!config) {
-        config = new KConfig(QString(), SimpleConfig, d->resourceType);
+        config = new KConfig(d_ptr->association, QString(), SimpleConfig, d->resourceType);
     }
     config->d_func()->changeFileName(file);
     config->d_func()->entryMap = d->entryMap;
@@ -615,15 +611,42 @@ QString KConfig::mainConfigName()
     return appName + QLatin1String("rc");
 }
 
+
+std::optional<QString> getPrefix(KConfig::ConfigAssociation association) {
+    switch (association) {
+    case KConfig::ConfigAssociation::KdeApp:
+        return std::make_optional(QString::fromUtf8("kde-app"));
+    case KConfig::ConfigAssociation::Plasma:
+        return std::make_optional(QString::fromUtf8("plasma"));
+    case KConfig::ConfigAssociation::NoAssociation:
+        return std::nullopt;
+    default:
+        Q_ASSERT(false);  // report an error in debug builds, this switch should be exhaustive.
+        return std::nullopt;
+    }
+}
+
+
+QString makeNewFileNameAndMigrate(const QString dir, std::optional<QString> prefix, const QString &fileName) {
+    QString old = dir + QLatin1Char('/') + fileName;
+    QString file = dir + QLatin1Char('/') + prefix.value_or(QString()) + fileName;
+    if (QFileInfo::exists(old))
+        QFile::rename(old, file);
+    return file;
+}
+
 void KConfigPrivate::changeFileName(const QString &name)
 {
     fileName = name;
+    std::optional<QString> prefix = getPrefix(association);
+    if (prefix)
+        *prefix += QLatin1Char('/');
 
     QString file;
     if (name.isEmpty()) {
         if (wantDefaults()) { // accessing default app-specific config "appnamerc"
             fileName = KConfig::mainConfigName();
-            file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+            file = makeNewFileNameAndMigrate(QStandardPaths::writableLocation(resourceType), prefix, fileName);
         } else if (wantGlobals()) { // accessing "kdeglobals" by specifying no filename and NoCascade - XXX used anywhere?
             resourceType = QStandardPaths::GenericConfigLocation;
             fileName = QStringLiteral("kdeglobals");
@@ -640,7 +663,7 @@ void KConfigPrivate::changeFileName(const QString &name)
         }
         file = fileName;
     } else {
-        file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+        file = makeNewFileNameAndMigrate(QStandardPaths::writableLocation(resourceType), prefix, fileName);
     }
 
     Q_ASSERT(!file.isEmpty());

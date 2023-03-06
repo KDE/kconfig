@@ -1103,10 +1103,19 @@ public:
     /**
      * Constructor.
      *
+     * @param assoiation config association - is it a kde application, a plasma component, or neither?
+     *                   This will determine where the config file is saved, if the path given in name
+     *                   is empty or relative. It is ignored for absolute path.
      * @param configname name of config file. If no name is given, the default
      *                   config file as returned by KSharedConfig::openConfig() is used
      * @param parent the parent object (see QObject documentation)
      */
+    explicit KCoreConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent = nullptr);
+
+    /**
+     * This constructor is deprecated
+     */
+    [[deprecated("This constructor is deprecated, please specify association by calling KCoreConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent = nullptr)")]]
     explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
 
     /**

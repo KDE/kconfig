@@ -1113,6 +1113,14 @@ QVariant KCoreConfigSkeleton::ItemIntList::property() const
 }
 
 // static int kCoreConfigSkeletionDebugArea() { static int s_area = KDebug::registerArea("kdecore (KConfigSkeleton)"); return s_area; }
+KCoreConfigSkeleton::KCoreConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname, QObject *parent)
+    : QObject(parent)
+    , d(new KCoreConfigSkeletonPrivate)
+{
+    // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
+
+    d->mConfig = KSharedConfig::openConfig(association, configname, KConfig::FullConfig);
+}
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *parent)
     : QObject(parent)
@@ -1120,7 +1128,7 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *par
 {
     // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
 
-    d->mConfig = KSharedConfig::openConfig(configname, KConfig::FullConfig);
+    d->mConfig = KSharedConfig::openConfig(KConfig::ConfigAssociation::NoAssociation, configname, KConfig::FullConfig);
 }
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)

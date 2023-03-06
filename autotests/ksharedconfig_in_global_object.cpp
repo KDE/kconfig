@@ -22,14 +22,14 @@ public:
 void Tester::initConfig()
 {
     fprintf(stderr, "app Tester\n");
-    KConfigGroup group(KSharedConfig::openConfig(), "test");
+    KConfigGroup group(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "test");
     group.writeEntry("test", 0);
 }
 
 Tester::~Tester()
 {
     fprintf(stderr, "app ~Tester\n");
-    KConfigGroup group(KSharedConfig::openConfig(), "test");
+    KConfigGroup group(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "test");
     group.writeEntry("test", 1);
 }
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     qputenv("QT_FATAL_WARNINGS", "1");
     QCoreApplication app(argc, argv);
 
-    KSharedConfig::Ptr config = KSharedConfig::openConfig();
+    KSharedConfig::Ptr config = KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp);
 
     Tester *t = globalTestObject();
     t->initConfig();

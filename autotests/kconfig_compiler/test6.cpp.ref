@@ -4,7 +4,7 @@
 #include "test6.h"
 
 Test6::Test6( const QString & Number )
-  : KConfigSkeleton( QStringLiteral( "test4rc" ) )
+  : KConfigSkeleton( KConfig::ConfigAssociation::KdeApp, QStringLiteral( "test4rc" ) )
   , mParamNumber(Number)
 {
   setCurrentGroup( QStringLiteral( "Foo" ) );

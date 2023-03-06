@@ -29,6 +29,7 @@ public:
     QStandardPaths::StandardLocation resourceType;
 
     void changeFileName(const QString &fileName);
+    void changeFileName(KConfig::ConfigAssociation association, const QString &fileName);
 
     // functions for KConfigGroup
     bool canWriteEntry(const QByteArray &group, const char *key, bool isDefault = false) const;
@@ -60,6 +61,7 @@ protected:
     QExplicitlySharedDataPointer<KConfigBackend> mBackend;
 
     KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation type);
+    KConfigPrivate(KConfig::ConfigAssociation association, KConfig::OpenFlags flags, QStandardPaths::StandardLocation type);
 
     virtual ~KConfigPrivate()
     {
@@ -83,6 +85,7 @@ private:
     QString fileName;
     QString etc_kderc;
     KConfigBase::AccessMode configState;
+    KConfig::ConfigAssociation association;
 
     bool wantGlobals() const
     {

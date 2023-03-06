@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
     {
-        KConfig initialConfig(QStringLiteral("test4rc"));
+        KConfig initialConfig(KConfig::ConfigAssociation::KdeApp, QStringLiteral("test4rc"));
         KConfigGroup group = initialConfig.group(QStringLiteral("Foo"));
         group.writeEntry(QStringLiteral("foo bar"), QStringLiteral("Value"));
     }

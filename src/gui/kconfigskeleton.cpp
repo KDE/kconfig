@@ -10,8 +10,13 @@
 
 #include <kcoreconfigskeleton_p.h>
 
+KConfigSkeleton::KConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname, QObject *parent)
+    : KCoreConfigSkeleton(association, configname, parent)
+{
+}
+
 KConfigSkeleton::KConfigSkeleton(const QString &configname, QObject *parent)
-    : KCoreConfigSkeleton(configname, parent)
+    : KCoreConfigSkeleton(KConfig::ConfigAssociation::NoAssociation, configname, parent)
 {
 }
 

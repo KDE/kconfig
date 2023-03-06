@@ -182,7 +182,7 @@ public:
     {
         Q_ASSERT_X(QCoreApplication::instance(), "KAuthorizedPrivate()", "There has to be an existing QCoreApplication::instance() pointer");
 
-        KSharedConfig::Ptr config = KSharedConfig::openConfig();
+        KSharedConfig::Ptr config = KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp);
 
         Q_ASSERT_X(config, "KAuthorizedPrivate()", "There has to be an existing KSharedConfig::openConfig() pointer");
         if (!config) {
@@ -216,7 +216,7 @@ bool KAuthorized::authorize(const QString &genericAction)
         return true;
     }
 
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE Action Restrictions");
+    KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KDE Action Restrictions");
     return cg.readEntry(genericAction, true);
 }
 
@@ -259,13 +259,13 @@ bool KAuthorized::authorizeControlModule(const QString &menuId)
     if (menuId.isEmpty() || kde_kiosk_exception) {
         return true;
     }
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE Control Module Restrictions");
+    KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KDE Control Module Restrictions");
     return cg.readEntry(menuId, true);
 }
 
 QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
 {
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE Control Module Restrictions");
+    KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KDE Control Module Restrictions");
     QStringList result;
     for (const auto &id : menuIds) {
         if (cg.readEntry(id, true)) {
@@ -384,7 +384,7 @@ authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QU
 
     bool result = false;
     if (d->urlActionRestrictions.isEmpty()) {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KDE URL Restrictions");
+        KConfigGroup cg(KSharedConfig::openConfig(KConfig::ConfigAssociation::KdeApp), "KDE URL Restrictions");
         loadUrlActionRestrictions(cg);
     }
 

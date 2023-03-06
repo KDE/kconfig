@@ -66,15 +66,24 @@ void _k_globalMainConfigSync()
     }
 }
 
-KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
-{
-    QString fileName(_fileName);
-    GlobalSharedConfig *global = globalSharedConfig();
-    if (fileName.isEmpty() && !flags.testFlag(KConfig::SimpleConfig)) {
-        // Determine the config file name that KConfig will make up (see KConfigPrivate::changeFileName)
-        fileName = KConfig::mainConfigName();
-    }
 
+static void makeMainConfig(KSharedConfig::Ptr ptr) {
+    globalSharedConfig()->mainConfig = ptr;
+    const bool isMainThread = !qApp || QThread::currentThread() == qApp->thread();
+    static bool userWarned = false;
+    if (isMainThread && !userWarned) {
+        userWarned = true;
+        const bool isReadOnly = qEnvironmentVariableIsEmpty("KDE_HOME_READONLY");
+        if (isReadOnly && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
+            if (ptr->group("General").readEntry(QStringLiteral("warn_unwritable_config"), true)) {
+                ptr->isConfigWritable(true);
+            }
+        }
+    }
+}
+
+std::optional<KSharedConfigPtr> KSharedConfig::tryGetGlobalConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType) {
+    GlobalSharedConfig *global = globalSharedConfig();
     if (!global->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
         global->wasTestModeEnabled = true;
         global->configList.clear();
@@ -85,26 +94,47 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
         if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType
             //                cfg->backend()->type() == backend
         ) {
-            return KSharedConfigPtr(cfg);
+            return std::make_optional(KSharedConfigPtr(cfg));
         }
     }
+    return std::nullopt;
+}
 
-    KSharedConfigPtr ptr(new KSharedConfig(fileName, flags, resType));
+
+KSharedConfig::Ptr KSharedConfig::openConfig(KConfig::ConfigAssociation association, const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType) {
+    QString fileName(_fileName);
+    if (fileName.isEmpty() && !flags.testFlag(KConfig::SimpleConfig)) {
+        // Determine the config file name that KConfig will make up (see KConfigPrivate::changeFileName)
+        fileName = KConfig::mainConfigName();
+    }
+
+    if (auto ptr = tryGetGlobalConfig(fileName, flags, resType))
+        return *ptr;
+
+    KSharedConfigPtr ptr(new KSharedConfig(association, fileName, flags, resType));
 
     if (_fileName.isEmpty() && flags == FullConfig && resType == QStandardPaths::GenericConfigLocation) {
-        global->mainConfig = ptr;
+        makeMainConfig(ptr);
+    }
 
-        const bool isMainThread = !qApp || QThread::currentThread() == qApp->thread();
-        static bool userWarned = false;
-        if (isMainThread && !userWarned) {
-            userWarned = true;
-            const bool isReadOnly = qEnvironmentVariableIsEmpty("KDE_HOME_READONLY");
-            if (isReadOnly && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
-                if (ptr->group("General").readEntry(QStringLiteral("warn_unwritable_config"), true)) {
-                    ptr->isConfigWritable(true);
-                }
-            }
-        }
+    return ptr;
+}
+
+KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
+{
+    QString fileName(_fileName);
+    if (fileName.isEmpty() && !flags.testFlag(KConfig::SimpleConfig)) {
+        // Determine the config file name that KConfig will make up (see KConfigPrivate::changeFileName)
+        fileName = KConfig::mainConfigName();
+    }
+
+    if (auto ptr = tryGetGlobalConfig(fileName, flags, resType))
+        return *ptr;
+
+    KSharedConfigPtr ptr(new KSharedConfig(KConfig::ConfigAssociation::NoAssociation, fileName, flags, resType));
+
+    if (_fileName.isEmpty() && flags == FullConfig && resType == QStandardPaths::GenericConfigLocation) {
+        makeMainConfig(ptr);
     }
 
     return ptr;
@@ -120,14 +150,16 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
         fileName = QCoreApplication::applicationName() + QLatin1String("staterc");
     }
 
-    return openConfig(fileName, SimpleConfig, QStandardPaths::AppDataLocation);
+    return openConfig(KConfig::ConfigAssociation::NoAssociation, fileName, SimpleConfig, QStandardPaths::AppDataLocation);
 }
 
-KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
-    : KConfig(fileName, flags, resType)
+
+KSharedConfig::KSharedConfig(KConfig::ConfigAssociation association, const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
+    : KConfig(association, fileName, flags, resType)
 {
     globalSharedConfig()->configList.append(this);
 }
+
 
 KSharedConfig::~KSharedConfig()
 {

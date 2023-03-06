@@ -317,8 +317,15 @@ void ConfigLoaderHandler::resetState()
     m_inChoice = false;
 }
 
+KConfigLoader::KConfigLoader(KConfig::ConfigAssociation association, const QString &configFile, QIODevice *xml, QObject *parent)
+    : KConfigSkeleton(association, configFile, parent)
+    , d(new ConfigLoaderPrivate)
+{
+    d->parse(this, xml);
+}
+
 KConfigLoader::KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(configFile, parent)
+    : KConfigSkeleton(KConfig::ConfigAssociation::NoAssociation, configFile, parent)
     , d(new ConfigLoaderPrivate)
 {
     d->parse(this, xml);
@@ -335,9 +342,23 @@ KConfigLoader::KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *p
 //       but KConfigSkeleton does not currently support this. it will eventually though,
 //       at which point this can be addressed properly
 KConfigLoader::KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent)
-    : KConfigSkeleton(KSharedConfig::openConfig(config.config()->name(), config.config()->openFlags(), config.config()->locationType()), parent)
+    : KConfigSkeleton(KSharedConfig::openConfig(KConfig::ConfigAssociation::NoAssociation, config.config()->name(), config.config()->openFlags(), config.config()->locationType()), parent)
     , d(new ConfigLoaderPrivate)
 {
+    setupConfigGroup(config, xml);
+}
+
+// FIXME: obviously this is broken and should be using the group as the root,
+//       but KConfigSkeleton does not currently support this. it will eventually though,
+//       at which point this can be addressed properly
+KConfigLoader::KConfigLoader(KConfig::ConfigAssociation association, const KConfigGroup &config, QIODevice *xml, QObject *parent)
+    : KConfigSkeleton(KSharedConfig::openConfig(association, config.config()->name(), config.config()->openFlags(), config.config()->locationType()), parent)
+    , d(new ConfigLoaderPrivate)
+{
+    setupConfigGroup(config, xml);
+}
+
+void KConfigLoader::setupConfigGroup(const KConfigGroup &config, QIODevice *xml) {
     KConfigGroup group = config.parent();
     d->baseGroup = config.name();
     while (group.isValid() && group.name() != QLatin1String("<default>")) {
@@ -346,6 +367,7 @@ KConfigLoader::KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject
     }
     d->parse(this, xml);
 }
+
 
 KConfigLoader::~KConfigLoader()
 {

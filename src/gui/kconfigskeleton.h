@@ -75,12 +75,18 @@ public:
 public:
     /**
      * Constructor.
-     *
+     * @param association - is it a kde application, a plasma component or neither?
+     *                      This determines where the config file is looked for unless configname is an absolute path.
      * @param configname name of config file. If no name is given, the default
      * config file as returned by KSharedConfig::openConfig() is used.
      */
-    explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
+    explicit KConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent = nullptr);
 
+    /**
+     * This constructor is deprecated.
+     */
+    [[deprecated("Please specify association by calling KConfigSkeleton(KConfig::ConfigAssociation association, const QString &configname = QString(), QObject *parent = nullptr) instead.")]]
+    explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
     /**
      * Constructor.
      *
