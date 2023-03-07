@@ -557,7 +557,3 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "El valor que s'escriurà. És obligatori. En l'intèrpret d'ordres utilitzar '' "
 "si està buit"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Save Options"
-#~ msgstr "Guarda les opcions"
