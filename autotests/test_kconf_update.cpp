@@ -85,9 +85,15 @@ void TestKConfUpdate::testScript_data()
     QTest::addColumn<QString>("expectedNewConfContent");
     QTest::addColumn<QString>("expectedKConfOutputString");
 
+#ifdef Q_OS_FREEBSD
+    // https://stackoverflow.com/a/69955786
+    const QString sedCommand = QStringLiteral("sed -i '' ");
+#else
+    const QString sedCommand = QStringLiteral("sed -i ");
+#endif
     const QString updVersionIdPrefix = QLatin1String("Version=6\nId=%1\n").arg(QLatin1String{QTest::currentDataTag()});
     const QString confPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String{"/testrc"};
-    const QString scriptContent = QStringLiteral("sed -i 's/firstVal=abc/firstVal=xyz/' %1").arg(confPath);
+    const QString scriptContent = sedCommand + QLatin1String("'s/firstVal=abc/firstVal=xyz/' %1").arg(confPath);
 
     QTest::newRow("should reject script due to version missmatch")
         << QStringLiteral("Version=5\nId=12345") << scriptContent << QString() << QString() << QStringLiteral("defined Version=5 but Version=6 was expected");
@@ -98,13 +104,13 @@ void TestKConfUpdate::testScript_data()
 
     QTest::newRow("should run command and modify file") << updContent << scriptContent << configIn << configOut << QString();
 
-    const QString argScriptContent = QStringLiteral("sed -i \"s/secondVal=$1/secondVal=abc/\" %1").arg(confPath);
+    const QString argScriptContent = sedCommand + QLatin1String("\"s/secondVal=$1/secondVal=abc/\" %1").arg(confPath);
     QTest::newRow("should run command with argument and modify file") << QStringLiteral("ScriptArguments=xyz\n") + updContent << argScriptContent << configIn
                                                                       << QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=abc\n") << QString();
 
     QTest::newRow("should run command with arguments and modify file")
-        << QStringLiteral("ScriptArguments=xyz abc\n") + updContent << QStringLiteral("sed -i \"s/secondVal=$1/secondVal=$2/\" %1").arg(confPath) << configIn
-        << QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=abc\n") << QString();
+        << QStringLiteral("ScriptArguments=xyz abc\n") + updContent << sedCommand + QLatin1String("\"s/secondVal=$1/secondVal=$2/\" %1").arg(confPath)
+        << configIn << QStringLiteral("[grp]\nfirstVal=abc\nsecondVal=abc\n") << QString();
 }
 
 void TestKConfUpdate::testScript()
