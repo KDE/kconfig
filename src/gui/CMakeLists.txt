@@ -1,7 +1,7 @@
 add_library(KF6ConfigGui)
 add_library(KF6::ConfigGui ALIAS KF6ConfigGui)
 
-ecm_create_qm_loader(KF6ConfigGui kconfig5_qt)
+ecm_create_qm_loader(KF6ConfigGui kconfig6_qt)
 
 target_sources(KF6ConfigGui PRIVATE
     kconfiggui.cpp
