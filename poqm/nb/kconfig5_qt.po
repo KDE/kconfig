@@ -1,4 +1,4 @@
-# Translation of kconfig5_qt to Norwegian Bokmål
+# Translation of kconfig6_qt to Norwegian Bokmål
 #
 # Knut Yrvin <knut.yrvin@gmail.com>, 2003.
 # Bjørn Kvisli <bjorn.kvisli@gmail.com>, 2007.
