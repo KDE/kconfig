@@ -57,7 +57,7 @@ public:
     /**
      * Saves the state of the property map on disk.
      */
-    void writeConfig();
+    Q_INVOKABLE void writeConfig();
 
 protected:
     QVariant updateValue(const QString &key, const QVariant &input) override;

@@ -120,7 +120,8 @@ void KConfigPropertyMapPrivate::writeConfig()
         item->setWriteFlags(notify ? KConfigBase::Notify : KConfigBase::Normal);
         item->setProperty(q->value(item->key()));
     }
-
+    // Internally sync the config. This way we ensure the config file is written, even if the process crashed
+    config.data()->save();
 }
 
 void KConfigPropertyMapPrivate::writeConfigValue(const QString &key, const QVariant &value)
@@ -133,4 +134,3 @@ void KConfigPropertyMapPrivate::writeConfigValue(const QString &key, const QVari
         updatingConfigValue = false;
     }
 }
-
