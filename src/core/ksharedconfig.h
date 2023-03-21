@@ -90,7 +90,7 @@ private:
     KConfigGroup groupImpl(const QByteArray &aGroup) override;
     const KConfigGroup groupImpl(const QByteArray &aGroup) const override;
 
-    KSharedConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
+    KCONFIGCORE_NO_EXPORT KSharedConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
 };
 
 typedef KSharedConfig::Ptr KSharedConfigPtr;
