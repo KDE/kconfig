@@ -240,7 +240,7 @@ public:
     QVariant getDefault() const;
 
 protected:
-    explicit KConfigSkeletonItem(KConfigSkeletonItemPrivate &dd, const QString &_group, const QString &_key);
+    KCONFIGCORE_NO_EXPORT explicit KConfigSkeletonItem(KConfigSkeletonItemPrivate &dd, const QString &_group, const QString &_key);
 
     /**
      * Sets mIsImmutable to @c true if mKey in config is immutable.
