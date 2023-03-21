@@ -368,8 +368,6 @@ protected:
 private:
     friend class KConfigTest;
 
-    QStringList keyList(const QString &aGroup = QString()) const;
-
     Q_DISABLE_COPY(KConfig)
 
     Q_DECLARE_PRIVATE(KConfig)

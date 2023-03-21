@@ -377,13 +377,6 @@ QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
     return keys;
 }
 
-QStringList KConfig::keyList(const QString &aGroup) const
-{
-    Q_D(const KConfig);
-    const QByteArray theGroup(aGroup.isEmpty() ? "<default>" : aGroup.toUtf8());
-    return d->keyListImpl(theGroup);
-}
-
 QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
 {
     Q_D(const KConfig);
