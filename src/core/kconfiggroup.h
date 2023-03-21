@@ -729,6 +729,7 @@ private:
      * @return @p value converted to QVariant, or @p aDefault if @p value is invalid or cannot be converted.
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);
+    // exported for usage by KServices' KService & KServiceAction
     friend class KServicePrivate; // XXX yeah, ugly^5
     friend class KServiceAction;
 };
