@@ -36,7 +36,8 @@ Q_SIGNALS:
     void shortcutChanged(KStandardShortcut::StandardShortcut id, const QList<QKeySequence> &shortcut);
 
 private:
-    explicit StandardShortcutWatcher(QObject *parent = nullptr);
+    KCONFIGGUI_NO_EXPORT explicit StandardShortcutWatcher(QObject *parent = nullptr);
+
     friend KCONFIGGUI_EXPORT StandardShortcutWatcher *shortcutWatcher();
     std::unique_ptr<StandardShortcutWatcherPrivate> d;
 };

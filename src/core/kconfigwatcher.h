@@ -58,7 +58,7 @@ private Q_SLOTS:
     void onConfigChangeNotification(const QHash<QString, QByteArrayList> &changes);
 
 private:
-    KConfigWatcher(const KSharedConfig::Ptr &config);
+    KCONFIGCORE_NO_EXPORT explicit KConfigWatcher(const KSharedConfig::Ptr &config);
     Q_DISABLE_COPY(KConfigWatcher)
     const QScopedPointer<KConfigWatcherPrivate> d;
 };
