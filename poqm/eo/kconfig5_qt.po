@@ -2,13 +2,14 @@
 # Matthias Peick <matthias@peick.de>, 2004.
 # Pierre-Marie Pédrot <pedrotpmx@wanadoo.fr>, 2007.
 # Michael Moroni <michael.moroni@mailoo.org>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2012-05-23 14:23+0200\n"
-"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"PO-Revision-Date: 2023-03-20 22:43+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Esperanto\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:958
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr ""
@@ -34,62 +35,62 @@ msgstr ""
 #: core/kemailsettings.cpp:248
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr ""
+msgstr "Defaŭlto"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
-msgstr ""
+msgstr "Malfermi"
 
 #: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "New"
-msgstr ""
+msgstr "Nova"
 
 #: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
-msgstr ""
+msgstr "Fermi"
 
 #: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
-msgstr ""
+msgstr "Konservi"
 
 #: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
-msgstr ""
+msgstr "Presi"
 
 #: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
-msgstr ""
+msgstr "Forlasi"
 
 #: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
-msgstr ""
+msgstr "Malfari"
 
 #: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr ""
+msgstr "Refari"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
-msgstr ""
+msgstr "Tondi"
 
 #: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
-msgstr ""
+msgstr "Kopii"
 
 #: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
-msgstr ""
+msgstr "Alglui"
 
 #: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
@@ -187,18 +188,14 @@ msgid "Beginning of Line"
 msgstr ""
 
 #: gui/kstandardshortcut.cpp:175
-#, fuzzy
-#| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
-msgstr "Grupigi por enrigardi"
+msgstr ""
 
 #: gui/kstandardshortcut.cpp:181
-#, fuzzy
-#| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr "Grupigi por enrigardi"
+msgstr ""
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
@@ -508,14 +505,11 @@ msgid "Use <file> instead of global config"
 msgstr "Uzi <file> anstataŭ ol ĉieaj agordoj"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
-msgstr "Ekzaminenda grupo. Iteracie uzu por ingitaj grupoj."
+msgstr ""
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -555,21 +549,3 @@ msgstr ""
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "La skribenda valoro. Nepre, en ŝelo uzu '' kiel malplena"
-
-#~ msgid "KWriteConfig"
-#~ msgstr "KWriteConfig"
-
-#~ msgid "Write KConfig entries - for use in shell scripts"
-#~ msgstr "Skribi KConfig-erojn - uzenda en ŝelskriptoj"
-
-#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
-#~ msgstr "(c) 2001 Red Hat, Inc. & Luís Pedro COELHO"
-
-#~ msgid "Wrote kreadconfig on which this is based"
-#~ msgstr "Ĝi skribis kreadconfig, sur kiu tio baziĝas"
-
-#~ msgid "Luís Pedro Coelho"
-#~ msgstr "Luís Pedro COELHO"
-
-#~ msgid "Bernhard Rosenkraenzer"
-#~ msgstr "Bernhard ROSENKRAENZER"
