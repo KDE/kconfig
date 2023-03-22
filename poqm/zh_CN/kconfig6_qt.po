@@ -15,7 +15,7 @@ msgstr ""
 "X-Crowdin-File: /kf5-trunk/messages/kconfig/kconfig5_qt.pot\n"
 "X-Crowdin-File-ID: 5586\n"
 
-#: core/kconfig.cpp:949
+#: core/kconfig.cpp:942
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "请联系您的系统管理员。"

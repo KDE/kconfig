@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.04.1\n"
 
-#: core/kconfig.cpp:949
+#: core/kconfig.cpp:942
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Neem contact op met uw systeembeheerder."
