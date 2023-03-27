@@ -1,14 +1,18 @@
-# translation of kwriteconfig.po to esperanto
+# translation of kconfig6_qt.pot to esperanto
+# Copyright (C) 2014 Free Software Foundation, Inc.
+# This file is distributed under the same license as the kconfig package.
 # Matthias Peick <matthias@peick.de>, 2004.
 # Pierre-Marie Pédrot <pedrotpmx@wanadoo.fr>, 2007.
 # Michael Moroni <michael.moroni@mailoo.org>, 2012.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2012-05-23 14:23+0200\n"
-"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"PO-Revision-Date: 2023-03-26 10:33+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -22,448 +26,444 @@ msgstr ""
 #: core/kconfig.cpp:942
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr ""
+msgstr "Bonvolu kontakti vian sisteman administranton."
 
 #: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr ""
+msgstr "Agorda dosiero \"%1\" ne skribebla.\n"
 
 #: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
 #: core/kemailsettings.cpp:181
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr ""
+msgstr "Defaŭlto"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
-msgstr ""
+msgstr "Malfermi"
 
 #: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "New"
-msgstr ""
+msgstr "Nova"
 
 #: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
-msgstr ""
+msgstr "Fermi"
 
 #: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
-msgstr ""
+msgstr "Konservi"
 
 #: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
-msgstr ""
+msgstr "Presi"
 
 #: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
-msgstr ""
+msgstr "Forlasi"
 
 #: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
-msgstr ""
+msgstr "Malfari"
 
 #: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr ""
+msgstr "Refari"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
-msgstr ""
+msgstr "Tranĉi"
 
 #: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
-msgstr ""
+msgstr "Kopii"
 
 #: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
-msgstr ""
+msgstr "Alglui"
 
 #: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
-msgstr ""
+msgstr "Alglui Elekton"
 
 #: gui/kstandardshortcut.cpp:94
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
-msgstr ""
+msgstr "Elekti Ĉion"
 
 #: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
-msgstr ""
+msgstr "Malelekti"
 
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
-msgstr ""
+msgstr "Forigi Vorton Malantaŭen"
 
 #: gui/kstandardshortcut.cpp:106
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
-msgstr ""
+msgstr "Forigi Vorton Antaŭen"
 
 #: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
-msgstr ""
+msgstr "Trovi"
 
 #: gui/kstandardshortcut.cpp:114
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
-msgstr ""
+msgstr "Trovi Sekvan"
 
 #: gui/kstandardshortcut.cpp:115
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
-msgstr ""
+msgstr "Trovi Antaŭan"
 
 #: gui/kstandardshortcut.cpp:116
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
-msgstr ""
+msgstr "Anstataŭigi"
 
 #: gui/kstandardshortcut.cpp:121
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
-msgstr ""
+msgstr "Hejmo"
 
 #: gui/kstandardshortcut.cpp:129
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
-msgstr ""
+msgstr "Komenco"
 
 #: gui/kstandardshortcut.cpp:135
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
-msgstr ""
+msgstr "Fino"
 
 #: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
-msgstr ""
+msgstr "Antaŭa"
 
 #: gui/kstandardshortcut.cpp:139
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
-msgstr ""
+msgstr "Posta"
 
 #: gui/kstandardshortcut.cpp:146
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
-msgstr ""
+msgstr "Supren"
 
 #: gui/kstandardshortcut.cpp:147
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
-msgstr ""
+msgstr "Reen"
 
 #: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
-msgstr ""
+msgstr "Antaŭen"
 
 #: gui/kstandardshortcut.cpp:158
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr ""
+msgstr "Reŝargi"
 
 #: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
-msgstr ""
+msgstr "Komenco de Linio"
 
 #: gui/kstandardshortcut.cpp:175
-#, fuzzy
-#| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
-msgstr "Grupigi por enrigardi"
+msgstr "Fino de Linio"
 
 #: gui/kstandardshortcut.cpp:181
-#, fuzzy
-#| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr "Grupigi por enrigardi"
+msgstr "Iri al Linio"
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
-msgstr ""
+msgstr "Malantaŭen Vorte"
 
 #: gui/kstandardshortcut.cpp:192
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
-msgstr ""
+msgstr "Antaŭen Vorte"
 
 #: gui/kstandardshortcut.cpp:201
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Aldoni legosignon"
 
 #: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
-msgstr ""
+msgstr "Zomi"
 
 #: gui/kstandardshortcut.cpp:208
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
-msgstr ""
+msgstr "Malzomi"
 
 #: gui/kstandardshortcut.cpp:211
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
-msgstr ""
+msgstr "Plena Ekrana Reĝimo"
 
 #: gui/kstandardshortcut.cpp:218
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
-msgstr ""
+msgstr "Montri Menubreton"
 
 #: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
-msgstr ""
+msgstr "Aktivigi Sekvan Langeton"
 
 #: gui/kstandardshortcut.cpp:229
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
-msgstr ""
+msgstr "Aktivigi Antaŭan Langeton"
 
 #: gui/kstandardshortcut.cpp:237
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
-msgstr ""
+msgstr "Helpo"
 
 #: gui/kstandardshortcut.cpp:238
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
-msgstr ""
+msgstr "Kio estas tio"
 
 #: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
-msgstr ""
+msgstr "Teksto Kompletigo"
 
 #: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
-msgstr ""
+msgstr "Antaŭa Kompleta Kongruo"
 
 #: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
-msgstr ""
+msgstr "Sekva Kompleta Kongruo"
 
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
-msgstr ""
+msgstr "Subĉena Kompletigo"
 
 #: gui/kstandardshortcut.cpp:276
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
-msgstr ""
+msgstr "Antaŭa Ero en Listo"
 
 #: gui/kstandardshortcut.cpp:284
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
-msgstr ""
+msgstr "Sekva Ero en Listo"
 
 #: gui/kstandardshortcut.cpp:291
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr ""
+msgstr "Malfermi Lastatempan"
 
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
-msgstr ""
+msgstr "Konservi kiel"
 
 #: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
-msgstr ""
+msgstr "Reiri"
 
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr ""
+msgstr "Presita antaŭvido"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr ""
+msgstr "Poŝto"
 
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr ""
+msgstr "Klara"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr ""
+msgstr "Zomi al Fakta Grandeco"
 
 #: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
-msgstr ""
+msgstr "Ĝisrandigi al Paĝo"
 
 #: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
-msgstr ""
+msgstr "Ĝisrandigi al Larĝo"
 
 #: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
-msgstr ""
+msgstr "Ĝisrandigi al Alteco"
 
 #: gui/kstandardshortcut.cpp:308
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
-msgstr ""
+msgstr "Zomi"
 
 #: gui/kstandardshortcut.cpp:309
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
-msgstr ""
+msgstr "Iri al"
 
 #: gui/kstandardshortcut.cpp:310
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
-msgstr ""
+msgstr "Iri al Paĝo"
 
 #: gui/kstandardshortcut.cpp:313
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
-msgstr ""
+msgstr "Dokumento Reen"
 
 #: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
-msgstr ""
+msgstr "Dokumento Antaŭen"
 
 #: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
-msgstr ""
+msgstr "Redakti legosignojn"
 
 #: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
-msgstr ""
+msgstr "Literumo"
 
 #: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
-msgstr ""
+msgstr "Montri Ilobreton"
 
 #: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
-msgstr ""
+msgstr "Montri Statusbreton"
 
 #: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
-msgstr ""
+msgstr "Klavkombinoj"
 
 #: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
-msgstr ""
+msgstr "Agordi Aplikaĵon"
 
 #: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
-msgstr ""
+msgstr "Agordi Ilobretojn"
 
 #: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
-msgstr ""
+msgstr "Agordi Sciigojn"
 
 #: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
-msgstr ""
+msgstr "Konsilo De Tago"
 
 #: gui/kstandardshortcut.cpp:371
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr ""
+msgstr "Raporti Cimon"
 
 #: gui/kstandardshortcut.cpp:374
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr ""
+msgstr "Agordi Lingvon..."
 
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr ""
+msgstr "Pri Apliko"
 
 #: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr ""
+msgstr "Pri KDE"
 
 #: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
-msgstr ""
+msgstr "Forigi"
 
 #: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
-msgstr ""
+msgstr "Alinomi"
 
 #: gui/kstandardshortcut.cpp:388
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr ""
+msgstr "Movi al Rubujo"
 
 #: gui/kstandardshortcut.cpp:394
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr ""
+msgstr "Doni"
 
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
-msgstr ""
+msgstr "Montri/Kaŝi Kaŝitajn dosierojn"
 
 #: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
-msgstr ""
+msgstr "Krei Dosierujon"
 
 #: kconf_update/kconf_update.cpp:941
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
-msgstr ""
+msgstr "KDE-ilo por ĝisdatigi uzantajn agordajn dosierojn"
 
 #: kconf_update/kconf_update.cpp:943
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr ""
+msgstr "Konservi eligajn rezultojn de skriptoj"
 
 #: kconf_update/kconf_update.cpp:946
 msgctxt "main|"
@@ -471,31 +471,33 @@ msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
 "files"
 msgstr ""
+"Nur por unutestoj: uzu testajn dosierujojn por resti for de la realaj "
+"dosieroj de la uzanto"
 
 #: kconf_update/kconf_update.cpp:948
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
-msgstr ""
+msgstr "Kontroli ĉu agorda dosiero mem postulas ĝisdatigon"
 
 #: kconf_update/kconf_update.cpp:951
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
-msgstr ""
+msgstr "Dosiero(j) por legi ĝisdatigajn instrukciojn"
 
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr ""
+msgstr "Dosierujo en kiu generi dosierojn [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
 msgid "directory"
-msgstr ""
+msgstr "dosierujo"
 
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr ""
+msgstr "Montri programlicencon."
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
@@ -503,14 +505,13 @@ msgid "Use <file> instead of global config"
 msgstr "Uzi <file> anstataŭ ol ĉieaj agordoj"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
-msgstr "Ekzaminenda grupo. Iteracie uzu por ingitaj grupoj."
+msgstr ""
+"Grupo priserĉenda. Uzu \"<defaŭlta>\" por la radika grupo, aŭ uzu ripete por "
+"ingitaj grupoj."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -520,7 +521,7 @@ msgstr "Serĉenda ŝlosilo"
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
-msgstr ""
+msgstr "Defaŭlta valoro"
 
 #: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
@@ -530,7 +531,7 @@ msgstr "Speco de variablo"
 #: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
-msgstr ""
+msgstr "Grupnomo ne povas esti malplena, uzu \"<default>\" por la radika grupo"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
@@ -544,27 +545,9 @@ msgstr ""
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr ""
+msgstr "Forigi la elektitan ŝlosilon se ĝi estas ebligita"
 
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "La skribenda valoro. Nepre, en ŝelo uzu '' kiel malplena"
-
-#~ msgid "KWriteConfig"
-#~ msgstr "KWriteConfig"
-
-#~ msgid "Write KConfig entries - for use in shell scripts"
-#~ msgstr "Skribi KConfig-erojn - uzenda en ŝelskriptoj"
-
-#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
-#~ msgstr "(c) 2001 Red Hat, Inc. & Luís Pedro COELHO"
-
-#~ msgid "Wrote kreadconfig on which this is based"
-#~ msgstr "Ĝi skribis kreadconfig, sur kiu tio baziĝas"
-
-#~ msgid "Luís Pedro Coelho"
-#~ msgstr "Luís Pedro COELHO"
-
-#~ msgid "Bernhard Rosenkraenzer"
-#~ msgstr "Bernhard ROSENKRAENZER"
