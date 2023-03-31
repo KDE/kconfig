@@ -55,7 +55,7 @@ Q_SIGNALS:
     void configChanged(const KConfigGroup &group, const QByteArrayList &names);
 
 private Q_SLOTS:
-    void onConfigChangeNotification(const QHash<QString, QByteArrayList> &changes);
+    KCONFIGCORE_NO_EXPORT void onConfigChangeNotification(const QHash<QString, QByteArrayList> &changes);
 
 private:
     KCONFIGCORE_NO_EXPORT explicit KConfigWatcher(const KSharedConfig::Ptr &config);
