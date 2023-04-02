@@ -26,7 +26,7 @@
 #include <ostream>
 #include <stdlib.h>
 
-#include "../../kconfig_version.h"
+#include "../core/kconfig_version.h"
 #include "KConfigCommonStructs.h"
 #include "KConfigHeaderGenerator.h"
 #include "KConfigParameters.h"

@@ -56,8 +56,9 @@ set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprec
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
+set(kconfig_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/core/kconfig_version.h")
 ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
-                        VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h"
+                        VERSION_HEADER "${kconfig_version_header}"
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfigVersion.cmake"
                         SOVERSION 6)
 
@@ -108,7 +109,7 @@ install(EXPORT KF6ConfigTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
 install(EXPORT KF6ConfigCompilerTargets DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Config"
         FILE KF6ConfigCompilerTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h
+install(FILES ${kconfig_version_header}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfig COMPONENT Devel)
 
 
