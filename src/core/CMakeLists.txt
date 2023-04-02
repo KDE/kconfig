@@ -1,6 +1,12 @@
 add_library(KF6ConfigCore)
 add_library(KF6::ConfigCore ALIAS KF6ConfigCore)
 
+set_target_properties(KF6ConfigCore PROPERTIES
+    VERSION     ${KCONFIG_VERSION}
+    SOVERSION   ${KCONFIG_SOVERSION}
+    EXPORT_NAME ConfigCore
+)
+
 target_sources(KF6ConfigCore PRIVATE
    kconfig.cpp
    kconfigbase.cpp
@@ -50,11 +56,6 @@ target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
 if(KCONFIG_USE_DBUS)
     target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)
 endif()
-
-set_target_properties(KF6ConfigCore PROPERTIES VERSION   ${KCONFIG_VERSION}
-                                               SOVERSION ${KCONFIG_SOVERSION}
-                                               EXPORT_NAME ConfigCore
-)
 
 ecm_generate_headers(KConfigCore_HEADERS
   HEADER_NAMES

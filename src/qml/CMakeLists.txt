@@ -1,6 +1,12 @@
 add_library(KF6ConfigQml)
 add_library(KF6::ConfigQml ALIAS KF6ConfigQml)
 
+set_target_properties(KF6ConfigQml PROPERTIES
+    VERSION     ${KCONFIG_VERSION}
+    SOVERSION   ${KCONFIG_SOVERSION}
+    EXPORT_NAME ConfigQml
+)
+
 target_sources(KF6ConfigQml PRIVATE
     kconfigpropertymap.cpp
 )
@@ -17,10 +23,6 @@ target_link_libraries(KF6ConfigQml
   PUBLIC
     KF6::ConfigCore # KCoreConfigSkeleton, in ConfigPropertyMap
     Qt6::Qml
-)
-set_target_properties(KF6ConfigQml PROPERTIES VERSION     ${KCONFIG_VERSION}
-                                              SOVERSION   ${KCONFIG_SOVERSION}
-                                              EXPORT_NAME ConfigQml
 )
 
 ecm_generate_headers(KConfigQml_HEADERS
