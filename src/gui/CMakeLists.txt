@@ -10,6 +10,7 @@ set_target_properties(KF6ConfigGui PROPERTIES
 ecm_create_qm_loader(KF6ConfigGui kconfig6_qt)
 
 target_sources(KF6ConfigGui PRIVATE
+    kcolorscheme.cpp
     kconfiggui.cpp
     kconfiggroupgui.cpp
     kconfigloader.cpp
@@ -46,6 +47,7 @@ target_link_libraries(KF6ConfigGui PUBLIC Qt6::Gui KF6::ConfigCore PRIVATE Qt6::
 
 ecm_generate_headers(KConfigGui_HEADERS
   HEADER_NAMES
+  KColorScheme
   KConfigGui
   KConfigLoader
   KConfigSkeleton
@@ -69,6 +71,7 @@ install(TARGETS KF6ConfigGui EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAUL
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
+  kcolorschemehelpers_p.h
   kconfigguistaticinitializer.cpp
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
 )

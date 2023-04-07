@@ -57,6 +57,7 @@ ecm_add_tests(
    kconfigloadertest.cpp
    kconfigskeletontest.cpp
    kstandardshortcuttest.cpp
+   kcolorschemetest.cpp
    NAME_PREFIX kconfiggui-
    LINK_LIBRARIES KF6::ConfigGui Qt6::Test
 )
