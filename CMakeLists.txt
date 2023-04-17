@@ -23,6 +23,7 @@ include(ECMPoQmTools)
 include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
+include(ECMQmlModule)
 
 set(REQUIRED_QT_VERSION 6.4.0)
 

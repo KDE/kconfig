@@ -91,7 +91,7 @@ public:
      *
      * @see authorizeAction()
      */
-    static bool authorize(const QString &action);
+    Q_INVOKABLE static bool authorize(const QString &action);
 
     /**
      * Returns whether the user is permitted to perform a common action.
@@ -101,7 +101,7 @@ public:
      * @overload
      * @since 5.88
      */
-    static bool authorize(GenericRestriction action);
+    Q_INVOKABLE static bool authorize(GenericRestriction action);
 
     /**
      * Returns whether the user is permitted to perform a certain action.
@@ -128,7 +128,7 @@ public:
      *
      * @see authorize()
      */
-    static bool authorizeAction(const QString &action);
+    Q_INVOKABLE static bool authorizeAction(const QString &action);
 
     /**
      * Overload to authorize common actions.
@@ -136,7 +136,7 @@ public:
      * @overload
      * @since 5.88
      */
-    static bool authorizeAction(GenericAction action);
+    Q_INVOKABLE static bool authorizeAction(GenericAction action);
 
     /**
      * Returns whether the user is permitted to use a certain control
