@@ -205,6 +205,11 @@ public:
 Q_GLOBAL_STATIC(KAuthorizedPrivate, authPrivate)
 #define MY_D KAuthorizedPrivate *d = authPrivate();
 
+KAuthorized::KAuthorized()
+    : QObject(nullptr)
+{
+}
+
 bool KAuthorized::authorize(const QString &genericAction)
 {
     MY_D if (d->blockEverything)
@@ -349,7 +354,7 @@ KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
     }
 }
 
-namespace KAuthorized
+namespace KAuthorizedInternal
 {
 /**
  * Helper for KAuthorized::allowUrlAction in KIO
@@ -403,5 +408,4 @@ authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QU
     }
     return result;
 }
-
 } // namespace
