@@ -42,3 +42,20 @@ install(FILES
   ${KConfigQml_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml COMPONENT Devel
 )
+
+
+# The QML plugin
+add_library(kconfigqmlplugin qmlplugin.cpp)
+target_link_libraries(kconfigqmlplugin
+    Qt6::Core
+    Qt6::Qml
+    KF6::ConfigCore
+)
+
+if(WIN32 AND BUILD_SHARED_LIBS)
+    set_target_properties(kconfigqmlplugin PROPERTIES PREFIX "")
+endif()
+
+install(TARGETS kconfigqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/config)
+install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/config)
+
