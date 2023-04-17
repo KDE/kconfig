@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2023 Alexander Lohnau <alexander.lohnau@gmx.de>
+# SPDX-License-Identifier: BSD-2-Clause
+
 add_library(KF6ConfigQml)
 add_library(KF6::ConfigQml ALIAS KF6ConfigQml)
 
@@ -45,17 +48,13 @@ install(FILES
 
 
 # The QML plugin
-add_library(kconfigqmlplugin qmlplugin.cpp)
+ecm_add_qml_module(kconfigqmlplugin URI org.kde.config)
+target_sources(kconfigqmlplugin PRIVATE qmlplugin.cpp)
 target_link_libraries(kconfigqmlplugin
     Qt6::Core
     Qt6::Qml
     KF6::ConfigCore
 )
 
-if(WIN32 AND BUILD_SHARED_LIBS)
-    set_target_properties(kconfigqmlplugin PROPERTIES PREFIX "")
-endif()
-
-install(TARGETS kconfigqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/config)
-install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/config)
+ecm_finalize_qml_module(kconfigqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR} CLASSNAME KConfigQmlPlugin)
 

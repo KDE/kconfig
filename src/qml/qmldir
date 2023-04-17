@@ -1,3 +1,0 @@
-module org.kde.config
-plugin kconfigqmlplugin
-
