@@ -203,7 +203,7 @@ public:
 };
 
 Q_GLOBAL_STATIC(KAuthorizedPrivate, authPrivate)
-#define MY_D KAuthorizedPrivate *d = authPrivate();
+#define KAUTHORIZED_D KAuthorizedPrivate *d = authPrivate()
 
 KAuthorized::KAuthorized()
     : QObject(nullptr)
@@ -212,8 +212,8 @@ KAuthorized::KAuthorized()
 
 bool KAuthorized::authorize(const QString &genericAction)
 {
-    MY_D if (d->blockEverything)
-    {
+    KAUTHORIZED_D;
+    if (d->blockEverything) {
         return false;
     }
 
@@ -238,8 +238,8 @@ bool KAuthorized::authorize(KAuthorized::GenericRestriction action)
 
 bool KAuthorized::authorizeAction(const QString &action)
 {
-    MY_D if (d->blockEverything)
-    {
+    KAUTHORIZED_D;
+    if (d->blockEverything) {
         return false;
     }
     if (!d->actionRestrictions || action.isEmpty()) {
@@ -283,7 +283,8 @@ QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
 // Exported for unittests (e.g. in KIO, we're missing tests for this in kconfig)
 KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
 {
-    MY_D const QString Any;
+    KAUTHORIZED_D;
+    const QString Any;
 
     d->urlActionRestrictions.clear();
     d->urlActionRestrictions.append(URLActionRule("open", Any, Any, Any, Any, Any, Any, true));
@@ -362,7 +363,8 @@ namespace KAuthorizedInternal
  */
 KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl &_baseURL, const QUrl &_destURL)
 {
-    MY_D QMutexLocker locker((&d->mutex));
+    KAUTHORIZED_D;
+    QMutexLocker locker((&d->mutex));
 
     const QString basePath = _baseURL.adjusted(QUrl::StripTrailingSlash).path();
     const QString destPath = _destURL.adjusted(QUrl::StripTrailingSlash).path();
@@ -378,7 +380,8 @@ KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl
 KCONFIGCORE_EXPORT bool
 authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QUrl &_destURL, const QString &baseClass, const QString &destClass)
 {
-    MY_D QMutexLocker locker(&(d->mutex));
+    KAUTHORIZED_D;
+    QMutexLocker locker(&(d->mutex));
     if (d->blockEverything) {
         return false;
     }
