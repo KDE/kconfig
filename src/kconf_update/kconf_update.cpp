@@ -5,7 +5,7 @@
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
-#include "../../kconfig_version.h"
+#include "kconfig_version.h"
 #include <cstdlib>
 
 #include <QCoreApplication>
