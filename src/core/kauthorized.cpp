@@ -361,7 +361,7 @@ namespace KAuthorizedInternal
  * Helper for KAuthorized::allowUrlAction in KIO
  * @private
  */
-KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl &_baseURL, const QUrl &_destURL)
+KCONFIGCORE_EXPORT void allowUrlAction(const QString &action, const QUrl &_baseURL, const QUrl &_destURL)
 {
     KAUTHORIZED_D;
     QMutexLocker locker((&d->mutex));
@@ -378,7 +378,7 @@ KCONFIGCORE_EXPORT void allowUrlActionInternal(const QString &action, const QUrl
  * @private
  */
 KCONFIGCORE_EXPORT bool
-authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QUrl &_destURL, const QString &baseClass, const QString &destClass)
+authorizeUrlAction(const QString &action, const QUrl &_baseURL, const QUrl &_destURL, const QString &baseClass, const QString &destClass)
 {
     KAUTHORIZED_D;
     QMutexLocker locker(&(d->mutex));
