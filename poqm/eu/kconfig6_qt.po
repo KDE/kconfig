@@ -454,32 +454,30 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Sortu karpeta"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Konfigurazio fitxategiak eguneratzeko KDE tresna"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Mantendu scriptaren irteera emaitzak"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Unitate probatarako bakarrik: erabili proba karpetak salbu mantentzeko "
-"erabiltzailearen fitxategi errealak."
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr ""
 "Egiaztatu ea konfigurazio fitxategiak bere burua eguneratzea eskatzen duen. "
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Eguneratzeko jarraibideak irakurtzeko fitxategia(k)"
@@ -554,6 +552,14 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Idatzi beharreko balioa. Derrigorrezkoa da. Shell-etan, erabili '' hutsik "
 "uzteko"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Unitate probatarako bakarrik: erabili proba karpetak salbu mantentzeko "
+#~ "erabiltzailearen fitxategi errealak."
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

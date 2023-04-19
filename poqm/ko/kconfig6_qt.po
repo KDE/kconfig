@@ -451,30 +451,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "폴더 만들기"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "사용자 설정 파일을 업데이트하는 KDE 도구"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "스크립트 출력 결과 저장"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"유닛 테스트 전용: 사용자의 실제 파일에 접근하지 않도록 테스트 디렉터리 사용"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "설정 파일이 업데이트가 필요한 지 여부 확인"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "업데이트 동작을 읽을 파일"
@@ -549,6 +548,14 @@ msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "기록할 값입니다. 필수적이며, 셸에서 빈 값을 사용하려면 ''을 사용하십시오"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "유닛 테스트 전용: 사용자의 실제 파일에 접근하지 않도록 테스트 디렉터리 사"
+#~ "용"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

@@ -455,31 +455,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Стварыць каталог"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Інструмент KDE для абнаўлення карыстальніцкіх файлаў канфігурацыі"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Пакідаць вынікі вываду са скрыптоў"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Толькі для тэстаў модуляў: выкарыстоўваць тэставыя каталогі, каб не чапаць "
-"рэальныя файлы карыстальніка"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Праверце, ці трэба абнавіць сам файл канфігурацыі"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл(ы), з якога трэба чытаць інструкцыі па абнаўленні"
@@ -555,6 +553,14 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Значэнне, якое трэба ўпісаць. Для пустога ў абалонцы абавязкова "
 "выкарыстоўвайце ''"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Толькі для тэстаў модуляў: выкарыстоўваць тэставыя каталогі, каб не "
+#~ "чапаць рэальныя файлы карыстальніка"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

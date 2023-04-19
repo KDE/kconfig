@@ -454,29 +454,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Lag mappe"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE-verktøy for oppdatering av brukaroppsett"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Ta vare på utdata frå skript"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
-msgstr "Berre for einingstestar: bruk testmapper for å unngå brukarens filer"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
+msgstr ""
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Sjekk om oppsettfila treng oppdatering"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fil(er) å lesa oppdateringsinstruksjonar frå"
@@ -548,3 +548,10 @@ msgstr "Fjern den valde nøkkelen"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Verdien som skal skrivast. I eit skal må du bruka '' for tomme verdiar"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Berre for einingstestar: bruk testmapper for å unngå brukarens filer"

@@ -457,31 +457,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "యూజర్ ఆకృతీకరణ ఫైళ్ళను నవీకరించుటకు KDE సాధనం"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "స్క్రిప్ట్ల నుండి అవుట్పుట్ ఫలితాలను ఉంచండి"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"యూనిట్ పరీక్షల కోసం మాత్రమే: టెస్టిమోనియల్ డైరెక్టరీలు యూజర్ రియల్ ఫైల్స్ నుండి దూరంగా ఉండటానికి "
-"ఉపయోగించుకోండి"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Config file దానికి అప్డేట్ కావాలో లేదో తనిఖీ చేయండి"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "నవీకరణ సూచనలను చదవడానికి ఫైల్ (లు)"
@@ -553,6 +551,14 @@ msgstr ""
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "వ్రాయడానికి విలువ. తప్పనిసరిగా షెల్ ఉపయోగంలో '' ఖాళీగా ఉంచండి"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "యూనిట్ పరీక్షల కోసం మాత్రమే: టెస్టిమోనియల్ డైరెక్టరీలు యూజర్ రియల్ ఫైల్స్ నుండి దూరంగా ఉండటానికి "
+#~ "ఉపయోగించుకోండి"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

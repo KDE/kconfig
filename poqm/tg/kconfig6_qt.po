@@ -454,31 +454,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Абзори KDE барои навсозии файлҳои танзимии корбар"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Нигоҳ доштани натиҷаҳои барориши нақшҳо (скриптҳо)"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Танҳо барои санҷишҳои воҳидӣ: барои гузаронидани санҷишҳо дур аз файлҳои "
-"ҳақиқии корбар аз ҷузвадонҳои санҷишӣ истифода баред"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Ниёзи навсозӣ намудани худи файли танзимиро санҷед"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл(ҳо)е ки дастурамали навсозӣ аз он(ҳо) иҷро мешаванд"
@@ -553,6 +551,14 @@ msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Қимат барои навиштан. Ҳатман, дар ҷилд аз '' барои ҷои холӣ истифода баред"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Танҳо барои санҷишҳои воҳидӣ: барои гузаронидани санҷишҳо дур аз файлҳои "
+#~ "ҳақиқии корбар аз ҷузвадонҳои санҷишӣ истифода баред"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

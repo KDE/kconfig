@@ -455,32 +455,30 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Creează dosar"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "Unealtă KDE pentru actualizarea fișierelor de configurare ale utilizatorului"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Păstrează rezultatele de ieșire din scripturi"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Doar pentru teste de unitate: folosește dosare de test pentru a nu atinge "
-"fișierele reale ale utilizatorului"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Verifică dacă însuși fișierul de configurare necesită actualizat"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fișier(e) din care să fie citite instrucțiuni de actualizare"
@@ -556,6 +554,14 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Valoarea de scris. Obligatorie. În linia de comandă folosiți '' pentru șir "
 "gol"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Doar pentru teste de unitate: folosește dosare de test pentru a nu atinge "
+#~ "fișierele reale ale utilizatorului"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

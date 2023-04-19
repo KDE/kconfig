@@ -445,32 +445,30 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Map aanmaken"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "KDE-programma voor het bijwerken van de gebruikers' configuratiebestanden"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Uitvoerresultaten van scripts behouden"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Alleen voor testen van units: gebruik testmappen om weg te blijven van de "
-"echte bestanden van gebruikers"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Controleren of het configuratiebestand zelf bijgewerkt dient te worden"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Bestand(en) met instructies voor bijwerken"
@@ -543,6 +541,14 @@ msgstr "De aangeduide sleutel verwijderen indien ingeschakeld"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "De waarde om te schrijven. Gebruik op een shell altijd '' voor leeg."
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Alleen voor testen van units: gebruik testmappen om weg te blijven van de "
+#~ "echte bestanden van gebruikers"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

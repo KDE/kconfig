@@ -464,32 +464,30 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Créer un dossier"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Outil de KDE pour l'édition des fichiers de configuration"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Conserver le résultat de la sortie des scripts"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Pour les tests unitaires seulement : utiliser des dossiers de test pour "
-"éviter les vrais fichiers utilisateur"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr ""
 "Vérifier si le fichier de configuration nécessite lui-même une mise à jour"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fichier(s) à partir desquels lire les instructions de mise à jour"
@@ -565,6 +563,14 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "La valeur à écrire. Elle est obligatoire. Dans le shell, utilisez '' pour "
 "représenter une valeur vide"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Pour les tests unitaires seulement : utiliser des dossiers de test pour "
+#~ "éviter les vrais fichiers utilisateur"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

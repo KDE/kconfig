@@ -451,32 +451,30 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Създаване на папка"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "KDE инструмент за актуализиране на потребителски конфигурационни файлове"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Задържане на изходните резултати от скриптове"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Само за модулни тестове: използване на тестови директории, за да не се "
-"променят истинските файлове на потребителя"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Проверяване, дали самият конфигурационен файл изисква актуализиране"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл или файлове с инструкции за актуализиране"
@@ -550,3 +548,11 @@ msgstr "Изтриване на посочения ключ, ако е акти�
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Стойност за запис. Изисква се, в терминал използвайте '' за празно"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Само за модулни тестове: използване на тестови директории, за да не се "
+#~ "променят истинските файлове на потребителя"

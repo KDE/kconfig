@@ -447,29 +447,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "创建文件夹"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE 的用户配置文件更新工具"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "保留脚本的输出结果"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
-msgstr "仅用于单元测试：使用测试目录以避免访问用户实际文件"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
+msgstr ""
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "检查配置文件本身是否需要更新"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要读取更新指令的文件"
@@ -537,6 +537,12 @@ msgstr "启用时删除指定项"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "要写入的值。此为必填项。在 shell 中应使用 \" 代表空值。"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr "仅用于单元测试：使用测试目录以避免访问用户实际文件"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

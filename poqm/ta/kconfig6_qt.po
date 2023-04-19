@@ -453,31 +453,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "அடைவை உருவாக்கு"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "பயனரின் விருப்பத்தேர்வு கோப்புகளை புதுப்பிக்கும் கே.டீ.யீ. நிரல்"
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "சிறுநிரல்கள் தரும் வெளியீட்டை காட்டு"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"சோதனைகளுக்கு மட்டும்: பயனரின் உண்மையான கோப்புகளை தொடாமல், சோதனைக்கென தனிப்பட்ட "
-"அடைவுகளை பயன்படுத்தும்."
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "விருப்பத்தேர்வு கோப்பை புதுப்பிக்க வேண்டுமா என்று பார்"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "புதுப்பிப்பதற்கான வழிமுறைகளை எந்த கோப்பு(கள்)-இலிருந்து படிக்க வேண்டும்"
@@ -553,6 +551,14 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "எழுத வேண்டிய மதிப்பு. முனையத்தில் பயன்படுத்தும்போது காலியான மதிப்பை இட '' என்பதை "
 "பயன்படுத்துங்கள்"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "சோதனைகளுக்கு மட்டும்: பயனரின் உண்மையான கோப்புகளை தொடாமல், சோதனைக்கென தனிப்பட்ட "
+#~ "அடைவுகளை பயன்படுத்தும்."
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"

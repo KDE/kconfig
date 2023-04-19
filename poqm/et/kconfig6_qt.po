@@ -451,31 +451,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Loo kataloog"
 
-#: kconf_update/kconf_update.cpp:941
+#: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE kasutaja seadistusfailide uuendamise rakendus."
 
-#: kconf_update/kconf_update.cpp:943
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Skripti väljundi tulemused säilitatakse"
 
-#: kconf_update/kconf_update.cpp:946
+#: kconf_update/kconf_update.cpp:371
 msgctxt "main|"
 msgid ""
-"For unit tests only: use test directories to stay away from the user's real "
-"files"
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
 msgstr ""
-"Ainult ühiktestideks: testkataloogide kasutamine kasutaja tegelike failide "
-"puutumisest hoidumiseks"
 
-#: kconf_update/kconf_update.cpp:948
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Kontroll, kas seadistusfail ise vajab uuendamist"
 
-#: kconf_update/kconf_update.cpp:951
+#: kconf_update/kconf_update.cpp:376
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Uuendamise instruktsioone sisaldav(ad) fail(id)"
@@ -547,6 +545,14 @@ msgstr "Lubamise korral määratud võtme kustutamine"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Kirjutatav väärtus. See on kohustuslik. Shellis kasuta tühja asemel ''"
+
+#~ msgctxt "main|"
+#~ msgid ""
+#~ "For unit tests only: use test directories to stay away from the user's "
+#~ "real files"
+#~ msgstr ""
+#~ "Ainult ühiktestideks: testkataloogide kasutamine kasutaja tegelike "
+#~ "failide puutumisest hoidumiseks"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Save Options"
