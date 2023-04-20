@@ -299,7 +299,7 @@ msgstr "Reverte"
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr "Vista preliminari de imprimer"
+msgstr "Vista preliminar de imprimer"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
