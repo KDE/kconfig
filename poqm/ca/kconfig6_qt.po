@@ -1,10 +1,10 @@
 # Translation of kconfig6_qt.po to Catalan
-# Copyright (C) 2004-2022 This_file_is_part_of_KDE
+# Copyright (C) 2004-2023 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Ivan Lloro Boada <antispam@wanadoo.es>, 2004.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022.
 # Empar Montoro Martín <montoro_mde@gva.es>, 2019.
 msgid ""
@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kconfig\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-05-31 13:18+0200\n"
+"PO-Revision-Date: 2023-04-19 13:20+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -472,6 +472,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Només per a les proves unitàries: no escriviu les entrades efectuades, així "
+"que en cada execució els scripts es tornen a executar de nou"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
@@ -554,11 +556,3 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "El valor a escriure. És obligatori. A l'intèrpret d'ordres fer servir '' si "
 "està buit"
-
-#~ msgctxt "main|"
-#~ msgid ""
-#~ "For unit tests only: use test directories to stay away from the user's "
-#~ "real files"
-#~ msgstr ""
-#~ "Només per a les proves unitàries: usa directoris per a proves que es "
-#~ "mantenen allunyats dels fitxers reals de l'usuari"

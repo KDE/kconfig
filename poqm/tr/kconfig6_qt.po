@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-01-18 22:29+0300\n"
+"PO-Revision-Date: 2023-04-19 13:10+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 23.03.70\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:942
@@ -118,7 +118,7 @@ msgstr "Geriye Doğru Sözcük Sil"
 #: gui/kstandardshortcut.cpp:106
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
-msgstr "İleri Doğru Sözcük Sil"
+msgstr "İleriye Doğru Sözcük Sil"
 
 #: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
@@ -471,6 +471,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Yalnızca birim sınamaları için: Bitmiş girdileri yazma; böylelikle her "
+"yeniden çalıştırmada betikler yeniden yürütülür"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"

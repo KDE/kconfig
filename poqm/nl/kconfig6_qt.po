@@ -1,8 +1,8 @@
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2022-05-31 16:32+0200\n"
+"PO-Revision-Date: 2023-04-19 10:40+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: core/kconfig.cpp:942
 msgctxt "KConfig|"
@@ -462,6 +462,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Alleen voor testen met eenheden: de gedane items niet schrijven, zodat met "
+"elke keer opnieuw uitvoeren, de scripts opnieuw worden uitgevoerd"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"

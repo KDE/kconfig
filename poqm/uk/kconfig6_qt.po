@@ -3,11 +3,11 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
-"PO-Revision-Date: 2022-05-31 08:48+0300\n"
+"PO-Revision-Date: 2023-04-19 09:42+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -468,6 +468,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Лише для тестування модулів: не записувати виконані записи, щоб із кожним "
+"повторним запуском скрипти виконувалися знову"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
