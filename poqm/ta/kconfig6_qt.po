@@ -4,13 +4,13 @@
 #
 # Vasee Vaseeharan <vasee@ieee.org>, 2004.
 # Ambalam <tamilpc@ambalam.com>, 2004.
-# Kishore G <kishore96@gmail.com>, 2021, 2022.
+# Kishore G <kishore96@gmail.com>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-05-31 21:56+0530\n"
+"PO-Revision-Date: 2023-04-23 14:51+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #: core/kconfig.cpp:942
 msgctxt "KConfig|"
@@ -469,6 +469,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"சோதனைக்கு மட்டும்: முடித்தபின் பதிவுகளை எழுதாதே. இவ்வாறு இருந்தால், ஒவ்வொரு முறையும் "
+"இந்நிரல் இயக்கப்படும்போது உரிய சிறுநிரல்கள் இயக்கப்படும்."
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"

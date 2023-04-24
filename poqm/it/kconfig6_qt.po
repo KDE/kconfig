@@ -3,14 +3,14 @@
 # Andrea Rizzi <rizzi@kde.org>, 2003.
 # Andrea Rizzi <rizzi@sns.it>, 2007.
 # Luca Bellonda <lbellonda@gmail.com>, 2008.
-# Vincenzo Reale <smart2128vr@gmail.com>, 2014, 2016, 2018, 2019, 2020, 2021, 2022.
+# Vincenzo Reale <smart2128vr@gmail.com>, 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-05-31 14:03+0200\n"
+"PO-Revision-Date: 2023-04-20 09:59+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:942
@@ -469,6 +469,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Solo per le unità di prova: non scrivere le voci completate, in modo che a "
+"ogni nuova esecuzione, gli script vengono eseguiti di nuovo"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
