@@ -5,14 +5,14 @@
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
 # Marce Villarino <mvillarino@gmail.com>, 2009, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2020-01-12 11:02+0100\n"
+"PO-Revision-Date: 2023-04-28 19:58+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:958
@@ -316,12 +316,9 @@ msgid "Clear"
 msgstr "Limpar"
 
 #: gui/kstandardshortcut.cpp:297
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Tamaño real"
+msgstr "Ampliar ao tamaño real"
 
 #: gui/kstandardshortcut.cpp:298
 msgctxt "KStandardShortcut|@action"
@@ -421,7 +418,7 @@ msgstr "Informar dun fallo"
 #: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr ""
+msgstr "Configurar o idioma…"
 
 #: gui/kstandardshortcut.cpp:372
 msgctxt "KStandardShortcut|@action"
@@ -456,12 +453,12 @@ msgstr "Doar"
 #: gui/kstandardshortcut.cpp:389
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
-msgstr ""
+msgstr "Mostrar ou agochar os ficheiros agochados"
 
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
-msgstr ""
+msgstr "Crear un cartafol"
 
 #: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
@@ -514,14 +511,13 @@ msgid "Use <file> instead of global config"
 msgstr "Usar <file> en troques da configuración global"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
-msgstr "O grupo no que buscar. Emprégueo repetidamente para grupos aniñados."
+msgstr ""
+"O grupo no que buscar. Use «<predeterminado>» para o grupo raíz, ou úseo "
+"repetidamente para grupos aniñados."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -542,6 +538,8 @@ msgstr "Tipo de variábel"
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"O nome de grupo non pode estar baleiro, use «<predeterminado>» para o grupo "
+"raíz"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
