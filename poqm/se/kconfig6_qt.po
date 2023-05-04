@@ -1,4 +1,4 @@
-# Translation of kconfig5_qt to Northern Sami
+# Translation of kconfig6_qt to Northern Sami
 #
 # Børre Gaup <boerre@skolelinux.no>, 2004, 2005.
 msgid ""
