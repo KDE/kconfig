@@ -52,24 +52,6 @@ QString KEMailSettings::getSetting(KEMailSettings::Setting s) const
     case Organization: {
         return cg.readEntry("Organization");
     }
-    case OutServer: {
-        return cg.readEntry("OutgoingServer");
-    }
-    case OutServerLogin: {
-        return cg.readEntry("OutgoingUserName");
-    }
-    case OutServerPass: {
-        return cg.readEntry("OutgoingPassword");
-    }
-    case InServer: {
-        return cg.readEntry("IncomingServer");
-    }
-    case InServerLogin: {
-        return cg.readEntry("IncomingUserName");
-    }
-    case InServerPass: {
-        return cg.readEntry("IncomingPassword");
-    }
     };
     return QString();
 }
@@ -99,30 +81,6 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString &v)
     }
     case Organization: {
         cg.writeEntry("Organization", v);
-        break;
-    }
-    case OutServer: {
-        cg.writeEntry("OutgoingServer", v);
-        break;
-    }
-    case OutServerLogin: {
-        cg.writeEntry("OutgoingUserName", v);
-        break;
-    }
-    case OutServerPass: {
-        cg.writeEntry("OutgoingPassword", v);
-        break;
-    }
-    case InServer: {
-        cg.writeEntry("IncomingServer", v);
-        break;
-    }
-    case InServerLogin: {
-        cg.writeEntry("IncomingUserName", v);
-        break;
-    }
-    case InServerPass: {
-        cg.writeEntry("IncomingPassword", v);
         break;
     }
     };

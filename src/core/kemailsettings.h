@@ -31,12 +31,9 @@ class KCONFIGCORE_EXPORT KEMailSettings
 public:
     /**
      * The list of settings that I thought of when I wrote this
-     * class.  Any extra settings thought of later can be accessed
-     * easily with getExtendedSetting and setExtendedSetting.
+     * class.
      * @see getSetting()
      * @see setSetting()
-     * @see getExtendedSetting()
-     * @see setExtendedSetting()
      **/
     enum Setting {
         ClientProgram,
@@ -45,21 +42,6 @@ public:
         EmailAddress,
         ReplyToAddress,
         Organization,
-        OutServer,
-        OutServerLogin,
-        OutServerPass,
-        InServer,
-        InServerLogin,
-        InServerPass,
-    };
-
-    /**
-     * The various extensions allowed.
-     **/
-    enum Extension {
-        POP3,
-        SMTP,
-        OTHER,
     };
 
     /**
