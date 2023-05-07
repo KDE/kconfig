@@ -11,7 +11,7 @@
 #include <QStandardPaths>
 #include <QTest>
 
-#include <QFontDialog>
+#include <QProgressDialog>
 
 class KWindowStateSaverTest : public QObject
 {
@@ -34,7 +34,7 @@ void KWindowStateSaverTest::testTopLevelDialog()
     QSize dlgSize(720, 720);
 
     {
-        QFontDialog dlg;
+        QProgressDialog dlg;
         new KWindowStateSaver(&dlg, "topLevelDialogTest");
         dlg.show();
         QTest::qWait(10); // give the window time to show up, so we simulate a user-triggered resize
@@ -46,7 +46,7 @@ void KWindowStateSaverTest::testTopLevelDialog()
     QVERIFY(cfg->hasGroup("topLevelDialogTest"));
 
     {
-        QFontDialog dlg;
+        QProgressDialog dlg;
         new KWindowStateSaver(&dlg, "topLevelDialogTest");
         dlg.show();
         QTest::qWait(100); // give the window time to show up properly
@@ -65,7 +65,7 @@ void KWindowStateSaverTest::testSubDialog()
     QSize dlgSize(700, 500);
 
     {
-        auto dlg = new QFontDialog(&mainWindow);
+        auto dlg = new QProgressDialog(&mainWindow);
         new KWindowStateSaver(dlg, "subDialogTest");
         dlg->show();
         QTest::qWait(10); // give the window time to show up, so we simulate a user-triggered resize
@@ -78,7 +78,7 @@ void KWindowStateSaverTest::testSubDialog()
     QVERIFY(cfg->hasGroup("subDialogTest"));
 
     {
-        auto dlg = new QFontDialog(&mainWindow);
+        auto dlg = new QProgressDialog(&mainWindow);
         new KWindowStateSaver(dlg, "subDialogTest");
         dlg->show();
         QTest::qWait(100); // give the window time to show up properly
