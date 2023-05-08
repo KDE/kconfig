@@ -139,40 +139,36 @@ public:
     Q_INVOKABLE static bool authorizeAction(GenericAction action);
 
     /**
-     * Returns whether the user is permitted to use a certain control
-     * module.
+     * Returns whether the user is permitted to use a certain control module.
      *
      * All settings are read from the "[KDE Control Module Restrictions]"
      * group.  For example, if kdeglobals contains
      * @verbatim
        [KDE Control Module Restrictions][$i]
-       desktop-settings.desktop=false
+       kcm_desktop-settings=false
        @endverbatim
      * then
      * @code
-     * KAuthorized::authorizeControlModule("desktop-settings.desktop");
+     * KAuthorized::authorizeControlModule("kcm_desktop-settings");
      * @endcode
      * will return @c false.
      *
-     * @param menuId  The desktop menu ID for the control module.
-     * @return        @c true if access to the module is authorized,
-     *                @c false otherwise.
+     * @param pluginId  The desktop menu ID for the control module.
+     * @return @c true if access to the module is authorized, @c false otherwise.
      *
      * @see authorizeControlModules()
      */
-    Q_INVOKABLE static bool authorizeControlModule(const QString &menuId);
+    Q_INVOKABLE static bool authorizeControlModule(const QString &pluginId);
 
     /**
-     * Determines which control modules from a list the user is permitted to
-     * use.
+     * Determines which control modules from a list the user is permitted to use.
      *
-     * @param menuIds  A list of desktop menu IDs for control modules.
-     * @return         The entries in @p menuIds for which
-     *                 authorizeControlModule() returns @c true.
+     * @param pluginIds  A list of KCM plugin IDs, @see KPluginMetaData::pluginId
+     * @return The entries in @p pluginIds for which authorizeControlModule() returns @c true.
      *
      * @see authorizeControlModule()
      */
-    Q_INVOKABLE static QStringList authorizeControlModules(const QStringList &menuIds);
+    Q_INVOKABLE static QStringList authorizeControlModules(const QStringList &pluginIds);
 
 private:
     friend class KConfigQmlPlugin;
