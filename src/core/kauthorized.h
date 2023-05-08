@@ -160,7 +160,7 @@ public:
      *
      * @see authorizeControlModules()
      */
-    static bool authorizeControlModule(const QString &menuId);
+    Q_INVOKABLE static bool authorizeControlModule(const QString &menuId);
 
     /**
      * Determines which control modules from a list the user is permitted to
@@ -172,7 +172,7 @@ public:
      *
      * @see authorizeControlModule()
      */
-    static QStringList authorizeControlModules(const QStringList &menuIds);
+    Q_INVOKABLE static QStringList authorizeControlModules(const QStringList &menuIds);
 
 private:
     friend class KConfigQmlPlugin;
