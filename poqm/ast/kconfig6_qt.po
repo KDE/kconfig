@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-05-03 23:36+0200\n"
+"PO-Revision-Date: 2023-05-09 01:03+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
 "Language: ast\n"
@@ -22,7 +22,7 @@ msgstr ""
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr ""
+msgstr "El ficheru de configuración «%1» nun ye d'escritura.\n"
 
 #: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
 #: core/kemailsettings.cpp:181
