@@ -5,6 +5,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "kconfiggui_export.h"
 #include <kconfiggroup.h>
 
 #include <QColor>
@@ -188,7 +189,10 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
 }
 
 // Not static, because for static builds we use it in the kconfigguistaticinitializer.cpp file
-int initKConfigGroupGui()
+// Exported as we need this to force linking in consumers that read GUI types from KConfig, but
+// which are otherwise not using this library (and thus linking with --as-needed or MSVC would
+// break things)
+KCONFIGGUI_EXPORT int initKConfigGroupGui()
 {
     _kde_internal_KConfigGroupGui.readEntryGui = readEntryGui;
     _kde_internal_KConfigGroupGui.writeEntryGui = writeEntryGui;
