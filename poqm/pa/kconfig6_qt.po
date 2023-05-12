@@ -29,8 +29,8 @@ msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
 msgstr "ਸੰਰਚਨਾ ਫਾਈਲ \"%1\" ਲਿਖਣਯੋਗ ਹੈ।\n"
 
-#: core/kemailsettings.cpp:170 core/kemailsettings.cpp:173
-#: core/kemailsettings.cpp:181
+#: core/kemailsettings.cpp:128 core/kemailsettings.cpp:131
+#: core/kemailsettings.cpp:139
 msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "ਡਿਫਾਲਟ"
