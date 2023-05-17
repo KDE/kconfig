@@ -528,8 +528,16 @@ for a signal, the signal name will suffice.
 </entry>
 \endcode
 
-You can also use the generic configChanged() signal from KConfigSkeleton to notify your application
-about configuration changes.
+The signal will be emitted when save() is called.
+
+@warning
+You must not call save() in direct response to any notify signal.
+If you need to call save(),
+use a QueuedConnection to listen to the notify signal.
+
+You can also listen to the generic configChanged() signal from KConfigSkeleton to
+notify your application about configuration changes.
+In that case you may also call save() in direct response.
 
 Note that you will also need to pass the GENERATE_MOC option to the kconfig_add_kcfg_files macro.
 
