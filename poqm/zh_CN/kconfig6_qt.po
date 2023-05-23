@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2023-02-24 12:43\n"
+"PO-Revision-Date: 2023-05-22 13:58\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/kconfig/kconfig5_qt.pot\n"
-"X-Crowdin-File-ID: 5586\n"
+"X-Crowdin-File: /kf6-trunk/messages/kconfig/kconfig6_qt.pot\n"
+"X-Crowdin-File-ID: 43047\n"
 
 #: core/kconfig.cpp:942
 msgctxt "KConfig|"
@@ -305,7 +305,7 @@ msgstr "发送电子邮件"
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr "清空"
+msgstr "清除"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
@@ -463,6 +463,7 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"仅针对单元测试：不要写入已完成的条目，于是每次重新运行时，脚本将被重新执行"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
@@ -537,13 +538,3 @@ msgstr "启用时删除指定项"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "要写入的值。此为必填项。在 shell 中应使用 \" 代表空值。"
-
-#~ msgctxt "main|"
-#~ msgid ""
-#~ "For unit tests only: use test directories to stay away from the user's "
-#~ "real files"
-#~ msgstr "仅用于单元测试：使用测试目录以避免访问用户实际文件"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Save Options"
-#~ msgstr "保存选项"
