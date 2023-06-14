@@ -131,7 +131,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
         return true;
     }
 
-    const QString servicesDir = QStringLiteral("kservices5/"); // KGlobal::dirs()->xdgDataRelativePath("services")
+    const QString servicesDir = QStringLiteral("kservices6/"); // KGlobal::dirs()->xdgDataRelativePath("services")
     const QStringList genericData = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
     auto genericIt = std::find_if(genericData.cbegin(), genericData.cend(), [&realPath, &servicesDir, sensitivity](const QString &xdgDataPrefix) {
         QFileInfo info(xdgDataPrefix);

@@ -204,7 +204,7 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
 
     QVERIFY(!KDesktopFile::isAuthorizedDesktopFile(fileName));
 
-    const QString installedFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("/kservices5/http_cache_cleaner.desktop"));
+    const QString installedFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("/kservices6/http_cache_cleaner.desktop"));
     if (!installedFile.isEmpty()) {
         QVERIFY(KDesktopFile::isAuthorizedDesktopFile(installedFile));
     } else {
