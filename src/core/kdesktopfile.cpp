@@ -131,20 +131,6 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
         return true;
     }
 
-    const QString servicesDir = QStringLiteral("kservices6/"); // KGlobal::dirs()->xdgDataRelativePath("services")
-    const QStringList genericData = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-    auto genericIt = std::find_if(genericData.cbegin(), genericData.cend(), [&realPath, &servicesDir, sensitivity](const QString &xdgDataPrefix) {
-        QFileInfo info(xdgDataPrefix);
-        if (info.exists() && info.isDir()) {
-            const QString prefix = info.canonicalFilePath();
-            return realPath.startsWith(prefix + QLatin1Char('/') + servicesDir, sensitivity);
-        }
-        return false;
-    });
-    if (genericIt != genericData.cend()) {
-        return true;
-    }
-
     const QString autostartDir = QStringLiteral("autostart/");
     const QStringList lstConfigPath = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
     auto configIt = std::find_if(lstConfigPath.cbegin(), lstConfigPath.cend(), [&realPath, &autostartDir, sensitivity](const QString &xdgDataPrefix) {

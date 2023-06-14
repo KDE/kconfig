@@ -204,13 +204,6 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
 
     QVERIFY(!KDesktopFile::isAuthorizedDesktopFile(fileName));
 
-    const QString installedFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("/kservices6/http_cache_cleaner.desktop"));
-    if (!installedFile.isEmpty()) {
-        QVERIFY(KDesktopFile::isAuthorizedDesktopFile(installedFile));
-    } else {
-        qWarning("Skipping test for http_cache_cleaner.desktop, not found. kio not installed?");
-    }
-
     const QString autostartFile = QStandardPaths::locate(QStandardPaths::GenericConfigLocation, QStringLiteral("autostart/plasma-desktop.desktop"));
     if (!autostartFile.isEmpty()) {
         QVERIFY(KDesktopFile::isAuthorizedDesktopFile(autostartFile));
