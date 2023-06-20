@@ -233,7 +233,7 @@ msgstr "Modo a pantalla completa"
 #: gui/kstandardshortcut.cpp:218
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
-msgstr "Mostrar a barra de menú"
+msgstr "Amosar a barra de menú"
 
 #: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
@@ -373,12 +373,12 @@ msgstr "Ortografía"
 #: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
-msgstr "Mostrar a barra de ferramentas"
+msgstr "Amosar a barra de ferramentas"
 
 #: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
-msgstr "Mostrar a barra de estado"
+msgstr "Amosar a barra de estado"
 
 #: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
@@ -448,7 +448,7 @@ msgstr "Doar"
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
-msgstr "Mostrar ou agochar os ficheiros agochados"
+msgstr "Amosar ou agochar os ficheiros agochados"
 
 #: gui/kstandardshortcut.cpp:405
 msgctxt "KStandardShortcut|@action"
