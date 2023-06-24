@@ -469,7 +469,7 @@ msgstr ""
 #: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr "Conservar a saída dos scripts"
+msgstr "Conservar a saída dos guións"
 
 #: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
