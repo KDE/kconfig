@@ -19,57 +19,121 @@ class QUrl;
 class QString;
 
 /**
- * The functions in this namespace provide the core of the Kiosk action
- * restriction system; the KIO and KXMLGui frameworks build on this.
+ * This class provides the API needed to read from the Kiosk action
+ * restriction system; the KIO and KXmlGui frameworks build on this.
  *
  * The relevant settings are read from the application's KSharedConfig
  * instance, so actions can be disabled on a per-application or global
  * basis (by using the kdeglobals file).
+ *
+ * @see <a href="https://develop.kde.org/docs/administration/kiosk/">Kiosk -
+ * Simple configuration management for large deployment</a>
  */
 class KCONFIGCORE_EXPORT KAuthorized : public QObject
 {
     Q_OBJECT
 public:
     /**
-     * The enum values lower cased represent the action that is authorized
-     * For example the SHELL_ACCESS value is converted to the "shell_access" string.
+     * @brief This enum consists of common restrictions following the
+     * Kiosk framework.
+     *
+     * These restrictions are not bound to a specific action, and so are generic.
+     *
+     * Each enum value corresponds to a Kiosk key with the same name in
+     * lowercase and represents an action that is authorized. For example,
+     * the SHELL_ACCESS value is converted to the "shell_access" string.
      *
      * @since 5.88
+     *
+     * @see authorize(KAuthorized::GenericRestriction)
      */
     enum GenericRestriction {
-        SHELL_ACCESS = 1, // if the user is authorized to open a shell or execute shell commands
-        GHNS, /// if the collaborative data sharing framework KNewStuff is authorized
+        /**
+         * Whether the user is authorized to open a shell or execute
+         * shell commands.
+         */
+        SHELL_ACCESS = 1,
+        /**
+         * Whether the collaborative data sharing framework KNewStuff is authorized.
+         */
+        GHNS,
         // GUI behavior
-        LINEEDIT_REVEAL_PASSWORD, /// if typed characters in password fields can be made visible
-        LINEEDIT_TEXT_COMPLETION, /// if line edits should be allowed to display completions
-        MOVABLE_TOOLBARS, /// if toolbars of apps should be movable
-        RUN_DESKTOP_FILES, /// if .desktop files should be run as executables when clicked
+        /**
+         * Whether typed characters in password fields can be made visible.
+         */
+        LINEEDIT_REVEAL_PASSWORD,
+        /**
+         * Whether line edits should be allowed to display completions.
+         */
+        LINEEDIT_TEXT_COMPLETION,
+        /**
+         * Whether toolbars of apps should be movable.
+         */
+        MOVABLE_TOOLBARS,
+        /**
+         * Whether .desktop files should be run as executables when clicked.
+         */
+        RUN_DESKTOP_FILES,
     };
     Q_ENUM(GenericRestriction)
 
     /**
+     * @brief This enum consists of common actions to be managed via the
+     * Kiosk framework.
+     *
+     * @see authorizeAction(KAuthorized::GenericAction)
      *
      * @since 5.88
      */
     enum GenericAction {
-        OPEN_WITH = 1, /// if the open-with menu should be shown for files etc.
-        EDITFILETYPE, /// if mime-type accociations are allowed to be configured
-
-        OPTIONS_SHOW_TOOLBAR, /// if the toolbar should be displayed in apps
-        SWITCH_APPLICATION_LANGUAGE, /// if an action to switch the app language should be shown
-        BOOKMARKS, /// saving bookmarks is allowed
+        /**
+         * Whether the open-with menu should be shown for files etc.
+         *
+         * This corresponds to the "action/openwith" key.
+         *
+         * @see <a href="https://develop.kde.org/docs/administration/kiosk/keys/#file-manager">Kiosk File Manager key reference</a>
+         */
+        OPEN_WITH = 1,
+        /**
+         * Whether mime-type accociations are allowed to be configured.
+         *
+         * This corresponds to the "action/editfiletype" key.
+         *
+         * @see <a href="https://develop.kde.org/docs/administration/kiosk/keys/#file-manager">Kiosk File Manager key reference</a>
+         */
+        EDITFILETYPE,
+        /**
+         * Whether the toolbar should be displayed in apps.
+         *
+         * This corresponds to the "action/options_show_toolbar" key.
+         *
+         * @see <a href="https://develop.kde.org/docs/administration/kiosk/keys/#application-action-restrictions">Kiosk Application Action Restrictions</a>
+         */
+        OPTIONS_SHOW_TOOLBAR,
+        /**
+         * Whether an action to switch the app language should be shown.
+         */
+        SWITCH_APPLICATION_LANGUAGE,
+        /**
+         * Whether saving bookmarks is allowed.
+         *
+         * This corresponds to the "action/bookmarks" key.
+         *
+         * @see <a href="https://develop.kde.org/docs/administration/kiosk/keys/#application-action-restrictions">Kiosk Application Action Restrictions</a>
+         */
+        BOOKMARKS,
     };
     Q_ENUM(GenericAction)
 
     /**
-     * Returns whether the user is permitted to perform a certain action.
+     * @brief Whether the user is permitted to perform a certain action.
      *
      * All settings are read from the "[KDE Action Restrictions]" group.
      * For example, if kdeglobals contains
      * @verbatim
-       [KDE Action Restrictions][$i]
-       shell_access=false
-       @endverbatim
+     * [KDE Action Restrictions][$i]
+     * shell_access=false
+     * @endverbatim
      * then
      * @code
      * KAuthorized::authorize("shell_access");
@@ -77,9 +141,9 @@ public:
      * will return @c false.
      *
      * This method is intended for actions that do not necessarily have a
-     * one-to-one correspondence with a menu or toolbar item (ie: a QAction
-     * in a KXMLGui application).  "shell_access" is an example of such a
-     * "generic" action.
+     * one-to-one correspondence with a menu or toolbar item (for example,
+     * a QAction in a KXmlGui application). "shell_access" is an example of
+     * such a "generic" action.
      *
      * The convention for actions like "File->New" is to prepend the action
      * name with "action/", for example "action/file_new".  This is what
@@ -94,20 +158,21 @@ public:
     Q_INVOKABLE static bool authorize(const QString &action);
 
     /**
-     * Returns whether the user is permitted to perform a common action.
-     * The enum values lower cased represent the action that is
-     * passed in to @p authorize(QString)
+     * @brief Whether the user is permitted to perform a common action.
      *
      * @overload
      * @since 5.88
+     * @see KAuthorized::GenericRestriction
      */
     Q_INVOKABLE static bool authorize(GenericRestriction action);
 
     /**
-     * Returns whether the user is permitted to perform a certain action.
+     * @brief Whether the user is permitted to perform a certain action.
      *
-     * This behaves like authorize(), except that "action/" is prepended to
-     * @p action.  So if kdeglobals contains
+     * This behaves like authorize(), except that it accounts fo the "action/"
+     * string prepended to @p action in the configuration file.
+     *
+     * So if kdeglobals contains
      * @verbatim
        [KDE Action Restrictions][$i]
        action/file_new=false
@@ -116,9 +181,9 @@ public:
      * @code
      * KAuthorized::authorizeAction("file_new");
      * @endcode
-     * will return @c false.
+     * will return the value for the string "action/file_new", @c false.
      *
-     * KXMLGui-based applications should not normally need to call this
+     * KXmlGui-based applications should not need to call this
      * function, as KActionCollection will do it automatically.
      *
      * @param action  The name of a QAction action.
@@ -131,25 +196,33 @@ public:
     Q_INVOKABLE static bool authorizeAction(const QString &action);
 
     /**
-     * Overload to authorize common actions.
+     * @brief Whether the user is permitted to perform a certain action.
      *
      * @overload
      * @since 5.88
+     *
+     * @see KAuthorized::GenericAction
      */
     Q_INVOKABLE static bool authorizeAction(GenericAction action);
 
     /**
-     * Returns whether the user is permitted to use a certain control module.
+     * @brief Whether the user is permitted to use a certain control module.
+     *
+     * Each KDE Control Module (or KDE Configuration Module, KCM) corresponds
+     * to a main entry in the sidebar of the KDE Plasma System Settings.
+     *
+     * The name for each KCM can be found using the kcmshell tool, or returned
+     * via KPluginMetaData::pluginId.
      *
      * All settings are read from the "[KDE Control Module Restrictions]"
      * group.  For example, if kdeglobals contains
      * @verbatim
-       [KDE Control Module Restrictions][$i]
-       kcm_desktop-settings=false
-       @endverbatim
-     * then
+     * [KDE Control Module Restrictions][$i]
+     * kcm_lookandfeel=false
+     * @endverbatim
+     * where "kcm_lookandfeel" corresponds to the Global Theme KCM, then
      * @code
-     * KAuthorized::authorizeControlModule("kcm_desktop-settings");
+     * KAuthorized::authorizeControlModule("kcm_lookandfeel");
      * @endcode
      * will return @c false.
      *
@@ -157,16 +230,20 @@ public:
      * @return @c true if access to the module is authorized, @c false otherwise.
      *
      * @see authorizeControlModules()
+     * @see <a href="https://develop.kde.org/docs/administration/kiosk/introduction/#kde-control-module-restrictions">KDE Control Module Restrictions</a>
+     * @see KPluginMetaData::pluginId
      */
     Q_INVOKABLE static bool authorizeControlModule(const QString &pluginId);
 
     /**
-     * Determines which control modules from a list the user is permitted to use.
+     * @brief Determines which control modules from a list the user
+     * is permitted to use.
      *
-     * @param pluginIds  A list of KCM plugin IDs, @see KPluginMetaData::pluginId
+     * @param pluginIds A list of KCM plugin IDs as listed by the kcmshell tool.
      * @return The entries in @p pluginIds for which authorizeControlModule() returns @c true.
      *
      * @see authorizeControlModule()
+     * @see KPluginMetaData::pluginId
      */
     Q_INVOKABLE static QStringList authorizeControlModules(const QStringList &pluginIds);
 
