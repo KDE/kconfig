@@ -17,143 +17,196 @@ class KDesktopFilePrivate;
  *
  * %KDE Desktop File Management.
  * This class implements %KDE's support for the freedesktop.org
- * <em>Desktop Entry Spec</em>.
+ * <em>Desktop Entry Spec</em>. It only provides methods for reading, copying
+ * and validating desktop files.
+ *
+ * After the KDesktopFile is constructed, its main entrypoint will likely
+ * be desktopGroup(), which returns a KConfigGroup that can then be used
+ * to write and save the file to disk. For example:
+ *
+ * @code
+ * KDesktopFile file(QStandardPaths::ApplicationsLocation, "org.kde.myapp.desktop");
+ * if(file.hasApplicationType()) {
+ *     KConfigGroup desktopGroup = file.desktopGroup();
+ *     desktopGroup.writeEntry("Terminal", false);
+ *     desktopGroup.sync();
+ * }
+ * @endcode
+ *
+ * The second main entrypoint will likely be actionGroup(), following
+ * similar code usage.
  *
  * @author Pietro Iglio <iglio@kde.org>
- * @see  KConfigBase  KConfig
+ * @see KConfigBase
+ * @see KConfig
  * @see <a href="https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">Desktop Entry Spec</a>
  */
 class KCONFIGCORE_EXPORT KDesktopFile : public KConfig
 {
 public:
     /**
-     * Constructs a KDesktopFile object.
+     * @brief Constructs a KDesktopFile object.
      *
-     * See QStandardPaths for more information on resources.
+     * This creates an object in memory that can then be used to access and
+     * read or write to a file in a specified location.
      *
      * @param resourceType   Allows you to change what sort of resource
      *                       to search for if @p fileName is not absolute.
-     *                       For instance, you might want to specify GenericConfigLocation.
-     * @param fileName       The name or path of the desktop file. If it
-     *                       is not absolute, it will be located
-     *                       using the resource type @p resType.
+     * @param fileName       The name or path of the desktop file. It should
+     *                       include the .desktop extension. If it is not an
+     *                       absolute path, it will be located using the
+     *                       resource type @p resourceType.
+     * @see QStandardPaths
      */
     explicit KDesktopFile(QStandardPaths::StandardLocation resourceType, const QString &fileName);
 
     /**
-     * Constructs a KDesktopFile object.
+     * @brief Constructs a KDesktopFile object.
+     *
+     * This creates an object in memory that can then be used to access and
+     * read or write to a file in the standard
+     * QStandardPaths::ApplicationsLocation where .desktop files are
+     * typically stored.
      *
      * See QStandardPaths for more information on resources.
      *
      * @param fileName       The name or path of the desktop file. If it
      *                       is not absolute, it will be located
-     *                       using the resource type ApplicationsLocation
+     *                       using the resource type
+     *                       QStandardPaths::ApplicationsLocation.
+     * @see QStandardPaths
      */
     explicit KDesktopFile(const QString &fileName);
 
     /**
-     * Destructs the KDesktopFile object.
+     * @brief Destructs the KDesktopFile object.
      *
-     * Writes back any changed configuration entries.
+     * If any unsaved changes are left before the object is destructed, sync()
+     * will be run first.
      */
     ~KDesktopFile() override;
 
     /**
-     * Checks whether this is really a desktop file.
+     * @brief Whether this is really a desktop file.
      *
-     * The check is performed looking at the file extension (the file is not
-     * opened).
-     * Currently, the only valid extension is ".desktop".
-     * @param path the path of the file to check
-     * @return true if the file appears to be a desktop file.
+     * The check is performed by looking at the file extension without
+     * opening it. The only valid extension is ".desktop".
+     *
+     * @param path The path of the file to check.
+     *
+     * @return @c true if the file appears to be a desktop file,
+     *         @c false otherwise.
      */
     static bool isDesktopFile(const QString &path);
 
     /**
-     * Checks whether the user is authorized to run this desktop file.
-     * By default users are authorized to run all desktop files but
-     * the KIOSK framework can be used to activate certain restrictions.
-     * See README.kiosk for more information.
+     * @brief Whether the user is authorized to run this desktop file.
+     *
+     * By default users are authorized to run all desktop files, but
+     * the Kiosk framework can be used to restrict this action.
      *
      * Note that desktop files that are not in a standard location (as
      * specified by XDG_DATA_DIRS) must have their executable bit set
-     * to be authorized, regardless of KIOSK settings, to prevent users
-     * from inadvertently running trojan desktop files.
+     * to be authorized, regardless of Kiosk settings.
+     * This ensures users will only execute desktop files in non-standard
+     * locations when there is clear intent.
      *
-     * @param path the file to check
-     * @return true if the user is authorized to run the file
+     * @param path The file to check.
+     * @return @c true if the user is authorized to run the file,
+     *         @c false otherwise.
      */
     static bool isAuthorizedDesktopFile(const QString &path);
 
     /**
-     * Returns the location where changes for the .desktop file @p path
+     * @brief The location where changes for the desktop file @p path
      * should be written to.
      */
     static QString locateLocal(const QString &path);
 
     /**
-     * Returns the main config group (named "Desktop Entry") in a .desktop file.
+     * @brief The main config group (named "Desktop Entry") in a desktop file.
+     *
+     * This can be used to manipulate desktop file entries using KConfigGroup.
+     *
+     * Example usage:
+     * @code
+     * KDesktopFile file("org.kde.myapp.desktop");
+     * KConfigGroup desktopGroup = file.desktopGroup();
+     * @endcode
      */
     KConfigGroup desktopGroup() const;
 
     /**
-     * Returns the value of the "Type=" entry.
-     * @return the type or QString() if not specified
+     * @brief The value of the "Type=" entry.
+     * @return The desktop file type or QString() if unset.
      */
     QString readType() const;
 
     /**
-     * Returns the value of the "Icon=" entry.
-     * @return the icon or QString() if not specified
+     * @brief The value of the "Icon=" entry.
+     * @return The icon name or QString() if unset.
      */
     QString readIcon() const;
 
     /**
-     * Returns the value of the "Name=" entry.
-     * @return the name or QString() if not specified
+     * @brief The value of the "Name=" entry.
+     * @return The name or QString() if unset.
      */
     QString readName() const;
 
     /**
-     * Returns the value of the "Comment=" entry.
-     * @return the comment or QString() if not specified
+     * @brief The value of the "Comment=" entry.
+     * @return The comment or QString() if unset.
      */
     QString readComment() const;
 
     /**
-     * Returns the value of the "GenericName=" entry.
-     * @return the generic name or QString() if not specified
+     * @brief The value of the "GenericName=" entry.
+     * @return The generic name or QString() if unset.
      */
     QString readGenericName() const;
 
     /**
-     * Returns the value of the "Path=" entry.
-     * @return the path or QString() if not specified
+     * @brief The value of the "Path=" entry.
+     * @return The path or QString() if unset.
      */
     QString readPath() const;
 
     /**
-     * Returns the value of the "URL=" entry.
-     * @return the URL or QString() if not specified
+     * @brief The value of the "URL=" entry.
+     * @return The URL or QString() if unset.
      */
     QString readUrl() const;
 
     /**
-     * Returns a list of the "Actions=" entries.
-     * @return the list of actions
+     * @brief A list of "Actions=" entries.
+     * @return The list of actions.
      */
     QStringList readActions() const;
 
     /**
-     * Returns a list of the "MimeType=" entries.
-     * @return the list of mime types
+     * @brief A list of "MimeType=" entries.
+     * @return The list of mime types.
      * @since 5.15
      */
     QStringList readMimeTypes() const;
 
     /**
-     * Sets the desktop action group.
-     * @param group the new action group
+     * @brief Creates a new desktop action group object.
+     *
+     * The action group will not be saved upon sync() if it contains no entries.
+     *
+     * Example usage:
+     * @code
+     * KDesktopFile file("org.kde.myapp.desktop");
+     * KConfigGroup actionGroup = file.actionGroup("NewAction");
+     * actGroup.writeEntry("Name", "New Entry");
+     * file.sync();
+     * @endcode
+     *
+     * @param group The new action group.
+     *
+     * @see <a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s11.html">Desktop Entry Spec - Additional Application Actions</a>
      */
     KConfigGroup actionGroup(const QString &group);
 
@@ -161,66 +214,97 @@ public:
     const KConfigGroup actionGroup(const QString &group) const;
 
     /**
-     * Returns true if the action group exists, false otherwise
-     * @param group the action group to test
-     * @return true if the action group exists
+     * @brief Whether the specified action group exists in the desktop file.
+     *
+     * @param group The action group to check.
+     *
+     * @return @c true if the action group exists,
+     *         @c false otherwise.
+     *
+     * @see <a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s11.html">Desktop Entry Spec - Additional Application Actions</a>
      */
     bool hasActionGroup(const QString &group) const;
 
     /**
-     * Checks whether there is a "Type=Link" entry.
+     * @brief Whether the desktop file type is "Link".
      *
-     * The link points to the "URL=" entry.
-     * @return true if there is a "Type=Link" entry
+     * The link points to the "URL=" entry instead of "Exec=".
+     *
+     * @return @c true if there is a "Type=Link" entry,
+     *         @c false otherwise.
      */
     bool hasLinkType() const;
 
     /**
-     * Checks whether there is an entry "Type=Application".
-     * @return true if there is a "Type=Application" entry
+     * @brief Whether the desktop file type is "Application".
+     *
+     * @return @c true if there is a "Type=Application" entry,
+     *         @c false otherwise.
      */
     bool hasApplicationType() const;
 
     /**
-     * Checks whether there is an entry "Type=FSDevice".
-     * @return true if there is a "Type=FSDevice" entry
+     * @brief Whether the desktop file type is "FSDevice".
+     *
+     * FSDevice corresponds to the type of file system that will be mounted.
+     *
+     * @return @c true if there is a "Type=FSDevice" entry,
+     *         @c false otherwise.
+     *
+     * @see <a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/apb.html">Keys currently reserved for use in KDE</a>
      */
     bool hasDeviceType() const;
 
     /**
-     * Checks whether the TryExec field contains a binary
-     * which is found on the local system.
-     * @return true if TryExec contains an existing binary
+     * @brief Whether the TryExec field contains a binary
+     * that is found on the local system.
+     *
+     * @return @c true if TryExec contains an existing binary,
+     *         @c false otherwise.
      */
     bool tryExec() const;
 
     /**
-     * Returns the value of the "X-DocPath=" Or "DocPath=" entry.
+     * @brief The value of the "X-DocPath=" Or "DocPath=" entry.
+     *
+     * This is a custom entry made by KDE that corresponds to the path for
+     * the offline HTML documentation. This path might be, for instance,
+     * stored in "/usr/share/doc/HTML/en/" (or any other directory defined by
+     * the distribution, as well as localized directory equivalents), and its
+     * value typically uses the format "appname/index.html", although it may
+     * include more subdirectory levels.
+     *
      * @return The value of the "X-DocPath=" Or "DocPath=" entry.
+     *
+     * @see <a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/apb.html">Keys currently reserved for use in KDE</a>
      */
     QString readDocPath() const;
 
     /**
-     * Whether the entry should be suppressed in menus.
-     * This handles the NoDisplay key, but also OnlyShowIn / NotShowIn.
-     * @return true to suppress this service
+     * @brief Whether the entry should be suppressed in menus.
+     *
+     * This handles the NoDisplay and OnlyShowIn / NotShowIn keys.
+     *
+     * @return @c true if NoDisplay=true, OnlyShowIn does not include "KDE",
+     * or NotShowIn does include "KDE"; @c false otherwise.
      * @since 4.1
      */
     bool noDisplay() const;
 
     /**
-     * Copies all entries from this config object to a new
+     * @brief Copies all entries from this config object to a new
      * KDesktopFile object that will save itself to @p file.
      *
      * Actual saving to @p file happens when the returned object is
      * destructed or when sync() is called upon it.
      *
-     * @param file the new KDesktopFile object it will save itself to.
+     * @param file The new KDesktopFile object it will save itself to.
      */
     KDesktopFile *copyTo(const QString &file) const;
 
     /**
-     * Returns the name of the .desktop file that was used to construct this KDesktopFile.
+     * @brief The name of the desktop file that was used to construct this KDesktopFile.
+     * @return The desktop file name without path and with extension.
      */
     QString fileName() const;
 
