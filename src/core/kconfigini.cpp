@@ -46,7 +46,7 @@ QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 {
     // %2 then %1 i.e. int before QString, so that the QString is last
     // This avoids a wrong substitution if the fileName itself contains %1
-    return QStringLiteral("KConfigIni: In file %2, line %1: ").arg(line).arg(file.fileName());
+    return QStringLiteral("KConfigIni: In file %2, line %1:").arg(line).arg(file.fileName());
 }
 
 KConfigIniBackend::KConfigIniBackend()
@@ -941,7 +941,7 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
                 break;
             default:
                 *r = '\\';
-                qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, line) << QStringLiteral("Invalid escape sequence \"\\%1\".").arg(str[i]);
+                qCWarning(KCONFIG_CORE_LOG).noquote() << warningProlog(file, line) << QStringLiteral("Invalid escape sequence: «\\%1»").arg(str[i]);
             }
         }
     }
