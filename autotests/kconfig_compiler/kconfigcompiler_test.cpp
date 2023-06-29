@@ -206,3 +206,5 @@ void KConfigCompiler_Test::appendFileDiff(const QString &oldFile, const QString 
         QVERIFY2(false, qPrintable(QLatin1String("This test failed, look at the following file for details: ") + diffFileName));
     }
 }
+
+#include "moc_kconfigcompiler_test.cpp"

@@ -146,3 +146,5 @@ void KConfigTest::testInvalid()
 
     QVERIFY(sc3.readEntry("badList", QColor()) == QColor());
 }
+
+#include "moc_kconfigguitest.cpp"

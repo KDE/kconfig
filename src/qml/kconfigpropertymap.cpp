@@ -134,3 +134,5 @@ void KConfigPropertyMapPrivate::writeConfigValue(const QString &key, const QVari
         updatingConfigValue = false;
     }
 }
+
+#include "moc_kconfigpropertymap.cpp"

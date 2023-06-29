@@ -134,3 +134,5 @@ void KWindowStateSaver::initWidget(QObject *widget, const std::function<QWindow 
     d->configGroup = KConfigGroup(KSharedConfig::openStateConfig(), configGroupName);
     d->initWidget(widget, this);
 }
+
+#include "moc_kwindowstatesaver.cpp"

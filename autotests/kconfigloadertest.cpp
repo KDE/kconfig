@@ -205,3 +205,5 @@ void ConfigLoaderTest::ulongLongDefaultValue()
 }
 
 QTEST_MAIN(ConfigLoaderTest)
+
+#include "moc_kconfigloadertest.cpp"

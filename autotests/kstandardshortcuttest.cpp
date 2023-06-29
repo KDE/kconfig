@@ -60,3 +60,5 @@ void KStandardShortcutTest::testFindByName()
         QCOMPARE(id, KStandardShortcut::findByName(KStandardShortcut::name(id)));
     }
 }
+
+#include "moc_kstandardshortcuttest.cpp"

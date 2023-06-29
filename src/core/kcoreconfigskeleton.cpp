@@ -1561,3 +1561,5 @@ KConfigGroup KConfigCompilerSignallingItem::configGroup(KConfig *config) const
 {
     return mItem->configGroup(config);
 }
+
+#include "moc_kcoreconfigskeleton.cpp"

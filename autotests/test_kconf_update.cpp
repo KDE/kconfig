@@ -142,3 +142,5 @@ void TestKConfUpdate::testScript()
 
     QCOMPARE(readFile(confPath), expectedNewConfContent);
 }
+
+#include "moc_test_kconf_update.cpp"

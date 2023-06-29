@@ -187,3 +187,5 @@ void KEntryMapTest::testLocale()
     map.setEntry(group1, key1, translated, EntryLocalized); // set the translated entry to a different locale
     QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->mValue, translated);
 }
+
+#include "moc_kentrymaptest.cpp"

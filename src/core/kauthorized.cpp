@@ -412,3 +412,5 @@ authorizeUrlAction(const QString &action, const QUrl &_baseURL, const QUrl &_des
     return result;
 }
 } // namespace
+
+#include "moc_kauthorized.cpp"

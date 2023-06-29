@@ -176,3 +176,5 @@ void KConfigSkeletonTest::testSaveRead()
     s->read();
     QCOMPARE(mMyBool, false);
 }
+
+#include "moc_kconfigskeletontest.cpp"
