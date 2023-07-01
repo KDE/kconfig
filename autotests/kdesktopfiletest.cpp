@@ -319,3 +319,5 @@ void KDesktopFileTest::testLocateLocal()
 
     QCOMPARE(KDesktopFile::locateLocal(path), result);
 }
+
+#include "moc_kdesktopfiletest.cpp"

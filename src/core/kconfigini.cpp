@@ -947,3 +947,5 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
     }
     aString->truncate(r - aString->constData());
 }
+
+#include "moc_kconfigini_p.cpp"

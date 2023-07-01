@@ -485,3 +485,5 @@ void TestKConfUpdate::testScript()
     expectedNewConfContent = expectedNewConfContent.arg(updateInfo);
     QCOMPARE(newConfContent, expectedNewConfContent);
 }
+
+#include "moc_test_kconf_update.cpp"

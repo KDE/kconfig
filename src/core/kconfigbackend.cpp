@@ -86,3 +86,5 @@ void KConfigBackend::setLocalFilePath(const QString &file)
 {
     d->localFileName = file;
 }
+
+#include "moc_kconfigbackend_p.cpp"

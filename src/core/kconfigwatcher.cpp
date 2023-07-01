@@ -102,3 +102,5 @@ void KConfigWatcher::onConfigChangeNotification(const QHash<QString, QByteArrayL
         Q_EMIT configChanged(group, it.value());
     }
 }
+
+#include "moc_kconfigwatcher.cpp"

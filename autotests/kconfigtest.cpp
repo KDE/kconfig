@@ -2157,3 +2157,5 @@ void KConfigTest::testKdeglobalsVsDefault()
     local.reparseConfiguration();
     QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), QStringLiteral("defaultcpp"));
 }
+
+#include "moc_kconfigtest.cpp"

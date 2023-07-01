@@ -97,3 +97,5 @@ void TestKConfigUtils::testUnescapeString()
         qDebug() << error;
     }
 }
+
+#include "moc_test_kconfigutils.cpp"

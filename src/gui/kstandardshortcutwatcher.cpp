@@ -44,3 +44,5 @@ StandardShortcutWatcher *shortcutWatcher()
 }
 
 }
+
+#include "moc_kstandardshortcutwatcher.cpp"
