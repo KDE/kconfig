@@ -1,4 +1,4 @@
-/** @mainpage ./kconf_update
+/** @page ./kconf_update
 
 kconf_update is a tool designed to update config files. Over time applications
 sometimes need to rearrange the way configuration options are stored. Since
