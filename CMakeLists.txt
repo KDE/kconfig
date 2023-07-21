@@ -39,7 +39,7 @@ if(KCONFIG_USE_QML)
     find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
 endif()
 
-if (NOT ANDROID)
+if(NOT ANDROID)
     set(default_kconfig_use_dbus ON)
     if(WIN32)
         set(default_kconfig_use_dbus OFF)
@@ -68,7 +68,7 @@ ecm_set_disabled_deprecation_versions(
 )
 
 add_subdirectory(src)
-if (BUILD_TESTING)
+if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
 
@@ -79,7 +79,7 @@ ecm_install_po_files_as_qm(poqm)
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Config")
 
-if (BUILD_QCH)
+if(BUILD_QCH)
     ecm_install_qch_export(
         TARGETS KF6Config_QCH
         FILE KF6ConfigQchTargets.cmake
