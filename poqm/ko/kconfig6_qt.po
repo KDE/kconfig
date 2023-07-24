@@ -1,14 +1,14 @@
 # Translation of kwriteconfig to Korean.
 # Copyright (C) 2007 This_file_is_part_of_KDE
 # This file is distributed under the same license as the 2007 package.
-# Shinjo Park <kde@peremen.name>, 2007, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022.
+# Shinjo Park <kde@peremen.name>, 2007, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-07-13 14:09+0200\n"
+"PO-Revision-Date: 2023-07-23 00:44+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:942
@@ -384,7 +384,7 @@ msgstr "키 바인딩"
 #: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
-msgstr "프로그램 설정"
+msgstr "앱 설정"
 
 #: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
@@ -414,7 +414,7 @@ msgstr "언어 설정..."
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr "프로그램 정보"
+msgstr "앱 정보"
 
 #: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
@@ -467,6 +467,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"단위 테스트 전용입니다. 완료된 항목을 기록하지 않으며 재실행 시 매번 스크립트"
+"를 다시 실행함"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
