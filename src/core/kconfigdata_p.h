@@ -74,6 +74,8 @@ struct KEntry {
     bool bOverridesGlobal : 1;
 };
 
+Q_DECLARE_TYPEINFO(KEntry, Q_MOVABLE_TYPE);
+
 // These operators are used to check whether an entry which is about
 // to be written equals the previous value. As such, this intentionally
 // omits the dirty/notify flag from the comparison.
@@ -131,6 +133,8 @@ struct KEntryKey {
      */
     bool bRaw : 1;
 };
+
+Q_DECLARE_TYPEINFO(KEntryKey, Q_MOVABLE_TYPE);
 
 /**
  * Compares two KEntryKeys (needed for QMap). The order is localized, localized-default,

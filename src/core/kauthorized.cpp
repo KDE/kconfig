@@ -173,6 +173,8 @@ public:
     bool permission;
 };
 
+Q_DECLARE_TYPEINFO(URLActionRule, Q_MOVABLE_TYPE);
+
 class KAuthorizedPrivate
 {
 public:
