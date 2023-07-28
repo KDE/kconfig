@@ -1528,4 +1528,6 @@ private:
     friend class KConfigSkeleton;
 };
 
+Q_DECLARE_TYPEINFO(KCoreConfigSkeleton::ItemEnum::Choice, Q_RELOCATABLE_TYPE);
+
 #endif

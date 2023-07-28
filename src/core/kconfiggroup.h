@@ -710,6 +710,8 @@ private:
     friend class KServiceAction;
 };
 
+Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
+
 #define KCONFIGGROUP_ENUMERATOR_ERROR(ENUM) "The Qt MetaObject system does not seem to know about \"" ENUM "\" please use Q_ENUM or Q_FLAG to register it."
 
 /**
