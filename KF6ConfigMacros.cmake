@@ -14,11 +14,11 @@
 
 include(CMakeParseArguments)
 
-function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
+function(KCONFIG_ADD_KCFG_FILES _target_or_source_var)
    set(options GENERATE_MOC USE_RELATIVE_PATH)
    cmake_parse_arguments(ARG "${options}" "" "" ${ARGN})
 
-   if (TARGET ${_target_or_source_var})
+   if(TARGET ${_target_or_source_var})
        get_target_property(aliased_target ${_target_or_source_var} ALIASED_TARGET)
        if(aliased_target)
            message(FATAL_ERROR "Target argument passed to kconfig_add_kcfg_files must not be an alias: ${_target_or_source_var}")
@@ -26,19 +26,19 @@ function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
    endif()
 
    set(sources)
-   foreach (_current_FILE ${ARG_UNPARSED_ARGUMENTS})
+   foreach(_current_FILE ${ARG_UNPARSED_ARGUMENTS})
        get_filename_component(_tmp_FILE ${_current_FILE} ABSOLUTE)
        get_filename_component(_abs_PATH ${_tmp_FILE} PATH)
 
-       if (ARG_USE_RELATIVE_PATH) # Process relative path only if the option was set
+       if(ARG_USE_RELATIVE_PATH) # Process relative path only if the option was set
            # Get relative path
            get_filename_component(_rel_PATH ${_current_FILE} PATH)
 
-           if (IS_ABSOLUTE ${_rel_PATH})
+           if(IS_ABSOLUTE ${_rel_PATH})
                # We got an absolute path
                set(_rel_PATH "")
-           endif ()
-       endif ()
+           endif()
+       endif()
 
        get_filename_component(_basename ${_tmp_FILE} NAME_WE)
        # If we had a relative path and we're asked to use it, then change the basename accordingly
@@ -54,7 +54,7 @@ function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
        file(READ ${_tmp_FILE} _contents)
        string(REGEX MATCH "File=([^\n]+\\.kcfg)\n" "" "${_contents}")
        set(_kcfg_FILENAME "${CMAKE_MATCH_1}")
-       if (NOT _kcfg_FILENAME)
+       if(NOT _kcfg_FILENAME)
             string(REGEX MATCH "File=([^\n]+\\.kcfg).*\n" "" "${_contents}")
             if(CMAKE_MATCH_1)
                 message(WARNING "${_tmp_FILE}: Broken \"File\" field, make sure it's pointing at the right file")
@@ -116,9 +116,9 @@ function (KCONFIG_ADD_KCFG_FILES _target_or_source_var)
        endif()
 
        list(APPEND sources ${_src_FILE} ${_header_FILE})
-   endforeach (_current_FILE)
+   endforeach(_current_FILE)
 
-   if (TARGET ${_target_or_source_var})
+   if(TARGET ${_target_or_source_var})
       target_sources(${_target_or_source_var} PRIVATE ${sources})
    else()
       set(${_target_or_source_var} ${${_target_or_source_var}} ${sources} PARENT_SCOPE)
