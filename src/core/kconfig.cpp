@@ -30,6 +30,7 @@
 #include <QProcess>
 #include <QSet>
 #include <QThreadStorage>
+#include <QTimeZone>
 
 #include <algorithm>
 #include <iterator>
@@ -713,7 +714,11 @@ void KConfigPrivate::parseGlobalFiles()
     auto data = sGlobalParse->localData().object(key);
     QDateTime newest;
     for (const auto &file : globalFiles) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+        const auto fileDate = QFileInfo(file).lastModified(QTimeZone::UTC);
+#else
         const auto fileDate = QFileInfo(file).lastModified();
+#endif
         if (fileDate > newest) {
             newest = fileDate;
         }
