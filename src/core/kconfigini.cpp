@@ -642,7 +642,10 @@ bool KConfigIniBackend::lock()
     }
 #endif
 
-    lockFile->lock();
+    if (!lockFile->lock()) {
+        m_mutex.unlock();
+    }
+
     return lockFile->isLocked();
 }
 
