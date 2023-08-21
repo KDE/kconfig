@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.4\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:942
+#: core/kconfig.cpp:947
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Cuir fios gu rianaire an t-siostaim agad."
