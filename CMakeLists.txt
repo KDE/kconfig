@@ -25,7 +25,7 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMQmlModule)
 
-set(REQUIRED_QT_VERSION 6.4.0)
+set(REQUIRED_QT_VERSION 6.5.0)
 
 find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
 option(KCONFIG_USE_GUI "Build components using Qt6Gui" ON)
