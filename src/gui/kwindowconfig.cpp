@@ -139,15 +139,8 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
     const QString screenName = config.readEntry(windowScreenPositionString(), window->screen()->name());
     const QScreen *screen = findScreenByName(window, screenName);
 
-    // Fall back to non-per-screen-arrangement info if it's available but
-    // per-screen-arrangement information is not
-    // TODO: Remove in KF6 or maybe even KF5.80 or something. It really only needs
-    // to be here to transition existing users once they upgrade from 5.73 -> 5.74
-    const int fallbackWidth = config.readEntry(QStringLiteral("Width %1").arg(screen->geometry().width()), window->size().width());
-    const int fallbackHeight = config.readEntry(QStringLiteral("Height %1").arg(screen->geometry().height()), window->size().height());
-
-    const int width = config.readEntry(windowWidthString(screen), fallbackWidth);
-    const int height = config.readEntry(windowHeightString(screen), fallbackHeight);
+    const int width = config.readEntry(windowWidthString(screen), -1);
+    const int height = config.readEntry(windowHeightString(screen), -1);
     const bool isMaximized = config.readEntry(configFileString(screen, QStringLiteral("Window-Maximized")), false);
 
     // Check default size
@@ -158,8 +151,10 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
         window->setProperty(s_initialScreenSizePropertyName, screen->geometry().size());
     }
 
-    // If window is maximized set maximized state and in all case set the size
-    window->resize(width, height);
+    if (width > 0 && height > 0) {
+        window->resize(width, height);
+    }
+
     if (isMaximized) {
         window->setWindowState(Qt::WindowMaximized);
     }
@@ -215,15 +210,8 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
 
 void KWindowConfig::restoreWindowScreenPosition(QWindow *window, const QScreen *screen, const KConfigGroup &config)
 {
-    const QRect desk = window->screen()->geometry();
-    // Fall back to non-per-resolution info if it's available but
-    // per-resolution information is not
-    // TODO: Remove in KF6 or maybe even KF5.85 or something. It really only needs
-    // to be here to transition existing users once they upgrade from 5.78 -> 5.79
-    const int fallbackXPosition = config.readEntry(QStringLiteral("%1 XPosition %2").arg(allConnectedScreens(), QString::number(desk.width())), -1);
-    const int fallbackYPosition = config.readEntry(QStringLiteral("%1 YPosition %2").arg(allConnectedScreens(), QString::number(desk.height())), -1);
-    const int xPos = config.readEntry(windowXPositionString(screen), fallbackXPosition);
-    const int yPos = config.readEntry(windowYPositionString(screen), fallbackYPosition);
+    const int xPos = config.readEntry(windowXPositionString(screen), -1);
+    const int yPos = config.readEntry(windowYPositionString(screen), -1);
 
     if (xPos == -1 || yPos == -1) {
         return;
