@@ -50,9 +50,8 @@ static QScreen *findScreenByName(const QWindow *window, const QString screenName
 
 // Convenience function to get an appropriate config file key under which to
 // save window size, position, or maximization information.
-static QString configFileString(const QScreen *screen, const QString &key)
+static QString configFileString(const QString &key)
 {
-    Q_UNUSED(screen);
     QString returnString;
     const int numberOfScreens = QGuiApplication::screens().length();
 
@@ -70,29 +69,29 @@ static QString configFileString(const QScreen *screen, const QString &key)
 }
 
 // Convenience function for "window is maximized" string
-static QString screenMaximizedString(const QScreen *screen)
+static QString screenMaximizedString()
 {
-    return configFileString(screen, QStringLiteral("Window-Maximized"));
+    return configFileString(QStringLiteral("Window-Maximized"));
 }
 // Convenience function for window width string
-static QString windowWidthString(const QScreen *screen)
+static QString windowWidthString()
 {
-    return configFileString(screen, QStringLiteral("Width"));
+    return configFileString(QStringLiteral("Width"));
 }
 // Convenience function for window height string
-static QString windowHeightString(const QScreen *screen)
+static QString windowHeightString()
 {
-    return configFileString(screen, QStringLiteral("Height"));
+    return configFileString(QStringLiteral("Height"));
 }
 // Convenience function for window X position string
-static QString windowXPositionString(const QScreen *screen)
+static QString windowXPositionString()
 {
-    return configFileString(screen, QStringLiteral("XPosition"));
+    return configFileString(QStringLiteral("XPosition"));
 }
 // Convenience function for window Y position string
-static QString windowYPositionString(const QScreen *screen)
+static QString windowYPositionString()
 {
-    return configFileString(screen, QStringLiteral("YPosition"));
+    return configFileString(QStringLiteral("YPosition"));
 }
 static QString windowScreenPositionString()
 {
@@ -116,17 +115,17 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
         const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
         const bool sizeValid = defaultSize.isValid() && defaultScreenSize.isValid();
         if (!sizeValid || (sizeValid && (defaultSize != sizeToSave || defaultScreenSize != screen->geometry().size()))) {
-            config.writeEntry(windowWidthString(screen), sizeToSave.width(), options);
-            config.writeEntry(windowHeightString(screen), sizeToSave.height(), options);
+            config.writeEntry(windowWidthString(), sizeToSave.width(), options);
+            config.writeEntry(windowHeightString(), sizeToSave.height(), options);
             // Don't keep the maximized string in the file since the window is
             // no longer maximized at this point
-            config.deleteEntry(screenMaximizedString(screen));
+            config.deleteEntry(screenMaximizedString());
         }
     }
-    if ((isMaximized == false) && !config.hasDefault(screenMaximizedString(screen))) {
-        config.revertToDefault(screenMaximizedString(screen));
+    if ((isMaximized == false) && !config.hasDefault(screenMaximizedString())) {
+        config.revertToDefault(screenMaximizedString());
     } else {
-        config.writeEntry(screenMaximizedString(screen), isMaximized, options);
+        config.writeEntry(screenMaximizedString(), isMaximized, options);
     }
 }
 
@@ -137,16 +136,16 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
     }
 
     const QString screenName = config.readEntry(windowScreenPositionString(), window->screen()->name());
-    const QScreen *screen = findScreenByName(window, screenName);
 
-    const int width = config.readEntry(windowWidthString(screen), -1);
-    const int height = config.readEntry(windowHeightString(screen), -1);
-    const bool isMaximized = config.readEntry(configFileString(screen, QStringLiteral("Window-Maximized")), false);
+    const int width = config.readEntry(windowWidthString(), -1);
+    const int height = config.readEntry(windowHeightString(), -1);
+    const bool isMaximized = config.readEntry(configFileString(QStringLiteral("Window-Maximized")), false);
 
     // Check default size
     const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
     const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
     if (!defaultSize.isValid() || !defaultScreenSize.isValid()) {
+        const QScreen *screen = findScreenByName(window, screenName);
         window->setProperty(s_initialSizePropertyName, window->size());
         window->setProperty(s_initialScreenSizePropertyName, screen->geometry().size());
     }
@@ -174,10 +173,9 @@ void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &conf
         return;
     }
 
-    const QScreen *screen = window->screen();
-    config.writeEntry(windowXPositionString(screen), window->x(), options);
-    config.writeEntry(windowYPositionString(screen), window->y(), options);
-    config.writeEntry(windowScreenPositionString(), screen->name(), options);
+    config.writeEntry(windowXPositionString(), window->x(), options);
+    config.writeEntry(windowYPositionString(), window->y(), options);
+    config.writeEntry(windowScreenPositionString(), window->screen()->name(), options);
 }
 
 void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &config)
@@ -188,8 +186,7 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
         return;
     }
 
-    const QScreen *screen = window->screen();
-    const bool isMaximized = config.readEntry(configFileString(screen, QStringLiteral("Window-Maximized")), false);
+    const bool isMaximized = config.readEntry(configFileString(QStringLiteral("Window-Maximized")), false);
 
     // Don't need to restore position if the window was maximized
     if (isMaximized) {
@@ -198,6 +195,7 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
     }
 
     // Move window to proper screen
+    const QScreen *screen = window->screen();
     const QString screenName = config.readEntry(windowScreenPositionString(), screen->name());
     if (screenName != screen->name()) {
         QScreen *screenConf = findScreenByName(window, screenName);
@@ -210,8 +208,9 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
 
 void KWindowConfig::restoreWindowScreenPosition(QWindow *window, const QScreen *screen, const KConfigGroup &config)
 {
-    const int xPos = config.readEntry(windowXPositionString(screen), -1);
-    const int yPos = config.readEntry(windowYPositionString(screen), -1);
+    Q_UNUSED(screen);
+    const int xPos = config.readEntry(windowXPositionString(), -1);
+    const int yPos = config.readEntry(windowYPositionString(), -1);
 
     if (xPos == -1 || yPos == -1) {
         return;
