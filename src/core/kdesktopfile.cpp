@@ -285,10 +285,7 @@ bool KDesktopFile::tryExec() const
     if (su) {
         QString user = d->desktopGroup.readEntry("X-KDE-Username", QString());
         if (user.isEmpty()) {
-            user = QString::fromLocal8Bit(qgetenv("ADMIN_ACCOUNT"));
-        }
-        if (user.isEmpty()) {
-            user = QStringLiteral("root");
+            user = qEnvironmentVariable("ADMIN_ACCOUNT"), QStringLiteral("root");
         }
         if (!KAuthorized::authorize(QLatin1String("user/") + user)) {
             return false;
