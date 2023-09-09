@@ -265,12 +265,9 @@ bool KDesktopFile::tryExec() const
     Q_D(const KDesktopFile);
     // Test for TryExec and "X-KDE-AuthorizeAction"
     // NOT readPathEntry (see readPath())
-    QString te = d->desktopGroup.readEntry("TryExec", QString());
-
-    if (!te.isEmpty()) {
-        if (QStandardPaths::findExecutable(te).isEmpty()) {
-            return false;
-        }
+    const QString te = d->desktopGroup.readEntry("TryExec", QString());
+    if (!te.isEmpty() && QStandardPaths::findExecutable(te).isEmpty()) {
+        return false;
     }
     const QStringList list = d->desktopGroup.readEntry("X-KDE-AuthorizeAction", QStringList());
     const auto isNotAuthorized = std::any_of(list.cbegin(), list.cend(), [](const QString &action) {
