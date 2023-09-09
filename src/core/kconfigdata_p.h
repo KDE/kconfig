@@ -109,7 +109,6 @@ struct KEntryKey {
         , bDefault(isDefault)
         , bRaw(false)
     {
-        ;
     }
     /**
      * The "group" to which this EntryKey belongs
