@@ -93,6 +93,7 @@ QVConversions(unsigned long long, supported, supported);
 QVConversions(float, supported, supported);
 QVConversions(double, supported, supported);
 QVConversions(QString, supported, supported);
+QVConversions(QLatin1String, supported, supported);
 QVConversions(QColor, unsupported, supported);
 QVConversions(QFont, supported, supported);
 QVConversions(QDateTime, unsupported, supported);
