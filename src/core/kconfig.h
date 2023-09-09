@@ -22,7 +22,6 @@
 #include <QVariant>
 
 class KConfigGroup;
-class KEntryMap;
 class KConfigPrivate;
 
 /**
