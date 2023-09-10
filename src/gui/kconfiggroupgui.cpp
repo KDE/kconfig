@@ -38,13 +38,11 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             output = QColor(); // return what was stored
             return true;
         } else if (data.at(0) == '#') {
-            QColor col;
-            col.setNamedColor(QString::fromUtf8(data.constData(), data.length()));
+            QColor col = QColor::fromString(QUtf8StringView(data.constData(), data.length()));
             output = col;
             return true;
         } else if (!data.contains(',')) {
-            QColor col;
-            col.setNamedColor(QString::fromUtf8(data.constData(), data.length()));
+            QColor col = QColor::fromString(QUtf8StringView(data.constData(), data.length()));
             if (!col.isValid()) {
                 qCritical() << qPrintable(errString());
             }
