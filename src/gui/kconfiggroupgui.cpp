@@ -39,12 +39,12 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
             return true;
         } else if (data.at(0) == '#') {
             QColor col;
-            col.setNamedColor(QString::fromUtf8(data.constData(), data.length()));
+            col.fromString(QString::fromUtf8(data.constData(), data.length()));
             output = col;
             return true;
         } else if (!data.contains(',')) {
             QColor col;
-            col.setNamedColor(QString::fromUtf8(data.constData(), data.length()));
+            col.fromString(QString::fromUtf8(data.constData(), data.length()));
             if (!col.isValid()) {
                 qCritical() << qPrintable(errString());
             }
