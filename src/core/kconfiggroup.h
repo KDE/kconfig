@@ -623,21 +623,13 @@ public:
      *
      * @param key The key of the entry to revert.
      */
-    // TODO KF6 merge with the other one
-    void revertToDefault(const QString &key);
-    void revertToDefault(const QString &key, WriteConfigFlags pFlag);
+    void revertToDefault(const QString &key, WriteConfigFlags pFlag = WriteConfigFlags());
 
-    // TODO KF6 merge with the other one
-    /**
-     * Overload for revertToDefault(const QString&)
-     * @param key name of key, encoded in UTF-8
-     */
-    void revertToDefault(const char *key);
     /**
      * Overload for revertToDefault(const QString&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
-    void revertToDefault(const char *key, WriteConfigFlags pFlag);
+    void revertToDefault(const char *key, WriteConfigFlags pFlag = WriteConfigFlags());
 
     /**
      * Whether a default is specified for an entry in either the
