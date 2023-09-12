@@ -314,18 +314,5 @@ QString KDesktopFile::fileName() const
 bool KDesktopFile::noDisplay() const
 {
     Q_D(const KDesktopFile);
-    if (d->desktopGroup.readEntry("NoDisplay", false)) {
-        return true;
-    }
-    if (d->desktopGroup.hasKey("OnlyShowIn")) {
-        if (!d->desktopGroup.readXdgListEntry("OnlyShowIn").contains(QLatin1String("KDE"))) {
-            return true;
-        }
-    }
-    if (d->desktopGroup.hasKey("NotShowIn")) {
-        if (d->desktopGroup.readXdgListEntry("NotShowIn").contains(QLatin1String("KDE"))) {
-            return true;
-        }
-    }
-    return false;
+    return d->desktopGroup.readEntry("NoDisplay", false);
 }

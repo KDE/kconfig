@@ -202,8 +202,8 @@ public:
 
     /**
      * Whether the entry should be suppressed in menus.
-     * This handles the NoDisplay key, but also OnlyShowIn / NotShowIn.
-     * @return true to suppress this service
+     * This handles the NoDisplay key
+     * @return true to suppress this desktop file
      * @since 4.1
      */
     bool noDisplay() const;
