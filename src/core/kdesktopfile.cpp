@@ -147,7 +147,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     // Forbid desktop files outside of standard locations if kiosk is set so
     if (!KAuthorized::authorize(QStringLiteral("run_desktop_files"))) {
-        qCWarning(KCONFIG_CORE_LOG) << "Access to '" << path << "' denied because of 'run_desktop_files' restriction.";
+        qCWarning(KCONFIG_CORE_LOG) << "Access to" << path << "denied because of 'run_desktop_files' restriction.";
         return false;
     }
 
@@ -158,7 +158,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
         return true;
     }
 
-    qCInfo(KCONFIG_CORE_LOG) << "Access to '" << path << "' denied, not owned by root and executable flag not set.";
+    qCInfo(KCONFIG_CORE_LOG) << "Access to" << path << "denied, not owned by root and executable flag not set.";
     return false;
 }
 
