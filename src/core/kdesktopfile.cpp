@@ -278,8 +278,7 @@ bool KDesktopFile::tryExec() const
     }
 
     // See also KService::username()
-    const bool su = d->desktopGroup.readEntry("X-KDE-SubstituteUID", false);
-    if (su) {
+    if (const bool su = d->desktopGroup.readEntry("X-KDE-SubstituteUID", false)) {
         QString user = d->desktopGroup.readEntry("X-KDE-Username", QString());
         if (user.isEmpty()) {
             user = qEnvironmentVariable("ADMIN_ACCOUNT"), QStringLiteral("root");
@@ -302,7 +301,6 @@ KDesktopFile *KDesktopFile::copyTo(const QString &file) const
 {
     KDesktopFile *config = new KDesktopFile(QString());
     this->KConfig::copyTo(file, config);
-    //  config->setDesktopGroup();
     return config;
 }
 
