@@ -35,12 +35,12 @@ class KConfigPrivate;
  *
  * Load a specific configuration file:
  * \code
- * KConfig config( "/etc/kderc", KConfig::SimpleConfig );
+ * KConfig config("/etc/kderc", KConfig::SimpleConfig);
  * \endcode
  *
  * Load the configuration of a specific component:
  * \code
- * KConfig config( "pluginrc" );
+ * KConfig config("pluginrc");
  * \endcode
  *
  * In general it is recommended to use KSharedConfig instead of
