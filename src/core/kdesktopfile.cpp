@@ -123,7 +123,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     // Check if the .desktop file is installed as part of KDE or XDG.
     const QStringList appsDirs = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation);
-    auto it = std::find_if(appsDirs.cbegin(), appsDirs.cend(), [&realPath, sensitivity](const QString &prefix) {
+    auto it = std::find_if(appsDirs.cbegin(), appsDirs.cend(), [&realPath](const QString &prefix) {
         QFileInfo info(prefix);
         return info.exists() && info.isDir() && realPath.startsWith(info.canonicalFilePath(), sensitivity);
     });
@@ -133,7 +133,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     const QString autostartDir = QStringLiteral("autostart/");
     const QStringList lstConfigPath = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
-    auto configIt = std::find_if(lstConfigPath.cbegin(), lstConfigPath.cend(), [&realPath, &autostartDir, sensitivity](const QString &xdgDataPrefix) {
+    auto configIt = std::find_if(lstConfigPath.cbegin(), lstConfigPath.cend(), [&realPath, &autostartDir](const QString &xdgDataPrefix) {
         QFileInfo info(xdgDataPrefix);
         if (info.exists() && info.isDir()) {
             const QString prefix = info.canonicalFilePath();
