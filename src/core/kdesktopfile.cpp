@@ -28,17 +28,15 @@
 class KDesktopFilePrivate : public KConfigPrivate
 {
 public:
-    KDesktopFilePrivate(QStandardPaths::StandardLocation resourceType, const QString &fileName);
+    KDesktopFilePrivate(QStandardPaths::StandardLocation resourceType, const QString &fileName)
+        : KConfigPrivate(KConfig::NoGlobals, resourceType)
+    {
+        mBackend = new KConfigIniBackend();
+        bDynamicBackend = false;
+        changeFileName(fileName);
+    }
     KConfigGroup desktopGroup;
 };
-
-KDesktopFilePrivate::KDesktopFilePrivate(QStandardPaths::StandardLocation resourceType, const QString &fileName)
-    : KConfigPrivate(KConfig::NoGlobals, resourceType)
-{
-    mBackend = new KConfigIniBackend();
-    bDynamicBackend = false;
-    changeFileName(fileName);
-}
 
 KDesktopFile::KDesktopFile(QStandardPaths::StandardLocation resourceType, const QString &fileName)
     : KConfig(*new KDesktopFilePrivate(resourceType, fileName))
@@ -49,16 +47,11 @@ KDesktopFile::KDesktopFile(QStandardPaths::StandardLocation resourceType, const 
 }
 
 KDesktopFile::KDesktopFile(const QString &fileName)
-    : KConfig(*new KDesktopFilePrivate(QStandardPaths::ApplicationsLocation, fileName))
+    : KDesktopFile(QStandardPaths::ApplicationsLocation, fileName)
 {
-    Q_D(KDesktopFile);
-    reparseConfiguration();
-    d->desktopGroup = KConfigGroup(this, "Desktop Entry");
 }
 
-KDesktopFile::~KDesktopFile()
-{
-}
+KDesktopFile::~KDesktopFile() = default;
 
 KConfigGroup KDesktopFile::desktopGroup() const
 {
