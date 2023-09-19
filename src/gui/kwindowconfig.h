@@ -33,6 +33,14 @@ namespace KWindowConfig
 KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
 /**
+ * Returns whether a given KConfig group has any saved window size data.
+ *
+ * @param config The config group to read from.
+ * @since 6.0
+ */
+KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
+
+/**
  * Restores the dialog's size from the configuration according to
  * the screen size.
  *
@@ -71,6 +79,16 @@ KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &co
  */
 KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
+/**
+ * Returns whether a given KConfig group has any saved window position data.
+ *
+ * @note: always returns false on Wayland where saving and restoring window
+ * position data is not supported.
+ *
+ * @param config The config group to read from.
+ * @since 6.0
+ */
+KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
 /**
  * Restores the window's screen position from the configuration and calls restoreWindowScreenPosition.
  * This function has no effect on Wayland, where the compositor is responsible

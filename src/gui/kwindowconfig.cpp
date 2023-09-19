@@ -129,6 +129,11 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
     }
 }
 
+bool KWindowConfig::hasSavedWindowSize(KConfigGroup &config)
+{
+    return config.hasKey(windowWidthString()) || config.hasKey(windowHeightString()) || config.hasKey(screenMaximizedString());
+}
+
 void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &config)
 {
     if (!window) {
@@ -176,6 +181,17 @@ void KWindowConfig::saveWindowPosition(const QWindow *window, KConfigGroup &conf
     config.writeEntry(windowXPositionString(), window->x(), options);
     config.writeEntry(windowYPositionString(), window->y(), options);
     config.writeEntry(windowScreenPositionString(), window->screen()->name(), options);
+}
+
+bool KWindowConfig::hasSavedWindowPosition(KConfigGroup &config)
+{
+    // Window position save/restore features outside of the compositor are not
+    // supported on Wayland
+    if (QGuiApplication::platformName() == QLatin1String{"wayland"}) {
+        return false;
+    }
+
+    return config.hasKey(windowXPositionString()) || config.hasKey(windowYPositionString()) || config.hasKey(windowScreenPositionString());
 }
 
 void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &config)
