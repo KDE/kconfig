@@ -10,6 +10,7 @@
 #include <kconfig.h>
 
 class KConfigGroup;
+class KDesktopFileAction;
 class KDesktopFilePrivate;
 
 /**
@@ -223,6 +224,12 @@ public:
      * Returns the name of the .desktop file that was used to construct this KDesktopFile.
      */
     QString fileName() const;
+
+    /**
+     *
+     * @since 6.0
+     */
+    QList<KDesktopFileAction> actions() const;
 
 private:
     Q_DISABLE_COPY(KDesktopFile)

@@ -13,6 +13,7 @@
 #include "kconfig_p.h"
 #include "kconfiggroup.h"
 #include "kconfigini_p.h"
+#include "kdesktopfileaction.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -306,4 +307,15 @@ bool KDesktopFile::noDisplay() const
 {
     Q_D(const KDesktopFile);
     return d->desktopGroup.readEntry("NoDisplay", false);
+}
+
+QList<KDesktopFileAction> KDesktopFile::actions() const
+{
+    QList<KDesktopFileAction> desktopFileActions;
+    const QStringList actionKeys = readActions();
+    for (const QString &actionKey : actionKeys) {
+        const KConfigGroup grp = actionGroup(actionKey);
+        desktopFileActions << KDesktopFileAction(actionKey, grp.readEntry("Name"), grp.readEntry("Icon"), grp.readEntry("Exec"), fileName());
+    }
+    return desktopFileActions;
 }

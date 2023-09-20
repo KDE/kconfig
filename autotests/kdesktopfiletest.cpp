@@ -6,6 +6,7 @@
 #include "kdesktopfiletest.h"
 #include "helper.h"
 #include <kconfiggroup.h>
+#include <kdesktopfileaction.h>
 #include <ksharedconfig.h>
 #include <qtemporaryfile.h>
 
@@ -160,15 +161,19 @@ void KDesktopFileTest::testActionGroup()
     QCOMPARE(df.hasActionGroup(QStringLiteral("semi;colon")), true);
     QCOMPARE(df.hasActionGroup(QStringLiteral("decrypt")), true);
     QCOMPARE(df.hasActionGroup(QStringLiteral("doesnotexist")), false);
-    KConfigGroup cg = df.actionGroup(QStringLiteral("encrypt"));
-    QVERIFY(cg.hasKey("Name"));
-    QCOMPARE(cg.readEntry("Name"), QStringLiteral("Encrypt file"));
-    cg = df.actionGroup(QStringLiteral("decrypt"));
-    QVERIFY(cg.hasKey("Name"));
-    QCOMPARE(cg.readEntry("Name"), QStringLiteral("Decrypt file"));
-    cg = df.actionGroup(QStringLiteral("semi;colon"));
-    QVERIFY(cg.hasKey("Name"));
-    QCOMPARE(cg.readEntry("Name"), QStringLiteral("With semicolon"));
+
+    const auto actions = df.actions();
+    QCOMPARE(actions.size(), 3);
+    QVERIFY(std::all_of(actions.begin(), actions.end(), [&fileName](const KDesktopFileAction &action) {
+        return action.desktopFilePath() == fileName;
+    }));
+    QCOMPARE(actions.at(0).actionsKey(), QStringLiteral("encrypt"));
+    QCOMPARE(actions.at(0).name(), QStringLiteral("Encrypt file"));
+    QCOMPARE(actions.at(1).actionsKey(), QStringLiteral("semi;colon"));
+    QCOMPARE(actions.at(1).name(), QStringLiteral("With semicolon"));
+    QCOMPARE(actions.at(2).name(), QStringLiteral("Decrypt file"));
+    QCOMPARE(actions.at(2).actionsKey(), QStringLiteral("decrypt"));
+    QCOMPARE(actions.at(2).name(), QStringLiteral("Decrypt file"));
 }
 
 void KDesktopFileTest::testIsAuthorizedDesktopFile()

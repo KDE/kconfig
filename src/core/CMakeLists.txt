@@ -15,6 +15,7 @@ target_sources(KF6ConfigCore PRIVATE
    kconfigbackend.cpp
    kconfigini.cpp
    kdesktopfile.cpp
+   kdesktopfileaction.cpp
    ksharedconfig.cpp
    kcoreconfigskeleton.cpp
    kauthorized.cpp
@@ -66,6 +67,7 @@ ecm_generate_headers(KConfigCore_HEADERS
   KConfigBase
   KConfigGroup
   KDesktopFile
+  KDesktopFileAction
   KSharedConfig
   KCoreConfigSkeleton
   KEMailSettings
