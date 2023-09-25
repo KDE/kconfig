@@ -156,19 +156,8 @@ public:
      * @param pluginId  The desktop menu ID for the control module.
      * @return @c true if access to the module is authorized, @c false otherwise.
      *
-     * @see authorizeControlModules()
      */
     Q_INVOKABLE static bool authorizeControlModule(const QString &pluginId);
-
-    /**
-     * Determines which control modules from a list the user is permitted to use.
-     *
-     * @param pluginIds  A list of KCM plugin IDs, @see KPluginMetaData::pluginId
-     * @return The entries in @p pluginIds for which authorizeControlModule() returns @c true.
-     *
-     * @see authorizeControlModule()
-     */
-    Q_INVOKABLE static QStringList authorizeControlModules(const QStringList &pluginIds);
 
 private:
     friend class KConfigQmlPlugin;

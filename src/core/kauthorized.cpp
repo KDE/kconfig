@@ -270,18 +270,6 @@ bool KAuthorized::authorizeControlModule(const QString &menuId)
     return cg.readEntry(menuId, true);
 }
 
-QStringList KAuthorized::authorizeControlModules(const QStringList &menuIds)
-{
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE Control Module Restrictions");
-    QStringList result;
-    for (const auto &id : menuIds) {
-        if (cg.readEntry(id, true)) {
-            result.append(id);
-        }
-    }
-    return result;
-}
-
 // Exported for unittests (e.g. in KIO, we're missing tests for this in kconfig)
 KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
 {
