@@ -45,6 +45,7 @@ ecm_add_tests(
    kdesktopfiletest.cpp
    test_kconf_update.cpp
    ksharedconfig_in_global_object.cpp
+   dbussanitizertest.cpp
    NAME_PREFIX kconfigcore-
    LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent
 )

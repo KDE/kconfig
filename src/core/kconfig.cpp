@@ -11,6 +11,7 @@
 #include "kconfig_p.h"
 
 #include "config-kconfig.h"
+#include "dbussanitizer_p.h"
 #include "kconfig_core_log_settings.h"
 
 #include <cstdlib>
@@ -487,7 +488,7 @@ bool KConfig::sync()
     }
 
     if (!notifyGroupsLocal.isEmpty()) {
-        d->notifyClients(notifyGroupsLocal, QLatin1Char('/') + name().replace(QLatin1Char('-'), QLatin1Char('_')));
+        d->notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + name()));
     }
     if (!notifyGroupsGlobal.isEmpty()) {
         d->notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));

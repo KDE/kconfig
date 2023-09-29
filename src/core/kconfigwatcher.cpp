@@ -13,6 +13,8 @@
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusMetaType>
+
+#include "dbussanitizer_p.h"
 #endif
 
 #include <QDebug>
@@ -61,7 +63,7 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
     for (QString &file : watchedPaths) {
         file.prepend(QLatin1Char('/'));
     }
-    watchedPaths.prepend(QLatin1Char('/') + d->m_config->name().replace(QLatin1Char('-'), QLatin1Char('_')));
+    watchedPaths.prepend(kconfigDBusSanitizePath(QLatin1Char('/') + d->m_config->name()));
 
     if (d->m_config->openFlags() & KConfig::IncludeGlobals) {
         watchedPaths << QStringLiteral("/kdeglobals");
