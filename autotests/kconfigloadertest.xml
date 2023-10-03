@@ -68,11 +68,20 @@
                 <entry name="DefaultPointItem" type="Point">
                         <default>185,857</default>
                 </entry>
+                <entry name="DefaultPointFItem" type="PointF">
+                        <default>185.5,857.5</default>
+                </entry>
                 <entry name="DefaultRectItem" type="Rect">
                         <default>3,7,951,358</default>
                 </entry>
+                <entry name="DefaultRectFItem" type="RectF">
+                        <default>3.5,7.5,951.5,358.5</default>
+                </entry>
                 <entry name="DefaultSizeItem" type="Size">
                         <default>640,480</default>
+                </entry>
+                <entry name="DefaultSizeFItem" type="SizeF">
+                        <default>640.5,480.5</default>
                 </entry>
                 <entry name="DefaultULongLongItem" type="ULongLong">
                         <default>9223372036854775806</default>

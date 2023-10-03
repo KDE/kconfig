@@ -40,8 +40,11 @@ private Q_SLOTS:
     void intListDefaultValue();
     void longLongDefaultValue();
     void pointDefaultValue();
+    void pointFDefaultValue();
     void rectDefaultValue();
+    void rectFDefaultValue();
     void sizeDefaultValue();
+    void sizeFDefaultValue();
     void ulongLongDefaultValue();
 
 private:

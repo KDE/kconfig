@@ -271,6 +271,14 @@ void ConfigLoaderHandler::addItem()
             defaultPoint.setY(tmpList[1].toInt());
         }
         item = m_config->addItemPoint(m_name, *d->newPoint(), defaultPoint, m_key);
+    } else if (m_type == QLatin1String("pointf")) {
+        QPointF defaultPointF;
+        const auto tmpList = QStringView(m_default).split(u',');
+        if (tmpList.size() >= 2) {
+            defaultPointF.setX(tmpList[0].toDouble());
+            defaultPointF.setY(tmpList[1].toDouble());
+        }
+        item = m_config->addItemPointF(m_name, *d->newPointF(), defaultPointF, m_key);
     } else if (m_type == QLatin1String("rect")) {
         QRect defaultRect;
         const QStringList tmpList = m_default.split(QLatin1Char(','));
@@ -278,6 +286,13 @@ void ConfigLoaderHandler::addItem()
             defaultRect.setCoords(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt(), tmpList[3].toInt());
         }
         item = m_config->addItemRect(m_name, *d->newRect(), defaultRect, m_key);
+    } else if (m_type == QLatin1String("rectf")) {
+        QRectF defaultRectF;
+        const auto tmpList = QStringView(m_default).split(u',');
+        if (tmpList.size() >= 4) {
+            defaultRectF.setCoords(tmpList[0].toDouble(), tmpList[1].toDouble(), tmpList[2].toDouble(), tmpList[3].toDouble());
+        }
+        item = m_config->addItemRectF(m_name, *d->newRectF(), defaultRectF, m_key);
     } else if (m_type == QLatin1String("size")) {
         QSize defaultSize;
         const QStringList tmpList = m_default.split(QLatin1Char(','));
@@ -286,6 +301,14 @@ void ConfigLoaderHandler::addItem()
             defaultSize.setHeight(tmpList[1].toInt());
         }
         item = m_config->addItemSize(m_name, *d->newSize(), defaultSize, m_key);
+    } else if (m_type == QLatin1String("sizef")) {
+        QSizeF defaultSizeF;
+        const auto tmpList = QStringView(m_default).split(u',');
+        if (tmpList.size() >= 2) {
+            defaultSizeF.setWidth(tmpList[0].toDouble());
+            defaultSizeF.setHeight(tmpList[1].toDouble());
+        }
+        item = m_config->addItemSizeF(m_name, *d->newSizeF(), defaultSizeF, m_key);
     } else if (m_type == QLatin1String("ulonglong")) {
         KConfigSkeleton::ItemULongLong *ulonglongItem = m_config->addItemULongLong(m_name, *d->newULongLong(), m_default.toULongLong(), m_key);
         if (m_haveMin) {

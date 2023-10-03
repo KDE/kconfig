@@ -869,6 +869,35 @@ QVariant KCoreConfigSkeleton::ItemRect::property() const
     return QVariant(mReference);
 }
 
+KCoreConfigSkeleton::ItemRectF::ItemRectF(const QString &_group, const QString &_key, QRectF &reference, const QRectF &defaultValue)
+    : KConfigSkeletonGenericItem<QRectF>(_group, _key, reference, defaultValue)
+{
+}
+
+void KCoreConfigSkeleton::ItemRectF::readConfig(KConfig *config)
+{
+    KConfigGroup cg = configGroup(config);
+    mReference = cg.readEntry(mKey, mDefault);
+    mLoadedValue = mReference;
+
+    readImmutability(cg);
+}
+
+void KCoreConfigSkeleton::ItemRectF::setProperty(const QVariant &p)
+{
+    mReference = p.toRectF();
+}
+
+bool KCoreConfigSkeleton::ItemRectF::isEqual(const QVariant &v) const
+{
+    return mReference == v.toRectF();
+}
+
+QVariant KCoreConfigSkeleton::ItemRectF::property() const
+{
+    return QVariant(mReference);
+}
+
 KCoreConfigSkeleton::ItemPoint::ItemPoint(const QString &_group, const QString &_key, QPoint &reference, const QPoint &defaultValue)
     : KConfigSkeletonGenericItem<QPoint>(_group, _key, reference, defaultValue)
 {
@@ -898,6 +927,35 @@ QVariant KCoreConfigSkeleton::ItemPoint::property() const
     return QVariant(mReference);
 }
 
+KCoreConfigSkeleton::ItemPointF::ItemPointF(const QString &_group, const QString &_key, QPointF &reference, const QPointF &defaultValue)
+    : KConfigSkeletonGenericItem<QPointF>(_group, _key, reference, defaultValue)
+{
+}
+
+void KCoreConfigSkeleton::ItemPointF::readConfig(KConfig *config)
+{
+    KConfigGroup cg = configGroup(config);
+    mReference = cg.readEntry(mKey, mDefault);
+    mLoadedValue = mReference;
+
+    readImmutability(cg);
+}
+
+void KCoreConfigSkeleton::ItemPointF::setProperty(const QVariant &p)
+{
+    mReference = p.toPointF();
+}
+
+bool KCoreConfigSkeleton::ItemPointF::isEqual(const QVariant &v) const
+{
+    return mReference == v.toPointF();
+}
+
+QVariant KCoreConfigSkeleton::ItemPointF::property() const
+{
+    return QVariant(mReference);
+}
+
 KCoreConfigSkeleton::ItemSize::ItemSize(const QString &_group, const QString &_key, QSize &reference, const QSize &defaultValue)
     : KConfigSkeletonGenericItem<QSize>(_group, _key, reference, defaultValue)
 {
@@ -923,6 +981,35 @@ bool KCoreConfigSkeleton::ItemSize::isEqual(const QVariant &v) const
 }
 
 QVariant KCoreConfigSkeleton::ItemSize::property() const
+{
+    return QVariant(mReference);
+}
+
+KCoreConfigSkeleton::ItemSizeF::ItemSizeF(const QString &_group, const QString &_key, QSizeF &reference, const QSizeF &defaultValue)
+    : KConfigSkeletonGenericItem<QSizeF>(_group, _key, reference, defaultValue)
+{
+}
+
+void KCoreConfigSkeleton::ItemSizeF::readConfig(KConfig *config)
+{
+    KConfigGroup cg = configGroup(config);
+    mReference = cg.readEntry(mKey, mDefault);
+    mLoadedValue = mReference;
+
+    readImmutability(cg);
+}
+
+void KCoreConfigSkeleton::ItemSizeF::setProperty(const QVariant &p)
+{
+    mReference = p.toSizeF();
+}
+
+bool KCoreConfigSkeleton::ItemSizeF::isEqual(const QVariant &v) const
+{
+    return mReference == v.toSizeF();
+}
+
+QVariant KCoreConfigSkeleton::ItemSizeF::property() const
 {
     return QVariant(mReference);
 }
@@ -1388,6 +1475,14 @@ KCoreConfigSkeleton::ItemRect *KCoreConfigSkeleton::addItemRect(const QString &n
     return item;
 }
 
+KCoreConfigSkeleton::ItemRectF *KCoreConfigSkeleton::addItemRectF(const QString &name, QRectF &reference, const QRectF &defaultValue, const QString &key)
+{
+    KCoreConfigSkeleton::ItemRectF *item;
+    item = new KCoreConfigSkeleton::ItemRectF(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
+    addItem(item, name);
+    return item;
+}
+
 KCoreConfigSkeleton::ItemPoint *KCoreConfigSkeleton::addItemPoint(const QString &name, QPoint &reference, const QPoint &defaultValue, const QString &key)
 {
     KCoreConfigSkeleton::ItemPoint *item;
@@ -1396,10 +1491,26 @@ KCoreConfigSkeleton::ItemPoint *KCoreConfigSkeleton::addItemPoint(const QString 
     return item;
 }
 
+KCoreConfigSkeleton::ItemPointF *KCoreConfigSkeleton::addItemPointF(const QString &name, QPointF &reference, const QPointF &defaultValue, const QString &key)
+{
+    KCoreConfigSkeleton::ItemPointF *item;
+    item = new KCoreConfigSkeleton::ItemPointF(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
+    addItem(item, name);
+    return item;
+}
+
 KCoreConfigSkeleton::ItemSize *KCoreConfigSkeleton::addItemSize(const QString &name, QSize &reference, const QSize &defaultValue, const QString &key)
 {
     KCoreConfigSkeleton::ItemSize *item;
     item = new KCoreConfigSkeleton::ItemSize(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
+    addItem(item, name);
+    return item;
+}
+
+KCoreConfigSkeleton::ItemSizeF *KCoreConfigSkeleton::addItemSizeF(const QString &name, QSizeF &reference, const QSizeF &defaultValue, const QString &key)
+{
+    KCoreConfigSkeleton::ItemSizeF *item;
+    item = new KCoreConfigSkeleton::ItemSizeF(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
     addItem(item, name);
     return item;
 }

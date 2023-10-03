@@ -221,7 +221,7 @@ public:
      * You must turn it into readEntry("...", QColor(Qt::white)).
      *
      * @note Only the following QVariant types are allowed : String,
-     * StringList, List, Font, Point, Rect, Size, Color, Int, UInt, Bool,
+     * StringList, List, Font, Point, PointF, Rect, RectF, Size, SizeF, Color, Int, UInt, Bool,
      * Double, LongLong, ULongLong, DateTime and Date.
      *
      * @param key The key to search for

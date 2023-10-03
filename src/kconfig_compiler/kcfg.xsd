@@ -169,9 +169,12 @@
             <xsd:enumeration value="StringList"/>
             <xsd:enumeration value="Font"/>
             <xsd:enumeration value="Rect"/>
+            <xsd:enumeration value="RectF"/>
             <xsd:enumeration value="Size"/>
+            <xsd:enumeration value="SizeF"/>
             <xsd:enumeration value="Color"/>
             <xsd:enumeration value="Point"/>
+            <xsd:enumeration value="PointF"/>
             <xsd:enumeration value="Int"/>
             <xsd:enumeration value="UInt"/>
             <xsd:enumeration value="Bool"/>

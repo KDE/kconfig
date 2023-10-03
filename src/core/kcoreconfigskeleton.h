@@ -950,6 +950,28 @@ public:
     };
 
     /**
+     * Class for handling a QRectF preferences item.
+     */
+    class KCONFIGCORE_EXPORT ItemRectF : public KConfigSkeletonGenericItem<QRectF>
+    {
+    public:
+        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        ItemRectF(const QString &_group, const QString &_key, QRectF &reference, const QRectF &defaultValue = QRectF());
+
+        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        void readConfig(KConfig *config) override;
+
+        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        void setProperty(const QVariant &p) override;
+
+        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        bool isEqual(const QVariant &p) const override;
+
+        /** @copydoc KConfigSkeletonItem::property() */
+        QVariant property() const override;
+    };
+
+    /**
      * Class for handling a QPoint preferences item.
      */
     class KCONFIGCORE_EXPORT ItemPoint : public KConfigSkeletonGenericItem<QPoint>
@@ -972,6 +994,28 @@ public:
     };
 
     /**
+     * Class for handling a QPointF preferences item.
+     */
+    class KCONFIGCORE_EXPORT ItemPointF : public KConfigSkeletonGenericItem<QPointF>
+    {
+    public:
+        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        ItemPointF(const QString &_group, const QString &_key, QPointF &reference, const QPointF &defaultValue = QPointF());
+
+        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        void readConfig(KConfig *config) override;
+
+        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        void setProperty(const QVariant &p) override;
+
+        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        bool isEqual(const QVariant &p) const override;
+
+        /** @copydoc KConfigSkeletonItem::property() */
+        QVariant property() const override;
+    };
+
+    /**
      * Class for handling a QSize preferences item.
      */
     class KCONFIGCORE_EXPORT ItemSize : public KConfigSkeletonGenericItem<QSize>
@@ -979,6 +1023,28 @@ public:
     public:
         /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemSize(const QString &_group, const QString &_key, QSize &reference, const QSize &defaultValue = QSize());
+
+        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        void readConfig(KConfig *config) override;
+
+        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        void setProperty(const QVariant &p) override;
+
+        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        bool isEqual(const QVariant &p) const override;
+
+        /** @copydoc KConfigSkeletonItem::property() */
+        QVariant property() const override;
+    };
+
+    /**
+     * Class for handling a QSizeF preferences item.
+     */
+    class KCONFIGCORE_EXPORT ItemSizeF : public KConfigSkeletonGenericItem<QSizeF>
+    {
+    public:
+        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        ItemSizeF(const QString &_group, const QString &_key, QSizeF &reference, const QSizeF &defaultValue = QSizeF());
 
         /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
@@ -1243,7 +1309,7 @@ public:
      * Register a property item of type QVariant.
      *
      * @note The following QVariant types are allowed:
-     * String, StringList, Font, Point, Rect, Size,
+     * String, StringList, Font, Point, PointF, Rect, RectF, Size, SizeF,
      * Color, Int, UInt, Bool, Double, DateTime and Date.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1347,6 +1413,19 @@ public:
     ItemRect *addItemRect(const QString &name, QRect &reference, const QRect &defaultValue = QRect(), const QString &key = QString());
 
     /**
+     * Register an item of type QRectF.
+     *
+     * @param name Name used to identify this setting. Names must be unique.
+     * @param reference Pointer to the variable, which is set by readConfig()
+     * calls and read by save() calls.
+     * @param defaultValue Default value, which is used when the config file
+     * does not yet contain the key of this item.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
+     * @return The created item
+     */
+    ItemRectF *addItemRectF(const QString &name, QRectF &reference, const QRectF &defaultValue = QRectF(), const QString &key = QString());
+
+    /**
      * Register an item of type QPoint.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1360,6 +1439,19 @@ public:
     ItemPoint *addItemPoint(const QString &name, QPoint &reference, const QPoint &defaultValue = QPoint(), const QString &key = QString());
 
     /**
+     * Register an item of type QPointF.
+     *
+     * @param name Name used to identify this setting. Names must be unique.
+     * @param reference Pointer to the variable, which is set by readConfig()
+     * calls and read by save() calls.
+     * @param defaultValue Default value, which is used when the config file
+     * does not yet contain the key of this item.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
+     * @return The created item
+     */
+    ItemPointF *addItemPointF(const QString &name, QPointF &reference, const QPointF &defaultValue = QPointF(), const QString &key = QString());
+
+    /**
      * Register an item of type QSize.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1371,6 +1463,19 @@ public:
      * @return The created item
      */
     ItemSize *addItemSize(const QString &name, QSize &reference, const QSize &defaultValue = QSize(), const QString &key = QString());
+
+    /**
+     * Register an item of type QSizeF.
+     *
+     * @param name Name used to identify this setting. Names must be unique.
+     * @param reference Pointer to the variable, which is set by readConfig()
+     * calls and read by save() calls.
+     * @param defaultValue Default value, which is used when the config file
+     * does not yet contain the key of this item.
+     * @param key Key used in config file. If @p key is a null string, @p name is used as key.
+     * @return The created item
+     */
+    ItemSizeF *addItemSizeF(const QString &name, QSizeF &reference, const QSizeF &defaultValue = QSizeF(), const QString &key = QString());
 
     /**
      * Register an item of type QDateTime.

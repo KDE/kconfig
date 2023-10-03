@@ -37,8 +37,11 @@ public:
         qDeleteAll(intlists);
         qDeleteAll(longlongs);
         qDeleteAll(points);
+        qDeleteAll(pointfs);
         qDeleteAll(rects);
+        qDeleteAll(rectfs);
         qDeleteAll(sizes);
+        qDeleteAll(sizefs);
         qDeleteAll(ulonglongs);
         qDeleteAll(urllists);
     }
@@ -134,6 +137,13 @@ public:
         return v;
     }
 
+    QPointF *newPointF()
+    {
+        QPointF *v = new QPointF;
+        pointfs.append(v);
+        return v;
+    }
+
     QRect *newRect()
     {
         QRect *v = new QRect;
@@ -141,10 +151,24 @@ public:
         return v;
     }
 
+    QRectF *newRectF()
+    {
+        QRectF *v = new QRectF;
+        rectfs.append(v);
+        return v;
+    }
+
     QSize *newSize()
     {
         QSize *v = new QSize;
         sizes.append(v);
+        return v;
+    }
+
+    QSizeF *newSizeF()
+    {
+        QSizeF *v = new QSizeF;
+        sizefs.append(v);
         return v;
     }
 
@@ -195,8 +219,11 @@ public:
     QList<QList<qint32> *> intlists;
     QList<qint64 *> longlongs;
     QList<QPoint *> points;
+    QList<QPointF *> pointfs;
     QList<QRect *> rects;
+    QList<QRectF *> rectfs;
     QList<QSize *> sizes;
+    QList<QSizeF *> sizefs;
     QList<quint64 *> ulonglongs;
     QList<QList<QUrl> *> urllists;
     QString baseGroup;

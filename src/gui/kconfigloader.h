@@ -80,8 +80,11 @@ class ConfigLoaderPrivate;
  * @li longlongs
  * @li path lists
  * @li points
+ * @li pointfs
  * @li rects
+ * @li rectfs
  * @li sizes
+ * @li sizefs
  * @li ulonglongs
  * @li url lists
  **/
