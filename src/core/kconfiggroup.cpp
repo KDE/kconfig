@@ -1131,7 +1131,7 @@ bool KConfigGroup::hasDefault(const QString &key) const
     return hasDefault(key.toUtf8().constData());
 }
 
-bool KConfigGroup::hasKey(const char *key) const
+bool KConfigGroup::hasKey(QAnyStringView key) const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::hasKey", "accessing an invalid group");
 
@@ -1140,12 +1140,19 @@ bool KConfigGroup::hasKey(const char *key) const
         flags |= KEntryMap::SearchDefaults;
     }
 
-    return !config()->d_func()->lookupData(d->fullName(), key, flags).isNull();
-}
-
-bool KConfigGroup::hasKey(const QString &key) const
-{
-    return hasKey(key.toUtf8().constData());
+    return key.visit([this, flags](auto s) {
+        using T = std::decay_t<decltype(s)>;
+        if constexpr (std::is_same_v<T, QLatin1String>) {
+            return !config()->d_func()->lookupData(d->fullName(), s.data(), flags).isNull();
+        } else if constexpr (std::is_same_v<T, QUtf8StringView>) {
+            return !config()->d_func()->lookupData(d->fullName(), s.data(), flags).isNull();
+        } else if constexpr (std::is_same_v<T, QStringView>) {
+            return !config()->d_func()->lookupData(d->fullName(), s.toUtf8().data(), flags).isNull();
+        } else {
+            // Should not happen
+            return false;
+        }
+    });
 }
 
 bool KConfigGroup::isImmutable() const

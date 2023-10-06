@@ -561,27 +561,7 @@ public:
      */
     void deleteEntry(const char *key, WriteConfigFlags pFlags = Normal);
 
-    /**
-     * Checks whether the key has an entry in this group
-     *
-     * Use this to determine if a key is not specified for the current
-     * group (hasKey() returns false).
-     *
-     * If this returns @c false for a key, readEntry() (and its variants)
-     * will return the default value passed to them.
-     *
-     * @param key the key to search for
-     * @return @c true if the key is defined in this group by any of the
-     *         configuration sources, @c false otherwise
-     *
-     * @see readEntry()
-     */
-    bool hasKey(const QString &key) const;
-    /**
-     * Overload for hasKey(const QString&) const
-     * @param key name of key, encoded in UTF-8
-     */
-    bool hasKey(const char *key) const;
+    bool hasKey(QAnyStringView key) const;
 
     /**
      * Whether this group may be changed
