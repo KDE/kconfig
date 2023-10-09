@@ -55,6 +55,10 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
     d->m_config = config;
 
 #if KCONFIG_USE_DBUS
+    if (config->name().isEmpty()) {
+        return;
+    }
+
     // Watching absolute paths is not supported and also makes no sense.
     const bool isAbsolutePath = config->name().at(0) == QLatin1Char('/');
     if (isAbsolutePath) {
@@ -64,7 +68,6 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
 
     qDBusRegisterMetaType<QByteArrayList>();
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
-
 
     QStringList watchedPaths = d->m_config->additionalConfigSources();
     for (QString &file : watchedPaths) {
