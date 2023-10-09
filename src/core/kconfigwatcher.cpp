@@ -55,9 +55,12 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
 
 #if KCONFIG_USE_DBUS
 
+    if (config->name().isEmpty()) {
+        return;
+    }
+
     qDBusRegisterMetaType<QByteArrayList>();
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
-
 
     QStringList watchedPaths = d->m_config->additionalConfigSources();
     for (QString &file : watchedPaths) {
