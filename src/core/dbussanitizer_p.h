@@ -17,6 +17,6 @@ inline QString kconfigDBusSanitizePath(QString path)
     }
     Q_ASSERT(path.length() > 1);
     Q_ASSERT(path.at(0) == QLatin1Char('/'));
-    Q_ASSERT(!path.contains(QLatin1String("//")));
+    // The spec disallows '//' but QtDBus cleans the path up for us
     return path;
 }
