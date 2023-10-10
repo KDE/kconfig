@@ -15,8 +15,11 @@ inline QString kconfigDBusSanitizePath(QString path)
             character = QLatin1Char('_');
         }
     }
-    Q_ASSERT(path.length() > 1);
-    Q_ASSERT(path.at(0) == QLatin1Char('/'));
-    Q_ASSERT(!path.contains(QLatin1String("//")));
+    // KConfig notifying or watching on / makes no sense
+    Q_ASSERT_X(path.length() > 1, Q_FUNC_INFO, qUtf8Printable(path));
+    // As per spec the path must start with a slash
+    Q_ASSERT_X(path.at(0) == QLatin1Char('/'), Q_FUNC_INFO, qUtf8Printable(path));
+    // ...it also must not contain multiple slashes in sequence
+    Q_ASSERT_X(!path.contains(QLatin1String("//")), Q_FUNC_INFO, qUtf8Printable(path));
     return path;
 }
