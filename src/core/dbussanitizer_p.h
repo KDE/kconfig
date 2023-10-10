@@ -19,6 +19,8 @@ inline QString kconfigDBusSanitizePath(QString path)
     Q_ASSERT_X(path.length() > 1, Q_FUNC_INFO, qUtf8Printable(path));
     // As per spec the path must start with a slash
     Q_ASSERT_X(path.at(0) == QLatin1Char('/'), Q_FUNC_INFO, qUtf8Printable(path));
+    // ...but not end with a slash
+    Q_ASSERT_X(path.at(path.size() - 1) != QLatin1Char('/'), Q_FUNC_INFO, qUtf8Printable(path));
     // ...it also must not contain multiple slashes in sequence
     Q_ASSERT_X(!path.contains(QLatin1String("//")), Q_FUNC_INFO, qUtf8Printable(path));
     return path;
