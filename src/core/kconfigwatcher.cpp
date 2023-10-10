@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2018 David Edmundson <davidedmundson@kde.org>
+    SPDX-FileCopyrightText: 2023 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
@@ -54,6 +55,13 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
     d->m_config = config;
 
 #if KCONFIG_USE_DBUS
+    // Watching absolute paths is not supported and also makes no sense.
+    const bool isAbsolutePath = config->name().at(0) == QLatin1Char('/');
+    Q_ASSERT(!isAbsolutePath);
+    if (isAbsolutePath) {
+        qCWarning(KCONFIG_CORE_LOG) << "Watching absolute paths is not supported" << config->name();
+        return;
+    }
 
     qDBusRegisterMetaType<QByteArrayList>();
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
