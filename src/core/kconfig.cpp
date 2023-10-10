@@ -488,7 +488,9 @@ bool KConfig::sync()
         }
     }
 
-    if (!notifyGroupsLocal.isEmpty()) {
+    // Notifying absolute paths is not supported and also makes no sense.
+    const bool isAbsolutePath = name().at(0) == QLatin1Char('/');
+    if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
         d->notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + name()));
     }
     if (!notifyGroupsGlobal.isEmpty()) {
