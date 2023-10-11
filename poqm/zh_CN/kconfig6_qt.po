@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2023-09-16 10:06\n"
+"PO-Revision-Date: 2023-10-10 14:24\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kconfig/kconfig6_qt.pot\n"
 "X-Crowdin-File-ID: 43047\n"
 
-#: core/kconfig.cpp:948
+#: core/kconfig.cpp:950
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "请联系您的系统管理员。"

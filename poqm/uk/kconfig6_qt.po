@@ -20,7 +20,7 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.12.0\n"
 
-#: core/kconfig.cpp:948
+#: core/kconfig.cpp:950
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Будь ласка, зверніться до системного адміністратора."
