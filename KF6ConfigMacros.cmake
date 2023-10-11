@@ -6,6 +6,44 @@
 #    relative path to the file.
 #    <target> must not be an alias.
 #
+#  kconfig_target_kcfg_file(<target> FILE <kcfg file> CLASS_NAME <classname> ...)
+#    Add a kcfg file to a target without having a kcfgc file. The kcfgc file will
+#    be generated from the function arguments. Arguments correspond to the
+#    similarly names fields from the kcfgc file.
+#
+#    TARGET should be a valid target. FILE is required and should be the name of
+#    a kcfg file. CLASS_NAME is required and should be the name of the C++ class
+#    that is generated. All the other arguments are optional.
+#
+#    Option arguments are:
+#        MUTATORS
+#        SINGLETON
+#        CUSTOM_ADDITIONS
+#        NOTIFIERS
+#        DEFAULT_VALUE_GETTERS
+#        ITEM_ACCESSORS
+#        SET_USER_TEXTS
+#        GLOBAL_ENUMS
+#        USE_ENUM_TYPES
+#        FORCE_STRING_FILENAME
+#        GENERATE_PROPERTIES
+#        PARENT_IN_CONSTRUCTOR
+#        GENERATE_MOC
+#    Single value arguments are:
+#        FILE
+#        CLASS_NAME
+#        VISIBILITY
+#        HEADER_EXTENSION
+#        SOURCE_EXTENSION
+#        NAMESPACE
+#        INHERITS
+#        MEMBER_VARIABLES
+#        TRANSLATION_SYSTEM
+#        TRANSLATION_DOMAIN
+#    Multi value arguments are:
+#        INCLUDE_FILES
+#        SOURCE_INCLUDE_FILES
+#
 # SPDX-FileCopyrightText: 2006-2009 Alexander Neundorf <neundorf@kde.org>
 # SPDX-FileCopyrightText: 2006, 2007, Laurent Montel <montel@kde.org>
 # SPDX-FileCopyrightText: 2007 Matthias Kretz <kretz@kde.org>
@@ -118,3 +156,110 @@ function(KCONFIG_ADD_KCFG_FILES _target_or_source_var)
    endif()
 
 endfunction(KCONFIG_ADD_KCFG_FILES)
+
+function(_convert_to_camelcase ARG_INPUT ARG_OUTPUT)
+    string(TOLOWER "${ARG_INPUT}" _input_lc)
+    string(REPLACE "_" ";" _input_parts "${_input_lc}")
+    set(_result "")
+    foreach(_part ${_input_parts})
+        string(SUBSTRING "${_part}" 0 1 _first)
+        string(TOUPPER "${_first}" _first_uc)
+        string(APPEND _result "${_first_uc}")
+        string(SUBSTRING "${_part}" 1 -1 _rest)
+        string(APPEND _result "${_rest}")
+    endforeach()
+    set(${ARG_OUTPUT} "${_result}" PARENT_SCOPE)
+endfunction()
+
+function(kconfig_target_kcfg_file ARG_TARGET)
+    set(_options
+        MUTATORS
+        SINGLETON
+        CUSTOM_ADDITIONS
+        NOTIFIERS
+        DEFAULT_VALUE_GETTERS
+        ITEM_ACCESSORS
+        SET_USER_TEXTS
+        GLOBAL_ENUMS
+        USE_ENUM_TYPES
+        FORCE_STRING_FILENAME
+        GENERATE_PROPERTIES
+        PARENT_IN_CONSTRUCTOR
+        GENERATE_MOC
+    )
+    set(_single_arguments
+        FILE
+        CLASS_NAME
+        VISIBILITY
+        HEADER_EXTENSION
+        SOURCE_EXTENSION
+        NAMESPACE
+        INHERITS
+        MEMBER_VARIABLES
+        TRANSLATION_SYSTEM
+        TRANSLATION_DOMAIN
+    )
+    set(_multi_arguments
+        INCLUDE_FILES
+        SOURCE_INCLUDE_FILES
+    )
+    cmake_parse_arguments(PARSE_ARGV 1 ARG "${_options}" "${_single_arguments}" "${_multi_arguments}")
+
+    if (NOT TARGET ${ARG_TARGET})
+        message(FATAL_ERROR "${ARG_TARGET} not found")
+    endif()
+
+    if (NOT EXISTS "${ARG_FILE}" AND NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${ARG_FILE}")
+        message(FATAL_ERROR "${ARG_FILE} not found")
+    endif()
+
+    if ("${ARG_CLASS_NAME}" STREQUAL "")
+        message(FATAL_ERROR "CLASS_NAME is a required argument")
+    endif()
+
+    set(_filepath "${ARG_FILE}")
+    get_filename_component(_filename ${ARG_FILE} NAME)
+    if (IS_ABSOLUTE ${ARG_FILE})
+        set(ARG_FILE ${_filename})
+    endif()
+
+    set(_content "")
+
+    foreach(_option ${_options})
+        if("${_option}" STREQUAL "GENERATE_MOC")
+            continue()
+        endif()
+
+        _convert_to_camelcase("${_option}" _entry)
+        if (ARG_${_option})
+            string(APPEND _content "${_entry}=true\n")
+        endif()
+    endforeach()
+
+    foreach(_argument ${_single_arguments})
+        _convert_to_camelcase("${_argument}" _entry)
+        if (ARG_${_argument})
+            string(APPEND _content "${_entry}=${ARG_${_argument}}\n")
+        endif()
+    endforeach()
+
+    foreach(_argument ${_multi_arguments})
+        _convert_to_camelcase("${_argument}" _entry)
+        if (ARG_${_argument})
+            list(JOIN ARG_${_argument} ", " _joined)
+            string(APPEND _content "${_entry}=${_joined}\n")
+        endif()
+    endforeach()
+
+    get_filename_component(_basename ${_filepath} NAME_WE)
+    set(_output "${CMAKE_CURRENT_BINARY_DIR}/${_basename}.kcfgc")
+    file(WRITE ${_output} "${_content}")
+
+    configure_file(${_filepath} "${CMAKE_CURRENT_BINARY_DIR}/${_filename}" COPYONLY)
+
+    if (${ARG_GENERATE_MOC})
+        KCONFIG_ADD_KCFG_FILES(${ARG_TARGET} ${_output} GENERATE_MOC)
+    else()
+        KCONFIG_ADD_KCFG_FILES(${ARG_TARGET} ${_output})
+    endif()
+endfunction()
