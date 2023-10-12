@@ -403,11 +403,19 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {CreateFolder,
      "CreateFolder",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Create Folder", "@action"),
-     Qt::Key_F10,
+     CTRLSHIFT(N),
      0,
      QList<QKeySequence>(),
      false,
      Category::File},
+    {OpenMainMenu,
+     "OpenMainMenu",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Open Main Menu", "@action referring to the menu bar or a hamburger menu"),
+     Qt::Key_F10,
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::View},
 
     // dummy entry to catch simple off-by-one errors. Insert new entries before this line.
     {AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory}};
@@ -803,10 +811,12 @@ const QList<QKeySequence> &preferences()
 {
     return shortcut(Preferences);
 }
-
 const QList<QKeySequence> &showHideHiddenFiles()
 {
     return shortcut(ShowHideHiddenFiles);
 }
-
+const QList<QKeySequence> &openMainMenu()
+{
+    return shortcut(OpenMainMenu);
+}
 }

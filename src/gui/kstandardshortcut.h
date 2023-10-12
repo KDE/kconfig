@@ -137,6 +137,7 @@ enum StandardShortcut {
     Donate, ///< Open donation page on kde.org. @since 5.26
     ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files @since 5.70
     CreateFolder, ///< Create a folder. @since 5.74
+    OpenMainMenu, ///< Open a main menu like the menu bar or a hamburger menu. Necessary for accessibility. @since 6.0
     // Insert new items here!
 
     StandardShortcutCount, // number of standard shortcuts
@@ -530,7 +531,7 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteFile();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &renameFile();
 
 /**
- * Create a folder. Default: F10
+ * Create a folder. Default: Ctrl+Shift+N
  * @return the shortcut of the standard accelerator
  * @since 5.74
  */
@@ -557,6 +558,13 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &preferences();
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &showHideHiddenFiles();
 
+/**
+ * Open a main menu like the menu bar or a hamburger menu.
+ * Necessary for accessibility. Default: F10
+ * @return the shortcut of the standard accelerator
+ * @since 6.0
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &openMainMenu();
 }
 
 #endif // KSTANDARDSHORTCUT_H
