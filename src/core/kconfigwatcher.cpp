@@ -57,7 +57,6 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
 #if KCONFIG_USE_DBUS
     // Watching absolute paths is not supported and also makes no sense.
     const bool isAbsolutePath = config->name().at(0) == QLatin1Char('/');
-    Q_ASSERT(!isAbsolutePath);
     if (isAbsolutePath) {
         qCWarning(KCONFIG_CORE_LOG) << "Watching absolute paths is not supported" << config->name();
         return;
