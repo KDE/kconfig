@@ -455,6 +455,12 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Krei Dosierujon"
 
+#: gui/kstandardshortcut.cpp:413
+msgctxt ""
+"KStandardShortcut|@action referring to the menu bar or a hamburger menu"
+msgid "Open Main Menu"
+msgstr ""
+
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
