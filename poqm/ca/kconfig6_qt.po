@@ -4,7 +4,7 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Ivan Lloro Boada <antispam@wanadoo.es>, 2004.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Josep M. Ferrer <txemaq@gmail.com>
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022.
 # Empar Montoro Martín <montoro_mde@gva.es>, 2019.
 msgid ""
@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kconfig\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-04-19 13:20+0200\n"
+"PO-Revision-Date: 2023-10-13 17:11+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.08.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 "X-Qt-Contexts: true\n"
@@ -460,7 +460,7 @@ msgstr "Crea una carpeta"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Obre el menú principal"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"

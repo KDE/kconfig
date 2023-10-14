@@ -1,8 +1,8 @@
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-04-19 10:40+0200\n"
+"PO-Revision-Date: 2023-10-13 10:29+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #: core/kconfig.cpp:950
 msgctxt "KConfig|"
@@ -449,7 +449,7 @@ msgstr "Map aanmaken"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Hoofdmenu openen"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"

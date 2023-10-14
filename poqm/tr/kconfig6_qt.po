@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-04-19 13:10+0300\n"
+"PO-Revision-Date: 2023-10-13 12:11+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.03.70\n"
+"X-Generator: Lokalize 23.11.70\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:950
@@ -459,7 +459,7 @@ msgstr "Klasör Oluştur"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Ana Menüyü Aç"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
@@ -503,7 +503,7 @@ msgstr "dizin"
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr "Yazılım lisansını görüntüle."
+msgstr "Yazılım lisansını görüntüleyin."
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
