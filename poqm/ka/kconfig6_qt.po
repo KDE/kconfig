@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: core/kconfig.cpp:950
 msgctxt "KConfig|"
@@ -449,7 +449,7 @@ msgstr "საქაღალდის შექმნა"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "მთავარი მენიუს გახსნა"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"

@@ -1,7 +1,7 @@
 # Translation for kconfig5_qt.po to Euskara/Basque (eu).
 # Copyright (C) 2017-2023 This file is copyright:
 # This file is distributed under the same license as the original file.
-# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+# SPDX-FileCopyrightText: 2023 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Osoitz <oelkoro@gmail.com>, 2017.
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-04-19 21:12+0200\n"
+"PO-Revision-Date: 2023-10-14 17:44+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #: core/kconfig.cpp:950
 msgctxt "KConfig|"
@@ -457,7 +457,7 @@ msgstr "Sortu karpeta"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Ireki menu nagusia"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"

@@ -5,14 +5,14 @@
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
 # Marce Villarino <mvillarino@gmail.com>, 2009, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
+# SPDX-FileCopyrightText: 2023 Adrián Chaves (Gallaecio)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-06-05 14:04+0200\n"
+"PO-Revision-Date: 2023-10-14 09:56+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -20,13 +20,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:950
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr "Contacte co administrador do sistema."
+msgstr "Contacte co equipo administrador do sistema."
 
 #: core/kconfigini.cpp:572
 #, qt-format
@@ -183,7 +183,7 @@ msgstr "Avanzar"
 #: gui/kstandardshortcut.cpp:158
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr "Actualizar"
+msgstr "Recargar"
 
 #: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
@@ -238,12 +238,12 @@ msgstr "Amosar a barra de menú"
 #: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
-msgstr "Activar o seguinte separador"
+msgstr "Activar a seguinte lapela"
 
 #: gui/kstandardshortcut.cpp:229
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
-msgstr "Activar o separador anterior"
+msgstr "Activar a lapela anterior"
 
 #: gui/kstandardshortcut.cpp:237
 msgctxt "KStandardShortcut|@action"
@@ -303,7 +303,7 @@ msgstr "Reverter"
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr "Vista previa do impreso"
+msgstr "Vista de impresión"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
@@ -383,7 +383,7 @@ msgstr "Amosar a barra de estado"
 #: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
-msgstr "Atallos de teclado"
+msgstr "Asociacións de teclas"
 
 #: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
@@ -459,13 +459,14 @@ msgstr "Crear un cartafol"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Abrir o menú principal"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
-"Ferramenta de KDE para actualizar os ficheiros de configuración do usuario"
+"Ferramenta de KDE para actualizar os ficheiros de configuración da persoa "
+"usuaria."
 
 #: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
@@ -494,17 +495,17 @@ msgstr "Ficheiros dos que ler as instrucións de actualización."
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr "O directorio no que xerar os ficheiros [.]"
+msgstr "O cartafol no que xerar os ficheiros [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
 msgid "directory"
-msgstr "directorio"
+msgstr "cartafol"
 
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr "Mostra a licenza do software."
+msgstr "Amosa a licenza do soporte lóxico."
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
@@ -554,7 +555,7 @@ msgstr ""
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr "Eliminar a tecla designada se está activada"
+msgstr "Eliminar a tecla designada se escolle esta opción."
 
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
