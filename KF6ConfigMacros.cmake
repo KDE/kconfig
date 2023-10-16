@@ -193,7 +193,7 @@ function(kconfig_target_kcfg_file ARG_TARGET)
         VISIBILITY
         HEADER_EXTENSION
         SOURCE_EXTENSION
-        NAMESPACE
+        NAME_SPACE
         INHERITS
         MEMBER_VARIABLES
         TRANSLATION_SYSTEM
