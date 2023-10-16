@@ -10,219 +10,80 @@ endif()
 # make sure the generated headers can be found
 include_directories(${KCFG_OUTPUT_DIR})
 
+include(ECMMarkAsTest)
 include(${CMAKE_SOURCE_DIR}/KF6ConfigMacros.cmake)
+
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
    KCONFIG_ADD_KCFG_FILES(${_srcs} ${_testName}.kcfgc ${ARGN})
 endmacro()
 
-include(ECMMarkAsTest)
-
-########### next target ###############
-
-set(test1_SRCS test1main.cpp )
-
-
-gen_kcfg_test_source(test1 test1_SRCS)
-
-ecm_add_test(TEST_NAME test1 ${test1_SRCS})
-target_link_libraries(test1 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test2_SRCS test2main.cpp )
-
-
-gen_kcfg_test_source(test2 test2_SRCS)
-
-ecm_add_test(TEST_NAME test2 ${test2_SRCS})
-target_link_libraries(test2 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test3_SRCS test3main.cpp )
-
-
-gen_kcfg_test_source(test3 test3_SRCS)
-
-ecm_add_test(TEST_NAME test3 ${test3_SRCS})
-target_link_libraries(test3 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test3a_SRCS test3amain.cpp )
-
-
-gen_kcfg_test_source(test3a test3a_SRCS)
-
-ecm_add_test(TEST_NAME test3a ${test3a_SRCS})
-target_link_libraries(test3a KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test4_SRCS test4main.cpp )
-
-
-gen_kcfg_test_source(test4 test4_SRCS)
-
-ecm_add_test(TEST_NAME test4 ${test4_SRCS})
-target_link_libraries(test4 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test5_SRCS test5main.cpp )
-
-
-gen_kcfg_test_source(test5 test5_SRCS)
-
-ecm_add_test(TEST_NAME test5 ${test5_SRCS})
-target_link_libraries(test5 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test6_SRCS test6main.cpp )
-
-
-gen_kcfg_test_source(test6 test6_SRCS)
-
-ecm_add_test(TEST_NAME test6 ${test6_SRCS})
-target_link_libraries(test6 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test7_SRCS test7main.cpp )
-
-
-gen_kcfg_test_source(test7 test7_SRCS)
-
-ecm_add_test(TEST_NAME test7 ${test7_SRCS})
-target_link_libraries(test7 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test8_SRCS test8main.cpp )
-
-
-gen_kcfg_test_source(test8a test8_SRCS)
-gen_kcfg_test_source(test8b test8_SRCS)
-gen_kcfg_test_source(test8c test8_SRCS)
-
-ecm_add_test(TEST_NAME test8 ${test8_SRCS})
-target_link_libraries(test8 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test9_SRCS test9main.cpp )
-
-
-gen_kcfg_test_source(test9 test9_SRCS)
-
-ecm_add_test(TEST_NAME test9 ${test9_SRCS})
-target_link_libraries(test9 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test10_SRCS test10main.cpp )
-
-
-gen_kcfg_test_source(test10 test10_SRCS)
-
-ecm_add_test(TEST_NAME test10 ${test10_SRCS})
-target_link_libraries(test10 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test11_SRCS test11main.cpp )
-
-
-gen_kcfg_test_source(test11 test11_SRCS)
-gen_kcfg_test_source(test11a test11_SRCS)
-
-ecm_add_test(TEST_NAME test11 ${test11_SRCS})
-target_link_libraries(test11 KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test12_SRCS test12main.cpp )
-
-gen_kcfg_test_source(test12 test12_SRCS)
-
-ecm_add_test(TEST_NAME test12 ${test12_SRCS})
-target_link_libraries(test12 KF6::ConfigGui)
-
-########### next target ###############
-
-set(test13_SRCS test13main.cpp )
-
-gen_kcfg_test_source(test13 test13_SRCS GENERATE_MOC)
-
-ecm_add_test(TEST_NAME test13 ${test13_SRCS})
-target_link_libraries(test13 KF6::ConfigGui)
-
-########### next target ###############
-
-set(test_state_config_SRCS test_state_config_main.cpp)
-
-gen_kcfg_test_source(test_state_config test_state_config_SRCS GENERATE_MOC)
-
-ecm_add_test(TEST_NAME test_state_config ${test_state_config_SRCS})
-target_link_libraries(test_state_config KF6::ConfigGui Qt6::Test)
-
-########### next target ###############
-
-set(test_emptyentries_SRCS test_emptyentries_main.cpp )
-
-gen_kcfg_test_source(test_emptyentries test_emptyentries_SRCS GENERATE_MOC)
-
-ecm_add_test(TEST_NAME test_emptyentries ${test_emptyentries_SRCS})
-target_link_libraries(test_emptyentries KF6::ConfigGui)
-
-########### next target ###############
-
-set(test_subgroups_SRCS test_subgroups_main.cpp )
-
-gen_kcfg_test_source(test_subgroups test_subgroups_SRCS GENERATE_MOC)
-
-ecm_add_test(TEST_NAME test_subgroups ${test_subgroups_SRCS})
-target_link_libraries(test_subgroups KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test_dpointer_SRCS test_dpointer_main.cpp )
-
-gen_kcfg_test_source(test_dpointer test_dpointer_SRCS)
-
-ecm_add_test(TEST_NAME test_dpointer ${test_dpointer_SRCS})
-target_link_libraries(test_dpointer KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test_signal_SRCS test_signal_main.cpp )
-gen_kcfg_test_source(test_signal test_signal_SRCS GENERATE_MOC)
-ecm_add_test(TEST_NAME test_signal ${test_signal_SRCS})
-target_link_libraries(test_signal KF6::ConfigGui)
-
-
-########### next target ###############
-
-set(test_notifiers_SRCS test_notifiers_main.cpp )
-gen_kcfg_test_source(test_notifiers test_notifiers_SRCS)
-ecm_add_test(TEST_NAME test_notifiers ${test_notifiers_SRCS})
-target_link_libraries(test_notifiers KF6::ConfigGui)
-
+function(kconfig_compiler_test ARG_NAME)
+    cmake_parse_arguments(PARSE_ARGV 1 ARG "GENERATE_MOC" "MAIN;CLASS_NAME;KCFG;KCFGC" "")
+
+    string(TOLOWER "${ARG_NAME}" _name_lc)
+
+    if ("${ARG_MAIN}" STREQUAL "")
+        set(ARG_MAIN "${_name_lc}main.cpp")
+    endif()
+
+    if ("${ARG_CLASS_NAME}" STREQUAL "")
+        set(ARG_CLASS_NAME "${ARG_NAME}")
+    endif()
+
+    if ("${ARG_KCFG}" STREQUAL "")
+        set(ARG_KCFG "${_name_lc}.kcfg")
+    endif()
+
+    if ("${ARG_KCFGC}" STREQUAL "")
+        set(ARG_KCFGC "${_name_lc}.kcfgc")
+    endif()
+
+    if (${ARG_GENERATE_MOC})
+        set(_moc GENERATE_MOC)
+    endif()
+
+    ecm_add_test(TEST_NAME ${ARG_NAME} ${ARG_MAIN})
+    KCONFIG_ADD_KCFG_FILES(${ARG_NAME} "${ARG_KCFGC}" ${_moc})
+    target_link_libraries(${ARG_NAME} Qt6::Test KF6::ConfigGui)
+
+    ecm_add_test(TEST_NAME ${ARG_NAME}_cmake ${ARG_MAIN})
+    get_filename_component(_kcfg_we "${ARG_KCFG}" NAME_WE)
+    configure_file("${ARG_KCFG}" "${_kcfg_we}_cmake.kcfg" COPYONLY)
+    kconfig_target_kcfg_file(${ARG_NAME}_cmake FILE "${CMAKE_CURRENT_BINARY_DIR}/${_kcfg_we}_cmake.kcfg" CLASS_NAME "${ARG_CLASS_NAME}" ${_moc} ${ARG_UNPARSED_ARGUMENTS})
+    target_link_libraries(${ARG_NAME}_cmake Qt6::Test KF6::ConfigGui)
+endfunction()
+
+kconfig_compiler_test(Test1 PARENT_IN_CONSTRUCTOR MUTATORS)
+kconfig_compiler_test(Test2 MUTATORS GLOBAL_ENUMS ITEM_ACCESSORS SET_USER_TEXTS INHERITS MyPrefs INCLUDE_FILES myprefs.h MEMBER_VARIABLES public)
+kconfig_compiler_test(Test3 MUTATORS GLOBAL_ENUMS ITEM_ACCESSORS NAME_SPACE TestNameSpace)
+kconfig_compiler_test(Test3a MUTATORS GLOBAL_ENUMS ITEM_ACCESSORS NAME_SPACE TestNameSpace::InnerNameSpace)
+kconfig_compiler_test(Test4 SINGLETON MUTATORS)
+kconfig_compiler_test(Test5 PARENT_IN_CONSTRUCTOR SINGLETON MUTATORS GLOBAL_ENUMS)
+kconfig_compiler_test(Test6 MUTATORS GLOBAL_ENUMS)
+kconfig_compiler_test(Test7 MUTATORS GLOBAL_ENUMS)
+
+kconfig_compiler_test(Test8 KCFGC test8a.kcfgc KCFG test8a.kcfg CLASS_NAME Test8a PARENT_IN_CONSTRUCTOR MUTATORS)
+KCONFIG_ADD_KCFG_FILES(Test8 test8c.kcfgc)
+KCONFIG_ADD_KCFG_FILES(Test8 test8b.kcfgc)
+kconfig_target_kcfg_file(Test8_cmake FILE test8b.kcfg CLASS_NAME Test8b SINGLETON MUTATORS INCLUDE_FILES test8a.h INHERITS Test8a)
+kconfig_target_kcfg_file(Test8_cmake FILE test8c.kcfg CLASS_NAME Test8c SINGLETON PARENT_IN_CONSTRUCTOR MUTATORS)
+
+kconfig_compiler_test(Test9 MEMBER_VARIABLES public MUTATORS)
+kconfig_compiler_test(Test10 SINGLETON)
+
+kconfig_compiler_test(Test11 PARENT_IN_CONSTRUCTOR MUTATORS INHERITS MyPrefs INCLUDE_FILES myprefs.h MEMBER_VARIABLES public ITEM_ACCESSORS SET_USER_TEXTS USE_ENUM_TYPES DEFAULT_VALUE_GETTERS)
+KCONFIG_ADD_KCFG_FILES(Test11 test11a.kcfgc)
+kconfig_target_kcfg_file(Test11_cmake FILE test11a.kcfg CLASS_NAME Test11a MUTATORS INHERITS MyPrefs INCLUDE_FILES myprefs.h MEMBER_VARIABLES public ITEM_ACCESSORS SET_USER_TEXTS USE_ENUM_TYPES DEFAULT_VALUE_GETTERS)
+
+kconfig_compiler_test(Test12 test12main.cpp)
+kconfig_compiler_test(Test13 test13main.cpp MUTATORS GENERATE_PROPERTIES GENERATE_MOC)
+
+kconfig_compiler_test(test_state_config MAIN test_state_config_main.cpp CLASS_NAME MyStateConfig MUTATORS ITEM_ACCESSORS GENERATE_MOC)
+kconfig_compiler_test(test_emptyentries MAIN test_emptyentries_main.cpp CLASS_NAME QMakeBuilderSettings SINGLETON GENERATE_MOC)
+kconfig_compiler_test(test_subgroups MAIN test_subgroups_main.cpp CLASS_NAME TestSubgroups NOTIFIERS GENERATE_MOC)
+kconfig_compiler_test(test_dpointer MAIN test_dpointer_main.cpp CLASS_NAME TestDPointer SINGLETON MUTATORS MEMBER_VARIABLES dpointer ITEM_ACCESSORS SET_USER_TEXTS)
+kconfig_compiler_test(test_signal MAIN test_signal_main.cpp CLASS_NAME TestSignal SINGLETON MUTATORS MEMBER_VARIABLES private GENERATE_MOC)
+kconfig_compiler_test(test_notifiers MAIN test_notifiers_main.cpp CLASS_NAME TestNotifiers MUTATORS GLOBAL_ENUMS NOTIFIERS)
 
 ########### next target ###############
 
