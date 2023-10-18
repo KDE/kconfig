@@ -22,7 +22,7 @@ msgstr ""
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:958
+#: core/kconfig.cpp:961
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Kontakt systemadministratoren din."
