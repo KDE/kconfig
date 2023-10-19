@@ -244,6 +244,17 @@ The following options are read from the kcfgc file:
     accessor return values and mutator parameters will be of type int.
   </dd>
 
+  <dt>GenerateExternalEnumChoices=\<bool\></dt>
+  <dd>
+    Default: false \n
+    If set to true, all Enum items whose enums are externally defined and do not have
+    explicitly defined choices will have choices generated from type metadata if the enums
+    are registered in the Qt meta object system. This eliminates the need to manually
+    define choices for each enum value in order to have them written to the user's config
+    file as a string. If set to false, Enum items whose enums are externally defined will
+    have their value written to the user's config file as an integer.
+  </dd>
+
   <dt>ForceStringFilename=\<bool\></dt>
   <dd>
     Default: false \n

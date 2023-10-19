@@ -63,6 +63,10 @@ void KConfigSourceGenerator::createHeaders()
     if (cfg().singleton) {
         addHeaders({QStringLiteral("qglobal.h"), QStringLiteral("QFile")});
 
+        if (cfg().generateExternalEnumChoices) {
+            addHeaders({QStringLiteral("QMetaEnum")});
+        }
+
         // HACK: Add single line to fix test.
         if (cfg().singleton && parseResult.cfgFileNameArg) {
             stream() << '\n';
@@ -269,6 +273,20 @@ void KConfigSourceGenerator::createEnums(const CfgEntry *entry)
         return;
     }
     stream() << "  QList<" << cfg().inherits << "::ItemEnum::Choice> values" << entry->name << ";\n";
+
+    if (cfg().generateExternalEnumChoices && entry->choices.external() && entry->choices.choices.isEmpty()) {
+        stream() << "  {\n";
+        stream() << "    auto metaEnum = QMetaEnum::fromType<" << entry->choices.name() << ">();\n";
+        stream() << "    if (metaEnum.isValid()) {\n";
+        stream() << "      for (int i = 0; i < metaEnum.keyCount(); ++i) {\n";
+        stream() << "        " << cfg().inherits << "::ItemEnum::Choice choice;\n";
+        stream() << "        choice.name = QLatin1StringView(metaEnum.key(i));\n";
+        stream() << "        values" << entry->name << ".append( choice );\n";
+        stream() << "      }\n";
+        stream() << "    }\n";
+        stream() << "  }\n";
+        return;
+    }
 
     for (const auto &choice : std::as_const(entry->choices.choices)) {
         stream() << "  {\n";

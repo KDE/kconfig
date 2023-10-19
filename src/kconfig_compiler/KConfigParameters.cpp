@@ -64,6 +64,7 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
     allNotifiers = ((notifiers.count() == 1) && (notifiers.at(0).toLower() == QLatin1String("true")));
     globalEnums = codegenConfig.value(QStringLiteral("GlobalEnums"), false).toBool();
     useEnumTypes = codegenConfig.value(QStringLiteral("UseEnumTypes"), false).toBool();
+    generateExternalEnumChoices = codegenConfig.value(QStringLiteral("GenerateExternalEnumChoices"), false).toBool();
     const QString trString = codegenConfig.value(QStringLiteral("TranslationSystem")).toString().toLower();
     generateProperties = codegenConfig.value(QStringLiteral("GenerateProperties"), false).toBool();
     if (trString == QLatin1String("kde")) {

@@ -57,6 +57,7 @@ public:
     bool dpointer;
     bool globalEnums;
     bool useEnumTypes;
+    bool generateExternalEnumChoices; // Generate choices for external enums if no choices defined
     bool itemAccessors;
     bool allNotifiers;
     TranslationSystem translationSystem;
