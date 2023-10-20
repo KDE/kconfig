@@ -10,15 +10,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-10-02 11:38+0300\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2023-10-19 20:15+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:950
@@ -457,7 +458,7 @@ msgstr "יצירת תיקייה"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "פתיחת התפריט הראשי"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
