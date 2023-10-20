@@ -16,7 +16,6 @@
 
 #include <QList>
 #include <QString>
-#include <QVector>
 
 #include "KConfigParameters.h"
 

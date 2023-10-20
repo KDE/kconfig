@@ -189,11 +189,11 @@ QStringList KConfigGroupPrivate::deserializeList(const QString &data)
     return value;
 }
 
-static QVector<int> asIntList(const QByteArray &string)
+static QList<int> asIntList(const QByteArray &string)
 {
     const auto &splitString = string.split(',');
 
-    QVector<int> list;
+    QList<int> list;
     list.reserve(splitString.count());
     for (const QByteArray &s : splitString) {
         list << s.toInt();
@@ -201,11 +201,11 @@ static QVector<int> asIntList(const QByteArray &string)
     return list;
 }
 
-static QVector<qreal> asRealList(const QByteArray &string)
+static QList<qreal> asRealList(const QByteArray &string)
 {
     const auto &splitString = string.split(',');
 
-    QVector<qreal> list;
+    QList<qreal> list;
     list.reserve(splitString.count());
     for (const QByteArray &s : splitString) {
         list << s.toDouble();

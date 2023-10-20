@@ -15,9 +15,9 @@
 #define KCONFIGCODEGENERATORBASE_H
 
 #include <QFile>
+#include <QList>
 #include <QString>
 #include <QTextStream>
-#include <QVector>
 
 #include "KConfigCommonStructs.h"
 #include "KConfigParameters.h"
