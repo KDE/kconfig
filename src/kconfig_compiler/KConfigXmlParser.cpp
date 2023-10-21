@@ -451,13 +451,11 @@ void KConfigXmlParser::start()
         qFatal("Could not open input file: %s", qUtf8Printable(mInputFileName));
     }
     QDomDocument doc;
-    QString errorMsg;
-    int errorRow;
-    int errorCol;
-    if (!doc.setContent(&input, &errorMsg, &errorRow, &errorCol)) {
+    const QDomDocument::ParseResult parseResult = doc.setContent(&input);
+    if (!parseResult) {
         std::cerr << "Unable to load document." << std::endl;
-        std::cerr << "Parse error in " << qPrintable(mInputFileName) << ", line " << errorRow << ", col " << errorCol << ": " << qPrintable(errorMsg)
-                  << std::endl;
+        std::cerr << "Parse error in " << qPrintable(mInputFileName) << ", line " << parseResult.errorLine << ", col " << parseResult.errorColumn << ": "
+                  << qPrintable(parseResult.errorMessage) << std::endl;
         exit(1);
     }
 
