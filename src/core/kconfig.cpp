@@ -383,7 +383,7 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
 {
     Q_D(const KConfig);
     QMap<QString, QString> theMap;
-    const QByteArray theGroup(aGroup.isEmpty() ? "<default>" : aGroup.toUtf8());
+    const QByteArray theGroup(aGroup.isEmpty() ? QByteArrayLiteral("<default>") : aGroup.toUtf8());
 
     const auto theEnd = d->entryMap.constEnd();
     auto it = d->entryMap.constFindEntry(theGroup, {}, {});
