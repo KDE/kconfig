@@ -238,7 +238,7 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         // readEntry(key, QString) not readEntry(key, QVariant)
         return QString::fromUtf8(value);
     case QMetaType::QUuid:
-        return QUuid::fromString(QString::fromUtf8(value));
+        return QUuid::fromString(value);
     case QMetaType::QVariantList:
     case QMetaType::QStringList:
         return KConfigGroupPrivate::deserializeList(QString::fromUtf8(value));
