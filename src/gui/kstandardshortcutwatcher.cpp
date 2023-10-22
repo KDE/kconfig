@@ -26,7 +26,7 @@ StandardShortcutWatcher::StandardShortcutWatcher(QObject *parent)
             return;
         }
         for (const auto &key : keys) {
-            const StandardShortcut shortcut = KStandardShortcut::findByName(QString::fromUtf8(key));
+            const StandardShortcut shortcut = KStandardShortcut::findByName(key);
             if (shortcut != KStandardShortcut::AccelNone) {
                 initialize(shortcut);
                 Q_EMIT shortcutChanged(shortcut, KStandardShortcut::shortcut(shortcut));

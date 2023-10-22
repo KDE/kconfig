@@ -202,9 +202,9 @@ KCONFIGGUI_EXPORT StandardShortcut find(const QKeySequence &keySeq);
  * @param name the name as returned by  name(StandardShortcut id)
  * @return the id of the standard accelerator with the given name or AccelNone
  * if there is no such accelerator
- * @since 5.71
+ * @since 6.0
  */
-KCONFIGGUI_EXPORT StandardShortcut findByName(const QString &name);
+KCONFIGGUI_EXPORT StandardShortcut findByName(QAnyStringView name);
 
 /**
  * Returns the hardcoded default shortcut for @p id.

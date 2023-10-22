@@ -564,7 +564,7 @@ StandardShortcut find(const QKeySequence &seq)
     return AccelNone;
 }
 
-StandardShortcut findByName(const QString &name)
+StandardShortcut findByName(QAnyStringView name)
 {
     for (const KStandardShortcutInfo &shortcutInfo : g_infoStandardShortcut) {
         if (QLatin1StringView(shortcutInfo.name) == name) {
