@@ -358,22 +358,22 @@ bool KConfigPrivate::hasNonDeletedEntries(const QByteArray &group) const
     });
 }
 
-QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
+QList<QByteArray> KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
 {
-    QStringList keys;
+    QList<QByteArray> keys;
 
     const auto theEnd = entryMap.constEnd();
     auto it = entryMap.constFindEntry(theGroup);
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
-        std::set<QString> tmp; // unique set, sorted for unittests
+        std::set<QByteArray> tmp; // unique set, sorted for unittests
         for (; it != theEnd && it.key().mGroup == theGroup; ++it) {
             if (isNonDeletedKey(it)) {
-                tmp.insert(QString::fromUtf8(it.key().mKey));
+                tmp.insert(it.key().mKey);
             }
         }
-        keys = QList<QString>(tmp.begin(), tmp.end());
+        keys = QList<QByteArray>(tmp.begin(), tmp.end());
     }
 
     return keys;
@@ -924,9 +924,8 @@ void KConfig::deleteGroupImpl(const QByteArray &aGroup, WriteConfigFlags flags)
 
     const QSet<QByteArray> groups = d->allSubGroups(aGroup);
     for (const QByteArray &group : groups) {
-        const QStringList keys = d->keyListImpl(group);
-        for (const QString &_key : keys) {
-            const QByteArray &key = _key.toUtf8();
+        const QList<QByteArray> keys = d->keyListImpl(group);
+        for (const QByteArray &key : keys) {
             if (d->canWriteEntry(group, key.constData())) {
                 d->entryMap.setEntry(group, key, QByteArray(), options);
                 d->bDirty = true;
