@@ -10,7 +10,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    TestNameSpace::InnerNameSpace::Test3a *t = new TestNameSpace::InnerNameSpace::Test3a();
-    delete t;
+    TestNameSpace::InnerNameSpace::Test3a t = TestNameSpace::InnerNameSpace::Test3a();
     return 0;
 }

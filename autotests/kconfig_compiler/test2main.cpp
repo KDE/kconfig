@@ -10,7 +10,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    Test2 *t = new Test2();
-    delete t;
+    Test2 t = Test2();
     return 0;
 }

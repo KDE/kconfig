@@ -22,7 +22,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 int main(int, char **)
 {
-    TestPropertiesMinMax *t = new TestPropertiesMinMax();
-    delete t;
+    TestPropertiesMinMax t = TestPropertiesMinMax();
     return 0;
 }

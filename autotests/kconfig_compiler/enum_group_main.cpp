@@ -10,8 +10,7 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
 
-    auto *t = new TestEnumsAndProperties();
-    delete t;
+    TestEnumsAndProperties t = TestEnumsAndProperties();
 
     Q_UNUSED(app);
     return 0;

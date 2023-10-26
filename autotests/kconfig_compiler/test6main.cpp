@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    Test6 *t = new Test6(QString());
-    delete t;
+    Test6 t = Test6(QString());
     return 0;
 }

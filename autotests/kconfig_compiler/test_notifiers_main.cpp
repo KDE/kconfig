@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    TestNotifiers *t = new TestNotifiers(42);
-    delete t;
+    TestNotifiers t = TestNotifiers(42);
     return 0;
 }

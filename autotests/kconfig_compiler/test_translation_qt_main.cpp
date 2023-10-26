@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    TestNameSpace::TestTranslationQt *t = new TestNameSpace::TestTranslationQt();
-    delete t;
+    TestNameSpace::TestTranslationQt t = TestNameSpace::TestTranslationQt();
     return 0;
 }

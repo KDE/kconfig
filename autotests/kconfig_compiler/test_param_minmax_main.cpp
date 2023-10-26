@@ -22,7 +22,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 int main(int, char **)
 {
-    TestParamMinMax *t = new TestParamMinMax();
-    delete t;
+    TestParamMinMax t = TestParamMinMax();
     return 0;
 }

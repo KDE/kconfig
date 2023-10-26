@@ -26,7 +26,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    TestSubgroups *t = new TestSubgroups(QStringLiteral("General"), QStringLiteral("Sub"), QStringLiteral("AnotherSub"));
-    delete t;
+    TestSubgroups t = TestSubgroups(QStringLiteral("General"), QStringLiteral("Sub"), QStringLiteral("AnotherSub"));
     return 0;
 }

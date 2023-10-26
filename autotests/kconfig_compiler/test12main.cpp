@@ -7,7 +7,6 @@
 
 int main(int, char **)
 {
-    Test12 *t = new Test12();
-    delete t;
+    Test12 t = Test12();
     return 0;
 }

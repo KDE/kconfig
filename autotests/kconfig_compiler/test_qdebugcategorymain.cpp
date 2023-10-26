@@ -11,7 +11,6 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
-    TestQCategory *t = new TestQCategory(42);
-    delete t;
+    TestQCategory t = TestQCategory(42);
     return 0;
 }
