@@ -777,6 +777,7 @@ public:
             QString label;
             QString toolTip;
             QString whatsThis;
+            QString value;
         };
 
         /**

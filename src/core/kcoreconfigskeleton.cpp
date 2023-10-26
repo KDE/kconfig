@@ -583,15 +583,22 @@ void KCoreConfigSkeleton::ItemLongLong::setMaxValue(qint64 v)
 
 QString KCoreConfigSkeleton::ItemEnum::valueForChoice(const QString &name) const
 {
-    // HACK for BC concerns
-    // TODO KF6: remove KConfigSkeletonItemPrivate::mValues and add a value field to KCoreConfigSkeleton::ItemEnum::Choice
-    const auto inHash = d_ptr->mValues.value(name);
-    return !inHash.isEmpty() ? inHash : name;
+    for (auto it = mChoices.cbegin(); it != mChoices.cend(); ++it) {
+        if (it->name == name) {
+            return it->value.isEmpty() ? it->name : it->value;
+        }
+    }
+    return name;
 }
 
 void KCoreConfigSkeleton::ItemEnum::setValueForChoice(const QString &name, const QString &value)
 {
-    d_ptr->mValues.insert(name, value);
+    for (auto it = mChoices.begin(); it != mChoices.end(); ++it) {
+        if (it->name == name) {
+            it->value = value;
+            return;
+        }
+    }
 }
 
 KCoreConfigSkeleton::ItemEnum::ItemEnum(const QString &_group, const QString &_key, qint32 &reference, const QList<Choice> &choices, qint32 defaultValue)
