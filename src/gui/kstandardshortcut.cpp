@@ -465,7 +465,7 @@ void initialize(StandardShortcut id)
         Q_ASSERT(info->name);
     }
 
-    KConfigGroup cg(KSharedConfig::openConfig(), "Shortcuts");
+    KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("Shortcuts"));
 
     if (cg.hasKey(info->name)) {
         QString s = cg.readEntry(info->name);
@@ -491,7 +491,7 @@ void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut)
         return;
     }
 
-    KConfigGroup cg(KSharedConfig::openConfig(), "Shortcuts");
+    KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("Shortcuts"));
 
     info->cut = newShortcut;
     bool sameAsDefault = (newShortcut == hardcodedDefaultShortcut(id));

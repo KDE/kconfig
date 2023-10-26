@@ -97,7 +97,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
             userWarned = true;
             const bool isReadOnly = qEnvironmentVariableIsEmpty("KDE_HOME_READONLY");
             if (isReadOnly && QCoreApplication::applicationName() != QLatin1String("kdialog")) {
-                if (ptr->group("General").readEntry(QStringLiteral("warn_unwritable_config"), true)) {
+                if (ptr->group(QStringLiteral("General")).readEntry(QStringLiteral("warn_unwritable_config"), true)) {
                     ptr->isConfigWritable(true);
                 }
             }
@@ -133,14 +133,14 @@ KSharedConfig::~KSharedConfig()
     }
 }
 
-KConfigGroup KSharedConfig::groupImpl(const QByteArray &groupName)
+KConfigGroup KSharedConfig::groupImpl(const QString &groupName)
 {
     KSharedConfigPtr ptr(this);
-    return KConfigGroup(ptr, groupName.constData());
+    return KConfigGroup(ptr, groupName);
 }
 
-const KConfigGroup KSharedConfig::groupImpl(const QByteArray &groupName) const
+const KConfigGroup KSharedConfig::groupImpl(const QString &groupName) const
 {
     const KSharedConfigPtr ptr(const_cast<KSharedConfig *>(this));
-    return KConfigGroup(ptr, groupName.constData());
+    return KConfigGroup(ptr, groupName);
 }

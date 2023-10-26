@@ -345,11 +345,11 @@ public:
     static QString mainConfigName();
 
 protected:
-    bool hasGroupImpl(const QByteArray &group) const override;
-    KConfigGroup groupImpl(const QByteArray &b) override;
-    const KConfigGroup groupImpl(const QByteArray &b) const override;
-    void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags = Normal) override;
-    bool isGroupImmutableImpl(const QByteArray &aGroup) const override;
+    bool hasGroupImpl(const QString &groupName) const override;
+    KConfigGroup groupImpl(const QString &groupName) override;
+    const KConfigGroup groupImpl(const QString &groupName) const override;
+    void deleteGroupImpl(const QString &groupName, WriteConfigFlags flags = Normal) override;
+    bool isGroupImmutableImpl(const QString &groupName) const override;
 
     friend class KConfigGroup;
     friend class KConfigGroupPrivate;

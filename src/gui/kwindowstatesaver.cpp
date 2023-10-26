@@ -73,15 +73,17 @@ KWindowStateSaver::KWindowStateSaver(QWindow *window, const QString &configGroup
     d->init(this);
 }
 
+#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 241)
 KWindowStateSaver::KWindowStateSaver(QWindow *window, const char *configGroupName)
     : QObject(window)
     , d(new KWindowStateSaverPrivate)
 {
     Q_ASSERT(window);
     d->window = window;
-    d->configGroup = KConfigGroup(KSharedConfig::openStateConfig(), configGroupName);
+    d->configGroup = KConfigGroup(KSharedConfig::openStateConfig(), QString::fromUtf8(configGroupName));
     d->init(this);
 }
+#endif
 
 KWindowStateSaver::~KWindowStateSaver()
 {
@@ -127,12 +129,14 @@ void KWindowStateSaver::initWidget(QObject *widget, const std::function<QWindow 
     d->initWidget(widget, this);
 }
 
+#if KCONFIGGUI_BUILD_DEPRECATED_SINCE(5, 241)
 void KWindowStateSaver::initWidget(QObject *widget, const std::function<QWindow *()> &windowHandleCallback, const char *configGroupName)
 {
     d = new KWindowStateSaverPrivate;
     d->windowHandleCallback = windowHandleCallback;
-    d->configGroup = KConfigGroup(KSharedConfig::openStateConfig(), configGroupName);
+    d->configGroup = KConfigGroup(KSharedConfig::openStateConfig(), QString::fromUtf8(configGroupName));
     d->initWidget(widget, this);
 }
+#endif
 
 #include "moc_kwindowstatesaver.cpp"

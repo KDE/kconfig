@@ -54,12 +54,16 @@ public:
      * @param group name of group
      */
     KConfigGroup(KConfigBase *master, const QString &group);
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
     /**
      * Overload for KConfigGroup(KConfigBase*,const QString&)
      *
      * @param group name of group, encoded in UTF-8
+     * @deprecated Since 5.240, use QString overload
      */
+    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
     KConfigGroup(KConfigBase *master, const char *group);
+#endif
 
     /**
      * Construct a read-only config group.
@@ -70,21 +74,29 @@ public:
      * as @p master.
      */
     KConfigGroup(const KConfigBase *master, const QString &group);
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
     /**
      * Overload for KConfigGroup(const KConfigBase*,const QString&)
      *
      * @param group name of group, encoded in UTF-8
+     * @deprecated Since 5.240, use QString overload
      */
+    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
     KConfigGroup(const KConfigBase *master, const char *group);
+#endif
 
     /** Overload for KConfigGroup(const KConfigBase*,const QString&) */
     KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const QString &group);
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
     /**
      * Overload for KConfigGroup(const KConfigBase*,const QString&)
      *
      * @param group name of group, encoded in UTF-8
+     * @deprecated Since 5.240, use QString overload
      */
+    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
     KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const char *group);
+#endif
 
     /**
      * Creates a copy of a group.
@@ -676,11 +688,11 @@ public:
     QMap<QString, QString> entryMap() const;
 
 protected:
-    bool hasGroupImpl(const QByteArray &group) const override;
-    KConfigGroup groupImpl(const QByteArray &b) override;
-    const KConfigGroup groupImpl(const QByteArray &b) const override;
-    void deleteGroupImpl(const QByteArray &group, WriteConfigFlags flags) override;
-    bool isGroupImmutableImpl(const QByteArray &aGroup) const override;
+    bool hasGroupImpl(const QString &groupName) const override;
+    KConfigGroup groupImpl(const QString &groupName) override;
+    const KConfigGroup groupImpl(const QString &groupName) const override;
+    void deleteGroupImpl(const QString &groupName, WriteConfigFlags flags) override;
+    bool isGroupImmutableImpl(const QString &groupName) const override;
 
 private:
     QExplicitlySharedDataPointer<KConfigGroupPrivate> d;

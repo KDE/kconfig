@@ -44,7 +44,7 @@ KDesktopFile::KDesktopFile(QStandardPaths::StandardLocation resourceType, const 
 {
     Q_D(KDesktopFile);
     reparseConfiguration();
-    d->desktopGroup = KConfigGroup(this, "Desktop Entry");
+    d->desktopGroup = KConfigGroup(this, QStringLiteral("Desktop Entry"));
 }
 
 KDesktopFile::KDesktopFile(const QString &fileName)
@@ -236,7 +236,7 @@ const KConfigGroup KDesktopFile::actionGroup(const QString &group) const
 
 bool KDesktopFile::hasActionGroup(const QString &group) const
 {
-    return hasGroup(QString(QLatin1String("Desktop Action ") + group).toUtf8().constData());
+    return hasGroup(QString(QLatin1String("Desktop Action ") + group));
 }
 
 bool KDesktopFile::hasLinkType() const

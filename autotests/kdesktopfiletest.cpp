@@ -24,7 +24,7 @@ void KDesktopFileTest::initTestCase()
 {
     QStandardPaths::setTestModeEnabled(true);
 
-    KConfigGroup actionRestrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
+    KConfigGroup actionRestrictions(KSharedConfig::openConfig(), QStringLiteral("KDE Action Restrictions"));
     actionRestrictions.writeEntry("someBlockedAction", false);
 }
 

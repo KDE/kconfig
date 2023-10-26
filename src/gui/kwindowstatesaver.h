@@ -58,12 +58,16 @@ public:
      * configuration (see KSharedConfig::openStateConfig) that holds the window state.
      */
     explicit KWindowStateSaver(QWindow *window, const QString &configGroupName);
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 241)
     /**
      * Create a new window state saver for @p window.
      * @param configGroupName The name of a KConfigGroup in the default state
      * configuration (see KSharedConfig::openStateConfig) that holds the window state.
+     * @deprecated Since 5.240, use QString overload
      */
+    KCONFIGGUI_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
     explicit KWindowStateSaver(QWindow *window, const char *configGroupName);
+#endif
 
     /**
      * Create a new window state saver for @p widget.
@@ -80,14 +84,18 @@ public:
      */
     template<typename Widget>
     explicit inline KWindowStateSaver(Widget *widget, const QString &configGroupName);
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 241)
     /**
      * Create a new window state saver for @p widget.
      * Use this for widgets that aren't shown yet and would still return @c nullptr from windowHandle().
      * @param configGroupName The name of a KConfigGroup in the default state
      * configuration (see KSharedConfig::openStateConfig) that holds the window state.
+     * @deprecated Since 5.240, use QString overload
      */
+    KCONFIGGUI_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
     template<typename Widget>
     explicit inline KWindowStateSaver(Widget *widget, const char *configGroupName);
+#endif
 
     ~KWindowStateSaver();
 
@@ -98,7 +106,9 @@ private:
     // API used by template code, so technically part of the ABI
     void initWidget(QObject *widget, const std::function<QWindow *()> &windowHandleCallback, const KConfigGroup &configGroup);
     void initWidget(QObject *widget, const std::function<QWindow *()> &windowHandleCallback, const QString &configGroupName);
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 241)
     void initWidget(QObject *widget, const std::function<QWindow *()> &windowHandleCallback, const char *configGroupName);
+#endif
 
     // cannot use std::unique_ptr due to the template ctors
     // not seeing the full private class
@@ -129,6 +139,7 @@ KWindowStateSaver::KWindowStateSaver(Widget *widget, const QString &configGroupN
         configGroupName);
 }
 
+#if KCONFIGGUI_ENABLE_DEPRECATED_SINCE(5, 241)
 template<typename Widget>
 KWindowStateSaver::KWindowStateSaver(Widget *widget, const char *configGroupName)
     : QObject(widget)
@@ -140,5 +151,6 @@ KWindowStateSaver::KWindowStateSaver(Widget *widget, const char *configGroupName
         },
         configGroupName);
 }
+#endif
 
 #endif // KWINDOWSTATESAVER_H

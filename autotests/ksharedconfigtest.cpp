@@ -43,11 +43,11 @@ void KSharedConfigTest::testReadWrite()
 {
     const int value = 1;
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KSharedConfigTest"));
         cg.writeEntry("NumKey", value);
     }
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KSharedConfigTest"));
         QCOMPARE(cg.readEntry("NumKey", 0), 1);
     }
 }
@@ -56,14 +56,14 @@ void KSharedConfigTest::testReadWriteSync()
 {
     const int value = 1;
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KSharedConfigTest"));
         cg.writeEntry("NumKey", value);
     }
     QVERIFY(!QFile::exists(m_path));
     QVERIFY(KSharedConfig::openConfig()->sync());
     QVERIFY(QFile::exists(m_path));
     {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KSharedConfigTest");
+        KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KSharedConfigTest"));
         QCOMPARE(cg.readEntry("NumKey", 0), 1);
     }
 }

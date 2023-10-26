@@ -10,7 +10,7 @@
 
 // clazy:excludeall=non-pod-global-static
 
-static const QByteArray group1{"A Group"};
+static const QString group1{QStringLiteral("A Group")};
 static const QByteArray key1{"A Key"};
 static const QByteArray key2{"Another Key"};
 static const QByteArray value1{"A value"};

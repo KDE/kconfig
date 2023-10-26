@@ -77,7 +77,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
         return file.exists() ? ParseOpenError : ParseOk;
     }
 
-    QList<QByteArray> immutableGroups;
+    QList<QString> immutableGroups;
 
     bool fileOptionImmutable = false;
     bool groupOptionImmutable = false;
@@ -94,7 +94,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     const int langIdx = currentLocale.indexOf('_');
     const QByteArray currentLanguage = langIdx >= 0 ? currentLocale.left(langIdx) : currentLocale;
 
-    QByteArray currentGroup("<default>");
+    QString currentGroup = QStringLiteral("<default>");
     bool bDefault = options & ParseDefaults;
     bool allowExecutableValues = options & ParseExpansions;
 
@@ -154,7 +154,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
                     newGroup += namePart.toByteArray();
                 }
             } while ((start = end + 2) <= line.length() && line.at(end + 1) == '[');
-            currentGroup = newGroup;
+            currentGroup = QString::fromUtf8(newGroup);
 
             groupSkip = entryMap.getEntryOption(currentGroup, {}, {}, KEntryMap::EntryImmutable);
 
@@ -287,7 +287,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     }
 
     // now make sure immutable groups are marked immutable
-    for (const QByteArray &group : std::as_const(immutableGroups)) {
+    for (const QString &group : std::as_const(immutableGroups)) {
         entryMap.setEntry(group, QByteArray(), QByteArray(), KEntryMap::EntryImmutable);
     }
 
@@ -296,14 +296,14 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
 
 void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool &firstEntry)
 {
-    QByteArray currentGroup;
+    QString currentGroup;
     bool groupIsImmutable = false;
     const auto end = map.cend();
     for (auto it = map.cbegin(); it != end; ++it) {
         const KEntryKey &key = it.key();
 
         // Either process the default group or all others
-        if ((key.mGroup != "<default>") == defaultGroup) {
+        if ((key.mGroup != QStringLiteral("<default>")) == defaultGroup) {
             continue; // skip
         }
 
@@ -321,13 +321,13 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
             currentGroup = key.mGroup;
             for (int start = 0, end;; start = end + 1) {
                 file.putChar('[');
-                end = currentGroup.indexOf('\x1d', start);
+                end = currentGroup.indexOf(QLatin1Char('\x1d'), start);
                 if (end < 0) {
                     int cgl = currentGroup.length();
-                    if (currentGroup.at(start) == '$' && cgl - start <= 10) {
+                    if (currentGroup.at(start) == QLatin1Char('$') && cgl - start <= 10) {
                         for (int i = start + 1; i < cgl; i++) {
-                            char c = currentGroup.at(i);
-                            if (c < 'a' || c > 'z') {
+                            const QChar c = currentGroup.at(i);
+                            if (c < QLatin1Char('a') || c > QLatin1Char('z')) {
                                 goto nope;
                             }
                         }
@@ -335,7 +335,8 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
                         ++start;
                     }
                 nope:
-                    file.write(stringToPrintable(currentGroup.mid(start), GroupString));
+                    // TODO: make stringToPrintable also process QString, to save the conversion here and below
+                    file.write(stringToPrintable(QStringView(currentGroup).mid(start).toUtf8(), GroupString));
                     file.putChar(']');
                     if (groupIsImmutable) {
                         file.write("[$i]", 4);
@@ -343,7 +344,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
                     file.putChar('\n');
                     break;
                 } else {
-                    file.write(stringToPrintable(currentGroup.mid(start, end - start), GroupString));
+                    file.write(stringToPrintable(QStringView(currentGroup).mid(start, end - start).toUtf8(), GroupString));
                     file.putChar(']');
                 }
             }

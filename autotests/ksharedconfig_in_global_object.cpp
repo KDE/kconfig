@@ -22,14 +22,14 @@ public:
 void Tester::initConfig()
 {
     fprintf(stderr, "app Tester\n");
-    KConfigGroup group(KSharedConfig::openConfig(), "test");
+    KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("test"));
     group.writeEntry("test", 0);
 }
 
 Tester::~Tester()
 {
     fprintf(stderr, "app ~Tester\n");
-    KConfigGroup group(KSharedConfig::openConfig(), "test");
+    KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("test"));
     group.writeEntry("test", 1);
 }
 

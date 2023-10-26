@@ -35,7 +35,7 @@ void KConfigNoKdeHomeTest::testNoKdeHome()
     QVERIFY(!QFile::exists(configPath));
 
     // Now try to actually save something, see if it works.
-    KConfigGroup group(KSharedConfig::openConfig(), "Group");
+    KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("Group"));
     group.writeEntry("Key", "Value");
     group.sync();
     QVERIFY(QFile::exists(configPath));

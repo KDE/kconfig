@@ -31,26 +31,26 @@ public:
     void changeFileName(const QString &fileName);
 
     // functions for KConfigGroup
-    bool canWriteEntry(const QByteArray &group, const char *key, bool isDefault = false) const;
-    QString lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags, bool *expand) const;
-    QByteArray lookupData(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags) const;
-    KEntry lookupInternalEntry(const QByteArray &group, const char *key, KEntryMap::SearchFlags flags) const;
+    bool canWriteEntry(const QString &groupName, const char *key, bool isDefault = false) const;
+    QString lookupData(const QString &groupName, const char *key, KEntryMap::SearchFlags flags, bool *expand) const;
+    QByteArray lookupData(const QString &groupName, const char *key, KEntryMap::SearchFlags flags) const;
+    KEntry lookupInternalEntry(const QString &groupName, const char *key, KEntryMap::SearchFlags flags) const;
 
-    void putData(const QByteArray &group, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
-    void setEntryData(const QByteArray &group, const char *key, const QByteArray &value, KEntryMap::EntryOptions flags)
+    void putData(const QString &groupName, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
+    void setEntryData(const QString &groupName, const char *key, const QByteArray &value, KEntryMap::EntryOptions flags)
     {
-        if (entryMap.setEntry(group, key, value, flags)) {
+        if (entryMap.setEntry(groupName, key, value, flags)) {
             bDirty = true;
         }
     }
-    void revertEntry(const QByteArray &group, const char *key, KConfigBase::WriteConfigFlags flags);
-    QStringList groupList(const QByteArray &group) const;
+    void revertEntry(const QString &groupName, const char *key, KConfigBase::WriteConfigFlags flags);
+    QStringList groupList(const QString &groupName) const;
     // copies the entries from @p source to @p otherGroup changing all occurrences
     // of @p source with @p destination
-    void copyGroup(const QByteArray &source, const QByteArray &destination, KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const;
-    QList<QByteArray> keyListImpl(const QByteArray &theGroup) const;
-    QSet<QByteArray> allSubGroups(const QByteArray &parentGroup) const;
-    bool hasNonDeletedEntries(const QByteArray &group) const;
+    void copyGroup(const QString &source, const QString &destination, KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const;
+    QList<QByteArray> keyListImpl(const QString &groupName) const;
+    QSet<QString> allSubGroups(const QString &parentGroupName) const;
+    bool hasNonDeletedEntries(const QString &groupName) const;
 
     void notifyClients(const QHash<QString, QByteArrayList> &changes, const QString &path);
 

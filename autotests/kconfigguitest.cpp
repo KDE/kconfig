@@ -37,7 +37,7 @@ void KConfigTest::initTestCase()
 
     KConfig sc(QStringLiteral("kconfigtest"));
 
-    KConfigGroup cg(&sc, "ComplexTypes");
+    KConfigGroup cg(&sc, QStringLiteral("ComplexTypes"));
     cg.writeEntry("colorEntry1", s_color_entry1);
     cg.writeEntry("colorEntry2", s_color_entry2);
     cg.writeEntry("colorEntry3", (QList<int>() << 234 << 234 << 127));
@@ -46,7 +46,7 @@ void KConfigTest::initTestCase()
     QVERIFY(sc.sync());
 
     KConfig sc1(QStringLiteral("kdebugrc"));
-    KConfigGroup sg0(&sc1, "0");
+    KConfigGroup sg0(&sc1, QStringLiteral("0"));
     sg0.writeEntry("AbortFatal", false);
     sg0.writeEntry("WarnOutput", 0);
     sg0.writeEntry("FatalOutput", 0);
@@ -75,7 +75,7 @@ void KConfigTest::cleanupTestCase()
 void KConfigTest::testComplex()
 {
     KConfig sc2(QStringLiteral("kconfigtest"));
-    KConfigGroup sc3(&sc2, "ComplexTypes");
+    KConfigGroup sc3(&sc2, QStringLiteral("ComplexTypes"));
 
     QCOMPARE(QVariant(sc3.readEntry("colorEntry1", QColor(Qt::black))).toString(), QVariant(s_color_entry1).toString());
     QCOMPARE(sc3.readEntry("colorEntry1", QColor()), s_color_entry1);
@@ -94,7 +94,7 @@ void KConfigTest::testInvalid()
     KConfig sc(QStringLiteral("kconfigtest"));
 
     // all of these should print a message to the kdebug.dbg file
-    KConfigGroup sc3(&sc, "InvalidTypes");
+    KConfigGroup sc3(&sc, QStringLiteral("InvalidTypes"));
 
     QList<int> list;
 

@@ -15,78 +15,98 @@
 
 bool KConfigBase::hasGroup(const QString &group) const
 {
-    return hasGroupImpl(group.toUtf8());
-}
-
-bool KConfigBase::hasGroup(const char *group) const
-{
-    return hasGroupImpl(QByteArray(group));
-}
-
-bool KConfigBase::hasGroup(const QByteArray &group) const
-{
     return hasGroupImpl(group);
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
+bool KConfigBase::hasGroup(const char *group) const
+{
+    return hasGroupImpl(QString::fromUtf8(group));
+}
+#endif
+
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
+bool KConfigBase::hasGroup(const QByteArray &group) const
+{
+    return hasGroupImpl(QString::fromUtf8(group));
+}
+#endif
+
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 KConfigGroup KConfigBase::group(const QByteArray &b)
 {
-    return groupImpl(b);
+    return groupImpl(QString::fromUtf8(b));
 }
+#endif
 
 KConfigGroup KConfigBase::group(const QString &str)
 {
-    return groupImpl(str.toUtf8());
+    return groupImpl(str);
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 KConfigGroup KConfigBase::group(const char *str)
 {
-    return groupImpl(QByteArray(str));
+    return groupImpl(QString::fromUtf8(str));
 }
+#endif
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 const KConfigGroup KConfigBase::group(const QByteArray &b) const
 {
-    return groupImpl(b);
+    return groupImpl(QString::fromUtf8(b));
 }
+#endif
 
 const KConfigGroup KConfigBase::group(const QString &s) const
 {
-    return groupImpl(s.toUtf8());
+    return groupImpl(s);
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 const KConfigGroup KConfigBase::group(const char *s) const
 {
-    return groupImpl(QByteArray(s));
+    return groupImpl(QString::fromUtf8(s));
 }
+#endif
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 void KConfigBase::deleteGroup(const QByteArray &group, WriteConfigFlags flags)
+{
+    deleteGroupImpl(QString::fromUtf8(group), flags);
+}
+#endif
+
+void KConfigBase::deleteGroup(const QString &group, WriteConfigFlags flags)
 {
     deleteGroupImpl(group, flags);
 }
 
-void KConfigBase::deleteGroup(const QString &group, WriteConfigFlags flags)
-{
-    deleteGroupImpl(group.toUtf8(), flags);
-}
-
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 void KConfigBase::deleteGroup(const char *group, WriteConfigFlags flags)
 {
-    deleteGroupImpl(QByteArray(group), flags);
+    deleteGroupImpl(QString::fromUtf8(group), flags);
 }
+#endif
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 bool KConfigBase::isGroupImmutable(const QByteArray &aGroup) const
+{
+    return isGroupImmutableImpl(QString::fromUtf8(aGroup));
+}
+#endif
+
+bool KConfigBase::isGroupImmutable(const QString &aGroup) const
 {
     return isGroupImmutableImpl(aGroup);
 }
 
-bool KConfigBase::isGroupImmutable(const QString &aGroup) const
-{
-    return isGroupImmutableImpl(aGroup.toUtf8());
-}
-
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
 bool KConfigBase::isGroupImmutable(const char *aGroup) const
 {
-    return isGroupImmutableImpl(QByteArray(aGroup));
+    return isGroupImmutableImpl(QString::fromUtf8(aGroup));
 }
+#endif
 
 KConfigBase::~KConfigBase()
 {

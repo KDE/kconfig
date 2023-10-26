@@ -89,7 +89,7 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString &v)
 
 void KEMailSettings::setDefault(const QString &s)
 {
-    p->m_pConfig->group("Defaults").writeEntry("Profile", s);
+    p->m_pConfig->group(QStringLiteral("Defaults")).writeEntry("Profile", s);
     p->m_pConfig->sync();
     p->m_sDefaultProfile = s;
 }
@@ -124,7 +124,7 @@ KEMailSettings::KEMailSettings()
         }
     }
 
-    KConfigGroup cg(p->m_pConfig, "Defaults");
+    KConfigGroup cg(p->m_pConfig, QStringLiteral("Defaults"));
     p->m_sDefaultProfile = cg.readEntry("Profile", tr("Default"));
     if (!p->m_sDefaultProfile.isNull()) {
         if (!p->m_pConfig->hasGroup(QLatin1String("PROFILE_") + p->m_sDefaultProfile)) {

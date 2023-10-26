@@ -102,7 +102,7 @@ inline bool operator!=(const KEntry &k1, const KEntry &k2)
  */
 struct KEntryKey {
     /** Constructor. @internal */
-    KEntryKey(const QByteArray &_group = QByteArray(), const QByteArray &_key = QByteArray(), bool isLocalized = false, bool isDefault = false)
+    KEntryKey(const QString &_group = QString(), const QByteArray &_key = QByteArray(), bool isLocalized = false, bool isDefault = false)
         : mGroup(_group)
         , mKey(_key)
         , bLocal(isLocalized)
@@ -113,7 +113,7 @@ struct KEntryKey {
     /**
      * The "group" to which this EntryKey belongs
      */
-    QByteArray mGroup;
+    QString mGroup;
     /**
      * The _actual_ key of the entry in question
      */
@@ -164,7 +164,7 @@ inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
  * @note The returned "minimum key" is consistent with KEntryKey's operator<().
  *       The return value of this function can be passed to KEntryMap::lowerBound().
  */
-inline KEntryKey minimumGroupKey(const QByteArray &group)
+inline KEntryKey minimumGroupKey(const QString &group)
 {
     return KEntryKey(group, QByteArray{}, true, false);
 }
@@ -202,51 +202,51 @@ public:
     };
     Q_DECLARE_FLAGS(EntryOptions, EntryOption)
 
-    Iterator findExactEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
+    Iterator findExactEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
 
-    Iterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
+    Iterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
 
-    ConstIterator findEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const
+    ConstIterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const
     {
         return constFindEntry(group, key, flags);
     }
 
-    ConstIterator constFindEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
+    ConstIterator constFindEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
 
     /**
      * Returns true if the entry gets dirtied or false in other case
      */
-    bool setEntry(const QByteArray &group, const QByteArray &key, const QByteArray &value, EntryOptions options);
+    bool setEntry(const QString &group, const QByteArray &key, const QByteArray &value, EntryOptions options);
 
-    void setEntry(const QByteArray &group, const QByteArray &key, const QString &value, EntryOptions options)
+    void setEntry(const QString &group, const QByteArray &key, const QString &value, EntryOptions options)
     {
         setEntry(group, key, value.toUtf8(), options);
     }
 
-    QString getEntry(const QByteArray &group,
+    QString getEntry(const QString &group,
                      const QByteArray &key,
                      const QString &defaultValue = QString(),
                      SearchFlags flags = SearchFlags(),
                      bool *expand = nullptr) const;
 
-    bool hasEntry(const QByteArray &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
+    bool hasEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
 
     bool getEntryOption(const ConstIterator &it, EntryOption option) const;
-    bool getEntryOption(const QByteArray &group, const QByteArray &key, SearchFlags flags, EntryOption option) const
+    bool getEntryOption(const QString &group, const QByteArray &key, SearchFlags flags, EntryOption option) const
     {
         return getEntryOption(findEntry(group, key, flags), option);
     }
 
     void setEntryOption(Iterator it, EntryOption option, bool bf);
-    void setEntryOption(const QByteArray &group, const QByteArray &key, SearchFlags flags, EntryOption option, bool bf)
+    void setEntryOption(const QString &group, const QByteArray &key, SearchFlags flags, EntryOption option, bool bf)
     {
         setEntryOption(findEntry(group, key, flags), option, bf);
     }
 
-    bool revertEntry(const QByteArray &group, const QByteArray &key, EntryOptions options, SearchFlags flags = SearchFlags());
+    bool revertEntry(const QString &group, const QByteArray &key, EntryOptions options, SearchFlags flags = SearchFlags());
 
     template<typename ConstIteratorUser>
-    void forEachEntryWhoseGroupStartsWith(const QByteArray &groupPrefix, ConstIteratorUser callback) const
+    void forEachEntryWhoseGroupStartsWith(const QString &groupPrefix, ConstIteratorUser callback) const
     {
         for (auto it = lowerBound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it.key().mGroup.startsWith(groupPrefix); ++it) {
             callback(it);
@@ -254,7 +254,7 @@ public:
     }
 
     template<typename ConstIteratorPredicate>
-    bool anyEntryWhoseGroupStartsWith(const QByteArray &groupPrefix, ConstIteratorPredicate predicate) const
+    bool anyEntryWhoseGroupStartsWith(const QString &groupPrefix, ConstIteratorPredicate predicate) const
     {
         for (auto it = lowerBound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it.key().mGroup.startsWith(groupPrefix); ++it) {
             if (predicate(it)) {

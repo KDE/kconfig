@@ -191,7 +191,7 @@ public:
             blockEverything = true;
             return;
         }
-        actionRestrictions = config->hasGroup("KDE Action Restrictions") && !kde_kiosk_exception;
+        actionRestrictions = config->hasGroup(QStringLiteral("KDE Action Restrictions")) && !kde_kiosk_exception;
     }
 
     ~KAuthorizedPrivate()
@@ -223,7 +223,7 @@ bool KAuthorized::authorize(const QString &genericAction)
         return true;
     }
 
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE Action Restrictions");
+    KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KDE Action Restrictions"));
     return cg.readEntry(genericAction, true);
 }
 
@@ -266,7 +266,7 @@ bool KAuthorized::authorizeControlModule(const QString &menuId)
     if (menuId.isEmpty() || kde_kiosk_exception) {
         return true;
     }
-    KConfigGroup cg(KSharedConfig::openConfig(), "KDE Control Module Restrictions");
+    KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KDE Control Module Restrictions"));
     return cg.readEntry(menuId, true);
 }
 
@@ -382,7 +382,7 @@ authorizeUrlAction(const QString &action, const QUrl &_baseURL, const QUrl &_des
 
     bool result = false;
     if (d->urlActionRestrictions.isEmpty()) {
-        KConfigGroup cg(KSharedConfig::openConfig(), "KDE URL Restrictions");
+        KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KDE URL Restrictions"));
         loadUrlActionRestrictions(cg);
     }
 
