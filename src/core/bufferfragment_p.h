@@ -78,7 +78,7 @@ public:
     // Each call will update *start to new starting position.
     BufferFragment split(char c, unsigned int *start)
     {
-        while (*start < len) {
+        if (*start < len) {
             int end = indexOf(c, *start);
             if (end == -1) {
                 end = len;
