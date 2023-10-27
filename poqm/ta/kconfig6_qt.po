@@ -21,7 +21,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "X-Generator: Lokalize 23.08.2\n"
 
-#: core/kconfig.cpp:950
+#: core/kconfig.cpp:949
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "உங்கள் கணினி நிர்வாகியை தொடர்பு கொள்ளுங்கள்."
