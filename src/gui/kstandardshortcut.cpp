@@ -415,6 +415,14 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      QList<QKeySequence>(),
      false,
      Category::View},
+    {OpenContextMenu,
+     "OpenContextMenu",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Open Context Menu", "@action"),
+     Qt::Key_Menu,
+     SHIFT(F10),
+     QList<QKeySequence>(),
+     false,
+     Category::View},
 
     // dummy entry to catch simple off-by-one errors. Insert new entries before this line.
     {AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory}};
@@ -817,5 +825,9 @@ const QList<QKeySequence> &showHideHiddenFiles()
 const QList<QKeySequence> &openMainMenu()
 {
     return shortcut(OpenMainMenu);
+}
+const QList<QKeySequence> &openContextMenu()
+{
+    return shortcut(OpenContextMenu);
 }
 }
