@@ -126,7 +126,6 @@ enum StandardShortcut {
     Preferences, ///< Display the preferences/options dialog.
     ConfigureToolbars, ///< Display the toolbar configuration dialog.
     ConfigureNotifications, ///< Display the notifications configuration dialog.
-    TipofDay, ///< Display the "Tip of the Day".
     ReportBug, ///< Display the Report Bug dialog.
     SwitchApplicationLanguage, ///< Display the Switch Application Language dialog.
     AboutApp, ///< Display the application's About dialog.

@@ -367,7 +367,6 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      QList<QKeySequence>(),
      false,
      Category::Settings},
-    {TipofDay, "TipofDay", QT_TRANSLATE_NOOP3("KStandardShortcut", "Tip Of Day", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help},
     {ReportBug, "ReportBug", QT_TRANSLATE_NOOP3("KStandardShortcut", "Report Bug", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help},
     {SwitchApplicationLanguage,
      "SwitchApplicationLanguage",
