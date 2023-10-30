@@ -398,60 +398,55 @@ msgstr "Benachrichtigungen festlegen"
 
 #: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
-msgid "Tip Of Day"
-msgstr "Tipp des Tages"
-
-#: gui/kstandardshortcut.cpp:371
-msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Probleme oder Wünsche berichten"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "Sprache einrichten ..."
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Über die Anwendung"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Über KDE"
 
-#: gui/kstandardshortcut.cpp:384
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Löschen"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: gui/kstandardshortcut.cpp:388
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: gui/kstandardshortcut.cpp:394
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Spenden"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Versteckte Dateien anzeigen/ausblenden"
 
-#: gui/kstandardshortcut.cpp:405
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Ordner erstellen"
 
-#: gui/kstandardshortcut.cpp:413
+#: gui/kstandardshortcut.cpp:412
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
@@ -557,6 +552,10 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Zu schreibender Wert. Zwingend erforderlich. Bei Shells bitte '' verwenden, "
 "um „leer“ vorzugeben."
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Tip Of Day"
+#~ msgstr "Tipp des Tages"
 
 #~ msgctxt "main|"
 #~ msgid ""

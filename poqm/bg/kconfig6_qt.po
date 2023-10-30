@@ -398,60 +398,55 @@ msgstr "Конфигуриране на известията"
 
 #: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
-msgid "Tip Of Day"
-msgstr "Съвет на деня"
-
-#: gui/kstandardshortcut.cpp:371
-msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Подаване на сигнал за грешка"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "Конфигуриране на език..."
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Относно приложението"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Относно KDE"
 
-#: gui/kstandardshortcut.cpp:384
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Изтриване"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Преименуване"
 
-#: gui/kstandardshortcut.cpp:388
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Преместване в кошчето"
 
-#: gui/kstandardshortcut.cpp:394
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Дарение"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Показване/скриване на скрити файлове"
 
-#: gui/kstandardshortcut.cpp:405
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Създаване на папка"
 
-#: gui/kstandardshortcut.cpp:413
+#: gui/kstandardshortcut.cpp:412
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
@@ -556,3 +551,7 @@ msgstr "Изтриване на посочения ключ, ако е акти�
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Стойност за запис. Изисква се, в терминал използвайте '' за празно"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Tip Of Day"
+#~ msgstr "Съвет на деня"

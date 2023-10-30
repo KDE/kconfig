@@ -404,60 +404,55 @@ msgstr "నోటిఫికేషన్లను ఆకృతీకరిం�
 
 #: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
-msgid "Tip Of Day"
-msgstr "రోజు చిట్కా"
-
-#: gui/kstandardshortcut.cpp:371
-msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "బగ్ను నివేదించు"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "అప్లికేషన్ గురించి"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "KDE గురించి"
 
-#: gui/kstandardshortcut.cpp:384
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "తొలగించు"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "పేరుమార్చు"
 
-#: gui/kstandardshortcut.cpp:388
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "చెత్తలో వేయి"
 
-#: gui/kstandardshortcut.cpp:394
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "దానం"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:405
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:413
+#: gui/kstandardshortcut.cpp:412
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
@@ -557,6 +552,10 @@ msgstr ""
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "వ్రాయడానికి విలువ. తప్పనిసరిగా షెల్ ఉపయోగంలో '' ఖాళీగా ఉంచండి"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Tip Of Day"
+#~ msgstr "రోజు చిట్కా"
 
 #~ msgctxt "main|"
 #~ msgid ""

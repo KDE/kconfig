@@ -399,60 +399,55 @@ msgstr "Cấu hình thông báo"
 
 #: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
-msgid "Tip Of Day"
-msgstr "Mẹo của ngày"
-
-#: gui/kstandardshortcut.cpp:371
-msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Báo lỗi"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "Cấu hình ngôn ngữ..."
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Về ứng dụng"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Về KDE"
 
-#: gui/kstandardshortcut.cpp:384
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Xoá"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Đổi tên"
 
-#: gui/kstandardshortcut.cpp:388
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Chuyển vào thùng rác"
 
-#: gui/kstandardshortcut.cpp:394
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Quyên góp"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Hiện/ẩn tệp ẩn"
 
-#: gui/kstandardshortcut.cpp:405
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Tạo thư mục"
 
-#: gui/kstandardshortcut.cpp:413
+#: gui/kstandardshortcut.cpp:412
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
@@ -552,6 +547,10 @@ msgstr "Nếu bật, xoá khoá được chỉ định"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Giá trị để ghi. Bắt buộc, trên một hệ vỏ dùng '' cho giá trị rỗng"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Tip Of Day"
+#~ msgstr "Mẹo của ngày"
 
 #~ msgctxt "main|"
 #~ msgid ""

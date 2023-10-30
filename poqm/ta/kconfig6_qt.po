@@ -400,60 +400,55 @@ msgstr "அறிவிப்புகளை அமை"
 
 #: gui/kstandardshortcut.cpp:370
 msgctxt "KStandardShortcut|@action"
-msgid "Tip Of Day"
-msgstr "இன்றைய தகவல்"
-
-#: gui/kstandardshortcut.cpp:371
-msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "பிழையை தெரிவி"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
 msgstr "மொழியை அமை…"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "செயலியை பற்றி"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "கே.டீ.யீ. பற்றி"
 
-#: gui/kstandardshortcut.cpp:384
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "நீக்கு"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "மறுபெயரிடு"
 
-#: gui/kstandardshortcut.cpp:388
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "அகற்றிடத்துக்கு நகர்த்து"
 
-#: gui/kstandardshortcut.cpp:394
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "நன்கொடை அளியுங்கள்"
 
-#: gui/kstandardshortcut.cpp:397
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "மறைந்துள்ள கோப்புகளை காட்டு/மறை"
 
-#: gui/kstandardshortcut.cpp:405
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "அடைவை உருவாக்கு"
 
-#: gui/kstandardshortcut.cpp:413
+#: gui/kstandardshortcut.cpp:412
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
@@ -559,6 +554,10 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "எழுத வேண்டிய மதிப்பு. முனையத்தில் பயன்படுத்தும்போது காலியான மதிப்பை இட '' என்பதை "
 "பயன்படுத்துங்கள்"
+
+#~ msgctxt "KStandardShortcut|@action"
+#~ msgid "Tip Of Day"
+#~ msgstr "இன்றைய தகவல்"
 
 #~ msgctxt "main|"
 #~ msgid ""
