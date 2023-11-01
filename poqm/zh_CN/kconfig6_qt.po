@@ -476,17 +476,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要读取更新指令的文件"
 
-#: kconfig_compiler/kconfig_compiler.cpp:708
+#: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "用于生成文件的目录，格式为 [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:709
+#: kconfig_compiler/kconfig_compiler.cpp:727
 msgctxt "main|"
 msgid "directory"
 msgstr "目录"
 
-#: kconfig_compiler/kconfig_compiler.cpp:713
+#: kconfig_compiler/kconfig_compiler.cpp:731
 msgctxt "main|"
 msgid "Display software license."
 msgstr "显示软件许可证。"

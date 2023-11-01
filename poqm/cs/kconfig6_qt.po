@@ -478,17 +478,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Soubor(y) obsahující instrukce pro aktualizaci"
 
-#: kconfig_compiler/kconfig_compiler.cpp:708
+#: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Adresář, kde se mají vytvářet soubory [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:709
+#: kconfig_compiler/kconfig_compiler.cpp:727
 msgctxt "main|"
 msgid "directory"
 msgstr "adresář"
 
-#: kconfig_compiler/kconfig_compiler.cpp:713
+#: kconfig_compiler/kconfig_compiler.cpp:731
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Zobrazit licenci softwaru"
@@ -546,7 +546,3 @@ msgstr "Smazat vybraný  pokud povoleno"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Hodnota k zapsání. Povinná, v shellu použijte '' jako prázdnou hodnotu"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Tip Of Day"
-#~ msgstr "Tip dne"

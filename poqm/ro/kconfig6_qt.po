@@ -484,17 +484,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fișier(e) din care să fie citite instrucțiuni de actualizare"
 
-#: kconfig_compiler/kconfig_compiler.cpp:708
+#: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Dosar în care să fie generate fișierele [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:709
+#: kconfig_compiler/kconfig_compiler.cpp:727
 msgctxt "main|"
 msgid "directory"
 msgstr "dosar"
 
-#: kconfig_compiler/kconfig_compiler.cpp:713
+#: kconfig_compiler/kconfig_compiler.cpp:731
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Afișează licența programului."

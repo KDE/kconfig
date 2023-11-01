@@ -485,17 +485,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "నవీకరణ సూచనలను చదవడానికి ఫైల్ (లు)"
 
-#: kconfig_compiler/kconfig_compiler.cpp:708
+#: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "[.] లో ఫైళ్ళను సృష్టించుటకు మూలవివరం"
 
-#: kconfig_compiler/kconfig_compiler.cpp:709
+#: kconfig_compiler/kconfig_compiler.cpp:727
 msgctxt "main|"
 msgid "directory"
 msgstr "మూలవివరం"
 
-#: kconfig_compiler/kconfig_compiler.cpp:713
+#: kconfig_compiler/kconfig_compiler.cpp:731
 msgctxt "main|"
 msgid "Display software license."
 msgstr "సాఫ్ట్వేర్ లైసెన్స్ను ప్రదర్శించు."

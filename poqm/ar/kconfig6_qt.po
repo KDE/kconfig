@@ -479,17 +479,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "الملف/الملفات التي ستُقرأ منها إرشادات التحديث"
 
-#: kconfig_compiler/kconfig_compiler.cpp:708
+#: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "الدليل الذي سيُولّد فيه الملفات [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:709
+#: kconfig_compiler/kconfig_compiler.cpp:727
 msgctxt "main|"
 msgid "directory"
 msgstr "دليل"
 
-#: kconfig_compiler/kconfig_compiler.cpp:713
+#: kconfig_compiler/kconfig_compiler.cpp:731
 msgctxt "main|"
 msgid "Display software license."
 msgstr "اعرض رخصة البرمجية."

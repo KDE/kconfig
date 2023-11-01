@@ -484,17 +484,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "फ़ाइल (लों) से अद्यतन निर्देश पढ़ने के लिए "
 
-#: kconfig_compiler/kconfig_compiler.cpp:708
+#: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "फ़ाइलों को जनरेट करने के लिए डिरेक्ट्री [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:709
+#: kconfig_compiler/kconfig_compiler.cpp:727
 msgctxt "main|"
 msgid "directory"
 msgstr "डिरेक्ट्री"
 
-#: kconfig_compiler/kconfig_compiler.cpp:713
+#: kconfig_compiler/kconfig_compiler.cpp:731
 msgctxt "main|"
 msgid "Display software license."
 msgstr "सोफ्टवेयर का अनुज्ञापत्र दिखाएँ"
