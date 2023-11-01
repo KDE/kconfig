@@ -27,7 +27,8 @@ KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key
 
 void KConfigSkeleton::ItemColor::readConfig(KConfig *config)
 {
-    KConfigGroup cg(config, mGroup);
+    KConfigGroup cg = configGroup(config);
+
     mReference = cg.readEntry(mKey, mDefault);
     mLoadedValue = mReference;
 
@@ -56,7 +57,8 @@ KConfigSkeleton::ItemFont::ItemFont(const QString &_group, const QString &_key, 
 
 void KConfigSkeleton::ItemFont::readConfig(KConfig *config)
 {
-    KConfigGroup cg(config, mGroup);
+    KConfigGroup cg = configGroup(config);
+
     mReference = cg.readEntry(mKey, mDefault);
     mLoadedValue = mReference;
 
