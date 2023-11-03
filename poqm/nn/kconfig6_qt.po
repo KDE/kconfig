@@ -551,7 +551,3 @@ msgstr "Fjern den valde nøkkelen"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Verdien som skal skrivast. I eit skal må du bruka '' for tomme verdiar"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Tip Of Day"
-#~ msgstr "Dagens tips"

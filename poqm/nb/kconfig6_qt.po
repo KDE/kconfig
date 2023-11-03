@@ -549,7 +549,3 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "Verdien som skal skrives. Obligatorisk, i et skall må du bruke '' for tomme "
 "verdier"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Tip Of Day"
-#~ msgstr "Dagens tips"
