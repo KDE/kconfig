@@ -92,9 +92,9 @@ public:
      * configuration (see KSharedConfig::openStateConfig) that holds the window state.
      * @deprecated Since 5.240, use QString overload
      */
-    KCONFIGGUI_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
     template<typename Widget>
     explicit inline KWindowStateSaver(Widget *widget, const char *configGroupName);
+    // Seems pure templates cannot get attributes, so this constructor without any deprecation warning macro
 #endif
 
     ~KWindowStateSaver();
