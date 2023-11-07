@@ -13,12 +13,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.08.1\n"
 
-#: core/kconfig.cpp:949
+#: core/kconfig.cpp:945
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Neem contact op met uw systeembeheerder."
 
-#: core/kconfigini.cpp:572
+#: core/kconfigini.cpp:573
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
