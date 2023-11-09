@@ -453,6 +453,11 @@ msgctxt ""
 msgid "Open Main Menu"
 msgstr ""
 
+#: gui/kstandardshortcut.cpp:420
+msgctxt "KStandardShortcut|@action"
+msgid "Open Context Menu"
+msgstr ""
+
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"

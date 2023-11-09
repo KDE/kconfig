@@ -454,6 +454,15 @@ msgctxt ""
 msgid "Open Main Menu"
 msgstr "Apri il  menu principale"
 
+#: gui/kstandardshortcut.cpp:420
+#, fuzzy
+#| msgctxt ""
+#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
+#| msgid "Open Main Menu"
+msgctxt "KStandardShortcut|@action"
+msgid "Open Context Menu"
+msgstr "Apri il  menu principale"
+
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
