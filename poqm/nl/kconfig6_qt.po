@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-10-13 10:29+0200\n"
+"PO-Revision-Date: 2023-11-09 10:06+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #: core/kconfig.cpp:945
 msgctxt "KConfig|"
@@ -447,13 +447,9 @@ msgid "Open Main Menu"
 msgstr "Hoofdmenu openen"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "Hoofdmenu openen"
+msgstr "Contextmenu openen"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"

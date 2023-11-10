@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
-"PO-Revision-Date: 2023-10-13 20:55+0300\n"
+"PO-Revision-Date: 2023-11-09 08:30+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -454,13 +454,9 @@ msgid "Open Main Menu"
 msgstr "Відкрити головне меню"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "Відкрити головне меню"
+msgstr "Відкрити контекстне меню"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"

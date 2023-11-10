@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-10-13 12:11+0300\n"
+"PO-Revision-Date: 2023-11-09 11:48+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -457,13 +457,9 @@ msgid "Open Main Menu"
 msgstr "Ana Menüyü Aç"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "Ana Menüyü Aç"
+msgstr "Bağlam Menüsünü Aç"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
