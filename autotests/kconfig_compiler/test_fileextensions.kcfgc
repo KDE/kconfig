@@ -4,4 +4,3 @@ Singleton=true
 ClassName=TestFileExtensions
 SetUserTexts=true
 HeaderExtension=hxx
-SourceExtension=cxx

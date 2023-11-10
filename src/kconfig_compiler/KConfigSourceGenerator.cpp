@@ -16,7 +16,7 @@
 #include <QRegularExpression>
 
 KConfigSourceGenerator::KConfigSourceGenerator(const QString &inputFile, const QString &baseDir, const KConfigParameters &cfg, ParseResult &parseResult)
-    : KConfigCodeGeneratorBase(inputFile, baseDir, baseDir + cfg.baseName + QLatin1Char('.') + cfg.sourceExtension, cfg, parseResult)
+    : KConfigCodeGeneratorBase(inputFile, baseDir, baseDir + cfg.baseName + QLatin1String(".cpp"), cfg, parseResult)
 {
 }
 

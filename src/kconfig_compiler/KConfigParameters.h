@@ -50,7 +50,6 @@ public:
     QStringList notifiers;
     QString qCategoryLoggingName;
     QString headerExtension;
-    QString sourceExtension;
     bool allMutators;
     bool setUserTexts;
     bool allDefaultGetters;
