@@ -1,12 +1,12 @@
 kconfigdata_p.h contains definitions of the data formats used by kconfig.
 
 Configuration entries are stored as "KEntry". They are indexed with "KEntryKey".
-The primary store is a "KEntryMap" which is defined as a QMap from "KEntryKey"
+The primary store is a "KEntryMap" which is defined as a std::map from "KEntryKey"
 to "KEntry"
 
 KEntry's are stored in order in the KEntryMap. The most significant sort 
 criteria is mGroup. This means that all entries who belong in the same group,
-are grouped in the QMap as well. 
+are grouped in the std::map as well.
 
 The start of a group is indicated with a KEntryKey with an empty mKey and a 
 dummy KEntry. This allows us to search for the start of the group and then to 

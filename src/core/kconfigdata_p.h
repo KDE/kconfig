@@ -12,8 +12,8 @@
 
 #include <QByteArray>
 #include <QDebug>
-#include <QMap>
 #include <QString>
+#include <map>
 
 /**
  * map/dict/list config node entry.
@@ -136,7 +136,7 @@ struct KEntryKey {
 Q_DECLARE_TYPEINFO(KEntryKey, Q_RELOCATABLE_TYPE);
 
 /**
- * Compares two KEntryKeys (needed for QMap). The order is localized, localized-default,
+ * Compares two KEntryKeys (needed for std::map). The order is localized, localized-default,
  * non-localized, non-localized-default
  * @internal
  */
@@ -179,7 +179,7 @@ QDebug operator<<(QDebug dbg, const KEntry &entry);
  * with the group name.
  * @internal
  */
-class KEntryMap : public QMap<KEntryKey, KEntry>
+class KEntryMap : public std::map<KEntryKey, KEntry>
 {
 public:
     enum SearchFlag {
@@ -202,16 +202,16 @@ public:
     };
     Q_DECLARE_FLAGS(EntryOptions, EntryOption)
 
-    Iterator findExactEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
+    iterator findExactEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
 
-    Iterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
+    iterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
 
-    ConstIterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const
+    const_iterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const
     {
         return constFindEntry(group, key, flags);
     }
 
-    ConstIterator constFindEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
+    const_iterator constFindEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
 
     /**
      * Returns true if the entry gets dirtied or false in other case
@@ -231,13 +231,13 @@ public:
 
     bool hasEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
 
-    bool getEntryOption(const ConstIterator &it, EntryOption option) const;
+    bool getEntryOption(const const_iterator &it, EntryOption option) const;
     bool getEntryOption(const QString &group, const QByteArray &key, SearchFlags flags, EntryOption option) const
     {
         return getEntryOption(findEntry(group, key, flags), option);
     }
 
-    void setEntryOption(Iterator it, EntryOption option, bool bf);
+    void setEntryOption(iterator it, EntryOption option, bool bf);
     void setEntryOption(const QString &group, const QByteArray &key, SearchFlags flags, EntryOption option, bool bf)
     {
         setEntryOption(findEntry(group, key, flags), option, bf);
@@ -248,7 +248,7 @@ public:
     template<typename ConstIteratorUser>
     void forEachEntryWhoseGroupStartsWith(const QString &groupPrefix, ConstIteratorUser callback) const
     {
-        for (auto it = lowerBound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it.key().mGroup.startsWith(groupPrefix); ++it) {
+        for (auto it = lower_bound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it->first.mGroup.startsWith(groupPrefix); ++it) {
             callback(it);
         }
     }
@@ -256,7 +256,7 @@ public:
     template<typename ConstIteratorPredicate>
     bool anyEntryWhoseGroupStartsWith(const QString &groupPrefix, ConstIteratorPredicate predicate) const
     {
-        for (auto it = lowerBound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it.key().mGroup.startsWith(groupPrefix); ++it) {
+        for (auto it = lower_bound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it->first.mGroup.startsWith(groupPrefix); ++it) {
             if (predicate(it)) {
                 return true;
             }
@@ -272,7 +272,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)
  * type for iterating over keys in a KEntryMap in sorted order.
  * @internal
  */
-typedef QMap<KEntryKey, KEntry>::Iterator KEntryMapIterator;
+typedef std::map<KEntryKey, KEntry>::iterator KEntryMapIterator;
 
 /**
  * \relates KEntry
@@ -281,6 +281,6 @@ typedef QMap<KEntryKey, KEntry>::Iterator KEntryMapIterator;
  * only examine them.
  * @internal
  */
-typedef QMap<KEntryKey, KEntry>::ConstIterator KEntryMapConstIterator;
+typedef std::map<KEntryKey, KEntry>::const_iterator KEntryMapConstIterator;
 
 #endif

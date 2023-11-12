@@ -134,7 +134,7 @@ bool KConfigPrivate::lockLocal()
 
 static bool isGroupOrSubGroupMatch(KEntryMapConstIterator entryMapIt, const QString &group)
 {
-    const QString &entryGroup = entryMapIt.key().mGroup;
+    const QString &entryGroup = entryMapIt->first.mGroup;
     Q_ASSERT_X(entryGroup.startsWith(group), Q_FUNC_INFO, "Precondition");
     return entryGroup.size() == group.size() || entryGroup[group.size()] == QLatin1Char('\x1d');
 }
@@ -155,7 +155,7 @@ void KConfigPrivate::copyGroup(const QString &source, const QString &destination
             return;
         }
 
-        KEntryKey newKey = entryMapIt.key();
+        KEntryKey newKey = entryMapIt->first;
 
         if (flags & KConfigBase::Localized) {
             newKey.bLocal = true;
@@ -165,7 +165,7 @@ void KConfigPrivate::copyGroup(const QString &source, const QString &destination
             newKey.mGroup.replace(0, source.size(), destination);
         }
 
-        KEntry entry = entryMapIt.value();
+        KEntry entry = entryMapIt->second;
         dirtied = entry.bDirty = flags & KConfigBase::Persistent;
 
         if (flags & KConfigBase::Global) {
@@ -281,7 +281,7 @@ KConfig::~KConfig()
 
 static bool isNonDeletedKey(KEntryMapConstIterator entryMapIt)
 {
-    return !entryMapIt.key().mKey.isNull() && !entryMapIt->bDeleted;
+    return !entryMapIt->first.mKey.isNull() && !entryMapIt->second.bDeleted;
 }
 
 static int findFirstGroupEndPos(const QString &groupFullName, int from = 0)
@@ -306,7 +306,7 @@ QStringList KConfig::groupList() const
     QSet<QStringView> groups;
 
     for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
-        const QString &group = entryMapIt.key().mGroup;
+        const QString &group = entryMapIt->first.mGroup;
         if (isNonDeletedKey(entryMapIt) && !group.isEmpty() && group != QStringLiteral("<default>") && group != QStringLiteral("$Version")) {
             groups.insert(QStringView(group).left(findFirstGroupEndPos(group)));
         }
@@ -322,7 +322,7 @@ QStringList KConfigPrivate::groupList(const QString &groupName) const
 
     entryMap.forEachEntryWhoseGroupStartsWith(theGroup, [&theGroup, &groups](KEntryMapConstIterator entryMapIt) {
         if (isNonDeletedKey(entryMapIt)) {
-            const QString &entryGroup = entryMapIt.key().mGroup;
+            const QString &entryGroup = entryMapIt->first.mGroup;
             const auto subgroupStartPos = theGroup.size();
             const auto subgroupEndPos = findFirstGroupEndPos(entryGroup, subgroupStartPos);
             groups.insert(QStringView(entryGroup).mid(subgroupStartPos, subgroupEndPos - subgroupStartPos));
@@ -338,7 +338,7 @@ QSet<QString> KConfigPrivate::allSubGroups(const QString &parentGroup) const
     QSet<QString> groups;
 
     entryMap.forEachEntryWhoseGroupStartsWith(parentGroup, [&parentGroup, &groups](KEntryMapConstIterator entryMapIt) {
-        const KEntryKey &key = entryMapIt.key();
+        const KEntryKey &key = entryMapIt->first;
         if (key.mKey.isNull() && isGroupOrSubGroupMatch(entryMapIt, parentGroup)) {
             groups << key.mGroup;
         }
@@ -358,15 +358,15 @@ QList<QByteArray> KConfigPrivate::keyListImpl(const QString &theGroup) const
 {
     QList<QByteArray> keys;
 
-    const auto theEnd = entryMap.constEnd();
+    const auto theEnd = entryMap.cend();
     auto it = entryMap.constFindEntry(theGroup);
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
         std::set<QByteArray> tmp; // unique set, sorted for unittests
-        for (; it != theEnd && it.key().mGroup == theGroup; ++it) {
+        for (; it != theEnd && it->first.mGroup == theGroup; ++it) {
             if (isNonDeletedKey(it)) {
-                tmp.insert(it.key().mKey);
+                tmp.insert(it->first.mKey);
             }
         }
         keys = QList<QByteArray>(tmp.begin(), tmp.end());
@@ -381,22 +381,22 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     QMap<QString, QString> theMap;
     const QString theGroup = aGroup.isEmpty() ? QStringLiteral("<default>") : aGroup;
 
-    const auto theEnd = d->entryMap.constEnd();
+    const auto theEnd = d->entryMap.cend();
     auto it = d->entryMap.constFindEntry(theGroup, {}, {});
     if (it != theEnd) {
         ++it; // advance past the special group entry marker
 
-        for (; it != theEnd && it.key().mGroup == theGroup; ++it) {
+        for (; it != theEnd && it->first.mGroup == theGroup; ++it) {
             // leave the default values and deleted entries out
-            if (!it->bDeleted && !it.key().bDefault) {
-                const QString key = QString::fromUtf8(it.key().mKey.constData());
+            if (!it->second.bDeleted && !it->first.bDefault) {
+                const QString key = QString::fromUtf8(it->first.mKey.constData());
                 // the localized entry should come first, so don't overwrite it
                 // with the non-localized entry
                 if (!theMap.contains(key)) {
-                    if (it->bExpand) {
-                        theMap.insert(key, KConfigPrivate::expandString(QString::fromUtf8(it->mValue.constData())));
+                    if (it->second.bExpand) {
+                        theMap.insert(key, KConfigPrivate::expandString(QString::fromUtf8(it->second.mValue.constData())));
                     } else {
-                        theMap.insert(key, QString::fromUtf8(it->mValue.constData()));
+                        theMap.insert(key, QString::fromUtf8(it->second.mValue.constData()));
                     }
                 }
             }
@@ -434,18 +434,18 @@ bool KConfig::sync()
         bool writeGlobals = false;
         bool writeLocals = false;
 
-        for (auto it = d->entryMap.constBegin(); it != d->entryMap.constEnd(); ++it) {
-            auto e = it.value();
+        for (auto it = d->entryMap.cbegin(); it != d->entryMap.cend(); ++it) {
+            const auto &e = it->second;
             if (e.bDirty) {
                 if (e.bGlobal) {
                     writeGlobals = true;
                     if (e.bNotify) {
-                        notifyGroupsGlobal[it.key().mGroup] << it.key().mKey;
+                        notifyGroupsGlobal[it->first.mGroup] << it->first.mKey;
                     }
                 } else {
                     writeLocals = true;
                     if (e.bNotify) {
-                        notifyGroupsLocal[it.key().mGroup] << it.key().mKey;
+                        notifyGroupsLocal[it->first.mGroup] << it->first.mKey;
                     }
                 }
             }
@@ -520,8 +520,8 @@ void KConfig::markAsClean()
     // clear any dirty flags that entries might have set
     const KEntryMapIterator theEnd = d->entryMap.end();
     for (KEntryMapIterator it = d->entryMap.begin(); it != theEnd; ++it) {
-        it->bDirty = false;
-        it->bNotify = false;
+        it->second.bDirty = false;
+        it->second.bNotify = false;
     }
 }
 
@@ -554,7 +554,7 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
 
     const KEntryMapIterator theEnd = config->d_func()->entryMap.end();
     for (KEntryMapIterator it = config->d_func()->entryMap.begin(); it != theEnd; ++it) {
-        it->bDirty = true;
+        it->second.bDirty = true;
     }
     config->d_ptr->bDirty = true;
 
@@ -708,7 +708,7 @@ void KConfigPrivate::parseGlobalFiles()
     const QStringList globalFiles = getGlobalFiles();
     //    qDebug() << "parsing global files" << globalFiles;
 
-    Q_ASSERT(entryMap.isEmpty());
+    Q_ASSERT(entryMap.empty());
     const ParseCacheKey key = {globalFiles, locale};
     auto data = sGlobalParse->localData().object(key);
     QDateTime newest;
@@ -1014,10 +1014,10 @@ KEntry KConfigPrivate::lookupInternalEntry(const QString &group, const char *key
         flags |= KEntryMap::SearchDefaults;
     }
     const auto it = entryMap.constFindEntry(group, key, flags);
-    if (it == entryMap.constEnd()) {
+    if (it == entryMap.cend()) {
         return {};
     }
-    return it.value();
+    return it->second;
 }
 
 QString KConfigPrivate::lookupData(const QString &group, const char *key, KEntryMap::SearchFlags flags, bool *expand) const

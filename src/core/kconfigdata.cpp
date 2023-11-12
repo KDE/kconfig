@@ -39,7 +39,7 @@ KEntryMapIterator KEntryMap::findEntry(const QString &group, const QByteArray &k
     if (flags & SearchLocalized) {
         theKey.bLocal = true;
 
-        Iterator it = find(theKey);
+        iterator it = find(theKey);
         if (it != end()) {
             return it;
         }
@@ -57,7 +57,7 @@ KEntryMapConstIterator KEntryMap::constFindEntry(const QString &group, const QBy
     if (flags & SearchLocalized) {
         theKey.bLocal = true;
 
-        auto it = constFind(theKey);
+        auto it = find(theKey);
         if (it != cend()) {
             return it;
         }
@@ -65,7 +65,7 @@ KEntryMapConstIterator KEntryMap::constFindEntry(const QString &group, const QBy
         theKey.bLocal = false;
     }
 
-    return constFind(theKey);
+    return find(theKey);
 }
 
 bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByteArray &value, KEntryMap::EntryOptions options)
@@ -74,7 +74,7 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
     KEntry e;
     bool newKey = false;
 
-    const Iterator it = findExactEntry(group, key, SearchFlags(options >> 16));
+    const iterator it = findExactEntry(group, key, SearchFlags(options >> 16));
 
     if (key.isEmpty()) { // inserting a group marker
         k.mGroup = group;
@@ -83,22 +83,22 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
             qWarning("Internal KConfig error: cannot mark groups as deleted");
         }
         if (it == end()) {
-            insert(k, e);
+            insert_or_assign(k, e);
             return true;
-        } else if (it.value() == e) {
+        } else if (it->second == e) {
             return false;
         }
 
-        it.value() = e;
+        it->second = e;
         return true;
     }
 
     if (it != end()) {
-        if (it->bImmutable) {
+        if (it->second.bImmutable) {
             return false; // we cannot change this entry. Inherits group immutability.
         }
-        k = it.key();
-        e = *it;
+        k = it->first;
+        e = it->second;
         // qDebug() << "found existing entry for key" << k;
         // If overridden entry is global and not default. And it's overridden by a non global
         if (e.bGlobal && !(options & EntryGlobal) && !k.bDefault) {
@@ -108,9 +108,9 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
         // make sure the group marker is in the map
         KEntryMap const *that = this;
         auto cit = that->constFindEntry(group);
-        if (cit == constEnd()) {
-            insert(KEntryKey(group), KEntry());
-        } else if (cit->bImmutable) {
+        if (cit == cend()) {
+            insert_or_assign(KEntryKey(group), KEntry());
+        } else if (cit->second.bImmutable) {
             return false; // this group is immutable, so we cannot change this entry.
         }
 
@@ -146,41 +146,41 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
 
     if (newKey) {
         // qDebug() << "inserting" << k << "=" << value;
-        insert(k, e);
+        insert_or_assign(k, e);
         if (k.bDefault) {
             k.bDefault = false;
             // qDebug() << "also inserting" << k << "=" << value;
-            insert(k, e);
+            insert_or_assign(k, e);
         }
         // TODO check for presence of unlocalized key
         return true;
     }
 
-    // KEntry e2 = it.value();
+    // KEntry e2 = it->second;
     if (options & EntryLocalized) {
         // fast exit checks for cases where the existing entry is more specific
-        const KEntry &e2 = it.value();
+        const KEntry &e2 = it->second;
         if (e2.bLocalizedCountry && !e.bLocalizedCountry) {
             // lang_COUNTRY > lang
             return false;
         }
     }
 
-    if (it.value() != e) {
-        // qDebug() << "changing" << k << "from" << it.value().mValue << "to" << value << e;
-        it.value() = e;
+    if (it->second != e) {
+        // qDebug() << "changing" << k << "from" << it->second.mValue << "to" << value << e;
+        it->second = e;
         if (k.bDefault) {
             KEntryKey nonDefaultKey(k);
             nonDefaultKey.bDefault = false;
-            insert(nonDefaultKey, e);
+            insert_or_assign(nonDefaultKey, e);
         }
         if (!(options & EntryLocalized)) {
             KEntryKey theKey(group, key, true, false);
             // qDebug() << "non-localized entry, remove localized one:" << theKey;
-            remove(theKey);
+            erase(theKey);
             if (k.bDefault) {
                 theKey.bDefault = true;
-                remove(theKey);
+                erase(theKey);
             }
         }
         return true;
@@ -191,14 +191,14 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
         // qDebug() << "unchanged non-localized entry, remove localized one.";
         KEntryKey theKey(group, key, true, false);
         bool ret = false;
-        Iterator cit = find(theKey);
+        iterator cit = find(theKey);
         if (cit != end()) {
             erase(cit);
             ret = true;
         }
         if (k.bDefault) {
             theKey.bDefault = true;
-            Iterator cit = find(theKey);
+            iterator cit = find(theKey);
             if (cit != end()) {
                 erase(cit);
                 return true;
@@ -219,12 +219,12 @@ QString KEntryMap::getEntry(const QString &group, const QByteArray &key, const Q
     const auto it = constFindEntry(group, key, flags);
     QString theValue = defaultValue;
 
-    if (it != constEnd() && !it->bDeleted) {
-        if (!it->mValue.isNull()) {
-            const QByteArray data = it->mValue;
+    if (it != cend() && !it->second.bDeleted) {
+        if (!it->second.mValue.isNull()) {
+            const QByteArray data = it->second.mValue;
             theValue = QString::fromUtf8(data.constData(), data.length());
             if (expand) {
-                *expand = it->bExpand;
+                *expand = it->second.bExpand;
             }
         }
     }
@@ -235,14 +235,14 @@ QString KEntryMap::getEntry(const QString &group, const QByteArray &key, const Q
 bool KEntryMap::hasEntry(const QString &group, const QByteArray &key, KEntryMap::SearchFlags flags) const
 {
     const auto it = constFindEntry(group, key, flags);
-    if (it == constEnd()) {
+    if (it == cend()) {
         return false;
     }
-    if (it->bDeleted) {
+    if (it->second.bDeleted) {
         return false;
     }
     if (key.isNull()) { // looking for group marker
-        return it->mValue.isNull();
+        return it->second.mValue.isNull();
     }
     // if it->bReverted, we'll just return true; the real answer depends on lookup up with SearchDefaults, though.
     return true;
@@ -256,19 +256,19 @@ bool KEntryMap::getEntryOption(const KEntryMapConstIterator &it, KEntryMap::Entr
 
     switch (option) {
     case EntryDirty:
-        return it->bDirty;
+        return it->second.bDirty;
     case EntryLocalized:
-        return it.key().bLocal;
+        return it->first.bLocal;
     case EntryGlobal:
-        return it->bGlobal;
+        return it->second.bGlobal;
     case EntryImmutable:
-        return it->bImmutable;
+        return it->second.bImmutable;
     case EntryDeleted:
-        return it->bDeleted;
+        return it->second.bDeleted;
     case EntryExpansion:
-        return it->bExpand;
+        return it->second.bExpand;
     case EntryNotify:
-        return it->bNotify;
+        return it->second.bNotify;
     default:
         return false;
     }
@@ -282,22 +282,22 @@ void KEntryMap::setEntryOption(KEntryMapIterator it, KEntryMap::EntryOption opti
 
     switch (option) {
     case EntryDirty:
-        it->bDirty = bf;
+        it->second.bDirty = bf;
         return;
     case EntryGlobal:
-        it->bGlobal = bf;
+        it->second.bGlobal = bf;
         return;
     case EntryImmutable:
-        it->bImmutable = bf;
+        it->second.bImmutable = bf;
         return;
     case EntryDeleted:
-        it->bDeleted = bf;
+        it->second.bDeleted = bf;
         return;
     case EntryExpansion:
-        it->bExpand = bf;
+        it->second.bExpand = bf;
         return;
     case EntryNotify:
-        it->bNotify = bf;
+        it->second.bNotify = bf;
         return;
     default:
         return; // fall through
@@ -307,30 +307,30 @@ void KEntryMap::setEntryOption(KEntryMapIterator it, KEntryMap::EntryOption opti
 bool KEntryMap::revertEntry(const QString &group, const QByteArray &key, KEntryMap::EntryOptions options, KEntryMap::SearchFlags flags)
 {
     Q_ASSERT((flags & KEntryMap::SearchDefaults) == 0);
-    Iterator entry = findEntry(group, key, flags);
+    iterator entry = findEntry(group, key, flags);
     if (entry == end()) {
         return false;
     }
 
-    // qDebug() << "reverting" << entry.key() << " = " << entry->mValue;
-    if (entry->bReverted) { // already done before
+    // qDebug() << "reverting" << entry->first << " = " << entry->mValue;
+    if (entry->second.bReverted) { // already done before
         return false;
     }
 
-    KEntryKey defaultKey(entry.key());
+    KEntryKey defaultKey(entry->first);
     defaultKey.bDefault = true;
     // qDebug() << "looking up default entry with key=" << defaultKey;
-    const auto defaultEntry = constFind(defaultKey);
-    if (defaultEntry != constEnd()) {
-        Q_ASSERT(defaultEntry.key().bDefault);
+    const auto defaultEntry = find(defaultKey);
+    if (defaultEntry != cend()) {
+        Q_ASSERT(defaultEntry->first.bDefault);
         // qDebug() << "found, update entry";
-        *entry = *defaultEntry; // copy default value, for subsequent lookups
+        entry->second = defaultEntry->second; // copy default value, for subsequent lookups
     } else {
-        entry->mValue = QByteArray();
+        entry->second.mValue = QByteArray();
     }
-    entry->bNotify = entry->bNotify || (options & EntryNotify);
-    entry->bDirty = true;
-    entry->bReverted = true; // skip it when writing out to disk
+    entry->second.bNotify = entry->second.bNotify || (options & EntryNotify);
+    entry->second.bDirty = true;
+    entry->second.bReverted = true; // skip it when writing out to disk
 
     // qDebug() << "Here's what we have now:" << *this;
     return true;

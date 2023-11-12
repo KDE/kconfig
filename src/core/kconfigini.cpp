@@ -300,7 +300,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
     bool groupIsImmutable = false;
     const auto end = map.cend();
     for (auto it = map.cbegin(); it != end; ++it) {
-        const KEntryKey &key = it.key();
+        const KEntryKey &key = it->first;
 
         // Either process the default group or all others
         if ((key.mGroup != QStringLiteral("<default>")) == defaultGroup) {
@@ -309,11 +309,11 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
 
         // the only thing we care about groups is, is it immutable?
         if (key.mKey.isNull()) {
-            groupIsImmutable = it->bImmutable;
+            groupIsImmutable = it->second.bImmutable;
             continue; // skip
         }
 
-        const KEntry &currentEntry = *it;
+        const KEntry &currentEntry = it->second;
         if (!defaultGroup && currentGroup != key.mGroup) {
             if (!firstEntry) {
                 file.putChar('\n');
@@ -420,33 +420,33 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
 
     const KEntryMapIterator end = entryMap.end();
     for (KEntryMapIterator it = entryMap.begin(); it != end; ++it) {
-        if (!it.key().mKey.isEmpty() && !it->bDirty) { // not dirty, doesn't overwrite entry in writeMap. skips default entries, too.
+        if (!it->first.mKey.isEmpty() && !it->second.bDirty) { // not dirty, doesn't overwrite entry in writeMap. skips default entries, too.
             continue;
         }
 
-        const KEntryKey &key = it.key();
+        const KEntryKey &key = it->first;
 
         // only write entries that have the same "globality" as the file
-        if (it->bGlobal == bGlobal) {
-            if (it->bReverted && it->bOverridesGlobal) {
-                it->bDeleted = true;
-                writeMap[key] = *it;
-            } else if (it->bReverted) {
-                writeMap.remove(key);
-            } else if (!it->bDeleted) {
-                writeMap[key] = *it;
+        if (it->second.bGlobal == bGlobal) {
+            if (it->second.bReverted && it->second.bOverridesGlobal) {
+                it->second.bDeleted = true;
+                writeMap[key] = it->second;
+            } else if (it->second.bReverted) {
+                writeMap.erase(key);
+            } else if (!it->second.bDeleted) {
+                writeMap[key] = it->second;
             } else {
                 KEntryKey defaultKey = key;
                 defaultKey.bDefault = true;
-                if (!entryMap.contains(defaultKey) && !it->bOverridesGlobal) {
-                    writeMap.remove(key); // remove the deleted entry if there is no default
+                if (entryMap.find(defaultKey) == entryMap.end() && !it->second.bOverridesGlobal) {
+                    writeMap.erase(key); // remove the deleted entry if there is no default
                     // qDebug() << "Detected as deleted=>removed:" << key.mGroup << key.mKey << "global=" << bGlobal;
                 } else {
-                    writeMap[key] = *it; // otherwise write an explicitly deleted entry
+                    writeMap[key] = it->second; // otherwise write an explicitly deleted entry
                     // qDebug() << "Detected as deleted=>[$d]:" << key.mGroup << key.mKey << "global=" << bGlobal;
                 }
             }
-            it->bDirty = false;
+            it->second.bDirty = false;
         }
     }
 

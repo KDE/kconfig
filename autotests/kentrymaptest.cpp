@@ -62,11 +62,11 @@ void KEntryMapTest::testSimple()
     QVERIFY(map.constFindEntry(group1, key2) != map.cend());
     QCOMPARE(map.constFindEntry(group1, key2.toUpper()), map.cend());
 
-    QByteArray found = map.constFindEntry(group1, key1)->mValue;
+    QByteArray found = map.constFindEntry(group1, key1)->second.mValue;
     QCOMPARE(found, value1);
     QVERIFY(found != value2);
 
-    found = map.constFindEntry(group1, key2)->mValue;
+    found = map.constFindEntry(group1, key2)->second.mValue;
     QVERIFY(found != value1);
     QCOMPARE(found, value2);
 }
@@ -98,27 +98,27 @@ void KEntryMapTest::testDefault()
     const auto entry2(map.constFindEntry(group1, key2));
 
     // default set for entry1
-    QVERIFY(defaultEntry != map.constEnd());
-    QCOMPARE(defaultEntry->mValue, entry1->mValue);
+    QVERIFY(defaultEntry != map.cend());
+    QCOMPARE(defaultEntry->second.mValue, entry1->second.mValue);
 
     // no default set for entry2
     QCOMPARE(map.constFindEntry(group1, key2, SearchDefaults), map.cend());
 
     // change from default
     map.setEntry(group1, key1, value2, EntryOptions());
-    QVERIFY(defaultEntry->mValue != entry1->mValue);
+    QVERIFY(defaultEntry->second.mValue != entry1->second.mValue);
     QVERIFY(entry1 != entry2);
-    QCOMPARE(entry1->mValue, entry2->mValue);
+    QCOMPARE(entry1->second.mValue, entry2->second.mValue);
 
     // revert entry1
     map.revertEntry(group1, key1, EntryOptions());
-    QCOMPARE(defaultEntry->mValue, entry1->mValue);
+    QCOMPARE(defaultEntry->second.mValue, entry1->second.mValue);
 
     // revert entry2, no default --> should be marked as deleted
     map.revertEntry(group1, key2, EntryOptions());
-    QCOMPARE(entry2->mValue, QByteArray());
-    QVERIFY(entry2->bDirty);
-    QVERIFY(entry2->bReverted);
+    QCOMPARE(entry2->second.mValue, QByteArray());
+    QVERIFY(entry2->second.bDirty);
+    QVERIFY(entry2->second.bReverted);
 }
 
 void KEntryMapTest::testDelete()
@@ -131,7 +131,7 @@ void KEntryMapTest::testDelete()
 
     map.setEntry(group1, key2, QByteArray(), EntryDeleted | EntryDirty);
     QCOMPARE(map.size(), 5); // entry should still be in map, so it can override merged entries later
-    QCOMPARE(map.constFindEntry(group1, key2)->mValue, QByteArray());
+    QCOMPARE(map.constFindEntry(group1, key2)->second.mValue, QByteArray());
 }
 
 void KEntryMapTest::testGlobal()
@@ -139,11 +139,11 @@ void KEntryMapTest::testGlobal()
     KEntryMap map;
 
     map.setEntry(group1, key1, value1, EntryGlobal);
-    QCOMPARE(map.constFindEntry(group1, key1)->bGlobal, true);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.bGlobal, true);
 
     // this should create a new key that is not "global"
     map.setEntry(group1, key1, value2, EntryOptions());
-    QCOMPARE(map.constFindEntry(group1, key1)->bGlobal, false);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.bGlobal, false);
 }
 
 void KEntryMapTest::testImmutable()
@@ -151,15 +151,15 @@ void KEntryMapTest::testImmutable()
     KEntryMap map;
 
     map.setEntry(group1, key1, value1, EntryImmutable);
-    QCOMPARE(map.constFindEntry(group1, key1)->bImmutable, true); // verify the immutable bit was set
+    QCOMPARE(map.constFindEntry(group1, key1)->second.bImmutable, true); // verify the immutable bit was set
 
     map.setEntry(group1, key1, value2, EntryOptions());
-    QCOMPARE(map.constFindEntry(group1, key1)->mValue, value1); // verify the value didn't change
+    QCOMPARE(map.constFindEntry(group1, key1)->second.mValue, value1); // verify the value didn't change
 
     map.clear();
 
     map.setEntry(group1, QByteArray(), QByteArray(), EntryImmutable);
-    QCOMPARE(map.constFindEntry(group1)->bImmutable, true); // verify the group is immutable
+    QCOMPARE(map.constFindEntry(group1)->second.bImmutable, true); // verify the group is immutable
 
     map.setEntry(group1, key1, value1, EntryOptions()); // should be ignored since the group is immutable
     QCOMPARE(map.constFindEntry(group1, key1), map.cend());
@@ -173,19 +173,19 @@ void KEntryMapTest::testLocale()
     KEntryMap map;
 
     map.setEntry(group1, key1, untranslated, EntryDefault);
-    QCOMPARE(map.constFindEntry(group1, key1)->mValue, untranslated);
-    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->mValue, untranslated); // no localized value yet
+    QCOMPARE(map.constFindEntry(group1, key1)->second.mValue, untranslated);
+    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->second.mValue, untranslated); // no localized value yet
 
     map.setEntry(group1, key1, translated, EntryLocalized);
 
-    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->mValue, translated); // has localized value now
-    QVERIFY(map.constFindEntry(group1, key1, SearchLocalized)->mValue != map.constFindEntry(group1, key1)->mValue);
-    QCOMPARE(map.constFindEntry(group1, key1, SearchDefaults | SearchLocalized)->mValue, untranslated); // default should still be untranslated
+    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->second.mValue, translated); // has localized value now
+    QVERIFY(map.constFindEntry(group1, key1, SearchLocalized)->second.mValue != map.constFindEntry(group1, key1)->second.mValue);
+    QCOMPARE(map.constFindEntry(group1, key1, SearchDefaults | SearchLocalized)->second.mValue, untranslated); // default should still be untranslated
 
     map.setEntry(group1, key1, translatedDefault, EntryDefault | EntryLocalized);
-    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->mValue, translatedDefault);
+    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->second.mValue, translatedDefault);
     map.setEntry(group1, key1, translated, EntryLocalized); // set the translated entry to a different locale
-    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->mValue, translated);
+    QCOMPARE(map.constFindEntry(group1, key1, SearchLocalized)->second.mValue, translated);
 }
 
 #include "moc_kentrymaptest.cpp"
