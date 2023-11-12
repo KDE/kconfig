@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-10-16 11:44+0200\n"
+"PO-Revision-Date: 2023-11-11 16:34+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: \n"
 "Language: bg\n"
@@ -453,13 +453,9 @@ msgid "Open Main Menu"
 msgstr "Отваряне на главното меню"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "Отваряне на главното меню"
+msgstr "Отваряне на контекстното меню"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
