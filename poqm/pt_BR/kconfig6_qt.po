@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-10-17 19:52-0300\n"
+"PO-Revision-Date: 2023-11-14 13:16-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -457,13 +457,9 @@ msgid "Open Main Menu"
 msgstr "Abrir menu principal"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "Abrir menu principal"
+msgstr "Abrir menu de contexto"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
