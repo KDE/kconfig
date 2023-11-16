@@ -553,7 +553,7 @@ msgstr ""
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr "Suprimix la clau designada, si està activada"
+msgstr "Suprimix la clau designada, si està seleccionada"
 
 # skip-rule: t-apo_ini,t-apo_fin
 #: kreadconfig/kwriteconfig.cpp:37
