@@ -293,10 +293,19 @@ void KonfUpdate::gotScript(const QString &_script)
 
     QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kconf_update/") + script);
     if (path.isEmpty()) {
+        const auto installedPath = QStringLiteral("%1/kconf_update_bin/%2").arg(QStringLiteral(CMAKE_INSTALL_FULL_LIBDIR), script);
         if (interpreter.isEmpty()) {
-            path = QStringLiteral("%1/kconf_update_bin/%2").arg(QStringLiteral(CMAKE_INSTALL_FULL_LIBDIR), script);
-            if (!QFile::exists(path)) {
-                path = QStandardPaths::findExecutable(script);
+            if (!QFile::exists(installedPath)) {
+                path = QStandardPaths::findExecutable(installedPath);
+            }
+        }
+
+        if (m_bTestMode && path.isEmpty()) {
+            // look in local file for testmode
+            if (QFile::exists(script)) {
+                qCDebugFile(KCONF_UPDATE_LOG) << "Loading local script" << script << " should be installed to" << installedPath;
+                ;
+                path = script;
             }
         }
 
@@ -331,11 +340,11 @@ void KonfUpdate::gotScript(const QString &_script)
     args += m_arguments;
 
     int result;
-    qCDebug(KCONF_UPDATE_LOG) << "About to run" << cmd;
+    qCDebug(KCONF_UPDATE_LOG) << QStringLiteral("About to run %1 %2").arg(cmd, args.join(QStringLiteral(" ")));
     if (m_bDebugOutput) {
         QFile scriptFile(path);
         if (scriptFile.open(QIODevice::ReadOnly)) {
-            qCDebug(KCONF_UPDATE_LOG) << "Script contents is:\n" << scriptFile.readAll();
+            qCDebug(KCONF_UPDATE_LOG).noquote() << "Script contents is:\n" << scriptFile.readAll();
         }
     }
     QProcess proc;
@@ -346,10 +355,21 @@ void KonfUpdate::gotScript(const QString &_script)
         return;
     }
     result = proc.exitCode();
+    auto errorOutput = proc.readAllStandardError();
+    auto standardOutput = proc.readAllStandardOutput();
     proc.close();
 
+    if (m_bDebugOutput && !standardOutput.isEmpty()) {
+        qCDebug(KCONF_UPDATE_LOG) << "Script output:";
+        qCDebug(KCONF_UPDATE_LOG).noquote() << standardOutput;
+    }
+
+    if (!errorOutput.isEmpty()) {
+        qCWarning(KCONF_UPDATE_LOG).noquote() << "Script error:" << errorOutput;
+    }
+
     if (result != EXIT_SUCCESS) {
-        qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": !! An error occurred while running" << cmd;
+        qCWarning(KCONF_UPDATE_LOG) << m_currentFilename << ": !! An error occurred while running" << cmd;
         return;
     }
 
