@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2023-10-14 17:44+0200\n"
+"PO-Revision-Date: 2023-11-09 16:40+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -455,13 +455,9 @@ msgid "Open Main Menu"
 msgstr "Ireki menu nagusia"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "Ireki menu nagusia"
+msgstr "Ireki testuinguru-menua"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
