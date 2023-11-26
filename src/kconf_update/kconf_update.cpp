@@ -303,8 +303,7 @@ void KonfUpdate::gotScript(const QString &_script)
         if (m_bTestMode && path.isEmpty()) {
             // look in local file for testmode
             if (QFile::exists(script)) {
-                qCDebugFile(KCONF_UPDATE_LOG) << "Loading local script" << script << " should be installed to" << installedPath;
-                ;
+                qCDebug(KCONF_UPDATE_LOG) << "Loading local script" << script << " should be installed to" << installedPath;
                 path = script;
             }
         }
