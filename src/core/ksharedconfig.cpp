@@ -8,7 +8,6 @@
 
 #include "ksharedconfig.h"
 #include "kconfig_p.h"
-#include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 #include <QCoreApplication>
 #include <QThread>

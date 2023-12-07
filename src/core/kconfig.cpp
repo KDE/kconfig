@@ -14,7 +14,6 @@
 #include "dbussanitizer_p.h"
 #include "kconfig_core_log_settings.h"
 
-#include <cstdlib>
 #include <fcntl.h>
 
 #include "kconfigbackend_p.h"
@@ -36,8 +35,6 @@
 #include <algorithm>
 #include <iterator>
 #include <set>
-#include <string_view>
-#include <unordered_set>
 
 #if KCONFIG_USE_DBUS
 #include <QDBusConnection>
