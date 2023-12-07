@@ -732,7 +732,7 @@ public:
         return true;
     }
     // Return true if Utf8Char contains one valid character.
-    bool isComplete()
+    bool isComplete() const
     {
         return count > 0 && count == charLength;
     }
