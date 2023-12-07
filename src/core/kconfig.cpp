@@ -431,18 +431,17 @@ bool KConfig::sync()
         bool writeGlobals = false;
         bool writeLocals = false;
 
-        for (auto it = d->entryMap.cbegin(); it != d->entryMap.cend(); ++it) {
-            const auto &e = it->second;
+        for (const auto &[key, e] : d->entryMap) {
             if (e.bDirty) {
                 if (e.bGlobal) {
                     writeGlobals = true;
                     if (e.bNotify) {
-                        notifyGroupsGlobal[it->first.mGroup] << it->first.mKey;
+                        notifyGroupsGlobal[key.mGroup] << key.mKey;
                     }
                 } else {
                     writeLocals = true;
                     if (e.bNotify) {
-                        notifyGroupsLocal[it->first.mGroup] << it->first.mKey;
+                        notifyGroupsLocal[key.mGroup] << key.mKey;
                     }
                 }
             }
@@ -515,10 +514,9 @@ void KConfig::markAsClean()
     d->bDirty = false;
 
     // clear any dirty flags that entries might have set
-    const KEntryMapIterator theEnd = d->entryMap.end();
-    for (KEntryMapIterator it = d->entryMap.begin(); it != theEnd; ++it) {
-        it->second.bDirty = false;
-        it->second.bNotify = false;
+    for (auto &[_, entry] : d->entryMap) {
+        entry.bDirty = false;
+        entry.bNotify = false;
     }
 }
 
@@ -549,9 +547,8 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
     config->d_func()->entryMap = d->entryMap;
     config->d_func()->bFileImmutable = false;
 
-    const KEntryMapIterator theEnd = config->d_func()->entryMap.end();
-    for (KEntryMapIterator it = config->d_func()->entryMap.begin(); it != theEnd; ++it) {
-        it->second.bDirty = true;
+    for (auto &[_, entry] : config->d_func()->entryMap) {
+        entry.bDirty = true;
     }
     config->d_ptr->bDirty = true;
 
