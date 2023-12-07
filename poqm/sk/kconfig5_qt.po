@@ -1,6 +1,6 @@
 # translation of kwriteconfig.po to Slovak
 # Michal Sulek <misurel@gmail.com>, 2009.
-# Roman Paholík <wizzardsk@gmail.com>, 2014, 2015, 2016, 2022.
+# SPDX-FileCopyrightText: 2014, 2015, 2016, 2022, 2023 Roman Paholík <wizzardsk@gmail.com>
 # Mthw <jari_45@hotmail.com>, 2019.
 # Matej Mrenica <matejm98mthw@gmail.com>, 2019, 2020.
 msgid ""
@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-04-18 17:45+0200\n"
+"PO-Revision-Date: 2023-12-06 19:04+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Qt-Contexts: true\n"
 
@@ -312,12 +312,9 @@ msgid "Clear"
 msgstr "Vyčistiť"
 
 #: gui/kstandardshortcut.cpp:297
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Aktuálna veľkosť"
+msgstr "Priblížiť na aktuálnu veľkosť"
 
 #: gui/kstandardshortcut.cpp:298
 msgctxt "KStandardShortcut|@action"
