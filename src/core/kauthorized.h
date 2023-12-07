@@ -17,6 +17,8 @@
 
 class QUrl;
 class QString;
+class QQmlEngine;
+class QJSEngine;
 
 /**
  * The functions in this namespace provide the core of the Kiosk action
@@ -158,6 +160,11 @@ public:
      *
      */
     Q_INVOKABLE static bool authorizeControlModule(const QString &pluginId);
+
+    static KAuthorized *create(QQmlEngine *, QJSEngine *)
+    {
+        return new KAuthorized;
+    }
 
 private:
     friend class KConfigQmlPlugin;

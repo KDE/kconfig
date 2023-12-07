@@ -48,13 +48,13 @@ install(FILES
 
 
 # The QML plugin
-ecm_add_qml_module(kconfigqmlplugin URI org.kde.config)
-target_sources(kconfigqmlplugin PRIVATE qmlplugin.cpp)
+ecm_add_qml_module(kconfigqmlplugin URI org.kde.config GENERATE_PLUGIN_SOURCE)
+target_sources(kconfigqmlplugin PRIVATE types.cpp)
 target_link_libraries(kconfigqmlplugin PRIVATE
     Qt6::Core
     Qt6::Qml
     KF6::ConfigCore
 )
 
-ecm_finalize_qml_module(kconfigqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR} CLASSNAME KConfigQmlPlugin)
+ecm_finalize_qml_module(kconfigqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR})
 
