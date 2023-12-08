@@ -15,12 +15,12 @@ msgstr ""
 "X-POFile-SpellExtra: kreadconfig Hat Red Inc\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:945
+#: core/kconfig.cpp:939
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Contacte por favor o seu administrador do sistema."
 
-#: core/kconfigini.cpp:573
+#: core/kconfigini.cpp:567
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
