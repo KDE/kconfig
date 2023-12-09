@@ -85,26 +85,6 @@ public:
      * @return true if the group exists.
      */
     bool hasGroup(const QString &group) const;
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for hasGroup(const QString&) const
-     *
-     * @param group name of group to search for, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    bool hasGroup(const char *group) const;
-#endif
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for hasGroup(const QString&) const
-     *
-     * @param group name of group to search for, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    bool hasGroup(const QByteArray &group) const;
-#endif
 
     /**
      * Returns an object for the named subgroup.
@@ -114,51 +94,11 @@ public:
      * @return config group object for the given group name.
      */
     KConfigGroup group(const QString &group);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for group(const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    KConfigGroup group(const QByteArray &group);
-#endif
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for group(const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    KConfigGroup group(const char *group);
-#endif
 
     /**
      * Const overload for group(const QString&)
      */
     const KConfigGroup group(const QString &group) const;
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Const overload for group(const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    const KConfigGroup group(const QByteArray &group) const;
-#endif
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Const overload for group(const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    const KConfigGroup group(const char *group) const;
-#endif
 
     /**
      * Delete @p group.
@@ -166,26 +106,6 @@ public:
      * removes any cascaded values from config files earlier in the stack.
      */
     void deleteGroup(const QString &group, WriteConfigFlags flags = Normal);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for deleteGroup(const QString&, WriteConfigFlags)
-     *
-     * @param group name of group to delete, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    void deleteGroup(const QByteArray &group, WriteConfigFlags flags = Normal);
-#endif
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for deleteGroup(const QString&, WriteConfigFlags)
-     *
-     * @param group name of group to delete, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    void deleteGroup(const char *group, WriteConfigFlags flags = Normal);
-#endif
 
     /**
      * Syncs the configuration object that this group belongs to.
@@ -237,26 +157,6 @@ public:
      * @return @c false if the entries in @p group can be modified, otherwise @c true
      */
     bool isGroupImmutable(const QString &group) const;
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for isGroupImmutable(const QString&) const
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    bool isGroupImmutable(const QByteArray &group) const;
-#endif
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for isGroupImmutable(const QString&) const
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    bool isGroupImmutable(const char *group) const;
-#endif
 
 protected:
     KConfigBase();

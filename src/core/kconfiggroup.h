@@ -54,16 +54,6 @@ public:
      * @param group name of group
      */
     KConfigGroup(KConfigBase *master, const QString &group);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for KConfigGroup(KConfigBase*,const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    KConfigGroup(KConfigBase *master, const char *group);
-#endif
 
     /**
      * Construct a read-only config group.
@@ -74,29 +64,9 @@ public:
      * as @p master.
      */
     KConfigGroup(const KConfigBase *master, const QString &group);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for KConfigGroup(const KConfigBase*,const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    KConfigGroup(const KConfigBase *master, const char *group);
-#endif
 
     /** Overload for KConfigGroup(const KConfigBase*,const QString&) */
     KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const QString &group);
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 241)
-    /**
-     * Overload for KConfigGroup(const KConfigBase*,const QString&)
-     *
-     * @param group name of group, encoded in UTF-8
-     * @deprecated Since 5.240, use QString overload
-     */
-    KCONFIGCORE_DEPRECATED_VERSION_BELATED(5, 241, 5, 240, "Use QString overload")
-    KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const char *group);
-#endif
 
     /**
      * Creates a copy of a group.

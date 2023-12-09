@@ -474,36 +474,15 @@ KConfigGroup::KConfigGroup(KConfigBase *master, const QString &_group)
 {
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
-KConfigGroup::KConfigGroup(KConfigBase *master, const char *_group)
-    : KConfigGroup(master, QString::fromUtf8(_group))
-{
-}
-#endif
-
 KConfigGroup::KConfigGroup(const KConfigBase *master, const QString &_group)
     : d(KConfigGroupPrivate::create(const_cast<KConfigBase *>(master), _group, master->isGroupImmutable(_group), true))
 {
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
-KConfigGroup::KConfigGroup(const KConfigBase *master, const char *_group)
-    : KConfigGroup(master, QString::fromUtf8(_group))
-{
-}
-#endif
-
 KConfigGroup::KConfigGroup(const KSharedConfigPtr &master, const QString &_group)
     : d(new KConfigGroupPrivate(master, _group))
 {
 }
-
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 241)
-KConfigGroup::KConfigGroup(const KSharedConfigPtr &master, const char *_group)
-    : KConfigGroup(master, QString::fromUtf8(_group))
-{
-}
-#endif
 
 KConfigGroup &KConfigGroup::operator=(const KConfigGroup &rhs)
 {
