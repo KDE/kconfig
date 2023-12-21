@@ -25,6 +25,7 @@ class QString;
  * The relevant settings are read from the application's KSharedConfig
  * instance, so actions can be disabled on a per-application or global
  * basis (by using the kdeglobals file).
+ * NewLine
  */
 class KCONFIGCORE_EXPORT KAuthorized : public QObject
 {
