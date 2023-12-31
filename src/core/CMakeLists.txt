@@ -47,10 +47,12 @@ ecm_generate_export_header(KF6ConfigCore
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_compile_definitions(KF6ConfigCore
-    PRIVATE
-        KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF}/$<TARGET_FILE_NAME:KF6::kconf_update>"
-)
+# if (NOT EMSCRIPTEN)
+# target_compile_definitions(KF6ConfigCore
+#     PRIVATE
+#         KCONF_UPDATE_INSTALL_LOCATION="${KDE_INSTALL_FULL_LIBEXECDIR_KF}/$<TARGET_FILE_NAME:KF6::kconf_update>"
+# )
+# endif()
 
 target_include_directories(KF6ConfigCore
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>"

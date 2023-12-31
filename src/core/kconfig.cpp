@@ -528,6 +528,7 @@ bool KConfig::isDirty() const
 
 void KConfig::checkUpdate(const QString &id, const QString &updateFile)
 {
+#if QT_CONFIG(process)
     const KConfigGroup cg(this, QStringLiteral("$Version"));
     const QString cfg_id = updateFile + QLatin1Char(':') + id;
     const QStringList ids = cg.readEntry("update_info", QStringList());
@@ -535,6 +536,10 @@ void KConfig::checkUpdate(const QString &id, const QString &updateFile)
         QProcess::execute(QStringLiteral(KCONF_UPDATE_INSTALL_LOCATION), QStringList{QStringLiteral("--check"), updateFile});
         reparseConfiguration();
     }
+#else
+    Q_UNUSED(id)
+    Q_UNUSED(updateFile)
+#endif
 }
 
 KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
@@ -935,12 +940,14 @@ bool KConfig::isConfigWritable(bool warnUser)
             errorMsg = d->mBackend->nonWritableErrorMessage();
         }
 
+#if QT_CONFIG(process)
         // Note: We don't ask the user if we should not ask this question again because we can't save the answer.
         errorMsg += QCoreApplication::translate("KConfig", "Please contact your system administrator.");
         QString cmdToExec = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
         if (!cmdToExec.isEmpty()) {
             QProcess::execute(cmdToExec, QStringList{QStringLiteral("--title"), QCoreApplication::applicationName(), QStringLiteral("--msgbox"), errorMsg});
         }
+#endif
     }
 
     d->configState = allWritable ? ReadWrite : ReadOnly; // update the read/write status

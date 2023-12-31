@@ -39,7 +39,7 @@ if(KCONFIG_USE_QML)
     find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
 endif()
 
-if(NOT ANDROID)
+if(NOT ANDROID AND NOT EMSCRIPTEN)
     set(default_kconfig_use_dbus ON)
     if(WIN32)
         set(default_kconfig_use_dbus OFF)
@@ -106,9 +106,10 @@ install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfig.cmake"
 install(EXPORT KF6ConfigTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KF6ConfigTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
 
-
+if (NOT EMSCRIPTEN)
 install(EXPORT KF6ConfigCompilerTargets DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Config"
         FILE KF6ConfigCompilerTargets.cmake NAMESPACE KF6:: COMPONENT Devel)
+endif()
 
 install(FILES ${kconfig_version_header}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfig COMPONENT Devel)

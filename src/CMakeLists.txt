@@ -5,9 +5,11 @@ endif()
 if(KCONFIG_USE_QML)
     add_subdirectory(qml)
 endif()
+if (NOT EMSCRIPTEN)
 add_subdirectory(kconfig_compiler)
 add_subdirectory(kconf_update)
 add_subdirectory(kreadconfig)
+endif()
 
 ecm_qt_install_logging_categories(
     EXPORT KCONFIG
