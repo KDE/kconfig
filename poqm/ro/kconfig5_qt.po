@@ -1,10 +1,6 @@
-# Traducerea kwriteconfig.po în Română
-# translation of kwriteconfig.po to Romanian
-# translation of @PACKAGE.po to @LANGUAGE
 # Copyright (C) 2003, 2004, 2008 Free Software Foundation, Inc.
 # Claudiu Costin <claudiuc@kde.org>, 2003, 2004.
-# Sergiu Bivol <sergiu@cip.md>, 2008.
-# Sergiu Bivol <sergiu@cip.md>, 2008, 2020, 2022.
+# Sergiu Bivol <sergiu@cip.md>, 2008, 2020, 2022, 2024.
 #
 msgid ""
 msgstr ""
