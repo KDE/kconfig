@@ -1,17 +1,14 @@
-# Traducerea kwriteconfig.po în Română
-# translation of kwriteconfig.po to Romanian
-# translation of @PACKAGE.po to @LANGUAGE
 # Copyright (C) 2003, 2004, 2008 Free Software Foundation, Inc.
+#
 # Claudiu Costin <claudiuc@kde.org>, 2003, 2004.
-# Sergiu Bivol <sergiu@cip.md>, 2008.
-# Sergiu Bivol <sergiu@cip.md>, 2008, 2020, 2022.
+# Sergiu Bivol <sergiu@cip.md>, 2008, 2020, 2022, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-06-01 15:14+0100\n"
+"PO-Revision-Date: 2024-01-07 14:10+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -454,12 +451,12 @@ msgstr "Creează dosar"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Deschide meniul principal"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Deschide meniul contextual"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
@@ -478,6 +475,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Doar pentru teste unitare: nu scrie înregistrările încheiate, astfel încât "
+"scripturile să fie re-executate la fiecare rulare"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"

@@ -2,13 +2,13 @@
 #
 # Tamas Szanto <tszanto@interware.hu>, 2003.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2014.
-# Kristof Kiszel <kiszel.kristof@gmail.com>, 2018, 2020, 2021.
+# SPDX-FileCopyrightText: 2018, 2020, 2021, 2024 Kristof Kiszel <kiszel.kristof@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2021-12-29 17:27+0100\n"
+"PO-Revision-Date: 2024-01-07 22:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.12.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:939
@@ -312,12 +312,9 @@ msgid "Clear"
 msgstr "Törlés"
 
 #: gui/kstandardshortcut.cpp:299
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Tényleges méret"
+msgstr "Nagyítás a tényleges méretre"
 
 #: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
@@ -453,12 +450,12 @@ msgstr "Mappa létrehozása"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Főmenü megnyitása"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Helyi menü megnyitása"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
@@ -476,6 +473,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Csak egységtesztekhez: ne írja ki a kész bejegyzéseket, így minden újra "
+"futtatáskor a parancsfájlok ismét végrehajtódnak"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
