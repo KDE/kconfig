@@ -25,15 +25,15 @@ QDebug operator<<(QDebug dbg, const KEntry &entry)
     return dbg.space();
 }
 
-KEntryMapIterator KEntryMap::findExactEntry(const QString &group, const QByteArray &key, KEntryMap::SearchFlags flags)
+KEntryMapIterator KEntryMap::findExactEntry(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags)
 {
-    KEntryKey theKey(group, key, bool(flags & SearchLocalized), bool(flags & SearchDefaults));
+    const KEntryKeyView theKey(group, key, bool(flags & SearchLocalized), bool(flags & SearchDefaults));
     return find(theKey);
 }
 
-KEntryMapIterator KEntryMap::findEntry(const QString &group, const QByteArray &key, KEntryMap::SearchFlags flags)
+KEntryMapIterator KEntryMap::findEntry(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags)
 {
-    KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
+    KEntryKeyView theKey(group, key, false, bool(flags & SearchDefaults));
 
     // try the localized key first
     if (flags & SearchLocalized) {
@@ -49,9 +49,9 @@ KEntryMapIterator KEntryMap::findEntry(const QString &group, const QByteArray &k
     return find(theKey);
 }
 
-KEntryMapConstIterator KEntryMap::constFindEntry(const QString &group, const QByteArray &key, SearchFlags flags) const
+KEntryMapConstIterator KEntryMap::constFindEntry(const QString &group, QAnyStringView key, SearchFlags flags) const
 {
-    KEntryKey theKey(group, key, false, bool(flags & SearchDefaults));
+    KEntryKeyView theKey(group, key, false, bool(flags & SearchDefaults));
 
     // try the localized key first
     if (flags & SearchLocalized) {
@@ -214,7 +214,7 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
     return false;
 }
 
-QString KEntryMap::getEntry(const QString &group, const QByteArray &key, const QString &defaultValue, KEntryMap::SearchFlags flags, bool *expand) const
+QString KEntryMap::getEntry(const QString &group, QAnyStringView key, const QString &defaultValue, KEntryMap::SearchFlags flags, bool *expand) const
 {
     const auto it = constFindEntry(group, key, flags);
     QString theValue = defaultValue;
@@ -232,7 +232,7 @@ QString KEntryMap::getEntry(const QString &group, const QByteArray &key, const Q
     return theValue;
 }
 
-bool KEntryMap::hasEntry(const QString &group, const QByteArray &key, KEntryMap::SearchFlags flags) const
+bool KEntryMap::hasEntry(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const
 {
     const auto it = constFindEntry(group, key, flags);
     if (it == cend()) {
@@ -304,7 +304,7 @@ void KEntryMap::setEntryOption(KEntryMapIterator it, KEntryMap::EntryOption opti
     }
 }
 
-bool KEntryMap::revertEntry(const QString &group, const QByteArray &key, KEntryMap::EntryOptions options, KEntryMap::SearchFlags flags)
+bool KEntryMap::revertEntry(const QString &group, QAnyStringView key, KEntryMap::EntryOptions options, KEntryMap::SearchFlags flags)
 {
     Q_ASSERT((flags & KEntryMap::SearchDefaults) == 0);
     iterator entry = findEntry(group, key, flags);

@@ -30,8 +30,15 @@ public:
     static const EntryOption EntryExpansion = KEntryMap::EntryExpansion;
     static const EntryOption EntryDefault = KEntryMap::EntryDefault;
     static const EntryOption EntryLocalized = KEntryMap::EntryLocalized;
-private Q_SLOTS:
+
+private:
+    template<typename KeyTypeA, typename KeyTypeB>
     void testKeyOrder();
+
+private Q_SLOTS:
+    void testKeyAndKeyOrder();
+    void testKeyAndKeyViewOrder();
+    void testKeyViewAndKeyOrder();
     void testSimple();
     void testDirty();
     void testDefault();

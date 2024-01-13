@@ -79,3 +79,10 @@ find_package(Qt6 OPTIONAL_COMPONENTS Widgets)
 if(TARGET Qt6::Widgets)
     ecm_add_test(kwindowstatesavertest.cpp LINK_LIBRARIES KF6::ConfigGui Qt6::Test Qt6::Widgets)
 endif()
+
+# benchmarks, don't execute during normal testing
+# they don't test additional stuff
+add_executable(kconfig_benchmark kconfig_benchmark.cpp)
+ecm_mark_nongui_executable(kconfig_benchmark)
+add_test(NAME kconfig_benchmark COMMAND kconfig_benchmark CONFIGURATIONS BENCHMARK)
+target_link_libraries(kconfig_benchmark KF6::ConfigCore Qt6::Test)

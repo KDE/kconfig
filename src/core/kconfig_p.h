@@ -31,10 +31,10 @@ public:
     void changeFileName(const QString &fileName);
 
     // functions for KConfigGroup
-    bool canWriteEntry(const QString &groupName, const char *key, bool isDefault = false) const;
-    QString lookupData(const QString &groupName, const char *key, KEntryMap::SearchFlags flags, bool *expand) const;
-    QByteArray lookupData(const QString &groupName, const char *key, KEntryMap::SearchFlags flags) const;
-    KEntry lookupInternalEntry(const QString &groupName, const char *key, KEntryMap::SearchFlags flags) const;
+    bool canWriteEntry(const QString &group, QAnyStringView key, bool isDefault = false) const;
+    QString lookupData(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags, bool *expand) const;
+    QByteArray lookupData(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const;
+    KEntry lookupInternalEntry(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const;
 
     void putData(const QString &groupName, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
     void setEntryData(const QString &groupName, const char *key, const QByteArray &value, KEntryMap::EntryOptions flags)
@@ -43,7 +43,7 @@ public:
             bDirty = true;
         }
     }
-    void revertEntry(const QString &groupName, const char *key, KConfigBase::WriteConfigFlags flags);
+    void revertEntry(const QString &group, QAnyStringView key, KConfigBase::WriteConfigFlags flags);
     QStringList groupList(const QString &groupName) const;
     // copies the entries from @p source to @p otherGroup changing all occurrences
     // of @p source with @p destination

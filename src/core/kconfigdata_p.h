@@ -159,14 +159,100 @@ inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
 }
 
 /**
+ * Light-weight view variant of KEntryKey.
+ * Used for look-up in the map.
+ * @internal
+ */
+struct KEntryKeyView {
+    /** Constructor. @internal */
+    KEntryKeyView(QStringView _group, QAnyStringView _key, bool isLocalized = false, bool isDefault = false)
+        : mGroup(_group)
+        , mKey(_key)
+        , bLocal(isLocalized)
+        , bDefault(isDefault)
+    {
+    }
+    /**
+     * The "group" to which this EntryKey belongs
+     */
+    const QStringView mGroup;
+    /**
+     * The _actual_ key of the entry in question
+     */
+    const QAnyStringView mKey;
+    /**
+     * Entry is localised or not
+     */
+    bool bLocal : 1;
+    /**
+     * Entry indicates if this is a default value.
+     */
+    bool bDefault : 1;
+};
+
+template<typename TEntryKey1, typename TEntryKey2>
+bool compareEntryKeyViews(const TEntryKey1 &k1, const TEntryKey2 &k2)
+{
+    int result = k1.mGroup.compare(k2.mGroup);
+    if (result != 0) {
+        return result < 0;
+    }
+
+    result = QAnyStringView::compare(k1.mKey, k2.mKey);
+    if (result != 0) {
+        return result < 0;
+    }
+
+    if (k1.bLocal != k2.bLocal) {
+        return k1.bLocal;
+    }
+    return (!k1.bDefault && k2.bDefault);
+}
+
+inline bool operator<(const KEntryKeyView &k1, const KEntryKey &k2)
+{
+    return compareEntryKeyViews(k1, k2);
+}
+
+inline bool operator<(const KEntryKey &k1, const KEntryKeyView &k2)
+{
+    return compareEntryKeyViews(k1, k2);
+}
+
+/**
+ * Struct to use as Compare type with std::map.
+ * To enable usage of KEntryKeyView for look-up in the map
+ * via the template find() overloads.
+ * @internal
+ */
+struct KEntryKeyCompare {
+    using is_transparent = void;
+
+    bool operator()(const KEntryKey &k1, const KEntryKey &k2) const
+    {
+        return (k1 < k2);
+    }
+
+    bool operator()(const KEntryKeyView &k1, const KEntryKey &k2) const
+    {
+        return (k1 < k2);
+    }
+
+    bool operator()(const KEntryKey &k1, const KEntryKeyView &k2) const
+    {
+        return (k1 < k2);
+    }
+};
+
+/**
  * Returns the minimum key that has @a mGroup == @p group.
  *
  * @note The returned "minimum key" is consistent with KEntryKey's operator<().
  *       The return value of this function can be passed to KEntryMap::lowerBound().
  */
-inline KEntryKey minimumGroupKey(const QString &group)
+inline KEntryKeyView minimumGroupKeyView(const QString &group)
 {
-    return KEntryKey(group, QByteArray{}, true, false);
+    return KEntryKeyView(group, QAnyStringView{}, true, false);
 }
 
 QDebug operator<<(QDebug dbg, const KEntryKey &key);
@@ -179,7 +265,7 @@ QDebug operator<<(QDebug dbg, const KEntry &entry);
  * with the group name.
  * @internal
  */
-class KEntryMap : public std::map<KEntryKey, KEntry>
+class KEntryMap : public std::map<KEntryKey, KEntry, KEntryKeyCompare>
 {
 public:
     enum SearchFlag {
@@ -202,16 +288,16 @@ public:
     };
     Q_DECLARE_FLAGS(EntryOptions, EntryOption)
 
-    iterator findExactEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
+    iterator findExactEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags());
 
-    iterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags());
+    iterator findEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags());
 
-    const_iterator findEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const
+    const_iterator findEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags()) const
     {
         return constFindEntry(group, key, flags);
     }
 
-    const_iterator constFindEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
+    const_iterator constFindEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags()) const;
 
     /**
      * Returns true if the entry gets dirtied or false in other case
@@ -224,31 +310,31 @@ public:
     }
 
     QString getEntry(const QString &group,
-                     const QByteArray &key,
+                     QAnyStringView key,
                      const QString &defaultValue = QString(),
                      SearchFlags flags = SearchFlags(),
                      bool *expand = nullptr) const;
 
-    bool hasEntry(const QString &group, const QByteArray &key = QByteArray(), SearchFlags flags = SearchFlags()) const;
+    bool hasEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags()) const;
 
     bool getEntryOption(const const_iterator &it, EntryOption option) const;
-    bool getEntryOption(const QString &group, const QByteArray &key, SearchFlags flags, EntryOption option) const
+    bool getEntryOption(const QString &group, QAnyStringView key, SearchFlags flags, EntryOption option) const
     {
         return getEntryOption(findEntry(group, key, flags), option);
     }
 
     void setEntryOption(iterator it, EntryOption option, bool bf);
-    void setEntryOption(const QString &group, const QByteArray &key, SearchFlags flags, EntryOption option, bool bf)
+    void setEntryOption(const QString &group, QAnyStringView key, SearchFlags flags, EntryOption option, bool bf)
     {
         setEntryOption(findEntry(group, key, flags), option, bf);
     }
 
-    bool revertEntry(const QString &group, const QByteArray &key, EntryOptions options, SearchFlags flags = SearchFlags());
+    bool revertEntry(const QString &group, QAnyStringView key, EntryOptions options, SearchFlags flags = SearchFlags());
 
     template<typename ConstIteratorUser>
     void forEachEntryWhoseGroupStartsWith(const QString &groupPrefix, ConstIteratorUser callback) const
     {
-        for (auto it = lower_bound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it->first.mGroup.startsWith(groupPrefix); ++it) {
+        for (auto it = lower_bound(minimumGroupKeyView(groupPrefix)), end = cend(); it != end && it->first.mGroup.startsWith(groupPrefix); ++it) {
             callback(it);
         }
     }
@@ -256,7 +342,7 @@ public:
     template<typename ConstIteratorPredicate>
     bool anyEntryWhoseGroupStartsWith(const QString &groupPrefix, ConstIteratorPredicate predicate) const
     {
-        for (auto it = lower_bound(minimumGroupKey(groupPrefix)), end = cend(); it != end && it->first.mGroup.startsWith(groupPrefix); ++it) {
+        for (auto it = lower_bound(minimumGroupKeyView(groupPrefix)), end = cend(); it != end && it->first.mGroup.startsWith(groupPrefix); ++it) {
             if (predicate(it)) {
                 return true;
             }
@@ -272,7 +358,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)
  * type for iterating over keys in a KEntryMap in sorted order.
  * @internal
  */
-typedef std::map<KEntryKey, KEntry>::iterator KEntryMapIterator;
+typedef KEntryMap::iterator KEntryMapIterator;
 
 /**
  * \relates KEntry
@@ -281,6 +367,6 @@ typedef std::map<KEntryKey, KEntry>::iterator KEntryMapIterator;
  * only examine them.
  * @internal
  */
-typedef std::map<KEntryKey, KEntry>::const_iterator KEntryMapConstIterator;
+typedef KEntryMap::const_iterator KEntryMapConstIterator;
 
 #endif

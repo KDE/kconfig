@@ -18,31 +18,51 @@ static const QByteArray value2{"A different value"};
 
 QTEST_MAIN(KEntryMapTest)
 
+template<typename KeyTypeA, typename KeyTypeB>
 void KEntryMapTest::testKeyOrder()
 {
-    const KEntryKey groupMarker(group1);
-    const KEntryKey entry(group1, key1);
-    const KEntryKey localized(group1, key1, true, false);
-    const KEntryKey localizedDefault(group1, key1, true, true);
-    const KEntryKey defaultEntry(group1, key1, false, true);
+    const KeyTypeA groupMarkerA(group1, {});
+    const KeyTypeA entryA(group1, key1);
+    const KeyTypeA localizedA(group1, key1, true, false);
+    const KeyTypeA localizedDefaultA(group1, key1, true, true);
+
+    const KeyTypeB entryB(group1, key1);
+    const KeyTypeB localizedB(group1, key1, true, false);
+    const KeyTypeB localizedDefaultB(group1, key1, true, true);
+    const KeyTypeB defaultEntryB(group1, key1, false, true);
 
     // group marker should come before all entries
-    QVERIFY(groupMarker < entry);
-    QVERIFY(groupMarker < defaultEntry);
-    QVERIFY(groupMarker < localized);
-    QVERIFY(groupMarker < localizedDefault);
+    QVERIFY(groupMarkerA < entryB);
+    QVERIFY(groupMarkerA < defaultEntryB);
+    QVERIFY(groupMarkerA < localizedB);
+    QVERIFY(groupMarkerA < localizedDefaultB);
 
     // localized should come before entry
-    QVERIFY(localized < entry);
+    QVERIFY(localizedA < entryB);
 
     // localized-default should come after localized entry
-    QVERIFY(localized < localizedDefault);
+    QVERIFY(localizedA < localizedDefaultB);
 
     // localized-default should come before non-localized entry
-    QVERIFY(localizedDefault < entry);
+    QVERIFY(localizedDefaultA < entryB);
 
     // default should come after entry
-    QVERIFY(entry < defaultEntry);
+    QVERIFY(entryA < defaultEntryB);
+}
+
+void KEntryMapTest::testKeyAndKeyOrder()
+{
+    testKeyOrder<KEntryKey, KEntryKey>();
+}
+
+void KEntryMapTest::testKeyAndKeyViewOrder()
+{
+    testKeyOrder<KEntryKey, KEntryKeyView>();
+}
+
+void KEntryMapTest::testKeyViewAndKeyOrder()
+{
+    testKeyOrder<KEntryKeyView, KEntryKey>();
 }
 
 void KEntryMapTest::testSimple()

@@ -916,7 +916,7 @@ void KConfig::deleteGroupImpl(const QString &aGroup, WriteConfigFlags flags)
     for (const QString &group : groups) {
         const QList<QByteArray> keys = d->keyListImpl(group);
         for (const QByteArray &key : keys) {
-            if (d->canWriteEntry(group, key.constData())) {
+            if (d->canWriteEntry(group, key)) {
                 d->entryMap.setEntry(group, key, QByteArray(), options);
                 d->bDirty = true;
             }
@@ -958,7 +958,7 @@ bool KConfig::hasGroupImpl(const QString &aGroup) const
     return d->hasNonDeletedEntries(aGroup);
 }
 
-bool KConfigPrivate::canWriteEntry(const QString &group, const char *key, bool isDefault) const
+bool KConfigPrivate::canWriteEntry(const QString &group, QAnyStringView key, bool isDefault) const
 {
     if (bFileImmutable || entryMap.getEntryOption(group, key, KEntryMap::SearchLocalized, KEntryMap::EntryImmutable)) {
         return isDefault;
@@ -987,7 +987,7 @@ void KConfigPrivate::putData(const QString &group, const char *key, const QByteA
     }
 }
 
-void KConfigPrivate::revertEntry(const QString &group, const char *key, KConfigBase::WriteConfigFlags flags)
+void KConfigPrivate::revertEntry(const QString &group, QAnyStringView key, KConfigBase::WriteConfigFlags flags)
 {
     KEntryMap::EntryOptions options = convertToOptions(flags);
 
@@ -997,12 +997,12 @@ void KConfigPrivate::revertEntry(const QString &group, const char *key, KConfigB
     }
 }
 
-QByteArray KConfigPrivate::lookupData(const QString &group, const char *key, KEntryMap::SearchFlags flags) const
+QByteArray KConfigPrivate::lookupData(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const
 {
     return lookupInternalEntry(group, key, flags).mValue;
 }
 
-KEntry KConfigPrivate::lookupInternalEntry(const QString &group, const char *key, KEntryMap::SearchFlags flags) const
+KEntry KConfigPrivate::lookupInternalEntry(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const
 {
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
@@ -1014,7 +1014,7 @@ KEntry KConfigPrivate::lookupInternalEntry(const QString &group, const char *key
     return it->second;
 }
 
-QString KConfigPrivate::lookupData(const QString &group, const char *key, KEntryMap::SearchFlags flags, bool *expand) const
+QString KConfigPrivate::lookupData(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags, bool *expand) const
 {
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
