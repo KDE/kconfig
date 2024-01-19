@@ -32,6 +32,9 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
+    void testLocalDeletion();
+
+private:
     void testSimple();
     void testDefaults();
     void testLists();
@@ -78,7 +81,6 @@ private Q_SLOTS:
     void testLocaleConfig();
     void testDirtyAfterRevert();
     void testKdeGlobals();
-    void testLocalDeletion();
     void testNewlines();
     void testXdgListEntry();
     void testNotify();

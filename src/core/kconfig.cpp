@@ -83,6 +83,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
     if (sGlobalFileName.exists() && s_wasTestModeEnabled != isTestMode) {
         s_wasTestModeEnabled = isTestMode;
         *sGlobalFileName = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals");
+        qDebug() << "ENABLING TEST kdeglobals" << *sGlobalFileName;
     }
 
     static QBasicAtomicInt use_etc_kderc = Q_BASIC_ATOMIC_INITIALIZER(-1);
@@ -605,7 +606,7 @@ QString KConfig::mainConfigName()
 void KConfigPrivate::changeFileName(const QString &name)
 {
     fileName = name;
-
+    qDebug() << "KConfig: new filename" << fileName;
     QString file;
     if (name.isEmpty()) {
         if (wantDefaults()) { // accessing default app-specific config "appnamerc"
@@ -700,7 +701,7 @@ QStringList KConfigPrivate::getGlobalFiles() const
 void KConfigPrivate::parseGlobalFiles()
 {
     const QStringList globalFiles = getGlobalFiles();
-    //    qDebug() << "parsing global files" << globalFiles;
+    qDebug() << "parsing global files" << globalFiles;
 
     Q_ASSERT(entryMap.empty());
     const ParseCacheKey key = {globalFiles, locale};
@@ -712,14 +713,17 @@ void KConfigPrivate::parseGlobalFiles()
 #else
         const auto fileDate = QFileInfo(file).lastModified();
 #endif
+        qDebug() << "timestamp file" << file << fileDate;
         if (fileDate > newest) {
             newest = fileDate;
         }
     }
     if (data) {
+        qDebug() << "timestamp cache" << data->parseTime;
         if (data->parseTime < newest) {
             data = nullptr;
         } else {
+            qDebug() << "taking global from cache";
             entryMap = data->entries;
             return;
         }
@@ -777,7 +781,7 @@ void KConfigPrivate::parseConfigFiles()
             files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
         }
 
-        //        qDebug() << "parsing local files" << files;
+        qDebug() << "parsing local files" << files;
 
         const QByteArray utf8Locale = locale.toUtf8();
         for (const QString &file : std::as_const(files)) {

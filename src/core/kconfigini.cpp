@@ -76,7 +76,7 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return file.exists() ? ParseOpenError : ParseOk;
     }
-
+    qDebug() << "load file:" << filePath();
     QList<QString> immutableGroups;
 
     bool fileOptionImmutable = false;
@@ -279,6 +279,8 @@ KConfigBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &curre
                 rawKey.append('[').append(locale.toVolatileByteArray()).append(']');
                 entryMap.setEntry(currentGroup, rawKey, lookup(line, &cache), entryOptions);
             } else {
+                qDebug() << "load entry: group" << currentGroup << "key" << lookup(aKey, &cache) << "opt:" << entryOptions;
+                ;
                 entryMap.setEntry(currentGroup, lookup(aKey, &cache), lookup(line, &cache), entryOptions);
             }
         }

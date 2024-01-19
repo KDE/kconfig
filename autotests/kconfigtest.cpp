@@ -1754,8 +1754,13 @@ void KConfigTest::testLocalDeletion()
     {
         KConfig mainConfig(s_kconfig_test_subdir);
         KConfigGroup mainGroup(&mainConfig, QStringLiteral("OwnTestGroup"));
-        QTRY_COMPARE_WITH_TIMEOUT(mainGroup.readEntry("GlobalKey", "Default"), QStringLiteral("Default"), 5000); // key is gone
-        QTRY_COMPARE_WITH_TIMEOUT(mainGroup.keyList(), expectedKeys, 5000);
+        QCOMPARE(mainGroup.readEntry("GlobalKey", "Default"), QStringLiteral("Default")); // key is gone
+        KConfig globReadNoGlob(QStringLiteral("kdeglobals"), KConfig::NoGlobals);
+        const KConfigGroup generalNoGlob(&globReadNoGlob, QStringLiteral("OwnTestGroup"));
+        qDebug() << "global" << generalNoGlob.keyList();
+
+        qDebug() << "actual" << mainGroup.keyList();
+        QCOMPARE(mainGroup.keyList(), expectedKeys);
     }
 }
 
