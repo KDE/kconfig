@@ -358,42 +358,28 @@ bool KConfigPrivate::hasNonDeletedEntries(const QString &group) const
 
 QList<QByteArray> KConfigPrivate::keyListImpl(const QString &theGroup) const
 {
-    QList<QByteArray> keys;
+    std::set<QByteArray> tmp; // unique set, sorted for unittests
 
-    const auto theEnd = entryMap.cend();
-    auto it = entryMap.constFindEntry(theGroup);
-    if (it != theEnd) {
-        ++it; // advance past the special group entry marker
-
-        std::set<QByteArray> tmp; // unique set, sorted for unittests
-        for (; it != theEnd && it->first.mGroup == theGroup; ++it) {
-            if (isNonDeletedKey(it)) {
-                tmp.insert(it->first.mKey);
-            }
+    entryMap.forEachEntryOfGroup(theGroup, [&tmp](KEntryMapConstIterator it) {
+        if (isNonDeletedKey(it)) {
+            tmp.insert(it->first.mKey);
         }
-        keys = QList<QByteArray>(tmp.begin(), tmp.end());
-    }
+    });
 
-    return keys;
+    return QList<QByteArray>(tmp.begin(), tmp.end());
 }
 
 QStringList KConfigPrivate::usedKeyList(const QString &theGroup) const
 {
     std::set<QString> tmp; // unique set, sorting as side-effect
 
-    const auto theEnd = entryMap.cend();
-    auto it = entryMap.constFindEntry(theGroup);
-    if (it != theEnd) {
-        ++it; // advance past the special group entry marker
-
-        for (; it != theEnd && it->first.mGroup == theGroup; ++it) {
-            // leave the default values and deleted entries out, same as KConfig::entryMap()
-            if (isSetKey(it)) {
-                const QString key = QString::fromUtf8(it->first.mKey);
-                tmp.insert(key);
-            }
+    entryMap.forEachEntryOfGroup(theGroup, [&tmp](KEntryMapConstIterator it) {
+        // leave the default values and deleted entries out, same as KConfig::entryMap()
+        if (isSetKey(it)) {
+            const QString key = QString::fromUtf8(it->first.mKey);
+            tmp.insert(key);
         }
-    }
+    });
 
     return QStringList(tmp.begin(), tmp.end());
 }
@@ -404,27 +390,21 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     QMap<QString, QString> theMap;
     const QString theGroup = aGroup.isEmpty() ? QStringLiteral("<default>") : aGroup;
 
-    const auto theEnd = d->entryMap.cend();
-    auto it = d->entryMap.constFindEntry(theGroup, {}, {});
-    if (it != theEnd) {
-        ++it; // advance past the special group entry marker
-
-        for (; it != theEnd && it->first.mGroup == theGroup; ++it) {
-            // leave the default values and deleted entries out
-            if (isSetKey(it)) {
-                const QString key = QString::fromUtf8(it->first.mKey.constData());
-                // the localized entry should come first, so don't overwrite it
-                // with the non-localized entry
-                if (!theMap.contains(key)) {
-                    if (it->second.bExpand) {
-                        theMap.insert(key, KConfigPrivate::expandString(QString::fromUtf8(it->second.mValue.constData())));
-                    } else {
-                        theMap.insert(key, QString::fromUtf8(it->second.mValue.constData()));
-                    }
+    d->entryMap.forEachEntryOfGroup(theGroup, [&theMap](KEntryMapConstIterator it) {
+        // leave the default values and deleted entries out
+        if (isSetKey(it)) {
+            const QString key = QString::fromUtf8(it->first.mKey.constData());
+            // the localized entry should come first, so don't overwrite it
+            // with the non-localized entry
+            if (!theMap.contains(key)) {
+                if (it->second.bExpand) {
+                    theMap.insert(key, KConfigPrivate::expandString(QString::fromUtf8(it->second.mValue.constData())));
+                } else {
+                    theMap.insert(key, QString::fromUtf8(it->second.mValue.constData()));
                 }
             }
         }
-    }
+    });
 
     return theMap;
 }

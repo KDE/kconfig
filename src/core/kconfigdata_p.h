@@ -349,6 +349,20 @@ public:
         }
         return false;
     }
+
+    template<typename ConstIteratorUser>
+    void forEachEntryOfGroup(const QString &theGroup, ConstIteratorUser callback) const
+    {
+        const auto theEnd = cend();
+        auto it = constFindEntry(theGroup);
+        if (it != theEnd) {
+            ++it; // advance past the special group entry marker
+
+            for (; (it != theEnd) && (it->first.mGroup == theGroup); ++it) {
+                callback(it);
+            }
+        }
+    }
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::SearchFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)
