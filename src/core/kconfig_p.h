@@ -44,6 +44,16 @@ public:
         }
     }
     void revertEntry(const QString &group, QAnyStringView key, KConfigBase::WriteConfigFlags flags);
+    /**
+     * Returns a list of keys used with entries in a particular group.
+     *
+     * This does not include keys of deleted entries or those with default values.
+     * I.e. all the keys for which there will be also entries in KConfig::entryMap().
+     *
+     * @return A sorted list of keys in the group specified.
+     *         The returned list may be empty if the group is empty, or not found.
+     */
+    QStringList usedKeyList(const QString &theGroup) const;
     QStringList groupList(const QString &groupName) const;
     // copies the entries from @p source to @p otherGroup changing all occurrences
     // of @p source with @p destination

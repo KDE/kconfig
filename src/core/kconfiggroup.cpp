@@ -1151,7 +1151,7 @@ QStringList KConfigGroup::keyList() const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::keyList", "accessing an invalid group");
 
-    return entryMap().keys();
+    return config()->d_func()->usedKeyList(d->fullName());
 }
 
 void KConfigGroup::markAsClean()

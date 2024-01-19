@@ -25,6 +25,7 @@ private Q_SLOTS:
 
     void testHasKey();
     void testReadEntry();
+    void testKConfigGroupKeyList();
 };
 
 void KConfigBenchmark::initTestCase()
@@ -34,6 +35,7 @@ void KConfigBenchmark::initTestCase()
 
     KConfig sc(s_kconfig_test_subdir);
     KConfigGroup cg(&sc, QStringLiteral("Main"));
+    cg.deleteGroup();
     cg.writeEntry("UsedEntry", s_string_entry1);
 }
 
@@ -70,6 +72,28 @@ void KConfigBenchmark::testReadEntry()
 
     QCOMPARE(usedEntry, s_string_entry1);
     QCOMPARE(notUsedEntry, defaultEntry);
+}
+
+void KConfigBenchmark::testKConfigGroupKeyList()
+{
+    QStringList keyList;
+    const QString defaultEntry = QStringLiteral("Default");
+
+    KConfig sc(s_kconfig_test_subdir);
+    KConfigGroup cg(&sc, QStringLiteral("Main"));
+    cg.writeEntry("Entry2", s_string_entry1);
+    cg.writeEntry("Entry3", s_string_entry1);
+
+    QBENCHMARK {
+        keyList = cg.keyList();
+    }
+
+    const QStringList expectedKeyList{
+        QStringLiteral("Entry2"),
+        QStringLiteral("Entry3"),
+        QStringLiteral("UsedEntry"),
+    };
+    QCOMPARE(keyList, expectedKeyList);
 }
 
 QTEST_GUILESS_MAIN(KConfigBenchmark)
