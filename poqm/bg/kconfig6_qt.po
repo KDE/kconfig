@@ -556,7 +556,3 @@ msgstr "Изтриване на посочения ключ, ако е акти�
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Стойност за запис. Изисква се, в терминал използвайте '' за празно"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Tip Of Day"
-#~ msgstr "Съвет на деня"
