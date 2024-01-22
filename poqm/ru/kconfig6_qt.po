@@ -25,7 +25,7 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:945
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Обратитесь к системному администратору."

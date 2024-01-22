@@ -15,7 +15,7 @@ msgstr ""
 "X-POFile-SpellExtra: kreadconfig Hat Red Inc\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:945
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Contacte por favor o seu administrador do sistema."
