@@ -200,8 +200,15 @@ public:
     QString readDocPath() const;
 
     /**
+     * Whether the application should be shown in the current desktop
+     * (including in context menus).
+     * @return true if the application should be shown in the current desktop.
+     */
+    bool showInCurrentDesktop() const;
+
+    /**
      * Whether the entry should be suppressed in menus.
-     * This handles the NoDisplay key
+     * This handles the NoDisplay key, and also OnlyShowIn / NotShowIn.
      * @return true to suppress this desktop file
      * @since 4.1
      */

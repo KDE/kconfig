@@ -303,10 +303,60 @@ QString KDesktopFile::fileName() const
     return name();
 }
 
+bool KDesktopFile::showInCurrentDesktop() const
+{
+    Q_D(const KDesktopFile);
+
+    const QString envVar = qEnvironmentVariable("XDG_CURRENT_DESKTOP");
+
+    QList<QStringView> currentDesktops = QStringView(envVar).split(QLatin1Char(':'), Qt::SkipEmptyParts);
+
+    if (currentDesktops.isEmpty()) {
+        // This could be an old display manager, or e.g. a failsafe session with no desktop name
+        // In doubt, let's say we show KDE stuff.
+        const QString kde = QStringLiteral("KDE");
+        currentDesktops.append(kde);
+    }
+
+    if (d->desktopGroup.hasKey("OnlyShowIn")) {
+        const QStringList onlyShowInList = d->desktopGroup.readXdgListEntry("OnlyShowIn");
+        bool containsDesktop = false;
+        for (const QStringView &currentDesktop : currentDesktops) {
+            if (onlyShowInList.contains(currentDesktop.toString())) {
+                containsDesktop = true;
+                break;
+            }
+        }
+        return containsDesktop;
+    }
+
+    if (d->desktopGroup.hasKey("NotShowIn")) {
+        const QStringList notShowInList = d->desktopGroup.readXdgListEntry("NotShowIn");
+        bool containsDesktop = false;
+        for (const QStringView &currentDesktop : currentDesktops) {
+            if (notShowInList.contains(currentDesktop.toString())) {
+                containsDesktop = true;
+                break;
+            }
+        }
+        return !containsDesktop;
+    }
+
+    return true;
+}
+
 bool KDesktopFile::noDisplay() const
 {
     Q_D(const KDesktopFile);
-    return d->desktopGroup.readEntry("NoDisplay", false);
+    if (d->desktopGroup.readEntry("NoDisplay", false)) {
+        return true;
+    }
+
+    if (!showInCurrentDesktop()) {
+        return true;
+    }
+
+    return false;
 }
 
 QList<KDesktopFileAction> KDesktopFile::actions() const
