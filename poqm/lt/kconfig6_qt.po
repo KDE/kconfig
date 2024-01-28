@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2021-08-25 15:47+0300\n"
+"PO-Revision-Date: 2024-01-27 12:52+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: core/kconfig.cpp:945
 msgctxt "KConfig|"
@@ -312,12 +312,9 @@ msgid "Clear"
 msgstr "Išvalyti"
 
 #: gui/kstandardshortcut.cpp:299
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Faktinis dydis"
+msgstr "Keisti mastelį į faktinį dydį"
 
 #: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
@@ -453,12 +450,12 @@ msgstr "Sukurti aplanką"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Atverti pagrindinį meniu"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Atverti kontekstinį meniu"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
@@ -476,6 +473,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Tik vienetų išbandymams: nerašyti atliktus įrašus, kad tokiu būdu su "
+"kiekvienu paleidimu iš naujo, scenarijai būtų vėl vykdomi"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
@@ -508,16 +507,13 @@ msgid "Use <file> instead of global config"
 msgstr "Naudoti <file> vietoje visuotines konfigūracijos"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
 msgstr ""
-"Grupė, kurioje ieškoti. Įdėtinėms grupėms naudokite pakartotinai kelis "
-"kartus."
+"Grupė, kurioje ieškoti. Naudokite „<default>“ šaknies grupei arba naudokite "
+"pakartotinai kelis kartus įdėtinėms grupėms."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -538,6 +534,7 @@ msgstr "Kintamojo tipas"
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"Grupės pavadinimas negali būti tuščias, šaknies grupei naudokite „<default>“"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
