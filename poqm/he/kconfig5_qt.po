@@ -6,514 +6,515 @@
 # tahmar1900 <tahmar1900@gmail.com>, 2008.
 # Diego Iastrubni <elcuco@kde.org>, 2008, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-05-16 06:49-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2024-02-07 08:45+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:961
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr ""
+msgstr "נא ליצור קשר עם הנהלת המערכת שלך."
 
 #: core/kconfigini.cpp:572
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr ""
+msgstr "קובץ ההגדרות „%1” נעול לכתיבה.\n"
 
 #: core/kemailsettings.cpp:237 core/kemailsettings.cpp:240
 #: core/kemailsettings.cpp:248
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr ""
+msgstr "ברירת מחדל"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
-msgstr ""
+msgstr "פתיחה"
 
 #: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "New"
-msgstr ""
+msgstr "חדש"
 
 #: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
-msgstr ""
+msgstr "סגירה"
 
 #: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
-msgstr ""
+msgstr "שמירה"
 
 #: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
-msgstr ""
+msgstr "הדפסה"
 
 #: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
-msgstr ""
+msgstr "יציאה"
 
 #: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
-msgstr ""
+msgstr "הסגה"
 
 #: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr ""
+msgstr "ביצוע חוזר"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
-msgstr ""
+msgstr "גזירה"
 
 #: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
-msgstr ""
+msgstr "העתקה"
 
 #: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
-msgstr ""
+msgstr "הדבקה"
 
 #: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
-msgstr ""
+msgstr "הדבקת בחירה"
 
 #: gui/kstandardshortcut.cpp:94
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
-msgstr ""
+msgstr "בחירה בהכול"
 
 #: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
-msgstr ""
+msgstr "ביטול בחירה"
 
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
-msgstr ""
+msgstr "מחיקת מילים אחורה"
 
 #: gui/kstandardshortcut.cpp:106
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
-msgstr ""
+msgstr "מחיקת מילים קדימה"
 
 #: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
-msgstr ""
+msgstr "איתור"
 
 #: gui/kstandardshortcut.cpp:114
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
-msgstr ""
+msgstr "איתור הבא"
 
 #: gui/kstandardshortcut.cpp:115
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
-msgstr ""
+msgstr "איתור הקודם"
 
 #: gui/kstandardshortcut.cpp:116
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
-msgstr ""
+msgstr "החלפה"
 
 #: gui/kstandardshortcut.cpp:121
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
-msgstr ""
+msgstr "בית"
 
 #: gui/kstandardshortcut.cpp:129
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
-msgstr ""
+msgstr "התחלה"
 
 #: gui/kstandardshortcut.cpp:135
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
-msgstr ""
+msgstr "סוף"
 
 #: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
-msgstr ""
+msgstr "קודם"
 
 #: gui/kstandardshortcut.cpp:139
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #: gui/kstandardshortcut.cpp:146
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
-msgstr ""
+msgstr "למעלה"
 
 #: gui/kstandardshortcut.cpp:147
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
-msgstr ""
+msgstr "חזרה"
 
 #: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
-msgstr ""
+msgstr "קדימה"
 
 #: gui/kstandardshortcut.cpp:158
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr ""
+msgstr "רענון"
 
 #: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
-msgstr ""
+msgstr "התחלת השורה"
 
 #: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
-msgstr ""
+msgstr "סוף השורה"
 
 #: gui/kstandardshortcut.cpp:181
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr ""
+msgstr "מעבר לשורה"
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
-msgstr ""
+msgstr "מילה אחורה"
 
 #: gui/kstandardshortcut.cpp:192
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
-msgstr ""
+msgstr "מילה קדימה"
 
 #: gui/kstandardshortcut.cpp:201
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
-msgstr ""
+msgstr "הוספת סימנייה"
 
 #: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
-msgstr ""
+msgstr "התקרבות"
 
 #: gui/kstandardshortcut.cpp:208
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
-msgstr ""
+msgstr "התרחקות"
 
 #: gui/kstandardshortcut.cpp:211
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
-msgstr ""
+msgstr "מצב מסך מלא"
 
 #: gui/kstandardshortcut.cpp:218
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
-msgstr ""
+msgstr "הצגת סרגל תפריטים"
 
 #: gui/kstandardshortcut.cpp:221
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
-msgstr ""
+msgstr "הפעלת הלשונית הבאה"
 
 #: gui/kstandardshortcut.cpp:229
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
-msgstr ""
+msgstr "הפעלת הלשונית הקודמת"
 
 #: gui/kstandardshortcut.cpp:237
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
-msgstr ""
+msgstr "עזרה"
 
 #: gui/kstandardshortcut.cpp:238
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
-msgstr ""
+msgstr "מה זה"
 
 #: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
-msgstr ""
+msgstr "השלמת טקסט"
 
 #: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
-msgstr ""
+msgstr "התאמת ההשלמה הקודמת"
 
 #: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
-msgstr ""
+msgstr "התאמת ההשלמה הבאה"
 
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
-msgstr ""
+msgstr "השלמת תת־מחרוזת"
 
 #: gui/kstandardshortcut.cpp:276
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
-msgstr ""
+msgstr "הפריט הקודם ברשימה"
 
 #: gui/kstandardshortcut.cpp:284
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
-msgstr ""
+msgstr "הפריט הבא ברשימה"
 
 #: gui/kstandardshortcut.cpp:291
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr ""
+msgstr "פתיחת האחרונים"
 
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
-msgstr ""
+msgstr "שמירה בשם"
 
 #: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
-msgstr ""
+msgstr "שחזור"
 
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr ""
+msgstr "הצגה מקדימה להדפסה"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr ""
+msgstr "דוא״ל"
 
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr ""
+msgstr "פינוי"
 
 #: gui/kstandardshortcut.cpp:297
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr ""
+msgstr "תקריב מקורי"
 
 #: gui/kstandardshortcut.cpp:298
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
-msgstr ""
+msgstr "התאמה לעמוד"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
-msgstr ""
+msgstr "התאמה לרוחב"
 
 #: gui/kstandardshortcut.cpp:300
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
-msgstr ""
+msgstr "התאמה לגובה"
 
 #: gui/kstandardshortcut.cpp:301
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
-msgstr ""
+msgstr "תקריב"
 
 #: gui/kstandardshortcut.cpp:302
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
-msgstr ""
+msgstr "קפיצה"
 
 #: gui/kstandardshortcut.cpp:303
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
-msgstr ""
+msgstr "קפיצה לעמוד"
 
 #: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
-msgstr ""
+msgstr "מסמך אחורה"
 
 #: gui/kstandardshortcut.cpp:314
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
-msgstr ""
+msgstr "מסמך קדימה"
 
 #: gui/kstandardshortcut.cpp:322
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
-msgstr ""
+msgstr "עריכת סימניות"
 
 #: gui/kstandardshortcut.cpp:328
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
-msgstr ""
+msgstr "איות"
 
 #: gui/kstandardshortcut.cpp:329
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
-msgstr ""
+msgstr "הצגת סרגל כלים"
 
 #: gui/kstandardshortcut.cpp:330
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
-msgstr ""
+msgstr "הצגת סרגל מצב"
 
 #: gui/kstandardshortcut.cpp:332
 msgctxt "KStandardShortcut|@action"
 msgid "Save Options"
-msgstr ""
+msgstr "אפשרויות: "
 
 #: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
-msgstr ""
+msgstr "איגוד מקשים"
 
 #: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
-msgstr ""
+msgstr "יישום"
 
 #: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
-msgstr ""
+msgstr "הגדרת סרגלי כלים"
 
 #: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
-msgstr ""
+msgstr "הגדרת התראות"
 
 #: gui/kstandardshortcut.cpp:362
 msgctxt "KStandardShortcut|@action"
 msgid "Tip Of Day"
-msgstr ""
+msgstr "העצה היומית"
 
 #: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr ""
+msgstr "דיווח על תקלה"
 
 #: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr ""
+msgstr "הגדרת שפה…"
 
 #: gui/kstandardshortcut.cpp:372
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr ""
+msgstr "על היישום"
 
 #: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr ""
+msgstr "על KDE"
 
 #: gui/kstandardshortcut.cpp:376
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
-msgstr ""
+msgstr "מחיקה"
 
 #: gui/kstandardshortcut.cpp:377
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
-msgstr ""
+msgstr "שינוי שם"
 
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr ""
+msgstr "העברה לאשפה"
 
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr ""
+msgstr "תרומה"
 
 #: gui/kstandardshortcut.cpp:389
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
-msgstr ""
+msgstr "הצגת/הסתרת קבצים מוסתרים"
 
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
-msgstr ""
+msgstr "יצירת תיקייה"
 
 #: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
-msgstr ""
+msgstr "כלי KDE לעדכון קובצי הגדרות משתמש"
 
 #: kconf_update/kconf_update.cpp:961
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr ""
+msgstr "שמירת תוצאות פלט מסקריפטים"
 
 #: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
 "files"
-msgstr ""
+msgstr "העברת QStandardPaths למצב בדיקה, למטרות בדיקות יחידה בלבד"
 
 #: kconf_update/kconf_update.cpp:966
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
-msgstr ""
+msgstr "לבדוק האם קובץ ההגדרות עצמו דורש עדכון"
 
 #: kconf_update/kconf_update.cpp:969
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
-msgstr ""
+msgstr "קבצים מהם לקרוא הנחיות עדכון"
 
 #: kconfig_compiler/kconfig_compiler.cpp:708
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr ""
+msgstr "תיקייה בה לייצר קבצים [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:709
 msgctxt "main|"
 msgid "directory"
-msgstr ""
+msgstr "תיקייה"
 
 #: kconfig_compiler/kconfig_compiler.cpp:713
 msgctxt "main|"
 msgid "Display software license."
-msgstr ""
+msgstr "הצגת רשיונות תוכנה."
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
-#, fuzzy
 msgctxt "main|"
 msgid "Use <file> instead of global config"
-msgstr "השתמש ב־<file> במקום בהגדרות גלובליות"
+msgstr "להשתמש ב־<file> (קובץ) במקום בהגדרות כלליות"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
-msgstr "הקבוצה לחפש בה. השתמש בעקביות עבור קבוצות מקוננות."
+msgstr ""
+"הקבוצה לחפש בה. יש להשתמש ב‏־„<default>” (ברירת מחדל) לקבוצת העל או להשתמש "
+"במחזוריות לקבוצות מקוננות."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
-#, fuzzy
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "מפתח לחיפוש"
@@ -521,34 +522,33 @@ msgstr "מפתח לחיפוש"
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
-msgstr ""
+msgstr "ערך ברירת מחדל"
 
 #: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
-msgstr ""
+msgstr "סוג המשתנה"
 
 #: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"שם קבוצה לא יכול להיות ריק. יש להשתמש ב־„<default>” (ברירת מחדל) לקבוצת העל"
 
 #: kreadconfig/kwriteconfig.cpp:34
-#, fuzzy
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
 "string"
 msgstr ""
-"סוג משתנה. השתמש ב-\"bool\" למשתנה בוליאני, אחרת מתייחסים אליו כאל מחרוזת"
+"סוג משתנה. יש להשתמש ב־„bool” למשתנה בוליאני, אחרת מתייחסים אליו כאל מחרוזת"
 
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr ""
+msgstr "למחוק את המפתח המוקצה אם פעיל"
 
 #: kreadconfig/kwriteconfig.cpp:37
-#, fuzzy
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr "הערך לכתיבה. הכרחי, במעטפת השתמש ב-\"\" למחרוזת ריקה"
+msgstr "הערך לכתיבה. חובה, במעטפת אפשר להשתמש ב־'' לריק"
