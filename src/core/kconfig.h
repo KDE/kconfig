@@ -373,7 +373,10 @@ public:
     static QString mainConfigName();
 
     /**
-     * Optionally add a Windows registry key to use.
+     * Set the key to look up config defaults in the windows registry
+     *
+     * By default, HKLM\\SOFTWARE\\$ORGANIZATION_NAME\\$APPLICATION_NAME and
+     * HKCU\\SOFTWARE\\$ORGANIZATION_NAME\\$APPLICATION_NAME are used
      *
      * Keys below this key are treated as configuration
      * groups. Values below this key are treated as values
@@ -390,13 +393,13 @@ public:
      * users and groups. User configuration is still stored
      * in the main config file.
      *
-     * @since 5.98
+     * @since 6.1
      */
     static void setWindowsRegistryKey(const QString &regKey);
 
     /**
-     * Get the registry key under which additional values are parsed.
-     * @since 5.98
+     * Get the organization name to be used for loading configuration from the widows registry.
+     * @since 6.1
      */
     static QString windowsRegistryKey();
 

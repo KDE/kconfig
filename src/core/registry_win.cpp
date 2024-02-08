@@ -14,33 +14,34 @@ void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &en
 {
     for (auto &key : settings.childKeys()) {
         KEntryMap::EntryOptions entryOptions = KEntryMap::EntryDefault;
-        const auto value = settings.value(key).toByteArray();
-        if (key.endsWith(QStringLiteral("[$i]")) || groupImmutable) {
+        const auto value = settings.value(key).toString();
+        if (key.endsWith(QStringLiteral("[$i]"))) {
             key.chop(4);
+            entryOptions |= KEntryMap::EntryImmutable;
+        }
+        if (groupImmutable) {
             entryOptions |= KEntryMap::EntryImmutable;
         }
         if (entryMap.getEntryOption(groupName.toUtf8(), key.toUtf8(), KEntryMap::SearchDefaults, KEntryMap::EntryImmutable)) {
             continue;
         }
-        entryMap.setEntry(groupName.toUtf8(), key.toUtf8(), settings.value(key).toByteArray(), entryOptions);
-        qWarning() << "Addings Entry" << key << value << "to group" << groupName;
+        entryMap.setEntry(groupName.toUtf8(), key.toUtf8(), value.toUtf8(), entryOptions);
     }
 }
 
 void parseRegSubkeys(const QString &regKey, KEntryMap &entryMap, bool userRegistry)
 {
-    QSettings settings((userRegistry ? QStringLiteral("HKEY_LOCAL_MACHINE\\") : QStringLiteral("HKEY_CURRENT_USER")) + regKey, QSettings::NativeFormat);
-
+    QString registryPath = (userRegistry ? QStringLiteral("HKEY_CURRENT_USER\\") : QStringLiteral("HKEY_LOCAL_MACHINE\\")) + regKey;
+    QSettings settings(registryPath, QSettings::NativeFormat);
     parseRegValues(QStringLiteral("<default>"), settings, entryMap, userRegistry);
 
     for (auto &group : settings.childGroups()) {
         bool immutable = false;
         if (group.endsWith(QStringLiteral("[$i]"))) {
-            group.chop(4);
             immutable = true;
         }
         settings.beginGroup(group);
-        parseRegValues(group, settings, entryMap, immutable);
+        parseRegValues(immutable ? group.chopped(4) : group, settings, entryMap, immutable);
         settings.endGroup();
     }
 }

@@ -28,6 +28,7 @@
 #include <QLocale>
 #include <QMutexLocker>
 #include <QProcess>
+#include <QRegularExpression>
 #include <QSet>
 #include <QThreadStorage>
 
@@ -579,7 +580,7 @@ struct KConfigStaticData {
     QString globalMainConfigName;
     // Keep a copy so we can use it in global dtors, after qApp is gone
     QStringList appArgs;
-    QString globalRegKey;
+    QString windowsRegistryKey;
 };
 Q_GLOBAL_STATIC(KConfigStaticData, globalData)
 
@@ -588,14 +589,14 @@ void KConfig::setMainConfigName(const QString &str)
     globalData()->globalMainConfigName = str;
 }
 
-void KConfig::setWindowsRegistryKey(const QString &regKey)
+void KConfig::setWindowsRegistryKey(const QString &registryKey)
 {
-    globalData()->globalRegKey = regKey;
+    globalData()->windowsRegistryKey = registryKey;
 }
 
 QString KConfig::windowsRegistryKey()
 {
-    return globalData()->globalRegKey;
+    return globalData()->windowsRegistryKey;
 }
 
 QString KConfig::mainConfigName()
@@ -689,7 +690,9 @@ void KConfig::reparseConfiguration()
     }
 
     // Parse the windows registry defaults if desired
-    d->parseWindowsDefaults();
+    if (!name().contains(QRegularExpression(QStringLiteral("^[A-Z]:/")))) {
+        d->parseWindowsDefaults(name() != mainConfigName() ? name() : QString());
+    }
 
     d->parseConfigFiles();
 }
@@ -759,12 +762,16 @@ void KConfigPrivate::parseGlobalFiles()
     sGlobalParse->localData().insert(key, new ParseCacheValue({entryMap, newest}));
 }
 
-void KConfigPrivate::parseWindowsDefaults()
+void KConfigPrivate::parseWindowsDefaults(const QString &subkey)
 {
-    const QString regKey = KConfig::windowsRegistryKey ();
-    if (!regKey.isEmpty()) {
-        parseWindowsRegistry(regKey, entryMap);
+    auto registryKey = KConfig::windowsRegistryKey();
+    if (registryKey.isEmpty()) {
+        registryKey = QStringLiteral("SOFTWARE\\%1\\%2").arg(QCoreApplication::organizationName(), QCoreApplication::applicationName());
     }
+    if (!subkey.isEmpty()) {
+        registryKey = QStringLiteral("%1\\%2").arg(registryKey, subkey);
+    }
+    parseWindowsRegistry(registryKey, entryMap);
 }
 
 void KConfigPrivate::parseConfigFiles()
