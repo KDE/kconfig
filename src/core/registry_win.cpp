@@ -8,170 +8,41 @@
 #include "registry_win_p.h"
 #include "kconfig_core_log_settings.h"
 
-#include <windows.h>
+#include <QSettings>
 
-#define RRF_SUBKEY_WOW6464KEY 0x00010000
-
-QString readRegString (HKEY key, const wchar_t *name)
+void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &entryMap, bool groupImmutable)
 {
-    DWORD nbytes = 0;
-    DWORD err = RegGetValueW(key,
-                             nullptr,
-                             name,
-                             RRF_RT_REG_EXPAND_SZ | RRF_RT_REG_SZ,
-                             nullptr,
-                             nullptr,
-                             &nbytes);
-    if (err != ERROR_SUCCESS) {
-        qCWarning(KCONFIG_CORE_LOG) << "Failed to get size of value:" << std::wstring(name) << err;
-        return QString();
-    }
-    std::vector<wchar_t> result(nbytes / sizeof (wchar_t));
-
-    err = RegGetValueW(key,
-                       nullptr,
-                       name,
-                       RRF_RT_REG_EXPAND_SZ | RRF_RT_REG_SZ,
-                       nullptr,
-                       &result[0],
-                       &nbytes);
-    if (err != ERROR_SUCCESS) {
-        qCWarning(KCONFIG_CORE_LOG) << "Invalid type of value:" << name << err;
-        return QString();
-    }
-    return QString::fromWCharArray(&result[0]);
-}
-
-void parseRegValues(const QString &regKey, const QString &groupName, KEntryMap &entryMap, bool userRegistry)
-{
-    const bool groupOptionImmutable = regKey.endsWith(QStringLiteral("[$i]"));
-    HKEY key;
-    if (RegOpenKeyExW(userRegistry ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE,
-                      (wchar_t *) regKey.utf16(),
-                      0, KEY_ENUMERATE_SUB_KEYS | KEY_READ,
-                      &key) != ERROR_SUCCESS) {
-        return;
-    }
-    DWORD values = 0,
-          maxNameLen = 0;
-
-    DWORD err = RegQueryInfoKey (key,
-                                 nullptr,
-                                 nullptr,
-                                 nullptr,
-                                 nullptr,
-                                 nullptr,
-                                 nullptr,
-                                 &values,
-                                 &maxNameLen,
-                                 nullptr,
-                                 nullptr,
-                                 nullptr);
-
-    if (err != ERROR_SUCCESS) {
-        qCWarning(KCONFIG_CORE_LOG) << "Failed to query key info for" << regKey;
-        RegCloseKey(key);
-        return;
-    }
-
-    maxNameLen++;
-    std::vector<wchar_t> buf(maxNameLen + 1);
-    wchar_t *name = &buf[0];
-    for (DWORD i = 0; i < values; i++) {
-        DWORD nameLen = maxNameLen;
-        err = RegEnumValueW(key, i,
-                            name,
-                            &nameLen,
-                            nullptr,
-                            nullptr,
-                            nullptr,
-                            nullptr);
-
-        if (err != ERROR_SUCCESS) {
-            qCWarning(KCONFIG_CORE_LOG) << "Failed to enum value " << i << "of" << regKey << groupName << *name << "err:" << err << values << maxNameLen << nameLen;
-            continue;
-        }
-
+    for (auto &key : settings.childKeys()) {
         KEntryMap::EntryOptions entryOptions = KEntryMap::EntryDefault;
-        QString entryName = QString::fromWCharArray(name, nameLen);
-
-        if (entryName.endsWith(QStringLiteral("[$i]"))) {
+        const auto value = settings.value(key).toByteArray();
+        if (key.endsWith(QStringLiteral("[$i]")) || groupImmutable) {
+            key.chop(4);
             entryOptions |= KEntryMap::EntryImmutable;
-            entryName.chop(4);
         }
-
-        if (entryMap.getEntryOption(groupName.toUtf8(), entryName.toUtf8(), KEntryMap::SearchDefaults, KEntryMap::EntryImmutable)) {
+        if (entryMap.getEntryOption(groupName.toUtf8(), key.toUtf8(), KEntryMap::SearchDefaults, KEntryMap::EntryImmutable)) {
             continue;
         }
-        const auto value = readRegString(key, name);
-        if (groupOptionImmutable) {
-            entryOptions |= KEntryMap::EntryImmutable;
-        }
-        entryMap.setEntry(groupName.toUtf8(), entryName.toUtf8(), value.toUtf8(), entryOptions);
-        // qDebug () << "Adding Entry" << entryName << value << "to group" << groupName << "namelen " << nameLen;
+        entryMap.setEntry(groupName.toUtf8(), key.toUtf8(), settings.value(key).toByteArray(), entryOptions);
+        qWarning() << "Addings Entry" << key << value << "to group" << groupName;
     }
-    RegCloseKey(key);
 }
 
 void parseRegSubkeys(const QString &regKey, KEntryMap &entryMap, bool userRegistry)
 {
-    // Parse default group
-    parseRegValues(regKey, QStringLiteral("<default>"), entryMap, userRegistry);
+    QSettings settings((userRegistry ? QStringLiteral("HKEY_LOCAL_MACHINE\\") : QStringLiteral("HKEY_CURRENT_USER")) + regKey, QSettings::NativeFormat);
 
-    // Enumerate the subkeys (groups)
-    HKEY key;
-    if (RegOpenKeyEx(userRegistry ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE,
-                     (wchar_t *)regKey.utf16(),
-                     0, KEY_ENUMERATE_SUB_KEYS | KEY_READ,
-                     &key) != ERROR_SUCCESS) {
-        return;
-    }
+    parseRegValues(QStringLiteral("<default>"), settings, entryMap, userRegistry);
 
-    DWORD subKeys = 0,
-          maxSubKeyLen = 0;
-    DWORD err = RegQueryInfoKey(key,
-                                nullptr,
-                                nullptr,
-                                nullptr,
-                                &subKeys,
-                                &maxSubKeyLen,
-                                nullptr,
-                                nullptr,
-                                nullptr,
-                                nullptr,
-                                nullptr,
-                                nullptr);
-
-    if (err != ERROR_SUCCESS) {
-        qCWarning(KCONFIG_CORE_LOG) << "Failed to query key info for" << regKey << "err:" << err;
-        RegCloseKey(key);
-        return;
-    }
-
-    maxSubKeyLen++;
-    wchar_t *subKey = new wchar_t[maxSubKeyLen + 1];
-    for (DWORD i = 0; i < subKeys; i++) {
-        DWORD keyLen = maxSubKeyLen;
-        err = RegEnumKeyEx(key, i,
-                           subKey,
-                           &keyLen,
-                           nullptr,
-                           nullptr,
-                           nullptr,
-                           nullptr);
-        if (err != ERROR_SUCCESS) {
-            qCWarning(KCONFIG_CORE_LOG) << "Failed to enum key" << i << "err:" << err;
-            continue;
+    for (auto &group : settings.childGroups()) {
+        bool immutable = false;
+        if (group.endsWith(QStringLiteral("[$i]"))) {
+            group.chop(4);
+            immutable = true;
         }
-        QString subKeyName = QString::fromWCharArray(subKey, keyLen);
-        QString subReg = regKey + QLatin1Char('\\') + subKeyName;
-        if (subKeyName.endsWith(QStringLiteral("[$i]"))) {
-            subKeyName.chop(4);
-        }
-        parseRegValues (subReg, subKeyName, entryMap, userRegistry);
+        settings.beginGroup(group);
+        parseRegValues(group, settings, entryMap, immutable);
+        settings.endGroup();
     }
-    delete[] subKey;
-    RegCloseKey(key);
 }
 
 void parseWindowsRegistry(const QString &regKey, KEntryMap &entryMap)
