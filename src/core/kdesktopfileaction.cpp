@@ -14,7 +14,7 @@ public:
     QString m_exec;
     QString m_desktopFilePath;
 
-    KDesktopFileActionPrivate(const QString &name, const QString &text, const QString &icon, const QString &exec, QString desktopFilePath)
+    KDesktopFileActionPrivate(const QString &name, const QString &text, const QString &icon, const QString &exec, const QString &desktopFilePath)
         : m_internalActionKey(name)
         , m_name(text)
         , m_icon(icon)
