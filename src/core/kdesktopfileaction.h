@@ -27,6 +27,8 @@ public:
 
     KDesktopFileAction(const KDesktopFileAction &other);
     KDesktopFileAction &operator=(const KDesktopFileAction &other);
+    KDesktopFileAction(KDesktopFileAction &&other);
+    KDesktopFileAction &operator=(KDesktopFileAction &&other);
     ~KDesktopFileAction();
 
     /**

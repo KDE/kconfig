@@ -31,6 +31,8 @@ KDesktopFileAction::KDesktopFileAction(const QString &name, const QString &text,
 
 KDesktopFileAction::KDesktopFileAction(const KDesktopFileAction &other) = default;
 KDesktopFileAction &KDesktopFileAction::operator=(const KDesktopFileAction &other) = default;
+KDesktopFileAction::KDesktopFileAction(KDesktopFileAction &&other) = default;
+KDesktopFileAction &KDesktopFileAction::operator=(KDesktopFileAction &&other) = default;
 KDesktopFileAction::~KDesktopFileAction() = default;
 
 QString KDesktopFileAction::actionsKey() const
