@@ -25,8 +25,6 @@ public:
      */
     explicit KDesktopFileAction(const QString &name, const QString &text, const QString &icon, const QString &exec, const QString &desktopFilePath);
 
-    /// @internal Dummy constructor with empty properties
-    explicit KDesktopFileAction();
     KDesktopFileAction(const KDesktopFileAction &other);
     KDesktopFileAction &operator=(const KDesktopFileAction &other);
     ~KDesktopFileAction();
