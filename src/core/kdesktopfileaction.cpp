@@ -22,10 +22,16 @@ public:
         , m_desktopFilePath(desktopFilePath)
     {
     }
+    KDesktopFileActionPrivate() = default;
 };
 
 KDesktopFileAction::KDesktopFileAction(const QString &name, const QString &text, const QString &icon, const QString &exec, const QString &desktopFilePath)
     : d(new KDesktopFileActionPrivate(name, text, icon, exec, desktopFilePath))
+{
+}
+
+KDesktopFileAction::KDesktopFileAction()
+    : d(new KDesktopFileActionPrivate())
 {
 }
 

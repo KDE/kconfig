@@ -21,6 +21,11 @@ class KCONFIGCORE_EXPORT KDesktopFileAction
 {
 public:
     /**
+     * Construct an empty KDesktopFileAction. Needed so the Action can be stored in containers that quire type T to be
+     * default constructible (e.g. QVariant).
+     */
+    explicit KDesktopFileAction();
+    /**
      * Construct a KDesktopFileAction with all required properties
      */
     explicit KDesktopFileAction(const QString &name, const QString &text, const QString &icon, const QString &exec, const QString &desktopFilePath);
