@@ -157,9 +157,7 @@ public:
      * @param group the new action group
      */
     KConfigGroup actionGroup(const QString &group);
-
-    // TODO KF6, don't return by const value
-    const KConfigGroup actionGroup(const QString &group) const;
+    KConfigGroup actionGroup(const QString &group) const;
 
     /**
      * Returns true if the action group exists, false otherwise

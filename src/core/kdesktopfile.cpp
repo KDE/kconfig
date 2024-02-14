@@ -229,7 +229,7 @@ KConfigGroup KDesktopFile::actionGroup(const QString &group)
     return KConfigGroup(this, QLatin1String("Desktop Action ") + group);
 }
 
-const KConfigGroup KDesktopFile::actionGroup(const QString &group) const
+KConfigGroup KDesktopFile::actionGroup(const QString &group) const
 {
     return const_cast<KDesktopFile *>(this)->actionGroup(group);
 }
