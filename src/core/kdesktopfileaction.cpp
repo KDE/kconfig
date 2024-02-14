@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2023 Alexander Lohnau <alexander.lohnau@gmx.de>
+    SPDX-FileCopyrightText: 2024 Harald Sitter <sitter@kde.org>
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 #include "kdesktopfileaction.h"
@@ -8,6 +9,7 @@
 class KDesktopFileActionPrivate : public QSharedData
 {
 public:
+    bool m_valid = false;
     QString m_internalActionKey;
     QString m_name;
     QString m_icon;
@@ -15,7 +17,8 @@ public:
     QString m_desktopFilePath;
 
     KDesktopFileActionPrivate(const QString &name, const QString &text, const QString &icon, const QString &exec, const QString &desktopFilePath)
-        : m_internalActionKey(name)
+        : m_valid(true)
+        , m_internalActionKey(name)
         , m_name(text)
         , m_icon(icon)
         , m_exec(exec)
@@ -69,4 +72,9 @@ QString KDesktopFileAction::exec() const
 bool KDesktopFileAction::isSeparator() const
 {
     return d->m_internalActionKey == QLatin1String("_SEPARATOR_");
+}
+
+bool KDesktopFileAction::isValid() const
+{
+    return d->m_valid;
 }

@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2023 Alexander Lohnau <alexander.lohnau@gmx.de>
+    SPDX-FileCopyrightText: 2024 Harald Sitter <sitter@kde.org>
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
@@ -23,6 +24,7 @@ public:
     /**
      * Construct an empty KDesktopFileAction. Needed so the Action can be stored in containers that quire type T to be
      * default constructible (e.g. QVariant).
+     * The action will be not be valid!
      */
     explicit KDesktopFileAction();
     /**
@@ -35,6 +37,11 @@ public:
     KDesktopFileAction(KDesktopFileAction &&other);
     KDesktopFileAction &operator=(KDesktopFileAction &&other);
     ~KDesktopFileAction();
+
+    /**
+     * @return whether the Action is valid (i.e has valid properties)
+     */
+    [[nodiscard]] bool isValid() const;
 
     /**
      * @return the action's internal name
