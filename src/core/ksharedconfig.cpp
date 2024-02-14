@@ -2,16 +2,20 @@
     This file is part of the KDE libraries
     SPDX-FileCopyrightText: 1999 Preston Brown <pbrown@kde.org>
     SPDX-FileCopyrightText: 1997-1999 Matthias Kalle Dalheimer <kalle@kde.org>
+    SPDX-FileCopyrightText: 2024 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
 #include "ksharedconfig.h"
+#include "kconfig_core_log_settings.h"
 #include "kconfig_p.h"
 #include "kconfiggroup.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QThreadStorage>
+
+using namespace Qt::StringLiterals;
 
 void _k_globalMainConfigSync();
 
@@ -56,6 +60,56 @@ static GlobalSharedConfig *globalSharedConfig()
 {
     return perThreadGlobalStatic<GlobalSharedConfig>();
 }
+
+namespace
+{
+[[nodiscard]] QString migrateStateRc(const QString &fileName)
+{
+    // Migrate from an old legacy path to new spec compliant ~/.local/state/
+    // https://gitlab.freedesktop.org/xdg/xdg-specs/-/blob/master/basedir/basedir-spec.xml
+    // TODO KF7: refactor openStateConfig so it always opens from XDG_STATE_HOME instead of the legacy when on an XDG platform
+
+#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_ANDROID) && !defined(Q_OS_MACOS)
+    if (QFileInfo(fileName).isAbsolute()) {
+        return fileName;
+    }
+
+    static auto xdgStateHome = qEnvironmentVariable("XDG_STATE_HOME", QDir::homePath() + "/.local/state"_L1);
+    if (fileName.startsWith(xdgStateHome)) [[unlikely]] {
+        return fileName;
+    }
+
+    QString newPath = xdgStateHome + "/"_L1 + fileName; // intentionally not const so it can be move returned
+    QString oldPath = QStandardPaths::locate(QStandardPaths::AppDataLocation, fileName);
+    if (QFile::exists(oldPath) && QFile::exists(newPath)) {
+        qCDebug(KCONFIG_CORE_LOG) << "Old staterc and new staterc found. Not migrating! Using new path" << newPath;
+        return newPath;
+    }
+
+    if (QFile::exists(newPath)) { // already migrated
+        return newPath;
+    }
+
+    // Migrate legacy files.
+    // On failure we return the new path because we want higher level technology to surface the new path for read/write errors.
+    if (!QDir().exists(xdgStateHome)) {
+        if (!QDir().mkpath(xdgStateHome)) {
+            qCWarning(KCONFIG_CORE_LOG) << "Failed to make state directory" << xdgStateHome;
+            return newPath;
+        }
+    }
+    qCInfo(KCONFIG_CORE_LOG) << "Migrating old staterc" << oldPath << "->" << newPath;
+    if (!QFile::rename(oldPath, newPath)) {
+        qCWarning(KCONFIG_CORE_LOG) << "Failed to migrate" << oldPath << "->" << newPath;
+        return newPath;
+    }
+
+    return newPath;
+#else
+    return fileName;
+#endif
+}
+} // namespace
 
 void _k_globalMainConfigSync()
 {
@@ -108,15 +162,15 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
 
 KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
 {
-    // KF6 TODO: port this to XDG_STATE_HOME (default ~/.local/state)
-    // See https://gitlab.freedesktop.org/xdg/xdg-specs/-/blob/master/basedir/basedir-spec.xml
     QString fileName(_fileName);
 
     if (fileName.isEmpty()) {
         fileName = QCoreApplication::applicationName() + QLatin1String("staterc");
     }
 
-    return openConfig(fileName, SimpleConfig, QStandardPaths::AppDataLocation);
+    return openConfig(migrateStateRc(fileName),
+                      SimpleConfig,
+                      QStandardPaths::AppDataLocation /* only used on !XDG platform, on XDG we resolve an absolute path (unless there are problems) */);
 }
 
 KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
