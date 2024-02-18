@@ -133,18 +133,18 @@ void ConfigLoaderHandler::endElement(const QStringView localName)
         resetState();
     } else if (caseInsensitiveCompare(localName, QLatin1String("label"))) {
         if (m_inChoice) {
-            m_choice.label = m_cdata.trimmed();
+            m_choice.label = std::move(m_cdata).trimmed();
         } else {
-            m_label = m_cdata.trimmed();
+            m_label = std::move(m_cdata).trimmed();
         }
     } else if (caseInsensitiveCompare(localName, QLatin1String("whatsthis"))) {
         if (m_inChoice) {
-            m_choice.whatsThis = m_cdata.trimmed();
+            m_choice.whatsThis = std::move(m_cdata).trimmed();
         } else {
-            m_whatsThis = m_cdata.trimmed();
+            m_whatsThis = std::move(m_cdata).trimmed();
         }
     } else if (caseInsensitiveCompare(localName, QLatin1String("default"))) {
-        m_default = m_cdata.trimmed();
+        m_default = std::move(m_cdata).trimmed();
     } else if (caseInsensitiveCompare(localName, QLatin1String("min"))) {
         m_min = m_cdata.toInt(&m_haveMin);
     } else if (caseInsensitiveCompare(localName, QLatin1String("max"))) {
