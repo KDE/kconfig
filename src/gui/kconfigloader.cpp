@@ -244,8 +244,8 @@ void ConfigLoaderHandler::addItem()
         item = doubleItem;
     } else if (m_type == QLatin1String("intlist")) {
         QList<int> defaultList;
-        const QStringList tmpList = m_default.split(QLatin1Char(','), Qt::SkipEmptyParts);
-        for (const QString &tmp : tmpList) {
+        const QList<QStringView> tmpList = QStringView(m_default).split(QLatin1Char(','), Qt::SkipEmptyParts);
+        for (const QStringView tmp : tmpList) {
             defaultList.append(tmp.toInt());
         }
         item = m_config->addItemIntList(m_name, *d->newIntList(), defaultList, m_key);
@@ -265,7 +265,7 @@ void ConfigLoaderHandler::addItem()
         */
     } else if (m_type == QLatin1String("point")) {
         QPoint defaultPoint;
-        const QStringList tmpList = m_default.split(QLatin1Char(','));
+        const QList<QStringView> tmpList = QStringView(m_default).split(QLatin1Char(','));
         if (tmpList.size() >= 2) {
             defaultPoint.setX(tmpList[0].toInt());
             defaultPoint.setY(tmpList[1].toInt());
@@ -281,7 +281,7 @@ void ConfigLoaderHandler::addItem()
         item = m_config->addItemPointF(m_name, *d->newPointF(), defaultPointF, m_key);
     } else if (m_type == QLatin1String("rect")) {
         QRect defaultRect;
-        const QStringList tmpList = m_default.split(QLatin1Char(','));
+        const QList<QStringView> tmpList = QStringView(m_default).split(QLatin1Char(','));
         if (tmpList.size() >= 4) {
             defaultRect.setCoords(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt(), tmpList[3].toInt());
         }
@@ -295,7 +295,7 @@ void ConfigLoaderHandler::addItem()
         item = m_config->addItemRectF(m_name, *d->newRectF(), defaultRectF, m_key);
     } else if (m_type == QLatin1String("size")) {
         QSize defaultSize;
-        const QStringList tmpList = m_default.split(QLatin1Char(','));
+        const QList<QStringView> tmpList = QStringView(m_default).split(QLatin1Char(','));
         if (tmpList.size() >= 2) {
             defaultSize.setWidth(tmpList[0].toInt());
             defaultSize.setHeight(tmpList[1].toInt());
