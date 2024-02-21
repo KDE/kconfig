@@ -455,7 +455,7 @@ msgstr "주 메뉴 열기"
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr "콘텍스트 메뉴 열기"
+msgstr "상황에 맞는 메뉴 열기"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
