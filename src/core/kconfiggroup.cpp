@@ -189,28 +189,30 @@ QStringList KConfigGroupPrivate::deserializeList(const QString &data)
     return value;
 }
 
-static QList<int> asIntList(const QByteArray &string)
+static QVarLengthArray<int, 8> asIntList(QByteArrayView string)
 {
-    const auto &splitString = string.split(',');
-
-    QList<int> list;
-    list.reserve(splitString.count());
-    for (const QByteArray &s : splitString) {
-        list << s.toInt();
+    int start = 0;
+    int next = start;
+    QVarLengthArray<int, 8> ret;
+    while ((next = string.indexOf(',', start)) != -1) {
+        ret.push_back(string.sliced(start, next - start).toInt());
+        start = next + 1;
     }
-    return list;
+    ret.push_back(string.sliced(start, string.size() - start).toInt());
+    return ret;
 }
 
-static QList<qreal> asRealList(const QByteArray &string)
+static QVarLengthArray<qreal, 8> asRealList(QByteArrayView string)
 {
-    const auto &splitString = string.split(',');
-
-    QList<qreal> list;
-    list.reserve(splitString.count());
-    for (const QByteArray &s : splitString) {
-        list << s.toDouble();
+    int start = 0;
+    int next = start;
+    QVarLengthArray<qreal, 8> ret;
+    while ((next = string.indexOf(',', start)) != -1) {
+        ret.push_back(string.sliced(start, next - start).toDouble());
+        start = next + 1;
     }
-    return list;
+    ret.push_back(string.sliced(start, string.size() - start).toDouble());
+    return ret;
 }
 
 static QString errString(const char *pKey, const QByteArray &value, const QVariant &aDefault)
@@ -358,10 +360,8 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     }
     case QMetaType::QDate: {
         auto list = asIntList(value);
-        if (list.count() == 6) {
-            list = list.mid(0, 3); // don't break config files that stored QDate as QDateTime
-        }
-        if (list.count() != 3) {
+        // list.count == 6 -> don't break config files that stored QDate as QDateTime
+        if (list.count() != 3 && list.count() != 6) {
             qCWarning(KCONFIG_CORE_LOG) << errString(pKey, value, aDefault) << formatError(3, list.count());
             return aDefault;
         }
