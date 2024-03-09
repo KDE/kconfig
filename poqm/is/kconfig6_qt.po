@@ -4,27 +4,27 @@
 #
 # Richard Allen <ra@ra.is>, 2004.
 # Sveinn í Felli <sv1@fellsnet.is>, 2016, 2022.
-# Guðmundur Erlingsson <gudmundure@gmail.com>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Guðmundur Erlingsson <gudmundure@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-11-04 08:34+0000\n"
-"Last-Translator: Gummi <gudmundure@gmail.com>\n"
+"PO-Revision-Date: 2024-02-19 20:22+0000\n"
+"Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 23.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:945
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr "Vinsamlega hafðu samband við kerfisstjóra."
+msgstr "Hafðu samband við kerfisstjóra."
 
 #: core/kconfigini.cpp:567
 #, qt-format
@@ -452,12 +452,12 @@ msgstr "Búa til möppu"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Opna aðalvalmynd"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Opna samhengisvalmynd"
 
 #: kconf_update/kconf_update.cpp:366
 msgctxt "main|"
@@ -475,6 +475,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Til einingaprófunar eingöngu: ekki skrifa loknu færslurnar, þannig að við "
+"hverju endurkeyrslu verði skrifturnar keyrða aftur"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
