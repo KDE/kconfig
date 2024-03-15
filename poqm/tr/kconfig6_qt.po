@@ -6,13 +6,13 @@
 # Serdar Soytetir <tulliana@gmail.com>, 2008.
 # Volkan Gezer <volkangezer@gmail.com>, 2014, 2017.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-11-09 11:48+0300\n"
+"PO-Revision-Date: 2024-03-15 00:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 24.02.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:945
@@ -32,7 +32,7 @@ msgstr "Lütfen sistem yöneticinize başvurun."
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr "Yapılandırma dosyası \"%1\" yazılabilir değil.\n"
+msgstr "Yapılandırma dosyası “%1” yazılabilir değil.\n"
 
 #: core/kemailsettings.cpp:128 core/kemailsettings.cpp:131
 #: core/kemailsettings.cpp:139
@@ -408,7 +408,7 @@ msgstr "Hata Bildir"
 #: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr "Dili Yapılandır..."
+msgstr "Dili Yapılandır…"
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
@@ -517,7 +517,7 @@ msgid ""
 "for nested groups."
 msgstr ""
 "İçine bakılacak grup. Kök grup veya iç içe geçmiş gruplar için yineleyerek "
-"\"<default>\" kullanın."
+"“<default>” kullanın."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -537,7 +537,7 @@ msgstr "Değişken türü"
 #: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
-msgstr "Grup adı boş olamaz; kök grup için \"<default>\" kullanın"
+msgstr "Grup adı boş olamaz; kök grup için “<default>” kullanın"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
@@ -545,7 +545,7 @@ msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
 "string"
 msgstr ""
-"Değişkenin türü. Mantıksal değişkenler için \"bool\" kullanın, aksi halde "
+"Değişkenin türü. Mantıksal değişkenler için ‘bool’ kullanın, aksi halde "
 "metin olarak ele alınır"
 
 #: kreadconfig/kwriteconfig.cpp:36
@@ -556,7 +556,7 @@ msgstr "Etkinleştirilmişse ilgili anahtarı sil"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr "Yazdırılacak değer. Zorunlu, boş değer için kabukta \" belirtin"
+msgstr "Yazdırılacak değer. Zorunlu, boş değer için kabukta '' kullanın"
 
 #~ msgctxt "KStandardShortcut|@action"
 #~ msgid "Tip Of Day"
