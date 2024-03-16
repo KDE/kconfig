@@ -151,9 +151,11 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
             KConfigGroup cg(m_config, fileName);
             const qint64 ctime = cg.readEntry("ctime", 0);
             const qint64 mtime = cg.readEntry("mtime", 0);
+            const QString done = cg.readEntry("done", QString());
             if (!dirtyOnly //
                 || (ctime != 0 && ctime != info.birthTime().toSecsSinceEpoch()) //
-                || mtime != info.lastModified().toSecsSinceEpoch()) {
+                || mtime != info.lastModified().toSecsSinceEpoch() //
+                || (mtime != 0 && done.isEmpty())) {
                 result.append(file);
             }
         }
