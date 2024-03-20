@@ -30,8 +30,6 @@
 #include <fcntl.h> // open
 #include <sys/types.h> // uid_t
 
-using namespace Qt::StringLiterals;
-
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
 
 static QByteArray lookup(const KConfigIniBackend::BufferFragment fragment, QHash<KConfigIniBackend::BufferFragment, QByteArray> *cache)
@@ -450,10 +448,7 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
     // so write it out to disk
 
     // check if file exists
-    QFile::Permissions fileMode = filePath().startsWith(u"/etc/xdg/"_s) && ::getuid() == 0
-        ? QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther
-        : QFile::ReadUser | QFile::WriteUser;
-
+    QFile::Permissions fileMode = QFile::ReadUser | QFile::WriteUser;
     bool createNew = true;
 
     QFileInfo fi(filePath());
