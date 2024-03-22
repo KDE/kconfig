@@ -418,7 +418,7 @@ msgstr "წაშლა"
 #: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
-msgstr "%1 სურათის სახელის გადარქმევა"
+msgstr "სახელის გადარქმევა"
 
 #: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
