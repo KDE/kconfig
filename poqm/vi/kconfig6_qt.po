@@ -458,29 +458,29 @@ msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:366
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Công cụ KDE để cập nhật các tệp cấu hình của người dùng"
 
-#: kconf_update/kconf_update.cpp:368
+#: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Giữ lại các kết quả đầu ra từ các kịch bản"
 
-#: kconf_update/kconf_update.cpp:371
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:373
+#: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Kiểm tra liệu chính tệp cấu hình có cần cập nhật không"
 
-#: kconf_update/kconf_update.cpp:376
+#: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "(Các) tệp để từ đó đọc ra hướng dẫn cập nhật"

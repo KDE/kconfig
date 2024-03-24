@@ -453,17 +453,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "打开右键菜单"
 
-#: kconf_update/kconf_update.cpp:366
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE 的用户配置文件更新工具"
 
-#: kconf_update/kconf_update.cpp:368
+#: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "保留脚本的输出结果"
 
-#: kconf_update/kconf_update.cpp:371
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
@@ -471,12 +471,12 @@ msgid ""
 msgstr ""
 "仅针对单元测试：不要写入已完成的条目，于是每次重新运行时，脚本将被重新执行"
 
-#: kconf_update/kconf_update.cpp:373
+#: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "检查配置文件本身是否需要更新"
 
-#: kconf_update/kconf_update.cpp:376
+#: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要读取更新指令的文件"

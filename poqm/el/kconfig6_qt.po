@@ -465,17 +465,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "Άνοιγμα κυρίως μενού"
 
-#: kconf_update/kconf_update.cpp:366
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Εργαλείο του KDE για ενημέρωση των αρχείων διαμόρφωσης των χρηστών"
 
-#: kconf_update/kconf_update.cpp:368
+#: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Διατήρηση των αποτελεσμάτων των σεναρίων κελύφους"
 
-#: kconf_update/kconf_update.cpp:371
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
@@ -484,13 +484,13 @@ msgstr ""
 "Μόνο για τις δοκιμές μονάδας: μην γράφετε τις καταχωρήσεις done, έτσι ώστε "
 "σε κάθε επανεκτέλεση, τα σενάρια να εκτελούνται ξανά"
 
-#: kconf_update/kconf_update.cpp:373
+#: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr ""
 "Έλεγχος για το αν αυτό καθαυτό το αρχείο διαμόρφωσης χρειάζεται ενημέρωση"
 
-#: kconf_update/kconf_update.cpp:376
+#: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Αρχείο(α) για ανάγνωση εντολών ενημέρωσης"

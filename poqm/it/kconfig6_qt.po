@@ -459,17 +459,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "Apri menu contestuale"
 
-#: kconf_update/kconf_update.cpp:366
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Strumento di KDE per aggiornare i file di configurazione dell'utente"
 
-#: kconf_update/kconf_update.cpp:368
+#: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Tieni i risultati di uscita degli script"
 
-#: kconf_update/kconf_update.cpp:371
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
@@ -478,12 +478,12 @@ msgstr ""
 "Solo per le unità di prova: non scrivere le voci completate, in modo che a "
 "ogni nuova esecuzione, gli script vengono eseguiti di nuovo"
 
-#: kconf_update/kconf_update.cpp:373
+#: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Verifica se il file di configurazione richiede un aggiornamento"
 
-#: kconf_update/kconf_update.cpp:376
+#: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "File dai quali leggere le istruzioni di aggiornamento"

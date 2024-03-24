@@ -457,18 +457,18 @@ msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "Отваряне на контекстното меню"
 
-#: kconf_update/kconf_update.cpp:366
+#: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "KDE инструмент за актуализиране на потребителски конфигурационни файлове"
 
-#: kconf_update/kconf_update.cpp:368
+#: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Задържане на изходните резултати от скриптове"
 
-#: kconf_update/kconf_update.cpp:371
+#: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
 msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
@@ -477,12 +477,12 @@ msgstr ""
 "Само за тестове на единици: без записване на готовите записи, така че при "
 "всяко повторностартиране, скриптовете да се изпълняват отново"
 
-#: kconf_update/kconf_update.cpp:373
+#: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Проверяване, дали самият конфигурационен файл изисква актуализиране"
 
-#: kconf_update/kconf_update.cpp:376
+#: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл или файлове с инструкции за актуализиране"
