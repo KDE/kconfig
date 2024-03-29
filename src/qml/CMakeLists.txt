@@ -4,6 +4,8 @@
 add_library(KF6ConfigQml)
 add_library(KF6::ConfigQml ALIAS KF6ConfigQml)
 
+ecm_add_qml_module(KF6ConfigQml URI org.kde.config GENERATE_PLUGIN_SOURCE)
+
 set_target_properties(KF6ConfigQml PROPERTIES
     VERSION     ${KCONFIG_VERSION}
     SOVERSION   ${KCONFIG_SOVERSION}
@@ -12,6 +14,7 @@ set_target_properties(KF6ConfigQml PROPERTIES
 
 target_sources(KF6ConfigQml PRIVATE
     kconfigpropertymap.cpp
+    types.cpp
 )
 
 ecm_generate_export_header(KF6ConfigQml
@@ -46,15 +49,4 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml COMPONENT Devel
 )
 
-
-# The QML plugin
-ecm_add_qml_module(kconfigqmlplugin URI org.kde.config GENERATE_PLUGIN_SOURCE)
-target_sources(kconfigqmlplugin PRIVATE types.cpp)
-target_link_libraries(kconfigqmlplugin PRIVATE
-    Qt6::Core
-    Qt6::Qml
-    KF6::ConfigCore
-)
-
-ecm_finalize_qml_module(kconfigqmlplugin DESTINATION ${KDE_INSTALL_QMLDIR})
-
+ecm_finalize_qml_module(KF6ConfigQml DESTINATION ${KDE_INSTALL_QMLDIR})

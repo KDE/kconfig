@@ -11,6 +11,7 @@
 
 #include <QQmlPropertyMap>
 #include <memory>
+#include <qqmlregistration.h>
 
 class KCoreConfigSkeleton;
 
@@ -28,6 +29,7 @@ class KConfigPropertyMapPrivate;
 class KCONFIGQML_EXPORT KConfigPropertyMap : public QQmlPropertyMap
 {
     Q_OBJECT
+    QML_ANONYMOUS
 
 public:
     KConfigPropertyMap(KCoreConfigSkeleton *config, QObject *parent = nullptr);
