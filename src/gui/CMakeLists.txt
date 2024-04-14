@@ -18,6 +18,7 @@ target_sources(KF6ConfigGui PRIVATE
     kstandardshortcutwatcher.cpp
     kwindowconfig.cpp
     kwindowstatesaver.cpp
+    kstandardactions.cpp
 )
 
 ecm_qt_declare_logging_category(KF6ConfigGui
@@ -53,6 +54,7 @@ ecm_generate_headers(KConfigGui_HEADERS
   KStandardShortcutWatcher
   KWindowConfig
   KWindowStateSaver
+  KStandardActions
 
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
@@ -68,6 +70,7 @@ install(TARGETS KF6ConfigGui EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAUL
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
+  kstandardactions_p.h
   ${KConfigGui_HEADERS}
   kconfigguistaticinitializer.cpp
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
