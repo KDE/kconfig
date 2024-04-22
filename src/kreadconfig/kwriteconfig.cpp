@@ -34,24 +34,13 @@ int main(int argc, char **argv)
                            QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"),
                            QStringLiteral("type")));
     parser.addOption(QCommandLineOption(QStringLiteral("delete"), QCoreApplication::translate("main", "Delete the designated key if enabled")));
-    parser.addPositionalArgument(QStringLiteral("value"), QCoreApplication::translate("main", "The value to write. Mandatory, on a shell use '' for empty"));
 
     parser.process(app);
 
     const QStringList groups = parser.values(QStringLiteral("group"));
-    QString key = parser.value(QStringLiteral("key"));
     QString file = parser.value(QStringLiteral("file"));
     QString type = parser.value(QStringLiteral("type")).toLower();
     bool del = parser.isSet(QStringLiteral("delete"));
-
-    QString value;
-    if (del) {
-        value = QString{};
-    } else if (parser.positionalArguments().isEmpty()) {
-        parser.showHelp(1);
-    } else {
-        value = parser.positionalArguments().at(0);
-    }
 
     KConfig *konfig;
     if (file.isEmpty()) {
@@ -72,25 +61,30 @@ int main(int argc, char **argv)
         cfgGroup = cfgGroup.group(grp);
     }
 
-    if (konfig->accessMode() != KConfig::ReadWrite || cfgGroup.isEntryImmutable(key)) {
-        return 2;
+    if (del) {
+        // Handle delete operation
+    } else {
+        QStringList keys = parser.values(QStringLiteral("key"));
+        QStringList values = parser.positionalArguments();
+        for (int i = 0; i < qMin(keys.size(), values.size()); ++i) {
+            QString key = keys[i];
+            QString value = values[i];
+            if (type == QLatin1String{"bool"}) {
+                // For symmetry with kreadconfig we accept a wider range of values as true than Qt
+                /* clang-format off */
+                bool boolvalue = value == QLatin1String{"true"}
+                                || value == QLatin1String{"on"}
+                                || value == QLatin1String{"yes"}
+                                || value == QLatin1String{"1"}; /* clang-format on */
+                cfgGroup.writeEntry(key, boolvalue);
+            } else if (type == QLatin1String{"path"}) {
+                cfgGroup.writePathEntry(key, value);
+            } else {
+                cfgGroup.writeEntry(key, value);
+            }
+        }
     }
 
-    if (del) {
-        cfgGroup.deleteEntry(key);
-    } else if (type == QLatin1String{"bool"}) {
-        // For symmetry with kreadconfig we accept a wider range of values as true than Qt
-        /* clang-format off */
-        bool boolvalue = value == QLatin1String{"true"}
-                         || value == QLatin1String{"on"}
-                         || value == QLatin1String{"yes"}
-                         || value == QLatin1String{"1"}; /* clang-format on */
-        cfgGroup.writeEntry(key, boolvalue);
-    } else if (type == QLatin1String{"path"}) {
-        cfgGroup.writePathEntry(key, value);
-    } else {
-        cfgGroup.writeEntry(key, value);
-    }
     konfig->sync();
     delete konfig;
     return 0;
