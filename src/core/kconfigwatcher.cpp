@@ -56,14 +56,14 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
 
 #if KCONFIG_USE_DBUS
 
-    if (config->name().isEmpty()) {
+    if (config->fileName().isEmpty()) {
         return;
     }
 
     // Watching absolute paths is not supported and also makes no sense.
-    const bool isAbsolutePath = config->name().at(0) == QLatin1Char('/');
+    const bool isAbsolutePath = config->fileName().at(0) == QLatin1Char('/');
     if (isAbsolutePath) {
-        qCWarning(KCONFIG_CORE_LOG) << "Watching absolute paths is not supported" << config->name();
+        qCWarning(KCONFIG_CORE_LOG) << "Watching absolute paths is not supported" << config->fileName();
         return;
     }
 
@@ -74,7 +74,7 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
     for (QString &file : watchedPaths) {
         file.prepend(QLatin1Char('/'));
     }
-    watchedPaths.prepend(kconfigDBusSanitizePath(QLatin1Char('/') + d->m_config->name()));
+    watchedPaths.prepend(kconfigDBusSanitizePath(QLatin1Char('/') + d->m_config->fileName()));
 
     if (d->m_config->openFlags() & KConfig::IncludeGlobals) {
         watchedPaths << QStringLiteral("/kdeglobals");

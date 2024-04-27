@@ -36,7 +36,7 @@ void KConfigBackend::registerMappings(const KEntryMap & /*entryMap*/)
 {
 }
 
-BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
+BackendPtr KConfigBackend::create(const QString &fileName, const QString &sys)
 {
     // qDebug() << "creating a backend for file" << file << "with system" << sys;
     KConfigBackend *backend = nullptr;
@@ -63,7 +63,7 @@ BackendPtr KConfigBackend::create(const QString &file, const QString &sys)
 
     // qDebug() << "default creation of the Ini backend";
     backend = new KConfigIniBackend;
-    backend->setFilePath(file);
+    backend->setFilePath(fileName);
     return BackendPtr(backend);
 }
 

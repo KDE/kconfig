@@ -109,7 +109,7 @@ public:
      *
      * @note You probably want to use KSharedConfig::openConfig instead.
      *
-     * @param file         the name of the file. If an empty string is passed in
+     * @param fileName     the name of the file. If an empty string is passed in
      *                     and SimpleConfig is passed in for the OpenFlags, then an in-memory
      *                     KConfig object is created which will not write out to file nor which
      *                     requires any file in the filesystem at all.
@@ -120,7 +120,7 @@ public:
      *
      * @sa KSharedConfig::openConfig(const QString&, OpenFlags, QStandardPaths::StandardLocation)
      */
-    explicit KConfig(const QString &file = QString(),
+    explicit KConfig(const QString &fileName = QString(),
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
@@ -136,7 +136,7 @@ public:
      *
      * @since 4.1
      */
-    KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+    KConfig(const QString &fileName, const QString &backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
     ~KConfig() override;
 
@@ -147,10 +147,21 @@ public:
      */
     QStandardPaths::StandardLocation locationType() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 2)
     /**
      * Returns the filename used to store the configuration.
+     *
+     * @deprecated since 6.2, @see fileName()
      */
+    KCONFIGCORE_DEPRECATED_VERSION(6, 2, "Replace with fileName()")
     QString name() const;
+#endif
+    /**
+     * Returns the filename used to store the configuration.
+     *
+     * @since @6.2
+     */
+    QString fileName() const;
 
     /**
      * @return the flags this object was opened with

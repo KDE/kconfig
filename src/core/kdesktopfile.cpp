@@ -298,10 +298,12 @@ KDesktopFile *KDesktopFile::copyTo(const QString &file) const
     return config;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 2)
 QString KDesktopFile::fileName() const
 {
-    return name();
+    return KConfig::fileName();
 }
+#endif
 
 bool KDesktopFile::noDisplay() const
 {

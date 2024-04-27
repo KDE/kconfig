@@ -218,10 +218,14 @@ public:
      */
     KDesktopFile *copyTo(const QString &file) const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 2)
     /**
      * Returns the name of the .desktop file that was used to construct this KDesktopFile.
+     *
+     * @deprecated since 6.2, use KConfig::fileName() const
      */
     QString fileName() const;
+#endif
 
     /**
      *

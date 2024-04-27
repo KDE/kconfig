@@ -80,7 +80,7 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
     }
 
     for (auto *cfg : std::as_const(global->configList)) {
-        if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType) {
+        if (cfg->fileName() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType) {
             return KSharedConfigPtr(cfg);
         }
     }

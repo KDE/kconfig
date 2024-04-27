@@ -242,21 +242,21 @@ QString KConfigPrivate::expandString(const QString &value)
     return aValue;
 }
 
-KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
+KConfig::KConfig(const QString &fileName, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
     : d_ptr(new KConfigPrivate(mode, resourceType))
 {
-    d_ptr->changeFileName(file); // set the local file name
+    d_ptr->changeFileName(fileName); // set the local file name
 
     // read initial information off disk
     reparseConfiguration();
 }
 
-KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)
+KConfig::KConfig(const QString &fileName, const QString &backend, QStandardPaths::StandardLocation resourceType)
     : d_ptr(new KConfigPrivate(SimpleConfig, resourceType))
 {
-    d_ptr->mBackend = KConfigBackend::create(file, backend);
+    d_ptr->mBackend = KConfigBackend::create(fileName, backend);
     d_ptr->bDynamicBackend = false;
-    d_ptr->changeFileName(file); // set the local file name
+    d_ptr->changeFileName(fileName); // set the local file name
 
     // read initial information off disk
     reparseConfiguration();
@@ -413,7 +413,7 @@ bool KConfig::sync()
 {
     Q_D(KConfig);
 
-    if (isImmutable() || name().isEmpty()) {
+    if (isImmutable() || fileName().isEmpty()) {
         // can't write to an immutable or anonymous file.
         return false;
     }
@@ -487,9 +487,9 @@ bool KConfig::sync()
     }
 
     // Notifying absolute paths is not supported and also makes no sense.
-    const bool isAbsolutePath = name().at(0) == QLatin1Char('/');
+    const bool isAbsolutePath = fileName().at(0) == QLatin1Char('/');
     if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
-        d->notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + name()));
+        d->notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + fileName()));
     }
     if (!notifyGroupsGlobal.isEmpty()) {
         d->notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));
@@ -561,7 +561,15 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
     return config;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 2)
 QString KConfig::name() const
+{
+    Q_D(const KConfig);
+    return d->fileName;
+}
+#endif
+
+QString KConfig::fileName() const
 {
     Q_D(const KConfig);
     return d->fileName;
