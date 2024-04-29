@@ -12,13 +12,23 @@
 
 #include "kdesktopfile.h"
 
+#include <QLibraryInfo>
 #include <QTest>
+#include <QVersionNumber>
 
 #if defined(Q_OS_UNIX)
 #include <unistd.h>
 #endif
 
 QTEST_MAIN(KDesktopFileTest)
+
+QString absoluteFileName(const QString &fileName)
+{
+    if (QLibraryInfo::version() < QVersionNumber(6, 7, 0)) {
+        return fileName;
+    }
+    return QDir::currentPath() + u'/' + fileName;
+}
 
 void KDesktopFileTest::initTestCase()
 {
@@ -33,7 +43,7 @@ void KDesktopFileTest::testRead()
     qputenv("TESTVAR", "value");
     QTemporaryFile file(QStringLiteral("testReadXXXXXX.desktop"));
     QVERIFY(file.open());
-    const QString fileName = file.fileName();
+    const QString fileName = absoluteFileName(file.fileName());
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           "Type= Application\n"
@@ -83,7 +93,7 @@ void KDesktopFileTest::testReadLocalized()
 {
     QTemporaryFile file(QStringLiteral("testReadLocalizedXXXXXX.desktop"));
     QVERIFY(file.open());
-    const QString fileName = file.fileName();
+    const QString fileName = absoluteFileName(file.fileName());
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           "Type=Application\n"
@@ -183,7 +193,7 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
 {
     QTemporaryFile file(QStringLiteral("testAuthXXXXXX.desktop"));
     QVERIFY(file.open());
-    const QString fileName = file.fileName();
+    const QString fileName = absoluteFileName(file.fileName());
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           "Type=Application\n"
@@ -225,7 +235,7 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
     {
         QTemporaryFile file(QStringLiteral("testAuthActionXXXXXX.desktop"));
         QVERIFY(file.open());
-        const QString fileName = file.fileName();
+        const QString fileName = absoluteFileName(file.fileName());
         QTextStream ts(&file);
         ts << "[Desktop Entry]\n"
               "Type=Application\n"
@@ -247,7 +257,7 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
     {
         QTemporaryFile file(QStringLiteral("testAuthActionXXXXXX.desktop"));
         QVERIFY(file.open());
-        const QString fileName = file.fileName();
+        const QString fileName = absoluteFileName(file.fileName());
         QTextStream ts(&file);
         ts << "[Desktop Entry]\n"
               "Type=Application\n"
