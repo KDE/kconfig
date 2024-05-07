@@ -370,7 +370,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {ReportBug, "ReportBug", QT_TRANSLATE_NOOP3("KStandardShortcut", "Report Bug", "@action"), 0, 0, QList<QKeySequence>(), false, Category::Help},
     {SwitchApplicationLanguage,
      "SwitchApplicationLanguage",
-     QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Language...", "@action"),
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Configure Language…", "@action"),
      0,
      0,
      QList<QKeySequence>(),
