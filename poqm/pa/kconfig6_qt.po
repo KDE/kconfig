@@ -401,8 +401,11 @@ msgid "Report Bug"
 msgstr "ਬੱਗ ਰਿਪੋਰਟ ਦਿਓ"
 
 #: gui/kstandardshortcut.cpp:373
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Language..."
+msgid "Configure Language…"
 msgstr "ਭਾਸ਼ਾ ਦੀ ਸੰਰਚਨਾ…"
 
 #: gui/kstandardshortcut.cpp:379

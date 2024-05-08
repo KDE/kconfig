@@ -403,7 +403,7 @@ msgstr "Prijavi grešku"
 
 #: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Language..."
+msgid "Configure Language…"
 msgstr ""
 
 #: gui/kstandardshortcut.cpp:379

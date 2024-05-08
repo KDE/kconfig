@@ -404,8 +404,11 @@ msgid "Report Bug"
 msgstr "回報問題"
 
 #: gui/kstandardshortcut.cpp:373
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Language..."
+msgid "Configure Language…"
 msgstr "設定語言…"
 
 #: gui/kstandardshortcut.cpp:379

@@ -399,8 +399,11 @@ msgid "Report Bug"
 msgstr "Ilmoita viasta"
 
 #: gui/kstandardshortcut.cpp:373
+#, fuzzy
+#| msgctxt "KStandardShortcut|@action"
+#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
-msgid "Configure Language..."
+msgid "Configure Language…"
 msgstr "Kieliasetukset…"
 
 #: gui/kstandardshortcut.cpp:379
