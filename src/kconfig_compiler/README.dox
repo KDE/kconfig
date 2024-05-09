@@ -113,13 +113,6 @@ The following options are read from the kcfgc file:
     Extension to use for the name of the generated C++ header files.
   </dd>
 
-  <dt>SourceExtension=\<string\></dt>
-  <dd>
-    Default: cpp \n
-    Since KF 5.57 \n
-    Extension to use for the name of the generated C++ source file.
-  </dd>
-
   <dt>NameSpace=\<string\></dt>
   <dd>
     Optional namespace for generated class
