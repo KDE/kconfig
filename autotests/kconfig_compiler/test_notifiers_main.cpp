@@ -10,7 +10,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
     TestNotifiers t = TestNotifiers(42);
     return 0;
 }

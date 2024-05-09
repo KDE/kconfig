@@ -10,7 +10,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
     TestNameSpace::TestTranslationKdeDomain t = TestNameSpace::TestTranslationKdeDomain();
     return 0;
 }

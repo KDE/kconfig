@@ -11,7 +11,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
 
     {
         KConfig initialConfig(QStringLiteral("examplerc"));

@@ -33,7 +33,6 @@ void KConfigTest::initTestCase()
 
     // cheat the linker on windows to link against kconfiggui
     KConfigSkeleton foo;
-    Q_UNUSED(foo);
 
     KConfig sc(QStringLiteral("kconfigtest"));
 

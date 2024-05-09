@@ -10,7 +10,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
     TestDPointer *t = TestDPointer::self();
     delete t;
     return 0;

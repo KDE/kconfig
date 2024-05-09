@@ -9,9 +9,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-
     TestEnumsAndProperties t = TestEnumsAndProperties();
-
-    Q_UNUSED(app);
     return 0;
 }

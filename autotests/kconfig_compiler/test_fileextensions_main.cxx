@@ -10,7 +10,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
     TestFileExtensions *t = TestFileExtensions::self();
     delete t;
     return 0;

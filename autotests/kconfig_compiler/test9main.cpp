@@ -12,7 +12,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
     Test9 *t = new Test9(QString(), QString());
 
     QStringList myPathsList2 = t->myPathsList2();

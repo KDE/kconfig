@@ -10,7 +10,6 @@
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
-    Q_UNUSED(app);
     QMakeBuilderSettings::instance(QStringLiteral("abc"));
     auto *t = QMakeBuilderSettings::self();
     delete t;
