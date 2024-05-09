@@ -18,7 +18,6 @@ int main(int argc, char **argv)
     qWarning() << myPathsList2;
 
     // add another path
-    QStringList newlist;
     myPathsList2 << QDir::homePath() + QLatin1String("/.kde");
     qWarning() << myPathsList2;
 
