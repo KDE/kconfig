@@ -22,6 +22,8 @@
 #include <QStringList>
 #include <QTextStream>
 #include <iostream>
+#include <qcoreapplication.h>
+#include <qprocess.h>
 // TODO: Move preprocessDefault to Header / CPP implementation.
 // it makes no sense for a parser to process those values and generate code.
 
@@ -161,10 +163,8 @@ void KConfigXmlParser::readParameterFromEntry(CfgEntry &readEntry, const QDomEle
     }
 }
 
-bool KConfigXmlParser::hasDefaultCode(CfgEntry &readEntry, const QDomElement &element)
+bool KConfigXmlParser::hasDefaultCode(CfgEntry & /*readEntry*/, const QDomElement &element)
 {
-    Q_UNUSED(readEntry)
-
     for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement()) {
         if (e.attribute(QStringLiteral("param")).isEmpty()) {
             if (e.attribute(QStringLiteral("code")) == QLatin1String("true")) {

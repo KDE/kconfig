@@ -55,7 +55,6 @@ static std::unique_ptr<QTemporaryFile> writeUpdFile(const QString &content)
 {
     std::unique_ptr<QTemporaryFile> file{new QTemporaryFile(QDir::tempPath() + QLatin1String("/test_kconf_update_XXXXXX.upd"))};
     bool ok = file->open();
-    Q_UNUSED(ok) // silence warnings
     Q_ASSERT(ok);
     file->write(content.toUtf8());
     file->flush();

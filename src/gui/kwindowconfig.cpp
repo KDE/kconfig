@@ -222,9 +222,8 @@ void KWindowConfig::restoreWindowPosition(QWindow *window, const KConfigGroup &c
     restoreWindowScreenPosition(window, screen, config);
 }
 
-void KWindowConfig::restoreWindowScreenPosition(QWindow *window, const QScreen *screen, const KConfigGroup &config)
+void KWindowConfig::restoreWindowScreenPosition(QWindow *window, const QScreen * /*screen*/, const KConfigGroup &config)
 {
-    Q_UNUSED(screen);
     const int xPos = config.readEntry(windowXPositionString(), -1);
     const int yPos = config.readEntry(windowYPositionString(), -1);
 

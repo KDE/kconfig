@@ -74,9 +74,8 @@ void KConfigPropertyMap::writeConfig()
     d->writeConfig();
 }
 
-QVariant KConfigPropertyMap::updateValue(const QString &key, const QVariant &input)
+QVariant KConfigPropertyMap::updateValue(const QString & /*key*/, const QVariant &input)
 {
-    Q_UNUSED(key);
     if (input.userType() == qMetaTypeId<QJSValue>()) {
         return input.value<QJSValue>().toVariant();
     }
