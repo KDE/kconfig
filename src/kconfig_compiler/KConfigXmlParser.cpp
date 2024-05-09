@@ -178,7 +178,7 @@ bool KConfigXmlParser::hasDefaultCode(CfgEntry &readEntry, const QDomElement &el
 void KConfigXmlParser::readChoicesFromEntry(CfgEntry &readEntry, const QDomElement &e)
 {
     QList<CfgEntry::Choice> chlist;
-    const auto choiceNameRegex = QRegularExpression(QStringLiteral("\\w+"));
+    const static QRegularExpression choiceNameRegex(QStringLiteral("\\w+"));
 
     for (QDomElement e2 = e.firstChildElement(); !e2.isNull(); e2 = e2.nextSiblingElement()) {
         if (e2.tagName() != QLatin1String("choice")) {
