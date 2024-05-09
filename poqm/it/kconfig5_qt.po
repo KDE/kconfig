@@ -3,7 +3,7 @@
 # Andrea Rizzi <rizzi@kde.org>, 2003.
 # Andrea Rizzi <rizzi@sns.it>, 2007.
 # Luca Bellonda <lbellonda@gmail.com>, 2008.
-# SPDX-FileCopyrightText: 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023 Vincenzo Reale <smart2128vr@gmail.com>
+# SPDX-FileCopyrightText: 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Vincenzo Reale <smart2128vr@gmail.com>
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 24.02.2\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:961
