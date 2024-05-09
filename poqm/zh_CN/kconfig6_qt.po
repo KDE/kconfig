@@ -398,12 +398,9 @@ msgid "Report Bug"
 msgstr "报告程序缺陷"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "配置语言..."
+msgstr ""
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
