@@ -419,7 +419,7 @@ msgstr "Informeu d'un error"
 #: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language..."
-msgstr "Configura l'idioma..."
+msgstr "Configura l'idioma…"
 
 #: gui/kstandardshortcut.cpp:372
 msgctxt "KStandardShortcut|@action"
