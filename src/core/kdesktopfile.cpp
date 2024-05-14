@@ -32,8 +32,6 @@ public:
     KDesktopFilePrivate(QStandardPaths::StandardLocation resourceType, const QString &fileName)
         : KConfigPrivate(KConfig::NoGlobals, resourceType)
     {
-        mBackend = new KConfigIniBackend();
-        bDynamicBackend = false;
         changeFileName(fileName);
     }
     KConfigGroup desktopGroup;

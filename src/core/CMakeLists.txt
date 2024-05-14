@@ -14,7 +14,6 @@ target_sources(KF6ConfigCore PRIVATE
    kconfigbase.cpp
    kconfigdata.cpp
    kconfiggroup.cpp
-   kconfigbackend.cpp
    kconfigini.cpp
    kdesktopfile.cpp
    kdesktopfileaction.cpp

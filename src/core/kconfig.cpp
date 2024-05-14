@@ -16,7 +16,6 @@
 
 #include <fcntl.h>
 
-#include "kconfigbackend_p.h"
 #include "kconfiggroup.h"
 
 #include <QBasicMutex>
@@ -68,8 +67,7 @@ static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
     : openFlags(flags)
     , resourceType(resourceType)
-    , mBackend(nullptr)
-    , bDynamicBackend(true)
+    , mBackend(new KConfigIniBackend)
     , bDirty(false)
     , bReadDefaults(false)
     , bFileImmutable(false)
@@ -122,11 +120,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
 
 bool KConfigPrivate::lockLocal()
 {
-    if (mBackend) {
-        return mBackend->lock();
-    }
-    // anonymous object - pretend we locked it
-    return true;
+    return mBackend->lock();
 }
 
 static bool isGroupOrSubGroupMatch(KEntryMapConstIterator entryMapIt, const QString &group)
@@ -254,8 +248,7 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
 KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)
     : d_ptr(new KConfigPrivate(SimpleConfig, resourceType))
 {
-    d_ptr->mBackend = KConfigBackend::create(file, backend);
-    d_ptr->bDynamicBackend = false;
+    Q_UNUSED(backend);
     d_ptr->changeFileName(file); // set the local file name
 
     // read initial information off disk
@@ -270,7 +263,7 @@ KConfig::KConfig(KConfigPrivate &d)
 KConfig::~KConfig()
 {
     Q_D(KConfig);
-    if (d->bDirty && (d->mBackend && d->mBackend->ref.loadRelaxed() == 1)) {
+    if (d->bDirty && d->mBackend->ref.loadRelaxed() == 1) {
         sync();
     }
     delete d;
@@ -421,7 +414,7 @@ bool KConfig::sync()
     QHash<QString, QByteArrayList> notifyGroupsLocal;
     QHash<QString, QByteArrayList> notifyGroupsGlobal;
 
-    if (d->bDirty && d->mBackend) {
+    if (d->bDirty) {
         const QByteArray utf8Locale(locale().toUtf8());
 
         // Create the containing dir, maybe it wasn't there
@@ -456,7 +449,8 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            QExplicitlySharedDataPointer<KConfigBackend> tmp = KConfigBackend::create(*sGlobalFileName);
+            QExplicitlySharedDataPointer<KConfigIniBackend> tmp(new KConfigIniBackend());
+            tmp->setFilePath(*sGlobalFileName);
             if (d->configState == ReadWrite && !tmp->lock()) {
                 qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
 
@@ -468,7 +462,7 @@ bool KConfig::sync()
                 d->bDirty = true;
                 return false;
             }
-            if (!tmp->writeConfig(utf8Locale, d->entryMap, KConfigBackend::WriteGlobal)) {
+            if (!tmp->writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteGlobal)) {
                 d->bDirty = true;
             }
             if (tmp->isLocked()) {
@@ -477,7 +471,7 @@ bool KConfig::sync()
         }
 
         if (writeLocals) {
-            if (!d->mBackend->writeConfig(utf8Locale, d->entryMap, KConfigBackend::WriteOptions())) {
+            if (!d->mBackend->writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
                 d->bDirty = true;
             }
         }
@@ -643,11 +637,7 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    if (bDynamicBackend || !mBackend) { // allow dynamic changing of backend
-        mBackend = KConfigBackend::create(file);
-    } else {
-        mBackend->setFilePath(file);
-    }
+    mBackend->setFilePath(file);
 
     configState = mBackend->accessMode();
 }
@@ -736,14 +726,15 @@ void KConfigPrivate::parseGlobalFiles()
 
     const QByteArray utf8Locale = locale.toUtf8();
     for (const QString &file : globalFiles) {
-        KConfigBackend::ParseOptions parseOpts = KConfigBackend::ParseGlobal | KConfigBackend::ParseExpansions;
+        KConfigIniBackend::ParseOptions parseOpts = KConfigIniBackend::ParseGlobal | KConfigIniBackend::ParseExpansions;
 
         if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0) {
-            parseOpts |= KConfigBackend::ParseDefaults;
+            parseOpts |= KConfigIniBackend::ParseDefaults;
         }
 
-        QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
-        if (backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigBackend::ParseImmutable) {
+        QExplicitlySharedDataPointer<KConfigIniBackend> backend(new KConfigIniBackend);
+        backend->setFilePath(file);
+        if (backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
             break;
         }
     }
@@ -753,7 +744,7 @@ void KConfigPrivate::parseGlobalFiles()
 void KConfigPrivate::parseConfigFiles()
 {
     // can only read the file if there is a backend and a file name
-    if (mBackend && !fileName.isEmpty()) {
+    if (!fileName.isEmpty()) {
         bFileImmutable = false;
 
         QList<QString> files;
@@ -791,20 +782,21 @@ void KConfigPrivate::parseConfigFiles()
         const QByteArray utf8Locale = locale.toUtf8();
         for (const QString &file : std::as_const(files)) {
             if (file.compare(mBackend->filePath(), sPathCaseSensitivity) == 0) {
-                switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigBackend::ParseExpansions)) {
-                case KConfigBackend::ParseOk:
+                switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
+                case KConfigIniBackend::ParseOk:
                     break;
-                case KConfigBackend::ParseImmutable:
+                case KConfigIniBackend::ParseImmutable:
                     bFileImmutable = true;
                     break;
-                case KConfigBackend::ParseOpenError:
+                case KConfigIniBackend::ParseOpenError:
                     configState = KConfigBase::NoAccess;
                     break;
                 }
             } else {
-                QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(file);
-                constexpr auto parseOpts = KConfigBackend::ParseDefaults | KConfigBackend::ParseExpansions;
-                bFileImmutable = backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigBackend::ParseImmutable;
+                QExplicitlySharedDataPointer<KConfigIniBackend> backend(new KConfigIniBackend);
+                backend->setFilePath(file);
+                constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
+                bFileImmutable = backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
             }
 
             if (bFileImmutable) {
@@ -936,13 +928,11 @@ void KConfig::deleteGroupImpl(const QString &aGroup, WriteConfigFlags flags)
 bool KConfig::isConfigWritable(bool warnUser)
 {
     Q_D(KConfig);
-    bool allWritable = (d->mBackend ? d->mBackend->isWritable() : false);
+    bool allWritable = d->mBackend->isWritable();
 
     if (warnUser && !allWritable) {
         QString errorMsg;
-        if (d->mBackend) { // TODO how can be it be null? Set errorMsg appropriately
-            errorMsg = d->mBackend->nonWritableErrorMessage();
-        }
+        errorMsg = d->mBackend->nonWritableErrorMessage();
 
         // Note: We don't ask the user if we should not ask this question again because we can't save the answer.
         errorMsg += QCoreApplication::translate("KConfig", "Please contact your system administrator.");
