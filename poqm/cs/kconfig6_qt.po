@@ -401,12 +401,9 @@ msgid "Report Bug"
 msgstr "Nahlásit chybu"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "Nastavit jazyk..."
+msgstr ""
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
