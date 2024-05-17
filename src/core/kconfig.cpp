@@ -58,6 +58,8 @@ struct ParseCacheValue {
 using ParseCache = QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>>;
 Q_GLOBAL_STATIC(ParseCache, sGlobalParse)
 
+static QHash<QStandardPaths::StandardLocation, QString> sConfigBaseDirectoryOverride;
+
 #ifndef Q_OS_WIN
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
 #else
@@ -615,7 +617,11 @@ void KConfigPrivate::changeFileName(const QString &name)
     if (name.isEmpty()) {
         if (wantDefaults()) { // accessing default app-specific config "appnamerc"
             fileName = KConfig::mainConfigName();
-            file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+            if (sConfigBaseDirectoryOverride.contains(resourceType)) {
+                file = sConfigBaseDirectoryOverride[resourceType] + QLatin1Char('/') + fileName;
+            } else {
+                file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+            }
         } else if (wantGlobals()) { // accessing "kdeglobals" by specifying no filename and NoCascade - XXX used anywhere?
             resourceType = QStandardPaths::GenericConfigLocation;
             fileName = QStringLiteral("kdeglobals");
@@ -632,7 +638,11 @@ void KConfigPrivate::changeFileName(const QString &name)
         }
         file = fileName;
     } else {
-        file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+        if (sConfigBaseDirectoryOverride.contains(resourceType)) {
+            file = sConfigBaseDirectoryOverride[resourceType] + QLatin1Char('/') + fileName;
+        } else {
+            file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+        }
     }
 
     Q_ASSERT(!file.isEmpty());
@@ -760,6 +770,14 @@ void KConfigPrivate::parseConfigFiles()
                         files << canonicalFile;
                     }
                 } else {
+                    if (sConfigBaseDirectoryOverride.contains(resourceType)) {
+                        const QString file = sConfigBaseDirectoryOverride[resourceType] + QLatin1Char('/') + fileName;
+                        const QFileInfo fileInfo(file);
+                        if (fileInfo.exists()) {
+                            files.prepend(fileInfo.canonicalFilePath());
+                        }
+                    }
+
                     const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
                     for (const QString &f : localFilesPath) {
                         files.prepend(QFileInfo(f).canonicalFilePath());
@@ -1032,4 +1050,14 @@ QStandardPaths::StandardLocation KConfig::locationType() const
 void KConfig::virtual_hook(int /*id*/, void * /*data*/)
 {
     /* nothing */
+}
+
+void KConfig::setConfigBaseDirectory(const QString &directoryName, QStandardPaths::StandardLocation type)
+{
+    sConfigBaseDirectoryOverride[type] = directoryName;
+}
+
+QString KConfig::configBaseDirectory(QStandardPaths::StandardLocation type)
+{
+    return sConfigBaseDirectoryOverride[type];
 }

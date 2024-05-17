@@ -349,6 +349,21 @@ public:
      */
     static QString mainConfigName();
 
+    /**
+     * Set the config base directory.
+     *
+     * By default this uses QStandardPaths to find the most appropriate location.
+     */
+    static void setConfigBaseDirectory(const QString &directoryName, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+
+    /**
+     * Get the config base directory.
+     *
+     * @return an empty string, if the base config directory is the default one based on
+     * QStandardPaths.
+     */
+    static QString configBaseDirectory(QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+
 protected:
     bool hasGroupImpl(const QString &groupName) const override;
     KConfigGroup groupImpl(const QString &groupName) override;
