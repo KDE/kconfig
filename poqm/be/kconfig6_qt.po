@@ -2,10 +2,10 @@
 # Darafei Praliaskouski <komzpa@licei2.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
+"Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-02-16 10:31\n"
+"PO-Revision-Date: 2024-05-15 21:00\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -17,11 +17,12 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
-"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
-"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Project: fc57ad16a28d02dea100ceb1c60de14e\n"
+"X-Crowdin-Project-ID: 136\n"
 "X-Crowdin-Language: be\n"
-"X-Crowdin-File: /main/be/kconfig/kconfig5_qt.po\n"
-"X-Crowdin-File-ID: 7795\n"
+"X-Crowdin-File: /[antikruk.KDE] main/KDE6/be/messages/kconfig/kconfig6_qt."
+"po\n"
+"X-Crowdin-File-ID: 9944\n"
 
 #: core/kconfig.cpp:945
 msgctxt "KConfig|"
@@ -406,12 +407,9 @@ msgid "Report Bug"
 msgstr "Паведаміць пра хібу"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "Наладжванне мовы..."
+msgstr "Наладжванне мовы…"
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
@@ -457,12 +455,12 @@ msgstr "Стварыць каталог"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Адкрыць галоўнае меню"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Адкрыць кантэкстнае меню"
 
 #: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
@@ -480,6 +478,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"Толькі для модульных тэстаў: не запісваць завершаныя запісы, каб пры кожным "
+"паўторным запуску скрыпты выконваліся зноў"
 
 #: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
