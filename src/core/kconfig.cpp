@@ -579,14 +579,17 @@ struct KConfigStaticData {
     QStringList appArgs;
 };
 Q_GLOBAL_STATIC(KConfigStaticData, globalData)
+static QBasicMutex s_globalDataMutex;
 
 void KConfig::setMainConfigName(const QString &str)
 {
+    QMutexLocker locker(&s_globalDataMutex);
     globalData()->globalMainConfigName = str;
 }
 
 QString KConfig::mainConfigName()
 {
+    QMutexLocker locker(&s_globalDataMutex);
     KConfigStaticData *data = globalData();
     if (data->appArgs.isEmpty()) {
         data->appArgs = QCoreApplication::arguments();
