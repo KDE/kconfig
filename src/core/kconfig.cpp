@@ -245,6 +245,7 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
     reparseConfiguration();
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 3)
 KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)
     : d_ptr(new KConfigPrivate(SimpleConfig, resourceType))
 {
@@ -254,6 +255,7 @@ KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::St
     // read initial information off disk
     reparseConfiguration();
 }
+#endif
 
 KConfig::KConfig(KConfigPrivate &d)
     : d_ptr(&d)

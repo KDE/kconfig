@@ -124,6 +124,7 @@ public:
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
     /**
      * @internal
      *
@@ -135,8 +136,12 @@ public:
      * @param type where to look for the file if an absolute path is not provided
      *
      * @since 4.1
+     *
+     * @deprecated since 6.3, use other constructor
      */
+    KCONFIGCORE_DEPRECATED_VERSION(6, 3, "Use other constructor")
     KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+#endif
 
     ~KConfig() override;
 
