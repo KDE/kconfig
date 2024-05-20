@@ -1223,28 +1223,44 @@ void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
     oldGroup.deleteGroup(); // so that the entries with the old group name are deleted on sync
 }
 
+void KConfigGroup::moveValue(const char *key, KConfigGroup &other, WriteConfigFlags pFlags)
+{
+    const QString groupName = name();
+    const auto entry = config()->d_ptr->lookupInternalEntry(groupName, key, KEntryMap::SearchLocalized);
+
+    // Only write the entry if it is not null, if it is a global enry there is no point in moving it
+    if (!entry.mValue.isNull() && !entry.bGlobal) {
+        deleteEntry(key, pFlags);
+        KEntryMap::EntryOptions options = KEntryMap::EntryOption::EntryDirty;
+        if (entry.bDeleted) {
+            options |= KEntryMap::EntryDeleted;
+        }
+
+        if (entry.bExpand) {
+            options |= KEntryMap::EntryExpansion;
+        }
+
+        other.config()->d_ptr->setEntryData(other.name(), key, entry.mValue, options);
+    }
+}
+
 void KConfigGroup::moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags)
 {
     Q_ASSERT(isValid());
     Q_ASSERT(other.isValid());
 
     for (const auto key : keys) {
-        const QString groupName = name();
-        const auto entry = config()->d_ptr->lookupInternalEntry(groupName, key, KEntryMap::SearchLocalized);
+        moveValue(key, other, pFlags);
+    }
+}
 
-        // Only write the entry if it is not null, if it is a global enry there is no point in moving it
-        if (!entry.mValue.isNull() && !entry.bGlobal) {
-            deleteEntry(key, pFlags);
-            KEntryMap::EntryOptions options = KEntryMap::EntryOption::EntryDirty;
-            if (entry.bDeleted) {
-                options |= KEntryMap::EntryDeleted;
-            }
+void KConfigGroup::moveValuesTo(KConfigGroup &other, WriteConfigFlags pFlags)
+{
+    Q_ASSERT(isValid());
+    Q_ASSERT(other.isValid());
 
-            if (entry.bExpand) {
-                options |= KEntryMap::EntryExpansion;
-            }
-
-            other.config()->d_ptr->setEntryData(other.name(), key, entry.mValue, options);
-        }
+    const QStringList keys = keyList();
+    for (const QString &key : keys) {
+        moveValue(key.toUtf8().constData(), other, pFlags);
     }
 }

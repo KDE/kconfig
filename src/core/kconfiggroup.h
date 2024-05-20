@@ -161,6 +161,13 @@ public:
     void moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
     /**
+     * Moves the key-value pairs from one config group to the other.
+     *
+     * @since 6.3
+     */
+    void moveValuesTo(KConfigGroup &other, WriteConfigFlags pFlags = Normal);
+
+    /**
      * Returns the group that this group belongs to
      *
      * @return the parent group, or an invalid group if this is a top-level
@@ -679,6 +686,9 @@ private:
      * @return @p value converted to QVariant, or @p aDefault if @p value is invalid or cannot be converted.
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);
+
+    KCONFIGCORE_NO_EXPORT void moveValue(const char *key, KConfigGroup &other, WriteConfigFlags pFlags);
+
     // exported for usage by KServices' KService & KServiceAction
     friend class KServicePrivate; // XXX yeah, ugly^5
     friend class KServiceAction;

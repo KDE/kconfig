@@ -65,6 +65,7 @@ private Q_SLOTS:
     void testQStringUtf8();
 
     void testMoveValuesTo();
+    void testMoveAllValuesTo();
 
     void testSubGroup();
     void testAddConfigSources();

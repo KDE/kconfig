@@ -1920,6 +1920,45 @@ void KConfigTest::testMoveValuesTo()
     QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
 }
 
+void KConfigTest::testMoveAllValuesTo()
+{
+    QTemporaryFile file;
+    QVERIFY(file.open());
+    // Prepare kdeglobals
+    {
+        KConfig glob(QStringLiteral("kdeglobals"));
+        KConfigGroup general(&glob, QStringLiteral("TestGroup"));
+        general.writeEntry("GlobalKey", "PlsDeleteMe");
+        QVERIFY(glob.sync());
+    }
+
+    KConfigGroup grp = KSharedConfig::openConfig(file.fileName())->group(QStringLiteral("TestGroup"));
+
+    grp.writeEntry("test1", "first_value");
+    grp.writeEntry("test_empty", "");
+    grp.writePathEntry("my_path", QStringLiteral("~/somepath"));
+    // because this key is from the global file it should be explicitly deleted
+    grp.deleteEntry("GlobalKey");
+
+    QTemporaryFile targetFile;
+    QVERIFY(targetFile.open());
+    targetFile.close();
+    KConfigGroup targetGroup = KSharedConfig::openConfig(targetFile.fileName(), KConfig::SimpleConfig)->group(QStringLiteral("MoveToGroup"));
+
+    grp.moveValuesTo(targetGroup);
+    QVERIFY(grp.config()->isDirty());
+    QVERIFY(targetGroup.config()->isDirty());
+
+    QStringList expectedKeyList{QStringLiteral("my_path"), QStringLiteral("test1"), QStringLiteral("test_empty")};
+    QCOMPARE(targetGroup.keyList(), expectedKeyList);
+    QCOMPARE(targetGroup.readEntry("test1"), QStringLiteral("first_value"));
+
+    targetGroup.sync();
+    QFile targetReadFile(targetFile.fileName());
+    targetReadFile.open(QFile::ReadOnly);
+    QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
+}
+
 void KConfigTest::testXdgListEntry()
 {
     QTemporaryFile file;
