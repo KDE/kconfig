@@ -196,6 +196,20 @@ inline QAction *create(StandardAction id, const Receiver *recvr, Func slot, QObj
 }
 
 /**
+ * Configure the given @p action to follow the KDE standards default behaviors
+ * (shortcut, what's this, menu role, checked state, ...).
+ *
+ * This is useful for when KStandardAction can't create the action itself
+ * as they require QtWidget.
+ *
+ * @code
+ * auto hamburgerMenu = new KHamburgerMenu(parent);
+ * KStandardActions::configureAction(KStandardActions::HamburgerMenu, hamburgerMenu);
+ * @endcode
+ */
+KCONFIGGUI_EXPORT void configureAction(StandardAction id, QAction *action);
+
+/**
  * This will return the internal name of a given standard action.
  */
 KCONFIGGUI_EXPORT QString name(StandardAction id);

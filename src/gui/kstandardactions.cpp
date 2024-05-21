@@ -35,9 +35,15 @@ KStandardShortcut::StandardShortcut shortcutForActionId(StandardAction id)
 QAction *_kgui_createInternal(StandardAction id, QObject *parent)
 {
     QAction *pAction = new QAction(parent);
-    const KStandardActionsInfo *pInfo = infoPtr(id);
+    configureAction(id, pAction);
+    return pAction;
+}
 
-    // qCDebug(KCONFIG_WIDGETS_LOG) << "KStandardActions::create( " << id << "=" << (pInfo ? pInfo->psName : (const char*)0) << ", " << parent << " )"; //
+void configureAction(StandardAction id, QAction *action)
+{
+    const auto *pInfo = KStandardActions::infoPtr(static_cast<KStandardActions::StandardAction>(id));
+
+    // qCDebug(KCONFIG_WIDGETS_LOG) << "KStandardAction::create( " << id  << "=" << (pInfo ? pInfo->psName.toString() : QString()) << ", " << parent << " )"; //
     // ellis
 
     if (pInfo) {
@@ -109,58 +115,89 @@ QAction *_kgui_createInternal(StandardAction id, QObject *parent)
 
         QIcon icon = iconName.isEmpty() ? QIcon() : QIcon::fromTheme(iconName);
 
+        switch (id) {
+        case ShowMenubar: {
+            action->setWhatsThis(QCoreApplication::translate("@info:whatsthis",
+                                                             "Show Menubar<p>"
+                                                             "Shows the menubar again after it has been hidden</p>"));
+            action->setCheckable(true);
+            action->setChecked(true);
+            break;
+        }
+        case ShowToolbar:
+            action->setCheckable(true);
+            action->setChecked(true);
+            break;
+        case ShowStatusbar:
+            action->setWhatsThis(
+                QCoreApplication::translate("@info:whatsthis",
+                                            "Show Statusbar<p>"
+                                            "Shows the statusbar, which is the bar at the bottom of the window used for status information.</p>"));
+            action->setCheckable(true);
+            action->setChecked(true);
+            break;
+        case FullScreen:
+            action->setCheckable(true);
+            break;
+        // Same as default, but with the app icon
+        case AboutApp: {
+            icon = qGuiApp->windowIcon();
+            break;
+        }
+        default:
+            break;
+        }
+
         // Set the text before setting the MenuRole, as on OS X setText will do some heuristic role guessing.
         // This ensures user menu items get the intended role out of the list below.
-        pAction->setText(sLabel);
+        action->setText(sLabel);
 
         switch (id) {
         case Quit:
-            pAction->setMenuRole(QAction::QuitRole);
+            action->setMenuRole(QAction::QuitRole);
             break;
 
         case Preferences:
-            pAction->setMenuRole(QAction::PreferencesRole);
+            action->setMenuRole(QAction::PreferencesRole);
             break;
 
         case AboutApp:
-            pAction->setMenuRole(QAction::AboutRole);
+            action->setMenuRole(QAction::AboutRole);
             break;
 
         default:
-            pAction->setMenuRole(QAction::NoRole);
+            action->setMenuRole(QAction::NoRole);
             break;
         }
 
         if (!QCoreApplication::tr(pInfo->psToolTip).isEmpty()) {
-            pAction->setToolTip(QCoreApplication::tr(pInfo->psToolTip));
+            action->setToolTip(QCoreApplication::tr(pInfo->psToolTip));
         }
-        pAction->setIcon(icon);
+        action->setIcon(icon);
 
         QList<QKeySequence> cut = KStandardShortcut::shortcut(pInfo->idAccel);
         if (!cut.isEmpty()) {
             // emulate KActionCollection::setDefaultShortcuts to allow the use of "configure shortcuts"
-            pAction->setShortcuts(cut);
-            pAction->setProperty("defaultShortcuts", QVariant::fromValue(cut));
+            action->setShortcuts(cut);
+            action->setProperty("defaultShortcuts", QVariant::fromValue(cut));
         }
-        pAction->connect(KStandardShortcut::shortcutWatcher(),
-                         &KStandardShortcut::StandardShortcutWatcher::shortcutChanged,
-                         pAction,
-                         [pAction, shortcut = pInfo->idAccel](KStandardShortcut::StandardShortcut id, const QList<QKeySequence> &newShortcut) {
-                             if (id != shortcut) {
-                                 return;
-                             }
-                             pAction->setShortcuts(newShortcut);
-                             pAction->setProperty("defaultShortcuts", QVariant::fromValue(newShortcut));
-                         });
+        action->connect(KStandardShortcut::shortcutWatcher(),
+                        &KStandardShortcut::StandardShortcutWatcher::shortcutChanged,
+                        action,
+                        [action, shortcut = pInfo->idAccel](KStandardShortcut::StandardShortcut id, const QList<QKeySequence> &newShortcut) {
+                            if (id != shortcut) {
+                                return;
+                            }
+                            action->setShortcuts(newShortcut);
+                            action->setProperty("defaultShortcuts", QVariant::fromValue(newShortcut));
+                        });
 
-        pAction->setObjectName(pInfo->psName.toString());
+        action->setObjectName(pInfo->psName.toString());
     }
 
-    if (pAction && parent && parent->inherits("KActionCollection")) {
-        QMetaObject::invokeMethod(parent, "addAction", Q_ARG(QString, pAction->objectName()), Q_ARG(QAction *, pAction));
+    if (action && action->parent() && action->parent()->inherits("KActionCollection")) {
+        QMetaObject::invokeMethod(action->parent(), "addAction", Q_ARG(QString, action->objectName()), Q_ARG(QAction *, action));
     }
-
-    return pAction;
 }
 
 QString name(StandardAction id)
