@@ -22,12 +22,12 @@ msgstr ""
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:945
+#: core/kconfig.cpp:938
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Kontakt systemadministratoren din."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:561
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"

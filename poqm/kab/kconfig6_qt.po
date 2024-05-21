@@ -20,12 +20,12 @@ msgstr ""
 "X-Generator: Poedit 2.4.2\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:945
+#: core/kconfig.cpp:938
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Ttxil-k·m nermes anedbal-ik·im n unagraw."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:561
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"

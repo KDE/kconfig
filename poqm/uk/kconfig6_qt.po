@@ -20,12 +20,12 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 23.04.3\n"
 
-#: core/kconfig.cpp:945
+#: core/kconfig.cpp:938
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Будь ласка, зверніться до системного адміністратора."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:561
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
