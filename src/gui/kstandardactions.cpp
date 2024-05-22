@@ -69,10 +69,10 @@ QAction *_kgui_createInternal(StandardAction id, QObject *parent)
             if (appDisplayName.isEmpty()) {
                 appDisplayName = QCoreApplication::applicationName();
             }
-            sLabel = QCoreApplication::tr(pInfo->psLabel).arg(appDisplayName);
+            sLabel = QCoreApplication::translate("KStandardActions", pInfo->psLabel).arg(appDisplayName);
         } break;
         default:
-            sLabel = QCoreApplication::tr(pInfo->psLabel);
+            sLabel = QCoreApplication::translate("KStandardActions", pInfo->psLabel);
         }
 
         if (QGuiApplication::isRightToLeft()) {
@@ -131,8 +131,8 @@ QAction *_kgui_createInternal(StandardAction id, QObject *parent)
             break;
         }
 
-        if (!QCoreApplication::tr(pInfo->psToolTip).isEmpty()) {
-            pAction->setToolTip(QCoreApplication::tr(pInfo->psToolTip));
+        if (!QCoreApplication::translate("KStandardActions", pInfo->psToolTip).isEmpty()) {
+            pAction->setToolTip(QCoreApplication::translate("KStandardActions", pInfo->psToolTip));
         }
         pAction->setIcon(icon);
 
