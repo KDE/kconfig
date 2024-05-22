@@ -18,7 +18,7 @@ msgstr ""
 "2;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:938
+#: core/kconfig.cpp:940
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr ""
@@ -33,6 +33,504 @@ msgstr ""
 #: core/kemailsettings.cpp:139
 msgctxt "KEMailSettings|"
 msgid "Default"
+msgstr ""
+
+#: gui/kstandardactions.cpp:49
+msgctxt "go back|"
+msgid "&Back"
+msgstr ""
+
+#: gui/kstandardactions.cpp:56
+msgctxt "go forward|"
+msgid "&Forward"
+msgstr ""
+
+#: gui/kstandardactions.cpp:63
+msgctxt "home page|"
+msgid "&Home"
+msgstr ""
+
+#: gui/kstandardactions_p.h:67
+msgctxt "KStandardActions|"
+msgid "&New"
+msgstr ""
+
+#: gui/kstandardactions_p.h:67
+msgctxt "KStandardActions|"
+msgid "Create new document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:68
+msgctxt "KStandardActions|"
+msgid "&Open…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:68
+msgctxt "KStandardActions|"
+msgid "Open an existing document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:69
+msgctxt "KStandardActions|"
+msgid "Open &Recent"
+msgstr ""
+
+#: gui/kstandardactions_p.h:69
+msgctxt "KStandardActions|"
+msgid "Open a document which was recently opened"
+msgstr ""
+
+#: gui/kstandardactions_p.h:70
+msgctxt "KStandardActions|"
+msgid "&Save"
+msgstr ""
+
+#: gui/kstandardactions_p.h:70
+msgctxt "KStandardActions|"
+msgid "Save document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:71
+msgctxt "KStandardActions|"
+msgid "Save &As…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:71
+msgctxt "KStandardActions|"
+msgid "Save document under a new name"
+msgstr ""
+
+#: gui/kstandardactions_p.h:72
+msgctxt "KStandardActions|"
+msgid "Re&vert"
+msgstr ""
+
+#: gui/kstandardactions_p.h:72
+msgctxt "KStandardActions|"
+msgid "Revert unsaved changes made to document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:73
+msgctxt "KStandardActions|"
+msgid "&Close"
+msgstr ""
+
+#: gui/kstandardactions_p.h:73
+msgctxt "KStandardActions|"
+msgid "Close document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:74
+msgctxt "KStandardActions|"
+msgid "&Print…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:74
+msgctxt "KStandardActions|"
+msgid "Print document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:75
+msgctxt "KStandardActions|"
+msgid "Print Previe&w"
+msgstr ""
+
+#: gui/kstandardactions_p.h:75
+msgctxt "KStandardActions|"
+msgid "Show a print preview of document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:76
+msgctxt "KStandardActions|"
+msgid "&Mail…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:76
+msgctxt "KStandardActions|"
+msgid "Send document by mail"
+msgstr ""
+
+#: gui/kstandardactions_p.h:77
+msgctxt "KStandardActions|"
+msgid "&Quit"
+msgstr ""
+
+#: gui/kstandardactions_p.h:77
+msgctxt "KStandardActions|"
+msgid "Quit application"
+msgstr ""
+
+#: gui/kstandardactions_p.h:79
+msgctxt "KStandardActions|"
+msgid "&Undo"
+msgstr ""
+
+#: gui/kstandardactions_p.h:79
+msgctxt "KStandardActions|"
+msgid "Undo last action"
+msgstr ""
+
+#: gui/kstandardactions_p.h:80
+msgctxt "KStandardActions|"
+msgid "Re&do"
+msgstr ""
+
+#: gui/kstandardactions_p.h:80
+msgctxt "KStandardActions|"
+msgid "Redo last undone action"
+msgstr ""
+
+#: gui/kstandardactions_p.h:81
+msgctxt "KStandardActions|"
+msgid "Cu&t"
+msgstr ""
+
+#: gui/kstandardactions_p.h:81
+msgctxt "KStandardActions|"
+msgid "Cut selection to clipboard"
+msgstr ""
+
+#: gui/kstandardactions_p.h:82
+msgctxt "KStandardActions|"
+msgid "&Copy"
+msgstr ""
+
+#: gui/kstandardactions_p.h:82
+msgctxt "KStandardActions|"
+msgid "Copy selection to clipboard"
+msgstr ""
+
+#: gui/kstandardactions_p.h:83
+msgctxt "KStandardActions|"
+msgid "&Paste"
+msgstr ""
+
+#: gui/kstandardactions_p.h:83
+msgctxt "KStandardActions|"
+msgid "Paste clipboard content"
+msgstr ""
+
+#: gui/kstandardactions_p.h:84
+msgctxt "KStandardActions|"
+msgid "C&lear"
+msgstr ""
+
+#: gui/kstandardactions_p.h:85
+msgctxt "KStandardActions|"
+msgid "Select &All"
+msgstr ""
+
+#: gui/kstandardactions_p.h:86
+msgctxt "KStandardActions|"
+msgid "Dese&lect"
+msgstr ""
+
+#: gui/kstandardactions_p.h:87
+msgctxt "KStandardActions|"
+msgid "&Find…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:88
+msgctxt "KStandardActions|"
+msgid "Find &Next"
+msgstr ""
+
+#: gui/kstandardactions_p.h:89
+msgctxt "KStandardActions|"
+msgid "Find Pre&vious"
+msgstr ""
+
+#: gui/kstandardactions_p.h:90
+msgctxt "KStandardActions|"
+msgid "&Replace…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:92
+msgctxt "KStandardActions|"
+msgid "Zoom to &Actual Size"
+msgstr ""
+
+#: gui/kstandardactions_p.h:92
+msgctxt "KStandardActions|"
+msgid "View document at its actual size"
+msgstr ""
+
+#: gui/kstandardactions_p.h:93
+msgctxt "KStandardActions|"
+msgid "&Fit to Page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:93
+msgctxt "KStandardActions|"
+msgid "Zoom to fit page in window"
+msgstr ""
+
+#: gui/kstandardactions_p.h:94
+msgctxt "KStandardActions|"
+msgid "Fit to Page &Width"
+msgstr ""
+
+#: gui/kstandardactions_p.h:94
+msgctxt "KStandardActions|"
+msgid "Zoom to fit page width in window"
+msgstr ""
+
+#: gui/kstandardactions_p.h:95
+msgctxt "KStandardActions|"
+msgid "Fit to Page &Height"
+msgstr ""
+
+#: gui/kstandardactions_p.h:95
+msgctxt "KStandardActions|"
+msgid "Zoom to fit page height in window"
+msgstr ""
+
+#: gui/kstandardactions_p.h:96
+msgctxt "KStandardActions|"
+msgid "Zoom &In"
+msgstr ""
+
+#: gui/kstandardactions_p.h:97
+msgctxt "KStandardActions|"
+msgid "Zoom &Out"
+msgstr ""
+
+#: gui/kstandardactions_p.h:98
+msgctxt "KStandardActions|"
+msgid "&Zoom…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:98
+msgctxt "KStandardActions|"
+msgid "Select zoom level"
+msgstr ""
+
+#: gui/kstandardactions_p.h:99
+msgctxt "KStandardActions|"
+msgid "&Refresh"
+msgstr ""
+
+#: gui/kstandardactions_p.h:99
+msgctxt "KStandardActions|"
+msgid "Refresh document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:101
+msgctxt "KStandardActions|"
+msgid "&Up"
+msgstr ""
+
+#: gui/kstandardactions_p.h:101
+msgctxt "KStandardActions|"
+msgid "Go up"
+msgstr ""
+
+#: gui/kstandardactions_p.h:106
+msgctxt "KStandardActions|"
+msgid "&Previous Page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:106
+msgctxt "KStandardActions|"
+msgid "Go to previous page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:107
+msgctxt "KStandardActions|"
+msgid "&Next Page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:107
+msgctxt "KStandardActions|"
+msgid "Go to next page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:108
+msgctxt "KStandardActions|"
+msgid "&Go To…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:109
+msgctxt "KStandardActions|"
+msgid "&Go to Page…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:110
+msgctxt "KStandardActions|"
+msgid "&Go to Line…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:111
+msgctxt "KStandardActions|"
+msgid "&First Page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:111
+msgctxt "KStandardActions|"
+msgid "Go to first page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:112
+msgctxt "KStandardActions|"
+msgid "&Last Page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:112
+msgctxt "KStandardActions|"
+msgid "Go to last page"
+msgstr ""
+
+#: gui/kstandardactions_p.h:113
+msgctxt "KStandardActions|"
+msgid "&Back"
+msgstr ""
+
+#: gui/kstandardactions_p.h:113
+msgctxt "KStandardActions|"
+msgid "Go back in document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:114
+msgctxt "KStandardActions|"
+msgid "&Forward"
+msgstr ""
+
+#: gui/kstandardactions_p.h:114
+msgctxt "KStandardActions|"
+msgid "Go forward in document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:116
+msgctxt "KStandardActions|"
+msgid "&Add Bookmark"
+msgstr ""
+
+#: gui/kstandardactions_p.h:117
+msgctxt "KStandardActions|"
+msgid "&Edit Bookmarks…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:119
+msgctxt "KStandardActions|"
+msgid "&Spelling…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:119
+msgctxt "KStandardActions|"
+msgid "Check spelling in document"
+msgstr ""
+
+#: gui/kstandardactions_p.h:121
+msgctxt "KStandardActions|"
+msgid "Show &Menubar"
+msgstr ""
+
+#: gui/kstandardactions_p.h:121
+msgctxt "KStandardActions|"
+msgid "Show or hide menubar"
+msgstr ""
+
+#: gui/kstandardactions_p.h:122
+msgctxt "KStandardActions|"
+msgid "Show &Toolbar"
+msgstr ""
+
+#: gui/kstandardactions_p.h:122
+msgctxt "KStandardActions|"
+msgid "Show or hide toolbar"
+msgstr ""
+
+#: gui/kstandardactions_p.h:123
+msgctxt "KStandardActions|"
+msgid "Show St&atusbar"
+msgstr ""
+
+#: gui/kstandardactions_p.h:123
+msgctxt "KStandardActions|"
+msgid "Show or hide statusbar"
+msgstr ""
+
+#: gui/kstandardactions_p.h:124
+msgctxt "KStandardActions|"
+msgid "F&ull Screen Mode"
+msgstr ""
+
+#: gui/kstandardactions_p.h:125
+msgctxt "KStandardActions|"
+msgid "Configure Keyboard S&hortcuts…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:126
+#, qt-format
+msgctxt "KStandardActions|"
+msgid "&Configure %1…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:127
+msgctxt "KStandardActions|"
+msgid "Configure Tool&bars…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:128
+msgctxt "KStandardActions|"
+msgid "Configure &Notifications…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:132
+#, qt-format
+msgctxt "KStandardActions|"
+msgid "%1 &Handbook"
+msgstr ""
+
+#: gui/kstandardactions_p.h:133
+msgctxt "KStandardActions|"
+msgid "What's &This?"
+msgstr ""
+
+#: gui/kstandardactions_p.h:134
+msgctxt "KStandardActions|"
+msgid "&Report Bug…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:135
+msgctxt "KStandardActions|"
+msgid "Configure &Language…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:136
+#, qt-format
+msgctxt "KStandardActions|"
+msgid "&About %1"
+msgstr ""
+
+#: gui/kstandardactions_p.h:137
+msgctxt "KStandardActions|"
+msgid "About &KDE"
+msgstr ""
+
+#: gui/kstandardactions_p.h:138
+msgctxt "KStandardActions|"
+msgid "&Delete"
+msgstr ""
+
+#: gui/kstandardactions_p.h:139
+msgctxt "KStandardActions|"
+msgid "&Rename…"
+msgstr ""
+
+#: gui/kstandardactions_p.h:140
+msgctxt "KStandardActions|"
+msgid "&Move to Trash"
+msgstr ""
+
+#: gui/kstandardactions_p.h:141
+msgctxt "KStandardActions|"
+msgid "&Donate"
+msgstr ""
+
+#: gui/kstandardactions_p.h:142
+msgctxt "KStandardActions|"
+msgid "Open &Menu"
 msgstr ""
 
 #: gui/kstandardshortcut.cpp:70
