@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-05-08 09:07+0300\n"
+"PO-Revision-Date: 2024-05-22 06:40+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.02.2\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:940
@@ -41,696 +41,502 @@ msgid "Default"
 msgstr "ברירת מחדל"
 
 #: gui/kstandardactions.cpp:49
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "go back|"
 msgid "&Back"
-msgstr "חזרה"
+msgstr "&אחורה"
 
 #: gui/kstandardactions.cpp:56
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr "קדימה"
+msgstr "&קדימה"
 
 #: gui/kstandardactions.cpp:63
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action Go to main page"
-#| msgid "Home"
 msgctxt "home page|"
 msgid "&Home"
-msgstr "בית"
+msgstr "&בית"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&New"
-msgstr ""
+msgstr "&חדש"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Create new document"
-msgstr ""
+msgstr "יצירת מסמך חדש"
 
 #: gui/kstandardactions_p.h:68
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open"
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "פתיחה"
+msgstr "&פתיחה…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
-msgstr ""
+msgstr "פתיחת מסמך קיים"
 
 #: gui/kstandardactions_p.h:69
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "פתיחת האחרונים"
+msgstr "פ&תיחת האחרונים"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr ""
+msgstr "פתיחת מסמך שהיה בשימוש לאחרונה"
 
 #: gui/kstandardactions_p.h:70
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save"
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "שמירה"
+msgstr "&שמירה"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Save document"
-msgstr ""
+msgstr "שמירת המסמך"
 
 #: gui/kstandardactions_p.h:71
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save As"
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "שמירה בשם"
+msgstr "שמירה &בשם…"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr ""
+msgstr "שמירת המסמך בשם חדש"
 
 #: gui/kstandardactions_p.h:72
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Revert"
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr "שחזור"
+msgstr "שח&זור"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr ""
+msgstr "הסגת שינויים שנערכו במסמך"
 
 #: gui/kstandardactions_p.h:73
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Close"
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr "סגירה"
+msgstr "&סגירה"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Close document"
-msgstr ""
+msgstr "סגירת המסמך"
 
 #: gui/kstandardactions_p.h:74
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print"
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "הדפסה"
+msgstr "ה&דפסה…"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Print document"
-msgstr ""
+msgstr "הדפסת המסמך"
 
 #: gui/kstandardactions_p.h:75
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print Preview"
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr "הצגה מקדימה להדפסה"
+msgstr "הצגה מקדימה להד&פסה"
 
 #: gui/kstandardactions_p.h:75
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
-msgstr ""
+msgstr "הצגת תצוגה מקדימה להדפסת המסמך"
 
 #: gui/kstandardactions_p.h:76
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Mail"
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "דואר"
+msgstr "דוא״&ל…"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
-msgstr ""
+msgstr "שליחת המסמך בדוא״ל"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Quit"
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr "יציאה"
+msgstr "י&ציאה"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About Application"
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr "על היישום"
+msgstr "יציאה מהיישום"
 
 #: gui/kstandardactions_p.h:79
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Undo"
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr "החזרה"
+msgstr "ה&סגה"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Undo last action"
-msgstr ""
+msgstr "הסגת הפעולה האחרונה"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Re&do"
-msgstr ""
+msgstr "ביצוע מ&חדש"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
-msgstr ""
+msgstr "ביצוע הפעולה שהוסגה מחדש"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cu&t"
-msgstr ""
+msgstr "&גזירה"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
-msgstr ""
+msgstr "גזירת הבחירה ללוח הגזירים"
 
 #: gui/kstandardactions_p.h:82
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Copy"
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr "העתקה"
+msgstr "ה&עתקה"
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
-msgstr ""
+msgstr "העתקת הבחירה ללוח הגזירים"
 
 #: gui/kstandardactions_p.h:83
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Paste"
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr "הדבקה"
+msgstr "ה&דבקה"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
-msgstr ""
+msgstr "הדבקת תוכן לוח הגזירים"
 
 #: gui/kstandardactions_p.h:84
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Clear"
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr "פינוי"
+msgstr "&ניקוי"
 
 #: gui/kstandardactions_p.h:85
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "בחירה בהכול"
+msgstr "בחירה בה&כול"
 
 #: gui/kstandardactions_p.h:86
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Deselect"
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
-msgstr "ביטול בחירה"
+msgstr "בי&טול בחירה"
 
 #: gui/kstandardactions_p.h:87
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find"
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "איתור"
+msgstr "&איתור…"
 
 #: gui/kstandardactions_p.h:88
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Next"
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr "איתור הבא"
+msgstr "איתור ה&בא"
 
 #: gui/kstandardactions_p.h:89
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Prev"
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr "איתור הקודם"
+msgstr "איתור ה&קודם"
 
 #: gui/kstandardactions_p.h:90
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Replace"
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "החלפה"
+msgstr "ה&חלפה…"
 
 #: gui/kstandardactions_p.h:92
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom to Actual Size"
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "תקריב מקורי"
+msgstr "תקריב ל&גודל המקורי"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr ""
+msgstr "הצגת המסמך בגודל האמיתי שלו"
 
 #: gui/kstandardactions_p.h:93
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr "התאמה לעמוד"
+msgstr "התאמה ל&עמוד"
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
-msgstr ""
+msgstr "התאמת גודל המסמך לגודל החלון"
 
 #: gui/kstandardactions_p.h:94
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Width"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "התאמה לרוחב"
+msgstr "התאמה ל&רוחב העמוד"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
-msgstr ""
+msgstr "לכוון את המרחק מהמסמך כדי שיופיע לכל רוחבו של החלון"
 
 #: gui/kstandardactions_p.h:95
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Height"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "התאמה לגובה"
+msgstr "התאמה ל&גובה העמוד"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
-msgstr ""
+msgstr "לכוון את המרחק מהמסמך כדי שיופיע לכל אורכו של החלון"
 
 #: gui/kstandardactions_p.h:96
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom In"
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "התקרבות"
+msgstr "הת&קרבות"
 
 #: gui/kstandardactions_p.h:97
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom Out"
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "התרחקות"
+msgstr "הת&רחקות"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom"
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "תקריב"
+msgstr "&תקריב…"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "בחירה בהכול"
+msgstr "בחירת מרחק התקריב"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr ""
+msgstr "&רענון"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr ""
+msgstr "רענון המסמך"
 
 #: gui/kstandardactions_p.h:101
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Up"
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr "למעלה"
+msgstr "למ&עלה"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
 msgid "Go up"
-msgstr ""
+msgstr "עלייה למעלה"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
-msgstr ""
+msgstr "העמוד ה&קודם"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
-msgstr ""
+msgstr "מעבר לעמוד הקודם"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr "קפיצה לעמוד"
+msgstr "העמוד ה&בא"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr "מעבר לשורה"
+msgstr "מעבר לעמוד הבא"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr ""
+msgstr "מ&עבר אל…"
 
 #: gui/kstandardactions_p.h:109
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "קפיצה לעמוד"
+msgstr "מ&עבר לעמוד…"
 
 #: gui/kstandardactions_p.h:110
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "מעבר לשורה"
+msgstr "מעבר ל&שורה…"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr "התאמה לעמוד"
+msgstr "העמוד ה&ראשון"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr "מעבר לשורה"
+msgstr "מעבר לעמוד הראשון"
 
 #: gui/kstandardactions_p.h:112
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr "קפיצה לעמוד"
+msgstr "העמוד ה&אחרון"
 
 #: gui/kstandardactions_p.h:112
 msgctxt "KStandardActions|"
 msgid "Go to last page"
-msgstr ""
+msgstr "מעבר לעמוד הקודם"
 
 #: gui/kstandardactions_p.h:113
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr "חזרה"
+msgstr "א&חורה"
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "Go back in document"
-msgstr ""
+msgstr "חזרה במסמך"
 
 #: gui/kstandardactions_p.h:114
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "קדימה"
+msgstr "ק&דימה"
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
-msgstr ""
+msgstr "התקדמות במסמך"
 
 #: gui/kstandardactions_p.h:116
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Add Bookmark"
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr "הוספת סימנייה"
+msgstr "הוספת &סימנייה"
 
 #: gui/kstandardactions_p.h:117
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Edit Bookmarks"
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "עריכת סימניות"
+msgstr "&עריכת סימניות…"
 
 #: gui/kstandardactions_p.h:119
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Spelling"
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "איות"
+msgstr "&איות…"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
-msgstr ""
+msgstr "בדיקת איות המסמך"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr "הצגת סרגל תפריטים"
+msgstr "הצגת &סרגל תפריטים"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr "הצגת סרגל תפריטים"
+msgstr "הצגת או הסתרת סרגל תפריטים"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr "הצגת סרגל כלים"
+msgstr "הצגת סרגל &כלים"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr "הצגת סרגל כלים"
+msgstr "הצגת או הסתרת סרגל כלים"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
-msgstr "הצגת סרגל מצב"
+msgstr "הצגת &שורת מצב"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr "הצגת סרגל מצב"
+msgstr "הצגת או הסתרת שורת מצב"
 
 #: gui/kstandardactions_p.h:124
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Full Screen Mode"
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
-msgstr "מצב מסך מלא"
+msgstr "מצב מסך מ&לא"
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr ""
+msgstr "הגדרת קיצורי מ&קלדת…"
 
 #: gui/kstandardactions_p.h:126
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language…"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "הגדרת שפה…"
+msgstr "ה&גדרת %1…"
 
 #: gui/kstandardactions_p.h:127
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Toolbars"
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "הגדרת סרגלי כלים"
+msgstr "הגדרת ס&רגלי כלים…"
 
 #: gui/kstandardactions_p.h:128
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Notifications"
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "הגדרת התראות"
+msgstr "הגדרת ה&תראות…"
 
 #: gui/kstandardactions_p.h:132
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr ""
+msgstr "&ספרון ההדרכה של %1"
 
 #: gui/kstandardactions_p.h:133
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "What's This"
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "מה זה"
+msgstr "מה &זה?"
 
 #: gui/kstandardactions_p.h:134
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Report Bug"
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "דיווח על תקלה"
+msgstr "דיווח על &תקלה…"
 
 #: gui/kstandardactions_p.h:135
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language…"
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "הגדרת שפה…"
+msgstr "הגדרת &שפה…"
 
 #: gui/kstandardactions_p.h:136
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "על KDE"
+msgstr "&על %1"
 
 #: gui/kstandardactions_p.h:137
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "על KDE"
+msgstr "&על KDE"
 
 #: gui/kstandardactions_p.h:138
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Delete"
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr "מחיקה"
+msgstr "מ&חיקה"
 
 #: gui/kstandardactions_p.h:139
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Rename"
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "שינוי שם"
+msgstr "&שינוי שם…"
 
 #: gui/kstandardactions_p.h:140
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Move to Trash"
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
-msgstr "העברה לאשפה"
+msgstr "העברה ל&אשפה"
 
 #: gui/kstandardactions_p.h:141
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Donate"
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "תרומה"
+msgstr "&תרומה"
 
 #: gui/kstandardactions_p.h:142
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "פתיחת התפריט הראשי"
+msgstr "&פתיחת תפריט"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"

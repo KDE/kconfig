@@ -33,28 +33,19 @@ msgid "Default"
 msgstr "默认"
 
 #: gui/kstandardactions.cpp:49
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "go back|"
 msgid "&Back"
-msgstr "后退"
+msgstr ""
 
 #: gui/kstandardactions.cpp:56
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr "前进"
+msgstr ""
 
 #: gui/kstandardactions.cpp:63
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action Go to main page"
-#| msgid "Home"
 msgctxt "home page|"
 msgid "&Home"
-msgstr "主页"
+msgstr ""
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
@@ -67,12 +58,9 @@ msgid "Create new document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:68
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open"
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "打开"
+msgstr ""
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
@@ -80,12 +68,9 @@ msgid "Open an existing document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:69
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "打开最近项目"
+msgstr ""
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
@@ -93,12 +78,9 @@ msgid "Open a document which was recently opened"
 msgstr ""
 
 #: gui/kstandardactions_p.h:70
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save"
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "保存"
+msgstr ""
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
@@ -106,12 +88,9 @@ msgid "Save document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:71
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save As"
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "另存为"
+msgstr ""
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
@@ -119,12 +98,9 @@ msgid "Save document under a new name"
 msgstr ""
 
 #: gui/kstandardactions_p.h:72
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Revert"
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr "还原"
+msgstr ""
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
@@ -132,12 +108,9 @@ msgid "Revert unsaved changes made to document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:73
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Close"
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr "关闭"
+msgstr ""
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
@@ -145,12 +118,9 @@ msgid "Close document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:74
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print"
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "打印"
+msgstr ""
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
@@ -158,12 +128,9 @@ msgid "Print document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:75
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print Preview"
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr "打印预览"
+msgstr ""
 
 #: gui/kstandardactions_p.h:75
 msgctxt "KStandardActions|"
@@ -171,12 +138,9 @@ msgid "Show a print preview of document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:76
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Mail"
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "发送电子邮件"
+msgstr ""
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
@@ -184,28 +148,19 @@ msgid "Send document by mail"
 msgstr ""
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Quit"
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr "退出"
+msgstr ""
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About Application"
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr "关于应用程序"
+msgstr ""
 
 #: gui/kstandardactions_p.h:79
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Undo"
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr "撤销"
+msgstr ""
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
@@ -233,12 +188,9 @@ msgid "Cut selection to clipboard"
 msgstr ""
 
 #: gui/kstandardactions_p.h:82
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Copy"
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr "复制"
+msgstr ""
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
@@ -246,12 +198,9 @@ msgid "Copy selection to clipboard"
 msgstr ""
 
 #: gui/kstandardactions_p.h:83
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Paste"
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr "粘贴"
+msgstr ""
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
@@ -259,68 +208,44 @@ msgid "Paste clipboard content"
 msgstr ""
 
 #: gui/kstandardactions_p.h:84
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Clear"
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr "清除"
+msgstr ""
 
 #: gui/kstandardactions_p.h:85
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "选择全部"
+msgstr ""
 
 #: gui/kstandardactions_p.h:86
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Deselect"
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
-msgstr "取消选择"
+msgstr ""
 
 #: gui/kstandardactions_p.h:87
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find"
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "查找"
+msgstr ""
 
 #: gui/kstandardactions_p.h:88
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Next"
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr "查找下一个"
+msgstr ""
 
 #: gui/kstandardactions_p.h:89
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Prev"
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr "查找上一个"
+msgstr ""
 
 #: gui/kstandardactions_p.h:90
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Replace"
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "替换"
+msgstr ""
 
 #: gui/kstandardactions_p.h:92
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom to Actual Size"
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "缩放为实际大小"
+msgstr ""
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
@@ -328,12 +253,9 @@ msgid "View document at its actual size"
 msgstr ""
 
 #: gui/kstandardactions_p.h:93
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr "适合整个页面"
+msgstr ""
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
@@ -341,12 +263,9 @@ msgid "Zoom to fit page in window"
 msgstr ""
 
 #: gui/kstandardactions_p.h:94
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Width"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "适合页面宽度"
+msgstr ""
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
@@ -354,12 +273,9 @@ msgid "Zoom to fit page width in window"
 msgstr ""
 
 #: gui/kstandardactions_p.h:95
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Height"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "适合页面高度"
+msgstr ""
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
@@ -367,36 +283,24 @@ msgid "Zoom to fit page height in window"
 msgstr ""
 
 #: gui/kstandardactions_p.h:96
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom In"
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "放大"
+msgstr ""
 
 #: gui/kstandardactions_p.h:97
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom Out"
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "缩小"
+msgstr ""
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom"
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "缩放"
+msgstr ""
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "选择全部"
+msgstr ""
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
@@ -409,12 +313,9 @@ msgid "Refresh document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:101
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Up"
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr "向上"
+msgstr ""
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
@@ -432,20 +333,14 @@ msgid "Go to previous page"
 msgstr ""
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr "跳转到页面"
+msgstr ""
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr "跳转到行"
+msgstr ""
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
@@ -453,44 +348,29 @@ msgid "&Go To…"
 msgstr ""
 
 #: gui/kstandardactions_p.h:109
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "跳转到页面"
+msgstr ""
 
 #: gui/kstandardactions_p.h:110
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "跳转到行"
+msgstr ""
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr "适合整个页面"
+msgstr ""
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr "跳转到行"
+msgstr ""
 
 #: gui/kstandardactions_p.h:112
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr "跳转到页面"
+msgstr ""
 
 #: gui/kstandardactions_p.h:112
 msgctxt "KStandardActions|"
@@ -498,12 +378,9 @@ msgid "Go to last page"
 msgstr ""
 
 #: gui/kstandardactions_p.h:113
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr "后退"
+msgstr ""
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
@@ -511,12 +388,9 @@ msgid "Go back in document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:114
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "前进"
+msgstr ""
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
@@ -524,28 +398,19 @@ msgid "Go forward in document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:116
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Add Bookmark"
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr "添加书签"
+msgstr ""
 
 #: gui/kstandardactions_p.h:117
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Edit Bookmarks"
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "编辑书签"
+msgstr ""
 
 #: gui/kstandardactions_p.h:119
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Spelling"
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "拼写"
+msgstr ""
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
@@ -553,60 +418,39 @@ msgid "Check spelling in document"
 msgstr ""
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr "显示菜单栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr "显示菜单栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr "显示工具栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr "显示工具栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
-msgstr "显示状态栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr "显示状态栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:124
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Full Screen Mode"
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
-msgstr "全屏模式"
+msgstr ""
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
@@ -614,28 +458,20 @@ msgid "Configure Keyboard S&hortcuts…"
 msgstr ""
 
 #: gui/kstandardactions_p.h:126
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language…"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "配置语言…"
+msgstr ""
 
 #: gui/kstandardactions_p.h:127
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Toolbars"
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "配置工具栏"
+msgstr ""
 
 #: gui/kstandardactions_p.h:128
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Notifications"
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "配置通知"
+msgstr ""
 
 #: gui/kstandardactions_p.h:132
 #, qt-format
@@ -644,85 +480,55 @@ msgid "%1 &Handbook"
 msgstr ""
 
 #: gui/kstandardactions_p.h:133
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "What's This"
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "这是什么"
+msgstr ""
 
 #: gui/kstandardactions_p.h:134
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Report Bug"
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "报告程序缺陷"
+msgstr ""
 
 #: gui/kstandardactions_p.h:135
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language…"
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "配置语言…"
+msgstr ""
 
 #: gui/kstandardactions_p.h:136
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "关于 KDE"
+msgstr ""
 
 #: gui/kstandardactions_p.h:137
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "关于 KDE"
+msgstr ""
 
 #: gui/kstandardactions_p.h:138
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Delete"
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr "删除"
+msgstr ""
 
 #: gui/kstandardactions_p.h:139
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Rename"
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "重命名"
+msgstr ""
 
 #: gui/kstandardactions_p.h:140
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Move to Trash"
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
-msgstr "移动到回收站"
+msgstr ""
 
 #: gui/kstandardactions_p.h:141
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Donate"
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "捐款"
+msgstr ""
 
 #: gui/kstandardactions_p.h:142
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "打开主菜单"
+msgstr ""
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
