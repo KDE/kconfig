@@ -12,23 +12,13 @@
 
 #include "kdesktopfile.h"
 
-#include <QLibraryInfo>
 #include <QTest>
-#include <QVersionNumber>
 
 #if defined(Q_OS_UNIX)
 #include <unistd.h>
 #endif
 
 QTEST_MAIN(KDesktopFileTest)
-
-QString absoluteFileName(const QString &fileName)
-{
-    if (QLibraryInfo::version() < QVersionNumber(6, 7, 0)) {
-        return fileName;
-    }
-    return QDir::currentPath() + u'/' + fileName;
-}
 
 void KDesktopFileTest::initTestCase()
 {
@@ -41,9 +31,9 @@ void KDesktopFileTest::initTestCase()
 void KDesktopFileTest::testRead()
 {
     qputenv("TESTVAR", "value");
-    QTemporaryFile file(QStringLiteral("testReadXXXXXX.desktop"));
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testReadXXXXXX.desktop"));
     QVERIFY(file.open());
-    const QString fileName = absoluteFileName(file.fileName());
+    const QString fileName = file.fileName();
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           "Type= Application\n"
@@ -91,9 +81,9 @@ void KDesktopFileTest::testReadLocalized_data()
 
 void KDesktopFileTest::testReadLocalized()
 {
-    QTemporaryFile file(QStringLiteral("testReadLocalizedXXXXXX.desktop"));
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testReadLocalizedXXXXXX.desktop"));
     QVERIFY(file.open());
-    const QString fileName = absoluteFileName(file.fileName());
+    const QString fileName = file.fileName();
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           "Type=Application\n"
@@ -119,7 +109,7 @@ void KDesktopFileTest::testReadLocalized()
 
 void KDesktopFileTest::testSuccessfulTryExec()
 {
-    QTemporaryFile file;
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testSuccessfulTryExecXXXXXX.desktop"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -134,7 +124,7 @@ void KDesktopFileTest::testSuccessfulTryExec()
 
 void KDesktopFileTest::testUnsuccessfulTryExec()
 {
-    QTemporaryFile file;
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testUnsuccessfulTryExecXXXXXX.desktop"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -149,7 +139,7 @@ void KDesktopFileTest::testUnsuccessfulTryExec()
 
 void KDesktopFileTest::testActionGroup()
 {
-    QTemporaryFile file;
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testActionGroupXXXXXX.desktop"));
     QVERIFY(file.open());
     const QString fileName = file.fileName();
     QTextStream ts(&file);
@@ -191,9 +181,9 @@ void KDesktopFileTest::testActionGroup()
 
 void KDesktopFileTest::testIsAuthorizedDesktopFile()
 {
-    QTemporaryFile file(QStringLiteral("testAuthXXXXXX.desktop"));
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testAuthXXXXXX.desktop"));
     QVERIFY(file.open());
-    const QString fileName = absoluteFileName(file.fileName());
+    const QString fileName = file.fileName();
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           "Type=Application\n"
@@ -233,9 +223,9 @@ void KDesktopFileTest::testIsAuthorizedDesktopFile()
 void KDesktopFileTest::testTryExecWithAuthorizeAction()
 {
     {
-        QTemporaryFile file(QStringLiteral("testAuthActionXXXXXX.desktop"));
+        QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testAuthActionXXXXXX.desktop"));
         QVERIFY(file.open());
-        const QString fileName = absoluteFileName(file.fileName());
+        const QString fileName = file.fileName();
         QTextStream ts(&file);
         ts << "[Desktop Entry]\n"
               "Type=Application\n"
@@ -255,9 +245,9 @@ void KDesktopFileTest::testTryExecWithAuthorizeAction()
         QVERIFY(desktopFile.tryExec());
     }
     {
-        QTemporaryFile file(QStringLiteral("testAuthActionXXXXXX.desktop"));
+        QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testAuthActionXXXXXX.desktop"));
         QVERIFY(file.open());
-        const QString fileName = absoluteFileName(file.fileName());
+        const QString fileName = file.fileName();
         QTextStream ts(&file);
         ts << "[Desktop Entry]\n"
               "Type=Application\n"
