@@ -136,14 +136,13 @@ function(KCONFIG_ADD_KCFG_FILES _target_or_source_var)
                           DEPENDS ${_kcfg_FILE} KF6::kconfig_compiler)
 
        set_source_files_properties(${_header_FILE} ${_src_FILE} PROPERTIES
-           SKIP_AUTOMOC ON
            SKIP_AUTOUIC ON
        )
 
-       if(ARG_GENERATE_MOC)
-          list(APPEND sources ${_moc_FILE})
-          qt_generate_moc(${_header_FILE} ${_moc_FILE})
-          set_property(SOURCE ${_src_FILE} APPEND PROPERTY OBJECT_DEPENDS ${_moc_FILE} )
+       if(NOT ARG_GENERATE_MOC)
+           set_source_files_properties(${_header_FILE} ${_src_FILE} PROPERTIES
+               SKIP_AUTOMOC ON
+            )
        endif()
 
        list(APPEND sources ${_src_FILE} ${_header_FILE})
