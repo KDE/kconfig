@@ -47,6 +47,14 @@ void KConfigHeaderGenerator::doClassDefinition()
     if (!parseResult.signalList.isEmpty() || cfg().generateProperties) {
         stream() << "  Q_OBJECT\n";
     }
+
+    if (cfg().qmlRegistration) {
+        stream() << "  QML_ELEMENT\n";
+
+        if (cfg().singleton) {
+            stream() << "  QML_SINGLETON\n";
+        }
+    }
     stream() << "  public:\n";
     implementEnums();
     createConstructor();
@@ -117,6 +125,11 @@ void KConfigHeaderGenerator::createHeaders()
     if (!cfg().dpointer && parseResult.hasNonModifySignals) {
         addHeaders({QStringLiteral("QSet")});
     }
+
+    if (cfg().qmlRegistration) {
+        addHeaders({QStringLiteral("qqmlintegration.h")});
+    }
+
     stream() << '\n';
 
     addHeaders(parseResult.includes);
@@ -305,6 +318,11 @@ void KConfigHeaderGenerator::createConstructor()
 {
     if (cfg().singleton) {
         stream() << whitespace() << "static " << cfg().className << " *self();\n";
+
+        if (cfg().qmlRegistration) {
+            stream() << whitespace() << "static " << cfg().className << " *create(QQmlEngine *, QJSEngine *);\n";
+        }
+
         if (parseResult.cfgFileNameArg) {
             stream() << whitespace() << "static void instance(const QString& cfgfilename);\n";
             stream() << whitespace() << "static void instance(KSharedConfig::Ptr config);\n";
@@ -358,6 +376,11 @@ void KConfigHeaderGenerator::createForwardDeclarations()
     // Private class declaration
     if (cfg().dpointer) {
         stream() << "class " << cfg().className << "Private;\n\n";
+    }
+
+    if (cfg().qmlRegistration && cfg().singleton) {
+        stream() << "class QQmlEngine;\n";
+        stream() << "class QJSEngine;\n\n";
     }
 }
 

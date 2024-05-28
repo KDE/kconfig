@@ -1,6 +1,8 @@
 add_library(KF6ConfigGui)
 add_library(KF6::ConfigGui ALIAS KF6ConfigGui)
 
+qt_extract_metatypes(KF6ConfigGui)
+
 set_target_properties(KF6ConfigGui PROPERTIES
     VERSION     ${KCONFIG_VERSION}
     SOVERSION   ${KCONFIG_SOVERSION}

@@ -77,4 +77,5 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
     }
     qCategoryLoggingName = codegenConfig.value(QStringLiteral("CategoryLoggingName"), QString()).toString();
     headerExtension = codegenConfig.value(QStringLiteral("HeaderExtension"), QStringLiteral("h")).toString();
+    qmlRegistration = codegenConfig.value(QStringLiteral("QmlRegistration")).toBool();
 }

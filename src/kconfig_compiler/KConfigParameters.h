@@ -62,6 +62,7 @@ public:
     QString translationDomain;
     bool generateProperties;
     QString baseName;
+    bool qmlRegistration;
 };
 
 #endif

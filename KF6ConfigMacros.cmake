@@ -185,6 +185,7 @@ function(kconfig_target_kcfg_file ARG_TARGET)
         GENERATE_PROPERTIES
         PARENT_IN_CONSTRUCTOR
         GENERATE_MOC
+        QML_REGISTRATION
     )
     set(_single_arguments
         FILE

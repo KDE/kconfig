@@ -77,6 +77,10 @@ void KConfigSourceGenerator::createHeaders()
         addHeaders({QStringLiteral("QSet")});
     }
 
+    if (cfg().qmlRegistration && cfg().singleton) {
+        addHeaders({QStringLiteral("QQmlEngine")});
+    }
+
     if (cfg().singleton) {
         stream() << '\n';
     }
@@ -164,6 +168,14 @@ void KConfigSourceGenerator::createSingletonImplementation()
     }
     stream() << "  return s_global" << cfg().className << "()->q;\n";
     stream() << "}\n\n";
+
+    if (cfg().qmlRegistration && cfg().singleton) {
+        stream() << cfg().className << " *" << cfg().className << "::create(QQmlEngine *, QJSEngine *)\n";
+        stream() << "{\n";
+        stream() << "  QQmlEngine::setObjectOwnership(self(), QQmlEngine::CppOwnership);\n";
+        stream() << "  return self();\n";
+        stream() << "}\n\n";
+    }
 
     if (parseResult.cfgFileNameArg) {
         auto instance = [this](const QString &type, const QString &arg, bool isString) {

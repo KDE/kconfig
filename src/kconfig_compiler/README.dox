@@ -278,6 +278,14 @@ The following options are read from the kcfgc file:
     When <b>TranslationSystem=kde</b> is set, allow to specify the domain in which to look for translations.
   </dd>
 
+  <dt>QmlRegistration=\<bool></dt>
+  <dd>
+    Default: false\n
+    If set to true the generated code will use the QML_ELEMENT macro to register the type to QML.
+    If Singleton is also true it will be registered as a QML singleton using QML_SINGLETON
+
+  </dd>
+
 </dl>
 
 
