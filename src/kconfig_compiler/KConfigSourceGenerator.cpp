@@ -40,7 +40,6 @@ void KConfigSourceGenerator::start()
     createDestructor();
     createNonModifyingSignalsHelper();
     createSignalFlagsHandler();
-    includeMoc();
 }
 
 void KConfigSourceGenerator::createHeaders()
@@ -716,16 +715,4 @@ void KConfigSourceGenerator::createSignalFlagsHandler()
     }
 
     stream() << "}\n";
-}
-
-void KConfigSourceGenerator::includeMoc()
-{
-    const QString mocFileName = cfg().baseName + QStringLiteral(".moc");
-
-    if (parseResult.signalList.count() || cfg().generateProperties) {
-        // Add includemoc if they are signals defined.
-        stream() << '\n';
-        stream() << "#include \"" << mocFileName << "\"\n";
-        stream() << '\n';
-    }
 }

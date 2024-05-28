@@ -84,6 +84,3 @@ void TestSignal::itemChanged(quint64 signalFlag) {
   mSettingsChanged.insert(signalFlag);
 
 }
-
-#include "test_signal.moc"
-

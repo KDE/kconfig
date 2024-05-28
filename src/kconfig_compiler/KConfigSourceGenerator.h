@@ -45,7 +45,6 @@ private:
     void createDefaultValueGetterSetter();
     void createNonModifyingSignalsHelper();
     void createSignalFlagsHandler();
-    void includeMoc();
 
     // Constructor related methods
     // the `do` methods have related helper functions that are only related

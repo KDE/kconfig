@@ -33,6 +33,3 @@ void Test14::itemChanged(quint64 signalFlag) {
     break;
   }
 }
-
-#include "test14.moc"
-

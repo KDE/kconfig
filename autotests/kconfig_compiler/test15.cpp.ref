@@ -71,6 +71,3 @@ void Test15::itemChanged(quint64 signalFlag) {
     break;
   }
 }
-
-#include "test15.moc"
-
