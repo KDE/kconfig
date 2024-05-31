@@ -53,9 +53,6 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
 {
     Q_ASSERT(config);
     d->m_config = config;
-
-#if KCONFIG_USE_DBUS
-
     if (config->name().isEmpty()) {
         return;
     }
@@ -67,6 +64,7 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
         return;
     }
 
+#if KCONFIG_USE_DBUS
     qDBusRegisterMetaType<QByteArrayList>();
     qDBusRegisterMetaType<QHash<QString, QByteArrayList>>();
 
@@ -91,8 +89,6 @@ KConfigWatcher::KConfigWatcher(const KSharedConfig::Ptr &config)
                                               // clang-format on
         );
     }
-#else
-    qCWarning(KCONFIG_CORE_LOG) << "Use of KConfigWatcher without DBus support. You will not receive updates";
 #endif
 }
 
