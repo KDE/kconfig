@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-05-23 05:51+0100\n"
+"PO-Revision-Date: 2024-05-30 07:49+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -273,7 +273,7 @@ msgstr "Zomi por konvenigi paĝon en fenestro"
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "Ĝisrandigi al Larĝo"
+msgstr "Ĝisrandigi al Paĝa &Larĝeco"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
@@ -283,7 +283,7 @@ msgstr "Zomi por konvenigi paĝolarĝecon en fenestro"
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "Ĝisrandigi al Alte&co"
+msgstr "Ĝisrandigi al Paĝa Alte&co"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
