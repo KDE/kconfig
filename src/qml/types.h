@@ -7,12 +7,19 @@
 #include <QQmlEngine>
 
 #include <kauthorized.h>
+#include <kcoreconfigskeleton.h>
 
 struct KAuthorizedForeign {
     Q_GADGET
     QML_NAMED_ELEMENT(KAuthorized)
     QML_SINGLETON
     QML_FOREIGN(KAuthorized)
+};
+
+struct KCoreConfigSkeletonForeign {
+    Q_GADGET
+    QML_ANONYMOUS
+    QML_FOREIGN(KCoreConfigSkeleton)
 };
 
 #endif
