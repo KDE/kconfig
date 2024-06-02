@@ -39,13 +39,16 @@ if(KCONFIG_USE_QML)
     find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
 endif()
 
-set(default_kconfig_use_dbus OFF)
-if(UNIX AND NOT APPLE AND NOT ANDROID)
-    set(default_kconfig_use_dbus ON)
+# shall we use DBus?
+# enabled per default on Linux & BSD systems
+set(USE_DBUS_DEFAULT OFF)
+if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKU)
+    set(USE_DBUS_DEFAULT ON)
 endif()
-option(KCONFIG_USE_DBUS "Build components using Qt6DBus" ${default_kconfig_use_dbus})
-if(KCONFIG_USE_DBUS)
+option(USE_DBUS "Build components using DBus" ${USE_DBUS_DEFAULT})
+if(USE_DBUS)
     find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
+    set(KCONFIG_USE_DBUS ON)
 endif()
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
