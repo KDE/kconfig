@@ -63,7 +63,7 @@ struct KStandardActionsInfo {
     const RawStringData psIconName;
 };
 // clang-format off
-static const KStandardActionsInfo g_rgActionInfo[] = {
+static constexpr KStandardActionsInfo g_rgActionInfo[] = {
     { New,           KStandardShortcut::New, u"file_new", QT_TRANSLATE_NOOP("KStandardActions", "&New"), QT_TRANSLATE_NOOP("KStandardActions", "Create new document"), u"document-new" },
     { Open,          KStandardShortcut::Open, u"file_open", QT_TRANSLATE_NOOP("KStandardActions", "&Open…"), QT_TRANSLATE_NOOP("KStandardActions", "Open an existing document"), u"document-open" },
     { OpenRecent,    KStandardShortcut::AccelNone, u"file_open_recent", QT_TRANSLATE_NOOP("KStandardActions", "Open &Recent"), QT_TRANSLATE_NOOP("KStandardActions", "Open a document which was recently opened"), u"document-open-recent" },
@@ -140,7 +140,6 @@ static const KStandardActionsInfo g_rgActionInfo[] = {
     { MoveToTrash,   KStandardShortcut::MoveToTrash, u"movetotrash", QT_TRANSLATE_NOOP("KStandardActions", "&Move to Trash"), {}, u"trash-empty" },
     { Donate,        KStandardShortcut::Donate, u"help_donate", QT_TRANSLATE_NOOP("KStandardActions", "&Donate"), {}, u"help-donate"},
     { HamburgerMenu, KStandardShortcut::OpenMainMenu, u"hamburger_menu", QT_TRANSLATE_NOOP("KStandardActions", "Open &Menu"), {}, u"application-menu" },
-    { ActionNone,    KStandardShortcut::AccelNone, nullptr, {}, {}, nullptr }
 };
 // clang-format on
 
@@ -149,9 +148,9 @@ static const KStandardActionsInfo g_rgActionInfo[] = {
  */
 inline const KStandardActionsInfo *infoPtr(StandardAction id)
 {
-    for (uint i = 0; g_rgActionInfo[i].id != ActionNone; i++) {
-        if (g_rgActionInfo[i].id == id) {
-            return &g_rgActionInfo[i];
+    for (const auto &action : g_rgActionInfo) {
+        if (action.id == id) {
+            return &action;
         }
     }
 
@@ -165,16 +164,17 @@ static inline QStringList internal_stdNames()
 {
     QStringList result;
 
-    for (uint i = 0; g_rgActionInfo[i].id != ActionNone; i++)
-        if (!QCoreApplication::translate("KStandardActions", g_rgActionInfo[i].psLabel).isEmpty()) {
-            if (QByteArrayView(g_rgActionInfo[i].psLabel).contains("%1"))
+    for (const auto &action : g_rgActionInfo) {
+        if (!QCoreApplication::translate("KStandardActions", action.psLabel).isEmpty()) {
+            if (QByteArrayView(action.psLabel).contains("%1"))
             // Prevents KLocalizedString::toString() from complaining about unsubstituted placeholder.
             {
-                result.append(QCoreApplication::translate("KStandardActions", g_rgActionInfo[i].psLabel).arg(QString()));
+                result.append(QCoreApplication::translate("KStandardActions", action.psLabel).arg(QString()));
             } else {
-                result.append(QCoreApplication::translate("KStandardActions", g_rgActionInfo[i].psLabel));
+                result.append(QCoreApplication::translate("KStandardActions", action.psLabel));
             }
         }
+    }
 
     return result;
 }
