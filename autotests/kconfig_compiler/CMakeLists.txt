@@ -1,14 +1,5 @@
-
-# On Windows we have to generate the .h and .cpp inside ${CMAKE_BINARY_DIR}/bin because
-# otherwise QFINDTESTDATA will not be able to locate them.
-if(WIN32)
-    set(KCFG_OUTPUT_DIR "${CMAKE_BINARY_DIR}/bin")
-else()
-    set(KCFG_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}")
-endif()
-
 # make sure the generated headers can be found
-include_directories(${KCFG_OUTPUT_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 include(ECMMarkAsTest)
 include(${CMAKE_SOURCE_DIR}/KF6ConfigMacros.cmake)
@@ -42,11 +33,13 @@ function(kconfig_compiler_test ARG_NAME)
         set(_moc GENERATE_MOC)
     endif()
 
-    ecm_add_test(TEST_NAME ${ARG_NAME} ${ARG_MAIN})
+    # execute the tests in ${CMAKE_CURRENT_BINARY_DIR} to ensure we can easily find the generated files
+
+    ecm_add_test(TEST_NAME ${ARG_NAME} ${ARG_MAIN} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
     KCONFIG_ADD_KCFG_FILES(${ARG_NAME} "${ARG_KCFGC}" ${_moc})
     target_link_libraries(${ARG_NAME} Qt6::Test KF6::ConfigGui)
 
-    ecm_add_test(TEST_NAME ${ARG_NAME}_cmake ${ARG_MAIN})
+    ecm_add_test(TEST_NAME ${ARG_NAME}_cmake ${ARG_MAIN} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
     get_filename_component(_kcfg_we "${ARG_KCFG}" NAME_WE)
     configure_file("${ARG_KCFG}" "${_kcfg_we}_cmake.kcfg" COPYONLY)
     kconfig_target_kcfg_file(${ARG_NAME}_cmake FILE "${CMAKE_CURRENT_BINARY_DIR}/${_kcfg_we}_cmake.kcfg" CLASS_NAME "${ARG_CLASS_NAME}" ${_moc} ${ARG_UNPARSED_ARGUMENTS})

@@ -151,7 +151,7 @@ void KConfigCompiler_Test::testBaselineComparison()
 {
     QFETCH(QString, testName);
 
-    QFile file(QFINDTESTDATA(testName));
+    QFile file(testName);
     QFile fileRef(QFINDTESTDATA(testName + QLatin1String(".ref")));
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
