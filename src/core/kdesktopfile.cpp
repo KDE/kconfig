@@ -115,9 +115,9 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 
     // Check if the .desktop file is installed as part of KDE or XDG.
     const QStringList appsDirs = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation);
-    auto it = std::find_if(appsDirs.cbegin(), appsDirs.cend(), [&realPath](const QString &prefix) {
+    auto it = std::find_if(appsDirs.cbegin(), appsDirs.cend(), [&realPath, &path](const QString &prefix) {
         QFileInfo info(prefix);
-        return info.exists() && info.isDir() && realPath.startsWith(info.canonicalFilePath(), sensitivity);
+        return info.exists() && info.isDir() && (realPath.startsWith(info.canonicalFilePath(), sensitivity) || path.startsWith(info.canonicalFilePath()));
     });
     if (it != appsDirs.cend()) {
         return true;
