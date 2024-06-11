@@ -86,3 +86,7 @@ add_executable(kconfig_benchmark kconfig_benchmark.cpp)
 ecm_mark_nongui_executable(kconfig_benchmark)
 add_test(NAME kconfig_benchmark COMMAND kconfig_benchmark CONFIGURATIONS BENCHMARK)
 target_link_libraries(kconfig_benchmark KF6::ConfigCore Qt6::Test)
+
+if (WIN32)
+    ecm_add_test(registrytest.cpp LINK_LIBRARIES KF6::ConfigCore Qt6::Test)
+endif()
