@@ -114,6 +114,9 @@ private:
     bool setLocale(const QString &aLocale);
     QStringList getGlobalFiles() const;
     void parseGlobalFiles();
+#ifdef Q_OS_WIN
+    void parseWindowsDefaults();
+#endif
     void parseConfigFiles();
     void initCustomized(KConfig *);
     bool lockLocal();
