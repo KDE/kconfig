@@ -44,6 +44,7 @@ function(kconfig_compiler_test ARG_NAME)
     configure_file("${ARG_KCFG}" "${_kcfg_we}_cmake.kcfg" COPYONLY)
     kconfig_target_kcfg_file(${ARG_NAME}_cmake FILE "${CMAKE_CURRENT_BINARY_DIR}/${_kcfg_we}_cmake.kcfg" CLASS_NAME "${ARG_CLASS_NAME}" ${_moc} ${ARG_UNPARSED_ARGUMENTS})
     target_link_libraries(${ARG_NAME}_cmake Qt6::Test KF6::ConfigGui)
+    add_dependencies(${ARG_NAME}_cmake ${ARG_NAME})
 endfunction()
 
 kconfig_compiler_test(Test1 PARENT_IN_CONSTRUCTOR MUTATORS)
