@@ -763,7 +763,7 @@ void KConfigPrivate::parseWindowsDefaults()
     auto registryKey =
         QStringLiteral("SOFTWARE\\%1\\%2")
             .arg(QCoreApplication::organizationName(), fileName.endsWith(QStringLiteral("rc")) ? fileName.left(fileName.length() - 2) : fileName);
-    parseWindowsRegistry(registryKey, entryMap);
+    WindowsRegistry::parse(registryKey, entryMap);
 }
 #endif
 

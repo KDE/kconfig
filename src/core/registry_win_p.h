@@ -7,4 +7,7 @@
 */
 #include "kconfigdata_p.h"
 
-void parseWindowsRegistry(const QString &regKey, KEntryMap &entryMap);
+namespace WindowsRegistry
+{
+void parse(const QString &regKey, KEntryMap &entryMap);
+}
