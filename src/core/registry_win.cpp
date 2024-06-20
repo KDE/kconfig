@@ -61,7 +61,7 @@ void parseRegistry(const QString &regKey, KEntryMap &entryMap, Registry registry
     parseRegSubkeys(QStringLiteral("<default>"), settings, entryMap, false);
 }
 
-void parseWindowsRegistry(const QString &regKey, KEntryMap &entryMap)
+void WindowsRegistry::parse(const QString &regKey, KEntryMap &entryMap)
 {
     parseRegistry(regKey, entryMap, HKLM);
     parseRegistry(regKey, entryMap, HKCU);
