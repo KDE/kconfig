@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-05-23 01:22+0300\n"
+"PO-Revision-Date: 2024-06-22 13:03+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -711,7 +711,7 @@ msgstr "Sonraki Sözcük"
 #: gui/kstandardshortcut.cpp:201
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
-msgstr "Yer İmi Ekle"
+msgstr "Yer İmi Koy"
 
 #: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
