@@ -23,7 +23,6 @@ include(ECMPoQmTools)
 include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
-include(ECMQmlModule)
 
 set(REQUIRED_QT_VERSION 6.5.0)
 
@@ -36,6 +35,7 @@ endif()
 option(KCONFIG_USE_QML "Build components using Qt6Qml" ON)
 
 if(KCONFIG_USE_QML)
+    include(ECMQmlModule)
     find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
 endif()
 
