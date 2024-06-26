@@ -14,6 +14,7 @@ set_target_properties(KF6ConfigQml PROPERTIES
 
 target_sources(KF6ConfigQml PRIVATE
     kconfigpropertymap.cpp
+    kwindowstatesaverquick.cpp
     types.cpp
 )
 
@@ -30,7 +31,9 @@ ecm_generate_export_header(KF6ConfigQml
 target_link_libraries(KF6ConfigQml
   PUBLIC
     KF6::ConfigCore # KCoreConfigSkeleton, in ConfigPropertyMap
+    KF6::ConfigGui # KWindowStateSaver
     Qt6::Qml
+    Qt6::Quick
 )
 
 ecm_generate_headers(KConfigQml_HEADERS

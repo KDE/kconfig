@@ -36,7 +36,7 @@ endif()
 option(KCONFIG_USE_QML "Build components using Qt6Qml" ON)
 
 if(KCONFIG_USE_QML)
-    find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
+    find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml Quick)
 endif()
 
 # shall we use DBus?
