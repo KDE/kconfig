@@ -14,7 +14,16 @@ set_target_properties(KF6ConfigQml PROPERTIES
 
 target_sources(KF6ConfigQml PRIVATE
     kconfigpropertymap.cpp
+    kwindowstatesaverquick.cpp
     types.cpp
+)
+
+ecm_qt_declare_logging_category(KF6ConfigQml
+    HEADER kconfig_qml_log_settings.h
+    IDENTIFIER KCONFIG_QML_LOG
+    CATEGORY_NAME kf.config.qml
+    DESCRIPTION "KConfig QML"
+    EXPORT KCONFIG
 )
 
 ecm_generate_export_header(KF6ConfigQml
@@ -30,7 +39,9 @@ ecm_generate_export_header(KF6ConfigQml
 target_link_libraries(KF6ConfigQml
   PUBLIC
     KF6::ConfigCore # KCoreConfigSkeleton, in ConfigPropertyMap
+    KF6::ConfigGui # KWindowStateSaver
     Qt6::Qml
+    Qt6::Quick
 )
 
 ecm_generate_headers(KConfigQml_HEADERS
