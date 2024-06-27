@@ -17,7 +17,7 @@ enum Registry {
     HKCU,
 };
 
-void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &entryMap, bool groupImmutable)
+static void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &entryMap, bool groupImmutable)
 {
     for (auto &key : settings.childKeys()) {
         KEntryMap::EntryOptions entryOptions = KEntryMap::EntryDefault;
@@ -40,7 +40,7 @@ void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &en
     }
 }
 
-void parseRegSubkeys(const QString &baseGroup, QSettings &settings, KEntryMap &entryMap, bool immutable)
+static void parseRegSubkeys(const QString &baseGroup, QSettings &settings, KEntryMap &entryMap, bool immutable)
 {
     parseRegValues(baseGroup, settings, entryMap, immutable);
 
@@ -59,7 +59,7 @@ void parseRegSubkeys(const QString &baseGroup, QSettings &settings, KEntryMap &e
     }
 }
 
-void parseRegistry(const QString &regKey, KEntryMap &entryMap, Registry registry)
+static void parseRegistry(const QString &regKey, KEntryMap &entryMap, Registry registry)
 {
     QString registryPath = (registry == HKCU ? QStringLiteral("HKEY_CURRENT_USER\\") : QStringLiteral("HKEY_LOCAL_MACHINE\\")) + regKey;
     QSettings settings(registryPath, QSettings::NativeFormat);
