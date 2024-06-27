@@ -8,6 +8,8 @@
 
 #include "registry_win_p.h"
 
+#include <windows.h>
+
 #include <QSettings>
 
 enum Registry {
@@ -19,7 +21,10 @@ void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &en
 {
     for (auto &key : settings.childKeys()) {
         KEntryMap::EntryOptions entryOptions = KEntryMap::EntryDefault;
-        const auto value = settings.value(key).toString();
+        const auto value = settings.value(key).toString().toStdWString();
+        const auto requiredSize = ExpandEnvironmentStringsW(value.c_str(), nullptr, 0);
+        std::vector<char16_t> expanded(requiredSize, char16_t(0));
+        ExpandEnvironmentStringsW(value.c_str(), (LPWSTR)expanded.data(), expanded.size());
         if (key.endsWith(QStringLiteral("[$i]"))) {
             key.chop(4);
             entryOptions |= KEntryMap::EntryImmutable;
@@ -31,7 +36,7 @@ void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &en
         if (entryMap.getEntryOption(groupName, key.toUtf8(), KEntryMap::SearchDefaults, KEntryMap::EntryImmutable)) {
             continue;
         }
-        entryMap.setEntry(groupName, key.toUtf8(), value.toUtf8(), entryOptions);
+        entryMap.setEntry(groupName, key.toUtf8(), QString::fromUtf16(&expanded[0]), entryOptions);
     }
 }
 
