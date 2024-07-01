@@ -58,11 +58,11 @@ ecm_generate_headers(KConfigGui_HEADERS
   KWindowStateSaver
   KStandardActions
 
-   REQUIRED_HEADERS KConfigGui_HEADERS
+  REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
-if (NOT BUILD_SHARED_LIBS)
-    target_sources(KF6ConfigGui PUBLIC 
+if(NOT BUILD_SHARED_LIBS)
+    target_sources(KF6ConfigGui PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/kconfigguistaticinitializer.cpp>
         $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui/kconfigguistaticinitializer.cpp>
     )

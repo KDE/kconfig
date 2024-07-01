@@ -5,7 +5,7 @@ include(ECMMarkAsTest)
 include(${CMAKE_SOURCE_DIR}/KF6ConfigMacros.cmake)
 
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
-   KCONFIG_ADD_KCFG_FILES(${_srcs} ${_testName}.kcfgc ${ARGN})
+    KCONFIG_ADD_KCFG_FILES(${_srcs} ${_testName}.kcfgc ${ARGN})
 endmacro()
 
 function(kconfig_compiler_test ARG_NAME)
@@ -13,23 +13,23 @@ function(kconfig_compiler_test ARG_NAME)
 
     string(TOLOWER "${ARG_NAME}" _name_lc)
 
-    if ("${ARG_MAIN}" STREQUAL "")
+    if("${ARG_MAIN}" STREQUAL "")
         set(ARG_MAIN "${_name_lc}main.cpp")
     endif()
 
-    if ("${ARG_CLASS_NAME}" STREQUAL "")
+    if("${ARG_CLASS_NAME}" STREQUAL "")
         set(ARG_CLASS_NAME "${ARG_NAME}")
     endif()
 
-    if ("${ARG_KCFG}" STREQUAL "")
+    if("${ARG_KCFG}" STREQUAL "")
         set(ARG_KCFG "${_name_lc}.kcfg")
     endif()
 
-    if ("${ARG_KCFGC}" STREQUAL "")
+    if("${ARG_KCFGC}" STREQUAL "")
         set(ARG_KCFGC "${_name_lc}.kcfgc")
     endif()
 
-    if (${ARG_GENERATE_MOC})
+    if(${ARG_GENERATE_MOC})
         set(_moc GENERATE_MOC)
     endif()
 

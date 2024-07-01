@@ -10,18 +10,18 @@ set_target_properties(KF6ConfigCore PROPERTIES
 )
 
 target_sources(KF6ConfigCore PRIVATE
-   kconfig.cpp
-   kconfigbase.cpp
-   kconfigdata.cpp
-   kconfiggroup.cpp
-   kconfigini.cpp
-   kdesktopfile.cpp
-   kdesktopfileaction.cpp
-   ksharedconfig.cpp
-   kcoreconfigskeleton.cpp
-   kauthorized.cpp
-   kemailsettings.cpp
-   kconfigwatcher.cpp
+    kconfig.cpp
+    kconfigbase.cpp
+    kconfigdata.cpp
+    kconfiggroup.cpp
+    kconfigini.cpp
+    kdesktopfile.cpp
+    kdesktopfileaction.cpp
+    ksharedconfig.cpp
+    kcoreconfigskeleton.cpp
+    kauthorized.cpp
+    kemailsettings.cpp
+    kconfigwatcher.cpp
 )
 
 ecm_qt_declare_logging_category(KF6ConfigCore

@@ -31,36 +31,36 @@ qt_add_resources(fallbackconfigresources fallbackconfigresources.qrc)
 ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent)
 
 ecm_add_tests(
-   kconfignokdehometest.cpp
-   kconfigtest.cpp
-   kdesktopfiletest.cpp
-   test_kconf_update.cpp
-   ksharedconfig_in_global_object.cpp
-   dbussanitizertest.cpp
-   NAME_PREFIX kconfigcore-
-   LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent
+    kconfignokdehometest.cpp
+    kconfigtest.cpp
+    kdesktopfiletest.cpp
+    test_kconf_update.cpp
+    ksharedconfig_in_global_object.cpp
+    dbussanitizertest.cpp
+    NAME_PREFIX kconfigcore-
+    LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent
 )
 
 add_dependencies(test_kconf_update kconf_update)
 
 if(TARGET Qt6::Gui)
 ecm_add_tests(
-   kconfigguitest.cpp
-   kconfigloadertest.cpp
-   kconfigskeletontest.cpp
-   kstandardshortcuttest.cpp
-   NAME_PREFIX kconfiggui-
-   LINK_LIBRARIES KF6::ConfigGui Qt6::Test
+    kconfigguitest.cpp
+    kconfigloadertest.cpp
+    kconfigskeletontest.cpp
+    kstandardshortcuttest.cpp
+    NAME_PREFIX kconfiggui-
+    LINK_LIBRARIES KF6::ConfigGui Qt6::Test
 )
 
 ecm_add_test(
-   kstandardshortcutwatchertest.cpp
-   # add sources instead of linking so we can use the unexported initialize()
-   ../src/gui/kstandardshortcut.cpp
-   ../src/gui/kstandardshortcutwatcher.cpp
-   LINK_LIBRARIES KF6::ConfigCore Qt6::Gui Qt6::Test
-   TEST_NAME kstandardshortcutwatchertest
-   NAME_PREFIX kconfiggui-
+    kstandardshortcutwatchertest.cpp
+    # add sources instead of linking so we can use the unexported initialize()
+    ../src/gui/kstandardshortcut.cpp
+    ../src/gui/kstandardshortcutwatcher.cpp
+    LINK_LIBRARIES KF6::ConfigCore Qt6::Gui Qt6::Test
+    TEST_NAME kstandardshortcutwatchertest
+    NAME_PREFIX kconfiggui-
 )
 target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF6ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
 target_compile_definitions(kstandardshortcutwatchertest PRIVATE "-DKCONFIGGUI_STATIC_DEFINE")

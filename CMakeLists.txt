@@ -96,8 +96,8 @@ configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/KF6ConfigConfig.cmake
                               )
 
 install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfigVersion.cmake"
-               "${CMAKE_CURRENT_SOURCE_DIR}/KF6ConfigMacros.cmake"
+                "${CMAKE_CURRENT_BINARY_DIR}/KF6ConfigConfigVersion.cmake"
+                "${CMAKE_CURRENT_SOURCE_DIR}/KF6ConfigMacros.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel )
 

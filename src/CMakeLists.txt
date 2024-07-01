@@ -15,7 +15,7 @@ ecm_qt_install_logging_categories(
     DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
 
-if (BUILD_QCH)
+if(BUILD_QCH)
     ecm_add_qch(
         KF6Config_QCH
         NAME KConfig
