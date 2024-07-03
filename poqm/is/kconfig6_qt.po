@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-02-19 20:22+0000\n"
-"Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
+"PO-Revision-Date: 2024-06-29 14:35+0000\n"
+"Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:940
@@ -39,696 +39,502 @@ msgid "Default"
 msgstr "Sjálfgefið"
 
 #: gui/kstandardactions.cpp:49
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "go back|"
 msgid "&Back"
-msgstr "Til baka"
+msgstr "Til &baka"
 
 #: gui/kstandardactions.cpp:56
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr "Áfram"
+msgstr "Á&fram"
 
 #: gui/kstandardactions.cpp:63
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action Go to main page"
-#| msgid "Home"
 msgctxt "home page|"
 msgid "&Home"
-msgstr "Heim"
+msgstr "&Heim"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&New"
-msgstr ""
+msgstr "&Nýtt"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Create new document"
-msgstr ""
+msgstr "Búa til nýtt skjal"
 
 #: gui/kstandardactions_p.h:68
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open"
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "Opna"
+msgstr "&Opna…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
-msgstr ""
+msgstr "Opna skjal sem þegar er til"
 
 #: gui/kstandardactions_p.h:69
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "Opna nýlegt"
+msgstr "Opna ný&legt"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr ""
+msgstr "Opna skjal sem var nýlega opnað"
 
 #: gui/kstandardactions_p.h:70
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save"
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "Vista"
+msgstr "Vi&sta"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Save document"
-msgstr ""
+msgstr "Vista skjal"
 
 #: gui/kstandardactions_p.h:71
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save As"
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "Vista sem"
+msgstr "Vist&a sem…"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr ""
+msgstr "Vista skjal með nýju heiti"
 
 #: gui/kstandardactions_p.h:72
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Revert"
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr "Afturkalla"
+msgstr "Aftu&rkalla"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr ""
+msgstr "Afturkalla óvistaðar breytingar sem gerðar hafa verið á skjalinu"
 
 #: gui/kstandardactions_p.h:73
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Close"
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr "Loka"
+msgstr "&Loka"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Close document"
-msgstr ""
+msgstr "Loka skjali"
 
 #: gui/kstandardactions_p.h:74
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print"
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "Prenta"
+msgstr "&Prenta…"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Print document"
-msgstr ""
+msgstr "Prenta skjalið"
 
 #: gui/kstandardactions_p.h:75
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print Preview"
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr "Forskoðun prentunar"
+msgstr "Forskoða pren&tun"
 
 #: gui/kstandardactions_p.h:75
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
-msgstr ""
+msgstr "Sýna prentútgáfu skjals"
 
 #: gui/kstandardactions_p.h:76
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Mail"
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "Póstur"
+msgstr "&Póstur…"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
-msgstr ""
+msgstr "Senda skjal í tölvupósti"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Quit"
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr "Hætta"
+msgstr "&Hætta"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About Application"
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr "Um forritið"
+msgstr "Loka forriti"
 
 #: gui/kstandardactions_p.h:79
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Undo"
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr "Afturkalla"
+msgstr "&Afturkalla"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Undo last action"
-msgstr ""
+msgstr "Afturkalla síðustu aðgerð"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Re&do"
-msgstr ""
+msgstr "Gera a&ftur"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
-msgstr ""
+msgstr "Gera aftur síðustu afturkölluðu aðgerð"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cu&t"
-msgstr ""
+msgstr "&Klippa"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
-msgstr ""
+msgstr "Klippa val á klippispjald"
 
 #: gui/kstandardactions_p.h:82
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Copy"
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr "Afrita"
+msgstr "&Afrita"
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
-msgstr ""
+msgstr "Afrita val á klippispjald"
 
 #: gui/kstandardactions_p.h:83
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Paste"
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr "Líma"
+msgstr "&Líma"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
-msgstr ""
+msgstr "Líma af klippispjaldi"
 
 #: gui/kstandardactions_p.h:84
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Clear"
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr "Hreinsa"
+msgstr "Hr&einsa"
 
 #: gui/kstandardactions_p.h:85
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "Velja allt"
+msgstr "Velja &allt"
 
 #: gui/kstandardactions_p.h:86
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Deselect"
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
-msgstr "Afvelja"
+msgstr "Afve&lja"
 
 #: gui/kstandardactions_p.h:87
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find"
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "Finna"
+msgstr "&Finna…"
 
 #: gui/kstandardactions_p.h:88
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Next"
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr "Finna næsta"
+msgstr "Finna &næsta"
 
 #: gui/kstandardactions_p.h:89
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Prev"
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr "Finna fyrra"
+msgstr "Finna &fyrra"
 
 #: gui/kstandardactions_p.h:90
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Replace"
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "Skipta út"
+msgstr "&Skipta út…"
 
 #: gui/kstandardactions_p.h:92
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom to Actual Size"
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "Aðdrátt í raunstærð"
+msgstr "Sýna í r&aunstærð"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr ""
+msgstr "Skoða skjal í raunstærð þess"
 
 #: gui/kstandardactions_p.h:93
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr "Laga að síðu"
+msgstr "&Laga að síðu"
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
-msgstr ""
+msgstr "Laga síðu að glugga"
 
 #: gui/kstandardactions_p.h:94
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Width"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "Laga að breidd"
+msgstr "Laga að síðu&breidd"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
-msgstr ""
+msgstr "Laga breidd síðu að glugga"
 
 #: gui/kstandardactions_p.h:95
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Height"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "Laga að hæð"
+msgstr "Laga að síðu&hæð"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
-msgstr ""
+msgstr "Laga hæð síðu að glugga"
 
 #: gui/kstandardactions_p.h:96
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom In"
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "Auka aðdrátt"
+msgstr "Auka &aðdrátt"
 
 #: gui/kstandardactions_p.h:97
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom Out"
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "Minnka aðdrátt"
+msgstr "Mi&nnka aðdrátt"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom"
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "Aðdráttur"
+msgstr "&Aðdráttur…"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "Velja allt"
+msgstr "Velja aðdráttarstig"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr ""
+msgstr "&Endurhlaða"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr ""
+msgstr "Endurhlaða skjal"
 
 #: gui/kstandardactions_p.h:101
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Up"
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr "Upp"
+msgstr "&Upp"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
 msgid "Go up"
-msgstr ""
+msgstr "Fara upp"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Fyrri síða"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
-msgstr ""
+msgstr "Fara á fyrri síðu"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr "Fara á síðu"
+msgstr "&Næsta síða"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr "Fara í línu"
+msgstr "Fara á næstu síðu"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr ""
+msgstr "&Fara í  "
 
 #: gui/kstandardactions_p.h:109
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "Fara á síðu"
+msgstr "Fara á &síðu…"
 
 #: gui/kstandardactions_p.h:110
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "Fara í línu"
+msgstr "&Fara í línu…"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr "Laga að síðu"
+msgstr "&Fyrsta síða"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr "Fara í línu"
+msgstr "Fara á fyrstu síðu"
 
 #: gui/kstandardactions_p.h:112
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr "Fara á síðu"
+msgstr "&Síðasta síða"
 
 #: gui/kstandardactions_p.h:112
 msgctxt "KStandardActions|"
 msgid "Go to last page"
-msgstr ""
+msgstr "Fara á síðustu síðu"
 
 #: gui/kstandardactions_p.h:113
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr "Til baka"
+msgstr "Til &baka"
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "Go back in document"
-msgstr ""
+msgstr "Fara afturábak í skjalinu"
 
 #: gui/kstandardactions_p.h:114
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "Áfram"
+msgstr "Á&fram"
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
-msgstr ""
+msgstr "Fara áfram í skjalinu"
 
 #: gui/kstandardactions_p.h:116
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Add Bookmark"
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr "Bæta við bókamerki"
+msgstr "&Bæta við bókamerki"
 
 #: gui/kstandardactions_p.h:117
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Edit Bookmarks"
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "Breyta bókamerkjum"
+msgstr "&Breyta bókamerkjum…"
 
 #: gui/kstandardactions_p.h:119
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Spelling"
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "Stafsetning"
+msgstr "&Stafsetning…"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
-msgstr ""
+msgstr "Kanna stafsetningu í skjalinu"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr "Sýna valmyndastiku"
+msgstr "Sýna &valmyndastiku"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr "Sýna valmyndastiku"
+msgstr "Sýna eða fela valmyndastiku"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr "Sýna tækjastiku"
+msgstr "Sýna &tækjastiku"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr "Sýna tækjastiku"
+msgstr "Sýna eða fela tækjastiku"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
-msgstr "Sýna stöðustiku"
+msgstr "Sýn&a stöðustiku"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr "Sýna stöðustiku"
+msgstr "Sýna eða fela stöðustiku"
 
 #: gui/kstandardactions_p.h:124
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Full Screen Mode"
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
-msgstr "Fylla skjá"
+msgstr "F&ylla skjá"
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr ""
+msgstr "Grunnstilla &flýtilykla…"
 
 #: gui/kstandardactions_p.h:126
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "Stilla tungumál..."
+msgstr "&Grunnstilla %1…"
 
 #: gui/kstandardactions_p.h:127
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Toolbars"
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "Grunnstilla verkfærastikur"
+msgstr "Grunnstilla tækja&stikur…"
 
 #: gui/kstandardactions_p.h:128
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Notifications"
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "Grunnstilla tilkynningar"
+msgstr "Grunnstilla tilky&nningar…"
 
 #: gui/kstandardactions_p.h:132
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr ""
+msgstr "&Handbók fyrir %1"
 
 #: gui/kstandardactions_p.h:133
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "What's This"
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "Hvað er þetta"
+msgstr "Hvað er þ&etta?"
 
 #: gui/kstandardactions_p.h:134
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Report Bug"
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "Senda villutilkynningu"
+msgstr "Senda &villuskýrslu…"
 
 #: gui/kstandardactions_p.h:135
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "Stilla tungumál..."
+msgstr "Grunnstilla tungu&mál…"
 
 #: gui/kstandardactions_p.h:136
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "Um KDE"
+msgstr "&Um %1"
 
 #: gui/kstandardactions_p.h:137
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "Um KDE"
+msgstr "Um &KDE"
 
 #: gui/kstandardactions_p.h:138
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Delete"
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr "Eyða"
+msgstr "&Eyða"
 
 #: gui/kstandardactions_p.h:139
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Rename"
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "Endurnefna"
+msgstr "&Endurnefna…"
 
 #: gui/kstandardactions_p.h:140
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Move to Trash"
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
-msgstr "Færa í ruslið"
+msgstr "Setja í &ruslið"
 
 #: gui/kstandardactions_p.h:141
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Donate"
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "Styrkja"
+msgstr "&Styrkja"
 
 #: gui/kstandardactions_p.h:142
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "Opna aðalvalmynd"
+msgstr "Opna &valmynd"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
@@ -768,7 +574,7 @@ msgstr "Afturkalla"
 #: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr "Endurtaka"
+msgstr "Gera aftur"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
@@ -803,12 +609,12 @@ msgstr "Afvelja"
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
-msgstr "Eyða orði til vinstri"
+msgstr "Eyða orðinu á undan"
 
 #: gui/kstandardshortcut.cpp:106
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
-msgstr "Eyða orði til hægri"
+msgstr "Eyða orðinu á eftir"
 
 #: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
@@ -843,7 +649,7 @@ msgstr "Byrja"
 #: gui/kstandardshortcut.cpp:135
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
-msgstr "Enda"
+msgstr "Ljúka"
 
 #: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
@@ -878,12 +684,12 @@ msgstr "Endurhlaða"
 #: gui/kstandardshortcut.cpp:167
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
-msgstr "Byrjun línu"
+msgstr "Í byrjun línu"
 
 #: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
-msgstr "Endir línu"
+msgstr "Í enda línu"
 
 #: gui/kstandardshortcut.cpp:181
 msgctxt "KStandardShortcut|@action"
@@ -893,7 +699,7 @@ msgstr "Fara í línu"
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
-msgstr "Aftur á bak um orð"
+msgstr "Afturábak um orð"
 
 #: gui/kstandardshortcut.cpp:192
 msgctxt "KStandardShortcut|@action"
@@ -1083,7 +889,7 @@ msgstr "Grunnstilla forrit"
 #: gui/kstandardshortcut.cpp:356
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
-msgstr "Grunnstilla verkfærastikur"
+msgstr "Grunnstilla tækjastikur"
 
 #: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
@@ -1096,12 +902,9 @@ msgid "Report Bug"
 msgstr "Senda villutilkynningu"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "Stilla tungumál..."
+msgstr "Grunnstilla tungumál…"
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
@@ -1162,7 +965,7 @@ msgstr "KDE-verkfæri til að uppfæra grunnstillingaskrár notenda"
 #: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr "Halda úttaki frá skriftum"
+msgstr "Halda niðurstöðu úr úttaki frá skriftum"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
@@ -1171,7 +974,7 @@ msgid ""
 "run, the scripts are executed again"
 msgstr ""
 "Til einingaprófunar eingöngu: ekki skrifa loknu færslurnar, þannig að við "
-"hverju endurkeyrslu verði skrifturnar keyrða aftur"
+"hverju endurkeyrslu verði skrifturnar keyrðar aftur"
 
 #: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
@@ -1181,7 +984,7 @@ msgstr "Athuga hvort grunnstillingaskráin þarfnist uppfærslu"
 #: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
-msgstr "Skrá(r) sem leiðbeiningar um uppfærslu eru lesnar úr"
+msgstr "Skrá(r) sem uppfærsluleiðbeiningar eru lesnar úr"
 
 #: kconfig_compiler/kconfig_compiler.cpp:726
 msgctxt "main|"
@@ -1201,7 +1004,7 @@ msgstr "Birta notkunarleyfi hugbúnaðar"
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
-msgstr "Nota <skrá> í stað altækra grunnstillinga"
+msgstr "Nota <file> í stað altækra grunnstillinga"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
