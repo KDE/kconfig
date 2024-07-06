@@ -83,6 +83,7 @@ void KWindowStateSaver::timerEvent(QTimerEvent *event)
     killTimer(event->timerId());
     KWindowConfig::saveWindowPosition(d->window, d->configGroup);
     KWindowConfig::saveWindowSize(d->window, d->configGroup);
+    d->configGroup.sync();
     d->timerId = 0;
 }
 
