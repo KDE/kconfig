@@ -1454,7 +1454,9 @@ void KConfigTest::testDirtyOnEqualOverdo()
 void KConfigTest::testCreateDir()
 {
     // Test auto-creating the parent directory when needed (KConfigIniBackend::createEnclosing)
-    const QString kdehome = QDir::home().canonicalPath() + QLatin1String("/.kde-unit-test");
+    QTemporaryDir tmpDir(QDir::tempPath() + QStringLiteral("/fakehome_XXXXXX"));
+    QVERIFY(tmpDir.isValid());
+    const QString kdehome = tmpDir.path() + QLatin1String("/.kde-unit-test");
     const QString subdir = kdehome + QLatin1String("/newsubdir");
     const QString file = subdir + QLatin1String("/foo.desktop");
     QFile::remove(file);
@@ -1548,7 +1550,9 @@ void KConfigTest::testLocaleConfig()
 void KConfigTest::testDeleteWhenLocalized()
 {
     // Initialize the testdata
-    const QString subdir = QDir::home().canonicalPath() + QLatin1String("/.kde-unit-test/");
+    QTemporaryDir tmpDir(QDir::tempPath() + QStringLiteral("/fakehome_XXXXXX"));
+    QVERIFY(tmpDir.isValid());
+    const QString subdir = tmpDir.path() + QLatin1String("/.kde-unit-test/");
     QDir().mkpath(subdir);
     const QString file = subdir + QLatin1String("/localized_delete.test");
     QFile::remove(file);
