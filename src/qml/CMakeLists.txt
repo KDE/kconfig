@@ -41,6 +41,7 @@ target_link_libraries(KF6ConfigQml
     KF6::ConfigCore # KCoreConfigSkeleton, in ConfigPropertyMap
     KF6::ConfigGui # KWindowStateSaver
     Qt6::Qml
+  PRIVATE
     Qt6::Quick
 )
 
