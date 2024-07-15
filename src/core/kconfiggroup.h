@@ -326,8 +326,8 @@ public:
     QList<T> readEntry(const char *key, const QList<T> &aDefault) const;
 
     /**
-     * Reads a list of strings from the config object, following XDG
-     * desktop entry spec separator semantics
+     * Reads a list of strings from the config object with semicolons separating
+     * them (i.e. following desktop entry spec separator semantics).
      *
      * @param pKey the key to search for
      * @param aDefault the default value to use if the key does not exist
