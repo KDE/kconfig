@@ -404,6 +404,12 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     return theMap;
 }
 
+QString KConfig::configPath() const
+{
+    Q_D(const KConfig);
+    return d->mBackend->filePath();
+}
+
 bool KConfig::sync()
 {
     Q_D(KConfig);

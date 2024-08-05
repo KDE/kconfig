@@ -338,6 +338,12 @@ public:
     QMap<QString, QString> entryMap(const QString &aGroup = QString()) const;
 
     /**
+     * Returns the file path of this config
+     * @since 6.3
+     */
+    QString configPath() const;
+
+    /**
      * Sets the name of the application config file.
      * @since 5.0
      */
