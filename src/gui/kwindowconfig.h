@@ -14,12 +14,12 @@
 class QWindow;
 class QScreen;
 
-/**
+/*!
  * Save and load window sizes into a config
  */
 namespace KWindowConfig
 {
-/**
+/*!
  * Saves the window's size dependent on the screen dimension either to the
  * global or application config file.
  *
@@ -32,7 +32,7 @@ namespace KWindowConfig
  */
 KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
-/**
+/*!
  * Returns whether a given KConfig group has any saved window size data.
  *
  * @param config The config group to read from.
@@ -40,7 +40,7 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  */
 KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
 
-/**
+/*!
  * Restores the dialog's size from the configuration according to
  * the screen size.
  *
@@ -65,7 +65,7 @@ KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
  */
 KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &config);
 
-/**
+/*!
  * Saves the window's position either to the global or application config file.
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.
@@ -79,7 +79,7 @@ KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &co
  */
 KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
-/**
+/*!
  * Returns whether a given KConfig group has any saved window position data.
  *
  * @note: always returns false on Wayland where saving and restoring window
@@ -89,7 +89,7 @@ KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &c
  * @since 6.0
  */
 KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
-/**
+/*!
  * Restores the window's screen position from the configuration and calls restoreWindowScreenPosition.
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.
@@ -102,7 +102,7 @@ KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
  */
 KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup &config);
 
-/**
+/*!
  * Restores the window's position on provided screen from the configuration.
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.

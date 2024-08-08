@@ -20,7 +20,7 @@ class Test14 : public KConfigSkeleton
 
     Q_PROPERTY(QUrl picturesDir READ picturesDir CONSTANT)
     Q_PROPERTY(bool isPicturesDirImmutable READ isPicturesDirImmutable CONSTANT)
-    /**
+    /*!
       Get picturesDir
     */
     QUrl picturesDir() const
@@ -28,7 +28,7 @@ class Test14 : public KConfigSkeleton
       return mPicturesDir;
     }
 
-    /**
+    /*!
       Is picturesDir Immutable
     */
     bool isPicturesDirImmutable() const
@@ -36,7 +36,7 @@ class Test14 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "picturesDir" ) );
     }
 
-    /**
+    /*!
       Set brightness
     */
     void setBrightness( double v )
@@ -49,7 +49,7 @@ class Test14 : public KConfigSkeleton
 
     Q_PROPERTY(double brightness READ brightness WRITE setBrightness NOTIFY brightnessChanged)
     Q_PROPERTY(bool isBrightnessImmutable READ isBrightnessImmutable CONSTANT)
-    /**
+    /*!
       Get brightness
     */
     double brightness() const
@@ -57,7 +57,7 @@ class Test14 : public KConfigSkeleton
       return mBrightness;
     }
 
-    /**
+    /*!
       Is brightness Immutable
     */
     bool isBrightnessImmutable() const

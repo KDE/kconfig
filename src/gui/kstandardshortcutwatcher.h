@@ -19,7 +19,7 @@ namespace KStandardShortcut
 {
 class StandardShortcutWatcherPrivate;
 
-/**
+/*!
  * Watches for changes made to standard shortcuts and notifies about those changes.
  * @see KStandardShortcut::shortcutWatcher
  * @since 5.91
@@ -30,7 +30,7 @@ class KCONFIGGUI_EXPORT StandardShortcutWatcher : public QObject
 public:
     ~StandardShortcutWatcher();
 Q_SIGNALS:
-    /**
+    /*!
      * The standardshortcut @p id was changed to @p shortcut
      */
     void shortcutChanged(KStandardShortcut::StandardShortcut id, const QList<QKeySequence> &shortcut);
@@ -42,7 +42,7 @@ private:
     std::unique_ptr<StandardShortcutWatcherPrivate> d;
 };
 
-/**
+/*!
  * Returns the global KStandardShortcutWatcher instance of this program.
  * In addition to the notifying about changes it also keeps the information returned by the
  * functions in @p KStandardShortcut up to date.

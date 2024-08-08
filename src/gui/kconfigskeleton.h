@@ -16,7 +16,7 @@
 #include <QColor>
 #include <QFont>
 
-/**
+/*!
  * @class KConfigSkeleton kconfigskeleton.h <KConfigSkeleton>
  *
  * @short Class for handling preferences settings for an application.
@@ -28,52 +28,52 @@ class KCONFIGGUI_EXPORT KConfigSkeleton : public KCoreConfigSkeleton
 {
     Q_OBJECT
 public:
-    /**
+    /*!
      * Class for handling a color preferences item.
      */
     class KCONFIGGUI_EXPORT ItemColor : public KConfigSkeletonGenericItem<QColor>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemColor(const QString &_group, const QString &_key, QColor &reference, const QColor &defaultValue = QColor(128, 128, 128));
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a font preferences item.
      */
     class KCONFIGGUI_EXPORT ItemFont : public KConfigSkeletonGenericItem<QFont>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemFont(const QString &_group, const QString &_key, QFont &reference, const QFont &defaultValue = QFont());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
 public:
-    /**
+    /*!
      * Constructor.
      *
      * @param configname name of config file. If no name is given, the default
@@ -81,14 +81,14 @@ public:
      */
     explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
 
-    /**
+    /*!
      * Constructor.
      *
      * @param config configuration object to use.
      */
     explicit KConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
-    /**
+    /*!
      * Register an item of type QColor.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -101,7 +101,7 @@ public:
      */
     ItemColor *addItemColor(const QString &name, QColor &reference, const QColor &defaultValue = QColor(128, 128, 128), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QFont.
      *
      * @param name Name used to identify this setting. Names must be unique.

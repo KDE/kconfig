@@ -17,7 +17,7 @@
 
 class KConfigWatcherPrivate;
 
-/**
+/*!
  * \class KConfigWatcher kconfigwatcher.h <KConfigWatcher>
  *
  * Notifies when another client has updated this config file with the Notify flag set.
@@ -29,7 +29,7 @@ class KCONFIGCORE_EXPORT KConfigWatcher : public QObject
 public:
     typedef QSharedPointer<KConfigWatcher> Ptr;
 
-    /**
+    /*!
      * Instantiate a ConfigWatcher for a given config
      *
      * @note any additional config sources should be set before this point.
@@ -38,14 +38,14 @@ public:
 
     ~KConfigWatcher() override;
 
-    /**
+    /*!
      * Returns the config being watched
      * @since 5.66
      */
     KSharedConfig::Ptr config() const;
 
 Q_SIGNALS:
-    /**
+    /*!
      * Emitted when a config group has changed
      * The config will be reloaded before this signal is emitted
      *

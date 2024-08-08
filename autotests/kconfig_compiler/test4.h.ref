@@ -25,7 +25,7 @@ class Test4 : public KConfigSkeleton
     static Test4 *self();
     ~Test4() override;
 
-    /**
+    /*!
       Set Block colors.
     */
     static
@@ -35,7 +35,7 @@ class Test4 : public KConfigSkeleton
         self()->mColor[i] = v;
     }
 
-    /**
+    /*!
       Get Block colors.
     */
     static
@@ -44,7 +44,7 @@ class Test4 : public KConfigSkeleton
       return self()->mColor[i];
     }
 
-    /**
+    /*!
       Is Block colors. Immutable
     */
     static
@@ -53,7 +53,7 @@ class Test4 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "Color%1" ).arg( i ) );
     }
 
-    /**
+    /*!
       Set Mouse actions.
     */
     static
@@ -63,7 +63,7 @@ class Test4 : public KConfigSkeleton
         self()->mMouseAction[i] = v;
     }
 
-    /**
+    /*!
       Get Mouse actions.
     */
     static
@@ -72,7 +72,7 @@ class Test4 : public KConfigSkeleton
       return self()->mMouseAction[i];
     }
 
-    /**
+    /*!
       Is Mouse actions. Immutable
     */
     static
@@ -81,7 +81,7 @@ class Test4 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "MouseAction%1" ).arg( QLatin1String( EnumButton::enumToString[i] ) ) );
     }
 
-    /**
+    /*!
       Set Gray colors.
     */
     static
@@ -91,7 +91,7 @@ class Test4 : public KConfigSkeleton
         self()->mGrayColor[i] = v;
     }
 
-    /**
+    /*!
       Get Gray colors.
     */
     static
@@ -100,7 +100,7 @@ class Test4 : public KConfigSkeleton
       return self()->mGrayColor[i];
     }
 
-    /**
+    /*!
       Is Gray colors. Immutable
     */
     static
@@ -109,7 +109,7 @@ class Test4 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "GrayColor%1" ).arg( i ) );
     }
 
-    /**
+    /*!
       Set Gray colors as string.
     */
     static
@@ -119,7 +119,7 @@ class Test4 : public KConfigSkeleton
         self()->mColorString[i] = v;
     }
 
-    /**
+    /*!
       Get Gray colors as string.
     */
     static
@@ -128,7 +128,7 @@ class Test4 : public KConfigSkeleton
       return self()->mColorString[i];
     }
 
-    /**
+    /*!
       Is Gray colors as string. Immutable
     */
     static
@@ -137,7 +137,7 @@ class Test4 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "ColorString%1" ).arg( i ) );
     }
 
-    /**
+    /*!
       Set foo bar
     */
     static
@@ -147,7 +147,7 @@ class Test4 : public KConfigSkeleton
         self()->mFooBar = v;
     }
 
-    /**
+    /*!
       Get foo bar
     */
     static
@@ -156,7 +156,7 @@ class Test4 : public KConfigSkeleton
       return self()->mFooBar;
     }
 
-    /**
+    /*!
       Is foo bar Immutable
     */
     static
@@ -165,7 +165,7 @@ class Test4 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "FooBar" ) );
     }
 
-    /**
+    /*!
       Set Age
     */
     static
@@ -187,7 +187,7 @@ class Test4 : public KConfigSkeleton
         self()->mAge = v;
     }
 
-    /**
+    /*!
       Get Age
     */
     static
@@ -196,7 +196,7 @@ class Test4 : public KConfigSkeleton
       return self()->mAge;
     }
 
-    /**
+    /*!
       Is Age Immutable
     */
     static

@@ -1,4 +1,4 @@
-/**
+/*!
 \page kconfig_compiler The KDE Configuration Compiler
 
 kconfig_compiler generates C++ source code from an XML file containing

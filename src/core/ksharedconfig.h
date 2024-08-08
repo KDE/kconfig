@@ -12,7 +12,7 @@
 #include <QExplicitlySharedDataPointer>
 #include <kconfig.h>
 
-/**
+/*!
  * \class KSharedConfig ksharedconfig.h <KSharedConfig>
  *
  * KConfig variant using shared memory
@@ -34,7 +34,7 @@ public:
     typedef QExplicitlySharedDataPointer<KSharedConfig> Ptr;
 
 public:
-    /**
+    /*!
      * Creates a KSharedConfig object to manipulate a configuration file
      *
      * If an absolute path is specified for @p fileName, that file will be used
@@ -61,7 +61,7 @@ public:
     static KSharedConfig::Ptr
     openConfig(const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
-    /**
+    /*!
      * Creates a KSharedConfig object to manipulate a configuration file suitable
      * for storing state information. Use this for storing information that is
      * changing frequently and should not be saved by configuration backup

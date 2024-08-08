@@ -16,7 +16,7 @@ class Test8b : public Test8a
     static Test8b *self();
     ~Test8b() override;
 
-    /**
+    /*!
       Set Something
     */
     static
@@ -26,7 +26,7 @@ class Test8b : public Test8a
         self()->mSomething = v;
     }
 
-    /**
+    /*!
       Get Something
     */
     static
@@ -35,7 +35,7 @@ class Test8b : public Test8a
       return self()->mSomething;
     }
 
-    /**
+    /*!
       Is Something Immutable
     */
     static
@@ -44,7 +44,7 @@ class Test8b : public Test8a
       return self()->isImmutable( QStringLiteral( "Something" ) );
     }
 
-    /**
+    /*!
       Set FooBoo
     */
     static
@@ -54,7 +54,7 @@ class Test8b : public Test8a
         self()->mFooBoo = v;
     }
 
-    /**
+    /*!
       Get FooBoo
     */
     static
@@ -63,7 +63,7 @@ class Test8b : public Test8a
       return self()->mFooBoo;
     }
 
-    /**
+    /*!
       Is FooBoo Immutable
     */
     static
@@ -72,7 +72,7 @@ class Test8b : public Test8a
       return self()->isImmutable( QStringLiteral( "FooBoo" ) );
     }
 
-    /**
+    /*!
       Set Port
     */
     static
@@ -82,7 +82,7 @@ class Test8b : public Test8a
         self()->mPort = v;
     }
 
-    /**
+    /*!
       Get Port
     */
     static
@@ -91,7 +91,7 @@ class Test8b : public Test8a
       return self()->mPort;
     }
 
-    /**
+    /*!
       Is Port Immutable
     */
     static

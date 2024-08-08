@@ -19,7 +19,7 @@ class KCoreConfigSkeleton;
 
 class KConfigPropertyMapPrivate;
 
-/**
+/*!
  * @class KConfigPropertyMap configpropertymap.h ConfigPropertyMap
  *
  * An object that (optionally) automatically saves changes in a
@@ -35,28 +35,28 @@ public:
     KConfigPropertyMap(KCoreConfigSkeleton *config, QObject *parent = nullptr);
     ~KConfigPropertyMap() override;
 
-    /**
+    /*!
      * Whether notifications on config changes are enabled. Disabled by default.
      * @see KConfigBase::Notify
      * @return true if writes send (dbus) notifications
      */
     bool isNotify() const;
 
-    /**
+    /*!
      * Enable or disable notifications on config changes.
      * @see KConfigBase::Notify
      * @param notify whether to send notifications
      */
     void setNotify(bool notify);
 
-    /**
+    /*!
      * @brief Whether the value at the given key is immutable
      *
      * @return true if the value is immutable, false if it isn't or it doesn't exist
      */
     Q_INVOKABLE bool isImmutable(const QString &key) const;
 
-    /**
+    /*!
      * Saves the state of the property map on disk.
      */
     Q_INVOKABLE void writeConfig();

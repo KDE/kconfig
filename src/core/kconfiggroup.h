@@ -23,7 +23,7 @@ class KConfig;
 class KConfigGroupPrivate;
 class KSharedConfig;
 
-/**
+/*!
  * \class KConfigGroup kconfiggroup.h <KConfigGroup>
  *
  * A class for one specific group in a KConfig object.
@@ -38,14 +38,14 @@ class KSharedConfig;
 class KCONFIGCORE_EXPORT KConfigGroup : public KConfigBase
 {
 public:
-    /**
+    /*!
      * Constructs an invalid group.
      *
      * \see isValid
      */
     KConfigGroup();
 
-    /**
+    /*!
      * Construct a config group corresponding to @p group in @p master.
      *
      * This allows the creation of subgroups by passing another
@@ -55,7 +55,7 @@ public:
      */
     KConfigGroup(KConfigBase *master, const QString &group);
 
-    /**
+    /*!
      * Construct a read-only config group.
      *
      * A read-only group will silently ignore any attempts to write to it.
@@ -65,10 +65,10 @@ public:
      */
     KConfigGroup(const KConfigBase *master, const QString &group);
 
-    /** Overload for KConfigGroup(const KConfigBase*,const QString&) */
+    /*! Overload for KConfigGroup(const KConfigBase*,const QString&) */
     KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const QString &group);
 
-    /**
+    /*!
      * Creates a copy of a group.
      */
     KConfigGroup(const KConfigGroup &);
@@ -76,7 +76,7 @@ public:
 
     ~KConfigGroup() override;
 
-    /**
+    /*!
      * Whether the group is valid.
      *
      * A group is invalid if it was constructed without arguments.
@@ -87,20 +87,20 @@ public:
      */
     bool isValid() const;
 
-    /**
+    /*!
      * The name of this group.
      *
      * The root group is named "<default>".
      */
     QString name() const;
 
-    /**
+    /*!
      * Check whether the containing KConfig object actually contains a
      * group with this name.
      */
     bool exists() const;
 
-    /**
+    /*!
      * @reimp
      *
      * Syncs the parent config.
@@ -113,16 +113,16 @@ public:
     /// @reimp
     AccessMode accessMode() const override;
 
-    /**
+    /*!
      * Return the config object that this group belongs to
      */
     KConfig *config();
-    /**
+    /*!
      * Return the config object that this group belongs to
      */
     const KConfig *config() const;
 
-    /**
+    /*!
      * Copies the entries in this group to another configuration object
      *
      * @note @p other can be either another group or a different file.
@@ -135,7 +135,7 @@ public:
      */
     void copyTo(KConfigBase *other, WriteConfigFlags pFlags = Normal) const;
 
-    /**
+    /*!
      * Changes the configuration object that this group belongs to
      *
      * @note @p other can be another group, the top-level KConfig object or
@@ -152,7 +152,7 @@ public:
      */
     void reparent(KConfigBase *parent, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Moves the key-value pairs from one config group to the other.
      * In case the entries do not exist the key is ignored.
      *
@@ -160,14 +160,14 @@ public:
      */
     void moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Moves the key-value pairs from one config group to the other.
      *
      * @since 6.3
      */
     void moveValuesTo(KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Returns the group that this group belongs to
      *
      * @return the parent group, or an invalid group if this is a top-level
@@ -177,17 +177,17 @@ public:
      */
     KConfigGroup parent() const;
 
-    /**
+    /*!
      * @reimp
      */
     QStringList groupList() const override;
 
-    /**
+    /*!
      * Returns a list of keys this group contains
      */
     QStringList keyList() const;
 
-    /**
+    /*!
      * Delete all entries in the entire group
      *
      * @param pFlags flags passed to KConfig::deleteGroup
@@ -197,7 +197,7 @@ public:
     void deleteGroup(WriteConfigFlags pFlags = Normal);
     using KConfigBase::deleteGroup;
 
-    /**
+    /*!
      * Reads the value of an entry specified by @p pKey in the current group
      *
      * This template method makes it possible to write
@@ -224,14 +224,14 @@ public:
     {
         return readEntry(key.toUtf8().constData(), aDefault);
     }
-    /**
+    /*!
      * Overload for readEntry<T>(const QString&, const T&) const
      * @param key name of key, encoded in UTF-8
      */
     template<typename T>
     T readEntry(const char *key, const T &aDefault) const;
 
-    /**
+    /*!
      * Reads the value of an entry specified by @p key in the current group
      *
      * @param key the key to search for
@@ -241,13 +241,13 @@ public:
      * @see writeEntry(), deleteEntry(), hasKey()
      */
     QVariant readEntry(const QString &key, const QVariant &aDefault) const;
-    /**
+    /*!
      * Overload for readEntry(const QString&, const QVariant&) const
      * @param key name of key, encoded in UTF-8
      */
     QVariant readEntry(const char *key, const QVariant &aDefault) const;
 
-    /**
+    /*!
      * Reads the string value of an entry specified by @p key in the current group
      *
      * If you want to read a path, please use readPathEntry().
@@ -259,21 +259,21 @@ public:
      * @see readPathEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     QString readEntry(const QString &key, const QString &aDefault) const;
-    /**
+    /*!
      * Overload for readEntry(const QString&, const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     QString readEntry(const char *key, const QString &aDefault) const;
 
-    /** Overload for readEntry(const QString&, const QString&) const */
+    /*! Overload for readEntry(const QString&, const QString&) const */
     QString readEntry(const QString &key, const char *aDefault = nullptr) const;
-    /**
+    /*!
      * Overload for readEntry(const QString&, const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     QString readEntry(const char *key, const char *aDefault = nullptr) const;
 
-    /**
+    /*!
      * @copydoc readEntry(const char*, const QStringList&) const
      *
      * @warning This function doesn't convert the items returned
@@ -282,13 +282,13 @@ public:
      *          readEntry(const char*, const QList<T>&) const
      */
     QVariantList readEntry(const QString &key, const QVariantList &aDefault) const;
-    /**
+    /*!
      * Overload for readEntry(const QString&, const QVariantList&) const
      * @param key name of key, encoded in UTF-8
      */
     QVariantList readEntry(const char *key, const QVariantList &aDefault) const;
 
-    /**
+    /*!
      * Reads a list of strings from the config object
      *
      * @param key The key to search for
@@ -298,13 +298,13 @@ public:
      * @see readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     QStringList readEntry(const QString &key, const QStringList &aDefault) const;
-    /**
+    /*!
      * Overload for readEntry(const QString&, const QStringList&) const
      * @param key name of key, encoded in UTF-8
      */
     QStringList readEntry(const char *key, const QStringList &aDefault) const;
 
-    /**
+    /*!
      * Reads a list of values from the config object
      *
      * @param key the key to search for
@@ -318,14 +318,14 @@ public:
     {
         return readEntry(key.toUtf8().constData(), aDefault);
     }
-    /**
+    /*!
      * Overload for readEntry<T>(const QString&, const QList<T>&) const
      * @param key name of key, encoded in UTF-8
      */
     template<typename T>
     QList<T> readEntry(const char *key, const QList<T> &aDefault) const;
 
-    /**
+    /*!
      * Reads a list of strings from the config object with semicolons separating
      * them (i.e. following desktop entry spec separator semantics).
      *
@@ -336,13 +336,13 @@ public:
      * @see readEntry(const QString&, const QStringList&) const
      */
     QStringList readXdgListEntry(const QString &pKey, const QStringList &aDefault = QStringList()) const;
-    /**
+    /*!
      * Overload for readXdgListEntry(const QString&, const QStringList&) const
      * @param key name of key, encoded in UTF-8
      */
     QStringList readXdgListEntry(const char *key, const QStringList &aDefault = QStringList()) const;
 
-    /**
+    /*!
      * Reads a path
      *
      * Read the value of an entry specified by @p pKey in the current group
@@ -354,13 +354,13 @@ public:
      * @return The value for this key. Can be QString() if @p aDefault is null.
      */
     QString readPathEntry(const QString &pKey, const QString &aDefault) const;
-    /**
+    /*!
      * Overload for readPathEntry(const QString&, const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     QString readPathEntry(const char *key, const QString &aDefault) const;
 
-    /**
+    /*!
      * Reads a list of paths
      *
      * Read the value of an entry specified by @p pKey in the current group
@@ -372,13 +372,13 @@ public:
      * @return the list, or @p aDefault if the key does not exist
      */
     QStringList readPathEntry(const QString &pKey, const QStringList &aDefault) const;
-    /**
+    /*!
      * Overload for readPathEntry(const QString&, const QStringList&) const
      * @param key name of key, encoded in UTF-8
      */
     QStringList readPathEntry(const char *key, const QStringList &aDefault) const;
 
-    /**
+    /*!
      * Reads an untranslated string entry
      *
      * You should not normally need to use this.
@@ -388,13 +388,13 @@ public:
      * @return the value for this key, or @p aDefault if the key does not exist
      */
     QString readEntryUntranslated(const QString &pKey, const QString &aDefault = QString()) const;
-    /**
+    /*!
      * Overload for readEntryUntranslated(const QString&, const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     QString readEntryUntranslated(const char *key, const QString &aDefault = QString()) const;
 
-    /**
+    /*!
      * Writes a value to the configuration object.
      *
      * @param key the key to write to
@@ -404,79 +404,79 @@ public:
      * @see readEntry(), writeXdgListEntry(), deleteEntry()
      */
     void writeEntry(const QString &key, const QVariant &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QVariant &value, WriteConfigFlags pFlags = Normal);
 
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     void writeEntry(const QString &key, const QString &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QString &value, WriteConfigFlags pFlags = Normal);
 
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     void writeEntry(const QString &key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
 
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     void writeEntry(const QString &key, const char *value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const char *value, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     template<typename T>
     void writeEntry(const char *key, const T &value, WriteConfigFlags pFlags = Normal);
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     template<typename T>
     void writeEntry(const QString &key, const T &value, WriteConfigFlags pFlags = Normal)
     {
         writeEntry(key.toUtf8().constData(), value, pFlags);
     }
 
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     void writeEntry(const QString &key, const QStringList &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     void writeEntry(const QString &key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
 
-    /** Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
     template<typename T>
     void writeEntry(const QString &key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
     {
         writeEntry(key.toUtf8().constData(), value, pFlags);
     }
-    /**
+    /*!
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     template<typename T>
     void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Writes a list of strings to the config object, following XDG
      * desktop entry spec separator semantics
      *
@@ -487,13 +487,13 @@ public:
      * @see writeEntry(), readXdgListEntry()
      */
     void writeXdgListEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writeXdgListEntry(const QString&, const QStringList&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writeXdgListEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Writes a file path to the configuration
      *
      * If the path is located under $HOME, the user's home directory
@@ -507,13 +507,13 @@ public:
      * @see writeEntry(), readPathEntry()
      */
     void writePathEntry(const QString &pKey, const QString &path, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writePathEntry(const QString&, const QString&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writePathEntry(const char *Key, const QString &path, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Writes a list of paths to the configuration
      *
      * If any of the paths are located under $HOME, the user's home directory
@@ -527,13 +527,13 @@ public:
      * @see writeEntry(), readPathEntry()
      */
     void writePathEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for writePathEntry(const QString&, const QStringList&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void writePathEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Deletes the entry specified by @p pKey in the current group
      *
      * This also hides system wide defaults.
@@ -544,13 +544,13 @@ public:
      * @see deleteGroup(), readEntry(), writeEntry()
      */
     void deleteEntry(const QString &pKey, WriteConfigFlags pFlags = Normal);
-    /**
+    /*!
      * Overload for deleteEntry(const QString&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void deleteEntry(const char *key, WriteConfigFlags pFlags = Normal);
 
-    /**
+    /*!
      * Checks whether the key has an entry in this group
      *
      * Use this to determine if a key is not specified for the current
@@ -566,20 +566,20 @@ public:
      * @see readEntry()
      */
     bool hasKey(const QString &key) const;
-    /**
+    /*!
      * Overload for hasKey(const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     bool hasKey(const char *key) const;
 
-    /**
+    /*!
      * Whether this group may be changed
      *
      * @return @c false if the group may be changed, @c true otherwise
      */
     bool isImmutable() const override;
 
-    /**
+    /*!
      * Checks if it is possible to change the given entry
      *
      * If isImmutable() returns @c true, then this method will return
@@ -590,13 +590,13 @@ public:
      *         group object, @c true otherwise
      */
     bool isEntryImmutable(const QString &key) const;
-    /**
+    /*!
      * Overload for isEntryImmutable(const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     bool isEntryImmutable(const char *key) const;
 
-    /**
+    /*!
      * Reverts an entry to the default settings.
      *
      * Reverts the entry with key @p key in the current group in the
@@ -614,13 +614,13 @@ public:
      */
     void revertToDefault(const QString &key, WriteConfigFlags pFlag = WriteConfigFlags());
 
-    /**
+    /*!
      * Overload for revertToDefault(const QString&, WriteConfigFlags)
      * @param key name of key, encoded in UTF-8
      */
     void revertToDefault(const char *key, WriteConfigFlags pFlag = WriteConfigFlags());
 
-    /**
+    /*!
      * Whether a default is specified for an entry in either the
      * system wide configuration file or the global KDE config file
      *
@@ -648,13 +648,13 @@ public:
      *          for @p key in this group, @c false otherwise
      */
     bool hasDefault(const QString &key) const;
-    /**
+    /*!
      * Overload for hasDefault(const QString&) const
      * @param key name of key, encoded in UTF-8
      */
     bool hasDefault(const char *key) const;
 
-    /**
+    /*!
      * Returns a map (tree) of entries for all entries in this group
      *
      * Only the actual entry string is returned, none of the
@@ -676,7 +676,7 @@ private:
 
     friend class KConfigGroupPrivate;
 
-    /**
+    /*!
      * Return the data in @p value converted to a QVariant
      *
      * @param pKey the name of the entry being converted, this is only used for error
@@ -698,7 +698,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
 
 #define KCONFIGGROUP_ENUMERATOR_ERROR(ENUM) "The Qt MetaObject system does not seem to know about \"" ENUM "\" please use Q_ENUM or Q_FLAG to register it."
 
-/**
+/*!
  * To add support for your own enums in KConfig, you can declare them with Q_ENUM()
  * in a QObject subclass (which will make moc generate the code to turn the
  * enum into a string and vice-versa), and then (in the cpp code)
@@ -729,7 +729,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
         writeEntry(key, QByteArray(M_enum.valueToKey(value)), flags);                                                                                          \
     }
 
-/**
+/*!
  * Similar to KCONFIGGROUP_DECLARE_ENUM_QOBJECT but for flags declared with Q_FLAG()
  * (where multiple values can be set at the same time)
  */

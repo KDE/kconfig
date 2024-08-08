@@ -18,7 +18,7 @@
 #include <QString>
 #include <QStringList>
 
-/**
+/*!
    Configuration Compiler Configuration
 */
 class KConfigParameters
