@@ -48,7 +48,7 @@ public:
     void gotScript(const QString &_script);
 
 protected:
-    /** kconf_updaterc */
+    /* kconf_updaterc */
     KConfig *m_config;
     QString m_currentFilename;
     bool m_skip = false;
@@ -163,7 +163,7 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
     return result;
 }
 
-/**
+/*
  * Syntax:
  * # Comment
  * Id=id

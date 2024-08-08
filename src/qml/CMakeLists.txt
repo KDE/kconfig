@@ -54,6 +54,8 @@ ecm_generate_headers(KConfigQml_HEADERS
 target_include_directories(KF6ConfigQml
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml>")
 
+ecm_generate_qdoc(KF6ConfigQml kconfigqml.qdocconf)
+
 install(TARGETS KF6ConfigQml EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigqml_export.h

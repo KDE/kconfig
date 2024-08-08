@@ -19,12 +19,13 @@ class KCoreConfigSkeleton;
 
 class KConfigPropertyMapPrivate;
 
-/**
- * @class KConfigPropertyMap configpropertymap.h ConfigPropertyMap
+/*!
+ * \class KConfigPropertyMap
+ * \inmodule KConfigQml
  *
- * An object that (optionally) automatically saves changes in a
+ * \brief An object that (optionally) automatically saves changes in a
  * property map to a configuration object (e.g. a KConfig file).
- * @since 5.89
+ * \since 5.89
  */
 class KCONFIGQML_EXPORT KConfigPropertyMap : public QQmlPropertyMap
 {
@@ -32,31 +33,38 @@ class KCONFIGQML_EXPORT KConfigPropertyMap : public QQmlPropertyMap
     QML_ANONYMOUS
 
 public:
+    /*!
+     *
+     */
     KConfigPropertyMap(KCoreConfigSkeleton *config, QObject *parent = nullptr);
     ~KConfigPropertyMap() override;
 
-    /**
+    /*!
      * Whether notifications on config changes are enabled. Disabled by default.
-     * @see KConfigBase::Notify
-     * @return true if writes send (dbus) notifications
+     *
+     * Returns \c true if writes send (dbus) notifications
+     *
+     * \sa KConfigBase::Notify
      */
     bool isNotify() const;
 
-    /**
+    /*!
      * Enable or disable notifications on config changes.
-     * @see KConfigBase::Notify
-     * @param notify whether to send notifications
+     *
+     * \a notify whether to send notifications
+     *
+     * \sa KConfigBase::Notify
      */
     void setNotify(bool notify);
 
-    /**
-     * @brief Whether the value at the given key is immutable
+    /*!
+     * Whether the value at the given key is immutable
      *
-     * @return true if the value is immutable, false if it isn't or it doesn't exist
+     * Returns \c true if the value is immutable, \c false if it isn't or it doesn't exist
      */
     Q_INVOKABLE bool isImmutable(const QString &key) const;
 
-    /**
+    /*!
      * Saves the state of the property map on disk.
      */
     Q_INVOKABLE void writeConfig();

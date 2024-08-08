@@ -1,4 +1,6 @@
-/** @mainpage ./kconf_update
+/*!
+\page kconfupdate.html
+\title kconf_update Tool
 
 kconf_update is a tool designed to update config files. Over time applications
 sometimes need to rearrange the way configuration options are stored. Since
@@ -9,23 +11,15 @@ old way will still be honored.
 What used to happen is that the application looks up both the old and the
 new configuration option and then decides which one to use. This method has 
 several drawbacks:
-- The application may need to read more configuration files than strictly
+\list
+\li The application may need to read more configuration files than strictly
   needed, resulting in a slower startup.
-- The application becomes bigger with code that will only be used once.
+\li The application becomes bigger with code that will only be used once.
+\endlist
 
 kconf_update addresses these problems by offering a framework to update 
 configuration files without adding code to the application itself.
 
-See the <a href="https://commits.kde.org/kconfig?path=src/kconf_update/README.kconf_update">README file</a> for more information.
-
-@authors
-Waldo Bastian \<bastian@kde.org\>
-
-@maintainers
-[Unknown/None]
-
-@licenses
-@lgpl
+See the \l {https://techbase.kde.org/Development/Tools/Using_kconf_update} {Wiki} for more information.
 
 */
-// vim:ts=4:sw=4:expandtab:filetype=doxygen

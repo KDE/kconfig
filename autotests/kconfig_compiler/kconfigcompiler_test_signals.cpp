@@ -103,7 +103,7 @@ void KConfigCompiler_Test_Signals::testSetters_data()
     QTest::newRow("singleton itemaccessors") << TestSettersArg(SignalsTestSingletonItemAccessors::self());
 }
 
-/** Ensure that a signal is emitted whenever the data is changed by using the generated setters */
+/*! Ensure that a signal is emitted whenever the data is changed by using the generated setters */
 void KConfigCompiler_Test_Signals::testSetters()
 {
     QFETCH(TestSettersArg, params);
@@ -162,7 +162,7 @@ void KConfigCompiler_Test_Signals::testSetProperty_data()
     QTest::newRow("singleton itemaccessors") << static_cast<KCoreConfigSkeleton *>(SignalsTestSingletonItemAccessors::self());
 }
 
-/** Test that the signal is emitted when modifying the values using the underlying KConfigSkeletonItem (bypassing the setters) */
+/*! Test that the signal is emitted when modifying the values using the underlying KConfigSkeletonItem (bypassing the setters) */
 void KConfigCompiler_Test_Signals::testSetProperty()
 {
     QFETCH(KCoreConfigSkeleton *, obj);

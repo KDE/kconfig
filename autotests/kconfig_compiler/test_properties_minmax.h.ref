@@ -16,7 +16,7 @@ class TestPropertiesMinMax : public KConfigSkeleton
     TestPropertiesMinMax( KSharedConfig::Ptr config = KSharedConfig::openConfig() );
     ~TestPropertiesMinMax() override;
 
-    /**
+    /*!
       Set bar
     */
     void setBar( int v )
@@ -41,7 +41,7 @@ class TestPropertiesMinMax : public KConfigSkeleton
 
     Q_PROPERTY(int bar READ bar WRITE setBar NOTIFY barChanged)
     Q_PROPERTY(bool isBarImmutable READ isBarImmutable CONSTANT)
-    /**
+    /*!
       Get bar
     */
     int bar() const
@@ -49,7 +49,7 @@ class TestPropertiesMinMax : public KConfigSkeleton
       return mBar;
     }
 
-    /**
+    /*!
       Is bar Immutable
     */
     bool isBarImmutable() const
