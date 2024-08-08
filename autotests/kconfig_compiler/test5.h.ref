@@ -17,7 +17,7 @@ class Test5 : public KConfigSkeleton
     static Test5 *self();
     ~Test5() override;
 
-    /**
+    /*!
       Set Block colors.
     */
     static
@@ -27,7 +27,7 @@ class Test5 : public KConfigSkeleton
         self()->mColor[i] = v;
     }
 
-    /**
+    /*!
       Get Block colors.
     */
     static
@@ -36,7 +36,7 @@ class Test5 : public KConfigSkeleton
       return self()->mColor[i];
     }
 
-    /**
+    /*!
       Is Block colors. Immutable
     */
     static
@@ -45,7 +45,7 @@ class Test5 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "Color%1" ).arg( i ) );
     }
 
-    /**
+    /*!
       Set Mouse actions.
     */
     static
@@ -55,7 +55,7 @@ class Test5 : public KConfigSkeleton
         self()->mMouseAction[i] = v;
     }
 
-    /**
+    /*!
       Get Mouse actions.
     */
     static
@@ -64,7 +64,7 @@ class Test5 : public KConfigSkeleton
       return self()->mMouseAction[i];
     }
 
-    /**
+    /*!
       Is Mouse actions. Immutable
     */
     static
@@ -73,7 +73,7 @@ class Test5 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "MouseAction%1" ).arg( QLatin1String( EnumButtonToString[i] ) ) );
     }
 
-    /**
+    /*!
       Set foo bar
     */
     static
@@ -83,7 +83,7 @@ class Test5 : public KConfigSkeleton
         self()->mFooBar = v;
     }
 
-    /**
+    /*!
       Get foo bar
     */
     static
@@ -92,7 +92,7 @@ class Test5 : public KConfigSkeleton
       return self()->mFooBar;
     }
 
-    /**
+    /*!
       Is foo bar Immutable
     */
     static
@@ -101,7 +101,7 @@ class Test5 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "FooBar" ) );
     }
 
-    /**
+    /*!
       Set Age
     */
     static
@@ -123,7 +123,7 @@ class Test5 : public KConfigSkeleton
         self()->mAge = v;
     }
 
-    /**
+    /*!
       Get Age
     */
     static
@@ -132,7 +132,7 @@ class Test5 : public KConfigSkeleton
       return self()->mAge;
     }
 
-    /**
+    /*!
       Is Age Immutable
     */
     static

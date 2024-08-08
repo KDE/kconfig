@@ -198,7 +198,7 @@ bool isUnsigned(const QString &type)
     return type == QLatin1String("UInt") || type == QLatin1String("ULongLong");
 }
 
-/**
+/*
   Return parameter declaration for given type.
 */
 QString param(const QString &t)
@@ -258,7 +258,7 @@ QString param(const QString &t)
     }
 }
 
-/**
+/*
   Actual C++ storage type for given type.
 */
 QString cppType(const QString &t)

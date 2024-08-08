@@ -12,10 +12,11 @@
 #include <QExplicitlySharedDataPointer>
 #include <kconfig.h>
 
-/**
- * \class KSharedConfig ksharedconfig.h <KSharedConfig>
+/*!
+ * \class KSharedConfig
+ * \inmodule KConfigCore
  *
- * KConfig variant using shared memory
+ * \brief KConfig variant using shared memory.
  *
  * KSharedConfig provides a shared (reference counted) variant
  * of KConfig. This allows you to use/manipulate the same configuration
@@ -31,55 +32,60 @@
 class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData // krazy:exclude=dpointer (only for refcounting)
 {
 public:
+    /*!
+     * \typedef KSharedConfig::Ptr
+     *
+     * A pointer to a KSharedConfig object.
+     */
     typedef QExplicitlySharedDataPointer<KSharedConfig> Ptr;
 
 public:
-    /**
-     * Creates a KSharedConfig object to manipulate a configuration file
+    /*!
+     * Creates a KSharedConfig object to manipulate a configuration file.
      *
-     * If an absolute path is specified for @p fileName, that file will be used
-     * as the store for the configuration settings.  If a non-absolute path
+     * If an absolute path is specified for \a fileName, that file will be used
+     * as the store for the configuration settings. If a non-absolute path
      * is provided, the file will be looked for in the standard directory
-     * specified by @p type.  If no path is provided, a default
+     * specified by \a type. If no path is provided, a default
      * configuration file will be used based on the name of the main
      * application component.
      *
-     * @p mode determines whether the user or global settings will be allowed
+     * \a mode determines whether the user or global settings will be allowed
      * to influence the values returned by this object.  See KConfig::OpenFlags for
      * more details.
      *
-     * @param fileName     the configuration file to open. If empty, it will be determined
+     * \a fileName The configuration file to open. If empty, it will be determined
      *                     automatically (from --config on the command line, otherwise
      *                     from the application name + "rc")
-     * @param mode         how global settings should affect the configuration
-     *                     options exposed by this KConfig object
-     * @param type         The standard directory to look for the configuration
-     *                     file in (see QStandardPaths)
      *
-     * @sa KConfig
+     * \a mode How global settings should affect the configuration options exposed by this KConfig object
+     *
+     * \a type The standard directory to look for the configuration file in (see QStandardPaths)
+     *
+     * \sa KConfig
      */
     static KSharedConfig::Ptr
     openConfig(const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
-    /**
+    /*!
      * Creates a KSharedConfig object to manipulate a configuration file suitable
      * for storing state information. Use this for storing information that is
      * changing frequently and should not be saved by configuration backup
      * utilities.
      *
-     * If an absolute path is specified for @p fileName, that file will be used
+     * If an absolute path is specified for \a fileName, that file will be used
      * as the store for the configuration settings. If a non-absolute path
      * is provided, the file will be looked for in the standard data directory
      * (QStandardPaths::AppDataLocation). If no path is provided, a default
      * configuration file will be used based on the name of the main
      * application component.
      *
-     * @param fileName the configuration file to open. If empty, it will be determined
+     * \a fileName the configuration file to open. If empty, it will be determined
      *                 automatically from the application name + "staterc"
      *
-     * @since 5.67
+     * \since 5.67
      *
-     * @sa KConfig
+     * \sa KConfig
      */
     static KSharedConfig::Ptr openStateConfig(const QString &fileName = QString());
 
@@ -93,6 +99,9 @@ private:
     KCONFIGCORE_NO_EXPORT KSharedConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
 };
 
+/*!
+ * \typedef KSharedConfigPtr
+ */
 typedef KSharedConfig::Ptr KSharedConfigPtr;
 
 #endif // multiple inclusion guard

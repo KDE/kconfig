@@ -24,8 +24,9 @@
 class KConfigGroup;
 class KConfigPrivate;
 
-/**
- * \class KConfig kconfig.h <KConfig>
+/*!
+ * \class KConfig
+ * \inmodule KConfigCore
  *
  * \brief The central class of the KDE configuration data system.
  *
@@ -50,12 +51,14 @@ class KConfigPrivate;
  * KSharedConfig provides a set of open methods as counterparts for the
  * KConfig constructors.
  *
- * \sa KSharedConfig, KConfigGroup, <a href="https://techbase.kde.org/index.php?title=Development/Tutorials/KConfig">the techbase HOWTO on KConfig</a>.
+ * See \l {https://techbase.kde.org/index.php?title=Development/Tutorials/KConfig}{the techbase HOWTO on KConfig}
+ *
+ * \sa KSharedConfig, KConfigGroup
  */
 class KCONFIGCORE_EXPORT KConfig : public KConfigBase
 {
 public:
-    /**
+    /*!
      * Determines how the system-wide and user's global settings will affect
      * the reading of the configuration.
      *
@@ -75,69 +78,76 @@ public:
      *
      * Note that all values other than IncludeGlobals and CascadeConfig are
      * convenience definitions for the basic mode.
-     * Do @em not combine them with anything.
-     * @see OpenFlags
+     * Do not combine them with anything.
+     *
+     * \value IncludeGlobals Blend kdeglobals into the config object.
+     * \value CascadeConfig Cascade to system-wide config files.
+     * \value SimpleConfig Just a single config file.
+     * \value NoCascade Include user's globals, but omit system settings.
+     * \value NoGlobals Cascade to system settings, but omit user's globals.
+     * \value FullConfig Fully-fledged config, including globals and cascading to system settings.
      */
     enum OpenFlag {
-        IncludeGlobals = 0x01, ///< Blend kdeglobals into the config object.
-        CascadeConfig = 0x02, ///< Cascade to system-wide config files.
+        IncludeGlobals = 0x01,
+        CascadeConfig = 0x02,
 
-        SimpleConfig = 0x00, ///< Just a single config file.
-        NoCascade = IncludeGlobals, ///< Include user's globals, but omit system settings.
-        NoGlobals = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
-        FullConfig = IncludeGlobals | CascadeConfig, ///< Fully-fledged config, including globals and cascading to system settings
+        SimpleConfig = 0x00,
+        NoCascade = IncludeGlobals,
+        NoGlobals = CascadeConfig,
+        FullConfig = IncludeGlobals | CascadeConfig,
     };
-    /**
-     * Stores a combination of #OpenFlag values.
-     */
     Q_DECLARE_FLAGS(OpenFlags, OpenFlag)
 
-    /**
+    /*!
      * Creates a KConfig object to manipulate a configuration file for the
      * current application.
      *
-     * If an absolute path is specified for @p file, that file will be used
+     * If an absolute path is specified for \a file, that file will be used
      * as the store for the configuration settings.  If a non-absolute path
      * is provided, the file will be looked for in the standard directory
      * specified by type.  If no path is provided, a default
      * configuration file will be used based on the name of the main
      * application component.
      *
-     * @p mode determines whether the user or global settings will be allowed
+     * \a mode determines whether the user or global settings will be allowed
      * to influence the values returned by this object.  See OpenFlags for
      * more details.
      *
-     * @note You probably want to use KSharedConfig::openConfig instead.
+     * \note You probably want to use KSharedConfig::openConfig() instead.
      *
-     * @param file         the name of the file. If an empty string is passed in
+     * \a file The name of the file. If an empty string is passed in
      *                     and SimpleConfig is passed in for the OpenFlags, then an in-memory
      *                     KConfig object is created which will not write out to file nor which
      *                     requires any file in the filesystem at all.
-     * @param mode         how global settings should affect the configuration
+     *
+     * \a mode How global settings should affect the configuration
      *                     options exposed by this KConfig object
-     * @param type         The standard directory to look for the configuration
+     *
+     * \a type The standard directory to look for the configuration
      *                     file in
      *
-     * @sa KSharedConfig::openConfig(const QString&, OpenFlags, QStandardPaths::StandardLocation)
+     * \sa KSharedConfig::openConfig()
      */
     explicit KConfig(const QString &file = QString(),
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
-    /**
-     * @internal
-     *
+    /*!
      * Creates a KConfig object using the specified backend. If the backend can not
      * be found or loaded, then the standard configuration parser is used as a fallback.
      *
-     * @param file the file to be parsed
-     * @param backend the backend to load
-     * @param type where to look for the file if an absolute path is not provided
+     * \a file the file to be parsed
      *
-     * @since 4.1
+     * \a backend the backend to load
      *
-     * @deprecated since 6.3, use other constructor
+     * \a type where to look for the file if an absolute path is not provided
+     *
+     * \since 4.1
+     *
+     * \deprecated[6.3]
+     *
+     * Use other constructor
      */
     KCONFIGCORE_DEPRECATED_VERSION(6, 3, "Use other constructor")
     KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
@@ -145,83 +155,83 @@ public:
 
     ~KConfig() override;
 
-    /**
+    /*!
      * Returns the standard location enum passed to the constructor.
+     *
      * Used by KSharedConfig.
-     * @since 5.0
+     * \since 5.0
      */
     QStandardPaths::StandardLocation locationType() const;
 
-    /**
+    /*!
      * Returns the filename used to store the configuration.
      */
     QString name() const;
 
-    /**
-     * @return the flags this object was opened with
-     * @since 5.3
+    /*!
+     * Returns the flags this object was opened with
+     * \since 5.3
      */
     OpenFlags openFlags() const;
 
-    /// @reimp
     bool sync() override;
 
-    /// Returns true if sync has any changes to write out.
-    /// @since 4.12
+    /*!
+     * Returns \c true if sync has any changes to write out.
+     * \since 4.12
+     */
     bool isDirty() const;
 
-    /// @reimp
     void markAsClean() override;
 
-    /// @{ configuration object state
-    /// @reimp
     AccessMode accessMode() const override;
 
-    /**
+    /*!
      * Whether the configuration can be written to.
      *
-     * If @p warnUser is true and the configuration cannot be
-     * written to (ie: this method returns @c false), a warning
+     * If \a warnUser is true and the configuration cannot be
+     * written to (ie: this method returns \c false), a warning
      * message box will be shown to the user telling them to
      * contact their system administrator to get the problem fixed.
      *
-     * The most likely cause for this method returning @c false
+     * The most likely cause for this method returning \c false
      * is that the user does not have write permission for the
      * configuration file.
      *
-     * @param warnUser whether to show a warning message to the user
+     * \a warnUser whether to show a warning message to the user
      *                 if the configuration cannot be written to
      *
-     * @returns true if the configuration can be written to, false
+     * Returns \c true if the configuration can be written to, false
      *          if the configuration cannot be written to
      */
     bool isConfigWritable(bool warnUser);
-    /// @}
 
-    /**
+    /*!
      * Copies all entries from this config object to a new config
-     * object that will save itself to @p file.
+     * object that will save itself to \a file.
      *
-     * The configuration will not actually be saved to @p file
+     * The configuration will not actually be saved to \a file
      * until the returned object is destroyed, or sync() is called
      * on it.
      *
      * Do not forget to delete the returned KConfig object if
-     * @p config was 0.
      *
-     * @param file   the new config object will save itself to
-     * @param config if not 0, copy to the given KConfig object rather
+     * \a config was 0.
+     *
+     * \a file the new config object will save itself to
+     *
+     * \a config if not 0, copy to the given KConfig object rather
      *               than creating a new one
      *
-     * @return @p config if it was set, otherwise a new KConfig object
+     * Returns \a config if it was set, otherwise a new KConfig object
      */
     KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
 
-    /**
+    /*!
      * Ensures that the configuration file contains a certain update.
      *
-     * If the configuration file does not contain the update @p id
-     * as contained in @p updateFile, kconf_update is run to update
+     * If the configuration file does not contain the update \a id
+     * as contained in \a updateFile, kconf_update is run to update
      * the configuration file.
      *
      * If you install config update files with critical fixes
@@ -230,36 +240,36 @@ public:
      * a user restores an old config file from backup that has
      * not been updated yet.
      *
-     * @param id the update to check
-     * @param updateFile the file containing the update
+     * \a id the update to check
+     *
+     * \a updateFile the file containing the update
      */
     void checkUpdate(const QString &id, const QString &updateFile);
 
-    /**
+    /*!
      * Updates the state of this object to match the persistent storage.
      * Note that if this object has pending changes, this method will
      * call sync() first so as not to lose those changes.
      */
     void reparseConfiguration();
 
-    /// @{ extra config files
-    /**
+    /*!
      * Adds the list of configuration sources to the merge stack.
      *
      * Currently only files are accepted as configuration sources.
      *
-     * The first entry in @p sources is treated as the most general and will
+     * The first entry in \a sources is treated as the most general and will
      * be overridden by the second entry.  The settings in the final entry
-     * in @p sources will override all the other sources provided in the list.
+     * in \a sources will override all the other sources provided in the list.
      *
-     * The settings in @p sources will also be overridden by the sources
+     * The settings in \a sources will also be overridden by the sources
      * provided by any previous calls to addConfigSources().
      *
      * The settings in the global configuration sources will be overridden by
-     * the sources provided to this method (@see IncludeGlobals).
+     * the sources provided to this method (see IncludeGlobals).
      * All the sources provided to any call to this method will be overridden
      * by any files that cascade from the source provided to the constructor
-     * (@see CascadeConfig), which will in turn be
+     * (see CascadeConfig), which will in turn be
      * overridden by the source provided to the constructor.
      *
      * Note that only the most specific file, ie: the file provided to the
@@ -268,84 +278,74 @@ public:
      * The state is automatically updated by this method, so there is no need to call
      * reparseConfiguration().
      *
-     * @param sources A list of extra config sources.
+     * \a sources A list of extra config sources.
      */
     void addConfigSources(const QStringList &sources);
 
-    /**
+    /*!
      * Returns a list of the additional configuration sources used in this object
      */
     QStringList additionalConfigSources() const;
 
-    /// @}
-    /// @{ locales
-    /**
+    /*!
      * Returns the current locale.
      */
     QString locale() const;
-    /**
-     * Sets the locale to @p aLocale.
+    /*!
+     * Sets the locale to \a aLocale.
      *
      * The global locale is used by default.
      *
-     * @note If set to the empty string, @b no locale will be matched. This effectively disables
+     * \note If set to the empty string, no locale will be matched. This effectively disables
      * reading translated entries.
      *
-     * @return @c true if locale was changed, @c false if the call had no
-     *         effect (eg: @p aLocale was already the current locale for this
+     * Returns \c true if locale was changed, \c false if the call had no
+     *         effect (eg: \a aLocale was already the current locale for this
      *         object)
      */
     bool setLocale(const QString &aLocale);
-    /// @}
 
-    /// @{ defaults
-    /**
+    /*!
      * When set, all readEntry calls return the system-wide (default) values
      * instead of the user's settings.
      *
      * This is off by default.
      *
-     * @param b whether to read the system-wide defaults instead of the
+     * \a b whether to read the system-wide defaults instead of the
      *          user's settings
      */
     void setReadDefaults(bool b);
-    /**
-     * @returns @c true if the system-wide defaults will be read instead of the
+    /*!
+     * Returns \c true if the system-wide defaults will be read instead of the
      *          user's settings
      */
     bool readDefaults() const;
-    /// @}
 
-    /// @{ immutability
-    /// @reimp
     bool isImmutable() const override;
-    /// @}
 
-    /// @reimp
     QStringList groupList() const override;
 
-    /**
+    /*!
      * Returns a map (tree) of entries in a particular group.
      *
      * The entries are all returned as strings.
      *
-     * @param aGroup The group to get entries from.
+     * \a aGroup The group to get entries from.
      *
-     * @return A map of entries in the group specified, indexed by key.
+     * Returns a map of entries in the group specified, indexed by key.
      *         The returned map may be empty if the group is empty, or not found.
-     * @see   QMap
      */
     QMap<QString, QString> entryMap(const QString &aGroup = QString()) const;
 
-    /**
+    /*!
      * Sets the name of the application config file.
-     * @since 5.0
+     * \since 5.0
      */
     static void setMainConfigName(const QString &str);
 
-    /**
+    /*!
      * Get the name of application config file.
-     * @since 5.93
+     * \since 5.93
      */
     static QString mainConfigName();
 
@@ -360,7 +360,8 @@ protected:
     friend class KConfigGroupPrivate;
     friend class KSharedConfig;
 
-    /** Virtual hook, used to add new "virtual" functions while maintaining
+    /*
+     * Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.
      */
     void virtual_hook(int id, void *data) override;

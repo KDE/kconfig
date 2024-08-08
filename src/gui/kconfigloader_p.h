@@ -188,7 +188,7 @@ public:
 
     void parse(KConfigLoader *loader, QIODevice *xml);
 
-    /**
+    /*!
      * Whether or not to write out default values.
      *
      * @param writeDefaults true if defaults should be written out
@@ -198,7 +198,7 @@ public:
         saveDefaults = writeDefaults;
     }
 
-    /**
+    /*!
      * @return true if default values will also be written out
      */
     bool writeDefaults() const

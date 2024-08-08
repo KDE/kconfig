@@ -14,40 +14,43 @@
 
 class KConfig;
 
-/**
- * Interface-related functions.
+/*!
+ * \namespace KConfigGui
+ * \inmodule KConfigGui
+ *
+ * \brief Interface-related functions.
  */
 namespace KConfigGui
 {
-/**
+/*!
  * Returns the current application session config object.
  *
- * @note If Qt is built without session manager support, i.e.
+ * \note If Qt is built without session manager support, i.e.
  * QT_NO_SESSIONMANAGER is defined, this by default will return
  * nullptr, unless a custom config  has been set via
- * @c setSessionConfig.
+ * setSessionConfig.
  *
- * @return A pointer to the application's instance specific
+ * Returns a pointer to the application's instance specific
  * KConfig object.
- * @see KConfig
  */
 KCONFIGGUI_EXPORT KConfig *sessionConfig();
 
-/**
+/*!
  * Replaces the current application session config object.
  *
- * @param id  new session id
- * @param key new session key
+ * \a id  new session id
  *
- * @since 5.11
+ * \a key new session key
+ *
+ * \since 5.11
  */
 KCONFIGGUI_EXPORT void setSessionConfig(const QString &id, const QString &key);
 
-/**
+/*!
  * Indicates if a session config has been created for that application
  * (i.e.\ if sessionConfig() got called at least once)
  *
- * @return @c true if a sessionConfig object was created, @c false otherwise
+ * Returns \c true if a sessionConfig object was created, \c false otherwise
  */
 KCONFIGGUI_EXPORT bool hasSessionConfig();
 }

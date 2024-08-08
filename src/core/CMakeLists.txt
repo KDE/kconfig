@@ -59,11 +59,15 @@ target_include_directories(KF6ConfigCore
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>"
 )
 
+target_include_directories(KF6ConfigCore PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
 target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
 
 if(KCONFIG_USE_DBUS)
     target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)
 endif()
+
+ecm_generate_qdoc(KF6ConfigCore kconfigcore.qdocconf)
 
 ecm_generate_headers(KConfigCore_HEADERS
   HEADER_NAMES
@@ -92,8 +96,3 @@ install(FILES
   ${KConfigCore_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore COMPONENT Devel
 )
-
-# make available to ecm_add_qch in parent folder
-set(KConfigCore_APIDOX_SRCS ${KConfigCore_HEADERS} PARENT_SCOPE)
-set(KConfigCore_APIDOX_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
-

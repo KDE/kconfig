@@ -15,7 +15,7 @@ class Test8a : public KConfigSkeleton
     Test8a( KSharedConfig::Ptr config = KSharedConfig::openConfig(), QObject *parent = nullptr );
     ~Test8a() override;
 
-    /**
+    /*!
       Set Font
     */
     void setFont( const QFont & v )
@@ -24,7 +24,7 @@ class Test8a : public KConfigSkeleton
         mFont = v;
     }
 
-    /**
+    /*!
       Get Font
     */
     QFont font() const
@@ -32,7 +32,7 @@ class Test8a : public KConfigSkeleton
       return mFont;
     }
 
-    /**
+    /*!
       Is Font Immutable
     */
     bool isFontImmutable() const
@@ -40,7 +40,7 @@ class Test8a : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Font" ) );
     }
 
-    /**
+    /*!
       Set TitleFont
     */
     void setTitleFont( const QFont & v )
@@ -49,7 +49,7 @@ class Test8a : public KConfigSkeleton
         mTitleFont = v;
     }
 
-    /**
+    /*!
       Get TitleFont
     */
     QFont titleFont() const
@@ -57,7 +57,7 @@ class Test8a : public KConfigSkeleton
       return mTitleFont;
     }
 
-    /**
+    /*!
       Is TitleFont Immutable
     */
     bool isTitleFontImmutable() const

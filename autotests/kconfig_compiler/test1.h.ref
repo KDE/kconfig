@@ -21,7 +21,7 @@ class Test1 : public KConfigSkeleton
     Test1( const QString & transport, const QString & folder, QObject *parent = nullptr );
     ~Test1() override;
 
-    /**
+    /*!
       Set One option
     */
     void setOneOption( bool v )
@@ -30,7 +30,7 @@ class Test1 : public KConfigSkeleton
         mOneOption = v;
     }
 
-    /**
+    /*!
       Get One option
     */
     bool oneOption() const
@@ -38,7 +38,7 @@ class Test1 : public KConfigSkeleton
       return mOneOption;
     }
 
-    /**
+    /*!
       Is One option Immutable
     */
     bool isOneOptionImmutable() const
@@ -46,7 +46,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "OneOption" ) );
     }
 
-    /**
+    /*!
       Set Another option
     */
     void setAnotherOption( int v )
@@ -55,7 +55,7 @@ class Test1 : public KConfigSkeleton
         mAnotherOption = v;
     }
 
-    /**
+    /*!
       Get Another option
     */
     int anotherOption() const
@@ -63,7 +63,7 @@ class Test1 : public KConfigSkeleton
       return mAnotherOption;
     }
 
-    /**
+    /*!
       Is Another option Immutable
     */
     bool isAnotherOptionImmutable() const
@@ -71,7 +71,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "AnotherOption" ) );
     }
 
-    /**
+    /*!
       Set This is some funky option
     */
     void setListOption( int v )
@@ -80,7 +80,7 @@ class Test1 : public KConfigSkeleton
         mListOption = v;
     }
 
-    /**
+    /*!
       Get This is some funky option
     */
     int listOption() const
@@ -88,7 +88,7 @@ class Test1 : public KConfigSkeleton
       return mListOption;
     }
 
-    /**
+    /*!
       Is This is some funky option Immutable
     */
     bool isListOptionImmutable() const
@@ -96,7 +96,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "ListOption" ) );
     }
 
-    /**
+    /*!
       Set This is a string
     */
     void setMyString( const QString & v )
@@ -105,7 +105,7 @@ class Test1 : public KConfigSkeleton
         mMyString = v;
     }
 
-    /**
+    /*!
       Get This is a string
     */
     QString myString() const
@@ -113,7 +113,7 @@ class Test1 : public KConfigSkeleton
       return mMyString;
     }
 
-    /**
+    /*!
       Is This is a string Immutable
     */
     bool isMyStringImmutable() const
@@ -121,7 +121,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyString" ) );
     }
 
-    /**
+    /*!
       Set This is a path
     */
     void setMyPath( const QString & v )
@@ -130,7 +130,7 @@ class Test1 : public KConfigSkeleton
         mMyPath = v;
     }
 
-    /**
+    /*!
       Get This is a path
     */
     QString myPath() const
@@ -138,7 +138,7 @@ class Test1 : public KConfigSkeleton
       return mMyPath;
     }
 
-    /**
+    /*!
       Is This is a path Immutable
     */
     bool isMyPathImmutable() const
@@ -146,7 +146,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyPath" ) );
     }
 
-    /**
+    /*!
       Set Another option
     */
     void setAnotherOption2( int v )
@@ -155,7 +155,7 @@ class Test1 : public KConfigSkeleton
         mAnotherOption2 = v;
     }
 
-    /**
+    /*!
       Get Another option
     */
     int anotherOption2() const
@@ -163,7 +163,7 @@ class Test1 : public KConfigSkeleton
       return mAnotherOption2;
     }
 
-    /**
+    /*!
       Is Another option Immutable
     */
     bool isAnotherOption2Immutable() const
@@ -171,7 +171,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "AnotherOption2" ) );
     }
 
-    /**
+    /*!
       Set MyStringList
     */
     void setMyStringList( const QStringList & v )
@@ -180,7 +180,7 @@ class Test1 : public KConfigSkeleton
         mMyStringList = v;
     }
 
-    /**
+    /*!
       Get MyStringList
     */
     QStringList myStringList() const
@@ -188,7 +188,7 @@ class Test1 : public KConfigSkeleton
       return mMyStringList;
     }
 
-    /**
+    /*!
       Is MyStringList Immutable
     */
     bool isMyStringListImmutable() const
@@ -196,7 +196,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyStringList" ) );
     }
 
-    /**
+    /*!
       Set MyStringListHidden
     */
     void setMyStringListHidden( const QStringList & v )
@@ -205,7 +205,7 @@ class Test1 : public KConfigSkeleton
         mMyStringListHidden = v;
     }
 
-    /**
+    /*!
       Get MyStringListHidden
     */
     QStringList myStringListHidden() const
@@ -213,7 +213,7 @@ class Test1 : public KConfigSkeleton
       return mMyStringListHidden;
     }
 
-    /**
+    /*!
       Is MyStringListHidden Immutable
     */
     bool isMyStringListHiddenImmutable() const
@@ -221,7 +221,7 @@ class Test1 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyStringListHidden" ) );
     }
 
-    /**
+    /*!
       Set List Number
     */
     void setMyNumber( int v )
@@ -230,7 +230,7 @@ class Test1 : public KConfigSkeleton
         mMyNumber = v;
     }
 
-    /**
+    /*!
       Get List Number
     */
     int myNumber() const
@@ -238,7 +238,7 @@ class Test1 : public KConfigSkeleton
       return mMyNumber;
     }
 
-    /**
+    /*!
       Is List Number Immutable
     */
     bool isMyNumberImmutable() const
