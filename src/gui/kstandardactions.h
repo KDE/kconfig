@@ -21,7 +21,7 @@
 class QObject;
 class QAction;
 
-/**
+/*!
  * Convenience methods to access all standard KDE actions.
  *
  * These actions should be used instead of hardcoding menubar and
@@ -87,7 +87,7 @@ class QAction;
  */
 namespace KStandardActions
 {
-/**
+/*!
  * The standard menubar and toolbar actions.
  */
 enum StandardAction {
@@ -170,12 +170,12 @@ enum StandardAction {
     // To keep in sync with KConfigWidgets::KStandardAction
 };
 
-/**
+/*!
  * @internal
  */
 KCONFIGGUI_EXPORT QAction *_kgui_createInternal(StandardAction id, QObject *parent);
 
-/**
+/*!
  * Creates an action corresponding to one of the
  * KStandardActions::StandardAction actions, which is connected to the given
  * object and @p slot, and is owned by @p parent.
@@ -195,17 +195,17 @@ inline QAction *create(StandardAction id, const Receiver *recvr, Func slot, QObj
     return action;
 }
 
-/**
+/*!
  * This will return the internal name of a given standard action.
  */
 KCONFIGGUI_EXPORT QString name(StandardAction id);
 
-/**
+/*!
  * Returns a list of all actionIds.
  */
 KCONFIGGUI_EXPORT QList<StandardAction> actionIds();
 
-/**
+/*!
  * Returns the standardshortcut associated with @a actionId.
  *
  * @param id    The identifier whose associated shortcut is wanted.
@@ -219,53 +219,53 @@ KCONFIGGUI_EXPORT KStandardShortcut::StandardShortcut shortcutForActionId(Standa
     { return create(enumValue, recvr, slot, parent); }
 // clang-format on
 
-/**
+/*!
  * Create a new document or window.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(openNew, New)
 
-/**
+/*!
  * Open an existing file.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(open, Open)
 
-/**
+/*!
  * Save the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(save, Save)
 
-/**
+/*!
  * Save the current document under a different name.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(saveAs, SaveAs)
 
-/**
+/*!
  * Revert the current document to the last saved version
  * (essentially will undo all changes).
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(revert, Revert)
 
-/**
+/*!
  * Close the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(close, Close)
 
-/**
+/*!
  * Print the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(print, Print)
 
-/**
+/*!
  * Show a print preview of the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(printPreview, PrintPreview)
 
-/**
+/*!
  * Mail this document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(mail, Mail)
 
-/**
+/*!
  * Quit the program.
  *
  * Note that you probably want to connect this action to either QWidget::close()
@@ -275,188 +275,188 @@ KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(mail, Mail)
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(quit, Quit)
 
-/**
+/*!
  * Undo the last operation.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(undo, Undo)
 
-/**
+/*!
  * Redo the last operation.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(redo, Redo)
 
-/**
+/*!
  * Cut selected area and store it in the clipboard.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(cut, Cut)
 
-/**
+/*!
  * Copy the selected area into the clipboard.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(copy, Copy)
 
-/**
+/*!
  * Paste the contents of clipboard at the current mouse or cursor
  * position.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(paste, Paste)
 
-/**
+/*!
  * Clear the content of the focus widget
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(clear, Clear)
 
-/**
+/*!
  * Select all elements in the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(selectAll, SelectAll)
 
-/**
+/*!
  * Deselect any selected elements in the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(deselect, Deselect)
 
-/**
+/*!
  * Initiate a 'find' request in the current document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(find, Find)
 
-/**
+/*!
  * Find the next instance of a stored 'find'.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(findNext, FindNext)
 
-/**
+/*!
  * Find a previous instance of a stored 'find'.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(findPrev, FindPrev)
 
-/**
+/*!
  * Find and replace matches.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(replace, Replace)
 
-/**
+/*!
  * View the document at its actual size.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(actualSize, ActualSize)
 
-/**
+/*!
  * Fit the document view to the size of the current window.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(fitToPage, FitToPage)
 
-/**
+/*!
  * Fit the document view to the width of the current window.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(fitToWidth, FitToWidth)
 
-/**
+/*!
  * Fit the document view to the height of the current window.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(fitToHeight, FitToHeight)
 
-/**
+/*!
  * Zoom in the current document view.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(zoomIn, ZoomIn)
 
-/**
+/*!
  * Zoom out the current document view.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(zoomOut, ZoomOut)
 
-/**
+/*!
  * Select the current zoom level.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(zoom, Zoom)
 
-/**
+/*!
  * Redisplay or redraw the document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(redisplay, Redisplay)
 
-/**
+/*!
  * Move up (web style menu).
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(up, Up)
 
-/**
+/*!
  * Move back (web style menu).
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(back, Back)
 
-/**
+/*!
  * Move forward (web style menu).
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(forward, Forward)
 
-/**
+/*!
  * Go to the "Home" position or document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(home, Home)
 
-/**
+/*!
  * Scroll up one page.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(prior, Prior)
 
-/**
+/*!
  * Scroll down one page.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(next, Next)
 
-/**
+/*!
  * Jump to some specific location in the document.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(goTo, Goto)
 
-/**
+/*!
  * Go to a specific page.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(gotoPage, GotoPage)
 
-/**
+/*!
  * Go to a specific line.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(gotoLine, GotoLine)
 
-/**
+/*!
  * Jump to the first page.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(firstPage, FirstPage)
 
-/**
+/*!
  * Jump to the last page.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(lastPage, LastPage)
 
-/**
+/*!
  * Move back (document style menu).
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(documentBack, DocumentBack)
 
-/**
+/*!
  * Move forward (document style menu).
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(documentForward, DocumentForward)
 
-/**
+/*!
  * Add the current page to the bookmarks tree.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(addBookmark, AddBookmark)
 
-/**
+/*!
  * Edit the application bookmarks.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(editBookmarks, EditBookmarks)
 
-/**
+/*!
  * Pop up the spell checker.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(spelling, Spelling)
 
-/**
+/*!
  * Display the configure key bindings dialog.
  *
  * Note that you might be able to use the pre-built KXMLGUIFactory's function:
@@ -466,67 +466,67 @@ KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(spelling, Spelling)
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(keyBindings, KeyBindings)
 
-/**
+/*!
  * Display the preferences/options dialog.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(preferences, Preferences)
 
-/**
+/*!
  * Display the toolbar configuration dialog.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(configureToolbars, ConfigureToolbars)
 
-/**
+/*!
  * Display the notifications configuration dialog.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(configureNotifications, ConfigureNotifications)
 
-/**
+/*!
  * Display the Switch Application Language dialog.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(switchApplicationLanguage, SwitchApplicationLanguage)
 
-/**
+/*!
  * Display the handbook of the application.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(helpContents, HelpContents)
 
-/**
+/*!
  * Trigger the What's This cursor.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(whatsThis, WhatsThis)
 
-/**
+/*!
  * Open up the Report Bug dialog.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(reportBug, ReportBug)
 
-/**
+/*!
  * Display the application's About box.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(aboutApp, AboutApp)
 
-/**
+/*!
  * Display the About KDE dialog.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(aboutKDE, AboutKDE)
 
-/**
+/*!
  * Permanently deletes files or folders.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(deleteFile, DeleteFile)
 
-/**
+/*!
  * Renames files or folders.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(renameFile, RenameFile)
 
-/**
+/*!
  * Moves files or folders to the trash.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(moveToTrash, MoveToTrash)
 
-/**
+/*!
  * Open donation page on kde.org.
  */
 KGUISTANDARDACTION_WITH_NEW_STYLE_CONNECT(donate, Donate)

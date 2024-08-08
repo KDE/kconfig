@@ -14,7 +14,7 @@
 class QWindow;
 class KWindowStateSaverPrivate;
 
-/**
+/*!
  * Saves and restores a window size and (when possible) position.
  *
  * This is useful for retrofitting persisting window geometry on existing windows or dialogs,
@@ -47,26 +47,26 @@ class KCONFIGGUI_EXPORT KWindowStateSaver : public QObject
 {
     Q_OBJECT
 public:
-    /**
+    /*!
      * Create a new window state saver for @p window.
      * @param configGroup A KConfigGroup that holds the window state.
      */
     explicit KWindowStateSaver(QWindow *window, const KConfigGroup &configGroup);
-    /**
+    /*!
      * Create a new window state saver for @p window.
      * @param configGroupName The name of a KConfigGroup in the default state
      * configuration (see KSharedConfig::openStateConfig) that holds the window state.
      */
     explicit KWindowStateSaver(QWindow *window, const QString &configGroupName);
 
-    /**
+    /*!
      * Create a new window state saver for @p widget.
      * Use this for widgets that aren't shown yet and would still return @c nullptr from windowHandle().
      * @param configGroup A KConfigGroup that holds the window state.
      */
     template<typename Widget>
     explicit inline KWindowStateSaver(Widget *widget, const KConfigGroup &configGroup);
-    /**
+    /*!
      * Create a new window state saver for @p widget.
      * Use this for widgets that aren't shown yet and would still return @c nullptr from windowHandle().
      * @param configGroupName The name of a KConfigGroup in the default state

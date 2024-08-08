@@ -24,7 +24,7 @@
 class KConfigGroup;
 class KConfigPrivate;
 
-/**
+/*!
  * \class KConfig kconfig.h <KConfig>
  *
  * \brief The central class of the KDE configuration data system.
@@ -55,7 +55,7 @@ class KConfigPrivate;
 class KCONFIGCORE_EXPORT KConfig : public KConfigBase
 {
 public:
-    /**
+    /*!
      * Determines how the system-wide and user's global settings will affect
      * the reading of the configuration.
      *
@@ -87,12 +87,12 @@ public:
         NoGlobals = CascadeConfig, ///< Cascade to system settings, but omit user's globals.
         FullConfig = IncludeGlobals | CascadeConfig, ///< Fully-fledged config, including globals and cascading to system settings
     };
-    /**
+    /*!
      * Stores a combination of #OpenFlag values.
      */
     Q_DECLARE_FLAGS(OpenFlags, OpenFlag)
 
-    /**
+    /*!
      * Creates a KConfig object to manipulate a configuration file for the
      * current application.
      *
@@ -125,7 +125,7 @@ public:
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
-    /**
+    /*!
      * @internal
      *
      * Creates a KConfig object using the specified backend. If the backend can not
@@ -145,19 +145,19 @@ public:
 
     ~KConfig() override;
 
-    /**
+    /*!
      * Returns the standard location enum passed to the constructor.
      * Used by KSharedConfig.
      * @since 5.0
      */
     QStandardPaths::StandardLocation locationType() const;
 
-    /**
+    /*!
      * Returns the filename used to store the configuration.
      */
     QString name() const;
 
-    /**
+    /*!
      * @return the flags this object was opened with
      * @since 5.3
      */
@@ -177,7 +177,7 @@ public:
     /// @reimp
     AccessMode accessMode() const override;
 
-    /**
+    /*!
      * Whether the configuration can be written to.
      *
      * If @p warnUser is true and the configuration cannot be
@@ -198,7 +198,7 @@ public:
     bool isConfigWritable(bool warnUser);
     /// @}
 
-    /**
+    /*!
      * Copies all entries from this config object to a new config
      * object that will save itself to @p file.
      *
@@ -217,7 +217,7 @@ public:
      */
     KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
 
-    /**
+    /*!
      * Ensures that the configuration file contains a certain update.
      *
      * If the configuration file does not contain the update @p id
@@ -235,7 +235,7 @@ public:
      */
     void checkUpdate(const QString &id, const QString &updateFile);
 
-    /**
+    /*!
      * Updates the state of this object to match the persistent storage.
      * Note that if this object has pending changes, this method will
      * call sync() first so as not to lose those changes.
@@ -243,7 +243,7 @@ public:
     void reparseConfiguration();
 
     /// @{ extra config files
-    /**
+    /*!
      * Adds the list of configuration sources to the merge stack.
      *
      * Currently only files are accepted as configuration sources.
@@ -272,18 +272,18 @@ public:
      */
     void addConfigSources(const QStringList &sources);
 
-    /**
+    /*!
      * Returns a list of the additional configuration sources used in this object
      */
     QStringList additionalConfigSources() const;
 
     /// @}
     /// @{ locales
-    /**
+    /*!
      * Returns the current locale.
      */
     QString locale() const;
-    /**
+    /*!
      * Sets the locale to @p aLocale.
      *
      * The global locale is used by default.
@@ -299,7 +299,7 @@ public:
     /// @}
 
     /// @{ defaults
-    /**
+    /*!
      * When set, all readEntry calls return the system-wide (default) values
      * instead of the user's settings.
      *
@@ -309,7 +309,7 @@ public:
      *          user's settings
      */
     void setReadDefaults(bool b);
-    /**
+    /*!
      * @returns @c true if the system-wide defaults will be read instead of the
      *          user's settings
      */
@@ -324,7 +324,7 @@ public:
     /// @reimp
     QStringList groupList() const override;
 
-    /**
+    /*!
      * Returns a map (tree) of entries in a particular group.
      *
      * The entries are all returned as strings.
@@ -337,13 +337,13 @@ public:
      */
     QMap<QString, QString> entryMap(const QString &aGroup = QString()) const;
 
-    /**
+    /*!
      * Sets the name of the application config file.
      * @since 5.0
      */
     static void setMainConfigName(const QString &str);
 
-    /**
+    /*!
      * Get the name of application config file.
      * @since 5.93
      */
@@ -360,7 +360,7 @@ protected:
     friend class KConfigGroupPrivate;
     friend class KSharedConfig;
 
-    /** Virtual hook, used to add new "virtual" functions while maintaining
+    /*! Virtual hook, used to add new "virtual" functions while maintaining
      * binary compatibility. Unused in this class.
      */
     void virtual_hook(int id, void *data) override;

@@ -35,7 +35,7 @@ public:
 
     KConfigIniBackend();
 
-    /** Allows the behaviour of parseConfig() to be tuned */
+    /*! Allows the behaviour of parseConfig() to be tuned */
     enum ParseOption {
         ParseGlobal = 1, /// entries should be marked as @em global
         ParseDefaults = 2, /// entries should be marked as @em default
@@ -45,7 +45,7 @@ public:
     /// @typedef typedef QFlags<ParseOption> ParseOptions
     Q_DECLARE_FLAGS(ParseOptions, ParseOption)
 
-    /** Allows the behaviour of writeConfig() to be tuned */
+    /*! Allows the behaviour of writeConfig() to be tuned */
     enum WriteOption {
         WriteGlobal = 1 /// only write entries marked as "global"
     };
@@ -53,7 +53,7 @@ public:
     /// @typedef typedef QFlags<WriteOption> WriteOptions
     Q_DECLARE_FLAGS(WriteOptions, WriteOption)
 
-    /** Return value from parseConfig() */
+    /*! Return value from parseConfig() */
     enum ParseInfo {
         ParseOk, /// the configuration was opened read/write
         ParseImmutable, /// the configuration is @em immutable
@@ -73,7 +73,7 @@ public:
     void unlock();
     bool isLocked() const;
 
-    /** @return the absolute path to the object */
+    /*! @return the absolute path to the object */
     QString filePath() const;
 
 private:

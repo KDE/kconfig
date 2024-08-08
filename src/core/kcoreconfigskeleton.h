@@ -25,7 +25,7 @@
 class KCoreConfigSkeletonPrivate;
 
 class KConfigSkeletonItemPrivate;
-/**
+/*!
  * \class KConfigSkeletonItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @short Class for storing a preferences setting
@@ -46,7 +46,7 @@ public:
     typedef QHash<QString, KConfigSkeletonItem *> Dict;
     typedef QHash<QString, KConfigSkeletonItem *>::Iterator DictIterator;
 
-    /**
+    /*!
      * Constructor.
      *
      * @param _group Config file group.
@@ -54,29 +54,29 @@ public:
      */
     KConfigSkeletonItem(const QString &_group, const QString &_key);
 
-    /**
+    /*!
      * Destructor.
      */
     virtual ~KConfigSkeletonItem();
 
-    /**
+    /*!
      * Set config file group.
      */
     void setGroup(const QString &_group);
 
-    /**
+    /*!
      * Return name of config file group.
      */
     QString group() const;
 
-    /**
+    /*!
      * Set config file group but giving the KConfigGroup.
      * Allow the item to be in nested groups.
      * @since 5.68
      */
     void setGroup(const KConfigGroup &cg);
 
-    /**
+    /*!
      * Return a KConfigGroup, the one provided by setGroup(const KConfigGroup&) if it's valid,
      * or make one from @p config and item's group.
      * @see setGroup(const QString &_group)
@@ -85,98 +85,98 @@ public:
      */
     KConfigGroup configGroup(KConfig *config) const;
 
-    /**
+    /*!
      * Set config file key.
      */
     void setKey(const QString &_key);
 
-    /**
+    /*!
      * Return config file key.
      */
     QString key() const;
 
-    /**
+    /*!
      * Set internal name of entry.
      */
     void setName(const QString &_name);
 
-    /**
+    /*!
      * Return internal name of entry.
      */
     QString name() const;
 
-    /**
+    /*!
      * Set label providing a translated one-line description of the item.
      */
     void setLabel(const QString &l);
 
-    /**
+    /*!
      * Return the label of the item.
      * @see setLabel()
      */
     QString label() const;
 
-    /**
+    /*!
      * Set ToolTip description of item.
      * @since 4.2
      */
     void setToolTip(const QString &t);
 
-    /**
+    /*!
      * Return ToolTip description of item.
      * @see setToolTip()
      * @since 4.2
      */
     QString toolTip() const;
 
-    /**
+    /*!
      * Set WhatsThis description of item.
      */
     void setWhatsThis(const QString &w);
 
-    /**
+    /*!
      * Return WhatsThis description of item.
      * @see setWhatsThis()
      */
     QString whatsThis() const;
 
-    /**
+    /*!
      * The write flags to be used when writing configuration.
      * @since 5.58
      */
     void setWriteFlags(KConfigBase::WriteConfigFlags flags);
 
-    /**
+    /*!
      * Return write flags to be used when writing configuration.
      * They should be passed to every call of KConfigGroup::writeEntry() and KConfigGroup::revertToDefault().
      * @since 5.58
      */
     KConfigBase::WriteConfigFlags writeFlags() const;
 
-    /**
+    /*!
      * This function is called by @ref KCoreConfigSkeleton to read the value for this setting
      * from a config file.
      */
     virtual void readConfig(KConfig *) = 0;
 
-    /**
+    /*!
      * This function is called by @ref KCoreConfigSkeleton to write the value of this setting
      * to a config file.
      * Make sure to pass writeFlags() to every call of KConfigGroup::writeEntry() and KConfigGroup::revertToDefault().
      */
     virtual void writeConfig(KConfig *) = 0;
 
-    /**
+    /*!
      * Read global default value.
      */
     virtual void readDefault(KConfig *) = 0;
 
-    /**
+    /*!
      * Set item to @p p
      */
     virtual void setProperty(const QVariant &p) = 0;
 
-    /**
+    /*!
      * Check whether the item is equal to @p p.
      *
      * Use this function to compare items that use custom types,
@@ -187,45 +187,45 @@ public:
      */
     virtual bool isEqual(const QVariant &p) const = 0;
 
-    /**
+    /*!
      * Return item as property
      */
     virtual QVariant property() const = 0;
 
-    /**
+    /*!
      * Return minimum value of item or invalid if not specified
      */
     virtual QVariant minValue() const;
 
-    /**
+    /*!
      * Return maximum value of item or invalid if not specified
      */
     virtual QVariant maxValue() const;
 
-    /**
+    /*!
      * Sets the current value to the default value.
      */
     virtual void setDefault() = 0;
 
-    /**
+    /*!
      * Exchanges the current value with the default value
      * Used by KCoreConfigSkeleton::useDefaults(bool);
      */
     virtual void swapDefault() = 0;
 
-    /**
+    /*!
      * Return if the entry can be modified.
      */
     bool isImmutable() const;
 
-    /**
+    /*!
      * Indicates if the item is set to its default value.
      *
      * @since 5.64
      */
     bool isDefault() const;
 
-    /**
+    /*!
      * Indicates if the item has a different value than the
      * previously loaded value.
      *
@@ -233,7 +233,7 @@ public:
      */
     bool isSaveNeeded() const;
 
-    /**
+    /*!
      * Returns the default value
      * @since 5.74
      */
@@ -242,7 +242,7 @@ public:
 protected:
     KCONFIGCORE_NO_EXPORT explicit KConfigSkeletonItem(KConfigSkeletonItemPrivate &dd, const QString &_group, const QString &_key);
 
-    /**
+    /*!
      * Sets mIsImmutable to @c true if mKey in config is immutable.
      * @param group KConfigGroup to check if mKey is immutable in
      */
@@ -263,7 +263,7 @@ protected:
 
 class KPropertySkeletonItemPrivate;
 
-/**
+/*!
  * \class KPropertySkeletonItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @short Class for proxying a QObject property as a preferences setting
@@ -281,7 +281,7 @@ class KCONFIGCORE_EXPORT KPropertySkeletonItem : public KConfigSkeletonItem
 {
     Q_DECLARE_PRIVATE(KPropertySkeletonItem)
 public:
-    /**
+    /*!
      * Constructor
      *
      * @param object The QObject instance which we'll manage the property of
@@ -290,33 +290,33 @@ public:
      */
     KPropertySkeletonItem(QObject *object, const QByteArray &propertyName, const QVariant &defaultValue);
 
-    /** @copydoc KConfigSkeletonItem::property() */
+    /*! @copydoc KConfigSkeletonItem::property() */
     QVariant property() const override;
-    /** @copydoc KConfigSkeletonItem::setProperty(const QVariant &) */
+    /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant &) */
     void setProperty(const QVariant &p) override;
-    /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
+    /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) */
     bool isEqual(const QVariant &p) const override;
 
-    /** @copydoc KConfigSkeletonItem::readConfig(KConfig *) */
+    /*! @copydoc KConfigSkeletonItem::readConfig(KConfig *) */
     void readConfig(KConfig *) override;
-    /** @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
+    /*! @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
     void writeConfig(KConfig *) override;
 
-    /** @copydoc KConfigSkeletonItem::readDefault(KConfig *) */
+    /*! @copydoc KConfigSkeletonItem::readDefault(KConfig *) */
     void readDefault(KConfig *) override;
-    /** @copydoc KConfigSkeletonItem::setDefault() */
+    /*! @copydoc KConfigSkeletonItem::setDefault() */
     void setDefault() override;
-    /** @copydoc KConfigSkeletonItem::swapDefault() */
+    /*! @copydoc KConfigSkeletonItem::swapDefault() */
     void swapDefault() override;
 
-    /**
+    /*!
      * Set a notify function, it will be invoked when the value of the property changes.
      * @since 5.68
      */
     void setNotifyFunction(const std::function<void()> &impl);
 };
 
-/**
+/*!
  * \class KConfigSkeletonGenericItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @short Base class for storing a preferences setting of type @p T.
@@ -325,7 +325,7 @@ template<typename T>
 class KConfigSkeletonGenericItem : public KConfigSkeletonItem
 {
 public:
-    /**
+    /*!
      * @copydoc KConfigSkeletonItem(const QString&, const QString&)
      * @param reference The initial value to hold in the item
      * @param defaultValue The default value for the item
@@ -347,7 +347,7 @@ public:
         });
     }
 
-    /**
+    /*!
      * Set value of this KConfigSkeletonItem.
      */
     void setValue(const T &v)
@@ -355,7 +355,7 @@ public:
         mReference = v;
     }
 
-    /**
+    /*!
      * Return value of this KConfigSkeletonItem.
      */
     T &value()
@@ -363,7 +363,7 @@ public:
         return mReference;
     }
 
-    /**
+    /*!
      * Return const value of this KConfigSkeletonItem.
      */
     const T &value() const
@@ -371,7 +371,7 @@ public:
         return mReference;
     }
 
-    /**
+    /*!
      * Set default value for this item.
      */
     virtual void setDefaultValue(const T &v)
@@ -379,7 +379,7 @@ public:
         mDefault = v;
     }
 
-    /**
+    /*!
      * Set the value for this item to the default value
      */
     void setDefault() override
@@ -387,7 +387,7 @@ public:
         mReference = mDefault;
     }
 
-    /** @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
+    /*! @copydoc KConfigSkeletonItem::writeConfig(KConfig *) */
     void writeConfig(KConfig *config) override
     {
         if (mReference != mLoadedValue) { // Is this needed?
@@ -401,7 +401,7 @@ public:
         }
     }
 
-    /** @copydoc KConfigSkeletonItem::readDefault(KConfig*) */
+    /*! @copydoc KConfigSkeletonItem::readDefault(KConfig*) */
     void readDefault(KConfig *config) override
     {
         config->setReadDefaults(true);
@@ -410,7 +410,7 @@ public:
         mDefault = mReference;
     }
 
-    /** @copydoc KConfigSkeletonItem::swapDefault() */
+    /*! @copydoc KConfigSkeletonItem::swapDefault() */
     void swapDefault() override
     {
         T tmp = mReference;
@@ -424,7 +424,7 @@ protected:
     T mLoadedValue;
 };
 
-/**
+/*!
  * \class KConfigCompilerSignallingItem kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @author Alex Richardson
@@ -441,7 +441,7 @@ class KCONFIGCORE_EXPORT KConfigCompilerSignallingItem : public KConfigSkeletonI
 {
 public:
     typedef void (QObject::*NotifyFunction)(quint64 arg);
-    /**
+    /*!
      * Constructor.
      *
      * @param item the KConfigSkeletonItem to wrap
@@ -487,7 +487,7 @@ private:
     quint64 mUserData;
 };
 
-/**
+/*!
  * \class KCoreConfigSkeleton kcoreconfigskeleton.h <KCoreConfigSkeleton>
  *
  * @short Class for handling preferences settings for an application.
@@ -551,20 +551,20 @@ class KCONFIGCORE_EXPORT KCoreConfigSkeleton : public QObject
 {
     Q_OBJECT
 public:
-    /**
+    /*!
      * Class for handling a string preferences item.
      */
     class KCONFIGCORE_EXPORT ItemString : public KConfigSkeletonGenericItem<QString>
     {
     public:
-        /** The type of string that is held in this item */
+        /*! The type of string that is held in this item */
         enum Type {
             Normal, ///< A normal string
             Password, ///< A password string
             Path, ///< A path to a file or directory
         };
 
-        /**
+        /*!
          * @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
          * @param type The type of string held by the item
          */
@@ -574,146 +574,146 @@ public:
                    const QString &defaultValue = QLatin1String(""), // NOT QString() !!
                    Type type = Normal);
 
-        /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
         void writeConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() const */
+        /*! @copydoc KConfigSkeletonItem::property() const */
         QVariant property() const override;
 
     private:
         Type mType;
     };
 
-    /**
+    /*!
      * Class for handling a password preferences item.
      */
     class KCONFIGCORE_EXPORT ItemPassword : public ItemString
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemPassword(const QString &_group, const QString &_key, QString &reference,
                      const QString &defaultValue = QLatin1String("")); // NOT QString() !!
     };
 
-    /**
+    /*!
      * Class for handling a path preferences item.
      */
     class KCONFIGCORE_EXPORT ItemPath : public ItemString
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemPath(const QString &_group, const QString &_key, QString &reference, const QString &defaultValue = QString());
     };
 
-    /**
+    /*!
      * Class for handling a url preferences item.
      */
     class KCONFIGCORE_EXPORT ItemUrl : public KConfigSkeletonGenericItem<QUrl>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemUrl(const QString &_group, const QString &_key, QUrl &reference, const QUrl &defaultValue = QUrl());
 
-        /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
         void writeConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() const */
+        /*! @copydoc KConfigSkeletonItem::property() const */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QVariant preferences item.
      */
     class KCONFIGCORE_EXPORT ItemProperty : public KConfigSkeletonGenericItem<QVariant>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemProperty(const QString &_group, const QString &_key, QVariant &reference, const QVariant &defaultValue = QVariant());
 
         void readConfig(KConfig *config) override;
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() const */
+        /*! @copydoc KConfigSkeletonItem::property() const */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a bool preferences item.
      */
     class KCONFIGCORE_EXPORT ItemBool : public KConfigSkeletonGenericItem<bool>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemBool(const QString &_group, const QString &_key, bool &reference, bool defaultValue = true);
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() const */
+        /*! @copydoc KConfigSkeletonItem::property() const */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a 32-bit integer preferences item.
      */
     class KCONFIGCORE_EXPORT ItemInt : public KConfigSkeletonGenericItem<qint32>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemInt(const QString &_group, const QString &_key, qint32 &reference, qint32 defaultValue = 0);
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
 
-        /** Get the minimum value that is allowed to be stored in this item */
+        /*! Get the minimum value that is allowed to be stored in this item */
         QVariant minValue() const override;
 
-        /** Get the maximum value this is allowed to be stored in this item */
+        /*! Get the maximum value this is allowed to be stored in this item */
         QVariant maxValue() const override;
 
-        /**
+        /*!
          * Set the minimum value for the item.
          * @see minValue()
          */
         void setMinValue(qint32);
 
-        /**
+        /*!
          * Set the maximum value for the item.
          * @see maxValue
          */
@@ -726,37 +726,37 @@ public:
         qint32 mMax;
     };
 
-    /**
+    /*!
      * Class for handling a 64-bit integer preferences item.
      */
     class KCONFIGCORE_EXPORT ItemLongLong : public KConfigSkeletonGenericItem<qint64>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemLongLong(const QString &_group, const QString &_key, qint64 &reference, qint64 defaultValue = 0);
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
 
-        /** @copydoc ItemInt::minValue() */
+        /*! @copydoc ItemInt::minValue() */
         QVariant minValue() const override;
 
-        /** @copydoc ItemInt::maxValue() */
+        /*! @copydoc ItemInt::maxValue() */
         QVariant maxValue() const override;
 
-        /** @copydoc ItemInt::setMinValue(qint32) */
+        /*! @copydoc ItemInt::setMinValue(qint32) */
         void setMinValue(qint64);
 
-        /** @copydoc ItemInt::setMaxValue(qint32) */
+        /*! @copydoc ItemInt::setMaxValue(qint32) */
         void setMaxValue(qint64);
 
     private:
@@ -766,7 +766,7 @@ public:
         qint64 mMax;
     };
 
-    /**
+    /*!
      * Class for handling enums.
      */
     class KCONFIGCORE_EXPORT ItemEnum : public ItemInt
@@ -780,7 +780,7 @@ public:
             QString value;
         };
 
-        /**
+        /*!
          * @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem
          * @param choices The list of enums that can be stored in this item
          */
@@ -788,18 +788,18 @@ public:
 
         QList<Choice> choices() const;
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
         void writeConfig(KConfig *config) override;
 
-        /**
+        /*!
          * Returns the value for the choice with the given @p name
          */
         QString valueForChoice(const QString &name) const;
 
-        /**
+        /*!
          * Stores a choice value for @p name
          */
         void setValueForChoice(const QString &name, const QString &valueForChoice);
@@ -808,37 +808,37 @@ public:
         QList<Choice> mChoices;
     };
 
-    /**
+    /*!
      * Class for handling an unsigned 32-bit integer preferences item.
      */
     class KCONFIGCORE_EXPORT ItemUInt : public KConfigSkeletonGenericItem<quint32>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemUInt(const QString &_group, const QString &_key, quint32 &reference, quint32 defaultValue = 0);
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
 
-        /** @copydoc ItemInt::minValue() */
+        /*! @copydoc ItemInt::minValue() */
         QVariant minValue() const override;
 
-        /** @copydoc ItemInt::maxValue() */
+        /*! @copydoc ItemInt::maxValue() */
         QVariant maxValue() const override;
 
-        /** @copydoc ItemInt::setMinValue(qint32) */
+        /*! @copydoc ItemInt::setMinValue(qint32) */
         void setMinValue(quint32);
 
-        /** @copydoc ItemInt::setMaxValue(qint32) */
+        /*! @copydoc ItemInt::setMaxValue(qint32) */
         void setMaxValue(quint32);
 
     private:
@@ -848,37 +848,37 @@ public:
         quint32 mMax;
     };
 
-    /**
+    /*!
      * Class for handling unsigned 64-bit integer preferences item.
      */
     class KCONFIGCORE_EXPORT ItemULongLong : public KConfigSkeletonGenericItem<quint64>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemULongLong(const QString &_group, const QString &_key, quint64 &reference, quint64 defaultValue = 0);
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
 
-        /** @copydoc ItemInt::minValue() */
+        /*! @copydoc ItemInt::minValue() */
         QVariant minValue() const override;
 
-        /** @copydoc ItemInt::maxValue() */
+        /*! @copydoc ItemInt::maxValue() */
         QVariant maxValue() const override;
 
-        /** @copydoc ItemInt::setMinValue(qint32) */
+        /*! @copydoc ItemInt::setMinValue(qint32) */
         void setMinValue(quint64);
 
-        /** @copydoc ItemInt::setMaxValue(qint32) */
+        /*! @copydoc ItemInt::setMaxValue(qint32) */
         void setMaxValue(quint64);
 
     private:
@@ -888,37 +888,37 @@ public:
         quint64 mMax;
     };
 
-    /**
+    /*!
      * Class for handling a floating point preference item.
      */
     class KCONFIGCORE_EXPORT ItemDouble : public KConfigSkeletonGenericItem<double>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemDouble(const QString &_group, const QString &_key, double &reference, double defaultValue = 0);
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
 
-        /** @copydoc ItemInt::minValue() */
+        /*! @copydoc ItemInt::minValue() */
         QVariant minValue() const override;
 
-        /** @copydoc ItemInt::maxValue() */
+        /*! @copydoc ItemInt::maxValue() */
         QVariant maxValue() const override;
 
-        /** @copydoc ItemInt::setMinValue() */
+        /*! @copydoc ItemInt::setMinValue() */
         void setMinValue(double);
 
-        /** @copydoc ItemInt::setMaxValue() */
+        /*! @copydoc ItemInt::setMaxValue() */
         void setMaxValue(double);
 
     private:
@@ -928,246 +928,246 @@ public:
         double mMax;
     };
 
-    /**
+    /*!
      * Class for handling a QRect preferences item.
      */
     class KCONFIGCORE_EXPORT ItemRect : public KConfigSkeletonGenericItem<QRect>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemRect(const QString &_group, const QString &_key, QRect &reference, const QRect &defaultValue = QRect());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QRectF preferences item.
      */
     class KCONFIGCORE_EXPORT ItemRectF : public KConfigSkeletonGenericItem<QRectF>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemRectF(const QString &_group, const QString &_key, QRectF &reference, const QRectF &defaultValue = QRectF());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QPoint preferences item.
      */
     class KCONFIGCORE_EXPORT ItemPoint : public KConfigSkeletonGenericItem<QPoint>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemPoint(const QString &_group, const QString &_key, QPoint &reference, const QPoint &defaultValue = QPoint());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QPointF preferences item.
      */
     class KCONFIGCORE_EXPORT ItemPointF : public KConfigSkeletonGenericItem<QPointF>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemPointF(const QString &_group, const QString &_key, QPointF &reference, const QPointF &defaultValue = QPointF());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QSize preferences item.
      */
     class KCONFIGCORE_EXPORT ItemSize : public KConfigSkeletonGenericItem<QSize>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemSize(const QString &_group, const QString &_key, QSize &reference, const QSize &defaultValue = QSize());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QSizeF preferences item.
      */
     class KCONFIGCORE_EXPORT ItemSizeF : public KConfigSkeletonGenericItem<QSizeF>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemSizeF(const QString &_group, const QString &_key, QSizeF &reference, const QSizeF &defaultValue = QSizeF());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a QDateTime preferences item.
      */
     class KCONFIGCORE_EXPORT ItemDateTime : public KConfigSkeletonGenericItem<QDateTime>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemDateTime(const QString &_group, const QString &_key, QDateTime &reference, const QDateTime &defaultValue = QDateTime());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a string list preferences item.
      */
     class KCONFIGCORE_EXPORT ItemStringList : public KConfigSkeletonGenericItem<QStringList>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemStringList(const QString &_group, const QString &_key, QStringList &reference, const QStringList &defaultValue = QStringList());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling a path list preferences item.
      */
     class KCONFIGCORE_EXPORT ItemPathList : public ItemStringList
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemPathList(const QString &_group, const QString &_key, QStringList &reference, const QStringList &defaultValue = QStringList());
 
-        /** @copydoc KConfigSkeletonItem::readConfig */
+        /*! @copydoc KConfigSkeletonItem::readConfig */
         void readConfig(KConfig *config) override;
-        /** @copydoc KConfigSkeletonItem::writeConfig */
+        /*! @copydoc KConfigSkeletonItem::writeConfig */
         void writeConfig(KConfig *config) override;
     };
 
-    /**
+    /*!
      * Class for handling a url list preferences item.
      */
     class KCONFIGCORE_EXPORT ItemUrlList : public KConfigSkeletonGenericItem<QList<QUrl>>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemUrlList(const QString &_group, const QString &_key, QList<QUrl> &reference, const QList<QUrl> &defaultValue = QList<QUrl>());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::writeConfig(KConfig*) */
         void writeConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
-    /**
+    /*!
      * Class for handling an integer list preferences item.
      */
     class KCONFIGCORE_EXPORT ItemIntList : public KConfigSkeletonGenericItem<QList<int>>
     {
     public:
-        /** @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
+        /*! @copydoc KConfigSkeletonGenericItem::KConfigSkeletonGenericItem */
         ItemIntList(const QString &_group, const QString &_key, QList<int> &reference, const QList<int> &defaultValue = QList<int>());
 
-        /** @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
+        /*! @copydoc KConfigSkeletonItem::readConfig(KConfig*) */
         void readConfig(KConfig *config) override;
 
-        /** @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
+        /*! @copydoc KConfigSkeletonItem::setProperty(const QVariant&) */
         void setProperty(const QVariant &p) override;
 
-        /** @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
+        /*! @copydoc KConfigSkeletonItem::isEqual(const QVariant &) const */
         bool isEqual(const QVariant &p) const override;
 
-        /** @copydoc KConfigSkeletonItem::property() */
+        /*! @copydoc KConfigSkeletonItem::property() */
         QVariant property() const override;
     };
 
 public:
-    /**
+    /*!
      * Constructor.
      *
      * @param configname name of config file. If no name is given, the default
@@ -1176,7 +1176,7 @@ public:
      */
     explicit KCoreConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
 
-    /**
+    /*!
      * Constructor.
      *
      * @param config configuration object to use
@@ -1184,12 +1184,12 @@ public:
      */
     explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
-    /**
+    /*!
      * Destructor
      */
     ~KCoreConfigSkeleton() override;
 
-    /**
+    /*!
      * Set all registered items to their default values.
      * This method calls usrSetDefaults() after setting the defaults for the
      * registered items. You can override usrSetDefaults() in derived classes
@@ -1199,7 +1199,7 @@ public:
      */
     virtual void setDefaults();
 
-    /**
+    /*!
      * Read preferences from config file. All registered items are set to the
      * values read from disk.
      * This method calls usrRead() after reading the settings of the
@@ -1208,7 +1208,7 @@ public:
      */
     void load();
 
-    /**
+    /*!
      * Read preferences from the KConfig object.
      * This method assumes that the KConfig object was previously loaded,
      * i.e. it uses the in-memory values from KConfig without reloading from disk.
@@ -1220,14 +1220,14 @@ public:
      */
     void read();
 
-    /**
+    /*!
      * Indicates if all the registered items are set to their default value.
      *
      * @since 5.64
      */
     bool isDefaults() const;
 
-    /**
+    /*!
      * Indicates if any registered item has a different value than the
      * previously loaded value.
      *
@@ -1235,19 +1235,19 @@ public:
      */
     bool isSaveNeeded() const;
 
-    /**
+    /*!
      * Set the config file group for subsequent addItem() calls. It is valid
      * until setCurrentGroup() is called with a new argument. Call this before
      * you add any items. The default value is "No Group".
      */
     void setCurrentGroup(const QString &group);
 
-    /**
+    /*!
      * Returns the current group used for addItem() calls.
      */
     QString currentGroup() const;
 
-    /**
+    /*!
      * Register a custom @ref KConfigSkeletonItem @p item with a given @p name.
      *
      * If @p name is a null string, take the name from KConfigSkeletonItem::key().
@@ -1259,7 +1259,7 @@ public:
      */
     void addItem(KConfigSkeletonItem *item, const QString &name = QString());
 
-    /**
+    /*!
      * Register an item of type QString.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1275,7 +1275,7 @@ public:
                               const QString &defaultValue = QLatin1String(""), // NOT QString() !!
                               const QString &key = QString());
 
-    /**
+    /*!
      * Register a password item of type QString. The string value is written
      * encrypted to the config file.
      *
@@ -1291,7 +1291,7 @@ public:
      */
     ItemPassword *addItemPassword(const QString &name, QString &reference, const QString &defaultValue = QLatin1String(""), const QString &key = QString());
 
-    /**
+    /*!
      * Register a path item of type QString. The string value is interpreted
      * as a path. This means, dollar expansion is activated for this value, so
      * that e.g. @c $HOME gets expanded.
@@ -1306,7 +1306,7 @@ public:
      */
     ItemPath *addItemPath(const QString &name, QString &reference, const QString &defaultValue = QLatin1String(""), const QString &key = QString());
 
-    /**
+    /*!
      * Register a property item of type QVariant.
      *
      * @note The following QVariant types are allowed:
@@ -1322,7 +1322,7 @@ public:
      * @return The created item
      */
     ItemProperty *addItemProperty(const QString &name, QVariant &reference, const QVariant &defaultValue = QVariant(), const QString &key = QString());
-    /**
+    /*!
      * Register an item of type @c bool.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1335,7 +1335,7 @@ public:
      */
     ItemBool *addItemBool(const QString &name, bool &reference, bool defaultValue = false, const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type @c qint32.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1348,7 +1348,7 @@ public:
      */
     ItemInt *addItemInt(const QString &name, qint32 &reference, qint32 defaultValue = 0, const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type @c quint32.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1361,7 +1361,7 @@ public:
      */
     ItemUInt *addItemUInt(const QString &name, quint32 &reference, quint32 defaultValue = 0, const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type @c qint64.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1374,7 +1374,7 @@ public:
      */
     ItemLongLong *addItemLongLong(const QString &name, qint64 &reference, qint64 defaultValue = 0, const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type @c quint64.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1387,7 +1387,7 @@ public:
      */
     ItemULongLong *addItemULongLong(const QString &name, quint64 &reference, quint64 defaultValue = 0, const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type @c double.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1400,7 +1400,7 @@ public:
      */
     ItemDouble *addItemDouble(const QString &name, double &reference, double defaultValue = 0.0, const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QRect.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1413,7 +1413,7 @@ public:
      */
     ItemRect *addItemRect(const QString &name, QRect &reference, const QRect &defaultValue = QRect(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QRectF.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1426,7 +1426,7 @@ public:
      */
     ItemRectF *addItemRectF(const QString &name, QRectF &reference, const QRectF &defaultValue = QRectF(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QPoint.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1439,7 +1439,7 @@ public:
      */
     ItemPoint *addItemPoint(const QString &name, QPoint &reference, const QPoint &defaultValue = QPoint(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QPointF.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1452,7 +1452,7 @@ public:
      */
     ItemPointF *addItemPointF(const QString &name, QPointF &reference, const QPointF &defaultValue = QPointF(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QSize.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1465,7 +1465,7 @@ public:
      */
     ItemSize *addItemSize(const QString &name, QSize &reference, const QSize &defaultValue = QSize(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QSizeF.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1478,7 +1478,7 @@ public:
      */
     ItemSizeF *addItemSizeF(const QString &name, QSizeF &reference, const QSizeF &defaultValue = QSizeF(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QDateTime.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1491,7 +1491,7 @@ public:
      */
     ItemDateTime *addItemDateTime(const QString &name, QDateTime &reference, const QDateTime &defaultValue = QDateTime(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QStringList.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1505,7 +1505,7 @@ public:
     ItemStringList *
     addItemStringList(const QString &name, QStringList &reference, const QStringList &defaultValue = QStringList(), const QString &key = QString());
 
-    /**
+    /*!
      * Register an item of type QList<int>.
      *
      * @param name Name used to identify this setting. Names must be unique.
@@ -1518,56 +1518,56 @@ public:
      */
     ItemIntList *addItemIntList(const QString &name, QList<int> &reference, const QList<int> &defaultValue = QList<int>(), const QString &key = QString());
 
-    /**
+    /*!
      * Return the @ref KConfig object used for reading and writing the settings.
      */
     KConfig *config();
 
-    /**
+    /*!
      * Return the @ref KConfig object used for reading and writing the settings.
      */
     const KConfig *config() const;
 
-    /**
+    /*!
      * Return the @ref KConfig object used for reading and writing the settings.
      * @since 5.0
      */
     KSharedConfig::Ptr sharedConfig() const;
 
-    /**
+    /*!
      * Set the @ref KSharedConfig object used for reading and writing the settings.
      */
     void setSharedConfig(KSharedConfig::Ptr pConfig);
 
-    /**
+    /*!
      * Return list of items managed by this KCoreConfigSkeleton object.
      */
     KConfigSkeletonItem::List items() const;
 
-    /**
+    /*!
      * Removes and deletes an item by name
      * @param name the name of the item to remove
      */
     void removeItem(const QString &name);
 
-    /**
+    /*!
      * Removes and deletes all items
      */
     void clearItems();
 
-    /**
+    /*!
      * Return whether a certain item is immutable
      * @since 4.4
      */
     Q_INVOKABLE bool isImmutable(const QString &name) const;
 
-    /**
+    /*!
      * Lookup item by name
      * @since 4.4
      */
     KConfigSkeletonItem *findItem(const QString &name) const;
 
-    /**
+    /*!
      * Specify whether this object should reflect the actual values or the
      * default values.
      * This method is implemented by usrUseDefaults(), which can be overridden
@@ -1582,7 +1582,7 @@ public:
     virtual bool useDefaults(bool b);
 
 public Q_SLOTS:
-    /**
+    /*!
      * Write preferences to config file. The values of all registered items are
      * written to disk.
      * This method calls usrSave() after writing the settings from the
@@ -1592,13 +1592,13 @@ public Q_SLOTS:
     bool save();
 
 Q_SIGNALS:
-    /**
+    /*!
      * This signal is emitted when the configuration change.
      */
     void configChanged();
 
 protected:
-    /**
+    /*!
      * Implemented by subclasses that use special defaults.
      * It replaces the default values with the actual values and
      * vice versa.  Called from @ref useDefaults()
@@ -1608,21 +1608,21 @@ protected:
      */
     virtual bool usrUseDefaults(bool b);
 
-    /**
+    /*!
      * Perform the actual setting of default values.
      * Override in derived classes to set special default values.
      * Called from @ref setDefaults()
      */
     virtual void usrSetDefaults();
 
-    /**
+    /*!
      * Perform the actual reading of the configuration file.
      * Override in derived classes to read special config values.
      * Called from @ref read()
      */
     virtual void usrRead();
 
-    /**
+    /*!
      * Perform the actual writing of the configuration file.
      * Override in derived classes to write special config values.
      * Called from @ref save()

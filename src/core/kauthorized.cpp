@@ -347,7 +347,7 @@ KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
 
 namespace KAuthorizedInternal
 {
-/**
+/*!
  * Helper for KAuthorized::allowUrlAction in KIO
  * @private
  */
@@ -363,7 +363,7 @@ KCONFIGCORE_EXPORT void allowUrlAction(const QString &action, const QUrl &_baseU
         URLActionRule(action.toLatin1(), _baseURL.scheme(), _baseURL.host(), basePath, _destURL.scheme(), _destURL.host(), destPath, true));
 }
 
-/**
+/*!
  * Helper for KAuthorized::authorizeUrlAction in KIO
  * @private
  */

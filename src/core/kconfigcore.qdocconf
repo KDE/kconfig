@@ -1,0 +1,15 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults-online.qdocconf)
+
+project = KConfigCore
+description = I am XML
+
+documentationinheaders = true
+
+headerdirs = .
+
+headers.fileextensions = "*.qdoc *.h"
+
+outputformats = HTML
+
+depends += \
+    qtcore

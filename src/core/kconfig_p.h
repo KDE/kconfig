@@ -45,7 +45,7 @@ public:
         }
     }
     void revertEntry(const QString &group, QAnyStringView key, KConfigBase::WriteConfigFlags flags);
-    /**
+    /*!
      * Returns a list of keys used with entries in a particular group.
      *
      * This does not include keys of deleted entries or those with default values.

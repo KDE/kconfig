@@ -14,7 +14,7 @@ class TestNotifiers : public KConfigSkeleton
     TestNotifiers( int Number );
     ~TestNotifiers() override;
 
-    /**
+    /*!
       Set Block colors.
     */
     void setColor( const QColor & v )
@@ -23,7 +23,7 @@ class TestNotifiers : public KConfigSkeleton
         mColor = v;
     }
 
-    /**
+    /*!
       Get Block colors.
     */
     QColor color() const
@@ -31,7 +31,7 @@ class TestNotifiers : public KConfigSkeleton
       return mColor;
     }
 
-    /**
+    /*!
       Is Block colors. Immutable
     */
     bool isColorImmutable() const
@@ -39,7 +39,7 @@ class TestNotifiers : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Color" ) );
     }
 
-    /**
+    /*!
       Set foo bar
     */
     void setFooBar( const QString & v )
@@ -48,7 +48,7 @@ class TestNotifiers : public KConfigSkeleton
         mFooBar = v;
     }
 
-    /**
+    /*!
       Get foo bar
     */
     QString fooBar() const
@@ -56,7 +56,7 @@ class TestNotifiers : public KConfigSkeleton
       return mFooBar;
     }
 
-    /**
+    /*!
       Is foo bar Immutable
     */
     bool isFooBarImmutable() const
@@ -64,7 +64,7 @@ class TestNotifiers : public KConfigSkeleton
       return isImmutable( QStringLiteral( "FooBar" ) );
     }
 
-    /**
+    /*!
       Set Age
     */
     void setAge( int v )
@@ -85,7 +85,7 @@ class TestNotifiers : public KConfigSkeleton
         mAge = v;
     }
 
-    /**
+    /*!
       Get Age
     */
     int age() const
@@ -93,7 +93,7 @@ class TestNotifiers : public KConfigSkeleton
       return mAge;
     }
 
-    /**
+    /*!
       Is Age Immutable
     */
     bool isAgeImmutable() const

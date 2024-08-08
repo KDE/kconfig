@@ -25,7 +25,7 @@ struct KStandardShortcutInfo {
     //! The standard shortcut id. @see StandardShortcut
     StandardShortcut id;
 
-    /**
+    /*!
      * Unique name for the given accel. The name is used to save the user
      * settings. It's not representable. Use description for that.
      * @warning NEVER EVER CHANGE IT OR TRANSLATE IT!
@@ -58,7 +58,7 @@ struct KStandardShortcutInfo {
 #define ALT(x) QKeyCombination(Qt::ALT | Qt::Key_##x).toCombined()
 #define ALTSHIFT(x) QKeyCombination(Qt::ALT | Qt::SHIFT | Qt::Key_##x).toCombined()
 
-/** Array of predefined KStandardShortcutInfo objects, which cover all
+/*! Array of predefined KStandardShortcutInfo objects, which cover all
     the "standard" accelerators. Each enum value from StandardShortcut
     should appear in this table.
 */
@@ -427,7 +427,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     // dummy entry to catch simple off-by-one errors. Insert new entries before this line.
     {AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory}};
 
-/** Search for the KStandardShortcutInfo object associated with the given @p id.
+/*! Search for the KStandardShortcutInfo object associated with the given @p id.
     Return a dummy entry with no name and an empty shortcut if @p id is invalid.
 */
 static KStandardShortcutInfo *guardedStandardShortcutInfo(StandardShortcut id)
@@ -457,7 +457,7 @@ static void sanitizeShortcutList(QList<QKeySequence> *list)
     }
 }
 
-/** Initialize the accelerator @p id by checking if it is overridden
+/*! Initialize the accelerator @p id by checking if it is overridden
     in the configuration file (and if it isn't, use the default).
     On X11, if QApplication was initialized with GUI disabled,
     the default will always be used.
