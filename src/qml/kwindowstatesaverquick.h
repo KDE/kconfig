@@ -6,7 +6,7 @@
 
 #include <QQmlEngine>
 
-/**
+/*!
  * @brief Creates a @c KWindowStateSaver in QML, and assigns it to the window it's parented to.
  *
  * Functions exactly as KWindowStateSaver in C++, as it's a small wrapper around it.

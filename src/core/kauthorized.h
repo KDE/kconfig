@@ -20,7 +20,7 @@ class QString;
 class QQmlEngine;
 class QJSEngine;
 
-/**
+/*!
  * The functions in this namespace provide the core of the Kiosk action
  * restriction system; the KIO and KXMLGui frameworks build on this.
  *
@@ -32,7 +32,7 @@ class KCONFIGCORE_EXPORT KAuthorized : public QObject
 {
     Q_OBJECT
 public:
-    /**
+    /*!
      * The enum values lower cased represent the action that is authorized
      * For example the SHELL_ACCESS value is converted to the "shell_access" string.
      *
@@ -49,7 +49,7 @@ public:
     };
     Q_ENUM(GenericRestriction)
 
-    /**
+    /*!
      *
      * @since 5.88
      */
@@ -63,7 +63,7 @@ public:
     };
     Q_ENUM(GenericAction)
 
-    /**
+    /*!
      * Returns whether the user is permitted to perform a certain action.
      *
      * All settings are read from the "[KDE Action Restrictions]" group.
@@ -95,7 +95,7 @@ public:
      */
     Q_INVOKABLE static bool authorize(const QString &action);
 
-    /**
+    /*!
      * Returns whether the user is permitted to perform a common action.
      * The enum values lower cased represent the action that is
      * passed in to @p authorize(QString)
@@ -105,7 +105,7 @@ public:
      */
     Q_INVOKABLE static bool authorize(GenericRestriction action);
 
-    /**
+    /*!
      * Returns whether the user is permitted to perform a certain action.
      *
      * This behaves like authorize(), except that "action/" is prepended to
@@ -132,7 +132,7 @@ public:
      */
     Q_INVOKABLE static bool authorizeAction(const QString &action);
 
-    /**
+    /*!
      * Overload to authorize common actions.
      *
      * @overload
@@ -140,7 +140,7 @@ public:
      */
     Q_INVOKABLE static bool authorizeAction(GenericAction action);
 
-    /**
+    /*!
      * Returns whether the user is permitted to use a certain control module.
      *
      * All settings are read from the "[KDE Control Module Restrictions]"

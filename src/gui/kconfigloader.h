@@ -17,7 +17,7 @@
 
 class ConfigLoaderPrivate;
 
-/**
+/*!
  * @class KConfigLoader kconfigloader.h <KConfigLoader>
  *
  * @short A KConfigSkeleton that populates itself based on KConfigXT XML
@@ -91,7 +91,7 @@ class ConfigLoaderPrivate;
 class KCONFIGGUI_EXPORT KConfigLoader : public KConfigSkeleton
 {
 public:
-    /**
+    /*!
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
@@ -101,7 +101,7 @@ public:
      **/
     KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
-    /**
+    /*!
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
@@ -111,7 +111,7 @@ public:
      **/
     KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent = nullptr);
 
-    /**
+    /*!
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
@@ -123,7 +123,7 @@ public:
 
     ~KConfigLoader() override;
 
-    /**
+    /*!
      * Finds the item for the given group and key.
      *
      * @param group the group in the config file to look in
@@ -132,17 +132,17 @@ public:
      */
     KConfigSkeletonItem *findItem(const QString &group, const QString &key) const;
 
-    /**
+    /*!
      * Finds an item by its name
      */
     KConfigSkeletonItem *findItemByName(const QString &name) const;
 
-    /**
+    /*!
      * Returns the property (variantized value) of the named item
      */
     QVariant property(const QString &name) const;
 
-    /**
+    /*!
      * Check to see if a group exists
      *
      * @param group the name of the group to check for
@@ -150,7 +150,7 @@ public:
      */
     bool hasGroup(const QString &group) const;
 
-    /**
+    /*!
      * @return the list of groups defined by the XML
      */
     QStringList groupList() const;

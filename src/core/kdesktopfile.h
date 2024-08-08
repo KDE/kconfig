@@ -13,7 +13,7 @@ class KConfigGroup;
 class KDesktopFileAction;
 class KDesktopFilePrivate;
 
-/**
+/*!
  * \class KDesktopFile kdesktopfile.h <KDesktopFile>
  *
  * %KDE Desktop File Management.
@@ -27,7 +27,7 @@ class KDesktopFilePrivate;
 class KCONFIGCORE_EXPORT KDesktopFile : public KConfig
 {
 public:
-    /**
+    /*!
      * Constructs a KDesktopFile object.
      *
      * See QStandardPaths for more information on resources.
@@ -41,7 +41,7 @@ public:
      */
     explicit KDesktopFile(QStandardPaths::StandardLocation resourceType, const QString &fileName);
 
-    /**
+    /*!
      * Constructs a KDesktopFile object.
      *
      * See QStandardPaths for more information on resources.
@@ -52,14 +52,14 @@ public:
      */
     explicit KDesktopFile(const QString &fileName);
 
-    /**
+    /*!
      * Destructs the KDesktopFile object.
      *
      * Writes back any changed configuration entries.
      */
     ~KDesktopFile() override;
 
-    /**
+    /*!
      * Checks whether this is really a desktop file.
      *
      * The check is performed looking at the file extension (the file is not
@@ -70,7 +70,7 @@ public:
      */
     static bool isDesktopFile(const QString &path);
 
-    /**
+    /*!
      * Checks whether the user is authorized to run this desktop file.
      * By default users are authorized to run all desktop files but
      * the KIOSK framework can be used to activate certain restrictions.
@@ -86,87 +86,87 @@ public:
      */
     static bool isAuthorizedDesktopFile(const QString &path);
 
-    /**
+    /*!
      * Returns the location where changes for the .desktop file @p path
      * should be written to.
      */
     static QString locateLocal(const QString &path);
 
-    /**
+    /*!
      * Returns the main config group (named "Desktop Entry") in a .desktop file.
      */
     KConfigGroup desktopGroup() const;
 
-    /**
+    /*!
      * Returns the value of the "Type=" entry.
      * @return the type or QString() if not specified
      */
     QString readType() const;
 
-    /**
+    /*!
      * Returns the value of the "Icon=" entry.
      * @return the icon or QString() if not specified
      */
     QString readIcon() const;
 
-    /**
+    /*!
      * Returns the value of the "Name=" entry.
      * @return the name or QString() if not specified
      */
     QString readName() const;
 
-    /**
+    /*!
      * Returns the value of the "Comment=" entry.
      * @return the comment or QString() if not specified
      */
     QString readComment() const;
 
-    /**
+    /*!
      * Returns the value of the "GenericName=" entry.
      * @return the generic name or QString() if not specified
      */
     QString readGenericName() const;
 
-    /**
+    /*!
      * Returns the value of the "Path=" entry.
      * @return the path or QString() if not specified
      */
     QString readPath() const;
 
-    /**
+    /*!
      * Returns the value of the "URL=" entry.
      * @return the URL or QString() if not specified
      */
     QString readUrl() const;
 
-    /**
+    /*!
      * Returns a list of the "Actions=" entries.
      * @return the list of actions
      */
     QStringList readActions() const;
 
-    /**
+    /*!
      * Returns a list of the "MimeType=" entries.
      * @return the list of mime types
      * @since 5.15
      */
     QStringList readMimeTypes() const;
 
-    /**
+    /*!
      * Sets the desktop action group.
      * @param group the new action group
      */
     KConfigGroup actionGroup(const QString &group);
     KConfigGroup actionGroup(const QString &group) const;
 
-    /**
+    /*!
      * Returns true if the action group exists, false otherwise
      * @param group the action group to test
      * @return true if the action group exists
      */
     bool hasActionGroup(const QString &group) const;
 
-    /**
+    /*!
      * Checks whether there is a "Type=Link" entry.
      *
      * The link points to the "URL=" entry.
@@ -174,32 +174,32 @@ public:
      */
     bool hasLinkType() const;
 
-    /**
+    /*!
      * Checks whether there is an entry "Type=Application".
      * @return true if there is a "Type=Application" entry
      */
     bool hasApplicationType() const;
 
-    /**
+    /*!
      * Checks whether there is an entry "Type=FSDevice".
      * @return true if there is a "Type=FSDevice" entry
      */
     bool hasDeviceType() const;
 
-    /**
+    /*!
      * Checks whether the TryExec field contains a binary
      * which is found on the local system.
      * @return true if TryExec contains an existing binary
      */
     bool tryExec() const;
 
-    /**
+    /*!
      * Returns the value of the "X-DocPath=" Or "DocPath=" entry.
      * @return The value of the "X-DocPath=" Or "DocPath=" entry.
      */
     QString readDocPath() const;
 
-    /**
+    /*!
      * Whether the entry should be suppressed in menus.
      * This handles the NoDisplay key
      * @return true to suppress this desktop file
@@ -207,7 +207,7 @@ public:
      */
     bool noDisplay() const;
 
-    /**
+    /*!
      * Copies all entries from this config object to a new
      * KDesktopFile object that will save itself to @p file.
      *
@@ -218,12 +218,12 @@ public:
      */
     KDesktopFile *copyTo(const QString &file) const;
 
-    /**
+    /*!
      * Returns the name of the .desktop file that was used to construct this KDesktopFile.
      */
     QString fileName() const;
 
-    /**
+    /*!
      *
      * @since 6.0
      */

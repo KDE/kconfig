@@ -8,7 +8,7 @@
 
 #include <QLocale>
 
-/**
+/*!
  * @brief Helper to store the current default QLocale and resetting to it in the dtor.
  **/
 class DefaultLocale

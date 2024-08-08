@@ -14,7 +14,7 @@
 
 #include <kconfiggroup_p.h>
 
-/**
+/*!
  * Try to read a GUI type from config group @p cg at key @p key.
  * @p input is the default value and also indicates the type to be read.
  * @p output is to be set with the value that has been read.
@@ -122,7 +122,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
     return false; // not handled
 }
 
-/**
+/*!
  * Try to write a GUI type @p prop to config group @p cg at key @p key.
  *
  * @returns true if something was handled (even if an empty value was written)

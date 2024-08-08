@@ -14,12 +14,12 @@
 
 class KConfig;
 
-/**
+/*!
  * Interface-related functions.
  */
 namespace KConfigGui
 {
-/**
+/*!
  * Returns the current application session config object.
  *
  * @note If Qt is built without session manager support, i.e.
@@ -33,7 +33,7 @@ namespace KConfigGui
  */
 KCONFIGGUI_EXPORT KConfig *sessionConfig();
 
-/**
+/*!
  * Replaces the current application session config object.
  *
  * @param id  new session id
@@ -43,7 +43,7 @@ KCONFIGGUI_EXPORT KConfig *sessionConfig();
  */
 KCONFIGGUI_EXPORT void setSessionConfig(const QString &id, const QString &key);
 
-/**
+/*!
  * Indicates if a session config has been created for that application
  * (i.e.\ if sessionConfig() got called at least once)
  *

@@ -59,11 +59,15 @@ target_include_directories(KF6ConfigCore
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore>"
 )
 
+target_include_directories(KF6ConfigCore PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
 target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
 
 if(KCONFIG_USE_DBUS)
     target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)
 endif()
+
+ecm_generate_qdoc(KF6ConfigCore kconfigcore.qdocconf)
 
 ecm_generate_headers(KConfigCore_HEADERS
   HEADER_NAMES
