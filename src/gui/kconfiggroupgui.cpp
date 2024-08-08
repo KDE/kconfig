@@ -14,12 +14,12 @@
 
 #include <kconfiggroup_p.h>
 
-/**
- * Try to read a GUI type from config group @p cg at key @p key.
- * @p input is the default value and also indicates the type to be read.
- * @p output is to be set with the value that has been read.
+/*
+ * Try to read a GUI type from config group cg at key key.
+ * input is the default value and also indicates the type to be read.
+ * output is to be set with the value that has been read.
  *
- * @returns true if something was handled (even if output was set to clear or default)
+ * Returns true if something was handled (even if output was set to clear or default)
  *          or false if nothing was handled (e.g., Core type)
  */
 static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input, QVariant &output)
@@ -122,10 +122,10 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
     return false; // not handled
 }
 
-/**
- * Try to write a GUI type @p prop to config group @p cg at key @p key.
+/*
+ * Try to write a GUI type prop to config group cg at key key.
  *
- * @returns true if something was handled (even if an empty value was written)
+ * Returns true if something was handled (even if an empty value was written)
  *          or false if nothing was handled (e.g., Core type)
  */
 static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop, KConfigGroup::WriteConfigFlags pFlags)

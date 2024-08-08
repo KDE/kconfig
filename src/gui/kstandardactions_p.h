@@ -18,12 +18,12 @@
 namespace KStandardActions
 {
 
-/**
+/*
  * Helper class for storing raw data in static tables which can be used for QString instance
  * creation at runtime without copying/converting to new memalloc'ed memory, as well as avoiding
  * that way storing the strings directly as QStrings resulting in non-constexpr init code on
  * library loading
- * @internal
+ *
  */
 struct RawStringData {
     template<std::size_t StringSize>
@@ -51,9 +51,6 @@ private:
     const std::size_t size = 0;
 };
 
-/**
- * @internal
- */
 struct KStandardActionsInfo {
     KStandardActions::StandardAction id;
     KStandardShortcut::StandardShortcut idAccel;
@@ -143,9 +140,6 @@ static constexpr KStandardActionsInfo g_rgActionInfo[] = {
 };
 // clang-format on
 
-/**
- * @internal
- */
 inline const KStandardActionsInfo *infoPtr(StandardAction id)
 {
     for (const auto &action : g_rgActionInfo) {
@@ -157,9 +151,6 @@ inline const KStandardActionsInfo *infoPtr(StandardAction id)
     return nullptr;
 }
 
-/**
- * @internal
- */
 static inline QStringList internal_stdNames()
 {
     QStringList result;

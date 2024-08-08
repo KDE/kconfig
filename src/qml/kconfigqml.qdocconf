@@ -1,0 +1,19 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KConfigQml
+description = Persistent platform-independent application settings
+
+documentationinheaders = true
+
+headerdirs += .
+sourcedirs += .
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    qtqml \
+    kconfigcore \
+    kconfiggui
+

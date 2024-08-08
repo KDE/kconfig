@@ -20,9 +20,9 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMMarkNonGuiExecutable)
 include(ECMPoQmTools)
-include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
+include(ECMGenerateQDoc)
 
 set(REQUIRED_QT_VERSION 6.6.0)
 
@@ -53,9 +53,6 @@ endif()
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 
-option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
-add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
-
 set(kconfig_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/core/kconfig_version.h")
 ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
                         VERSION_HEADER "${kconfig_version_header}"
@@ -74,19 +71,8 @@ endif()
 include (ECMPoQmTools)
 ecm_install_po_files_as_qm(poqm)
 
-
 # create a Config.cmake and a ConfigVersion.cmake file and install them
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6Config")
-
-if(BUILD_QCH)
-    ecm_install_qch_export(
-        TARGETS KF6Config_QCH
-        FILE KF6ConfigQchTargets.cmake
-        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        COMPONENT Devel
-    )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6ConfigQchTargets.cmake\")")
-endif()
 
 include(CMakePackageConfigHelpers)
 

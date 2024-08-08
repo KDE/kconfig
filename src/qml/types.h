@@ -9,6 +9,13 @@
 #include <kauthorized.h>
 #include <kcoreconfigskeleton.h>
 
+/*!
+ * \qmltype KAuthorized
+ * \inqmlmodule org.kde.config
+ * \nativetype KAuthorized
+ *
+ */
+
 struct KAuthorizedForeign {
     Q_GADGET
     QML_NAMED_ELEMENT(KAuthorized)

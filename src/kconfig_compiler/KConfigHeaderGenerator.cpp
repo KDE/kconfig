@@ -261,7 +261,7 @@ void KConfigHeaderGenerator::createSignals()
     for (const Signal &signal : std::as_const(parseResult.signalList)) {
         stream() << '\n';
         if (!signal.label.isEmpty()) {
-            stream() << whitespace() << "/**\n";
+            stream() << whitespace() << "/*!\n";
             stream() << whitespace() << "  " << signal.label << '\n';
             stream() << whitespace() << "*/\n";
         }
@@ -431,7 +431,7 @@ void KConfigHeaderGenerator::createSetters(const CfgEntry *entry)
         return;
     }
 
-    stream() << whitespace() << "/**\n";
+    stream() << whitespace() << "/*!\n";
     stream() << whitespace() << "  Set " << entry->label << '\n';
     stream() << whitespace() << "*/\n";
 
@@ -464,7 +464,7 @@ void KConfigHeaderGenerator::createSetters(const CfgEntry *entry)
 void KConfigHeaderGenerator::createGetters(const CfgEntry *entry, const QString &returnType)
 {
     // Accessor
-    stream() << whitespace() << "/**\n";
+    stream() << whitespace() << "/*!\n";
     stream() << whitespace() << "  Get " << entry->label << '\n';
     stream() << whitespace() << "*/\n";
     if (cfg().staticAccessors) {
@@ -493,7 +493,7 @@ void KConfigHeaderGenerator::createGetters(const CfgEntry *entry, const QString 
 
 void KConfigHeaderGenerator::createImmutableGetters(const CfgEntry *entry)
 {
-    stream() << whitespace() << "/**\n";
+    stream() << whitespace() << "/*!\n";
     stream() << whitespace() << "  Is " << entry->label << " Immutable\n";
     stream() << whitespace() << "*/\n";
     // Immutable
@@ -530,7 +530,7 @@ void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QSt
 
     const QString declType = entry->signalList.isEmpty() ? QStringLiteral("Item") + itemType(entry->type) : QStringLiteral("KConfigCompilerSignallingItem");
 
-    stream() << whitespace() << "/**\n";
+    stream() << whitespace() << "/*!\n";
     stream() << whitespace() << "  Get Item object corresponding to " << entry->name << "()" << '\n';
     stream() << whitespace() << "*/\n";
     stream() << whitespace() << declType << " *" << getFunction(entry->name) << "Item(";
@@ -556,7 +556,7 @@ void KConfigHeaderGenerator::createDefaultValueMember(const CfgEntry *entry)
     if (!((cfg().allDefaultGetters || cfg().defaultGetters.contains(entry->name)) && !entry->defaultValue.isEmpty())) {
         return;
     }
-    stream() << whitespace() << "/**\n";
+    stream() << whitespace() << "/*!\n";
     stream() << whitespace() << "  Get " << entry->label << " default value\n";
     stream() << whitespace() << "*/\n";
     if (cfg().staticAccessors) {

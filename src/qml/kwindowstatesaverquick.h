@@ -6,12 +6,15 @@
 
 #include <QQmlEngine>
 
-/**
- * @brief Creates a @c KWindowStateSaver in QML, and assigns it to the window it's parented to.
+/*!
+ * \qmltype WindowStateSaver
+ * \inqmlmodule org.kde.config
+ *
+ * \brief Creates a KWindowStateSaver in QML, and assigns it to the window it's parented to.
  *
  * Functions exactly as KWindowStateSaver in C++, as it's a small wrapper around it.
  *
- * @code
+ * \code
  * import org.kde.config as KConfig
  *
  * Kirigami.ApplicationWindow {
@@ -23,10 +26,10 @@
  *         configGroupName: "Main"
  *     }
  * }
- * @endcode
- * @since 6.5
+ * \endcode
+ * \since 6.5
  *
- * @sa KWindowStateSaver
+ * \sa KWindowStateSaver
  */
 class KWindowStateSaverQuick : public QObject, public QQmlParserStatus
 {
@@ -35,6 +38,9 @@ class KWindowStateSaverQuick : public QObject, public QQmlParserStatus
     QML_NAMED_ELEMENT(WindowStateSaver)
     Q_INTERFACES(QQmlParserStatus)
 
+    /*!
+     * \qmlproperty string WindowStateSaver::configGroupName
+     */
     Q_PROPERTY(QString configGroupName READ configGroupName WRITE setConfigGroupName NOTIFY configGroupNameChanged REQUIRED)
 
 public:

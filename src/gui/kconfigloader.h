@@ -17,10 +17,11 @@
 
 class ConfigLoaderPrivate;
 
-/**
- * @class KConfigLoader kconfigloader.h <KConfigLoader>
+/*!
+ * \class KConfigLoader
+ * \inmodule KConfigGui
  *
- * @short A KConfigSkeleton that populates itself based on KConfigXT XML
+ * \brief A KConfigSkeleton that populates itself based on KConfigXT XML.
  *
  * This class allows one to ship an XML file and reconstitute it into a
  * KConfigSkeleton object at runtime. Common usage might look like this:
@@ -62,96 +63,106 @@ class ConfigLoaderPrivate;
  * \endcode
  *
  * Currently the following data types are supported:
- *
- * @li bools
- * @li colors
- * @li datetimes
- * @li enumerations
- * @li fonts
- * @li ints
- * @li passwords
- * @li paths
- * @li strings
- * @li stringlists
- * @li uints
- * @li urls
- * @li doubles
- * @li int lists
- * @li longlongs
- * @li path lists
- * @li points
- * @li pointfs
- * @li rects
- * @li rectfs
- * @li sizes
- * @li sizefs
- * @li ulonglongs
- * @li url lists
+ * \list
+ * \li bools
+ * \li colors
+ * \li datetimes
+ * \li enumerations
+ * \li fonts
+ * \li ints
+ * \li passwords
+ * \li paths
+ * \li strings
+ * \li stringlists
+ * \li uints
+ * \li urls
+ * \li doubles
+ * \li int lists
+ * \li longlongs
+ * \li path lists
+ * \li points
+ * \li pointfs
+ * \li rects
+ * \li rectfs
+ * \li sizes
+ * \li sizefs
+ * \li ulonglongs
+ * \li url lists
+ * \endlist
  **/
 class KCONFIGGUI_EXPORT KConfigLoader : public KConfigSkeleton
 {
 public:
-    /**
+    /*!
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
-     * @param configFile path to the configuration file to use
-     * @param xml the xml data; must be valid KConfigXT data
-     * @param parent optional QObject parent
+     * \a configFile path to the configuration file to use
+     *
+     * \a xml the xml data; must be valid KConfigXT data
+     *
+     * \a parent optional QObject parent
      **/
     KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
-    /**
+    /*!
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
-     * @param config the configuration object to use
-     * @param xml the xml data; must be valid KConfigXT data
-     * @param parent optional QObject parent
+     * \a config the configuration object to use
+     *
+     * \a xml the xml data; must be valid KConfigXT data
+     *
+     * \a parent optional QObject parent
      **/
     KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent = nullptr);
 
-    /**
+    /*!
      * Creates a KConfigSkeleton populated using the definition found in
      * the XML data passed in.
      *
-     * @param config the group to use as the root for configuration items
-     * @param xml the xml data; must be valid KConfigXT data
-     * @param parent optional QObject parent
+     * \a config the group to use as the root for configuration items
+     *
+     * \a xml the xml data; must be valid KConfigXT data
+     *
+     * \a parent optional QObject parent
      **/
     KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
     ~KConfigLoader() override;
 
-    /**
+    /*!
      * Finds the item for the given group and key.
      *
-     * @param group the group in the config file to look in
-     * @param key the configuration key to find
-     * @return the associated KConfigSkeletonItem, or @c nullptr if none
+     * \a group the group in the config file to look in
+     *
+     * \a key the configuration key to find
+     *
+     * Returns the associated KConfigSkeletonItem, or \c nullptr if none
      */
     KConfigSkeletonItem *findItem(const QString &group, const QString &key) const;
 
-    /**
+    /*!
      * Finds an item by its name
      */
     KConfigSkeletonItem *findItemByName(const QString &name) const;
 
-    /**
+    /*!
      * Returns the property (variantized value) of the named item
      */
     QVariant property(const QString &name) const;
 
-    /**
+    /*!
      * Check to see if a group exists
      *
-     * @param group the name of the group to check for
-     * @return true if the group exists, or false if it does not
+     * \a group the name of the group to check for
+     *
+     * Returns \c true if the group exists, or false if it does not
      */
     bool hasGroup(const QString &group) const;
 
-    /**
-     * @return the list of groups defined by the XML
+    /*!
+     * Returns the list of groups defined by the XML
      */
     QStringList groupList() const;
 

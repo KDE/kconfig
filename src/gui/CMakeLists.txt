@@ -61,6 +61,8 @@ ecm_generate_headers(KConfigGui_HEADERS
   REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
+ecm_generate_qdoc(KF6ConfigGui kconfiggui.qdocconf)
+
 if(NOT BUILD_SHARED_LIBS)
     target_sources(KF6ConfigGui PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/kconfigguistaticinitializer.cpp>
@@ -77,8 +79,3 @@ install(FILES
   kconfigguistaticinitializer.cpp
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
 )
-
-# make available to ecm_add_qch in parent folder
-set(KConfigGui_APIDOX_SRCS ${KConfigGui_HEADERS} PARENT_SCOPE)
-set(KConfigGui_APIDOX_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
-

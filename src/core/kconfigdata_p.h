@@ -15,12 +15,10 @@
 #include <QString>
 #include <map>
 
-/**
+/*
  * map/dict/list config node entry.
- * @internal
  */
 struct KEntry {
-    /** Constructor. @internal */
     KEntry()
         : mValue()
         , bDirty(false)
@@ -34,41 +32,40 @@ struct KEntry {
         , bOverridesGlobal(false)
     {
     }
-    /** @internal */
     QByteArray mValue;
-    /**
+    /*
      * Must the entry be written back to disk?
      */
     bool bDirty : 1;
-    /**
+    /*
      * Entry should be written to the global config file
      */
     bool bGlobal : 1;
-    /**
+    /*
      * Entry can not be modified.
      */
     bool bImmutable : 1;
-    /**
+    /*
      * Entry has been deleted.
      */
     bool bDeleted : 1;
-    /**
+    /*
      * Whether to apply dollar expansion or not.
      */
     bool bExpand : 1;
-    /**
+    /*
      * Entry has been reverted to its default value (from a more global file).
      */
     bool bReverted : 1;
-    /**
-     * Entry is for a localized key. If @c false the value references just language e.g. "de",
-     * if @c true the value references language and country, e.g. "de_DE".
+    /*
+     * Entry is for a localized key. If false the value references just language e.g. "de",
+     * if true the value references language and country, e.g. "de_DE".
      **/
     bool bLocalizedCountry : 1;
 
     bool bNotify : 1;
 
-    /**
+    /*
      * Entry will need to be written on a non global file even if it matches default value
      */
     bool bOverridesGlobal : 1;
@@ -95,13 +92,12 @@ inline bool operator!=(const KEntry &k1, const KEntry &k2)
     return !(k1 == k2);
 }
 
-/**
+/*
  * key structure holding both the actual key and the group
  * to which it belongs.
- * @internal
+ *
  */
 struct KEntryKey {
-    /** Constructor. @internal */
     KEntryKey(const QString &_group = QString(), const QByteArray &_key = QByteArray(), bool isLocalized = false, bool isDefault = false)
         : mGroup(_group)
         , mKey(_key)
@@ -110,35 +106,35 @@ struct KEntryKey {
         , bRaw(false)
     {
     }
-    /**
+    /*
      * The "group" to which this EntryKey belongs
      */
     QString mGroup;
-    /**
+    /*
      * The _actual_ key of the entry in question
      */
     QByteArray mKey;
-    /**
+    /*
      * Entry is localised or not
      */
     bool bLocal : 1;
-    /**
+    /*
      * Entry indicates if this is a default value.
      */
     bool bDefault : 1;
-    /** @internal
+    /*
      * Key is a raw unprocessed key.
-     * @warning this should only be set during merging, never for normal use.
+     * Warning: this should only be set during merging, never for normal use.
      */
     bool bRaw : 1;
 };
 
 Q_DECLARE_TYPEINFO(KEntryKey, Q_RELOCATABLE_TYPE);
 
-/**
+/*
  * Compares two KEntryKeys (needed for std::map). The order is localized, localized-default,
  * non-localized, non-localized-default
- * @internal
+ *
  */
 inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
 {
@@ -158,13 +154,12 @@ inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
     return (!k1.bDefault && k2.bDefault);
 }
 
-/**
+/*
  * Light-weight view variant of KEntryKey.
  * Used for look-up in the map.
- * @internal
+ *
  */
 struct KEntryKeyView {
-    /** Constructor. @internal */
     KEntryKeyView(QStringView _group, QAnyStringView _key, bool isLocalized = false, bool isDefault = false)
         : mGroup(_group)
         , mKey(_key)
@@ -172,19 +167,19 @@ struct KEntryKeyView {
         , bDefault(isDefault)
     {
     }
-    /**
+    /*
      * The "group" to which this EntryKey belongs
      */
     const QStringView mGroup;
-    /**
+    /*
      * The _actual_ key of the entry in question
      */
     const QAnyStringView mKey;
-    /**
+    /*
      * Entry is localised or not
      */
     bool bLocal : 1;
-    /**
+    /*
      * Entry indicates if this is a default value.
      */
     bool bDefault : 1;
@@ -219,11 +214,11 @@ inline bool operator<(const KEntryKey &k1, const KEntryKeyView &k2)
     return compareEntryKeyViews(k1, k2);
 }
 
-/**
+/*
  * Struct to use as Compare type with std::map.
  * To enable usage of KEntryKeyView for look-up in the map
  * via the template find() overloads.
- * @internal
+ *
  */
 struct KEntryKeyCompare {
     using is_transparent = void;
@@ -244,10 +239,10 @@ struct KEntryKeyCompare {
     }
 };
 
-/**
- * Returns the minimum key that has @a mGroup == @p group.
+/*
+ * Returns the minimum key that has mGroup == group.
  *
- * @note The returned "minimum key" is consistent with KEntryKey's operator<().
+ * Note: The returned "minimum key" is consistent with KEntryKey's operator<().
  *       The return value of this function can be passed to KEntryMap::lowerBound().
  */
 inline KEntryKeyView minimumGroupKeyView(const QString &group)
@@ -258,12 +253,12 @@ inline KEntryKeyView minimumGroupKeyView(const QString &group)
 QDebug operator<<(QDebug dbg, const KEntryKey &key);
 QDebug operator<<(QDebug dbg, const KEntry &entry);
 
-/**
+/*
  * \relates KEntry
  * type specifying a map of entries (key,value pairs).
  * The keys are actually a key in a particular config file group together
  * with the group name.
- * @internal
+ *
  */
 class KEntryMap : public std::map<KEntryKey, KEntry, KEntryKeyCompare>
 {
@@ -299,7 +294,7 @@ public:
 
     const_iterator constFindEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags()) const;
 
-    /**
+    /*
      * Returns true if the entry gets dirtied or false in other case
      */
     bool setEntry(const QString &group, const QByteArray &key, const QByteArray &value, EntryOptions options);
@@ -367,20 +362,8 @@ public:
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::SearchFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)
 
-/**
- * \relates KEntry
- * type for iterating over keys in a KEntryMap in sorted order.
- * @internal
- */
 typedef KEntryMap::iterator KEntryMapIterator;
 
-/**
- * \relates KEntry
- * type for iterating over keys in a KEntryMap in sorted order.
- * It is const, thus you cannot change the entries in the iterator,
- * only examine them.
- * @internal
- */
 typedef KEntryMap::const_iterator KEntryMapConstIterator;
 
 #endif
