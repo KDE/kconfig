@@ -253,7 +253,7 @@ protected:
     QString mName; ///< The name of this item
 
     // HACK: Necessary to avoid introducing new virtuals in KConfigSkeletonItem
-    // KF6: Use proper pure virtuals in KConfigSkeletonItem
+    // KF7 TODO: Use proper pure virtuals in KConfigSkeletonItem
     void setIsDefaultImpl(const std::function<bool()> &impl);
     void setIsSaveNeededImpl(const std::function<bool()> &impl);
     void setGetDefaultImpl(const std::function<QVariant()> &impl);
@@ -462,7 +462,7 @@ public:
     QVariant maxValue() const override;
     void setDefault() override;
     void swapDefault() override;
-    // KF6 TODO - fix this
+    // KF7 TODO - fix this
     // Ideally we would do this in an overload of KConfigSkeletonItem, but
     // given we can't, I've shadowed the method. This isn't pretty, but given
     // the docs say it should generally only be used from auto generated code,
