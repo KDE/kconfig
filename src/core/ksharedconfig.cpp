@@ -81,6 +81,9 @@ namespace
 
     QString newPath = xdgStateHome + "/"_L1 + fileName; // intentionally not const so it can be move returned
     QString oldPath = QStandardPaths::locate(QStandardPaths::AppDataLocation, fileName);
+    if (oldPath.isEmpty()) { // nothing to migrate
+        return newPath;
+    }
     if (QFile::exists(oldPath) && QFile::exists(newPath)) {
         qCDebug(KCONFIG_CORE_LOG) << "Old staterc and new staterc found. Not migrating! Using new path" << newPath;
         return newPath;
