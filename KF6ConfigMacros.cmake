@@ -35,7 +35,7 @@
 #        VISIBILITY
 #        HEADER_EXTENSION
 #        SOURCE_EXTENSION
-#        NAMESPACE
+#        NAME_SPACE
 #        INHERITS
 #        MEMBER_VARIABLES
 #        TRANSLATION_SYSTEM
