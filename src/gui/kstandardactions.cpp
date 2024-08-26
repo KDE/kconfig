@@ -109,6 +109,10 @@ QAction *_kgui_createInternal(StandardAction id, QObject *parent)
 
         QIcon icon = iconName.isEmpty() ? QIcon() : QIcon::fromTheme(iconName);
 
+        if (id == AboutApp) {
+            icon = qGuiApp->windowIcon();
+        }
+
         // Set the text before setting the MenuRole, as on OS X setText will do some heuristic role guessing.
         // This ensures user menu items get the intended role out of the list below.
         pAction->setText(sLabel);
