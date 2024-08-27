@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Johannes Obermayr <johannesobermayr@gmx.de>
+# SPDX-FileCopyrightText: 2023, 2024 Johannes Obermayr <johannesobermayr@gmx.de>
 # Thomas Diehl <thd@kde.org>, 2003.
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2006, 2007, 2008.
 # Frederik Schwarzer <schwarzer@kde.org>, 2012, 2014, 2015, 2016, 2020, 2022.
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-12-18 15:15+0100\n"
+"PO-Revision-Date: 2024-08-26 18:25+0200\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.05.2\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:940
@@ -38,696 +38,502 @@ msgid "Default"
 msgstr "Standard"
 
 #: gui/kstandardactions.cpp:49
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "go back|"
 msgid "&Back"
-msgstr "Zurück"
+msgstr "&Zurück"
 
 #: gui/kstandardactions.cpp:56
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr "Vorwärts"
+msgstr "&Vorwärts"
 
 #: gui/kstandardactions.cpp:63
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action Go to main page"
-#| msgid "Home"
 msgctxt "home page|"
 msgid "&Home"
-msgstr "Pos 1"
+msgstr "&Startseite"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&New"
-msgstr ""
+msgstr "&Neu"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Create new document"
-msgstr ""
+msgstr "Neues Dokument erstellen"
 
 #: gui/kstandardactions_p.h:68
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open"
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "Öffnen"
+msgstr "Öff&nen …"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
-msgstr ""
+msgstr "Vorhandenes Dokument öffnen"
 
 #: gui/kstandardactions_p.h:69
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "Zuletzt geöffnete Dateien"
+msgstr "&Zuletzt geöffnete Dateien"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr ""
+msgstr "Kürzlich geöffnetes Dokument öffnen"
 
 #: gui/kstandardactions_p.h:70
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save"
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "Speichern"
+msgstr "&Speichern"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Save document"
-msgstr ""
+msgstr "Dokument speichern"
 
 #: gui/kstandardactions_p.h:71
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save As"
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "Speichern unter"
+msgstr "Speichern &unter …"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr ""
+msgstr "Dokument unter einem neuen Namen speichern"
 
 #: gui/kstandardactions_p.h:72
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Revert"
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr "Zurücksetzen"
+msgstr "Zu&rücksetzen"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr ""
+msgstr "Nicht gespeicherte Änderungen am Dokument verwerfen"
 
 #: gui/kstandardactions_p.h:73
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Close"
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr "Schließen"
+msgstr "&Schließen"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Close document"
-msgstr ""
+msgstr "Dokument schließen"
 
 #: gui/kstandardactions_p.h:74
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print"
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "Drucken"
+msgstr "&Drucken …"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Print document"
-msgstr ""
+msgstr "Dokument drucken"
 
 #: gui/kstandardactions_p.h:75
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print Preview"
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr "Druckvorschau"
+msgstr "Druck&vorschau"
 
 #: gui/kstandardactions_p.h:75
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
-msgstr ""
+msgstr "Druckvorschau des Dokuments anzeigen"
 
 #: gui/kstandardactions_p.h:76
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Mail"
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "Via E-Mail versenden"
+msgstr "&E-Mail …"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
-msgstr ""
+msgstr "Dokument als E-Mail versenden"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Quit"
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr "Beenden"
+msgstr "Be&enden"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About Application"
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr "Über die Anwendung"
+msgstr "Anwendung beenden"
 
 #: gui/kstandardactions_p.h:79
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Undo"
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr "Rückgängig"
+msgstr "&Rückgängig"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Undo last action"
-msgstr ""
+msgstr "Letzte Aktion zurücknehmen"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Re&do"
-msgstr ""
+msgstr "Wie&derherstellen"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
-msgstr ""
+msgstr "Letzte rückgängig gemachte Aktion wieder herstellen"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cu&t"
-msgstr ""
+msgstr "&Ausschneiden"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
-msgstr ""
+msgstr "Auswahl in Zwischenablage ausschneiden"
 
 #: gui/kstandardactions_p.h:82
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Copy"
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr "Kopieren"
+msgstr "&Kopieren"
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
-msgstr ""
+msgstr "Auswahl in die Zwischenablage kopieren"
 
 #: gui/kstandardactions_p.h:83
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Paste"
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr "Einfügen"
+msgstr "&Einfügen"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
-msgstr ""
+msgstr "Inhalt der Zwischenablage einfügen"
 
 #: gui/kstandardactions_p.h:84
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Clear"
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr "Leeren"
+msgstr "&Löschen"
 
 #: gui/kstandardactions_p.h:85
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "Alle auswählen"
+msgstr "&Alle auswählen"
 
 #: gui/kstandardactions_p.h:86
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Deselect"
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "Auswahl aufheben"
 
 #: gui/kstandardactions_p.h:87
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find"
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "Suchen"
+msgstr "&Suchen …"
 
 #: gui/kstandardactions_p.h:88
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Next"
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr "Weitersuchen"
+msgstr "&Weitersuchen"
 
 #: gui/kstandardactions_p.h:89
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Prev"
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr "Vorherige suchen"
+msgstr "&Frühere suchen"
 
 #: gui/kstandardactions_p.h:90
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Replace"
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "Ersetzen"
+msgstr "&Ersetzen …"
 
 #: gui/kstandardactions_p.h:92
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom to Actual Size"
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "Auf Originalgröße zoomen"
+msgstr "Auf &Originalgröße zoomen"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr ""
+msgstr "Dokument in Originalgröße anzeigen"
 
 #: gui/kstandardactions_p.h:93
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr "Auf Seite einpassen"
+msgstr "&Auf Seite einpassen"
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
-msgstr ""
+msgstr "Skalieren um Seite in Fenster einzupassen"
 
 #: gui/kstandardactions_p.h:94
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Width"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "Auf Seitenbreite einpassen"
+msgstr "Auf Seiten&breite einpassen"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
-msgstr ""
+msgstr "Skalieren um Seitenbreite in Fenster einzupassen"
 
 #: gui/kstandardactions_p.h:95
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Height"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "Auf Seitenhöhe einpassen"
+msgstr "Auf Seiten&höhe einpassen"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
-msgstr ""
+msgstr "Skalieren um Seitenhöhe in Fenster einzupassen"
 
 #: gui/kstandardactions_p.h:96
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom In"
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "Vergrößern"
+msgstr "Ver&größern"
 
 #: gui/kstandardactions_p.h:97
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom Out"
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "Verkleinern"
+msgstr "Ver&kleinern"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom"
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "Skalierung"
+msgstr "&Vergrößerung …"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "Alle auswählen"
+msgstr "Vergrößerung auswählen"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr ""
+msgstr "&Aktualisieren"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr ""
+msgstr "Dokument aktualisieren"
 
 #: gui/kstandardactions_p.h:101
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Up"
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr "Nach oben"
+msgstr "Nach &oben"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
 msgid "Go up"
-msgstr ""
+msgstr "Nach oben"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Vorherige Seite"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
-msgstr ""
+msgstr "Zur vorherigen Seite"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr "Gehe zu Seite"
+msgstr "&Nächste Seite"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr "Gehe zu Zeile"
+msgstr "Zur nächsten Seite gehen"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr ""
+msgstr "&Gehe zu …"
 
 #: gui/kstandardactions_p.h:109
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "Gehe zu Seite"
+msgstr "Zu &Seite gehen …"
 
 #: gui/kstandardactions_p.h:110
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "Gehe zu Zeile"
+msgstr "Zu &Zeile gehen …"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr "Auf Seite einpassen"
+msgstr "&Erste Seite"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr "Gehe zu Zeile"
+msgstr "Zur ersten Seite gehen"
 
 #: gui/kstandardactions_p.h:112
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr "Gehe zu Seite"
+msgstr "&Letzte Seite"
 
 #: gui/kstandardactions_p.h:112
 msgctxt "KStandardActions|"
 msgid "Go to last page"
-msgstr ""
+msgstr "Zur letzten Seite"
 
 #: gui/kstandardactions_p.h:113
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr "Zurück"
+msgstr "&Zurück"
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "Go back in document"
-msgstr ""
+msgstr "Rückwärts im Dokument"
 
 #: gui/kstandardactions_p.h:114
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "Vorwärts"
+msgstr "&Vorwärts"
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
-msgstr ""
+msgstr "Vorwärts im Dokument"
 
 #: gui/kstandardactions_p.h:116
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Add Bookmark"
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr "Lesezeichen hinzufügen"
+msgstr "Lesezeichen hin&zufügen"
 
 #: gui/kstandardactions_p.h:117
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Edit Bookmarks"
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "Lesezeichen bearbeiten"
+msgstr "Lesezeichen &bearbeiten …"
 
 #: gui/kstandardactions_p.h:119
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Spelling"
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "Rechtschreibung"
+msgstr "Rech&tschreibung …"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
-msgstr ""
+msgstr "Rechtschreibprüfung im Dokument"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr "Menüleiste anzeigen"
+msgstr "&Menüleiste anzeigen"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr "Menüleiste anzeigen"
+msgstr "Menüleiste anzeigen oder ausblenden"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr "Werkzeugleiste anzeigen"
+msgstr "&Werkzeugleiste anzeigen"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr "Werkzeugleiste anzeigen"
+msgstr "Werkzeugleiste anzeigen oder ausblenden"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
-msgstr "Statusleiste anzeigen"
+msgstr "&Statusleiste anzeigen"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr "Statusleiste anzeigen"
+msgstr "Statusleiste anzeigen oder ausblenden"
 
 #: gui/kstandardactions_p.h:124
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Full Screen Mode"
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
-msgstr "Vollbildmodus"
+msgstr "&Vollbildmodus"
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr ""
+msgstr "Tastaturkurzbefe&hle festlegen …"
 
 #: gui/kstandardactions_p.h:126
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "Sprache einrichten ..."
+msgstr "%1 einrichten …"
 
 #: gui/kstandardactions_p.h:127
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Toolbars"
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "Werkzeugleisten einrichten"
+msgstr "Werk&zeugleisten einrichten …"
 
 #: gui/kstandardactions_p.h:128
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Notifications"
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "Benachrichtigungen festlegen"
+msgstr "&Benachrichtigungen festlegen …"
 
 #: gui/kstandardactions_p.h:132
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr ""
+msgstr "&Handbuch zu %1"
 
 #: gui/kstandardactions_p.h:133
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "What's This"
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "Was ist das"
+msgstr "&Was ist das?"
 
 #: gui/kstandardactions_p.h:134
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Report Bug"
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "Probleme oder Wünsche berichten"
+msgstr "P&robleme oder Wünsche berichten …"
 
 #: gui/kstandardactions_p.h:135
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "Sprache einrichten ..."
+msgstr "&Sprache einrichten …"
 
 #: gui/kstandardactions_p.h:136
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "Über KDE"
+msgstr "Ü&ber %1"
 
 #: gui/kstandardactions_p.h:137
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "Über KDE"
+msgstr "Über &KDE"
 
 #: gui/kstandardactions_p.h:138
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Delete"
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr "Löschen"
+msgstr "&Löschen"
 
 #: gui/kstandardactions_p.h:139
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Rename"
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "Umbenennen"
+msgstr "&Umbenennen …"
 
 #: gui/kstandardactions_p.h:140
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Move to Trash"
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
-msgstr "In den Papierkorb verschieben"
+msgstr "In den &Papierkorb verschieben"
 
 #: gui/kstandardactions_p.h:141
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Donate"
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "Spenden"
+msgstr "&Spenden"
 
 #: gui/kstandardactions_p.h:142
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "Hauptmenü öffnen"
+msgstr "&Menü öffnen"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
@@ -1095,12 +901,9 @@ msgid "Report Bug"
 msgstr "Probleme oder Wünsche berichten"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "Sprache einrichten ..."
+msgstr "Sprache einrichten …"
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
