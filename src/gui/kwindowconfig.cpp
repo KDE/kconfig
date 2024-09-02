@@ -161,8 +161,6 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
 
     if (isMaximized) {
         window->setWindowState(Qt::WindowMaximized);
-        // If the window hasn't been shown yet, it should have the correct state when it's eventually opened
-        window->setVisibility(QWindow::Visibility::Maximized);
     }
 }
 
