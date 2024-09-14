@@ -7,20 +7,21 @@
 # Dimitris Kardarakos <dimkard@gmail.com>, 2015, 2016.
 # Stelios <sstavra@gmail.com>, 2020, 2023.
 # SPDX-FileCopyrightText: 2024 George Stefanakis <george.stefanakis@gmail.com>
+# Antonis Geralis <capoiosct@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-02-05 22:17+0200\n"
-"Last-Translator: George Stefanakis <george.stefanakis@gmail.com>\n"
+"PO-Revision-Date: 2024-09-07 21:11+0300\n"
+"Last-Translator: Αντώνης Γέραλης <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-doc@kde.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.08.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:940
@@ -41,577 +42,421 @@ msgid "Default"
 msgstr "Προκαθορισμένο"
 
 #: gui/kstandardactions.cpp:49
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "go back|"
 msgid "&Back"
-msgstr "Πίσω"
+msgstr "&Πίσω"
 
 #: gui/kstandardactions.cpp:56
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr "Μπροστά"
+msgstr "&Μπροστά"
 
 #: gui/kstandardactions.cpp:63
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action Go to main page"
-#| msgid "Home"
 msgctxt "home page|"
 msgid "&Home"
-msgstr "Αρχική"
+msgstr "&Αρχική"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&New"
-msgstr ""
+msgstr "&Νέο"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Create new document"
-msgstr ""
+msgstr "Δημιουργία νέου εγγράφου"
 
 #: gui/kstandardactions_p.h:68
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open"
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "Άνοιγμα"
+msgstr "&Άνοιγμα…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
-msgstr ""
+msgstr "Άνοιγμα υπάρχοντος εγγράφου"
 
 #: gui/kstandardactions_p.h:69
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "Άνοιγμα πρόσφατου"
+msgstr "Άνοιγμα &πρόσφατου"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr ""
+msgstr "Άνοιγμα ενός εγγράφου που ανοίχτηκε πρόσφατα"
 
 #: gui/kstandardactions_p.h:70
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save"
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "Αποθήκευση"
+msgstr "&Αποθήκευση"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Save document"
-msgstr ""
+msgstr "Αποθήκευση εγγράφου"
 
 #: gui/kstandardactions_p.h:71
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save As"
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "Αποθήκευση ως"
+msgstr "Αποθήκευση &ως…"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr ""
+msgstr "Αποθήκευση εγγράφου με νέο όνομα"
 
 #: gui/kstandardactions_p.h:72
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Revert"
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr "Επαναφορά"
+msgstr "Επαναφο&ρά"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr ""
+msgstr "Επαναφορά μη αποθηκευμένων αλλαγών στο έγγραφο"
 
 #: gui/kstandardactions_p.h:73
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Close"
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr "Κλείσιμο"
+msgstr "&Κλείσιμο"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Close document"
-msgstr ""
+msgstr "Κλείσιμο εγγράφου"
 
 #: gui/kstandardactions_p.h:74
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print"
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "Εκτύπωση"
+msgstr "&Εκτύπωση…"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Print document"
-msgstr ""
+msgstr "Εκτύπωση εγγράφου"
 
 #: gui/kstandardactions_p.h:75
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print Preview"
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr "Προεπισκόπηση εκτύπωσης"
+msgstr "Προεπισκόπηση ε&κτύπωσης"
 
 #: gui/kstandardactions_p.h:75
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
-msgstr ""
+msgstr "Εμφάνιση προεπισκόπησης εκτύπωσης του εγγράφου"
 
 #: gui/kstandardactions_p.h:76
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Mail"
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "Αλληλογραφία"
+msgstr "&Αλληλογραφία…"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
-msgstr ""
+msgstr "Αποστολή εγγράφου μέσω ταχυδρομείου"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Quit"
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr "Έξοδος"
+msgstr "Έ&ξοδος"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About Application"
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr "Σχετικά με την εφαρμογή"
+msgstr "Κλείσιμο εφαρμογής"
 
 #: gui/kstandardactions_p.h:79
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Undo"
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr "Αναίρεση"
+msgstr "&Αναίρεση"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Undo last action"
-msgstr ""
+msgstr "Αναίρεση της τελευταίας ενέργειας"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Re&do"
-msgstr ""
+msgstr "Επαναφορά"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
-msgstr ""
+msgstr "Επανάληψη της τελευταίας ενέργειας που ακυρώθηκε"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cu&t"
-msgstr ""
+msgstr "Αποκο&πή"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
-msgstr ""
+msgstr "Αποκοπή επιλογής στο πρόχειρο"
 
 #: gui/kstandardactions_p.h:82
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Copy"
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr "Αντιγραφή"
+msgstr "&Αντιγραφή"
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
-msgstr ""
+msgstr "Αντιγραφή επιλογής στο πρόχειρο"
 
 #: gui/kstandardactions_p.h:83
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Paste"
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr "Επικόλληση"
+msgstr "&Επικόλληση"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
-msgstr ""
+msgstr "Επικόλληση περιεχομένου πρόχειρου"
 
 #: gui/kstandardactions_p.h:84
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Clear"
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr "Καθαρισμός"
+msgstr "Εκκα&θάριση"
 
 #: gui/kstandardactions_p.h:85
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "Επιλογή όλων"
+msgstr "Επιλογή &όλων"
 
 #: gui/kstandardactions_p.h:86
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Deselect"
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
-msgstr "Αποεπιλογή"
+msgstr "Αποεπιλ&ογή"
 
 #: gui/kstandardactions_p.h:87
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find"
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "Εύρεση"
+msgstr "&Εύρεση…"
 
 #: gui/kstandardactions_p.h:88
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Next"
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr "Εύρεση επόμενου"
+msgstr "Εύρεση &επόμενου"
 
 #: gui/kstandardactions_p.h:89
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Prev"
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr "Εύρεση προηγούμενου"
+msgstr "Εύρεση προη&γούμενου"
 
 #: gui/kstandardactions_p.h:90
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Replace"
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "Αντικατάσταση"
+msgstr "&Αντικατάσταση…"
 
 #: gui/kstandardactions_p.h:92
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom to Actual Size"
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "Εστίαση στο πραγματικό μέγεθος"
+msgstr "Εστίαση σε &πραγματικό μέγεθος"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr ""
+msgstr "Προβολή του εγγράφου στο πραγματικό του μέγεθος"
 
 #: gui/kstandardactions_p.h:93
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr "Προσαρμογή στη σελίδα"
+msgstr "&Προσαρμογή στη σελίδα"
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
-msgstr ""
+msgstr "Εστίαση για προσαρμογή σελίδας στο παράθυρο"
 
 #: gui/kstandardactions_p.h:94
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Width"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "Προσαρμογή στο πλάτος"
+msgstr "Προσαρμογή στο &πλάτος σελίδας"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
-msgstr ""
+msgstr "Εστίαση για προσαρμογή πλάτους σελίδας στο παράθυρο"
 
 #: gui/kstandardactions_p.h:95
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Height"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "Προσαρμογή στο ύψος"
+msgstr "Προσαρμογή στο ύ&ψος σελίδας"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
-msgstr ""
+msgstr "Εστίαση για προσαρμογή ύψους σελίδας στο παράθυρο"
 
 #: gui/kstandardactions_p.h:96
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom In"
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "Μεγέθυνση"
+msgstr "&Μεγέθυνση"
 
 #: gui/kstandardactions_p.h:97
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom Out"
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "Σμίκρυνση"
+msgstr "&Σμίκρυνση"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom"
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "Εστίαση"
+msgstr "Εσ&τίαση…"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "Επιλογή όλων"
+msgstr "Επιλογή επιπέδου εστίασης"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr ""
+msgstr "&Ανανέωση"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr ""
+msgstr "Ανανέωση εγγράφου"
 
 #: gui/kstandardactions_p.h:101
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Up"
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr "Πάνω"
+msgstr "&Πάνω"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
 msgid "Go up"
-msgstr ""
+msgstr "Μετάβαση πάνω"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Προηγούμενη σελίδα"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
-msgstr ""
+msgstr "Μετάβαση στην προηγούμενη σελίδα"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr "Μετάβαση σε σελίδα"
+msgstr "&Επόμενη σελίδα"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr "Μετάβαση στη γραμμή"
+msgstr "Μετάβαση στην επόμενη σελίδα"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr ""
+msgstr "&Μετάβαση σε…"
 
 #: gui/kstandardactions_p.h:109
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "Μετάβαση σε σελίδα"
+msgstr "&Μετάβαση στη σελίδα…"
 
 #: gui/kstandardactions_p.h:110
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "Μετάβαση στη γραμμή"
+msgstr "&Μετάβαση στη γραμμή…"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr "Προσαρμογή στη σελίδα"
+msgstr "&Πρώτη σελίδα"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr "Μετάβαση στη γραμμή"
+msgstr "Μετάβαση στην πρώτη σελίδα"
 
 #: gui/kstandardactions_p.h:112
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr "Μετάβαση σε σελίδα"
+msgstr "&Τελευταία σελίδα"
 
 #: gui/kstandardactions_p.h:112
 msgctxt "KStandardActions|"
 msgid "Go to last page"
-msgstr ""
+msgstr "Μετάβαση στην τελευταία σελίδα"
 
 #: gui/kstandardactions_p.h:113
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr "Πίσω"
+msgstr "&Πίσω"
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "Go back in document"
-msgstr ""
+msgstr "Μετάβαση πίσω στο έγγραφο"
 
 #: gui/kstandardactions_p.h:114
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "Μπροστά"
+msgstr "&Μπροστά"
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
-msgstr ""
+msgstr "Μετάβαση προς τα εμπρός στο έγγραφο"
 
 #: gui/kstandardactions_p.h:116
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Add Bookmark"
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr "Προσθήκη σελιδοδείκτη"
+msgstr "&Προσθήκη σελιδοδείκτη"
 
 #: gui/kstandardactions_p.h:117
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Edit Bookmarks"
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "Επεξεργασία σελιδοδεικτών"
+msgstr "&Επεξεργασία σελιδοδεικτών…"
 
 #: gui/kstandardactions_p.h:119
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Spelling"
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "Ορθογραφικός έλεγχος"
+msgstr "&Ορθογραφία…"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
-msgstr ""
+msgstr "Έλεγχος ορθογραφίας στο έγγραφο"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr "Εμφάνιση γραμμής μενού"
+msgstr "Εμφάνιση &γραμμής μενού"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr "Εμφάνιση γραμμής μενού"
+msgstr "Εμφάνιση ή απόκρυψη της γραμμής μενού"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr "Εμφάνιση γραμμής εργαλείων"
+msgstr "Εμφάνιση &γραμμής εργαλείων"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr "Εμφάνιση γραμμής εργαλείων"
+msgstr "Εμφάνιση ή απόκρυψη γραμμής εργαλείων"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "Εμφάνιση γραμμής κατάστασης"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr "Εμφάνιση γραμμής κατάστασης"
+msgstr "Εμφάνιση ή απόκρυψη γραμμής κατάστασης"
 
 #: gui/kstandardactions_p.h:124
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Full Screen Mode"
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "Λειτουργία πλήρους οθόνης"
@@ -619,118 +464,80 @@ msgstr "Λειτουργία πλήρους οθόνης"
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr ""
+msgstr "Διαμόρφωση συν&τομεύσεων πληκτρολογίου…"
 
 #: gui/kstandardactions_p.h:126
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "Διαμόρφωση γλώσσας..."
+msgstr "&Διαμόρφωση %1…"
 
 #: gui/kstandardactions_p.h:127
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Toolbars"
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "Διαμόρφωση γραμμών εργαλείων"
+msgstr "Διαμόρφωση εργαλείων &γραμμών…"
 
 #: gui/kstandardactions_p.h:128
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Notifications"
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "Διαμόρφωση ειδοποιήσεων"
+msgstr "Διαμόρφωση &ειδοποιήσεων…"
 
 #: gui/kstandardactions_p.h:132
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr ""
+msgstr "%1 &εγχειρίδιο"
 
 #: gui/kstandardactions_p.h:133
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "What's This"
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "Τι είναι αυτό"
+msgstr "Τι είναι αυτό?"
 
 #: gui/kstandardactions_p.h:134
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Report Bug"
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "Αναφορά σφάλματος"
+msgstr "&Αναφορά σφάλματος…"
 
 #: gui/kstandardactions_p.h:135
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "Διαμόρφωση γλώσσας..."
+msgstr "Διαμόρφωση γ&λώσσας…"
 
 #: gui/kstandardactions_p.h:136
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "Σχετικά με το KDE"
+msgstr "Σ&χετικά με το %1"
 
 #: gui/kstandardactions_p.h:137
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "Σχετικά με το KDE"
+msgstr "Σχετικά με το &KDE"
 
 #: gui/kstandardactions_p.h:138
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Delete"
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr "Διαγραφή"
+msgstr "&Διαγραφή"
 
 #: gui/kstandardactions_p.h:139
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Rename"
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "Μετονομασία"
+msgstr "&Μετονομασία…"
 
 #: gui/kstandardactions_p.h:140
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Move to Trash"
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "Μετακίνηση στα απορρίμματα"
 
 #: gui/kstandardactions_p.h:141
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Donate"
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "Δωρεά"
+msgstr "&Δωρεά"
 
 #: gui/kstandardactions_p.h:142
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "Άνοιγμα κυρίως μενού"
+msgstr "&Άνοιγμα κυρίως μενού"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
@@ -965,7 +772,7 @@ msgstr "Επόμενο ταίριασμα συμπλήρωσης"
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
-msgstr "Συμπλήρωση υπο-συμβολοσειράς"
+msgstr "Συμπλήρωση υποσυμβολοσειράς"
 
 #: gui/kstandardshortcut.cpp:276
 msgctxt "KStandardShortcut|@action"
@@ -1005,7 +812,7 @@ msgstr "Αλληλογραφία"
 #: gui/kstandardshortcut.cpp:296
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr "Καθαρισμός"
+msgstr "Εκκαθάριση"
 
 #: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
@@ -1060,7 +867,7 @@ msgstr "Επεξεργασία σελιδοδεικτών"
 #: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
-msgstr "Ορθογραφικός έλεγχος"
+msgstr "Ορθογραφία"
 
 #: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
@@ -1098,9 +905,6 @@ msgid "Report Bug"
 msgstr "Αναφορά σφάλματος"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr "Διαμόρφωση γλώσσας..."
@@ -1152,10 +956,6 @@ msgid "Open Main Menu"
 msgstr "Άνοιγμα κυρίως μενού"
 
 #: gui/kstandardshortcut.cpp:420
-#, fuzzy
-#| msgctxt ""
-#| "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
-#| msgid "Open Main Menu"
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "Άνοιγμα κυρίως μενού"
