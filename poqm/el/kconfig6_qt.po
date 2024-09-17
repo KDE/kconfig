@@ -69,7 +69,7 @@ msgstr "Δημιουργία νέου εγγράφου"
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "&Άνοιγμα…"
+msgstr "Άνοι&γμα…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
@@ -224,7 +224,7 @@ msgstr "Εκκα&θάριση"
 #: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "Επιλογή &όλων"
+msgstr "Επι&λογή όλων"
 
 #: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
@@ -537,7 +537,7 @@ msgstr "&Δωρεά"
 #: gui/kstandardactions_p.h:142
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "&Άνοιγμα κυρίως μενού"
+msgstr "Άνο&ιγμα κυρίως μενού"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
