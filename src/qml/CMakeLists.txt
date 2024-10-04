@@ -61,4 +61,4 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml COMPONENT Devel
 )
 
-ecm_finalize_qml_module(KF6ConfigQml DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(KF6ConfigQml DESTINATION ${KDE_INSTALL_QMLDIR} EXPORT KF6ConfigTargets)
