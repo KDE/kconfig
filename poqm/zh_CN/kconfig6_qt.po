@@ -310,7 +310,7 @@ msgstr "刷新(&R)"
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr "刷新文档"
+msgstr "刷新"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
