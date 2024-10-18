@@ -121,6 +121,11 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
             // no longer maximized at this point
             config.deleteEntry(screenMaximizedString());
         }
+        // Revert width and height to default if they are same as defaults
+        else if (sizeValid && (defaultSize == sizeToSave || defaultScreenSize == screen->geometry().size())) {
+            config.revertToDefault(windowWidthString());
+            config.revertToDefault(windowHeightString());
+        }
     }
     if ((isMaximized == false) && !config.hasDefault(screenMaximizedString())) {
         config.revertToDefault(screenMaximizedString());
