@@ -114,7 +114,7 @@ void KWindowConfig::saveWindowSize(const QWindow *window, KConfigGroup &config, 
         const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
         const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
         const bool sizeValid = defaultSize.isValid() && defaultScreenSize.isValid();
-        if (!sizeValid || (sizeValid && (defaultSize != sizeToSave || defaultScreenSize != screen->geometry().size()))) {
+        if (!sizeValid || (defaultSize != sizeToSave || defaultScreenSize != screen->geometry().size())) {
             config.writeEntry(windowWidthString(), sizeToSave.width(), options);
             config.writeEntry(windowHeightString(), sizeToSave.height(), options);
             // Don't keep the maximized string in the file since the window is
