@@ -5,19 +5,20 @@
 # Erik Kjær Pedersen <erik@binghamton.edu>, 2003.
 # Keld Simonsen <keld@dkuug.dk>, 2008.
 # Martin Schlander <mschlander@opensuse.org>, 2008, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# SPDX-FileCopyrightText: 2024 rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2020-10-27 18:51+0100\n"
-"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"PO-Revision-Date: 2024-10-21 13:07+0200\n"
+"Last-Translator: rasmus rosendahl-kaa <rasmus@rosendahl-kaa.name>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 24.08.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
@@ -39,695 +40,502 @@ msgid "Default"
 msgstr "Standard"
 
 #: gui/kstandardactions.cpp:49
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "go back|"
 msgid "&Back"
-msgstr "Tilbage"
+msgstr "&Tilbage"
 
 #: gui/kstandardactions.cpp:56
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr "Frem"
+msgstr "&Frem"
 
 #: gui/kstandardactions.cpp:63
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action Go to main page"
-#| msgid "Home"
 msgctxt "home page|"
 msgid "&Home"
-msgstr "Hjem"
+msgstr "&Hjem"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&New"
-msgstr ""
+msgstr "&Ny"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Create new document"
-msgstr ""
+msgstr "Opret nyt dokument"
 
 #: gui/kstandardactions_p.h:68
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open"
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "Åbn"
+msgstr "&Åbn…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
-msgstr ""
+msgstr "Åbn et eksisterende dokument"
 
 #: gui/kstandardactions_p.h:69
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "Åbn nylige"
+msgstr "Åbn &nylige"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr ""
+msgstr "Åbn et dokument der er blevet åbnet for nyligt"
 
 #: gui/kstandardactions_p.h:70
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save"
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "Gem"
+msgstr "&Gem"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Save document"
-msgstr ""
+msgstr "Gem dokument"
 
 #: gui/kstandardactions_p.h:71
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Save As"
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "Gem som"
+msgstr "Gem &som…"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr ""
+msgstr "Gem dokument under et nyt navn"
 
 #: gui/kstandardactions_p.h:72
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Revert"
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr "Vend tilbage"
+msgstr "Vend &tilbage"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr ""
+msgstr "Nulstil ikke-gemte ændringer af dokumentet"
 
 #: gui/kstandardactions_p.h:73
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Close"
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr "Luk"
+msgstr "&Luk"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Close document"
-msgstr ""
+msgstr "Luk dokument"
 
 #: gui/kstandardactions_p.h:74
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print"
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "Udskriv"
+msgstr "&Udskriv…"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Print document"
-msgstr ""
+msgstr "Udskriv dokument"
 
 #: gui/kstandardactions_p.h:75
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Print Preview"
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr "Vis udskrift"
+msgstr "Vis udskrif&t"
 
 #: gui/kstandardactions_p.h:75
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
-msgstr ""
+msgstr "Vis udskrift for et dokument"
 
 #: gui/kstandardactions_p.h:76
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Mail"
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "Mail"
+msgstr "&Mail…"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
-msgstr ""
+msgstr "Send dokument via e-mail"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Quit"
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr "Afslut"
+msgstr "&Afslut"
 
 #: gui/kstandardactions_p.h:77
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About Application"
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr "Om programmet"
+msgstr "Afslut programmet"
 
 #: gui/kstandardactions_p.h:79
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Undo"
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr "Fortryd"
+msgstr "&Fortryd"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Undo last action"
-msgstr ""
+msgstr "Fortryd seneste handling"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Re&do"
-msgstr ""
+msgstr "Gen&dan"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
-msgstr ""
+msgstr "Gendan seneste fortrudte handling"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cu&t"
-msgstr ""
+msgstr "K&lip"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
-msgstr ""
+msgstr "Klip det markerede til udklipsholderen"
 
 #: gui/kstandardactions_p.h:82
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Copy"
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr "Kopiér"
+msgstr "&Kopiér"
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
-msgstr ""
+msgstr "Kopiér markering til udklipsholder"
 
 #: gui/kstandardactions_p.h:83
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Paste"
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr "Indsæt"
+msgstr "&Indsæt"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
-msgstr ""
+msgstr "Indsæt indhold fra udklipsholder"
 
 #: gui/kstandardactions_p.h:84
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Clear"
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr "Ryd"
+msgstr "R&yd"
 
 #: gui/kstandardactions_p.h:85
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "Markér alt"
+msgstr "Markér &alt"
 
 #: gui/kstandardactions_p.h:86
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Deselect"
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
-msgstr "Fravælg"
+msgstr "Fra&vælg"
 
 #: gui/kstandardactions_p.h:87
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find"
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "Find"
+msgstr "&Find…"
 
 #: gui/kstandardactions_p.h:88
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Next"
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr "Find næste"
+msgstr "Find &næste"
 
 #: gui/kstandardactions_p.h:89
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Find Prev"
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr "Find forrige"
+msgstr "Find fo&rrige"
 
 #: gui/kstandardactions_p.h:90
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Replace"
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "Erstat"
+msgstr "&Erstat…"
 
 #: gui/kstandardactions_p.h:92
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "Faktisk størrelse"
+msgstr "Zoom til &faktisk størrelse"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr ""
+msgstr "Se dokumentet i dets faktiske størrelse"
 
 #: gui/kstandardactions_p.h:93
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr "Pas til siden"
+msgstr "&Pas til siden"
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
-msgstr ""
+msgstr "Zoom så siden passer til vinduet"
 
 #: gui/kstandardactions_p.h:94
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Width"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr "Pas til bredden"
+msgstr "Pas til side&bredden"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
-msgstr ""
+msgstr "Zoom så sidens bredde passer til vinduet"
 
 #: gui/kstandardactions_p.h:95
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Height"
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr "Pas til højden"
+msgstr "Tilpas til side&højden"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
-msgstr ""
+msgstr "Zoom så sidens højde passer til vinduet"
 
 #: gui/kstandardactions_p.h:96
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom In"
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "Zoom ind"
+msgstr "Zoom &ind"
 
 #: gui/kstandardactions_p.h:97
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom Out"
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "Zoom ud"
+msgstr "Zoom &ud"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Zoom"
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "Zoom"
+msgstr "&Zoom…"
 
 #: gui/kstandardactions_p.h:98
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Select All"
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "Markér alt"
+msgstr "Vælg zoomniveau"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr ""
+msgstr "&Genindlæs"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr ""
+msgstr "Genindlæs dokument"
 
 #: gui/kstandardactions_p.h:101
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Up"
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr "Op"
+msgstr "&Op"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
 msgid "Go up"
-msgstr ""
+msgstr "Gå op"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Forrige side"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
-msgstr ""
+msgstr "Gå til forrige side"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr "Gå til side"
+msgstr "&Næste side"
 
 #: gui/kstandardactions_p.h:107
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr "Gå til linje"
+msgstr "&Gå til næste side"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr ""
+msgstr "&Gå til…"
 
 #: gui/kstandardactions_p.h:109
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "Gå til side"
+msgstr "&Gå til side…"
 
 #: gui/kstandardactions_p.h:110
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "Gå til linje"
+msgstr "&Gå til linje…"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Fit To Page"
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr "Pas til siden"
+msgstr "&Første side"
 
 #: gui/kstandardactions_p.h:111
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Go to Line"
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr "Gå til linje"
+msgstr "&Gå til første side"
 
 #: gui/kstandardactions_p.h:112
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Goto Page"
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr "Gå til side"
+msgstr "&Sidste side"
 
 #: gui/kstandardactions_p.h:112
 msgctxt "KStandardActions|"
 msgid "Go to last page"
-msgstr ""
+msgstr "Gå til sidste side"
 
 #: gui/kstandardactions_p.h:113
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Back"
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr "Tilbage"
+msgstr "&Tilbage"
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "Go back in document"
-msgstr ""
+msgstr "Gå tilbage i dokumentet"
 
 #: gui/kstandardactions_p.h:114
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Forward"
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "Frem"
+msgstr "&Frem"
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
-msgstr ""
+msgstr "Gå frem i dokumentet"
 
 #: gui/kstandardactions_p.h:116
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Add Bookmark"
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr "Tilføj bogmærke"
+msgstr "&Tilføj bogmærke"
 
 #: gui/kstandardactions_p.h:117
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Edit Bookmarks"
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "Redigér bogmærker"
+msgstr "&Redigér bogmærker…"
 
 #: gui/kstandardactions_p.h:119
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Spelling"
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "Stavekontrol"
+msgstr "&Stavekontrol…"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
-msgstr ""
+msgstr "Kør stavekontrol på dokumentet"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr "Vis menulinje"
+msgstr "Vis &menulinje"
 
 #: gui/kstandardactions_p.h:121
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Menu Bar"
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr "Vis menulinje"
+msgstr "Vis eller skjul menulinje"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr "Vis værktøjslinje"
+msgstr "Vis &værktøjslinje"
 
 #: gui/kstandardactions_p.h:122
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Toolbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr "Vis værktøjslinje"
+msgstr "Vis eller skjul værktøjslinje"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
-msgstr "Vis statuslinje"
+msgstr "Vis &statuslinje"
 
 #: gui/kstandardactions_p.h:123
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Show Statusbar"
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr "Vis statuslinje"
+msgstr "Vis elle skjul statuslinje"
 
 #: gui/kstandardactions_p.h:124
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Full Screen Mode"
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
-msgstr "Fuldskærmstilstand"
+msgstr "F&uldskærmstilstand"
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr ""
+msgstr "Indstil tastaturg&enveje…"
 
 #: gui/kstandardactions_p.h:126
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "Indstil sprog..."
+msgstr "&Indstil %1..."
 
 #: gui/kstandardactions_p.h:127
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Toolbars"
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "Indstil værktøjslinjer"
+msgstr "Indstil værktøjs&linjer"
 
 #: gui/kstandardactions_p.h:128
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Notifications"
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "Indstil bekendtgørelser"
+msgstr "Indstil &bekendtgørelser…"
 
 #: gui/kstandardactions_p.h:132
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr ""
+msgstr "%1-&håndbogen"
 
 #: gui/kstandardactions_p.h:133
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "What's This"
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "Hvad er dette"
+msgstr "Hvad er &dette?"
 
 #: gui/kstandardactions_p.h:134
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Report Bug"
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "Rapportér programfejl"
+msgstr "&Rapportér programfejl…"
 
 #: gui/kstandardactions_p.h:135
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "Indstil sprog..."
+msgstr "Indstil &sprog..."
 
 #: gui/kstandardactions_p.h:136
-#, fuzzy, qt-format
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
+#, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "Om KDE"
+msgstr "&Om %1"
 
 #: gui/kstandardactions_p.h:137
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "About KDE"
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "Om KDE"
+msgstr "Om &KDE"
 
 #: gui/kstandardactions_p.h:138
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Delete"
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr "Slet"
+msgstr "&Slet"
 
 #: gui/kstandardactions_p.h:139
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Rename"
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "Omdøb"
+msgstr "&Omdøb…"
 
 #: gui/kstandardactions_p.h:140
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Move to Trash"
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
-msgstr "Flyt til papirkurv"
+msgstr "&Flyt til papirkurv"
 
 #: gui/kstandardactions_p.h:141
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Donate"
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "Donér"
+msgstr "&Donér"
 
 #: gui/kstandardactions_p.h:142
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Open Recent"
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr "Åbn nylige"
+msgstr "Åbn &menu"
 
 #: gui/kstandardshortcut.cpp:70
 msgctxt "KStandardShortcut|@action"
@@ -1005,12 +813,9 @@ msgid "Clear"
 msgstr "Ryd"
 
 #: gui/kstandardshortcut.cpp:299
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Actual Size"
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Faktisk størrelse"
+msgstr "Zoom til faktisk størrelse"
 
 #: gui/kstandardshortcut.cpp:305
 msgctxt "KStandardShortcut|@action"
@@ -1098,12 +903,9 @@ msgid "Report Bug"
 msgstr "Rapportér programfejl"
 
 #: gui/kstandardshortcut.cpp:373
-#, fuzzy
-#| msgctxt "KStandardShortcut|@action"
-#| msgid "Configure Language..."
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "Indstil sprog..."
+msgstr "&Indstil sprog..."
 
 #: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
@@ -1149,12 +951,12 @@ msgstr "Opret mappe"
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "Åbn hovedmenu"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "Åbn kontekstmenu"
 
 #: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
@@ -1204,14 +1006,13 @@ msgid "Use <file> instead of global config"
 msgstr "Brug <file> i stedet for global config"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
-msgstr "Gruppe at kigge i. Brug gentagne gange for indskudte grupper."
+msgstr ""
+"Gruppe at kigge i. Brug \"<default>\" for root-gruppen eller brug gentagne "
+"gange for indskudte grupper."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
@@ -1231,7 +1032,7 @@ msgstr "Type af variabel"
 #: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
-msgstr ""
+msgstr "Gruppenavne kan ikke være tomme, brug \"<default>\" for root-gruppen"
 
 #: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
