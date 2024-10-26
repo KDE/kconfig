@@ -23,7 +23,7 @@ namespace KStandardActions
  * creation at runtime without copying/converting to new memalloc'ed memory, as well as avoiding
  * that way storing the strings directly as QStrings resulting in non-constexpr init code on
  * library loading
- * @internal
+ *
  */
 struct RawStringData {
     template<std::size_t StringSize>
@@ -52,7 +52,7 @@ private:
 };
 
 /*!
- * @internal
+ *
  */
 struct KStandardActionsInfo {
     KStandardActions::StandardAction id;
@@ -144,7 +144,7 @@ static constexpr KStandardActionsInfo g_rgActionInfo[] = {
 // clang-format on
 
 /*!
- * @internal
+ *
  */
 inline const KStandardActionsInfo *infoPtr(StandardAction id)
 {
@@ -158,7 +158,7 @@ inline const KStandardActionsInfo *infoPtr(StandardAction id)
 }
 
 /*!
- * @internal
+ *
  */
 static inline QStringList internal_stdNames()
 {

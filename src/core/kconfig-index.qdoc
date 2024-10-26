@@ -1,0 +1,24 @@
+/*!
+    \page kconfig-index.html
+    \title KConfig
+
+    Config Stuff
+
+    \section1 Using the Module
+
+    \include {module-use.qdocinc} {using the c++ api}
+
+    \section2 Building with CMake
+
+    \include {module-use.qdocinc} {building with cmake} {XmlGui}
+
+    \section1 API Reference
+
+    \list
+        \li \l{KConfigCore C++ Classes}
+    \endlist
+
+    \section1 Licenses
+
+    TODO
+*/
