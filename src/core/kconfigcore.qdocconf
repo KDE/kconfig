@@ -1,4 +1,4 @@
-include($QT_INSTALL_DOCS/global/qt-module-defaults-online.qdocconf)
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
 
 project = KConfigCore
 description = I am XML
@@ -6,8 +6,7 @@ description = I am XML
 documentationinheaders = true
 
 headerdirs = .
-
-headers.fileextensions = "*.qdoc *.h"
+sourcedirs = .
 
 outputformats = HTML
 

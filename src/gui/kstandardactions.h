@@ -171,7 +171,7 @@ enum StandardAction {
 };
 
 /*!
- * @internal
+ *
  */
 KCONFIGGUI_EXPORT QAction *_kgui_createInternal(StandardAction id, QObject *parent);
 
