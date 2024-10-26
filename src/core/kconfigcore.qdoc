@@ -1,8 +1,10 @@
 /*!
-    \module KConfig
-    \title KConfig
+    \module KConfigCore
+    \title KConfigCore C++ Classes
     \ingroup modules
-    \qtcmakepackage Config
+    \cmakepackage KF6
+    \cmakecomponent Config
+    \cmaketargetitem KF6::ConfigCore
 
     \brief Config
 

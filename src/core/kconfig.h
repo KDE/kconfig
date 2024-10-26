@@ -126,7 +126,7 @@ public:
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
     /*!
-     * @internal
+     *
      *
      * Creates a KConfig object using the specified backend. If the backend can not
      * be found or loaded, then the standard configuration parser is used as a fallback.

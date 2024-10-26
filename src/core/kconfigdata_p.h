@@ -17,10 +17,10 @@
 
 /*!
  * map/dict/list config node entry.
- * @internal
+ * \internal
  */
 struct KEntry {
-    /*! Constructor. @internal */
+    /*! Constructor. \internal */
     KEntry()
         : mValue()
         , bDirty(false)
@@ -34,7 +34,7 @@ struct KEntry {
         , bOverridesGlobal(false)
     {
     }
-    /*! @internal */
+    /*!  */
     QByteArray mValue;
     /*!
      * Must the entry be written back to disk?
@@ -98,10 +98,10 @@ inline bool operator!=(const KEntry &k1, const KEntry &k2)
 /*!
  * key structure holding both the actual key and the group
  * to which it belongs.
- * @internal
+ *
  */
 struct KEntryKey {
-    /*! Constructor. @internal */
+    /*! Constructor.  */
     KEntryKey(const QString &_group = QString(), const QByteArray &_key = QByteArray(), bool isLocalized = false, bool isDefault = false)
         : mGroup(_group)
         , mKey(_key)
@@ -126,7 +126,7 @@ struct KEntryKey {
      * Entry indicates if this is a default value.
      */
     bool bDefault : 1;
-    /*! @internal
+    /*!
      * Key is a raw unprocessed key.
      * @warning this should only be set during merging, never for normal use.
      */
@@ -138,7 +138,7 @@ Q_DECLARE_TYPEINFO(KEntryKey, Q_RELOCATABLE_TYPE);
 /*!
  * Compares two KEntryKeys (needed for std::map). The order is localized, localized-default,
  * non-localized, non-localized-default
- * @internal
+ *
  */
 inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
 {
@@ -161,10 +161,10 @@ inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
 /*!
  * Light-weight view variant of KEntryKey.
  * Used for look-up in the map.
- * @internal
+ *
  */
 struct KEntryKeyView {
-    /*! Constructor. @internal */
+    /*! Constructor.  */
     KEntryKeyView(QStringView _group, QAnyStringView _key, bool isLocalized = false, bool isDefault = false)
         : mGroup(_group)
         , mKey(_key)
@@ -223,7 +223,7 @@ inline bool operator<(const KEntryKey &k1, const KEntryKeyView &k2)
  * Struct to use as Compare type with std::map.
  * To enable usage of KEntryKeyView for look-up in the map
  * via the template find() overloads.
- * @internal
+ *
  */
 struct KEntryKeyCompare {
     using is_transparent = void;
@@ -263,7 +263,7 @@ QDebug operator<<(QDebug dbg, const KEntry &entry);
  * type specifying a map of entries (key,value pairs).
  * The keys are actually a key in a particular config file group together
  * with the group name.
- * @internal
+ *
  */
 class KEntryMap : public std::map<KEntryKey, KEntry, KEntryKeyCompare>
 {
@@ -370,7 +370,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(KEntryMap::EntryOptions)
 /*!
  * \relates KEntry
  * type for iterating over keys in a KEntryMap in sorted order.
- * @internal
+ *
  */
 typedef KEntryMap::iterator KEntryMapIterator;
 
@@ -379,7 +379,7 @@ typedef KEntryMap::iterator KEntryMapIterator;
  * type for iterating over keys in a KEntryMap in sorted order.
  * It is const, thus you cannot change the entries in the iterator,
  * only examine them.
- * @internal
+ *
  */
 typedef KEntryMap::const_iterator KEntryMapConstIterator;
 
