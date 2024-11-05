@@ -28,6 +28,14 @@ void KWindowStateSaverQuick::componentComplete()
     }
 
     new KWindowStateSaver(window, m_configGroupName);
+
+    // To work around oddities in QtQuick window visibility handling.
+    // If we do not set the window visible now, then our window state is
+    // overwritten during QQuickWindowQmlImpl::setWindowVisibility() because
+    // QQuickWindow is AutomaticVisibility by default.
+    if (window->windowState() == Qt::WindowMaximized) {
+        window->setVisibility(QWindow::Visibility::Maximized);
+    }
 }
 
 void KWindowStateSaverQuick::setConfigGroupName(const QString &name)
