@@ -24,7 +24,7 @@ msgstr ""
 "po\n"
 "X-Crowdin-File-ID: 9944\n"
 
-#: core/kconfig.cpp:940
+#: core/kconfig.cpp:936
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Звярніцеся да сістэмнага адміністратара."
