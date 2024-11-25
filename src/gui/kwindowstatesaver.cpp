@@ -30,15 +30,23 @@ void KWindowStateSaverPrivate::init(KWindowStateSaver *q)
     KWindowConfig::restoreWindowSize(window, configGroup);
     KWindowConfig::restoreWindowPosition(window, configGroup);
 
-    const auto deferredSave = [q, this]() {
+    const auto saveSize = [q, this]() {
+        KWindowConfig::saveWindowSize(window, configGroup);
         if (!timerId) {
-            timerId = q->startTimer(250);
+            timerId = q->startTimer(std::chrono::seconds(30));
         }
     };
-    QObject::connect(window, &QWindow::widthChanged, q, deferredSave);
-    QObject::connect(window, &QWindow::heightChanged, q, deferredSave);
-    QObject::connect(window, &QWindow::xChanged, q, deferredSave);
-    QObject::connect(window, &QWindow::yChanged, q, deferredSave);
+    const auto savePosition = [q, this]() {
+        KWindowConfig::saveWindowPosition(window, configGroup);
+        if (!timerId) {
+            timerId = q->startTimer(std::chrono::seconds(30));
+        }
+    };
+
+    QObject::connect(window, &QWindow::widthChanged, q, saveSize);
+    QObject::connect(window, &QWindow::heightChanged, q, saveSize);
+    QObject::connect(window, &QWindow::xChanged, q, savePosition);
+    QObject::connect(window, &QWindow::yChanged, q, savePosition);
 }
 
 void KWindowStateSaverPrivate::initWidget(QObject *widget, KWindowStateSaver *q)
@@ -81,8 +89,6 @@ KWindowStateSaver::~KWindowStateSaver()
 void KWindowStateSaver::timerEvent(QTimerEvent *event)
 {
     killTimer(event->timerId());
-    KWindowConfig::saveWindowPosition(d->window, d->configGroup);
-    KWindowConfig::saveWindowSize(d->window, d->configGroup);
     d->configGroup.sync();
     d->timerId = 0;
 }
