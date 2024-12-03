@@ -29,6 +29,7 @@
 #        GENERATE_PROPERTIES
 #        PARENT_IN_CONSTRUCTOR
 #        GENERATE_MOC
+#        QML_REGISTRATION
 #    Single value arguments are:
 #        FILE
 #        CLASS_NAME
