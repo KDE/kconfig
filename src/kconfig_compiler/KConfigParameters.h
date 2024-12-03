@@ -63,6 +63,7 @@ public:
     bool generateProperties;
     QString baseName;
     bool qmlRegistration;
+    bool qmlUncreatable;
 };
 
 #endif

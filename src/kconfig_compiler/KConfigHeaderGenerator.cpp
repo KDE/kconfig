@@ -54,6 +54,10 @@ void KConfigHeaderGenerator::doClassDefinition()
         if (cfg().singleton) {
             stream() << "  QML_SINGLETON\n";
         }
+
+        if (cfg().qmlUncreatable) {
+            stream() << "  QML_UNCREATABLE(\"\")\n";
+        }
     }
     stream() << "  public:\n";
     implementEnums();
