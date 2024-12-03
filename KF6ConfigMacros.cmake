@@ -30,6 +30,7 @@
 #        PARENT_IN_CONSTRUCTOR
 #        GENERATE_MOC
 #        QML_REGISTRATION
+#        QML_UNCREATABLE
 #    Single value arguments are:
 #        FILE
 #        CLASS_NAME
@@ -187,6 +188,7 @@ function(kconfig_target_kcfg_file ARG_TARGET)
         PARENT_IN_CONSTRUCTOR
         GENERATE_MOC
         QML_REGISTRATION
+        QML_UNCREATABLE
     )
     set(_single_arguments
         FILE
