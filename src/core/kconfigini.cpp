@@ -9,7 +9,6 @@
 
 #include "kconfigini_p.h"
 
-#include "bufferfragment_p.h"
 #include "kconfig_core_log_settings.h"
 #include "kconfigdata_p.h"
 
@@ -33,7 +32,7 @@ using namespace Qt::StringLiterals;
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
 
-static QByteArray lookup(const KConfigIniBackend::BufferFragment fragment, QHash<KConfigIniBackend::BufferFragment, QByteArray> *cache)
+static QByteArray lookup(QByteArrayView fragment, QHash<QByteArrayView, QByteArray> *cache)
 {
     auto it = cache->constFind(fragment);
     if (it != cache->constEnd()) {
@@ -83,9 +82,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     // on systems using \r\n as end of line, \r will be taken care of by
     // trim() below
     QByteArray buffer = file.readAll();
-    BufferFragment contents(buffer.data(), buffer.size());
-    unsigned int len = contents.length();
-    unsigned int startOfLine = 0;
+    QByteArrayView contents(buffer.data(), buffer.size());
 
     const int langIdx = currentLocale.indexOf('_');
     const QByteArray currentLanguage = langIdx >= 0 ? currentLocale.left(langIdx) : currentLocale;
@@ -99,12 +96,19 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     // different fragments which are repeated often.
     // This is often the case, especially sub groups will all have
     // the same list of keys and similar values as well.
-    QHash<BufferFragment, QByteArray> cache;
+    QHash<QByteArrayView, QByteArray> cache;
     cache.reserve(4096);
 
-    while (startOfLine < len) {
-        BufferFragment line = contents.split('\n', &startOfLine);
-        line.trim();
+    while (!contents.isEmpty()) {
+        QByteArrayView line;
+        if (const auto idx = contents.indexOf('\n'); idx < 0) {
+            line = contents;
+            contents = {};
+        } else {
+            line = contents.left(idx);
+            contents = contents.mid(idx + 1);
+        }
+        line = line.trimmed();
         ++lineNo;
 
         // skip empty lines and lines beginning with '#'
@@ -145,8 +149,8 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     if (!newGroup.isEmpty()) {
                         newGroup += '\x1d';
                     }
-                    BufferFragment namePart = line.mid(start, end - start);
-                    printableToString(&namePart, file, lineNo);
+                    QByteArrayView namePart = line.mid(start, end - start);
+                    printableToString(namePart, file, lineNo);
                     newGroup += namePart.toByteArray();
                 }
             } while ((start = end + 2) <= line.length() && line.at(end + 1) == '[');
@@ -169,17 +173,16 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 continue; // skip entry
             }
 
-            BufferFragment aKey;
+            QByteArrayView aKey;
             int eqpos = line.indexOf('=');
             if (eqpos < 0) {
                 aKey = line;
-                line.clear();
+                line = {};
             } else {
-                BufferFragment temp = line.left(eqpos);
-                temp.trim();
-                aKey = temp;
-                line.truncateLeft(eqpos + 1);
-                line.trim();
+                QByteArrayView temp = line.left(eqpos);
+                aKey = temp.trimmed();
+                line = line.mid(eqpos + 1);
+                line = line.trimmed();
             }
             if (aKey.isEmpty()) {
                 qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (empty key)";
@@ -191,7 +194,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 entryOptions |= KEntryMap::EntryImmutable;
             }
 
-            BufferFragment locale;
+            QByteArrayView locale;
             int start;
             while ((start = aKey.lastIndexOf('[')) >= 0) {
                 int end = aKey.indexOf(']', start);
@@ -215,7 +218,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                         case 'd':
                             entryOptions |= KEntryMap::EntryDeleted;
                             aKey.truncate(start);
-                            printableToString(&aKey, file, lineNo);
+                            printableToString(aKey, file, lineNo);
                             entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);
                             goto next_line;
                         default:
@@ -237,7 +240,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (missing '=')";
                 continue;
             }
-            printableToString(&aKey, file, lineNo);
+            printableToString(aKey, file, lineNo);
             if (!locale.isEmpty()) {
                 if (locale != currentLocale && locale != currentLanguage) {
                     // backward compatibility. C == en_US
@@ -252,7 +255,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
             }
 
             if (!(entryOptions & KEntryMap::EntryRawKey)) {
-                printableToString(&aKey, file, lineNo);
+                printableToString(aKey, file, lineNo);
             }
 
             if (options & ParseGlobal) {
@@ -267,12 +270,12 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     entryOptions |= KEntryMap::EntryLocalizedCountry;
                 }
             }
-            printableToString(&line, file, lineNo);
+            printableToString(line, file, lineNo);
             if (entryOptions & KEntryMap::EntryRawKey) {
                 QByteArray rawKey;
                 rawKey.reserve(aKey.length() + locale.length() + 2);
-                rawKey.append(aKey.toVolatileByteArray());
-                rawKey.append('[').append(locale.toVolatileByteArray()).append(']');
+                rawKey.append(aKey);
+                rawKey.append('[').append(locale).append(']');
                 entryMap.setEntry(currentGroup, rawKey, lookup(line, &cache), entryOptions);
             } else {
                 entryMap.setEntry(currentGroup, lookup(aKey, &cache), lookup(line, &cache), entryOptions);
@@ -877,14 +880,14 @@ char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line
     return char(ret);
 }
 
-void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &file, int line)
+void KConfigIniBackend::printableToString(QByteArrayView &aString, const QFile &file, int line)
 {
-    if (aString->isEmpty() || aString->indexOf('\\') == -1) {
+    if (aString.isEmpty() || aString.indexOf('\\') == -1) {
         return;
     }
-    aString->trim();
-    int l = aString->length();
-    char *r = aString->data();
+    aString = aString.trimmed();
+    int l = aString.size();
+    char *r = const_cast<char *>(aString.data());
     char *str = r;
 
     for (int i = 0; i < l; i++, r++) {
@@ -941,7 +944,7 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
             }
         }
     }
-    aString->truncate(r - aString->constData());
+    aString.truncate(r - aString.constData());
 }
 
 QString KConfigIniBackend::filePath() const
