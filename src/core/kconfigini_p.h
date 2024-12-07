@@ -31,8 +31,6 @@ private:
     QMutex m_mutex;
 
 public:
-    class BufferFragment;
-
     KConfigIniBackend();
 
     /** Allows the behaviour of parseConfig() to be tuned */
@@ -82,9 +80,9 @@ private:
         KeyString = 1,
         ValueString = 2,
     };
-    // Warning: this modifies data in-place. Other BufferFragment objects referencing the same buffer
+    // Warning: this modifies data in-place. Other QByteArrayView objects referencing the same buffer
     // fragment will get their data modified too.
-    static void printableToString(BufferFragment *aString, const QFile &file, int line);
+    static void printableToString(QByteArrayView &aString, const QFile &file, int line);
     static QByteArray stringToPrintable(const QByteArray &aString, StringType type);
     static char charFromHex(const char *str, const QFile &file, int line);
     static QString warningProlog(const QFile &file, int line);
