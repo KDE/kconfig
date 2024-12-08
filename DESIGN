@@ -1,5 +1,5 @@
 If you add a major new feature, suggest using it in
-http://techbase.kde.org/Development/Tutorials/KConfig
+https://develop.kde.org/docs/features/configuration/introduction/
 
 kconfigdata_p.h contains definitions of the data formats used by kconfig.
 
