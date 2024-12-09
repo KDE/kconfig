@@ -38,7 +38,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Veuillez contacter l'administrateur du système."
 
-#: core/kconfigini.cpp:565
+#: core/kconfigini.cpp:568
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
