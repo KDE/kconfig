@@ -140,6 +140,7 @@ static constexpr KStandardActionsInfo g_rgActionInfo[] = {
     { MoveToTrash,   KStandardShortcut::MoveToTrash, u"movetotrash", QT_TRANSLATE_NOOP("KStandardActions", "&Move to Trash"), {}, u"trash-empty" },
     { Donate,        KStandardShortcut::Donate, u"help_donate", QT_TRANSLATE_NOOP("KStandardActions", "&Donate"), {}, u"help-donate"},
     { HamburgerMenu, KStandardShortcut::OpenMainMenu, u"hamburger_menu", QT_TRANSLATE_NOOP("KStandardActions", "Open &Menu"), {}, u"application-menu" },
+    { Fullscreen,    KStandardShortcut::FullscreenWindow, u"fullscreen", QT_TRANSLATE_NOOP("KStandardActions", "&Fullscreen"), {}, u"window-management" },
 };
 // clang-format on
 

@@ -137,6 +137,7 @@ enum StandardShortcut {
     ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files @since 5.70
     CreateFolder, ///< Create a folder. @since 5.74
     OpenMainMenu, ///< Open a main menu like the menu bar or a hamburger menu. Necessary for accessibility. @since 6.0
+    FullscreenWindow, ///< Fullscreen in focus window. Default behavior on many platforms.
     OpenContextMenu, ///< Open a context menu for the object with keyboard focus. Necessary for accessibility. @since 6.0
     // Insert new items here!
 
@@ -574,5 +575,13 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &openMainMenu();
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &openContextMenu();
 }
+
+/**
+ * Fullscreen the in focus window.
+ * Necessary for sanity. Default: F11
+ * @return the shortcut of the standard accelerator
+ * @since 6.9
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &fullscreenWindow();
 
 #endif // KSTANDARDSHORTCUT_H

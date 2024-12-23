@@ -415,6 +415,14 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      QList<QKeySequence>(),
      false,
      Category::View},
+    {FullscreenWindow
+     "FullscreenWindow",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Toggle Fullscreen", "@action referring to the fullscreen window toggle"),
+     Qt::Key_F11,
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::View},
     {OpenContextMenu,
      "OpenContextMenu",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Open Context Menu", "@action"),
@@ -825,6 +833,10 @@ const QList<QKeySequence> &showHideHiddenFiles()
 const QList<QKeySequence> &openMainMenu()
 {
     return shortcut(OpenMainMenu);
+}
+const QList<QKeySequence> &fullscreenWindow()
+{
+    return shortcut(FullscreenWindow);
 }
 const QList<QKeySequence> &openContextMenu()
 {
