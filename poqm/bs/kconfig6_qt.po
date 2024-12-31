@@ -704,282 +704,282 @@ msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "Otvori skorašnje"
 
-#: gui/kstandardshortcut.cpp:70
+#: gui/kstandardshortcut.cpp:71
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
 msgstr "Otvori"
 
-#: gui/kstandardshortcut.cpp:71
+#: gui/kstandardshortcut.cpp:72
 msgctxt "KStandardShortcut|@action"
 msgid "New"
 msgstr "Novo"
 
-#: gui/kstandardshortcut.cpp:72
+#: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
 msgstr "Zatvori"
 
-#: gui/kstandardshortcut.cpp:73
+#: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
 msgstr "Sačuvaj"
 
-#: gui/kstandardshortcut.cpp:74
+#: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
 msgstr "Štampaj"
 
-#: gui/kstandardshortcut.cpp:75
+#: gui/kstandardshortcut.cpp:76
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
 msgstr "Izlaz"
 
-#: gui/kstandardshortcut.cpp:78
+#: gui/kstandardshortcut.cpp:79
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
 msgstr "Poništi"
 
-#: gui/kstandardshortcut.cpp:79
+#: gui/kstandardshortcut.cpp:80
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
 msgstr "Ponovi"
 
-#: gui/kstandardshortcut.cpp:82
+#: gui/kstandardshortcut.cpp:83
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
 msgstr "Isijeci"
 
-#: gui/kstandardshortcut.cpp:83
+#: gui/kstandardshortcut.cpp:84
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: gui/kstandardshortcut.cpp:84
+#: gui/kstandardshortcut.cpp:85
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
 msgstr "Umetni"
 
-#: gui/kstandardshortcut.cpp:87
+#: gui/kstandardshortcut.cpp:88
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
 msgstr "Umetni izbor"
 
-#: gui/kstandardshortcut.cpp:94
+#: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
 msgstr "Izaberi sve"
 
-#: gui/kstandardshortcut.cpp:95
+#: gui/kstandardshortcut.cpp:96
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
 msgstr "Poništi izbor"
 
-#: gui/kstandardshortcut.cpp:98
+#: gui/kstandardshortcut.cpp:99
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
 msgstr "Obriši riječ unazad"
 
-#: gui/kstandardshortcut.cpp:106
+#: gui/kstandardshortcut.cpp:111
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
 msgstr "Obriši riječ unaprijed"
 
-#: gui/kstandardshortcut.cpp:113
+#: gui/kstandardshortcut.cpp:122
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "Nađi"
 
-#: gui/kstandardshortcut.cpp:114
+#: gui/kstandardshortcut.cpp:123
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "Nađi sljedeće"
 
-#: gui/kstandardshortcut.cpp:115
+#: gui/kstandardshortcut.cpp:124
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "Nađi prethodno"
 
-#: gui/kstandardshortcut.cpp:116
+#: gui/kstandardshortcut.cpp:125
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "Zamijeni"
 
-#: gui/kstandardshortcut.cpp:121
+#: gui/kstandardshortcut.cpp:130
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "Kuća"
 
-#: gui/kstandardshortcut.cpp:129
+#: gui/kstandardshortcut.cpp:138
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "Početak"
 
-#: gui/kstandardshortcut.cpp:135
+#: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "kraj"
 
-#: gui/kstandardshortcut.cpp:136
+#: gui/kstandardshortcut.cpp:160
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "Prethodno"
 
-#: gui/kstandardshortcut.cpp:139
+#: gui/kstandardshortcut.cpp:163
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "Sljedeći"
 
-#: gui/kstandardshortcut.cpp:146
+#: gui/kstandardshortcut.cpp:170
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "Gore"
 
-#: gui/kstandardshortcut.cpp:147
+#: gui/kstandardshortcut.cpp:171
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "Nazad"
 
-#: gui/kstandardshortcut.cpp:150
+#: gui/kstandardshortcut.cpp:174
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "Naprijed"
 
-#: gui/kstandardshortcut.cpp:158
+#: gui/kstandardshortcut.cpp:182
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "Ponovo učitaj"
 
-#: gui/kstandardshortcut.cpp:167
+#: gui/kstandardshortcut.cpp:191
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "Početak reda"
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:203
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "Kraj reda"
 
-#: gui/kstandardshortcut.cpp:181
+#: gui/kstandardshortcut.cpp:213
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "Idi na liniju"
 
-#: gui/kstandardshortcut.cpp:184
+#: gui/kstandardshortcut.cpp:216
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "Riječ unazad"
 
-#: gui/kstandardshortcut.cpp:192
+#: gui/kstandardshortcut.cpp:228
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "Riječ unaprijed"
 
-#: gui/kstandardshortcut.cpp:201
+#: gui/kstandardshortcut.cpp:241
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "Dodaj zabilješku"
 
-#: gui/kstandardshortcut.cpp:207
+#: gui/kstandardshortcut.cpp:247
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "Uveličaj"
 
-#: gui/kstandardshortcut.cpp:208
+#: gui/kstandardshortcut.cpp:248
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "Umanji"
 
-#: gui/kstandardshortcut.cpp:211
+#: gui/kstandardshortcut.cpp:251
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "Režim punog ekrana"
 
-#: gui/kstandardshortcut.cpp:218
+#: gui/kstandardshortcut.cpp:262
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "Prikaži traku menija"
 
-#: gui/kstandardshortcut.cpp:221
+#: gui/kstandardshortcut.cpp:265
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "Aktiviraj sljedeću karticu"
 
-#: gui/kstandardshortcut.cpp:229
+#: gui/kstandardshortcut.cpp:273
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "Aktiviraj prethodnu karticu"
 
-#: gui/kstandardshortcut.cpp:237
+#: gui/kstandardshortcut.cpp:281
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "Pomoć"
 
-#: gui/kstandardshortcut.cpp:238
+#: gui/kstandardshortcut.cpp:282
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "Šta je ovo?"
 
-#: gui/kstandardshortcut.cpp:243
+#: gui/kstandardshortcut.cpp:287
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "Dopuna teksta"
 
-#: gui/kstandardshortcut.cpp:251
+#: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr "Prethodno poklapanje za dopunu"
 
-#: gui/kstandardshortcut.cpp:259
+#: gui/kstandardshortcut.cpp:303
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr "Sljedeće poklapanje za dopunu"
 
-#: gui/kstandardshortcut.cpp:267
+#: gui/kstandardshortcut.cpp:311
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr "Dopuna podniske"
 
-#: gui/kstandardshortcut.cpp:276
+#: gui/kstandardshortcut.cpp:320
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "Prethodna stavka na spisku"
 
-#: gui/kstandardshortcut.cpp:284
+#: gui/kstandardshortcut.cpp:328
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "Sljedeća stavka na spisku"
 
-#: gui/kstandardshortcut.cpp:291
+#: gui/kstandardshortcut.cpp:335
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "Otvori skorašnje"
 
-#: gui/kstandardshortcut.cpp:292
+#: gui/kstandardshortcut.cpp:336
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "Sačuvaj kao"
 
-#: gui/kstandardshortcut.cpp:293
+#: gui/kstandardshortcut.cpp:337
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "Vrati"
 
-#: gui/kstandardshortcut.cpp:294
+#: gui/kstandardshortcut.cpp:338
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "Pregled pred štampanje"
 
-#: gui/kstandardshortcut.cpp:295
+#: gui/kstandardshortcut.cpp:339
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "Elektronska pošta"
 
-#: gui/kstandardshortcut.cpp:296
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Čisto"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:343
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Actual Size"
@@ -987,72 +987,72 @@ msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "Stvarna veličina"
 
-#: gui/kstandardshortcut.cpp:305
+#: gui/kstandardshortcut.cpp:349
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Uklopi u stranicu"
 
-#: gui/kstandardshortcut.cpp:306
+#: gui/kstandardshortcut.cpp:350
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Uklopi u širinu"
 
-#: gui/kstandardshortcut.cpp:307
+#: gui/kstandardshortcut.cpp:351
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Uklopi u visinu"
 
-#: gui/kstandardshortcut.cpp:308
+#: gui/kstandardshortcut.cpp:352
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Uvećaj"
 
-#: gui/kstandardshortcut.cpp:309
+#: gui/kstandardshortcut.cpp:353
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Idi na"
 
-#: gui/kstandardshortcut.cpp:310
+#: gui/kstandardshortcut.cpp:354
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Idi na stranicu"
 
-#: gui/kstandardshortcut.cpp:313
+#: gui/kstandardshortcut.cpp:357
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Dokument nazad"
 
-#: gui/kstandardshortcut.cpp:321
+#: gui/kstandardshortcut.cpp:365
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Dokument naprijed"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Izmijeni zabilješke"
 
-#: gui/kstandardshortcut.cpp:335
+#: gui/kstandardshortcut.cpp:379
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Pravopis"
 
-#: gui/kstandardshortcut.cpp:336
+#: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Prikaži alatnu traku"
 
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:381
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Prikaži statusnu traku"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Pridruživanja tastera"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:392
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Notifications"
@@ -1060,73 +1060,73 @@ msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Podesi obavještenja"
 
-#: gui/kstandardshortcut.cpp:356
+#: gui/kstandardshortcut.cpp:400
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Podesi alatne trake"
 
-#: gui/kstandardshortcut.cpp:364
+#: gui/kstandardshortcut.cpp:408
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Podesi obavještenja"
 
-#: gui/kstandardshortcut.cpp:370
+#: gui/kstandardshortcut.cpp:414
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Prijavi grešku"
 
-#: gui/kstandardshortcut.cpp:373
+#: gui/kstandardshortcut.cpp:417
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:379
+#: gui/kstandardshortcut.cpp:423
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "O programu"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:424
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "O KDE-u"
 
-#: gui/kstandardshortcut.cpp:383
+#: gui/kstandardshortcut.cpp:427
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:384
+#: gui/kstandardshortcut.cpp:428
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:387
+#: gui/kstandardshortcut.cpp:431
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:437
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:396
+#: gui/kstandardshortcut.cpp:440
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:404
+#: gui/kstandardshortcut.cpp:448
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:412
+#: gui/kstandardshortcut.cpp:456
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:420
+#: gui/kstandardshortcut.cpp:464
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr ""
