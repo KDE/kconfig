@@ -75,6 +75,7 @@ kconfig_compiler_test(Test14 KCFGC test14.kcfgc KCFG test14.kcfg CLASS_NAME Test
 kconfig_compiler_test(Test15 CLASS_NAME Test15 GENERATE_PROPERTIES GENERATE_MOC SINGLETON QML_REGISTRATION)
 
 kconfig_compiler_test(test_state_config MAIN test_state_config_main.cpp CLASS_NAME MyStateConfig MUTATORS ITEM_ACCESSORS GENERATE_MOC)
+kconfig_compiler_test(test_state_config_nameless MAIN test_state_config_nameless_main.cpp CLASS_NAME MyStateConfig MUTATORS ITEM_ACCESSORS GENERATE_MOC)
 kconfig_compiler_test(test_emptyentries MAIN test_emptyentries_main.cpp CLASS_NAME QMakeBuilderSettings SINGLETON GENERATE_MOC)
 kconfig_compiler_test(test_subgroups MAIN test_subgroups_main.cpp CLASS_NAME TestSubgroups NOTIFIERS GENERATE_MOC)
 kconfig_compiler_test(test_dpointer MAIN test_dpointer_main.cpp CLASS_NAME TestDPointer SINGLETON MUTATORS MEMBER_VARIABLES dpointer ITEM_ACCESSORS SET_USER_TEXTS)

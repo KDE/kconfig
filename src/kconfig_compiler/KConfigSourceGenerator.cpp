@@ -261,7 +261,7 @@ void KConfigSourceGenerator::createParentConstructorCall()
             stream() << " config ";
         }
     }
-    if (!parseResult.cfgFileName.isEmpty()) {
+    if (parseResult.cfgStateConfig || !parseResult.cfgFileName.isEmpty()) {
         stream() << ") ";
     }
     stream() << ")\n";
