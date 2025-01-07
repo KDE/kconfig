@@ -14,6 +14,8 @@ class TestStateConfig : public QObject
 private Q_SLOTS:
     void testStateConfig()
     {
+        QStandardPaths::setTestModeEnabled(true);
+
         auto stateConfig = KSharedConfig::openStateConfig(QStringLiteral("test_statedatarc"));
 
         // Clean the group at every start
