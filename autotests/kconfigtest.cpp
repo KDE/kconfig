@@ -1924,6 +1924,49 @@ void KConfigTest::testMoveValuesTo()
     QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
 }
 
+void KConfigTest::testMoveValuesToWithNestedGroup()
+{
+    QTemporaryFile file;
+    QVERIFY(file.open());
+    // Prepare kdeglobals
+    {
+        KConfig glob(QStringLiteral("kdeglobals"));
+        KConfigGroup general(&glob, QStringLiteral("TestGroup"));
+        general.writeEntry("GlobalKey", "PlsDeleteMe");
+        QVERIFY(glob.sync());
+    }
+
+    KConfigGroup grp = KSharedConfig::openConfig(file.fileName())->group(QStringLiteral("TestGroup")).group(QStringLiteral("Nested"));
+
+    grp.writeEntry("test1", "first_value");
+    grp.writeEntry("test_empty", "");
+    grp.writeEntry("other", "other_value");
+    grp.writePathEntry("my_path", QStringLiteral("~/somepath"));
+    // because this key is from the global file it should be explicitly deleted
+    grp.deleteEntry("GlobalKey");
+
+    QTemporaryFile targetFile;
+    QVERIFY(targetFile.open());
+    targetFile.close();
+    KConfigGroup targetGroup =
+        KSharedConfig::openConfig(targetFile.fileName(), KConfig::SimpleConfig)->group(QStringLiteral("MoveToGroup")).group(QStringLiteral("AnotherNested"));
+
+    grp.moveValuesTo({"test1", "test_empty", "does_not_exist", "my_path", "GlobalKey"}, targetGroup);
+    QVERIFY(grp.config()->isDirty());
+    QVERIFY(targetGroup.config()->isDirty());
+
+    QCOMPARE(grp.keyList(), QStringList{QStringLiteral("other")});
+    QStringList expectedKeyList{QStringLiteral("my_path"), QStringLiteral("test1"), QStringLiteral("test_empty")};
+
+    QCOMPARE(targetGroup.keyList(), expectedKeyList);
+    QCOMPARE(targetGroup.readEntry("test1"), QStringLiteral("first_value"));
+
+    targetGroup.sync();
+    QFile targetReadFile(targetFile.fileName());
+    targetReadFile.open(QFile::ReadOnly);
+    QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
+}
+
 void KConfigTest::testMoveAllValuesTo()
 {
     QTemporaryFile file;

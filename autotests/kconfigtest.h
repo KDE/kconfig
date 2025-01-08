@@ -66,6 +66,7 @@ private Q_SLOTS:
 
     void testMoveValuesTo();
     void testMoveAllValuesTo();
+    void testMoveValuesToWithNestedGroup();
 
     void testSubGroup();
     void testAddConfigSources();

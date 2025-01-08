@@ -1225,7 +1225,7 @@ void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
 
 void KConfigGroup::moveValue(const char *key, KConfigGroup &other, WriteConfigFlags pFlags)
 {
-    const QString groupName = name();
+    const QString groupName = d->fullName();
     const auto entry = config()->d_ptr->lookupInternalEntry(groupName, key, KEntryMap::SearchLocalized);
 
     // Only write the entry if it is not null, if it is a global enry there is no point in moving it
@@ -1240,7 +1240,7 @@ void KConfigGroup::moveValue(const char *key, KConfigGroup &other, WriteConfigFl
             options |= KEntryMap::EntryExpansion;
         }
 
-        other.config()->d_ptr->setEntryData(other.name(), key, entry.mValue, options);
+        other.config()->d_ptr->setEntryData(other.d->fullName(), key, entry.mValue, options);
     }
 }
 
