@@ -19,7 +19,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: core/kconfig.cpp:936
+#: core/kconfig.cpp:960
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Susisiekite su sistemos administratoriumi."
