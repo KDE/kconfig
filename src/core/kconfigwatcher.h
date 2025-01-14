@@ -21,13 +21,16 @@ class KConfigWatcherPrivate;
  * \class KConfigWatcher
  * \inmodule KConfigCore
  *
- * Notifies when another client has updated this config file with the Notify flag set.
+ * \brief Notifies when another client has updated this config file with the Notify flag set.
  * \since 5.51
  */
 class KCONFIGCORE_EXPORT KConfigWatcher : public QObject
 {
     Q_OBJECT
 public:
+    /*!
+     * \typedef KConfigWatcher::Ptr
+     */
     typedef QSharedPointer<KConfigWatcher> Ptr;
 
     /*!
