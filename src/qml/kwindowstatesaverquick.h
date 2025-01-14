@@ -24,7 +24,7 @@
  *     }
  * }
  * @endcode
- * @since 6.5
+ * \since 6.5
  *
  * @sa KWindowStateSaver
  */

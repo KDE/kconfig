@@ -24,7 +24,7 @@ class KConfigPropertyMapPrivate;
  *
  * An object that (optionally) automatically saves changes in a
  * property map to a configuration object (e.g. a KConfig file).
- * @since 5.89
+ * \since 5.89
  */
 class KCONFIGQML_EXPORT KConfigPropertyMap : public QQmlPropertyMap
 {

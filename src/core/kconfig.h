@@ -135,7 +135,7 @@ public:
      * @param backend the backend to load
      * @param type where to look for the file if an absolute path is not provided
      *
-     * @since 4.1
+     * \since 4.1
      *
      * @deprecated since 6.3, use other constructor
      */
@@ -148,7 +148,7 @@ public:
     /*!
      * Returns the standard location enum passed to the constructor.
      * Used by KSharedConfig.
-     * @since 5.0
+     * \since 5.0
      */
     QStandardPaths::StandardLocation locationType() const;
 
@@ -159,7 +159,7 @@ public:
 
     /*!
      * @return the flags this object was opened with
-     * @since 5.3
+     * \since 5.3
      */
     OpenFlags openFlags() const;
 
@@ -167,7 +167,7 @@ public:
     bool sync() override;
 
     /// Returns true if sync has any changes to write out.
-    /// @since 4.12
+    /// \since 4.12
     bool isDirty() const;
 
     /// @reimp
@@ -339,13 +339,13 @@ public:
 
     /*!
      * Sets the name of the application config file.
-     * @since 5.0
+     * \since 5.0
      */
     static void setMainConfigName(const QString &str);
 
     /*!
      * Get the name of application config file.
-     * @since 5.93
+     * \since 5.93
      */
     static QString mainConfigName();
 

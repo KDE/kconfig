@@ -130,14 +130,14 @@ enum StandardShortcut {
     SwitchApplicationLanguage, ///< Display the Switch Application Language dialog.
     AboutApp, ///< Display the application's About dialog.
     AboutKDE, ///< Display the About KDE dialog.
-    DeleteFile, ///< Permanently delete files or folders. @since 5.25
-    RenameFile, ///< Rename files or folders. @since 5.25
-    MoveToTrash, ///< Move files or folders to the trash. @since 5.25
-    Donate, ///< Open donation page on kde.org. @since 5.26
-    ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files @since 5.70
-    CreateFolder, ///< Create a folder. @since 5.74
-    OpenMainMenu, ///< Open a main menu like the menu bar or a hamburger menu. Necessary for accessibility. @since 6.0
-    OpenContextMenu, ///< Open a context menu for the object with keyboard focus. Necessary for accessibility. @since 6.0
+    DeleteFile, ///< Permanently delete files or folders. \since 5.25
+    RenameFile, ///< Rename files or folders. \since 5.25
+    MoveToTrash, ///< Move files or folders to the trash. \since 5.25
+    Donate, ///< Open donation page on kde.org. \since 5.26
+    ShowHideHiddenFiles, ///< Toggle showing or hiding hidden files \since 5.70
+    CreateFolder, ///< Create a folder. \since 5.74
+    OpenMainMenu, ///< Open a main menu like the menu bar or a hamburger menu. Necessary for accessibility. \since 6.0
+    OpenContextMenu, ///< Open a context menu for the object with keyboard focus. Necessary for accessibility. \since 6.0
     // Insert new items here!
 
     StandardShortcutCount, // number of standard shortcuts
@@ -145,7 +145,7 @@ enum StandardShortcut {
 
 /*!
  * Categories in which the standard shortcuts can be classified
- * @since 5.74
+ * \since 5.74
  */
 enum class Category {
     InvalidCategory = -1,
@@ -202,7 +202,7 @@ KCONFIGGUI_EXPORT StandardShortcut find(const QKeySequence &keySeq);
  * @param name the name as returned by  name(StandardShortcut id)
  * @return the id of the standard accelerator with the given name or AccelNone
  * if there is no such accelerator
- * @since 5.71
+ * \since 5.71
  */
 KCONFIGGUI_EXPORT StandardShortcut findByName(const QString &name);
 
@@ -221,7 +221,7 @@ KCONFIGGUI_EXPORT void saveShortcut(StandardShortcut id, const QList<QKeySequenc
 
 /*!
  * Returns the appropriate category for the given StandardShortcut \p id.
- * @since 5.73
+ * \since 5.73
  */
 KCONFIGGUI_EXPORT Category category(StandardShortcut id);
 
@@ -519,42 +519,42 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &showMenubar();
 /*!
  * Permanently delete files or folders. Default: Shift+Delete
  * @return the shortcut of the standard accelerator
- * @since 5.25
+ * \since 5.25
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &deleteFile();
 
 /*!
  * Rename files or folders. Default: F2
  * @return the shortcut of the standard accelerator
- * @since 5.25
+ * \since 5.25
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &renameFile();
 
 /*!
  * Create a folder. Default: Ctrl+Shift+N
  * @return the shortcut of the standard accelerator
- * @since 5.74
+ * \since 5.74
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &createFolder();
 
 /*!
  * Moves files or folders to the trash. Default: Delete
  * @return the shortcut of the standard accelerator
- * @since 5.25
+ * \since 5.25
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &moveToTrash();
 
 /*!
  * Opens the app's settings window. Default: Ctrl+Shift+Comma
  * @return the shortcut of the standard accelerator
- * @since 5.64
+ * \since 5.64
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &preferences();
 
 /*!
  * Shows or hides hidden files. Defaults: Ctrl+H, Alt+.
  * @return the shortcut of the standard accelerator
- * @since 5.70
+ * \since 5.70
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &showHideHiddenFiles();
 
@@ -562,7 +562,7 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &showHideHiddenFiles();
  * Open a main menu like the menu bar or a hamburger menu.
  * Necessary for accessibility. Default: F10
  * @return the shortcut of the standard accelerator
- * @since 6.0
+ * \since 6.0
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &openMainMenu();
 
@@ -570,7 +570,7 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &openMainMenu();
  * Open a context menu for the object with keyboard focus.
  * Necessary for accessibility. Default: Menu, Shift+F10
  * @return the shortcut of the standard accelerator
- * @since 6.0
+ * \since 6.0
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &openContextMenu();
 }

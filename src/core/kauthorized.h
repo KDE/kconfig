@@ -21,6 +21,9 @@ class QQmlEngine;
 class QJSEngine;
 
 /*!
+ * \class KAuthorized
+ * \inmodule KConfigCore
+ *
  * The functions in this namespace provide the core of the Kiosk action
  * restriction system; the KIO and KXMLGui frameworks build on this.
  *
@@ -36,7 +39,7 @@ public:
      * The enum values lower cased represent the action that is authorized
      * For example the SHELL_ACCESS value is converted to the "shell_access" string.
      *
-     * @since 5.88
+     * \since 5.88
      */
     enum GenericRestriction {
         SHELL_ACCESS = 1, // if the user is authorized to open a shell or execute shell commands
@@ -51,7 +54,7 @@ public:
 
     /*!
      *
-     * @since 5.88
+     * \since 5.88
      */
     enum GenericAction {
         OPEN_WITH = 1, /// if the open-with menu should be shown for files etc.
@@ -101,7 +104,7 @@ public:
      * passed in to @p authorize(QString)
      *
      * @overload
-     * @since 5.88
+     * \since 5.88
      */
     Q_INVOKABLE static bool authorize(GenericRestriction action);
 
@@ -126,7 +129,7 @@ public:
      * @param action  The name of a QAction action.
      * @return        @c true if the QAction is authorized, @c false
      *                otherwise.
-     * @since 5.24
+     * \since 5.24
      *
      * @see authorize()
      */
@@ -136,7 +139,7 @@ public:
      * Overload to authorize common actions.
      *
      * @overload
-     * @since 5.88
+     * \since 5.88
      */
     Q_INVOKABLE static bool authorizeAction(GenericAction action);
 

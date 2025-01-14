@@ -22,7 +22,7 @@ class StandardShortcutWatcherPrivate;
 /*!
  * Watches for changes made to standard shortcuts and notifies about those changes.
  * @see KStandardShortcut::shortcutWatcher
- * @since 5.91
+ * \since 5.91
  */
 class KCONFIGGUI_EXPORT StandardShortcutWatcher : public QObject
 {
@@ -47,7 +47,7 @@ private:
  * In addition to the notifying about changes it also keeps the information returned by the
  * functions in @p KStandardShortcut up to date.
  * The object is created by the first call to this function.
- * @since 5.91
+ * \since 5.91
  */
 KCONFIGGUI_EXPORT StandardShortcutWatcher *shortcutWatcher();
 }

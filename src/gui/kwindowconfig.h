@@ -28,7 +28,7 @@ namespace KWindowConfig
  * @param window The window to save size.
  * @param config The config group to read from.
  * @param options passed to KConfigGroup::writeEntry()
- * @since 5.0
+ * \since 5.0
  */
 KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
@@ -36,7 +36,7 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
  * Returns whether a given KConfig group has any saved window size data.
  *
  * @param config The config group to read from.
- * @since 6.0
+ * \since 6.0
  */
 KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
 
@@ -61,7 +61,7 @@ KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
  *
  * @param window The window to restore size.
  * @param config The config group to read from.
- * @since 5.0.
+ * \since 5.0.
  */
 KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &config);
 
@@ -75,7 +75,7 @@ KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &co
  * @param window The window whose position to save.
  * @param config The config group to read from.
  * @param options passed to KConfigGroup::writeEntry()
- * @since 5.74
+ * \since 5.74
  */
 KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
 
@@ -86,7 +86,7 @@ KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &c
  * position data is not supported.
  *
  * @param config The config group to read from.
- * @since 6.0
+ * \since 6.0
  */
 KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
 /*!
@@ -98,7 +98,7 @@ KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
  *
  * @param window The window whose position to restore.
  * @param config The config group to read from.
- * @since 5.74
+ * \since 5.74
  */
 KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup &config);
 
@@ -112,7 +112,7 @@ KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup
  * @param window The window whose position to restore.
  * @param screen Screen on which window should be placed.
  * @param config The config group to read from.
- * @since 5.99
+ * \since 5.99
  */
 KCONFIGGUI_EXPORT void restoreWindowScreenPosition(QWindow *window, const QScreen *screen, const KConfigGroup &config);
 }

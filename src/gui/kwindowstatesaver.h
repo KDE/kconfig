@@ -41,7 +41,7 @@ class KWindowStateSaverPrivate;
  * alternative.
  *
  * @see KWindowConfig
- * @since 5.92
+ * \since 5.92
  */
 class KCONFIGGUI_EXPORT KWindowStateSaver : public QObject
 {
