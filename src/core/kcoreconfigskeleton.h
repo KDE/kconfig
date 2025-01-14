@@ -72,7 +72,7 @@ public:
     /*!
      * Set config file group but giving the KConfigGroup.
      * Allow the item to be in nested groups.
-     * @since 5.68
+     * \since 5.68
      */
     void setGroup(const KConfigGroup &cg);
 
@@ -81,7 +81,7 @@ public:
      * or make one from @p config and item's group.
      * @see setGroup(const QString &_group)
      * @see setGroup(KConfigGroup cg)
-     * @since 5.68
+     * \since 5.68
      */
     KConfigGroup configGroup(KConfig *config) const;
 
@@ -118,14 +118,14 @@ public:
 
     /*!
      * Set ToolTip description of item.
-     * @since 4.2
+     * \since 4.2
      */
     void setToolTip(const QString &t);
 
     /*!
      * Return ToolTip description of item.
      * @see setToolTip()
-     * @since 4.2
+     * \since 4.2
      */
     QString toolTip() const;
 
@@ -142,14 +142,14 @@ public:
 
     /*!
      * The write flags to be used when writing configuration.
-     * @since 5.58
+     * \since 5.58
      */
     void setWriteFlags(KConfigBase::WriteConfigFlags flags);
 
     /*!
      * Return write flags to be used when writing configuration.
      * They should be passed to every call of KConfigGroup::writeEntry() and KConfigGroup::revertToDefault().
-     * @since 5.58
+     * \since 5.58
      */
     KConfigBase::WriteConfigFlags writeFlags() const;
 
@@ -221,7 +221,7 @@ public:
     /*!
      * Indicates if the item is set to its default value.
      *
-     * @since 5.64
+     * \since 5.64
      */
     bool isDefault() const;
 
@@ -229,13 +229,13 @@ public:
      * Indicates if the item has a different value than the
      * previously loaded value.
      *
-     * @since 5.64
+     * \since 5.64
      */
     bool isSaveNeeded() const;
 
     /*!
      * Returns the default value
-     * @since 5.74
+     * \since 5.74
      */
     QVariant getDefault() const;
 
@@ -275,7 +275,7 @@ class KPropertySkeletonItemPrivate;
  * in KConfig but will use a QObject property as storage.
  * You will have to register instances of this class with the function KCoreConfigSkeleton::addItem().
  *
- * @since 5.65
+ * \since 5.65
  */
 class KCONFIGCORE_EXPORT KPropertySkeletonItem : public KConfigSkeletonItem
 {
@@ -311,7 +311,7 @@ public:
 
     /*!
      * Set a notify function, it will be invoked when the value of the property changes.
-     * @since 5.68
+     * \since 5.68
      */
     void setNotifyFunction(const std::function<void()> &impl);
 };
@@ -1216,14 +1216,14 @@ public:
      * This method calls usrRead() after reading the settings of the
      * registered items from the KConfig. You can override usrRead()
      * in derived classes if you have special requirements.
-     * @since 5.0
+     * \since 5.0
      */
     void read();
 
     /*!
      * Indicates if all the registered items are set to their default value.
      *
-     * @since 5.64
+     * \since 5.64
      */
     bool isDefaults() const;
 
@@ -1231,7 +1231,7 @@ public:
      * Indicates if any registered item has a different value than the
      * previously loaded value.
      *
-     * @since 5.64
+     * \since 5.64
      */
     bool isSaveNeeded() const;
 
@@ -1530,7 +1530,7 @@ public:
 
     /*!
      * Return the @ref KConfig object used for reading and writing the settings.
-     * @since 5.0
+     * \since 5.0
      */
     KSharedConfig::Ptr sharedConfig() const;
 
@@ -1557,13 +1557,13 @@ public:
 
     /*!
      * Return whether a certain item is immutable
-     * @since 4.4
+     * \since 4.4
      */
     Q_INVOKABLE bool isImmutable(const QString &name) const;
 
     /*!
      * Lookup item by name
-     * @since 4.4
+     * \since 4.4
      */
     KConfigSkeletonItem *findItem(const QString &name) const;
 

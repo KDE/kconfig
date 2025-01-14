@@ -39,7 +39,7 @@ KCONFIGGUI_EXPORT KConfig *sessionConfig();
  * @param id  new session id
  * @param key new session key
  *
- * @since 5.11
+ * \since 5.11
  */
 KCONFIGGUI_EXPORT void setSessionConfig(const QString &id, const QString &key);
 

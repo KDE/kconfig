@@ -52,7 +52,7 @@ public:
         /*!<
          * Notify remote KConfigWatchers of changes (requires DBus support)
          * Implied persistent
-         * @since 5.51
+         * \since 5.51
          */
         Normal = Persistent,
         /*!<

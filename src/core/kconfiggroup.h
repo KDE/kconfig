@@ -131,7 +131,7 @@ public:
      * @param pFlags the flags to use when writing the entries to the
      *               other configuration object
      *
-     * @since 4.1
+     * \since 4.1
      */
     void copyTo(KConfigBase *other, WriteConfigFlags pFlags = Normal) const;
 
@@ -148,7 +148,7 @@ public:
      * @param pFlags the flags to use in determining which storage source to
      *               write the data to
      *
-     * @since 4.1
+     * \since 4.1
      */
     void reparent(KConfigBase *parent, WriteConfigFlags pFlags = Normal);
 
@@ -156,14 +156,14 @@ public:
      * Moves the key-value pairs from one config group to the other.
      * In case the entries do not exist the key is ignored.
      *
-     * @since 5.88
+     * \since 5.88
      */
     void moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
     /*!
      * Moves the key-value pairs from one config group to the other.
      *
-     * @since 6.3
+     * \since 6.3
      */
     void moveValuesTo(KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
@@ -173,7 +173,7 @@ public:
      * @return the parent group, or an invalid group if this is a top-level
      *          group
      *
-     * @since 4.1
+     * \since 4.1
      */
     KConfigGroup parent() const;
 

@@ -83,7 +83,7 @@ class QAction;
  * \endcode
  *
  * @author Kurt Granroth <granroth@kde.org>
- * @since 6.3
+ * \since 6.3
  */
 namespace KStandardActions
 {
