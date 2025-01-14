@@ -54,13 +54,13 @@ public:
      * to influence the values returned by this object.  See KConfig::OpenFlags for
      * more details.
      *
-     * \a fileName     the configuration file to open. If empty, it will be determined
+     * \a fileName The configuration file to open. If empty, it will be determined
      *                     automatically (from --config on the command line, otherwise
      *                     from the application name + "rc")
-     * \a mode         how global settings should affect the configuration
-     *                     options exposed by this KConfig object
-     * \a type         The standard directory to look for the configuration
-     *                     file in (see QStandardPaths)
+     *
+     * \a mode How global settings should affect the configuration options exposed by this KConfig object
+     *
+     * \a type The standard directory to look for the configuration file in (see QStandardPaths)
      *
      * \sa KConfig
      */
