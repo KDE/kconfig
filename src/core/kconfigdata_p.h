@@ -20,7 +20,6 @@
  * \internal
  */
 struct KEntry {
-    /*! Constructor. \internal */
     KEntry()
         : mValue()
         , bDirty(false)
@@ -34,7 +33,6 @@ struct KEntry {
         , bOverridesGlobal(false)
     {
     }
-    /*!  */
     QByteArray mValue;
     /*!
      * Must the entry be written back to disk?
@@ -61,8 +59,8 @@ struct KEntry {
      */
     bool bReverted : 1;
     /*!
-     * Entry is for a localized key. If @c false the value references just language e.g. "de",
-     * if @c true the value references language and country, e.g. "de_DE".
+     * Entry is for a localized key. If false the value references just language e.g. "de",
+     * if true the value references language and country, e.g. "de_DE".
      **/
     bool bLocalizedCountry : 1;
 
@@ -128,7 +126,7 @@ struct KEntryKey {
     bool bDefault : 1;
     /*!
      * Key is a raw unprocessed key.
-     * @warning this should only be set during merging, never for normal use.
+     * Warning: this should only be set during merging, never for normal use.
      */
     bool bRaw : 1;
 };
@@ -164,7 +162,6 @@ inline bool operator<(const KEntryKey &k1, const KEntryKey &k2)
  *
  */
 struct KEntryKeyView {
-    /*! Constructor.  */
     KEntryKeyView(QStringView _group, QAnyStringView _key, bool isLocalized = false, bool isDefault = false)
         : mGroup(_group)
         , mKey(_key)
@@ -244,10 +241,10 @@ struct KEntryKeyCompare {
     }
 };
 
-/*!
- * Returns the minimum key that has @a mGroup == @p group.
+/*
+ * Returns the minimum key that has mGroup == group.
  *
- * @note The returned "minimum key" is consistent with KEntryKey's operator<().
+ * Note: The returned "minimum key" is consistent with KEntryKey's operator<().
  *       The return value of this function can be passed to KEntryMap::lowerBound().
  */
 inline KEntryKeyView minimumGroupKeyView(const QString &group)

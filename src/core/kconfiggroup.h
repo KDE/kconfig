@@ -24,9 +24,10 @@ class KConfigGroupPrivate;
 class KSharedConfig;
 
 /*!
- * \class KConfigGroup kconfiggroup.h <KConfigGroup>
+ * \class KConfigGroup
+ * \inmodule KConfigCore
  *
- * A class for one specific group in a KConfig object.
+ * \brief A class for one specific group in a KConfig object.
  *
  * If you want to access the top-level entries of a KConfig
  * object, which are not associated with any group, use an
@@ -41,17 +42,17 @@ public:
     /*!
      * Constructs an invalid group.
      *
-     * \see isValid
+     * \sa isValid
      */
     KConfigGroup();
 
     /*!
-     * Construct a config group corresponding to @p group in @p master.
+     * Construct a config group corresponding to \a group in \a master.
      *
      * This allows the creation of subgroups by passing another
-     * group as @p master.
+     * group as \a master.
      *
-     * @param group name of group
+     * \a group name of group
      */
     KConfigGroup(KConfigBase *master, const QString &group);
 
@@ -61,16 +62,16 @@ public:
      * A read-only group will silently ignore any attempts to write to it.
      *
      * This allows the creation of subgroups by passing an existing group
-     * as @p master.
+     * as \a master.
      */
     KConfigGroup(const KConfigBase *master, const QString &group);
 
-    /*! Overload for KConfigGroup(const KConfigBase*,const QString&) */
+    /*!
+     * \overload
+     * Overload for KConfigGroup(const KConfigBase*,const QString&)
+     */
     KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const QString &group);
 
-    /*!
-     * Creates a copy of a group.
-     */
     KConfigGroup(const KConfigGroup &);
     KConfigGroup &operator=(const KConfigGroup &);
 
@@ -83,7 +84,7 @@ public:
      *
      * You should not call any functions on an invalid group.
      *
-     * @return @c true if the group is valid, @c false if it is invalid.
+     * Returns \c true if the group is valid, \c false if it is invalid.
      */
     bool isValid() const;
 
@@ -101,16 +102,14 @@ public:
     bool exists() const;
 
     /*!
-     * @reimp
+     * \reimp
      *
      * Syncs the parent config.
      */
     bool sync() override;
 
-    /// @reimp
     void markAsClean() override;
 
-    /// @reimp
     AccessMode accessMode() const override;
 
     /*!
@@ -125,10 +124,11 @@ public:
     /*!
      * Copies the entries in this group to another configuration object
      *
-     * @note @p other can be either another group or a different file.
+     * \note \a other can be either another group or a different file.
      *
-     * @param other  the configuration object to copy this group's entries to
-     * @param pFlags the flags to use when writing the entries to the
+     * \a other  the configuration object to copy this group's entries to
+     *
+     * \a pFlags the flags to use when writing the entries to the
      *               other configuration object
      *
      * \since 4.1
@@ -138,14 +138,15 @@ public:
     /*!
      * Changes the configuration object that this group belongs to
      *
-     * @note @p other can be another group, the top-level KConfig object or
+     * \note \a other can be another group, the top-level KConfig object or
      * a different KConfig object entirely.
      *
-     * If @p parent is already the parent of this group, this method will have
+     * If \a parent is already the parent of this group, this method will have
      * no effect.
      *
-     * @param parent the config object to place this group under
-     * @param pFlags the flags to use in determining which storage source to
+     * \a parent the config object to place this group under
+     *
+     * \a pFlags the flags to use in determining which storage source to
      *               write the data to
      *
      * \since 4.1
@@ -170,16 +171,13 @@ public:
     /*!
      * Returns the group that this group belongs to
      *
-     * @return the parent group, or an invalid group if this is a top-level
+     * Returns the parent group, or an invalid group if this is a top-level
      *          group
      *
      * \since 4.1
      */
     KConfigGroup parent() const;
 
-    /*!
-     * @reimp
-     */
     QStringList groupList() const override;
 
     /*!
@@ -190,15 +188,15 @@ public:
     /*!
      * Delete all entries in the entire group
      *
-     * @param pFlags flags passed to KConfig::deleteGroup
+     * \a pFlags flags passed to KConfig::deleteGroup
      *
-     * @see deleteEntry()
+     * \sa deleteEntry()
      */
     void deleteGroup(WriteConfigFlags pFlags = Normal);
     using KConfigBase::deleteGroup;
 
     /*!
-     * Reads the value of an entry specified by @p pKey in the current group
+     * Reads the value of an entry specified by \a pKey in the current group
      *
      * This template method makes it possible to write
      *    QString foo = readEntry("...", QString("default"));
@@ -206,18 +204,20 @@ public:
      *
      * The return type of the method is simply the same as the type of the default value.
      *
-     * @note readEntry("...", Qt::white) will not compile because Qt::white is an enum.
+     * \note readEntry("...", Qt::white) will not compile because Qt::white is an enum.
      * You must turn it into readEntry("...", QColor(Qt::white)).
      *
-     * @note Only the following QVariant types are allowed : String,
+     * \note Only the following QVariant types are allowed : String,
      * StringList, List, Font, Point, PointF, Rect, RectF, Size, SizeF, Color, Int, UInt, Bool,
      * Double, LongLong, ULongLong, DateTime and Date.
      *
-     * @param key The key to search for
-     * @param aDefault A default value returned if the key was not found
-     * @return The value for this key, or @p aDefault.
+     * \a key The key to search for
      *
-     * @see writeEntry(), deleteEntry(), hasKey()
+     * \a aDefault A default value returned if the key was not found
+     *
+     * Returns the value for this key, or \a aDefault.
+     *
+     * \sa writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
     T readEntry(const QString &key, const T &aDefault) const
@@ -225,93 +225,120 @@ public:
         return readEntry(key.toUtf8().constData(), aDefault);
     }
     /*!
+     * \overload
+     *
      * Overload for readEntry<T>(const QString&, const T&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     template<typename T>
     T readEntry(const char *key, const T &aDefault) const;
 
     /*!
-     * Reads the value of an entry specified by @p key in the current group
+     * Reads the value of an entry specified by \a key in the current group
      *
-     * @param key the key to search for
-     * @param aDefault a default value returned if the key was not found
-     * @return the value for this key, or @p aDefault if the key was not found
+     * \a key the key to search for
      *
-     * @see writeEntry(), deleteEntry(), hasKey()
+     * \a aDefault a default value returned if the key was not found
+     *
+     * Returns the value for this key, or \a aDefault if the key was not found
+     *
+     * \sa writeEntry(), deleteEntry(), hasKey()
      */
     QVariant readEntry(const QString &key, const QVariant &aDefault) const;
     /*!
      * Overload for readEntry(const QString&, const QVariant&) const
-     * @param key name of key, encoded in UTF-8
+     * \a key name of key, encoded in UTF-8
      */
     QVariant readEntry(const char *key, const QVariant &aDefault) const;
 
     /*!
-     * Reads the string value of an entry specified by @p key in the current group
+     * Reads the string value of an entry specified by \a key in the current group
      *
      * If you want to read a path, please use readPathEntry().
      *
-     * @param key the key to search for
-     * @param aDefault a default value returned if the key was not found
-     * @return the value for this key, or @p aDefault if the key was not found
+     * \a key the key to search for
      *
-     * @see readPathEntry(), writeEntry(), deleteEntry(), hasKey()
+     * \a aDefault a default value returned if the key was not found
+     *
+     * Returns the value for this key, or \a aDefault if the key was not found
+     *
+     * \sa readPathEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     QString readEntry(const QString &key, const QString &aDefault) const;
     /*!
+     * \overload
+     *
      * Overload for readEntry(const QString&, const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QString readEntry(const char *key, const QString &aDefault) const;
 
-    /*! Overload for readEntry(const QString&, const QString&) const */
+    /*!
+     * \overload
+     *
+     * Overload for readEntry(const QString&, const QString&) const
+     */
     QString readEntry(const QString &key, const char *aDefault = nullptr) const;
     /*!
+     * \overload
+     *
      * Overload for readEntry(const QString&, const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QString readEntry(const char *key, const char *aDefault = nullptr) const;
 
     /*!
-     * @copydoc readEntry(const char*, const QStringList&) const
+     * \sa readEntry()
      *
-     * @warning This function doesn't convert the items returned
+     * \warning This function doesn't convert the items returned
      *          to any type. It's actually a list of QVariant::String's. If you
      *          want the items converted to a specific type use
      *          readEntry(const char*, const QList<T>&) const
      */
     QVariantList readEntry(const QString &key, const QVariantList &aDefault) const;
     /*!
+     * \overload
+     *
      * Overload for readEntry(const QString&, const QVariantList&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QVariantList readEntry(const char *key, const QVariantList &aDefault) const;
 
     /*!
      * Reads a list of strings from the config object
      *
-     * @param key The key to search for
-     * @param aDefault The default value to use if the key does not exist
-     * @return The list, or @p aDefault if @p key does not exist
+     * \a key The key to search for
      *
-     * @see readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
+     * \a aDefault The default value to use if the key does not exist
+     *
+     * Returns the list, or \a aDefault if \a key does not exist
+     *
+     * \sa readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     QStringList readEntry(const QString &key, const QStringList &aDefault) const;
     /*!
+     * \overload
+     *
      * Overload for readEntry(const QString&, const QStringList&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QStringList readEntry(const char *key, const QStringList &aDefault) const;
 
     /*!
      * Reads a list of values from the config object
      *
-     * @param key the key to search for
-     * @param aDefault the default value to use if the key does not exist
-     * @return the list, or @p aDefault if @p key does not exist
+     * \a key the key to search for
      *
-     * @see readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
+     * \a aDefault the default value to use if the key does not exist
+     *
+     * Returns the list, or \a aDefault if \a key does not exist
+     *
+     * \sa readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
     QList<T> readEntry(const QString &key, const QList<T> &aDefault) const
@@ -319,8 +346,11 @@ public:
         return readEntry(key.toUtf8().constData(), aDefault);
     }
     /*!
+     * \overload
+     *
      * Overload for readEntry<T>(const QString&, const QList<T>&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     template<typename T>
     QList<T> readEntry(const char *key, const QList<T> &aDefault) const;
@@ -329,52 +359,61 @@ public:
      * Reads a list of strings from the config object with semicolons separating
      * them (i.e. following desktop entry spec separator semantics).
      *
-     * @param pKey the key to search for
-     * @param aDefault the default value to use if the key does not exist
-     * @return the list, or @p aDefault if @p pKey does not exist
+     * \a pKey the key to search for
      *
-     * @see readEntry(const QString&, const QStringList&) const
+     * \a aDefault the default value to use if the key does not exist
+     *
+     * Returns the list, or \a aDefault if \a pKey does not exist
+     *
+     * \sa readEntry(const QString&, const QStringList&) const
      */
     QStringList readXdgListEntry(const QString &pKey, const QStringList &aDefault = QStringList()) const;
     /*!
      * Overload for readXdgListEntry(const QString&, const QStringList&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QStringList readXdgListEntry(const char *key, const QStringList &aDefault = QStringList()) const;
 
     /*!
      * Reads a path
      *
-     * Read the value of an entry specified by @p pKey in the current group
+     * Read the value of an entry specified by \a pKey in the current group
      * and interpret it as a path. This means, dollar expansion is activated
      * for this value, so that e.g. $HOME gets expanded.
      *
-     * @param pKey The key to search for.
-     * @param aDefault A default value returned if the key was not found.
-     * @return The value for this key. Can be QString() if @p aDefault is null.
+     * \a pKey The key to search for.
+     *
+     * \a aDefault A default value returned if the key was not found.
+     *
+     * Returns The value for this key. Can be QString() if \a aDefault is null.
      */
     QString readPathEntry(const QString &pKey, const QString &aDefault) const;
     /*!
      * Overload for readPathEntry(const QString&, const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QString readPathEntry(const char *key, const QString &aDefault) const;
 
     /*!
      * Reads a list of paths
      *
-     * Read the value of an entry specified by @p pKey in the current group
+     * Read the value of an entry specified by \a pKey in the current group
      * and interpret it as a list of paths. This means, dollar expansion is activated
      * for this value, so that e.g. $HOME gets expanded.
      *
-     * @param pKey the key to search for
-     * @param aDefault a default value returned if the key was not found
-     * @return the list, or @p aDefault if the key does not exist
+     * \a pKey the key to search for
+     *
+     * \a aDefault a default value returned if the key was not found
+     *
+     * Returns the list, or \a aDefault if the key does not exist
      */
     QStringList readPathEntry(const QString &pKey, const QStringList &aDefault) const;
     /*!
      * Overload for readPathEntry(const QString&, const QStringList&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QStringList readPathEntry(const char *key, const QStringList &aDefault) const;
 
@@ -383,95 +422,153 @@ public:
      *
      * You should not normally need to use this.
      *
-     * @param pKey the key to search for
-     * @param aDefault a default value returned if the key was not found
-     * @return the value for this key, or @p aDefault if the key does not exist
+     * \a pKey the key to search for
+     *
+     * \a aDefault a default value returned if the key was not found
+     *
+     * Returns the value for this key, or \a aDefault if the key does not exist
      */
     QString readEntryUntranslated(const QString &pKey, const QString &aDefault = QString()) const;
     /*!
+     * \overload
+     *
      * Overload for readEntryUntranslated(const QString&, const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     QString readEntryUntranslated(const char *key, const QString &aDefault = QString()) const;
 
     /*!
      * Writes a value to the configuration object.
      *
-     * @param key the key to write to
-     * @param value the value to write
-     * @param pFlags the flags to use when writing this entry
+     * \a key the key to write to
      *
-     * @see readEntry(), writeXdgListEntry(), deleteEntry()
+     * \a value the value to write
+     *
+     * \a pFlags the flags to use when writing this entry
+     *
+     * \sa readEntry(), writeXdgListEntry(), deleteEntry()
      */
     void writeEntry(const QString &key, const QVariant &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     * \a key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QVariant &value, WriteConfigFlags pFlags = Normal);
 
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     void writeEntry(const QString &key, const QString &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QString &value, WriteConfigFlags pFlags = Normal);
 
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     void writeEntry(const QString &key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
 
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     void writeEntry(const QString &key, const char *value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const char *value, WriteConfigFlags pFlags = Normal);
 
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     template<typename T>
     void writeEntry(const char *key, const T &value, WriteConfigFlags pFlags = Normal);
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     template<typename T>
     void writeEntry(const QString &key, const T &value, WriteConfigFlags pFlags = Normal)
     {
         writeEntry(key.toUtf8().constData(), value, pFlags);
     }
 
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     void writeEntry(const QString &key, const QStringList &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     void writeEntry(const QString &key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writeEntry(const char *key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
 
-    /*! Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags) */
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     */
     template<typename T>
     void writeEntry(const QString &key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
     {
         writeEntry(key.toUtf8().constData(), value, pFlags);
     }
     /*!
+     * \overload
+     *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     template<typename T>
     void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal);
@@ -480,16 +577,21 @@ public:
      * Writes a list of strings to the config object, following XDG
      * desktop entry spec separator semantics
      *
-     * @param pKey the key to write to
-     * @param value the list to write
-     * @param pFlags the flags to use when writing this entry
+     * \a pKey the key to write to
      *
-     * @see writeEntry(), readXdgListEntry()
+     * \a value the list to write
+     *
+     * \a pFlags the flags to use when writing this entry
+     *
+     * \sa writeEntry(), readXdgListEntry()
      */
     void writeXdgListEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writeXdgListEntry(const QString&, const QStringList&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writeXdgListEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
@@ -500,16 +602,21 @@ public:
      * is replaced with $HOME in the persistent storage.
      * The path should therefore be read back with readPathEntry()
      *
-     * @param pKey the key to write to
-     * @param path the path to write
-     * @param pFlags the flags to use when writing this entry
+     * \a pKey the key to write to
      *
-     * @see writeEntry(), readPathEntry()
+     * \a path the path to write
+     *
+     * \a pFlags the flags to use when writing this entry
+     *
+     * \sa writeEntry(), readPathEntry()
      */
     void writePathEntry(const QString &pKey, const QString &path, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writePathEntry(const QString&, const QString&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writePathEntry(const char *Key, const QString &path, WriteConfigFlags pFlags = Normal);
 
@@ -520,33 +627,42 @@ public:
      * is replaced with $HOME in the persistent storage.
      * The paths should therefore be read back with readPathEntry()
      *
-     * @param pKey the key to write to
-     * @param value the list to write
-     * @param pFlags the flags to use when writing this entry
+     * \a pKey the key to write to
      *
-     * @see writeEntry(), readPathEntry()
+     * \a value the list to write
+     *
+     * \a pFlags the flags to use when writing this entry
+     *
+     * \sa writeEntry(), readPathEntry()
      */
     void writePathEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for writePathEntry(const QString&, const QStringList&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void writePathEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Deletes the entry specified by @p pKey in the current group
+     * Deletes the entry specified by \a pKey in the current group
      *
      * This also hides system wide defaults.
      *
-     * @param pKey the key to delete
-     * @param pFlags the flags to use when deleting this entry
+     * \a pKey the key to delete
      *
-     * @see deleteGroup(), readEntry(), writeEntry()
+     * \a pFlags the flags to use when deleting this entry
+     *
+     * \sa deleteGroup(), readEntry(), writeEntry()
      */
     void deleteEntry(const QString &pKey, WriteConfigFlags pFlags = Normal);
     /*!
+     * \overload
+     *
      * Overload for deleteEntry(const QString&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void deleteEntry(const char *key, WriteConfigFlags pFlags = Normal);
 
@@ -556,67 +672,76 @@ public:
      * Use this to determine if a key is not specified for the current
      * group (hasKey() returns false).
      *
-     * If this returns @c false for a key, readEntry() (and its variants)
+     * If this returns \c false for a key, readEntry() (and its variants)
      * will return the default value passed to them.
      *
-     * @param key the key to search for
-     * @return @c true if the key is defined in this group by any of the
-     *         configuration sources, @c false otherwise
+     * \a key the key to search for
      *
-     * @see readEntry()
+     * Returns \c true if the key is defined in this group by any of the
+     *         configuration sources, \c false otherwise
+     *
+     * \sa readEntry()
      */
     bool hasKey(const QString &key) const;
     /*!
+     * \overload
+     *
      * Overload for hasKey(const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     bool hasKey(const char *key) const;
 
     /*!
      * Whether this group may be changed
      *
-     * @return @c false if the group may be changed, @c true otherwise
+     * Returns \c false if the group may be changed, \c true otherwise
      */
     bool isImmutable() const override;
 
     /*!
      * Checks if it is possible to change the given entry
      *
-     * If isImmutable() returns @c true, then this method will return
-     * @c true for all inputs.
+     * If isImmutable() returns \c true, then this method will return
+     * \c true for all inputs.
      *
-     * @param key the key to check
-     * @return @c false if the key may be changed using this configuration
-     *         group object, @c true otherwise
+     * \a key the key to check
+     *
+     * Returns \c false if the key may be changed using this configuration
+     *         group object, \c true otherwise
      */
     bool isEntryImmutable(const QString &key) const;
     /*!
+     * \overload
+     *
      * Overload for isEntryImmutable(const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     bool isEntryImmutable(const char *key) const;
 
     /*!
      * Reverts an entry to the default settings.
      *
-     * Reverts the entry with key @p key in the current group in the
+     * Reverts the entry with key \a key in the current group in the
      * application specific config file to either the system wide (default)
      * value or the value specified in the global KDE config file.
      *
      * To revert entries in the global KDE config file, the global KDE config
      * file should be opened explicitly in a separate config object.
      *
-     * @note This is @em not the same as deleting the key, as instead the
+     * \note This is not the same as deleting the key, as instead the
      * global setting will be copied to the configuration file that this
      * object manipulates.
      *
-     * @param key The key of the entry to revert.
+     * \a key The key of the entry to revert.
      */
     void revertToDefault(const QString &key, WriteConfigFlags pFlag = WriteConfigFlags());
 
     /*!
      * Overload for revertToDefault(const QString&, WriteConfigFlags)
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     void revertToDefault(const char *key, WriteConfigFlags pFlag = WriteConfigFlags());
 
@@ -643,14 +768,18 @@ public:
      * the computed default, the application will keep using the computed default
      * and will follow changes the computed default makes over time.
      *
-     * @param key the key of the entry to check
-     * @return @c true if the global or system settings files specify a default
-     *          for @p key in this group, @c false otherwise
+     * \a key the key of the entry to check
+     *
+     * Returns \c true if the global or system settings files specify a default
+     *          for \a key in this group, \c false otherwise
      */
     bool hasDefault(const QString &key) const;
     /*!
+     * \overload
+     *
      * Overload for hasDefault(const QString&) const
-     * @param key name of key, encoded in UTF-8
+     *
+     * \a key name of key, encoded in UTF-8
      */
     bool hasDefault(const char *key) const;
 
@@ -660,7 +789,7 @@ public:
      * Only the actual entry string is returned, none of the
      * other internal data should be included.
      *
-     * @return a map of entries in this group, indexed by key
+     * Returns a map of entries in this group, indexed by key
      */
     QMap<QString, QString> entryMap() const;
 
@@ -677,13 +806,15 @@ private:
     friend class KConfigGroupPrivate;
 
     /*!
-     * Return the data in @p value converted to a QVariant
+     * \internal
      *
-     * @param pKey the name of the entry being converted, this is only used for error
+     * Return the data in \a value converted to a QVariant
+     *
+     * \a pKey the name of the entry being converted, this is only used for error
      * reporting
-     * @param value the UTF-8 data to be converted
-     * @param aDefault the default value if @p pKey is not found
-     * @return @p value converted to QVariant, or @p aDefault if @p value is invalid or cannot be converted.
+     * \a value the UTF-8 data to be converted
+     * \a aDefault the default value if \a pKey is not found
+     * Returns \a value converted to QVariant, or \a aDefault if \a value is invalid or cannot be converted.
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);
 
