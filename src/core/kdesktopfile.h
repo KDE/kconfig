@@ -31,11 +31,11 @@ public:
      *
      * See QStandardPaths for more information on resources.
      *
-     * \a resourceType   Allows you to change what sort of resource
+     * \a resourceType Allows you to change what sort of resource
      *                       to search for if \a fileName is not absolute.
      *                       For instance, you might want to specify GenericConfigLocation.
      *
-     * \a fileName       The name or path of the desktop file. If it
+     * \a fileName The name or path of the desktop file. If it
      *                       is not absolute, it will be located
      *                       using the resource type \a resourceType.
      */
@@ -46,7 +46,7 @@ public:
      *
      * See QStandardPaths for more information on resources.
      *
-     * \a fileName       The name or path of the desktop file. If it
+     * \a fileName The name or path of the desktop file. If it
      *                       is not absolute, it will be located
      *                       using the resource type ApplicationsLocation
      */
@@ -149,14 +149,14 @@ public:
     /*!
      * Sets the desktop action group.
      *
-     * \param group the new action group
+     * \a group the new action group
      */
     KConfigGroup actionGroup(const QString &group);
 
     /*!
      * Sets the desktop action group.
      *
-     * \param group the new action group
+     * \a group the new action group
      */
     KConfigGroup actionGroup(const QString &group) const;
 
