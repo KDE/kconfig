@@ -516,7 +516,7 @@ void KConfigTest::testPath()
     qputenv("WITHSLASH", "/a/");
     {
         QFile file(m_testConfigDir + QLatin1String("/pathtest"));
-        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
         QTextStream out(&file);
         out << "[Test Group]\n"
             << "homePath=$HOME/foo\n"
@@ -577,7 +577,7 @@ void KConfigTest::testPathQtHome()
 {
     {
         QFile file(m_testConfigDir + QLatin1String("/pathtest"));
-        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
         QTextStream out(&file);
         out << "[Test Group]\n"
             << "dataDir[$e]=$QT_DATA_HOME/kconfigtest\n"
@@ -1017,7 +1017,7 @@ void KConfigTest::testMerge()
     {
         // simulate writing by another process
         QFile file(m_testConfigDir + QLatin1String("/mergetest"));
-        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
         QTextStream out(&file);
         out << "[Merged Group]\n"
             << "entry1=Testing\n"
@@ -1043,7 +1043,7 @@ void KConfigTest::testMerge()
               << "entry[es]=Spanish\n"
               << "entry[fr]=French\n";
         QFile file(m_testConfigDir + QLatin1String("/mergetest"));
-        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::ReadOnly | QIODevice::Text));
         for (const QByteArray &line : std::as_const(lines)) {
             QCOMPARE(line, file.readLine());
         }
@@ -1054,7 +1054,7 @@ void KConfigTest::testImmutable()
 {
     {
         QFile file(m_testConfigDir + QLatin1String("/immutabletest"));
-        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
         QTextStream out(&file);
         out << "[$i]\n"
             << "entry1=Testing\n"
@@ -1078,7 +1078,7 @@ void KConfigTest::testOptionOrder()
 {
     {
         QFile file(m_testConfigDir + QLatin1String("/doubleattrtest"));
-        file.open(QIODevice::WriteOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
         QTextStream out(&file);
         out << "[group3]\n"
             << "entry2=unlocalized\n"
@@ -1104,7 +1104,7 @@ void KConfigTest::testOptionOrder()
               << "entry2[de_DE][$i]=t2\n";
 
         QFile file(m_testConfigDir + QLatin1String("/doubleattrtest"));
-        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        QVERIFY(file.open(QIODevice::ReadOnly | QIODevice::Text));
         for (const QByteArray &line : std::as_const(lines)) {
             QCOMPARE(line, file.readLine());
         }
@@ -1920,7 +1920,7 @@ void KConfigTest::testMoveValuesTo()
 
     targetGroup.sync();
     QFile targetReadFile(targetFile.fileName());
-    targetReadFile.open(QFile::ReadOnly);
+    QVERIFY(targetReadFile.open(QFile::ReadOnly));
     QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
 }
 
@@ -1963,7 +1963,7 @@ void KConfigTest::testMoveValuesToWithNestedGroup()
 
     targetGroup.sync();
     QFile targetReadFile(targetFile.fileName());
-    targetReadFile.open(QFile::ReadOnly);
+    QVERIFY(targetReadFile.open(QFile::ReadOnly));
     QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
 }
 
@@ -2002,7 +2002,7 @@ void KConfigTest::testMoveAllValuesTo()
 
     targetGroup.sync();
     QFile targetReadFile(targetFile.fileName());
-    targetReadFile.open(QFile::ReadOnly);
+    QVERIFY(targetReadFile.open(QFile::ReadOnly));
     QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
 }
 

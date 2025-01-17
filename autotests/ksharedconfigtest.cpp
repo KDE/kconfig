@@ -54,7 +54,7 @@ private Q_SLOTS:
         QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
         // Migrate from old file to new file if new file doesn't exist yet
         const QString oldPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/"_L1 + QCoreApplication::applicationName() + "staterc"_L1;
-        QFile(oldPath).open(QFile::WriteOnly | QFile::Truncate);
+        QVERIFY(QFile(oldPath).open(QFile::WriteOnly | QFile::Truncate));
         QVERIFY(QFile::exists(oldPath));
         const QString newPath = m_stateDirPath + "/"_L1 + QCoreApplication::applicationName() + "staterc"_L1;
         if (QFile::exists(newPath)) {
@@ -73,11 +73,11 @@ private Q_SLOTS:
         QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
         // Both old and new staterc exist -> keep both
         const QString oldPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/"_L1 + QCoreApplication::applicationName() + "staterc"_L1;
-        QFile(oldPath).open(QFile::WriteOnly | QFile::Truncate);
+        QVERIFY(QFile(oldPath).open(QFile::WriteOnly | QFile::Truncate));
         QVERIFY(QFile::exists(oldPath));
         QDir().mkpath(m_stateDirPath);
         const QString newPath = m_stateDirPath + "/"_L1 + QCoreApplication::applicationName() + "staterc"_L1;
-        QFile(oldPath).open(QFile::WriteOnly | QFile::Truncate);
+        QVERIFY(QFile(oldPath).open(QFile::WriteOnly | QFile::Truncate));
         QVERIFY(QFile::exists(oldPath));
 
         auto config = KSharedConfig::openStateConfig();
