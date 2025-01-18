@@ -1238,7 +1238,7 @@ public:
     /**
      * Set the config file group for subsequent addItem() calls. It is valid
      * until setCurrentGroup() is called with a new argument. Call this before
-     * you add any items. The default value is "No Group".
+     * you add any items. The default value is an empty string.
      */
     void setCurrentGroup(const QString &group);
 

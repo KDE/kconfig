@@ -495,11 +495,7 @@ void KConfigXmlParser::readIncludeTag(const QDomElement &e)
 
 void KConfigXmlParser::readGroupTag(const QDomElement &e)
 {
-    QString group = e.attribute(QStringLiteral("name"));
-    if (group.isEmpty()) {
-        std::cerr << "Group without name" << std::endl;
-        exit(1);
-    }
+    const QString group = e.attribute(QStringLiteral("name"));
 
     const QString parentGroup = e.attribute(QStringLiteral("parentGroupName"));
 
