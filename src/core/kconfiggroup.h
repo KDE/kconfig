@@ -812,8 +812,11 @@ private:
      *
      * \a pKey the name of the entry being converted, this is only used for error
      * reporting
+     *
      * \a value the UTF-8 data to be converted
+     *
      * \a aDefault the default value if \a pKey is not found
+     *
      * Returns \a value converted to QVariant, or \a aDefault if \a value is invalid or cannot be converted.
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);

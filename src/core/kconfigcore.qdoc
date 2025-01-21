@@ -6,7 +6,7 @@
     \cmakecomponent Config
     \cmaketargetitem KF6::ConfigCore
 
-    \brief Config
+    \brief Config.
 
     Stuff
 */

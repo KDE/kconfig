@@ -16,6 +16,8 @@
 
     \list
         \li \l{KConfigCore C++ Classes}
+        \li \l{KConfigGui C++ Classes}
+        \li \l{Obsolete Classes}
     \endlist
 
     \section1 Licenses
