@@ -17,6 +17,10 @@
     \list
         \li \l{KConfigCore C++ Classes}
         \li \l{KConfigGui C++ Classes}
+        \li \l{KConfigQml C++ Classes}
+        \li \l{KConfig QML Types}
+        \li \l{kconf_update Tool}
+        \li \l{The KDE Configuration Compiler}
         \li \l{Obsolete Classes}
     \endlist
 

@@ -48,7 +48,7 @@ private:
 /*!
  * Returns the global KStandardShortcutWatcher instance of this program.
  * In addition to the notifying about changes it also keeps the information returned by the
- * functions in \a KStandardShortcut up to date.
+ * functions in KStandardShortcut up to date.
  * The object is created by the first call to this function.
  * \since 5.91
  * \relates KStandardShortcut::StandardShortcutWatcher

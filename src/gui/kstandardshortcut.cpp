@@ -22,10 +22,10 @@
 namespace KStandardShortcut
 {
 struct KStandardShortcutInfo {
-    //! The standard shortcut id. @see StandardShortcut
+    // The standard shortcut id. @see StandardShortcut
     StandardShortcut id;
 
-    /*!
+    /*
      * Unique name for the given accel. The name is used to save the user
      * settings. It's not representable. Use description for that.
      * @warning NEVER EVER CHANGE IT OR TRANSLATE IT!
@@ -38,13 +38,13 @@ struct KStandardShortcutInfo {
         const char *context;
     } description;
 
-    //! The keys for this shortcut
+    // The keys for this shortcut
     int cutDefault, cutDefault2;
 
-    //! A shortcut that is created with @a cutDefault and @cutDefault2
+    // A shortcut that is created with @a cutDefault and @cutDefault2
     QList<QKeySequence> cut;
 
-    //! If this struct is initialized. If not initialized @cut is not valid
+    // If this struct is initialized. If not initialized @cut is not valid
     bool isInitialized;
 
     // Category of this Shortcut

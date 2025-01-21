@@ -24,7 +24,7 @@ class QJSEngine;
  * \class KAuthorized
  * \inmodule KConfigCore
  *
- * The functions in this namespace provide the core of the Kiosk action
+ * \brief The functions in this namespace provide the core of the Kiosk action
  * restriction system; the KIO and KXMLGui frameworks build on this.
  *
  * The relevant settings are read from the application's KSharedConfig

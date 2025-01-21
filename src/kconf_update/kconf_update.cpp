@@ -163,7 +163,7 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
     return result;
 }
 
-/*!
+/*
  * Syntax:
  * # Comment
  * Id=id

@@ -1,16 +1,18 @@
 include($KDE_DOCS/global/qt-module-defaults.qdocconf)
 
-project = KConfigCore
+project = KConfigQml
 description = I am XML
 
 documentationinheaders = true
 
 headerdirs = .
-sourcedirs = . ../kconf_update ../kconfig_compiler
+sourcedirs = .
 
 outputformats = HTML
 
 depends += \
     qtcore \
-    kconfiggui \
-    kconfigqml
+    qtqml \
+    kconfigcore \
+    kconfiggui
+
