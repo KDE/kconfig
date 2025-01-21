@@ -278,70 +278,87 @@ KCONFIGGUI_EXPORT QList<StandardAction> actionIds();
  */
 KCONFIGGUI_EXPORT KStandardShortcut::StandardShortcut shortcutForActionId(StandardAction id);
 
-// clang-format off
 /*!
  * Create a new document or window.
  */
-template<class Receiver, class Func> \
-inline QAction *openNew(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(New, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *openNew(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(New, recvr, slot, parent);
+}
 
 /*!
  * Open an existing file.
  */
-template<class Receiver, class Func> \
-inline QAction *open(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Open, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *open(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Open, recvr, slot, parent);
+}
 
 /*!
  * Save the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *save(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Save, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *save(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Save, recvr, slot, parent);
+}
 
 /*!
  * Save the current document under a different name.
  */
-template<class Receiver, class Func> \
-inline QAction *saveAs(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(SaveAs, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *saveAs(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(SaveAs, recvr, slot, parent);
+}
 
 /*!
  * Revert the current document to the last saved version
  * (essentially will undo all changes).
  */
-template<class Receiver, class Func> \
-inline QAction *revert(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Revert, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *revert(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Revert, recvr, slot, parent);
+}
 
 /*!
  * Close the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *close(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Close, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *close(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Close, recvr, slot, parent);
+}
 
 /*!
  * Print the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *print(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Print, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *print(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Print, recvr, slot, parent);
+}
 
 /*!
  * Show a print preview of the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *printPreview(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(PrintPreview, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *printPreview(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(PrintPreview, recvr, slot, parent);
+}
 
 /*!
  * Mail this document.
  */
-template<class Receiver, class Func> \
-inline QAction *mail(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Mail, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *mail(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Mail, recvr, slot, parent);
+}
 
 /*!
  * Quit the program.
@@ -351,262 +368,336 @@ inline QAction *mail(const Receiver *recvr, Func slot, QObject *parent) \
  * KMainWindow::queryClose() is called on any open window (to warn the user
  * about unsaved changes for example).
  */
-template<class Receiver, class Func> \
-inline QAction *quit(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Quit, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *quit(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Quit, recvr, slot, parent);
+}
 
 /*!
  * Undo the last operation.
  */
-template<class Receiver, class Func> \
-inline QAction *undo(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Undo, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *undo(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Undo, recvr, slot, parent);
+}
 
 /*!
  * Redo the last operation.
  */
-template<class Receiver, class Func> \
-inline QAction *redo(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Redo, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *redo(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Redo, recvr, slot, parent);
+}
 
 /*!
  * Cut selected area and store it in the clipboard.
  */
-template<class Receiver, class Func> \
-inline QAction *cut(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Cut, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *cut(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Cut, recvr, slot, parent);
+}
 
 /*!
  * Copy the selected area into the clipboard.
  */
-template<class Receiver, class Func> \
-inline QAction *copy(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Copy, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *copy(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Copy, recvr, slot, parent);
+}
 
 /*!
  * Paste the contents of clipboard at the current mouse or cursor
  * position.
  */
-template<class Receiver, class Func> \
-inline QAction *paste(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Paste, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *paste(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Paste, recvr, slot, parent);
+}
 
 /*!
  * Clear the content of the focus widget
  */
-template<class Receiver, class Func> \
-inline QAction *clear(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Clear, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *clear(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Clear, recvr, slot, parent);
+}
 
 /*!
  * Select all elements in the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *selectAll(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(SelectAll, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *selectAll(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(SelectAll, recvr, slot, parent);
+}
 
 /*!
  * Deselect any selected elements in the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *deselect(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Deselect, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *deselect(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Deselect, recvr, slot, parent);
+}
 
 /*!
  * Initiate a 'find' request in the current document.
  */
-template<class Receiver, class Func> \
-inline QAction *find(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Find, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *find(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Find, recvr, slot, parent);
+}
 
 /*!
  * Find the next instance of a stored 'find'.
  */
-template<class Receiver, class Func> \
-inline QAction *findNext(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(FindNext, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *findNext(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(FindNext, recvr, slot, parent);
+}
 
 /*!
  * Find a previous instance of a stored 'find'.
  */
-template<class Receiver, class Func> \
-inline QAction *findPrev(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(FindPrev, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *findPrev(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(FindPrev, recvr, slot, parent);
+}
 
 /*!
  * Find and replace matches.
  */
-template<class Receiver, class Func> \
-inline QAction *replace(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Replace, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *replace(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Replace, recvr, slot, parent);
+}
 
 /*!
  * View the document at its actual size.
  */
-template<class Receiver, class Func> \
-inline QAction *actualSize(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(ActualSize, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *actualSize(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(ActualSize, recvr, slot, parent);
+}
 
 /*!
  * Fit the document view to the size of the current window.
  */
-template<class Receiver, class Func> \
-inline QAction *fitToPage(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(FitToPage, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *fitToPage(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(FitToPage, recvr, slot, parent);
+}
 
 /*!
  * Fit the document view to the width of the current window.
  */
-template<class Receiver, class Func> \
-inline QAction *fitToWidth(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(FitToWidth, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *fitToWidth(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(FitToWidth, recvr, slot, parent);
+}
 
 /*!
  * Fit the document view to the height of the current window.
  */
-template<class Receiver, class Func> \
-inline QAction *fitToHeight(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(FitToHeight, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *fitToHeight(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(FitToHeight, recvr, slot, parent);
+}
 
 /*!
  * Zoom in the current document view.
  */
-template<class Receiver, class Func> \
-inline QAction *zoomIn(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(ZoomIn, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *zoomIn(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(ZoomIn, recvr, slot, parent);
+}
 
 /*!
  * Zoom out the current document view.
  */
-template<class Receiver, class Func> \
-inline QAction *zoomOut(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(ZoomOut, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *zoomOut(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(ZoomOut, recvr, slot, parent);
+}
 
 /*!
  * Select the current zoom level.
  */
-template<class Receiver, class Func> \
-inline QAction *zoom(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Zoom, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *zoom(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Zoom, recvr, slot, parent);
+}
 
 /*!
  * Redisplay or redraw the document.
  */
-template<class Receiver, class Func> \
-inline QAction *redisplay(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Redisplay, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *redisplay(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Redisplay, recvr, slot, parent);
+}
 
 /*!
  * Move up (web style menu).
  */
-template<class Receiver, class Func> \
-inline QAction *up(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Up, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *up(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Up, recvr, slot, parent);
+}
 
 /*!
  * Move back (web style menu).
  */
-template<class Receiver, class Func> \
-inline QAction *back(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Back, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *back(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Back, recvr, slot, parent);
+}
 
 /*!
  * Move forward (web style menu).
  */
-template<class Receiver, class Func> \
-inline QAction *forward(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Forward, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *forward(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Forward, recvr, slot, parent);
+}
 
 /*!
  * Go to the "Home" position or document.
  */
-template<class Receiver, class Func> \
-inline QAction *home(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Home, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *home(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Home, recvr, slot, parent);
+}
 
 /*!
  * Scroll up one page.
  */
-template<class Receiver, class Func> \
-inline QAction *prior(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Prior, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *prior(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Prior, recvr, slot, parent);
+}
 
 /*!
  * Scroll down one page.
  */
-template<class Receiver, class Func> \
-inline QAction *next(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Next, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *next(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Next, recvr, slot, parent);
+}
 
 /*!
  * Jump to some specific location in the document.
  */
-template<class Receiver, class Func> \
-inline QAction *goTo(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Goto, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *goTo(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Goto, recvr, slot, parent);
+}
 
 /*!
  * Go to a specific page.
  */
-template<class Receiver, class Func> \
-inline QAction *gotoPage(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(GotoPage, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *gotoPage(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(GotoPage, recvr, slot, parent);
+}
 
 /*!
  * Go to a specific line.
  */
-template<class Receiver, class Func> \
-inline QAction *gotoLine(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(GotoLine, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *gotoLine(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(GotoLine, recvr, slot, parent);
+}
 
 /*!
  * Jump to the first page.
  */
-template<class Receiver, class Func> \
-inline QAction *firstPage(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(FirstPage, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *firstPage(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(FirstPage, recvr, slot, parent);
+}
 
 /*!
  * Jump to the last page.
  */
-template<class Receiver, class Func> \
-inline QAction *lastPage(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(LastPage, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *lastPage(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(LastPage, recvr, slot, parent);
+}
 
 /*!
  * Move back (document style menu).
  */
-template<class Receiver, class Func> \
-inline QAction *documentBack(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(DocumentBack, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *documentBack(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(DocumentBack, recvr, slot, parent);
+}
 
 /*!
  * Move forward (document style menu).
  */
-template<class Receiver, class Func> \
-inline QAction *documentForward(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(DocumentForward, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *documentForward(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(DocumentForward, recvr, slot, parent);
+}
 
 /*!
  * Add the current page to the bookmarks tree.
  */
-template<class Receiver, class Func> \
-inline QAction *addBookmark(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(AddBookmark, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *addBookmark(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(AddBookmark, recvr, slot, parent);
+}
 
 /*!
  * Edit the application bookmarks.
  */
-template<class Receiver, class Func> \
-inline QAction *editBookmarks(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(EditBookmarks, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *editBookmarks(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(EditBookmarks, recvr, slot, parent);
+}
 
 /*!
  * Pop up the spell checker.
  */
-template<class Receiver, class Func> \
-inline QAction *spelling(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Spelling, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *spelling(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Spelling, recvr, slot, parent);
+}
 
 /*!
  * Display the configure key bindings dialog.
@@ -616,101 +707,128 @@ inline QAction *spelling(const Receiver *recvr, Func slot, QObject *parent) \
  * KStandardActions::keyBindings(guiFactory(), &KXMLGUIFactory::showConfigureShortcutsDialog, actionCollection());
  * \endcode
  */
-template<class Receiver, class Func> \
-inline QAction *keyBindings(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(KeyBindings, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *keyBindings(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(KeyBindings, recvr, slot, parent);
+}
 
 /*!
  * Display the preferences/options dialog.
  */
-template<class Receiver, class Func> \
-inline QAction *preferences(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Preferences, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *preferences(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Preferences, recvr, slot, parent);
+}
 
 /*!
  * Display the toolbar configuration dialog.
  */
-template<class Receiver, class Func> \
-inline QAction *configureToolbars(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(ConfigureToolbars, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *configureToolbars(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(ConfigureToolbars, recvr, slot, parent);
+}
 
 /*!
  * Display the notifications configuration dialog.
  */
-template<class Receiver, class Func> \
-inline QAction *configureNotifications(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(ConfigureNotifications, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *configureNotifications(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(ConfigureNotifications, recvr, slot, parent);
+}
 
 /*!
  * Display the Switch Application Language dialog.
  */
-template<class Receiver, class Func> \
-inline QAction *switchApplicationLanguage(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(SwitchApplicationLanguage, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *switchApplicationLanguage(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(SwitchApplicationLanguage, recvr, slot, parent);
+}
 
 /*!
  * Display the handbook of the application.
  */
-template<class Receiver, class Func> \
-inline QAction *helpContents(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(HelpContents, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *helpContents(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(HelpContents, recvr, slot, parent);
+}
 
 /*!
  * Trigger the What's This cursor.
  */
-template<class Receiver, class Func> \
-inline QAction *whatsThis(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(WhatsThis, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *whatsThis(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(WhatsThis, recvr, slot, parent);
+}
 
 /*!
  * Open up the Report Bug dialog.
  */
-template<class Receiver, class Func> \
-inline QAction *reportBug(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(ReportBug, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *reportBug(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(ReportBug, recvr, slot, parent);
+}
 
 /*!
  * Display the application's About box.
  */
-template<class Receiver, class Func> \
-inline QAction *aboutApp(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(AboutApp, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *aboutApp(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(AboutApp, recvr, slot, parent);
+}
 
 /*!
  * Display the About KDE dialog.
  */
-template<class Receiver, class Func> \
-inline QAction *aboutKDE(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(AboutKDE, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *aboutKDE(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(AboutKDE, recvr, slot, parent);
+}
 
 /*!
  * Permanently deletes files or folders.
  */
-template<class Receiver, class Func> \
-inline QAction *deleteFile(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(DeleteFile, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *deleteFile(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(DeleteFile, recvr, slot, parent);
+}
 
 /*!
  * Renames files or folders.
  */
-template<class Receiver, class Func> \
-inline QAction *renameFile(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(RenameFile, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *renameFile(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(RenameFile, recvr, slot, parent);
+}
 
 /*!
  * Moves files or folders to the trash.
  */
-template<class Receiver, class Func> \
-inline QAction *moveToTrash(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(MoveToTrash, recvr, slot, parent); }
+template<class Receiver, class Func>
+inline QAction *moveToTrash(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(MoveToTrash, recvr, slot, parent);
+}
 
 /*!
  * Open donation page on kde.org.
  */
-template<class Receiver, class Func> \
-inline QAction *donate(const Receiver *recvr, Func slot, QObject *parent) \
-{ return create(Donate, recvr, slot, parent); }
-// clang-format on
+template<class Receiver, class Func>
+inline QAction *donate(const Receiver *recvr, Func slot, QObject *parent)
+{
+    return create(Donate, recvr, slot, parent);
+}
 }
 
 #endif // KSTDACTION_H
