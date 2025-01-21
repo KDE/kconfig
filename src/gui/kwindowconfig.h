@@ -15,7 +15,10 @@ class QWindow;
 class QScreen;
 
 /*!
- * Save and load window sizes into a config
+ * \namespace KWindowConfig
+ * \inmodule KConfigGui
+ *
+ * \brief Save and load window sizes into a config.
  */
 namespace KWindowConfig
 {
@@ -23,11 +26,14 @@ namespace KWindowConfig
  * Saves the window's size dependent on the screen dimension either to the
  * global or application config file.
  *
- * @note the group must be set before calling
+ * \note the group must be set before calling
  *
- * @param window The window to save size.
- * @param config The config group to read from.
- * @param options passed to KConfigGroup::writeEntry()
+ * \a window The window to save size.
+ *
+ * \a config The config group to read from.
+ *
+ * \a options passed to KConfigGroup::writeEntry()
+ *
  * \since 5.0
  */
 KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
@@ -35,7 +41,8 @@ KCONFIGGUI_EXPORT void saveWindowSize(const QWindow *window, KConfigGroup &confi
 /*!
  * Returns whether a given KConfig group has any saved window size data.
  *
- * @param config The config group to read from.
+ * \a config The config group to read from.
+ *
  * \since 6.0
  */
 KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
@@ -49,18 +56,20 @@ KCONFIGGUI_EXPORT bool hasSavedWindowSize(KConfigGroup &config);
  * to pass to this method.
  *
  * Example code:
- * @code
+ * \code
  *   create(); // ensure there's a window created
  *   const QSize availableSize = windowHandle()->screen()->availableSize();
  *   windowHandle()->resize(availableSize.width() * 0.7, availableSize.height() * 0.5); // default size
  *   KWindowConfig::restoreWindowSize(windowHandle(), KSharedConfig::openConfig()->group("MyDialog"));
  *   resize(windowHandle()->size()); // workaround for QTBUG-40584
- * @endcode
+ * \endcode
  *
- * @note the group must be set before calling
+ * \note the group must be set before calling
  *
- * @param window The window to restore size.
- * @param config The config group to read from.
+ * \a window The window to restore size.
+ *
+ * \a config The config group to read from.
+ *
  * \since 5.0.
  */
 KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &config);
@@ -70,11 +79,14 @@ KCONFIGGUI_EXPORT void restoreWindowSize(QWindow *window, const KConfigGroup &co
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.
  *
- * @note the group must be set before calling
+ * \note the group must be set before calling
  *
- * @param window The window whose position to save.
- * @param config The config group to read from.
- * @param options passed to KConfigGroup::writeEntry()
+ * \a window The window whose position to save.
+ *
+ * \a config The config group to read from.
+ *
+ * \a options passed to KConfigGroup::writeEntry()
+ *
  * \since 5.74
  */
 KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &config, KConfigGroup::WriteConfigFlags options = KConfigGroup::Normal);
@@ -82,10 +94,11 @@ KCONFIGGUI_EXPORT void saveWindowPosition(const QWindow *window, KConfigGroup &c
 /*!
  * Returns whether a given KConfig group has any saved window position data.
  *
- * @note: always returns false on Wayland where saving and restoring window
+ * \note: always returns false on Wayland where saving and restoring window
  * position data is not supported.
  *
- * @param config The config group to read from.
+ * \a config The config group to read from.
+ *
  * \since 6.0
  */
 KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
@@ -94,10 +107,12 @@ KCONFIGGUI_EXPORT bool hasSavedWindowPosition(KConfigGroup &config);
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.
  *
- * @note the group must be set before calling
+ * \note the group must be set before calling
  *
- * @param window The window whose position to restore.
- * @param config The config group to read from.
+ * \a window The window whose position to restore.
+ *
+ * \a config The config group to read from.
+ *
  * \since 5.74
  */
 KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup &config);
@@ -107,11 +122,14 @@ KCONFIGGUI_EXPORT void restoreWindowPosition(QWindow *window, const KConfigGroup
  * This function has no effect on Wayland, where the compositor is responsible
  * for window positioning.
  *
- * @note the group must be set before calling
+ * \note the group must be set before calling
  *
- * @param window The window whose position to restore.
- * @param screen Screen on which window should be placed.
- * @param config The config group to read from.
+ * \a window The window whose position to restore.
+ *
+ * \a screen Screen on which window should be placed.
+ *
+ * \a config The config group to read from.
+ *
  * \since 5.99
  */
 KCONFIGGUI_EXPORT void restoreWindowScreenPosition(QWindow *window, const QScreen *screen, const KConfigGroup &config);
