@@ -1,0 +1,16 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KConfigGui
+description = I am XML
+
+documentationinheaders = true
+
+headerdirs = .
+sourcedirs = .
+
+outputformats = HTML
+
+depends += \
+    qtcore \
+    qtgui \
+    kconfigcore

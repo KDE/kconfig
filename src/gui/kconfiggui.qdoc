@@ -1,0 +1,12 @@
+/*!
+    \module KConfigGui
+    \title KConfigGui C++ Classes
+    \ingroup modules
+    \cmakepackage KF6
+    \cmakecomponent Config
+    \cmaketargetitem KF6::ConfigGui
+
+    \brief Config
+
+    Stuff
+*/
