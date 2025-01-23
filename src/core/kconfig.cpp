@@ -59,6 +59,7 @@ struct ParseCacheValue {
     KEntryMap entries;
     QDateTime parseTime;
 };
+QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>> sGlobalParse;
 
 #ifndef Q_OS_WIN
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
@@ -712,8 +713,6 @@ void KConfigPrivate::parseGlobalFiles()
     //    qDebug() << "parsing global files" << globalFiles;
 
     Q_ASSERT(entryMap.empty());
-
-    static QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>> sGlobalParse;
 
     const ParseCacheKey key = {globalFiles, locale};
     auto data = sGlobalParse.localData().object(key);
