@@ -22,6 +22,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 int main(int, char **)
 {
+    QStandardPaths::setTestModeEnabled(true);
     TestParamMinMax t = TestParamMinMax();
     return 0;
 }

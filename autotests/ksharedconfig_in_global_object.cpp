@@ -37,6 +37,7 @@ Q_GLOBAL_STATIC(Tester, globalTestObject)
 
 int main(int argc, char **argv)
 {
+    QStandardPaths::setTestModeEnabled(true);
     qputenv("QT_FATAL_WARNINGS", "1");
     QCoreApplication app(argc, argv);
 

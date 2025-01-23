@@ -25,6 +25,8 @@ static const QString s_testName(QStringLiteral("kconfigloadertest")); // clazy:e
 
 void ConfigLoaderTest::init()
 {
+    QStandardPaths::setTestModeEnabled(true);
+
     QString fileName = s_testName + QLatin1String(".xml");
     configFile = new QFile(QFINDTESTDATA(QString::fromLatin1("/") + fileName));
     cl = new KConfigLoader(configFile->fileName(), configFile);

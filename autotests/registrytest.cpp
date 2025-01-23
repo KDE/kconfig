@@ -16,6 +16,8 @@ class RegistryTest : public QObject
 private Q_SLOTS:
     void initTestCase()
     {
+        QStandardPaths::setTestModeEnabled(true);
+
         qApp->setOrganizationName(QStringLiteral("KDE"));
 
         auto hkcuPath = QFINDTESTDATA("registry_test_hkcu.reg");

@@ -8,6 +8,7 @@
 
 int main(int argc, char **argv)
 {
+    QStandardPaths::setTestModeEnabled(true);
     QGuiApplication app(argc, argv);
 
     TestEnumsAndProperties t = TestEnumsAndProperties();

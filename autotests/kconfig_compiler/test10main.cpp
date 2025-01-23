@@ -9,6 +9,7 @@
 
 int main(int argc, char **argv)
 {
+    QStandardPaths::setTestModeEnabled(true);
     QGuiApplication app(argc, argv);
     Q_UNUSED(app);
     Test10 *t = Test10::self();

@@ -7,6 +7,7 @@
 
 int main(int, char **)
 {
+    QStandardPaths::setTestModeEnabled(true);
     Test12 t = Test12();
     return 0;
 }
