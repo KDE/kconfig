@@ -6,45 +6,31 @@
 */
 
 #include <QCoreApplication>
+#include <QLocale>
+#include <QThreadStorage>
 #include <QTimer>
 #include <QtGlobal>
-#include <kconfiggroup.h>
-#include <ksharedconfig.h>
-#include <stdio.h>
+
+using ParseCache = QThreadStorage<int>;
+Q_GLOBAL_STATIC(ParseCache, sGlobalParse)
 
 class Tester
 {
 public:
-    void initConfig();
-    ~Tester();
+    ~Tester()
+    {
+        QLocale().name();
+        sGlobalParse->localData();
+    }
 };
-
-void Tester::initConfig()
-{
-    fprintf(stderr, "app Tester\n");
-    KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("test"));
-    group.writeEntry("test", 0);
-}
-
-Tester::~Tester()
-{
-    fprintf(stderr, "app ~Tester\n");
-    KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("test"));
-    group.writeEntry("test", 1);
-}
 
 Q_GLOBAL_STATIC(Tester, globalTestObject)
 
 int main(int argc, char **argv)
 {
-    QStandardPaths::setTestModeEnabled(true);
-    qputenv("QT_FATAL_WARNINGS", "1");
     QCoreApplication app(argc, argv);
 
-    KSharedConfig::Ptr config = KSharedConfig::openConfig();
-
     Tester *t = globalTestObject();
-    t->initConfig();
 
     QTimer::singleShot(0, qApp, SLOT(quit()));
     return app.exec();
