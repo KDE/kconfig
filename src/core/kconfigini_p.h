@@ -12,12 +12,15 @@
 
 #include <QCoreApplication>
 #include <QFile>
+#include <QLockFile>
 #include <QMutex>
 #include <QSharedData>
+
 #include <kconfigbase.h>
 #include <kconfigcore_export.h>
 
-class QLockFile;
+#include <memory>
+
 class QIODevice;
 class KEntryMap;
 
@@ -28,7 +31,7 @@ class KConfigIniBackend
     Q_DISABLE_COPY(KConfigIniBackend);
 
 private:
-    QLockFile *lockFile;
+    std::unique_ptr<QLockFile> lockFile;
     QMutex m_mutex;
 
 public:

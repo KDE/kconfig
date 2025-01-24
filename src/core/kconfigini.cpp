@@ -50,7 +50,6 @@ QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 }
 
 KConfigIniBackend::KConfigIniBackend()
-    : lockFile(nullptr)
 {
 }
 
@@ -626,15 +625,15 @@ bool KConfigIniBackend::lock()
             // we can't create file at an arbitrary location, so use internal storage to create one
 
             // NOTE: filename can be the same, but because this lock is short lived we may never have a collision
-            lockFile = new QLockFile(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/")
-                                     + QFileInfo(filePath()).fileName() + QLatin1String(".lock"));
+            lockFile = std::make_unique<QLockFile>(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/")
+                                                   + QFileInfo(filePath()).fileName() + QLatin1String(".lock"));
         } else {
-            lockFile = new QLockFile(filePath() + QLatin1String(".lock"));
+            lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
         }
     }
 #else
     if (!lockFile) {
-        lockFile = new QLockFile(filePath() + QLatin1String(".lock"));
+        lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
     }
 #endif
 
@@ -648,7 +647,6 @@ bool KConfigIniBackend::lock()
 void KConfigIniBackend::unlock()
 {
     lockFile->unlock();
-    delete lockFile;
     lockFile = nullptr;
     m_mutex.unlock();
 }
