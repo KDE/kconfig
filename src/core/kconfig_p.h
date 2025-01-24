@@ -68,7 +68,7 @@ public:
     static QString expandString(const QString &value);
 
 protected:
-    QExplicitlySharedDataPointer<KConfigIniBackend> mBackend;
+    KConfigIniBackend mBackend;
 
     KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation type);
 

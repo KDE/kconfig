@@ -71,7 +71,6 @@ static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
     : openFlags(flags)
     , resourceType(resourceType)
-    , mBackend(new KConfigIniBackend)
     , bDirty(false)
     , bReadDefaults(false)
     , bFileImmutable(false)
@@ -124,7 +123,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
 
 bool KConfigPrivate::lockLocal()
 {
-    return mBackend->lock();
+    return mBackend.lock();
 }
 
 static bool isGroupOrSubGroupMatch(KEntryMapConstIterator entryMapIt, const QString &group)
@@ -269,7 +268,7 @@ KConfig::KConfig(KConfigPrivate &d)
 KConfig::~KConfig()
 {
     Q_D(KConfig);
-    if (d->bDirty && d->mBackend->ref.loadRelaxed() == 1) {
+    if (d->bDirty) {
         sync();
     }
     delete d;
@@ -424,7 +423,7 @@ bool KConfig::sync()
         const QByteArray utf8Locale(locale().toUtf8());
 
         // Create the containing dir, maybe it wasn't there
-        d->mBackend->createEnclosing();
+        d->mBackend.createEnclosing();
 
         // lock the local file
         if (d->configState == ReadWrite && !d->lockLocal()) {
@@ -455,34 +454,34 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            QExplicitlySharedDataPointer<KConfigIniBackend> tmp(new KConfigIniBackend());
-            tmp->setFilePath(*sGlobalFileName);
-            if (d->configState == ReadWrite && !tmp->lock()) {
+            KConfigIniBackend tmp;
+            tmp.setFilePath(*sGlobalFileName);
+            if (d->configState == ReadWrite && !tmp.lock()) {
                 qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
 
                 // unlock the local config if we're returning early
-                if (d->mBackend->isLocked()) {
-                    d->mBackend->unlock();
+                if (d->mBackend.isLocked()) {
+                    d->mBackend.unlock();
                 }
 
                 d->bDirty = true;
                 return false;
             }
-            if (!tmp->writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteGlobal)) {
+            if (!tmp.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteGlobal)) {
                 d->bDirty = true;
             }
-            if (tmp->isLocked()) {
-                tmp->unlock();
+            if (tmp.isLocked()) {
+                tmp.unlock();
             }
         }
 
         if (writeLocals) {
-            if (!d->mBackend->writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
+            if (!d->mBackend.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
                 d->bDirty = true;
             }
         }
-        if (d->mBackend->isLocked()) {
-            d->mBackend->unlock();
+        if (d->mBackend.isLocked()) {
+            d->mBackend.unlock();
         }
     }
 
@@ -643,9 +642,9 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    mBackend->setFilePath(file);
+    mBackend.setFilePath(file);
 
-    configState = mBackend->accessMode();
+    configState = mBackend.accessMode();
 }
 
 void KConfig::reparseConfiguration()
@@ -741,9 +740,9 @@ void KConfigPrivate::parseGlobalFiles()
             parseOpts |= KConfigIniBackend::ParseDefaults;
         }
 
-        QExplicitlySharedDataPointer<KConfigIniBackend> backend(new KConfigIniBackend);
-        backend->setFilePath(file);
-        if (backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
+        KConfigIniBackend backend;
+        backend.setFilePath(file);
+        if (backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
             break;
         }
     }
@@ -793,7 +792,7 @@ void KConfigPrivate::parseConfigFiles()
                 }
             }
         } else {
-            files << mBackend->filePath();
+            files << mBackend.filePath();
         }
         if (!isSimple()) {
             files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
@@ -803,8 +802,8 @@ void KConfigPrivate::parseConfigFiles()
 
         const QByteArray utf8Locale = locale.toUtf8();
         for (const QString &file : std::as_const(files)) {
-            if (file.compare(mBackend->filePath(), sPathCaseSensitivity) == 0) {
-                switch (mBackend->parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
+            if (file.compare(mBackend.filePath(), sPathCaseSensitivity) == 0) {
+                switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
                 case KConfigIniBackend::ParseOk:
                     break;
                 case KConfigIniBackend::ParseImmutable:
@@ -815,10 +814,10 @@ void KConfigPrivate::parseConfigFiles()
                     break;
                 }
             } else {
-                QExplicitlySharedDataPointer<KConfigIniBackend> backend(new KConfigIniBackend);
-                backend->setFilePath(file);
+                KConfigIniBackend backend;
+                backend.setFilePath(file);
                 constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
-                bFileImmutable = backend->parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
+                bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
             }
 
             if (bFileImmutable) {
@@ -950,11 +949,11 @@ void KConfig::deleteGroupImpl(const QString &aGroup, WriteConfigFlags flags)
 bool KConfig::isConfigWritable(bool warnUser)
 {
     Q_D(KConfig);
-    bool allWritable = d->mBackend->isWritable();
+    bool allWritable = d->mBackend.isWritable();
 
     if (warnUser && !allWritable) {
         QString errorMsg;
-        errorMsg = d->mBackend->nonWritableErrorMessage();
+        errorMsg = d->mBackend.nonWritableErrorMessage();
 
         // Note: We don't ask the user if we should not ask this question again because we can't save the answer.
         errorMsg += QCoreApplication::translate("KConfig", "Please contact your system administrator.");

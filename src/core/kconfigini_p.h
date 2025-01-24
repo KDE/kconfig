@@ -21,10 +21,11 @@ class QLockFile;
 class QIODevice;
 class KEntryMap;
 
-class KConfigIniBackend : public QSharedData
+class KConfigIniBackend
 {
     Q_GADGET
     Q_DECLARE_TR_FUNCTIONS(KConfigIniBackend)
+    Q_DISABLE_COPY(KConfigIniBackend);
 
 private:
     QLockFile *lockFile;
