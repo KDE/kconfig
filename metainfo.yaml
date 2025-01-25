@@ -11,8 +11,8 @@ portingAid: false
 deprecated: false
 release: true
 libraries:
- - cmake: "KF6::ConfigCore"
- - cmake: "KF6::ConfigGui"
+    - cmake: "KF6::ConfigCore"
+    - cmake: "KF6::ConfigGui"
 cmakename: KF6Config
 
 public_lib: true
