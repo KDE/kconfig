@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-05-22 06:40+0300\n"
+"PO-Revision-Date: 2025-01-24 09:27+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.12.0\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:960
+#: core/kconfig.cpp:959
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "נא ליצור קשר עם הנהלת המערכת שלך."
 
-#: core/kconfigini.cpp:568
+#: core/kconfigini.cpp:567
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -313,12 +313,12 @@ msgstr "בחירת מרחק התקריב"
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr "&רענון"
+msgstr "&ריענון"
 
 #: gui/kstandardactions_p.h:99
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr "רענון המסמך"
+msgstr "ריענון המסמך"
 
 #: gui/kstandardactions_p.h:101
 msgctxt "KStandardActions|"
@@ -681,7 +681,7 @@ msgstr "קדימה"
 #: gui/kstandardshortcut.cpp:182
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr "רענון"
+msgstr "ריענון"
 
 #: gui/kstandardshortcut.cpp:191
 msgctxt "KStandardShortcut|@action"

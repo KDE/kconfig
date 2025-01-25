@@ -20,12 +20,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:960
+#: core/kconfig.cpp:959
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Vui lòng liên hệ với quản trị viên hệ thống của bạn."
 
-#: core/kconfigini.cpp:568
+#: core/kconfigini.cpp:567
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"

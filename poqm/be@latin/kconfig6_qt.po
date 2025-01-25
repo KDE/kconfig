@@ -21,12 +21,12 @@ msgstr ""
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:960
+#: core/kconfig.cpp:959
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr ""
 
-#: core/kconfigini.cpp:568
+#: core/kconfigini.cpp:567
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
