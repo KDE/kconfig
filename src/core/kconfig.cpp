@@ -60,7 +60,6 @@ struct ParseCacheValue {
     QDateTime parseTime;
 };
 using ParseCache = QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>>;
-Q_GLOBAL_STATIC(ParseCache, sGlobalParse)
 
 #ifndef Q_OS_WIN
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
@@ -715,7 +714,10 @@ void KConfigPrivate::parseGlobalFiles()
 
     Q_ASSERT(entryMap.empty());
     const ParseCacheKey key = {globalFiles, locale};
-    auto data = sGlobalParse->localData().object(key);
+
+    static QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>> sGlobalParse;
+
+    auto data = sGlobalParse.localData().object(key);
     QDateTime newest;
     for (const auto &file : globalFiles) {
         const auto fileDate = QFileInfo(file).lastModified(QTimeZone::UTC);
@@ -746,7 +748,7 @@ void KConfigPrivate::parseGlobalFiles()
             break;
         }
     }
-    sGlobalParse->localData().insert(key, new ParseCacheValue({entryMap, newest}));
+    sGlobalParse.localData().insert(key, new ParseCacheValue({entryMap, newest}));
 }
 
 #ifdef Q_OS_WIN
