@@ -43,15 +43,15 @@ int main(int argc, char **argv)
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addOption(
-        QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
+        QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("f")));
     parser.addOption(
         QCommandLineOption(QStringLiteral("group"),
                            QCoreApplication::translate("main", "Group to look in. Use \"<default>\" for the root group, or use repeatedly for nested groups."),
-                           QStringLiteral("group"),
+                           QStringLiteral("g"),
                            QStringLiteral("KDE")));
-    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
-    parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
-    parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
+    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("k")));
+    parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("d")));
+    parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("t")));
 
     parser.process(app);
 

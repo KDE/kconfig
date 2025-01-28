@@ -22,19 +22,21 @@ int main(int argc, char **argv)
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addOption(
-        QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
+        QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("f")));
     parser.addOption(
         QCommandLineOption(QStringLiteral("group"),
                            QCoreApplication::translate("main", "Group to look in. Use \"<default>\" for the root group, or use repeatedly for nested groups."),
-                           QStringLiteral("group"),
+                           QStringLiteral("g"),
                            QStringLiteral("KDE")));
-    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
+    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("k")));
     parser.addOption(
         QCommandLineOption(QStringLiteral("type"),
                            QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"),
-                           QStringLiteral("type")));
-    parser.addOption(QCommandLineOption(QStringLiteral("delete"), QCoreApplication::translate("main", "Delete the designated key if enabled")));
-    parser.addOption(QCommandLineOption(QStringLiteral("notify"), QCoreApplication::translate("notify", "Notify applications of the change")));
+                           QStringLiteral("t")));
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("delete"), QCoreApplication::translate("main", "Delete the designated key if enabled"), QStringLiteral("d")));
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("notify"), QCoreApplication::translate("notify", "Notify applications of the change"), QStringLiteral("n")));
     parser.addPositionalArgument(QStringLiteral("value"), QCoreApplication::translate("main", "The value to write. Mandatory, on a shell use '' for empty"));
 
     parser.process(app);
