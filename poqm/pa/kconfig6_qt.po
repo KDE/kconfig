@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:959
+#: core/kconfig.cpp:960
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "ਆਪਣੇ ਸਿਸਟਮ ਐਡਮਿਨਸਟੇਟਰ ਨਾਲ ਸੰਪਰਕ ਕਰੋ ਜੀ।"
