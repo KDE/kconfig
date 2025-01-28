@@ -34,6 +34,7 @@ int main(int argc, char **argv)
                            QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"),
                            QStringLiteral("type")));
     parser.addOption(QCommandLineOption(QStringLiteral("delete"), QCoreApplication::translate("main", "Delete the designated key if enabled")));
+    parser.addOption(QCommandLineOption(QStringLiteral("notify"), QCoreApplication::translate("notify", "Notify applications of the change")));
     parser.addPositionalArgument(QStringLiteral("value"), QCoreApplication::translate("main", "The value to write. Mandatory, on a shell use '' for empty"));
 
     parser.process(app);
@@ -43,6 +44,7 @@ int main(int argc, char **argv)
     QString file = parser.value(QStringLiteral("file"));
     QString type = parser.value(QStringLiteral("type")).toLower();
     bool del = parser.isSet(QStringLiteral("delete"));
+    bool notify = parser.isSet(QStringLiteral("notify"));
 
     QString value;
     if (del) {
@@ -76,8 +78,10 @@ int main(int argc, char **argv)
         return 2;
     }
 
+    KConfig::WriteConfigFlags flags = notify ? KConfig::Notify : KConfig::Normal;
+
     if (del) {
-        cfgGroup.deleteEntry(key);
+        cfgGroup.deleteEntry(key, flags);
     } else if (type == QLatin1String{"bool"}) {
         // For symmetry with kreadconfig we accept a wider range of values as true than Qt
         /* clang-format off */
@@ -85,11 +89,11 @@ int main(int argc, char **argv)
                          || value == QLatin1String{"on"}
                          || value == QLatin1String{"yes"}
                          || value == QLatin1String{"1"}; /* clang-format on */
-        cfgGroup.writeEntry(key, boolvalue);
+        cfgGroup.writeEntry(key, boolvalue, flags);
     } else if (type == QLatin1String{"path"}) {
-        cfgGroup.writePathEntry(key, value);
+        cfgGroup.writePathEntry(key, value, flags);
     } else {
-        cfgGroup.writeEntry(key, value);
+        cfgGroup.writeEntry(key, value, flags);
     }
     konfig->sync();
     delete konfig;
