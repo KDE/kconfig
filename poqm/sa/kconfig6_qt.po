@@ -1022,7 +1022,7 @@ msgctxt "main|"
 msgid "Type of variable"
 msgstr "चरस्य प्रकारः"
 
-#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr "समूहनाम रिक्तं न भवितुम् अर्हति, मूलसमूहस्य कृते \"<default>\" इत्यस्य उपयोगं कुर्वन्तु"
@@ -1042,6 +1042,11 @@ msgid "Delete the designated key if enabled"
 msgstr "यदि सक्षमं भवति तर्हि निर्दिष्टं कीलं विलोपयन्तु"
 
 #: kreadconfig/kwriteconfig.cpp:37
+msgctxt "notify|"
+msgid "Notify applications of the change"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "लिखितव्यं मूल्यम् । अनिवार्यम्, एकस्मिन् शंखे '' रिक्तस्य कृते प्रयोगः"

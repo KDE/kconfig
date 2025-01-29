@@ -1029,7 +1029,7 @@ msgctxt "main|"
 msgid "Type of variable"
 msgstr "Type af variabel"
 
-#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr "Gruppenavne kan ikke være tomme, brug \"<default>\" for root-gruppen"
@@ -1049,6 +1049,11 @@ msgid "Delete the designated key if enabled"
 msgstr "Slet den tildelte nøgle hvis aktiveret"
 
 #: kreadconfig/kwriteconfig.cpp:37
+msgctxt "notify|"
+msgid "Notify applications of the change"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Værdien der skal skrives. Krævet, i en skal bruges '' for tom"

@@ -1221,7 +1221,7 @@ msgctxt "main|"
 msgid "Type of variable"
 msgstr "Тип променљиве"
 
-#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
@@ -1240,8 +1240,13 @@ msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr ""
 
-# rewrite-msgid: /on a shell//
 #: kreadconfig/kwriteconfig.cpp:37
+msgctxt "notify|"
+msgid "Notify applications of the change"
+msgstr ""
+
+# rewrite-msgid: /on a shell//
+#: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Вредност која се уписује. Обавезно, задајте '' за празну"

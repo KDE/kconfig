@@ -1021,7 +1021,7 @@ msgctxt "main|"
 msgid "Type of variable"
 msgstr "变量类型"
 
-#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr "组名称不能为空，根组应使用“<default>”"
@@ -1039,6 +1039,11 @@ msgid "Delete the designated key if enabled"
 msgstr "启用时删除指定项"
 
 #: kreadconfig/kwriteconfig.cpp:37
+msgctxt "notify|"
+msgid "Notify applications of the change"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "要写入的值。此为必填项。在 shell 中应使用 \" 代表空值。"

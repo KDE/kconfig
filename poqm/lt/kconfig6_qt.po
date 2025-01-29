@@ -1028,7 +1028,7 @@ msgctxt "main|"
 msgid "Type of variable"
 msgstr "Kintamojo tipas"
 
-#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
@@ -1049,6 +1049,11 @@ msgid "Delete the designated key if enabled"
 msgstr "Jei įjungta, ištrinti paskirtąjį klavišą"
 
 #: kreadconfig/kwriteconfig.cpp:37
+msgctxt "notify|"
+msgid "Notify applications of the change"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Reikšmė, kurią įrašyti. Privaloma, apvalkale naudokite '' jei tuščia"
