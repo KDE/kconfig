@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: core/kconfig.cpp:960
 msgctxt "KConfig|"
@@ -1045,7 +1045,7 @@ msgstr "გამოყოფილი გასაღების წაშლ�
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "აპლიკაციებისთვის ცვლილების შეტყობინება"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"

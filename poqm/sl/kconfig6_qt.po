@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-05-22 10:18+0200\n"
+"PO-Revision-Date: 2025-01-29 07:18+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
 "%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:960
@@ -249,7 +249,7 @@ msgstr "Najdi prejšnje"
 #: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "Zamenjaj"
+msgstr "Zamenjaj…"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
@@ -1055,7 +1055,7 @@ msgstr "Izbriši označen ključ, če je omogočeno"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Obvesti aplikacije o spremembi"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"

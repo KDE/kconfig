@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-14 11:50+0100\n"
+"PO-Revision-Date: 2025-01-29 22:55+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1046,7 +1046,7 @@ msgstr "De aangeduide sleutel verwijderen indien ingeschakeld"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Toepassingen op de hoogte stellen van de wijziging"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
