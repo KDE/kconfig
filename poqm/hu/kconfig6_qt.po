@@ -2,13 +2,13 @@
 #
 # Tamas Szanto <tszanto@interware.hu>, 2003.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2014.
-# SPDX-FileCopyrightText: 2018, 2020, 2021, 2024 Kristof Kiszel <kiszel.kristof@gmail.com>
+# SPDX-FileCopyrightText: 2018, 2020, 2021, 2024, 2025 Kristof Kiszel <kiszel.kristof@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-05-31 22:46+0200\n"
+"PO-Revision-Date: 2025-01-30 10:34+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.12.1\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:960
@@ -1050,7 +1050,7 @@ msgstr "A kijelölt billentyű törlése, ha be van kapcsolva"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Alkalmazások értesítése a változtatásról"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"

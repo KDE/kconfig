@@ -5,14 +5,14 @@
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
 # Marce Villarino <mvillarino@gmail.com>, 2009, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# SPDX-FileCopyrightText: 2023, 2024 Adrián Chaves (Gallaecio)
+# SPDX-FileCopyrightText: 2023, 2024, 2025 Adrián Chaves (Gallaecio)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-05-25 09:57+0200\n"
+"PO-Revision-Date: 2025-01-30 08:20+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.12.1\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:960
@@ -1058,7 +1058,7 @@ msgstr "Eliminar a tecla designada se escolle esta opción."
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Notificar do cambio ás aplicacións."
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"

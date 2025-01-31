@@ -1,18 +1,18 @@
 # Translation of kconfig6_qt.po to Catalan (Valencian)
-# Copyright (C) 2004-2024 This_file_is_part_of_KDE
+# Copyright (C) 2004-2025 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Ivan Lloro Boada <antispam@wanadoo.es>, 2004.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022.
 # Empar Montoro Martín <montoro_mde@gva.es>, 2019.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-07-05 19:26+0200\n"
+"PO-Revision-Date: 2025-01-29 10:29+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -1057,7 +1057,7 @@ msgstr "Suprimix la clau designada, si està seleccionada"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Notifica el canvi a les aplicacions"
 
 # skip-rule: t-apo_ini,t-apo_fin
 #: kreadconfig/kwriteconfig.cpp:38
