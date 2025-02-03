@@ -3,14 +3,14 @@
 # Andrea Rizzi <rizzi@kde.org>, 2003.
 # Andrea Rizzi <rizzi@sns.it>, 2007.
 # Luca Bellonda <lbellonda@gmail.com>, 2008.
-# SPDX-FileCopyrightText: 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Vincenzo Reale <smart2128vr@gmail.com>
+# SPDX-FileCopyrightText: 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Vincenzo Reale <smart2128vr@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-05-23 02:27+0200\n"
+"PO-Revision-Date: 2025-01-29 18:58+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.12.1\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:960
@@ -1054,7 +1054,7 @@ msgstr "Elimina il tasto designato se abilitato"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Notifica la modifica alle applicazioni"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
