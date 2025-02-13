@@ -1041,7 +1041,7 @@ msgstr "启用时删除指定项"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "通知应用程序有关更改"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
