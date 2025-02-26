@@ -1,10 +1,10 @@
-# Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2023.
+# SPDX-FileCopyrightText: 2023, 2025 Ryuichi Yamada <ryuichi_ya220@outlook.jp>
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2023-02-23 18:21+0900\n"
+"PO-Revision-Date: 2025-02-23 13:38+0900\n"
 "Last-Translator: Ryuichi Yamada <ryuichi_ya220@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 24.12.2\n"
 
 #: core/kconfig.cpp:961
 msgctxt "KConfig|"
@@ -207,7 +207,7 @@ msgstr ""
 #: gui/kstandardshortcut.cpp:201
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
-msgstr ""
+msgstr "ブックマークを追加"
 
 #: gui/kstandardshortcut.cpp:207
 msgctxt "KStandardShortcut|@action"
