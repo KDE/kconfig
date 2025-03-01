@@ -6,13 +6,13 @@
 # Andrey Cherepanov <skull@kde.ru>, 2009.
 # Alexander Potashev <aspotashev@gmail.com>, 2014, 2015, 2016, 2017, 2018, 2020.
 # Alexander Yavorsky <kekcuha@gmail.com>, 2024.
-# SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
+# SPDX-FileCopyrightText: 2024, 2025 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-09-05 14:41+0300\n"
+"PO-Revision-Date: 2025-02-28 14:56+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
@@ -1061,7 +1061,7 @@ msgstr "Удаление заданного ключа."
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Сообщить приложениям об изменении"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
