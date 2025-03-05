@@ -253,10 +253,6 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 }
             }
 
-            if (!(entryOptions & KEntryMap::EntryRawKey)) {
-                printableToString(aKey, file, lineNo);
-            }
-
             if (options & ParseGlobal) {
                 entryOptions |= KEntryMap::EntryGlobal;
             }

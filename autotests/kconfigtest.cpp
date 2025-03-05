@@ -60,7 +60,7 @@ static const QString s_string_entry6{};
 static const char s_utf8bit_entry[] = "Hello äöü";
 static const QString s_translated_string_entry1{QStringLiteral("bonjour")};
 static const QByteArray s_bytearray_entry{"\x00\xff\x7f\x3c abc\x00\x00", 10};
-static const char s_escapekey[] = " []\0017[]==]";
+static const char s_escapekey[] = " []\0017[]==\\]";
 static const char s_escape_entry[] = "[]\170[]]=3=]\\] ";
 static const double s_double_entry{123456.78912345};
 static const float s_float_entry{123.567f};
