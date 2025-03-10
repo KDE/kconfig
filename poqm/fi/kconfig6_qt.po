@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2018, 2020, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2018, 2020, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2014, 2015, 2016, 2017.
 # SPDX-FileCopyrightText: 2024 Lasse Liehu-Inui <lasse.liehu@iki.fi>
 msgid ""
@@ -6,15 +6,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-12-29 22:42+0200\n"
-"Last-Translator: Lasse Liehu-Inui <lasse.liehu@iki.fi>\n"
+"PO-Revision-Date: 2025-02-15 19:40+0200\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.12.0\n"
+"X-Generator: Lokalize 23.08.5\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:959
@@ -22,7 +22,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Ota yhteyttä järjestelmän ylläpitäjääsi."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:563
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -1048,7 +1048,7 @@ msgstr "Poista kytketty näppäin, jos käytössä"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "Tiedota sovelluksia muutoksesta"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
