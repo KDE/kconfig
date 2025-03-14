@@ -6,6 +6,7 @@
 #ifndef KCONFIG_AUTOTESTS_HELPER_H
 #define KCONFIG_AUTOTESTS_HELPER_H
 
+#include <QFile>
 #include <QLocale>
 
 /**
@@ -26,5 +27,24 @@ public:
 private:
     QLocale m_defaultLocale;
 };
+
+static QList<QByteArray> readLinesFrom(const QString &path)
+{
+    QFile file(path);
+    const bool opened = file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QList<QByteArray> lines;
+    if (!opened) {
+        qWarning() << "Failed to open" << path;
+        return lines;
+    }
+    QByteArray line;
+    do {
+        line = file.readLine();
+        if (!line.isEmpty()) {
+            lines.append(line);
+        }
+    } while (!line.isEmpty());
+    return lines;
+}
 
 #endif

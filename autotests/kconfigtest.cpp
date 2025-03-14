@@ -262,25 +262,6 @@ void KConfigTest::cleanupTestCase()
     }
 }
 
-static QList<QByteArray> readLinesFrom(const QString &path)
-{
-    QFile file(path);
-    const bool opened = file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QList<QByteArray> lines;
-    if (!opened) {
-        qWarning() << "Failed to open" << path;
-        return lines;
-    }
-    QByteArray line;
-    do {
-        line = file.readLine();
-        if (!line.isEmpty()) {
-            lines.append(line);
-        }
-    } while (!line.isEmpty());
-    return lines;
-}
-
 static const QString s_defaultArg = s_test_subdir + QLatin1String("kconfigtest");
 static QList<QByteArray> readLines(const QString &fileName = s_defaultArg)
 {

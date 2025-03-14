@@ -302,4 +302,20 @@ void KDesktopFileTest::testLocateLocal()
     QCOMPARE(KDesktopFile::locateLocal(path), result);
 }
 
+void KDesktopFileTest::testWritePrimaryGroupFirst()
+{
+    QTemporaryFile tmpFile(QDir::tempPath() + QStringLiteral("/testWritePrimaryGroupFirstXXXXXX.desktop"));
+    tmpFile.open();
+    KDesktopFile df(tmpFile.fileName());
+
+    df.actionGroup(QStringLiteral("AnAction")).writeEntry("Exec", "testapp --an-action");
+    df.desktopGroup().writeEntry("Name", "Test App");
+
+    df.sync();
+
+    auto lines = readLinesFrom(tmpFile.fileName());
+    QCOMPARE(lines.at(0), "[Desktop Entry]\n");
+    QVERIFY(lines.contains("[Desktop Action AnAction]\n"));
+}
+
 #include "moc_kdesktopfiletest.cpp"

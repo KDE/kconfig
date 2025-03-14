@@ -288,13 +288,17 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     return fileOptionImmutable ? ParseImmutable : ParseOk;
 }
 
-void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool &firstEntry)
+void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool primaryGroup, bool &firstEntry)
 {
     QString currentGroup;
     bool groupIsImmutable = false;
     for (const auto &[key, entry] : map) {
         // Either process the default group or all others
         if ((key.mGroup != QStringLiteral("<default>")) == defaultGroup) {
+            continue; // skip
+        }
+        // Either process the primary group or all others
+        if ((mPrimaryGroup.isNull() || key.mGroup != mPrimaryGroup) == primaryGroup) {
             continue; // skip
         }
 
@@ -383,10 +387,15 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
     bool firstEntry = true;
 
     // write default group
-    writeEntries(locale, file, map, true, firstEntry);
+    writeEntries(locale, file, map, true, false, firstEntry);
+
+    if (!mPrimaryGroup.isNull()) {
+        // write the primary group - it needs to be written before all other groups
+        writeEntries(locale, file, map, false, true, firstEntry);
+    }
 
     // write all other groups
-    writeEntries(locale, file, map, false, firstEntry);
+    writeEntries(locale, file, map, false, false, firstEntry);
 }
 
 bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options)
@@ -949,6 +958,11 @@ QString KConfigIniBackend::filePath() const
 void KConfigIniBackend::setLocalFilePath(const QString &file)
 {
     mLocalFilePath = file;
+}
+
+void KConfigIniBackend::setPrimaryGroup(const QString &group)
+{
+    mPrimaryGroup = group;
 }
 
 #include "moc_kconfigini_p.cpp"

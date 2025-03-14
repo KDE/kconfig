@@ -66,6 +66,9 @@ public:
     ParseInfo parseConfig(const QByteArray &locale, KEntryMap &entryMap, ParseOptions options, bool merging);
     bool writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options);
 
+    /** Group that will always be the first in the ini file, to serve as a magic file signature */
+    void setPrimaryGroup(const QString &group);
+
     bool isWritable() const;
     QString nonWritableErrorMessage() const;
     KConfigBase::AccessMode accessMode() const;
@@ -92,11 +95,12 @@ private:
     static QString warningProlog(const QFile &file, int line);
 
     void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map);
-    void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool &firstEntry);
+    void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool primaryGroup, bool &firstEntry);
 
     void setLocalFilePath(const QString &file);
 
     QString mLocalFilePath;
+    QString mPrimaryGroup;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KConfigIniBackend::ParseOptions)

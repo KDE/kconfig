@@ -25,6 +25,7 @@ private Q_SLOTS:
     void testTryExecWithAuthorizeAction();
     void testLocateLocal_data();
     void testLocateLocal();
+    void testWritePrimaryGroupFirst();
 };
 
 #endif /* KDESKTOPFILETEST_H */

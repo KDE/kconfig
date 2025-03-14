@@ -33,6 +33,9 @@ public:
         : KConfigPrivate(KConfig::NoGlobals, resourceType)
     {
         changeFileName(fileName);
+
+        // make sure the [Desktop Entry] group is always the first one, as required by the spec
+        mBackend.setPrimaryGroup(QStringLiteral("Desktop Entry"));
     }
     KConfigGroup desktopGroup;
 };
