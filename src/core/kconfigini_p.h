@@ -28,7 +28,7 @@ class KConfigIniBackend
 {
     Q_GADGET
     Q_DECLARE_TR_FUNCTIONS(KConfigIniBackend)
-    Q_DISABLE_COPY(KConfigIniBackend);
+    Q_DISABLE_COPY(KConfigIniBackend)
 
 private:
     std::unique_ptr<QLockFile> lockFile;
