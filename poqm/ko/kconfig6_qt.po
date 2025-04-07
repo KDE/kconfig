@@ -1,14 +1,14 @@
 # Translation of kwriteconfig to Korean.
 # Copyright (C) 2007 This_file_is_part_of_KDE
 # This file is distributed under the same license as the 2007 package.
-# SPDX-FileCopyrightText: 2007, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2023, 2024 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2007, 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2023, 2024, 2025 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2024-08-20 23:33+0200\n"
+"PO-Revision-Date: 2025-04-06 22:58+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -1052,7 +1052,7 @@ msgstr "활성화된 경우 지정한 키 삭제"
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "앱에 변경에 대해서 알리기"
 
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
