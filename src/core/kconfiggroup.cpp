@@ -351,7 +351,12 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         const qreal fractional = modf(totalSeconds, &seconds);
         const qreal milliseconds = round(fractional * 1000.0);
         const QTime time(list.at(3), list.at(4), seconds, milliseconds);
-        const QDateTime dt(date, time);
+
+        QDateTime dt(date, time);
+        if (list.count() == 7) { // Then the timezone, which was added later
+            const auto id = value.mid(value.lastIndexOf(',') + 1);
+            dt.setTimeZone(QTimeZone(id));
+        }
         if (!dt.isValid()) {
             qCWarning(KCONFIG_CORE_LOG) << errString(pKey, value, aDefault);
             return aDefault;
@@ -981,7 +986,7 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
         const QTime time = rDateTime.time();
         const QDate date = rDateTime.date();
 
-        const QVariantList list{
+        QVariantList list{
             date.year(),
             date.month(),
             date.day(),
@@ -990,6 +995,9 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
             time.minute(),
             time.second() + time.msec() / 1000.0,
         };
+        if (rDateTime.timeRepresentation().timeSpec() != Qt::LocalTime) {
+            list.append(rDateTime.timeZone().id());
+        }
 
         writeEntry(key, list, flags);
         return;

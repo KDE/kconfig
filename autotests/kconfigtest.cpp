@@ -69,6 +69,12 @@ static const QSize s_size_entry{10, 20};
 static const QRect s_rect_entry{10, 23, 5321, 13};
 static const QDateTime s_date_time_entry{QDate{2002, 06, 23}, QTime{12, 55, 40}};
 static const QDateTime s_date_time_with_ms_entry{QDate{2002, 06, 23}, QTime{12, 55, 40, 532}};
+static const QDateTime s_date_time_utc = QDateTime::currentDateTimeUtc();
+static const QDateTime s_date_time_tz = [] {
+    auto dt = QDateTime::currentDateTime();
+    dt.setTimeZone(QTimeZone("EST"));
+    return dt;
+}();
 static const QStringList s_stringlist_entry{QStringLiteral("Hello,"), QStringLiteral("World")};
 static const QStringList s_stringlist_empty_entry{};
 static const QStringList s_stringlist_just_empty_element{QString{}};
@@ -162,6 +168,8 @@ void KConfigTest::initTestCase()
     cg.writeEntry("dateTimeEntry", s_date_time_entry);
     cg.writeEntry("dateEntry", s_date_time_entry.date());
     cg.writeEntry("dateTimeWithMSEntry", s_date_time_with_ms_entry);
+    cg.writeEntry("dateTimeUtc", s_date_time_utc);
+    cg.writeEntry("dateTimeTz", s_date_time_tz);
 
     KConfigGroup ct = cg;
     cg = KConfigGroup(&ct, QStringLiteral("Nested Group 1"));
@@ -601,6 +609,8 @@ void KConfigTest::testComplex()
     QCOMPARE(sc3.readEntry("dateTimeEntry", QDateTime()).toString(Qt::ISODateWithMs), s_date_time_entry.toString(Qt::ISODateWithMs));
     QCOMPARE(sc3.readEntry("dateEntry", QDate()).toString(Qt::ISODate), s_date_time_entry.date().toString(Qt::ISODate));
     QCOMPARE(sc3.readEntry("dateTimeWithMSEntry", QDateTime()).toString(Qt::ISODateWithMs), s_date_time_with_ms_entry.toString(Qt::ISODateWithMs));
+    QCOMPARE(sc3.readEntry("dateTimeTz", QDateTime()).timeZone(), s_date_time_tz.timeZone());
+    QCOMPARE(sc3.readEntry("dateTimeUtc", QDateTime()).timeRepresentation().id(), s_date_time_utc.timeRepresentation().id());
     QCOMPARE(sc3.readEntry("dateTimeEntry", QDate()), s_date_time_entry.date());
 }
 
