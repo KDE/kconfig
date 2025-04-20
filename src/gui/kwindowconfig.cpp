@@ -145,8 +145,6 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
         return;
     }
 
-    const QString screenName = config.readEntry(windowScreenPositionString(), window->screen()->name());
-
     const int width = config.readEntry(windowWidthString(), -1);
     const int height = config.readEntry(windowHeightString(), -1);
     const bool isMaximized = config.readEntry(configFileString(QStringLiteral("Window-Maximized")), false);
@@ -155,6 +153,7 @@ void KWindowConfig::restoreWindowSize(QWindow *window, const KConfigGroup &confi
     const QSize defaultSize(window->property(s_initialSizePropertyName).toSize());
     const QSize defaultScreenSize(window->property(s_initialScreenSizePropertyName).toSize());
     if (!defaultSize.isValid() || !defaultScreenSize.isValid()) {
+        const QString screenName = config.readEntry(windowScreenPositionString(), window->screen()->name());
         const QScreen *screen = findScreenByName(window, screenName);
         window->setProperty(s_initialSizePropertyName, window->size());
         window->setProperty(s_initialScreenSizePropertyName, screen->geometry().size());
