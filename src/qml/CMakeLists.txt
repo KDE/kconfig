@@ -4,7 +4,7 @@
 add_library(KF6ConfigQml)
 add_library(KF6::ConfigQml ALIAS KF6ConfigQml)
 
-ecm_add_qml_module(KF6ConfigQml URI org.kde.config GENERATE_PLUGIN_SOURCE)
+ecm_add_qml_module(KF6ConfigQml URI org.kde.config GENERATE_PLUGIN_SOURCE DEPENDENCIES QtQuick)
 
 set_target_properties(KF6ConfigQml PROPERTIES
     VERSION     ${KCONFIG_VERSION}
