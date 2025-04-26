@@ -193,6 +193,9 @@ void KConfigHeaderGenerator::implementChoiceEnums(const CfgEntry *entry, const C
     } else if (!choices.external()) {
         // Create a named enum
         stream() << whitespace() << "enum " << enumName(entry->name, entry->choices) << " { " << values.join(QStringLiteral(", ")) << " };\n";
+        if (cfg().generateProperties) {
+            stream() << whitespace() << "Q_ENUM(" << enumName(entry->name, entry->choices) << ")\n";
+        }
     }
 }
 
