@@ -515,29 +515,15 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
             return false;
         }
     } else {
-        // Open existing file. *DON'T* create it if it suddenly does not exist!
-#if defined(Q_OS_UNIX) && !defined(Q_OS_ANDROID)
-        int fd = QT_OPEN(QFile::encodeName(filePath()).constData(), O_WRONLY | O_TRUNC);
-        if (fd < 0) {
-            return false;
-        }
-        QFile f;
-        if (!f.open(fd, QIODevice::WriteOnly)) {
-            QT_CLOSE(fd);
-            return false;
-        }
-        writeEntries(locale, f, writeMap);
-        f.close();
-        QT_CLOSE(fd);
-#else
         QFile f(filePath());
-        // XXX This is broken - it DOES create the file if it is suddenly gone.
-        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+
+        // Open existing file. *DON'T* create it if it suddenly does not exist!
+        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::ExistingOnly)) {
             return false;
         }
+
         f.setTextModeEnabled(true);
         writeEntries(locale, f, writeMap);
-#endif
     }
     return true;
 }
