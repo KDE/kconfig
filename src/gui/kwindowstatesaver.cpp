@@ -43,6 +43,7 @@ void KWindowStateSaverPrivate::init(KWindowStateSaver *q)
         }
     };
 
+    QObject::connect(window, &QWindow::windowStateChanged, q, saveSize);
     QObject::connect(window, &QWindow::widthChanged, q, saveSize);
     QObject::connect(window, &QWindow::heightChanged, q, saveSize);
     QObject::connect(window, &QWindow::xChanged, q, savePosition);
