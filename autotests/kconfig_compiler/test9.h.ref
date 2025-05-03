@@ -16,7 +16,7 @@ class Test9 : public KConfigSkeleton
     Test9( const QString & transport, const QString & folder );
     ~Test9() override;
 
-    /*!
+    /**
       Set MyStringList
     */
     void setMyStringList( const QStringList & v )
@@ -25,7 +25,7 @@ class Test9 : public KConfigSkeleton
         mMyStringList = v;
     }
 
-    /*!
+    /**
       Get MyStringList
     */
     QStringList myStringList() const
@@ -33,7 +33,7 @@ class Test9 : public KConfigSkeleton
       return mMyStringList;
     }
 
-    /*!
+    /**
       Is MyStringList Immutable
     */
     bool isMyStringListImmutable() const
@@ -41,7 +41,7 @@ class Test9 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyStringList" ) );
     }
 
-    /*!
+    /**
       Set This is a list of paths
     */
     void setMyPathList( const QStringList & v )
@@ -50,7 +50,7 @@ class Test9 : public KConfigSkeleton
         mMyPathList = v;
     }
 
-    /*!
+    /**
       Get This is a list of paths
     */
     QStringList myPathList() const
@@ -58,7 +58,7 @@ class Test9 : public KConfigSkeleton
       return mMyPathList;
     }
 
-    /*!
+    /**
       Is This is a list of paths Immutable
     */
     bool isMyPathListImmutable() const
@@ -66,7 +66,7 @@ class Test9 : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyPathList" ) );
     }
 
-    /*!
+    /**
       Set This is an additional test for PathList
     */
     void setMyPathsList2( const QStringList & v )
@@ -75,7 +75,7 @@ class Test9 : public KConfigSkeleton
         mMyPathsList2 = v;
     }
 
-    /*!
+    /**
       Get This is an additional test for PathList
     */
     QStringList myPathsList2() const
@@ -83,7 +83,7 @@ class Test9 : public KConfigSkeleton
       return mMyPathsList2;
     }
 
-    /*!
+    /**
       Is This is an additional test for PathList Immutable
     */
     bool isMyPathsList2Immutable() const

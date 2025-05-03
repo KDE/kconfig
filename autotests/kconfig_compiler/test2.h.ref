@@ -18,7 +18,7 @@ class Test2 : public MyPrefs
     Test2( );
     ~Test2() override;
 
-    /*!
+    /**
       Set Enable automatic saving of calendar
     */
     void setAutoSave( bool v )
@@ -27,7 +27,7 @@ class Test2 : public MyPrefs
         mAutoSave = v;
     }
 
-    /*!
+    /**
       Get Enable automatic saving of calendar
     */
     bool autoSave() const
@@ -35,7 +35,7 @@ class Test2 : public MyPrefs
       return mAutoSave;
     }
 
-    /*!
+    /**
       Is Enable automatic saving of calendar Immutable
     */
     bool isAutoSaveImmutable() const
@@ -43,7 +43,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "AutoSave" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to AutoSave()
     */
     ItemBool *autoSaveItem()
@@ -51,7 +51,7 @@ class Test2 : public MyPrefs
       return mAutoSaveItem;
     }
 
-    /*!
+    /**
       Set Auto Save Interval
     */
     void setAutoSaveInterval( int v )
@@ -60,7 +60,7 @@ class Test2 : public MyPrefs
         mAutoSaveInterval = v;
     }
 
-    /*!
+    /**
       Get Auto Save Interval
     */
     int autoSaveInterval() const
@@ -68,7 +68,7 @@ class Test2 : public MyPrefs
       return mAutoSaveInterval;
     }
 
-    /*!
+    /**
       Is Auto Save Interval Immutable
     */
     bool isAutoSaveIntervalImmutable() const
@@ -76,7 +76,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "AutoSaveInterval" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to AutoSaveInterval()
     */
     ItemInt *autoSaveIntervalItem()
@@ -84,7 +84,7 @@ class Test2 : public MyPrefs
       return mAutoSaveIntervalItem;
     }
 
-    /*!
+    /**
       Set Confirm deletes
     */
     void setConfirm( bool v )
@@ -93,7 +93,7 @@ class Test2 : public MyPrefs
         mConfirm = v;
     }
 
-    /*!
+    /**
       Get Confirm deletes
     */
     bool confirm() const
@@ -101,7 +101,7 @@ class Test2 : public MyPrefs
       return mConfirm;
     }
 
-    /*!
+    /**
       Is Confirm deletes Immutable
     */
     bool isConfirmImmutable() const
@@ -109,7 +109,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "Confirm" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to Confirm()
     */
     ItemBool *confirmItem()
@@ -117,7 +117,7 @@ class Test2 : public MyPrefs
       return mConfirmItem;
     }
 
-    /*!
+    /**
       Set Archive File
     */
     void setArchiveFile( const QString & v )
@@ -126,7 +126,7 @@ class Test2 : public MyPrefs
         mArchiveFile = v;
     }
 
-    /*!
+    /**
       Get Archive File
     */
     QString archiveFile() const
@@ -134,7 +134,7 @@ class Test2 : public MyPrefs
       return mArchiveFile;
     }
 
-    /*!
+    /**
       Is Archive File Immutable
     */
     bool isArchiveFileImmutable() const
@@ -142,7 +142,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "ArchiveFile" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to ArchiveFile()
     */
     ItemString *archiveFileItem()
@@ -150,7 +150,7 @@ class Test2 : public MyPrefs
       return mArchiveFileItem;
     }
 
-    /*!
+    /**
       Set New Events/Todos Should
     */
     void setDestination( int v )
@@ -159,7 +159,7 @@ class Test2 : public MyPrefs
         mDestination = v;
     }
 
-    /*!
+    /**
       Get New Events/Todos Should
     */
     int destination() const
@@ -167,7 +167,7 @@ class Test2 : public MyPrefs
       return mDestination;
     }
 
-    /*!
+    /**
       Is New Events/Todos Should Immutable
     */
     bool isDestinationImmutable() const
@@ -175,7 +175,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "Destination" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to Destination()
     */
     ItemEnum *destinationItem()
@@ -183,7 +183,7 @@ class Test2 : public MyPrefs
       return mDestinationItem;
     }
 
-    /*!
+    /**
       Set Hour Size
     */
     void setHourSize( int v )
@@ -192,7 +192,7 @@ class Test2 : public MyPrefs
         mHourSize = v;
     }
 
-    /*!
+    /**
       Get Hour Size
     */
     int hourSize() const
@@ -200,7 +200,7 @@ class Test2 : public MyPrefs
       return mHourSize;
     }
 
-    /*!
+    /**
       Is Hour Size Immutable
     */
     bool isHourSizeImmutable() const
@@ -208,7 +208,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "HourSize" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to HourSize()
     */
     ItemInt *hourSizeItem()
@@ -216,7 +216,7 @@ class Test2 : public MyPrefs
       return mHourSizeItem;
     }
 
-    /*!
+    /**
       Set Time range selection in agenda view starts event editor
     */
     void setSelectionStartsEditor( bool v )
@@ -225,7 +225,7 @@ class Test2 : public MyPrefs
         mSelectionStartsEditor = v;
     }
 
-    /*!
+    /**
       Get Time range selection in agenda view starts event editor
     */
     bool selectionStartsEditor() const
@@ -233,7 +233,7 @@ class Test2 : public MyPrefs
       return mSelectionStartsEditor;
     }
 
-    /*!
+    /**
       Is Time range selection in agenda view starts event editor Immutable
     */
     bool isSelectionStartsEditorImmutable() const
@@ -241,7 +241,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "SelectionStartsEditor" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to SelectionStartsEditor()
     */
     ItemBool *selectionStartsEditorItem()
@@ -249,7 +249,7 @@ class Test2 : public MyPrefs
       return mSelectionStartsEditorItem;
     }
 
-    /*!
+    /**
       Set SelectedPlugins
     */
     void setSelectedPlugins( const QStringList & v )
@@ -258,7 +258,7 @@ class Test2 : public MyPrefs
         mSelectedPlugins = v;
     }
 
-    /*!
+    /**
       Get SelectedPlugins
     */
     QStringList selectedPlugins() const
@@ -266,7 +266,7 @@ class Test2 : public MyPrefs
       return mSelectedPlugins;
     }
 
-    /*!
+    /**
       Is SelectedPlugins Immutable
     */
     bool isSelectedPluginsImmutable() const
@@ -274,7 +274,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "SelectedPlugins" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to SelectedPlugins()
     */
     ItemStringList *selectedPluginsItem()
@@ -282,7 +282,7 @@ class Test2 : public MyPrefs
       return mSelectedPluginsItem;
     }
 
-    /*!
+    /**
       Set Highlight color
     */
     void setHighlightColor( const QColor & v )
@@ -291,7 +291,7 @@ class Test2 : public MyPrefs
         mHighlightColor = v;
     }
 
-    /*!
+    /**
       Get Highlight color
     */
     QColor highlightColor() const
@@ -299,7 +299,7 @@ class Test2 : public MyPrefs
       return mHighlightColor;
     }
 
-    /*!
+    /**
       Is Highlight color Immutable
     */
     bool isHighlightColorImmutable() const
@@ -307,7 +307,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "HighlightColor" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to HighlightColor()
     */
     ItemColor *highlightColorItem()
@@ -315,7 +315,7 @@ class Test2 : public MyPrefs
       return mHighlightColorItem;
     }
 
-    /*!
+    /**
       Set Agenda view background color
     */
     void setAgendaBgColor( const QColor & v )
@@ -324,7 +324,7 @@ class Test2 : public MyPrefs
         mAgendaBgColor = v;
     }
 
-    /*!
+    /**
       Get Agenda view background color
     */
     QColor agendaBgColor() const
@@ -332,7 +332,7 @@ class Test2 : public MyPrefs
       return mAgendaBgColor;
     }
 
-    /*!
+    /**
       Is Agenda view background color Immutable
     */
     bool isAgendaBgColorImmutable() const
@@ -340,7 +340,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "AgendaBgColor" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to AgendaBgColor()
     */
     ItemColor *agendaBgColorItem()
@@ -348,7 +348,7 @@ class Test2 : public MyPrefs
       return mAgendaBgColorItem;
     }
 
-    /*!
+    /**
       Set Time bar
     */
     void setTimeBarFont( const QFont & v )
@@ -357,7 +357,7 @@ class Test2 : public MyPrefs
         mTimeBarFont = v;
     }
 
-    /*!
+    /**
       Get Time bar
     */
     QFont timeBarFont() const
@@ -365,7 +365,7 @@ class Test2 : public MyPrefs
       return mTimeBarFont;
     }
 
-    /*!
+    /**
       Is Time bar Immutable
     */
     bool isTimeBarFontImmutable() const
@@ -373,7 +373,7 @@ class Test2 : public MyPrefs
       return isImmutable( QStringLiteral( "TimeBarFont" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to TimeBarFont()
     */
     ItemFont *timeBarFontItem()

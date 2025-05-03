@@ -18,7 +18,7 @@ class Test3a : public KConfigSkeleton
     Test3a( );
     ~Test3a() override;
 
-    /*!
+    /**
       Set Enable automatic saving of calendar
     */
     void setAutoSave( bool v )
@@ -27,7 +27,7 @@ class Test3a : public KConfigSkeleton
         mAutoSave = v;
     }
 
-    /*!
+    /**
       Get Enable automatic saving of calendar
     */
     bool autoSave() const
@@ -35,7 +35,7 @@ class Test3a : public KConfigSkeleton
       return mAutoSave;
     }
 
-    /*!
+    /**
       Is Enable automatic saving of calendar Immutable
     */
     bool isAutoSaveImmutable() const
@@ -43,7 +43,7 @@ class Test3a : public KConfigSkeleton
       return isImmutable( QStringLiteral( "AutoSave" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to AutoSave()
     */
     ItemBool *autoSaveItem()
@@ -51,7 +51,7 @@ class Test3a : public KConfigSkeleton
       return mAutoSaveItem;
     }
 
-    /*!
+    /**
       Set Blubb
     */
     void setBlubb( int v )
@@ -60,7 +60,7 @@ class Test3a : public KConfigSkeleton
         mBlubb = v;
     }
 
-    /*!
+    /**
       Get Blubb
     */
     int blubb() const
@@ -68,7 +68,7 @@ class Test3a : public KConfigSkeleton
       return mBlubb;
     }
 
-    /*!
+    /**
       Is Blubb Immutable
     */
     bool isBlubbImmutable() const
@@ -76,7 +76,7 @@ class Test3a : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Blubb" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to Blubb()
     */
     ItemInt *blubbItem()
@@ -84,7 +84,7 @@ class Test3a : public KConfigSkeleton
       return mBlubbItem;
     }
 
-    /*!
+    /**
       Set BlahBlah
     */
     void setBlahBlah( const QString & v )
@@ -93,7 +93,7 @@ class Test3a : public KConfigSkeleton
         mBlahBlah = v;
     }
 
-    /*!
+    /**
       Get BlahBlah
     */
     QString blahBlah() const
@@ -101,7 +101,7 @@ class Test3a : public KConfigSkeleton
       return mBlahBlah;
     }
 
-    /*!
+    /**
       Is BlahBlah Immutable
     */
     bool isBlahBlahImmutable() const
@@ -109,7 +109,7 @@ class Test3a : public KConfigSkeleton
       return isImmutable( QStringLiteral( "BlahBlah" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to BlahBlah()
     */
     ItemString *blahBlahItem()
@@ -117,7 +117,7 @@ class Test3a : public KConfigSkeleton
       return mBlahBlahItem;
     }
 
-    /*!
+    /**
       Set MyPassword
     */
     void setMyPassword( const QString & v )
@@ -126,7 +126,7 @@ class Test3a : public KConfigSkeleton
         mMyPassword = v;
     }
 
-    /*!
+    /**
       Get MyPassword
     */
     QString myPassword() const
@@ -134,7 +134,7 @@ class Test3a : public KConfigSkeleton
       return mMyPassword;
     }
 
-    /*!
+    /**
       Is MyPassword Immutable
     */
     bool isMyPasswordImmutable() const
@@ -142,7 +142,7 @@ class Test3a : public KConfigSkeleton
       return isImmutable( QStringLiteral( "MyPassword" ) );
     }
 
-    /*!
+    /**
       Get Item object corresponding to MyPassword()
     */
     ItemPassword *myPasswordItem()

@@ -17,7 +17,7 @@ class TestTranslationKde : public KConfigSkeleton
     TestTranslationKde( );
     ~TestTranslationKde() override;
 
-    /*!
+    /**
       Get Enable automatic saving of calendar
     */
     bool autoSave() const
@@ -25,7 +25,7 @@ class TestTranslationKde : public KConfigSkeleton
       return mAutoSave;
     }
 
-    /*!
+    /**
       Is Enable automatic saving of calendar Immutable
     */
     bool isAutoSaveImmutable() const

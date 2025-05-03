@@ -16,7 +16,7 @@ class Test8c : public KConfigSkeleton
     static void instance(KSharedConfig::Ptr config);
     ~Test8c() override;
 
-    /*!
+    /**
       Set Font
     */
     static
@@ -26,7 +26,7 @@ class Test8c : public KConfigSkeleton
         self()->mFont = v;
     }
 
-    /*!
+    /**
       Get Font
     */
     static
@@ -35,7 +35,7 @@ class Test8c : public KConfigSkeleton
       return self()->mFont;
     }
 
-    /*!
+    /**
       Is Font Immutable
     */
     static
@@ -44,7 +44,7 @@ class Test8c : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "Font" ) );
     }
 
-    /*!
+    /**
       Set TitleFont
     */
     static
@@ -54,7 +54,7 @@ class Test8c : public KConfigSkeleton
         self()->mTitleFont = v;
     }
 
-    /*!
+    /**
       Get TitleFont
     */
     static
@@ -63,7 +63,7 @@ class Test8c : public KConfigSkeleton
       return self()->mTitleFont;
     }
 
-    /*!
+    /**
       Is TitleFont Immutable
     */
     static

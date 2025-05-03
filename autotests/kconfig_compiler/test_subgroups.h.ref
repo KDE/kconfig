@@ -14,7 +14,7 @@ class TestSubgroups : public KConfigSkeleton
     TestSubgroups( const QString & GeneralGroup, const QString & SubGroup, const QString & AnotherSubGroup );
     ~TestSubgroups() override;
 
-    /*!
+    /**
       Get Foo
     */
     bool foo() const
@@ -22,7 +22,7 @@ class TestSubgroups : public KConfigSkeleton
       return mFoo;
     }
 
-    /*!
+    /**
       Is Foo Immutable
     */
     bool isFooImmutable() const
@@ -30,7 +30,7 @@ class TestSubgroups : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Foo" ) );
     }
 
-    /*!
+    /**
       Get Bar
     */
     int bar() const
@@ -38,7 +38,7 @@ class TestSubgroups : public KConfigSkeleton
       return mBar;
     }
 
-    /*!
+    /**
       Is Bar Immutable
     */
     bool isBarImmutable() const
@@ -46,7 +46,7 @@ class TestSubgroups : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Bar" ) );
     }
 
-    /*!
+    /**
       Get Baz
     */
     bool baz() const
@@ -54,7 +54,7 @@ class TestSubgroups : public KConfigSkeleton
       return mBaz;
     }
 
-    /*!
+    /**
       Is Baz Immutable
     */
     bool isBazImmutable() const
@@ -62,7 +62,7 @@ class TestSubgroups : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Baz" ) );
     }
 
-    /*!
+    /**
       Get Foobar
     */
     bool foobar() const
@@ -70,7 +70,7 @@ class TestSubgroups : public KConfigSkeleton
       return mFoobar;
     }
 
-    /*!
+    /**
       Is Foobar Immutable
     */
     bool isFoobarImmutable() const

@@ -16,7 +16,7 @@ class TestSignal : public KConfigSkeleton
     static TestSignal *self();
     ~TestSignal() override;
 
-    /*!
+    /**
       Set Current emoticon theme.
     */
     static
@@ -28,7 +28,7 @@ class TestSignal : public KConfigSkeleton
       }
     }
 
-    /*!
+    /**
       Get Current emoticon theme.
     */
     static
@@ -37,7 +37,7 @@ class TestSignal : public KConfigSkeleton
       return self()->mEmoticonTheme;
     }
 
-    /*!
+    /**
       Is Current emoticon theme. Immutable
     */
     static
@@ -46,7 +46,7 @@ class TestSignal : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "emoticonTheme" ) );
     }
 
-    /*!
+    /**
       Set Enable emoticon support in Kopete.
     */
     static
@@ -58,7 +58,7 @@ class TestSignal : public KConfigSkeleton
       }
     }
 
-    /*!
+    /**
       Get Enable emoticon support in Kopete.
     */
     static
@@ -67,7 +67,7 @@ class TestSignal : public KConfigSkeleton
       return self()->mUseEmoticon;
     }
 
-    /*!
+    /**
       Is Enable emoticon support in Kopete. Immutable
     */
     static
@@ -76,7 +76,7 @@ class TestSignal : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "useEmoticon" ) );
     }
 
-    /*!
+    /**
       Set Use strict mode in emoticon parsing.
     */
     static
@@ -88,7 +88,7 @@ class TestSignal : public KConfigSkeleton
       }
     }
 
-    /*!
+    /**
       Get Use strict mode in emoticon parsing.
     */
     static
@@ -97,7 +97,7 @@ class TestSignal : public KConfigSkeleton
       return self()->mEmoticonRequireSpace;
     }
 
-    /*!
+    /**
       Is Use strict mode in emoticon parsing. Immutable
     */
     static
@@ -106,7 +106,7 @@ class TestSignal : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "emoticonRequireSpace" ) );
     }
 
-    /*!
+    /**
       Set Absolute path to a directory containing a Adium/Kopete chat window style.
     */
     static
@@ -118,7 +118,7 @@ class TestSignal : public KConfigSkeleton
       }
     }
 
-    /*!
+    /**
       Get Absolute path to a directory containing a Adium/Kopete chat window style.
     */
     static
@@ -127,7 +127,7 @@ class TestSignal : public KConfigSkeleton
       return self()->mStylePath;
     }
 
-    /*!
+    /**
       Is Absolute path to a directory containing a Adium/Kopete chat window style. Immutable
     */
     static
@@ -136,7 +136,7 @@ class TestSignal : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "stylePath" ) );
     }
 
-    /*!
+    /**
       Set Relative path to a CSS variant for the current style.
     */
     static
@@ -146,7 +146,7 @@ class TestSignal : public KConfigSkeleton
         self()->mStyleCSSVariant = v;
     }
 
-    /*!
+    /**
       Get Relative path to a CSS variant for the current style.
     */
     static
@@ -155,7 +155,7 @@ class TestSignal : public KConfigSkeleton
       return self()->mStyleCSSVariant;
     }
 
-    /*!
+    /**
       Is Relative path to a CSS variant for the current style. Immutable
     */
     static
@@ -173,7 +173,7 @@ class TestSignal : public KConfigSkeleton
   Q_SIGNALS:
     void emoticonSettingsChanged();
 
-    /*!
+    /**
       Tell when a complete style change.
     */
     void styleChanged(const QString & stylePath, const QString & StyleCSSVariant);

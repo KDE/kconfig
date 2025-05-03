@@ -16,7 +16,7 @@ class TestQCategory : public KConfigSkeleton
     TestQCategory( int Number );
     ~TestQCategory() override;
 
-    /*!
+    /**
       Set Block colors.
     */
     void setColor( const QColor & v )
@@ -25,7 +25,7 @@ class TestQCategory : public KConfigSkeleton
         mColor = v;
     }
 
-    /*!
+    /**
       Get Block colors.
     */
     QColor color() const
@@ -33,7 +33,7 @@ class TestQCategory : public KConfigSkeleton
       return mColor;
     }
 
-    /*!
+    /**
       Is Block colors. Immutable
     */
     bool isColorImmutable() const
@@ -41,7 +41,7 @@ class TestQCategory : public KConfigSkeleton
       return isImmutable( QStringLiteral( "Color" ) );
     }
 
-    /*!
+    /**
       Set foo bar
     */
     void setFooBar( const QString & v )
@@ -50,7 +50,7 @@ class TestQCategory : public KConfigSkeleton
         mFooBar = v;
     }
 
-    /*!
+    /**
       Get foo bar
     */
     QString fooBar() const
@@ -58,7 +58,7 @@ class TestQCategory : public KConfigSkeleton
       return mFooBar;
     }
 
-    /*!
+    /**
       Is foo bar Immutable
     */
     bool isFooBarImmutable() const
@@ -66,7 +66,7 @@ class TestQCategory : public KConfigSkeleton
       return isImmutable( QStringLiteral( "FooBar" ) );
     }
 
-    /*!
+    /**
       Set Age
     */
     void setAge( int v )
@@ -87,7 +87,7 @@ class TestQCategory : public KConfigSkeleton
         mAge = v;
     }
 
-    /*!
+    /**
       Get Age
     */
     int age() const
@@ -95,7 +95,7 @@ class TestQCategory : public KConfigSkeleton
       return mAge;
     }
 
-    /*!
+    /**
       Is Age Immutable
     */
     bool isAgeImmutable() const

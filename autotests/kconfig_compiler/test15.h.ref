@@ -24,7 +24,7 @@ class Test15 : public KConfigSkeleton
 
     Q_PROPERTY(QUrl picturesDir READ picturesDir CONSTANT)
     Q_PROPERTY(bool isPicturesDirImmutable READ isPicturesDirImmutable CONSTANT)
-    /*!
+    /**
       Get picturesDir
     */
     static
@@ -33,7 +33,7 @@ class Test15 : public KConfigSkeleton
       return self()->mPicturesDir;
     }
 
-    /*!
+    /**
       Is picturesDir Immutable
     */
     static
@@ -42,7 +42,7 @@ class Test15 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "picturesDir" ) );
     }
 
-    /*!
+    /**
       Set brightness
     */
     static
@@ -56,7 +56,7 @@ class Test15 : public KConfigSkeleton
 
     Q_PROPERTY(double brightness READ brightness WRITE setBrightness NOTIFY brightnessChanged)
     Q_PROPERTY(bool isBrightnessImmutable READ isBrightnessImmutable CONSTANT)
-    /*!
+    /**
       Get brightness
     */
     static
@@ -65,7 +65,7 @@ class Test15 : public KConfigSkeleton
       return self()->mBrightness;
     }
 
-    /*!
+    /**
       Is brightness Immutable
     */
     static
@@ -76,7 +76,7 @@ class Test15 : public KConfigSkeleton
 
     Q_PROPERTY(bool startsWithUppercase READ startsWithUppercase CONSTANT)
     Q_PROPERTY(bool isStartsWithUppercaseImmutable READ isStartsWithUppercaseImmutable CONSTANT)
-    /*!
+    /**
       Get StartsWithUppercase
     */
     static
@@ -85,7 +85,7 @@ class Test15 : public KConfigSkeleton
       return self()->mStartsWithUppercase;
     }
 
-    /*!
+    /**
       Is StartsWithUppercase Immutable
     */
     static

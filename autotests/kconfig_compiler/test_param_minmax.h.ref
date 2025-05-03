@@ -15,7 +15,7 @@ class TestParamMinMax : public KConfigSkeleton
     TestParamMinMax( KSharedConfig::Ptr config = KSharedConfig::openConfig() );
     ~TestParamMinMax() override;
 
-    /*!
+    /**
       Set foo_#$(myparam)
     */
     void setFoo( int i, double v )
@@ -36,7 +36,7 @@ class TestParamMinMax : public KConfigSkeleton
         mFoo[i] = v;
     }
 
-    /*!
+    /**
       Get foo_#$(myparam)
     */
     double foo( int i ) const
@@ -44,7 +44,7 @@ class TestParamMinMax : public KConfigSkeleton
       return mFoo[i];
     }
 
-    /*!
+    /**
       Is foo_#$(myparam) Immutable
     */
     bool isFooImmutable( int i ) const

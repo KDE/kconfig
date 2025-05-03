@@ -15,7 +15,7 @@ class Test12 : public KConfigSkeleton
     Test12( );
     ~Test12() override;
 
-    /*!
+    /**
       Get RnRSource
     */
     QList<QUrl> rnRSource() const
@@ -23,7 +23,7 @@ class Test12 : public KConfigSkeleton
       return mRnRSource;
     }
 
-    /*!
+    /**
       Is RnRSource Immutable
     */
     bool isRnRSourceImmutable() const

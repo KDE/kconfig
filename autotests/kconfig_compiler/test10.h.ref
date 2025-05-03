@@ -14,7 +14,7 @@ class Test10 : public KConfigSkeleton
     static Test10 *self();
     ~Test10() override;
 
-    /*!
+    /**
       Get foo bar
     */
     static
@@ -23,7 +23,7 @@ class Test10 : public KConfigSkeleton
       return self()->mFooBar;
     }
 
-    /*!
+    /**
       Is foo bar Immutable
     */
     static
@@ -32,7 +32,7 @@ class Test10 : public KConfigSkeleton
       return self()->isImmutable( QStringLiteral( "FooBar" ) );
     }
 
-    /*!
+    /**
       Get bar foo
     */
     static
@@ -41,7 +41,7 @@ class Test10 : public KConfigSkeleton
       return self()->mBarFoo;
     }
 
-    /*!
+    /**
       Is bar foo Immutable
     */
     static
