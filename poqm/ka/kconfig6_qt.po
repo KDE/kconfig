@@ -45,485 +45,485 @@ msgctxt "home page|"
 msgid "&Home"
 msgstr "&საწყისი"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
 msgstr "&ახალი"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
 msgstr "ახალი დოკუმენტის შექმნა"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
 msgstr "&გახსნა…"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
 msgstr "არსებული დოკუმენტის გახსნა"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
 msgstr "ბოლოს გახსნილი ფაილების გახსნა"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
 msgstr "ახლახანს გახსნილი დოკუმენტის გახსნა"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
 msgstr "&შენახვა"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
 msgstr "დოკუმენტის შენახვა"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
 msgstr "შეინახვა &როგორც…"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
 msgstr "დოკუმენტის ახალი სახელით შენახვა"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Re&vert"
 msgstr "&დაბრუნება"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
 msgstr "დოკუმენტზე განხორციელებული ცვლილებების გაუქმება"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "&Close"
 msgstr "&დახურვა"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
 msgstr "დოკუმენტის დახურვა"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
 msgstr "&ბეჭდვა…"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
 msgstr "დოკუმენტის დაბეჭდვა"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
 msgstr "&დასაბეჭდის მინიატურა"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
 msgstr "მიმდინარე დოკუმენტების დაბეჭდვისწინა გადახედვის ჩვენება"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
 msgstr "&ელფოსტა…"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
 msgstr "დოკუმენტის ელფოსტით გაგზავნა"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "&Quit"
 msgstr "&გასვლა"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Quit application"
 msgstr "აპლიკაციიდან გასვლა"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "&Undo"
 msgstr "&დაბრუნება"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
 msgstr "ბოლო ქმედების გაუქმება"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
 msgstr "&გამეორება"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
 msgstr "ბოლო დაბრუნებული ქმედების გამეორება"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
 msgstr "ამ&ოჭრა"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
 msgstr "მონიშნულის ბუფერში ამოჭრა"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "&Copy"
 msgstr "&კოპირება"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
 msgstr "მონიშნულის ბუფერში კოპირება"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "&Paste"
 msgstr "&ჩასმა"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
 msgstr "გაცვლის ბუფერიდან ჩასმა"
 
-#: gui/kstandardactions_p.h:84
+#: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "C&lear"
 msgstr "გასუ&ფთავება"
 
-#: gui/kstandardactions_p.h:85
+#: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
 msgstr "ყველაფრის &მონიშვნა"
 
-#: gui/kstandardactions_p.h:86
+#: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "&მონიშვნის მოხსნა"
 
-#: gui/kstandardactions_p.h:87
+#: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
 msgstr "&ძებნა…"
 
-#: gui/kstandardactions_p.h:88
+#: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Find &Next"
 msgstr "&მომდევნოს მოძებნა"
 
-#: gui/kstandardactions_p.h:89
+#: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
 msgstr "&წინას მოძებნა"
 
-#: gui/kstandardactions_p.h:90
+#: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
 msgstr "&ჩანაცვლება…"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
 msgstr "&რეალური ზომამდე გადიდება"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
 msgstr "დოკუმენტის რეალური ზომებით ნახვა"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
 msgstr "&გვერდში ჩატევა"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
 msgstr "გვერდში ჩატევამდე გადიდება"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
 msgstr "გვერდის &სიგანეში ჩატევა"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
 msgstr "გვერდის სიგანეში ჩატევამდე გადიდება"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
 msgstr "გვერდის &სიმაღლეში ჩატევა"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
 msgstr "გვერდის სიმაღლეში ჩატევამდე გადიდება"
 
-#: gui/kstandardactions_p.h:96
+#: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
 msgstr "&გადიდება"
 
-#: gui/kstandardactions_p.h:97
+#: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
 msgstr "&დაპატარავება"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
 msgstr "&გადიდება…"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
 msgstr "აირჩიეთ გადიდების დონე"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
 msgstr "&განახლება"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
 msgstr "დოკუმენტის განახლება"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "&Up"
 msgstr "&მაღლა"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
 msgstr "მაღლა ასვლა"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
 msgstr "&წინა გვერდი"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
 msgstr "გადასვლა წინა გვერდზე"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "&Next Page"
 msgstr "&შემდეგი გვერდი"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "Go to next page"
 msgstr "შემდეგ გვერდზე გადასვლა"
 
-#: gui/kstandardactions_p.h:108
+#: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
 msgstr "&გადასვლა…"
 
-#: gui/kstandardactions_p.h:109
+#: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
 msgstr "&გვერდზე გადასვლა…"
 
-#: gui/kstandardactions_p.h:110
+#: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
 msgstr "&ხაზზე გადასვლა…"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&First Page"
 msgstr "&პირველი გვერდი"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "Go to first page"
 msgstr "გადასვლა პირველ გვერდზე"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "&Last Page"
 msgstr "&ბოლო გვერდი"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
 msgstr "გადასვლა ბოლო გვერდზე"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "&Back"
 msgstr "&უკან"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
 msgstr "დოკუმენტში უკან გადასვლა"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
 msgstr "&წინ"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
 msgstr "დოკუმენტში წინ გადასვლა"
 
-#: gui/kstandardactions_p.h:116
+#: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
 msgstr "სანიშნეს &დამატება"
 
-#: gui/kstandardactions_p.h:117
+#: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
 msgstr "&სანიშნეების ჩასწორება…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
 msgstr "&მართლწერა…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
 msgstr "დოკუმენტის მართლწერის შემოწმება"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
 msgstr "&მენიუს ზოლის ჩვენება"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
 msgstr "მენიუს ზოლის ჩვენება/დამალვა"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
 msgstr "&პანელის ჩვენება"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
 msgstr "ხელსაწყოთა ზოლის ჩვენება/დამალვა"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "სტატუსის &ზოლის ჩვენება"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
 msgstr "სტატუსის ზოლის ჩვენება/დამალვა"
 
-#: gui/kstandardactions_p.h:124
+#: gui/kstandardactions_p.h:121
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "&სრულ-ეკრანზე"
 
-#: gui/kstandardactions_p.h:125
+#: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
 msgstr "კლავიატურის &მალსახმობების მორგება…"
 
-#: gui/kstandardactions_p.h:126
+#: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
 msgstr "%1-ის &მორგება…"
 
-#: gui/kstandardactions_p.h:127
+#: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
 msgstr "ხელსაწყოთა ზოლები&ს გამართვა…"
 
-#: gui/kstandardactions_p.h:128
+#: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
 msgstr "&შეტყობინებების მორგება…"
 
-#: gui/kstandardactions_p.h:132
+#: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
 msgstr "%1-ის &სახელმძღვანელო"
 
-#: gui/kstandardactions_p.h:133
+#: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
 msgstr "რა არის &ეს?"
 
-#: gui/kstandardactions_p.h:134
+#: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
 msgstr "&შეცდომის ანგარიში…"
 
-#: gui/kstandardactions_p.h:135
+#: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
 msgstr "&ენის მორგება…"
 
-#: gui/kstandardactions_p.h:136
+#: gui/kstandardactions_p.h:133
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
 msgstr "%1-ის &შესახებ"
 
-#: gui/kstandardactions_p.h:137
+#: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
 msgstr "&KDE-ის შესახებ"
 
-#: gui/kstandardactions_p.h:138
+#: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
 msgid "&Delete"
 msgstr "&წაშლა"
 
-#: gui/kstandardactions_p.h:139
+#: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
 msgstr "&სახელის გადარქმევა…"
 
-#: gui/kstandardactions_p.h:140
+#: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "&სანაგვე ყუთში გადატანა"
 
-#: gui/kstandardactions_p.h:141
+#: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
 msgstr "&შეწირვა"
 
-#: gui/kstandardactions_p.h:142
+#: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "&მენიუს გახსნა"

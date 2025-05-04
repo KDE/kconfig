@@ -51,485 +51,485 @@ msgctxt "home page|"
 msgid "&Home"
 msgstr "홈(&H)"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
 msgstr "새로 만들기(&N)"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
 msgstr "새 문서 만들기"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
 msgstr "열기(&O)…"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
 msgstr "기존 문서 열기"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
 msgstr "최근에 연 파일(&R)"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
 msgstr "최근에 열었던 문서 열기"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
 msgstr "저장(&S)"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
 msgstr "문서 저장"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
 msgstr "다른 이름으로 저장(&A)…"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
 msgstr "다른 이름으로 문서 저장"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Re&vert"
 msgstr "되돌리기(&V)"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
 msgstr "저장되지 않은 문서의 변경 사항 되돌리기"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "&Close"
 msgstr "닫기(&C)"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
 msgstr "문서 닫기"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
 msgstr "인쇄(&P)…"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
 msgstr "문서 인쇄"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
 msgstr "인쇄 미리 보기(&W)"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
 msgstr "문서의 인쇄 미리 보기 표시"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
 msgstr "메일 전송(&M)…"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
 msgstr "이메일로 문서 전송"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "&Quit"
 msgstr "끝내기(&Q)"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Quit application"
 msgstr "앱 끝내기"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "&Undo"
 msgstr "실행 취소(&U)"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
 msgstr "마지막 동작 실행 취소"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
 msgstr "다시 실행(&D)"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
 msgstr "마지막으로 취소한 동작 다시 실행"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
 msgstr "잘라내기(&T)"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
 msgstr "선택 항목을 클립보드로 잘라내기"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "&Copy"
 msgstr "복사(&C)"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
 msgstr "선택 항목을 클립보드에 복사"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "&Paste"
 msgstr "붙여넣기(&P)"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
 msgstr "클립보드 내용 붙여넣기"
 
-#: gui/kstandardactions_p.h:84
+#: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "C&lear"
 msgstr "지우기(&L)"
 
-#: gui/kstandardactions_p.h:85
+#: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
 msgstr "모두 선택(&A)"
 
-#: gui/kstandardactions_p.h:86
+#: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "선택 해제(&L)"
 
-#: gui/kstandardactions_p.h:87
+#: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
 msgstr "찾기(&F)…"
 
-#: gui/kstandardactions_p.h:88
+#: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Find &Next"
 msgstr "다음 찾기(&N)"
 
-#: gui/kstandardactions_p.h:89
+#: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
 msgstr "이전 찾기(&V)"
 
-#: gui/kstandardactions_p.h:90
+#: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
 msgstr "바꾸기(&R)…"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
 msgstr "실제 크기로 조정(&A)"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
 msgstr "문서를 실제 크기로 보기"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
 msgstr "쪽에 맞추기(&F)"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
 msgstr "쪽 크기를 창 크기에 맞게 조정"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
 msgstr "쪽 너비에 맞추기(&W)"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
 msgstr "쪽 너비를 창 너비에 맞게 조정"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
 msgstr "쪽 높이에 맞추기(&H)"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
 msgstr "쪽 높이를 창 높이에 맞게 조정"
 
-#: gui/kstandardactions_p.h:96
+#: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
 msgstr "확대(&I)"
 
-#: gui/kstandardactions_p.h:97
+#: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
 msgstr "축소(&O)"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
 msgstr "확대/축소(&Z)…"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
 msgstr "확대/축소 단계 선택"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
 msgstr "새로 고침(&R)"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
 msgstr "문서 새로 고침"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "&Up"
 msgstr "위로(&U)"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
 msgstr "위로 이동"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
 msgstr "이전 쪽(&P)"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
 msgstr "이전 쪽으로 이동"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "&Next Page"
 msgstr "다음 쪽(&N)"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "Go to next page"
 msgstr "다음 쪽으로 이동"
 
-#: gui/kstandardactions_p.h:108
+#: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
 msgstr "이동(&G)…"
 
-#: gui/kstandardactions_p.h:109
+#: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
 msgstr "쪽으로 이동(&G)…"
 
-#: gui/kstandardactions_p.h:110
+#: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
 msgstr "줄로 이동(&G)…"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&First Page"
 msgstr "첫 쪽(&F)"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "Go to first page"
 msgstr "첫 번째 쪽으로 이동"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "&Last Page"
 msgstr "마지막 쪽(&L)"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
 msgstr "마지막 쪽으로 이동"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "&Back"
 msgstr "뒤로(&B)"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
 msgstr "문서에서 뒤로 이동"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
 msgstr "앞으로(&F)"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
 msgstr "문서에서 앞으로 이동"
 
-#: gui/kstandardactions_p.h:116
+#: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
 msgstr "책갈피 추가(&A)"
 
-#: gui/kstandardactions_p.h:117
+#: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
 msgstr "책갈피 편집(&E)…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
 msgstr "맞춤법 검사(&S)…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
 msgstr "문서의 맞춤법 검사"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
 msgstr "메뉴 표시줄 표시(&M)"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
 msgstr "메뉴 표시줄 표시 또는 숨기기"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
 msgstr "도구 모음 표시(&T)"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
 msgstr "도구 모음 표시 또는 숨기기"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "상태 표시줄 표시(&A)"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
 msgstr "상태 표시줄 표시 또는 숨기기"
 
-#: gui/kstandardactions_p.h:124
+#: gui/kstandardactions_p.h:121
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "전체 화면 모드(&U)"
 
-#: gui/kstandardactions_p.h:125
+#: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
 msgstr "키보드 단축키 설정(&H)…"
 
-#: gui/kstandardactions_p.h:126
+#: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
 msgstr "%1 설정(&C)…"
 
-#: gui/kstandardactions_p.h:127
+#: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
 msgstr "도구 모음 설정(&B)…"
 
-#: gui/kstandardactions_p.h:128
+#: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
 msgstr "알림 설정(&N)…"
 
-#: gui/kstandardactions_p.h:132
+#: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
 msgstr "%1 도움말(&H)"
 
-#: gui/kstandardactions_p.h:133
+#: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
 msgstr "이것에 대한 설명(&T)"
 
-#: gui/kstandardactions_p.h:134
+#: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
 msgstr "버그 보고(&R)…"
 
-#: gui/kstandardactions_p.h:135
+#: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
 msgstr "언어 설정(&L)…"
 
-#: gui/kstandardactions_p.h:136
+#: gui/kstandardactions_p.h:133
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
 msgstr "%1 정보(&A)"
 
-#: gui/kstandardactions_p.h:137
+#: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
 msgstr "KDE 정보(&K)"
 
-#: gui/kstandardactions_p.h:138
+#: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
 msgid "&Delete"
 msgstr "삭제(&D)"
 
-#: gui/kstandardactions_p.h:139
+#: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
 msgstr "이름 바꾸기(&R)…"
 
-#: gui/kstandardactions_p.h:140
+#: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "휴지통으로 이동(&M)"
 
-#: gui/kstandardactions_p.h:141
+#: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
 msgstr "기부하기(&D)"
 
-#: gui/kstandardactions_p.h:142
+#: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "메뉴 열기(&M)"

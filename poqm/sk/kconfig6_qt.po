@@ -52,485 +52,485 @@ msgctxt "home page|"
 msgid "&Home"
 msgstr "&Domov"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
 msgstr "&Nový"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
 msgstr "Vytvoriť nový dokument"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
 msgstr "&Otvoriť…"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
 msgstr "Otvoriť existujúci dokument"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
 msgstr "Otvoriť n&edávne"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
 msgstr "Otvoriť dokument, ktorý bol nedávno otvorený"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
 msgstr "1Uložiť"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
 msgstr "1"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
 msgstr "Uložiť ako..."
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
 msgstr "Uložiť dokument pod novým názvom"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Re&vert"
 msgstr "V&rátiť"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
 msgstr "Vrátiť neuložené zmeny urobené v dokumente"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "&Close"
 msgstr "&Zavrieť"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
 msgstr "Zavrieť dokument"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
 msgstr "&Tlačiť…"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
 msgstr "Vytlačiť dokument"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
 msgstr "Ná&hľad tlače"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
 msgstr "Zobraziť náhľad tlače dokumentu"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
 msgstr "&Pošta…"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
 msgstr "1"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "&Quit"
 msgstr "&Koniec"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Quit application"
 msgstr "Ukončiť aplikáciu"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "&Undo"
 msgstr "&Späť"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
 msgstr "Zrušiť poslednú akciu"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
 msgstr "Zn&ovu"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
 msgstr "Obnoviť poslednú zrušenú operáciu"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
 msgstr "Vys&trihnúť"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
 msgstr "Vystrihnúť výber do schránky"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "&Copy"
 msgstr "&Kopírovať"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
 msgstr "Skopírovať výber do schránky"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "&Paste"
 msgstr "V&ložiť"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
 msgstr "Vložiť obsah schránky"
 
-#: gui/kstandardactions_p.h:84
+#: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "C&lear"
 msgstr "&Vyčistiť"
 
-#: gui/kstandardactions_p.h:85
+#: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
 msgstr "Vybrať &všetko"
 
-#: gui/kstandardactions_p.h:86
+#: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "Zr&ušiť výber"
 
-#: gui/kstandardactions_p.h:87
+#: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
 msgstr "&Nájsť…"
 
-#: gui/kstandardactions_p.h:88
+#: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Find &Next"
 msgstr "Nájsť nasledu&júci"
 
-#: gui/kstandardactions_p.h:89
+#: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
 msgstr "Nájsť pre&dchádzajúci"
 
-#: gui/kstandardactions_p.h:90
+#: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
 msgstr "&Nahradiť…"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
 msgstr "Priblížiť na aktuálnu veľkosť"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
 msgstr "Zobraziť dokument v pôvodnej veľkosti"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
 msgstr "P&rispôsobiť stránke"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
 msgstr "Priblížiť na prispôsobenie strany"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
 msgstr "Prispôsobiť šírke &stránky"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
 msgstr "Priblížiť na prispôsobenie šírky strany"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
 msgstr "Prispôsobiť &výške stránky"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
 msgstr "Priblížiť na prispôsobenie výšky strany"
 
-#: gui/kstandardactions_p.h:96
+#: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
 msgstr "1Priblížiť"
 
-#: gui/kstandardactions_p.h:97
+#: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
 msgstr "Oddialiť"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
 msgstr "Lupa..."
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
 msgstr "Vybrať úroveň priblíženia"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
 msgstr "&Obnoviť"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
 msgstr "Znovu načítať dokument"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "&Up"
 msgstr "&Hore"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
 msgstr "Prejsť vyššie"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
 msgstr "&Predchádzajúca stránka"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
 msgstr "Prejsť na predošlú stranu"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "&Next Page"
 msgstr "1Prejsť na stránku"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "Go to next page"
 msgstr "Prejsť na nasledujúcu stránku"
 
-#: gui/kstandardactions_p.h:108
+#: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
 msgstr "&Prejsť na..."
 
-#: gui/kstandardactions_p.h:109
+#: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
 msgstr "Prejsť na &stránku..."
 
-#: gui/kstandardactions_p.h:110
+#: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
 msgstr "1Prejsť na riadok"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&First Page"
 msgstr "&Prvá stránka"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "Go to first page"
 msgstr "Prejsť na prvú stranu"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "&Last Page"
 msgstr "Po&sledná stránka"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
 msgstr "Prejsť na poslednú stránku"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "&Back"
 msgstr "&Späť"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
 msgstr "Prejsť späť v dokumente"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
 msgstr "Do&predu"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
 msgstr "Prejsť dopredu v dokumente"
 
-#: gui/kstandardactions_p.h:116
+#: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
 msgstr "&Pridať záložku"
 
-#: gui/kstandardactions_p.h:117
+#: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
 msgstr "Upraviť záložky..."
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
 msgstr "1Pravopis"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
 msgstr "Skontrolovať pravopis v dokumente"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
 msgstr "Zobraziť ponuku"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
 msgstr "Zobraziť alebo skryť panel ponuky"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
 msgstr "Zobraziť panel &nástrojov"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
 msgstr "Zobraziť alebo skryť panel nástrojov"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "Zobraziť s&tavový riadok"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
 msgstr "Zobraziť alebo skryť stavový riadok"
 
-#: gui/kstandardactions_p.h:124
+#: gui/kstandardactions_p.h:121
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "1Režim celej obrazovky"
 
-#: gui/kstandardactions_p.h:125
+#: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
 msgstr "Nastaviť &klávesové skratky..."
 
-#: gui/kstandardactions_p.h:126
+#: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
 msgstr "&Nastaviť %1…"
 
-#: gui/kstandardactions_p.h:127
+#: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
 msgstr "Nastaviť panely nástrojov..."
 
-#: gui/kstandardactions_p.h:128
+#: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
 msgstr "Nastaviť upozornenia..."
 
-#: gui/kstandardactions_p.h:132
+#: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
 msgstr "&Príručka %1"
 
-#: gui/kstandardactions_p.h:133
+#: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
 msgstr "Čo je &to?"
 
-#: gui/kstandardactions_p.h:134
+#: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
 msgstr "Nahlásiť chybu..."
 
-#: gui/kstandardactions_p.h:135
+#: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
 msgstr "Nastaviť jazyk..."
 
-#: gui/kstandardactions_p.h:136
+#: gui/kstandardactions_p.h:133
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
 msgstr "&O aplikácii %1"
 
-#: gui/kstandardactions_p.h:137
+#: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
 msgstr "Informácie o &KDE"
 
-#: gui/kstandardactions_p.h:138
+#: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
 msgid "&Delete"
 msgstr "O&dstrániť"
 
-#: gui/kstandardactions_p.h:139
+#: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
 msgstr "&Premenovať…"
 
-#: gui/kstandardactions_p.h:140
+#: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "&Presunúť do koša"
 
-#: gui/kstandardactions_p.h:141
+#: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
 msgstr "Venovať peniaze"
 
-#: gui/kstandardactions_p.h:142
+#: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "1Otvoriť hlavnú ponuku"

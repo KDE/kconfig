@@ -56,485 +56,485 @@ msgctxt "home page|"
 msgid "&Home"
 msgstr "&Хатняя старонка"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
 msgstr "&Стварыць"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
 msgstr "Стварыць новы дакумент"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
 msgstr "&Адкрыць…"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
 msgstr "Адкрыць існы дакумент"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
 msgstr "Адкрыць &нядаўні файл"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
 msgstr "Адкрыць дакумент, які нядаўна адкрываўся"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
 msgstr "&Захаваць"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
 msgstr "Захаваць дакумент"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
 msgstr "Захаваць &як…"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
 msgstr "Захаваць дакумент пад новай назвай"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Re&vert"
 msgstr "&Вярнуць"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
 msgstr "Вярнуць незахаваныя змены, унесеныя ў дакумент"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "&Close"
 msgstr "За&крыць"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
 msgstr "Закрыць дакумент"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
 msgstr "&Друкаванне…"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
 msgstr "Друкаваць дакумент"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
 msgstr "Папярэдні п&рагляд друку"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
 msgstr "Вывесці папярэдні прагляд дакумента для друкавання"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
 msgstr "&Пошта…"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
 msgstr "Адправіць дакумент па электроннай пошце"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "&Quit"
 msgstr "&Выйсці"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Quit application"
 msgstr "Выйсці з праграмы"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "&Undo"
 msgstr "&Адрабіць"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
 msgstr "Адрабіць апошняе дзеянне"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
 msgstr "Па&ўтарыць"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
 msgstr "Паўтарыць апошняе дзеянне"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
 msgstr "&Выразаць"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
 msgstr "Выразаць абранае ў буфер абмену"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "&Copy"
 msgstr "&Скапіяваць"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
 msgstr "Скапіяваць абранае ў буфер абмену"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "&Paste"
 msgstr "&Уставіць"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
 msgstr "Уставіць змесціва з буфера абмену"
 
-#: gui/kstandardactions_p.h:84
+#: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "C&lear"
 msgstr "А&чысціць"
 
-#: gui/kstandardactions_p.h:85
+#: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
 msgstr "Абраць &усё"
 
-#: gui/kstandardactions_p.h:86
+#: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "&Адкінуць выбар"
 
-#: gui/kstandardactions_p.h:87
+#: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
 msgstr "&Пошук…"
 
-#: gui/kstandardactions_p.h:88
+#: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Find &Next"
 msgstr "Шукаць &наступнае"
 
-#: gui/kstandardactions_p.h:89
+#: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
 msgstr "Шукаць &папярэдняе"
 
-#: gui/kstandardactions_p.h:90
+#: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
 msgstr "&Замяніць…"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
 msgstr "Маштабаваць да &сапраўднага памеру"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
 msgstr "Паказаць дакумент у яго сапраўдным памеры"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
 msgstr "Па &памеры старонкі"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
 msgstr "Маштабаваць па памеры акна"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
 msgstr "Па &шырыні старонкі"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
 msgstr "Маштабаваць па шырыні акна"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
 msgstr "Па &вышыні старонкі"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
 msgstr "Маштабаваць па вышыні акна"
 
-#: gui/kstandardactions_p.h:96
+#: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
 msgstr "&Павялічыць"
 
-#: gui/kstandardactions_p.h:97
+#: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
 msgstr "&Паменшыць"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
 msgstr "&Маштабаванне…"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
 msgstr "Абраць узровень павелічэння"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
 msgstr "&Абнавіць"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
 msgstr "Абнавіць дакумент"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "&Up"
 msgstr "&Уверх"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
 msgstr "Перайсці вышэй"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
 msgstr "&Папярэдняя старонка"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
 msgstr "Перайсці да папярэдняй старонкі"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "&Next Page"
 msgstr "&Наступная старонка"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "Go to next page"
 msgstr "Перайсці да наступнай старонкі"
 
-#: gui/kstandardactions_p.h:108
+#: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
 msgstr "&Перайсці да…"
 
-#: gui/kstandardactions_p.h:109
+#: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
 msgstr "&Перайсці да старонкі…"
 
-#: gui/kstandardactions_p.h:110
+#: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
 msgstr "&Перайсці да радка…"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&First Page"
 msgstr "&Першая старонка"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "Go to first page"
 msgstr "Перайсці да першай старонкі"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "&Last Page"
 msgstr "&Апошняя старонка"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
 msgstr "Перайсці да апошняй старонкі"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "&Back"
 msgstr "&Назад"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
 msgstr "Перайсці назад у дакуменце"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
 msgstr "Д&алей"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
 msgstr "Перайсці наперад ў дакуменце"
 
-#: gui/kstandardactions_p.h:116
+#: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
 msgstr "&Дадаць закладку"
 
-#: gui/kstandardactions_p.h:117
+#: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
 msgstr "&Рэдагаваць закладкі…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
 msgstr "&Правапіс…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
 msgstr "Праверыць правапіс у дакуменце"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
 msgstr "Паказваць &меню"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
 msgstr "Паказаць або схаваць панэль меню"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
 msgstr "Паказваць &панэль інструментаў"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
 msgstr "Паказаць або схаваць панэль інструментаў"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "Паказваць панэль ст&ану"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
 msgstr "Паказаць або схаваць панэль стану"
 
-#: gui/kstandardactions_p.h:124
+#: gui/kstandardactions_p.h:121
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "&Поўнаэкранны рэжым"
 
-#: gui/kstandardactions_p.h:125
+#: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
 msgstr "Наладжванне &спалучэнняў клавіш…"
 
-#: gui/kstandardactions_p.h:126
+#: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
 msgstr "&Наладжванне %1…"
 
-#: gui/kstandardactions_p.h:127
+#: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
 msgstr "Наладжванне панэлі &інструментаў…"
 
-#: gui/kstandardactions_p.h:128
+#: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
 msgstr "Наладжванне &апавяшчэнняў…"
 
-#: gui/kstandardactions_p.h:132
+#: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
 msgstr "&Даведнік па \"%1\""
 
-#: gui/kstandardactions_p.h:133
+#: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
 msgstr "Што &гэта?"
 
-#: gui/kstandardactions_p.h:134
+#: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
 msgstr "&Паведаміць пра хібу…"
 
-#: gui/kstandardactions_p.h:135
+#: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
 msgstr "Наладжванне &мовы…"
 
-#: gui/kstandardactions_p.h:136
+#: gui/kstandardactions_p.h:133
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
 msgstr "&Пра \"%1\""
 
-#: gui/kstandardactions_p.h:137
+#: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
 msgstr "Пра &KDE"
 
-#: gui/kstandardactions_p.h:138
+#: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
 msgid "&Delete"
 msgstr "&Выдаліць"
 
-#: gui/kstandardactions_p.h:139
+#: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
 msgstr "&Змяніць назву…"
 
-#: gui/kstandardactions_p.h:140
+#: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "&Перамясціць у сметніцу"
 
-#: gui/kstandardactions_p.h:141
+#: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
 msgstr "&Ахвяраваць"
 
-#: gui/kstandardactions_p.h:142
+#: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "Адкрыць &меню"

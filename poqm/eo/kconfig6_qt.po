@@ -55,485 +55,485 @@ msgctxt "home page|"
 msgid "&Home"
 msgstr "&Hejma"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
 msgstr "&Nova"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
 msgstr "Krei novan dokumenton"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
 msgstr "&Malfermi…"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
 msgstr "Malfermi ekzistantan dokumenton"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
 msgstr "Malfermi &Lastatempan"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
 msgstr "Malfermi dokumenton kiu estis lasttempe malfermita"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
 msgstr "Kon&servi"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
 msgstr "Konservi dokumenton"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
 msgstr "Konservi &Kiel…"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
 msgstr "Konservi dokumenton sub nova nomo"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Re&vert"
 msgstr "Mal&fari"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
 msgstr "Malfari nekonservitajn ŝanĝojn faritajn al dokumento"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "&Close"
 msgstr "F&ermi"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
 msgstr "Fermi dokumenton"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
 msgstr "&Presi…"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
 msgstr "Presi dokumenton"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
 msgstr "Pres-Antaŭrigar&do"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
 msgstr "Montri antaŭrigardon de presita dokumento"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
 msgstr "Ret&poŝti…"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
 msgstr "Sendi dokumenton per retpoŝto"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "&Quit"
 msgstr "F&orlasi"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Quit application"
 msgstr "Forlasi aplikon"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "&Undo"
 msgstr "Malfar&u"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
 msgstr "Malfari lastan agon"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
 msgstr "Re&fari"
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
 msgstr "Refari laste malfaritan agon"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
 msgstr "&Tondi"
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
 msgstr "Tondi elekton al poŝo"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "&Copy"
 msgstr "&Kopii"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
 msgstr "Kopii elekton al poŝo"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "&Paste"
 msgstr "&Alglui"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
 msgstr "Alglui poŝenhavon"
 
-#: gui/kstandardactions_p.h:84
+#: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "C&lear"
 msgstr "V&iŝi"
 
-#: gui/kstandardactions_p.h:85
+#: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
 msgstr "Elekti &Ĉion"
 
-#: gui/kstandardactions_p.h:86
+#: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "Male&lekti"
 
-#: gui/kstandardactions_p.h:87
+#: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
 msgstr "&Trovi…"
 
-#: gui/kstandardactions_p.h:88
+#: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Find &Next"
 msgstr "Trovi Sekva&n"
 
-#: gui/kstandardactions_p.h:89
+#: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
 msgstr "Tro&vi Antaŭan"
 
-#: gui/kstandardactions_p.h:90
+#: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
 msgstr "&Anstataŭigi…"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
 msgstr "Zomi al F&akta Grandeco"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
 msgstr "Rigardi dokumenton en ĝia fakta grandeco"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
 msgstr "&Ĝisrandigi al Paĝo"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
 msgstr "Zomi por konvenigi paĝon en fenestro"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
 msgstr "Ĝisrandigi al Paĝa &Larĝeco"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
 msgstr "Zomi por konvenigi paĝolarĝecon en fenestro"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
 msgstr "Ĝisrandigi al Paĝa Alte&co"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
 msgstr "Zomi por konvenigi paĝan altecon en fenestro"
 
-#: gui/kstandardactions_p.h:96
+#: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
 msgstr "Zom&i"
 
-#: gui/kstandardactions_p.h:97
+#: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
 msgstr "Malz&omi"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
 msgstr "&Zomi…"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
 msgstr "Elekti zomnivelon"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
 msgstr "&Refreŝigi"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
 msgstr "Refreŝigi dokumenton"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "&Up"
 msgstr "S&upren"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
 msgstr "Iri supren"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
 msgstr "Antaŭa &Paĝo"
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
 msgstr "Iri al antaŭa paĝo"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "&Next Page"
 msgstr "Sekva&nta Paĝo"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "Go to next page"
 msgstr "Iri al sekva paĝo"
 
-#: gui/kstandardactions_p.h:108
+#: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
 msgstr "&Iri Al…"
 
-#: gui/kstandardactions_p.h:109
+#: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
 msgstr "&Iri al Paĝo…"
 
-#: gui/kstandardactions_p.h:110
+#: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
 msgstr "&Iri al Linio…"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&First Page"
 msgstr "&Unua Paĝo"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "Go to first page"
 msgstr "Iri al unua paĝo"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "&Last Page"
 msgstr "&Lasta Paĝo"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
 msgstr "Iri al lasta paĝo"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "&Back"
 msgstr "&Malantaŭen"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
 msgstr "Iri malantaŭen en la dokumento"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
 msgstr "&Antaŭen"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
 msgstr "Iri antaŭen en la dokumento"
 
-#: gui/kstandardactions_p.h:116
+#: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
 msgstr "&Aldoni Legosignon"
 
-#: gui/kstandardactions_p.h:117
+#: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
 msgstr "R&edakti Legosignojn…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
 msgstr "&Literumo…"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
 msgstr "Kontroli literumon en dokumento"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
 msgstr "Montri &Menubreton"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
 msgstr "Montri aŭ kaŝi menubreton"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
 msgstr "Montri Ilobre&ton"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
 msgstr "Montri aŭ kaŝi ilobreton"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "Montri St&atusbreton"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
 msgstr "Montri aŭ kaŝi statusbreton"
 
-#: gui/kstandardactions_p.h:124
+#: gui/kstandardactions_p.h:121
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "Plen-Ekrana Reĝim&o"
 
-#: gui/kstandardactions_p.h:125
+#: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
 msgstr "Agordi &Klavarkombinojn…"
 
-#: gui/kstandardactions_p.h:126
+#: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
 msgstr "A&gordi %1…"
 
-#: gui/kstandardactions_p.h:127
+#: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
 msgstr "Agordi Ilo&bretojn…"
 
-#: gui/kstandardactions_p.h:128
+#: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
 msgstr "Agordi Sciigoj&n…"
 
-#: gui/kstandardactions_p.h:132
+#: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
 msgstr "&Manlibro %1"
 
-#: gui/kstandardactions_p.h:133
+#: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
 msgstr "Kio estas &Tio?"
 
-#: gui/kstandardactions_p.h:134
+#: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
 msgstr "&Raporti Cimon…"
 
-#: gui/kstandardactions_p.h:135
+#: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
 msgstr "Agordi &Lingvon…"
 
-#: gui/kstandardactions_p.h:136
+#: gui/kstandardactions_p.h:133
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
 msgstr "&Pri %1"
 
-#: gui/kstandardactions_p.h:137
+#: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
 msgstr "Pri &KDE"
 
-#: gui/kstandardactions_p.h:138
+#: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
 msgid "&Delete"
 msgstr "&Forigi"
 
-#: gui/kstandardactions_p.h:139
+#: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
 msgstr "&Renomi…"
 
-#: gui/kstandardactions_p.h:140
+#: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "&Movi al Rubujo"
 
-#: gui/kstandardactions_p.h:141
+#: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
 msgstr "&Donaci"
 
-#: gui/kstandardactions_p.h:142
+#: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "Malfermi &Menuon"

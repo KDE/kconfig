@@ -54,17 +54,17 @@ msgctxt "home page|"
 msgid "&Home"
 msgstr "Ev"
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
 msgstr ""
 
-#: gui/kstandardactions_p.h:67
+#: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Open"
@@ -72,12 +72,12 @@ msgctxt "KStandardActions|"
 msgid "&Open…"
 msgstr "Aç"
 
-#: gui/kstandardactions_p.h:68
+#: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Open Recent"
@@ -85,12 +85,12 @@ msgctxt "KStandardActions|"
 msgid "Open &Recent"
 msgstr "Sonuncunu Aç"
 
-#: gui/kstandardactions_p.h:69
+#: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
 msgstr ""
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Save"
@@ -98,12 +98,12 @@ msgctxt "KStandardActions|"
 msgid "&Save"
 msgstr "Saxla"
 
-#: gui/kstandardactions_p.h:70
+#: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Save As"
@@ -111,12 +111,12 @@ msgctxt "KStandardActions|"
 msgid "Save &As…"
 msgstr "Fərqli Saxla"
 
-#: gui/kstandardactions_p.h:71
+#: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
 msgstr ""
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Revert"
@@ -124,12 +124,12 @@ msgctxt "KStandardActions|"
 msgid "Re&vert"
 msgstr "Bərpa Et"
 
-#: gui/kstandardactions_p.h:72
+#: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Close"
@@ -137,12 +137,12 @@ msgctxt "KStandardActions|"
 msgid "&Close"
 msgstr "Bağla"
 
-#: gui/kstandardactions_p.h:73
+#: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Print"
@@ -150,12 +150,12 @@ msgctxt "KStandardActions|"
 msgid "&Print…"
 msgstr "Çap et"
 
-#: gui/kstandardactions_p.h:74
+#: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Print Preview"
@@ -163,12 +163,12 @@ msgctxt "KStandardActions|"
 msgid "Print Previe&w"
 msgstr "Çapa Önbaxış"
 
-#: gui/kstandardactions_p.h:75
+#: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Mail"
@@ -176,12 +176,12 @@ msgctxt "KStandardActions|"
 msgid "&Mail…"
 msgstr "E-Poçtla Göndər"
 
-#: gui/kstandardactions_p.h:76
+#: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
 msgstr ""
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Quit"
@@ -189,7 +189,7 @@ msgctxt "KStandardActions|"
 msgid "&Quit"
 msgstr "Çıx"
 
-#: gui/kstandardactions_p.h:77
+#: gui/kstandardactions_p.h:74
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "About Application"
@@ -197,7 +197,7 @@ msgctxt "KStandardActions|"
 msgid "Quit application"
 msgstr "Tətbiq haqqında"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Undo"
@@ -205,32 +205,32 @@ msgctxt "KStandardActions|"
 msgid "&Undo"
 msgstr "Geriyə al"
 
-#: gui/kstandardactions_p.h:79
+#: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
 msgstr ""
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
 msgstr ""
 
-#: gui/kstandardactions_p.h:80
+#: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
 msgstr ""
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
 msgstr ""
 
-#: gui/kstandardactions_p.h:81
+#: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
 msgstr ""
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Copy"
@@ -238,12 +238,12 @@ msgctxt "KStandardActions|"
 msgid "&Copy"
 msgstr "Kopyala"
 
-#: gui/kstandardactions_p.h:82
+#: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
 msgstr ""
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Paste"
@@ -251,12 +251,12 @@ msgctxt "KStandardActions|"
 msgid "&Paste"
 msgstr "Yerləşdir"
 
-#: gui/kstandardactions_p.h:83
+#: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
 msgstr ""
 
-#: gui/kstandardactions_p.h:84
+#: gui/kstandardactions_p.h:81
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Clear"
@@ -264,7 +264,7 @@ msgctxt "KStandardActions|"
 msgid "C&lear"
 msgstr "Təmizlə"
 
-#: gui/kstandardactions_p.h:85
+#: gui/kstandardactions_p.h:82
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Select All"
@@ -272,7 +272,7 @@ msgctxt "KStandardActions|"
 msgid "Select &All"
 msgstr "Hamısını Seç"
 
-#: gui/kstandardactions_p.h:86
+#: gui/kstandardactions_p.h:83
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Deselect"
@@ -280,7 +280,7 @@ msgctxt "KStandardActions|"
 msgid "Dese&lect"
 msgstr "Seçimi ləğv et"
 
-#: gui/kstandardactions_p.h:87
+#: gui/kstandardactions_p.h:84
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Find"
@@ -288,7 +288,7 @@ msgctxt "KStandardActions|"
 msgid "&Find…"
 msgstr "Tap"
 
-#: gui/kstandardactions_p.h:88
+#: gui/kstandardactions_p.h:85
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Find Next"
@@ -296,7 +296,7 @@ msgctxt "KStandardActions|"
 msgid "Find &Next"
 msgstr "Sonrakını Tap"
 
-#: gui/kstandardactions_p.h:89
+#: gui/kstandardactions_p.h:86
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Find Prev"
@@ -304,7 +304,7 @@ msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
 msgstr "Əvvəlkini Tap"
 
-#: gui/kstandardactions_p.h:90
+#: gui/kstandardactions_p.h:87
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Replace"
@@ -312,7 +312,7 @@ msgctxt "KStandardActions|"
 msgid "&Replace…"
 msgstr "Əvəzlə"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Zoom to Actual Size"
@@ -320,12 +320,12 @@ msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
 msgstr "Həqiqi ölçüsünə miqyaslayın"
 
-#: gui/kstandardactions_p.h:92
+#: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
 msgstr ""
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Fit To Page"
@@ -333,12 +333,12 @@ msgctxt "KStandardActions|"
 msgid "&Fit to Page"
 msgstr "Səhifəyə Sığışdır"
 
-#: gui/kstandardactions_p.h:93
+#: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
 msgstr ""
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Fit To Width"
@@ -346,12 +346,12 @@ msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
 msgstr "Eninə Sığışdır"
 
-#: gui/kstandardactions_p.h:94
+#: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
 msgstr ""
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Fit To Height"
@@ -359,12 +359,12 @@ msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
 msgstr "Hündürlüyə Sığışdır"
 
-#: gui/kstandardactions_p.h:95
+#: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
 msgstr ""
 
-#: gui/kstandardactions_p.h:96
+#: gui/kstandardactions_p.h:93
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Zoom In"
@@ -372,7 +372,7 @@ msgctxt "KStandardActions|"
 msgid "Zoom &In"
 msgstr "Böyüt"
 
-#: gui/kstandardactions_p.h:97
+#: gui/kstandardactions_p.h:94
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Zoom Out"
@@ -380,7 +380,7 @@ msgctxt "KStandardActions|"
 msgid "Zoom &Out"
 msgstr "Kiçilt"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Zoom"
@@ -388,7 +388,7 @@ msgctxt "KStandardActions|"
 msgid "&Zoom…"
 msgstr "Böyütmə"
 
-#: gui/kstandardactions_p.h:98
+#: gui/kstandardactions_p.h:95
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Select All"
@@ -396,17 +396,17 @@ msgctxt "KStandardActions|"
 msgid "Select zoom level"
 msgstr "Hamısını Seç"
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
 msgstr ""
 
-#: gui/kstandardactions_p.h:99
+#: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Up"
@@ -414,22 +414,22 @@ msgctxt "KStandardActions|"
 msgid "&Up"
 msgstr "Yuxarı"
 
-#: gui/kstandardactions_p.h:101
+#: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
 msgstr ""
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
 msgstr ""
 
-#: gui/kstandardactions_p.h:106
+#: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
 msgstr ""
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Goto Page"
@@ -437,7 +437,7 @@ msgctxt "KStandardActions|"
 msgid "&Next Page"
 msgstr "Səhifəyə Keç"
 
-#: gui/kstandardactions_p.h:107
+#: gui/kstandardactions_p.h:104
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Go to Line"
@@ -445,12 +445,12 @@ msgctxt "KStandardActions|"
 msgid "Go to next page"
 msgstr "Sətirə Keç"
 
-#: gui/kstandardactions_p.h:108
+#: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
 msgstr ""
 
-#: gui/kstandardactions_p.h:109
+#: gui/kstandardactions_p.h:106
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Goto Page"
@@ -458,7 +458,7 @@ msgctxt "KStandardActions|"
 msgid "&Go to Page…"
 msgstr "Səhifəyə Keç"
 
-#: gui/kstandardactions_p.h:110
+#: gui/kstandardactions_p.h:107
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Go to Line"
@@ -466,7 +466,7 @@ msgctxt "KStandardActions|"
 msgid "&Go to Line…"
 msgstr "Sətirə Keç"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Fit To Page"
@@ -474,7 +474,7 @@ msgctxt "KStandardActions|"
 msgid "&First Page"
 msgstr "Səhifəyə Sığışdır"
 
-#: gui/kstandardactions_p.h:111
+#: gui/kstandardactions_p.h:108
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Go to Line"
@@ -482,7 +482,7 @@ msgctxt "KStandardActions|"
 msgid "Go to first page"
 msgstr "Sətirə Keç"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Goto Page"
@@ -490,12 +490,12 @@ msgctxt "KStandardActions|"
 msgid "&Last Page"
 msgstr "Səhifəyə Keç"
 
-#: gui/kstandardactions_p.h:112
+#: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
 msgstr ""
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Back"
@@ -503,12 +503,12 @@ msgctxt "KStandardActions|"
 msgid "&Back"
 msgstr "Geriyə"
 
-#: gui/kstandardactions_p.h:113
+#: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Forward"
@@ -516,12 +516,12 @@ msgctxt "KStandardActions|"
 msgid "&Forward"
 msgstr "İrəli"
 
-#: gui/kstandardactions_p.h:114
+#: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:116
+#: gui/kstandardactions_p.h:113
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Add Bookmark"
@@ -529,7 +529,7 @@ msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
 msgstr "Əlfəcin əlavə et"
 
-#: gui/kstandardactions_p.h:117
+#: gui/kstandardactions_p.h:114
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Edit Bookmarks"
@@ -537,7 +537,7 @@ msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
 msgstr "Əlfəcinə düzəliş et"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Spelling"
@@ -545,12 +545,12 @@ msgctxt "KStandardActions|"
 msgid "&Spelling…"
 msgstr "Orfoqrafiyanı Yoxla"
 
-#: gui/kstandardactions_p.h:119
+#: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
 msgstr ""
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Show Menu Bar"
@@ -558,7 +558,7 @@ msgctxt "KStandardActions|"
 msgid "Show &Menubar"
 msgstr "Menu Çubuğunu Göstər"
 
-#: gui/kstandardactions_p.h:121
+#: gui/kstandardactions_p.h:118
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Show Menu Bar"
@@ -566,7 +566,7 @@ msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
 msgstr "Menu Çubuğunu Göstər"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Show Toolbar"
@@ -574,7 +574,7 @@ msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
 msgstr "Alətlər Çubuğunu Göstər"
 
-#: gui/kstandardactions_p.h:122
+#: gui/kstandardactions_p.h:119
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Show Toolbar"
@@ -582,7 +582,7 @@ msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
 msgstr "Alətlər Çubuğunu Göstər"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Show Statusbar"
@@ -590,7 +590,7 @@ msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
 msgstr "Status Çubuğunu Göstər"
 
-#: gui/kstandardactions_p.h:123
+#: gui/kstandardactions_p.h:120
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Show Statusbar"
@@ -598,7 +598,7 @@ msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
 msgstr "Status Çubuğunu Göstər"
 
-#: gui/kstandardactions_p.h:124
+#: gui/kstandardactions_p.h:121
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Full Screen Mode"
@@ -606,12 +606,12 @@ msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
 msgstr "Tam Ekran"
 
-#: gui/kstandardactions_p.h:125
+#: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
 msgstr ""
 
-#: gui/kstandardactions_p.h:126
+#: gui/kstandardactions_p.h:123
 #, fuzzy, qt-format
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Language..."
@@ -619,7 +619,7 @@ msgctxt "KStandardActions|"
 msgid "&Configure %1…"
 msgstr "Dili Tənzimləmək..."
 
-#: gui/kstandardactions_p.h:127
+#: gui/kstandardactions_p.h:124
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Toolbars"
@@ -627,7 +627,7 @@ msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
 msgstr "Alətlər Çubuğunu Ayarla"
 
-#: gui/kstandardactions_p.h:128
+#: gui/kstandardactions_p.h:125
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Notifications"
@@ -635,13 +635,13 @@ msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
 msgstr "Bildirişləri Ayarla"
 
-#: gui/kstandardactions_p.h:132
+#: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
 msgstr ""
 
-#: gui/kstandardactions_p.h:133
+#: gui/kstandardactions_p.h:130
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "What's This"
@@ -649,7 +649,7 @@ msgctxt "KStandardActions|"
 msgid "What's &This?"
 msgstr "Bu nədir"
 
-#: gui/kstandardactions_p.h:134
+#: gui/kstandardactions_p.h:131
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Report Bug"
@@ -657,7 +657,7 @@ msgctxt "KStandardActions|"
 msgid "&Report Bug…"
 msgstr "Xətaları Göndər"
 
-#: gui/kstandardactions_p.h:135
+#: gui/kstandardactions_p.h:132
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Language..."
@@ -665,7 +665,7 @@ msgctxt "KStandardActions|"
 msgid "Configure &Language…"
 msgstr "Dili Tənzimləmək..."
 
-#: gui/kstandardactions_p.h:136
+#: gui/kstandardactions_p.h:133
 #, fuzzy, qt-format
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "About KDE"
@@ -673,7 +673,7 @@ msgctxt "KStandardActions|"
 msgid "&About %1"
 msgstr "KDE haqqında"
 
-#: gui/kstandardactions_p.h:137
+#: gui/kstandardactions_p.h:134
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "About KDE"
@@ -681,7 +681,7 @@ msgctxt "KStandardActions|"
 msgid "About &KDE"
 msgstr "KDE haqqında"
 
-#: gui/kstandardactions_p.h:138
+#: gui/kstandardactions_p.h:135
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Delete"
@@ -689,7 +689,7 @@ msgctxt "KStandardActions|"
 msgid "&Delete"
 msgstr "Sil"
 
-#: gui/kstandardactions_p.h:139
+#: gui/kstandardactions_p.h:136
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Rename"
@@ -697,7 +697,7 @@ msgctxt "KStandardActions|"
 msgid "&Rename…"
 msgstr "Adını Dəyiş"
 
-#: gui/kstandardactions_p.h:140
+#: gui/kstandardactions_p.h:137
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Move to Trash"
@@ -705,7 +705,7 @@ msgctxt "KStandardActions|"
 msgid "&Move to Trash"
 msgstr "Səbət At"
 
-#: gui/kstandardactions_p.h:141
+#: gui/kstandardactions_p.h:138
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Donate"
@@ -713,7 +713,7 @@ msgctxt "KStandardActions|"
 msgid "&Donate"
 msgstr "Maddi Dəstək"
 
-#: gui/kstandardactions_p.h:142
+#: gui/kstandardactions_p.h:139
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Open Recent"
