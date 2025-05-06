@@ -4,20 +4,21 @@
 # Frederik Schwarzer <schwarzer@kde.org>, 2012, 2014, 2015, 2016, 2020, 2022.
 # Burkhard Lück <lueck@hube-lueck.de>, 2014, 2015, 2016, 2017, 2018, 2019, 2021.
 # Frank Steinmetzger <dev-kde@felsenfleischer.de>, 2022.
+# SPDX-FileCopyrightText: 2025 Flori G <Renner03@protonmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig6_qt\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-11-10 21:00+0100\n"
-"Last-Translator: Frank Steinmetzger <dev-kde@felsenfleischer.de>\n"
+"PO-Revision-Date: 2025-02-22 03:02+0100\n"
+"Last-Translator: Flori G <Renner03@protonmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.12.2\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:961
@@ -410,7 +411,7 @@ msgstr "Tipp des Tages"
 #: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr "Probleme oder Wünsche berichten"
+msgstr "Problem melden"
 
 #: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
