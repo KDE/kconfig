@@ -319,7 +319,9 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
                 end = currentGroup.indexOf(QLatin1Char('\x1d'), start);
                 if (end < 0) {
                     int cgl = currentGroup.length();
-                    if (currentGroup.at(start) == QLatin1Char('$') && cgl - start <= 10) {
+                    // Start has to be smaller than currentGroup length, or otherwise currentGroup.at()
+                    // will assert: https://doc.qt.io/qt-6/qstring.html#at
+                    if (cgl > start && cgl - start <= 10 && currentGroup.at(start) == QLatin1Char('$')) {
                         for (int i = start + 1; i < cgl; i++) {
                             const QChar c = currentGroup.at(i);
                             if (c < QLatin1Char('a') || c > QLatin1Char('z')) {
