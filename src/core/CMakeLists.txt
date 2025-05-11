@@ -1,7 +1,7 @@
 add_library(KF6ConfigCore)
 add_library(KF6::ConfigCore ALIAS KF6ConfigCore)
 
-qt_extract_metatypes(KF6ConfigCore)
+ecm_extract_metatypes(KF6ConfigCore)
 
 set_target_properties(KF6ConfigCore PROPERTIES
     VERSION     ${KCONFIG_VERSION}
