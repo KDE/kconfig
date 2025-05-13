@@ -1,5 +1,6 @@
-# Translation of kwriteconfig.po to Spanish
-# Copyright (C) 2003, 2007, 2008 Free Software Foundation, Inc.
+# Spanish translations for kconfig6_qt.po package.
+# Copyright (C) 2003-2025 This file is copyright:
+# This file is distributed under the same license as the kconfig package.
 #
 # SPDX-FileCopyrightText: 2003 Miguel Revilla Rodríguez <yo@miguelrevilla.com>
 # SPDX-FileCopyrightText: 2003, 2008 Jaime Robles <jaime@kde.org>
@@ -8,10 +9,10 @@
 # SPDX-FileCopyrightText: 2014 Rocio Gallego <traducciones@rociogallego.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: kwriteconfig\n"
-"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"Project-Id-Version: kconfig6_qt\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2025-01-29 12:56+0100\n"
+"PO-Revision-Date: 2025-05-12 13:27+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -67,7 +68,7 @@ msgstr "Crear nuevo documento"
 #: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "&Abrir..."
+msgstr "&Abrir…"
 
 #: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
@@ -97,7 +98,7 @@ msgstr "Guardar documento"
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr "G&uardar como..."
+msgstr "G&uardar como…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
@@ -127,7 +128,7 @@ msgstr "Cerrar el documento"
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr "Im&primir..."
+msgstr "Im&primir…"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
@@ -147,7 +148,7 @@ msgstr "Mostrar una vista previa del documento impreso"
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr "C&orreo..."
+msgstr "C&orreo…"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
@@ -232,7 +233,7 @@ msgstr "Dese&leccionar"
 #: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr "&Buscar..."
+msgstr "&Buscar…"
 
 #: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
@@ -247,7 +248,7 @@ msgstr "B&uscar anterior"
 #: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr "&Sustituir..."
+msgstr "&Sustituir…"
 
 #: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
@@ -302,7 +303,7 @@ msgstr "&Reducir"
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr "A&mpliación..."
+msgstr "A&mpliación…"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
@@ -352,17 +353,17 @@ msgstr "Ir a la página siguiente"
 #: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr "&Ir a..."
+msgstr "&Ir a…"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr "&Ir a la página..."
+msgstr "&Ir a la página…"
 
 #: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr "&Ir a la línea..."
+msgstr "&Ir a la línea…"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
@@ -412,12 +413,12 @@ msgstr "&Añadir marcador"
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr "&Editar marcadores..."
+msgstr "&Editar marcadores…"
 
 #: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr "Comprobación &ortográfica..."
+msgstr "Comprobación &ortográfica…"
 
 #: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
@@ -462,23 +463,23 @@ msgstr "&Modo de pantalla completa"
 #: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr "Configurar los ata&jos de teclado..."
+msgstr "Configurar los ata&jos de teclado…"
 
 #: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr "&Configurar %1..."
+msgstr "&Configurar %1…"
 
 #: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr "Configurar &barras de herramientas..."
+msgstr "Configurar &barras de herramientas…"
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr "Configurar &notificaciones..."
+msgstr "Configurar &notificaciones…"
 
 #: gui/kstandardactions_p.h:129
 #, qt-format
@@ -494,12 +495,12 @@ msgstr "¿&Qué es esto?"
 #: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "In&formar de fallo..."
+msgstr "In&formar de fallo…"
 
 #: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr "Configurar &idioma..."
+msgstr "Configurar &idioma…"
 
 #: gui/kstandardactions_p.h:133
 #, qt-format
@@ -520,7 +521,7 @@ msgstr "&Borrar"
 #: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr "Cambiar &nombre..."
+msgstr "Cambiar &nombre…"
 
 #: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
@@ -905,7 +906,7 @@ msgstr "Informar de fallo"
 #: gui/kstandardshortcut.cpp:417
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr "Configurar idioma..."
+msgstr "Configurar idioma…"
 
 #: gui/kstandardshortcut.cpp:423
 msgctxt "KStandardShortcut|@action"
@@ -1064,47 +1065,3 @@ msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""
 "El valor a escribir. Obligatorio. En un intérprete de órdenes use '' para "
 "indicar vacío"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Tip Of Day"
-#~ msgstr "Consejo del día"
-
-#~ msgctxt "main|"
-#~ msgid ""
-#~ "For unit tests only: use test directories to stay away from the user's "
-#~ "real files"
-#~ msgstr ""
-#~ "Solo para pruebas unitarias: usar directorios de pruebas para proteger "
-#~ "los archivos reales del usuario"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Save Options"
-#~ msgstr "Guardar opciones"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Switch Application Language"
-#~ msgstr "Cambiar idioma de la aplicación"
-
-#~ msgctxt "KStandardShortcut|@action"
-#~ msgid "Preferences"
-#~ msgstr "Preferencias"
-
-#~ msgid "KWriteConfig"
-#~ msgstr "KWriteConfig"
-
-#~ msgid "Write KConfig entries - for use in shell scripts"
-#~ msgstr ""
-#~ "Escribir entradas de KConfig (para usar en guiones del intérprete de "
-#~ "órdenes)"
-
-#~ msgid "(c) 2001 Red Hat, Inc. & Luís Pedro Coelho"
-#~ msgstr "© 2001 Red Hat, Inc. y Luís Pedro Coelho"
-
-#~ msgid "Wrote kreadconfig on which this is based"
-#~ msgstr "Escribió kreadconfig, en el que se basa este programa"
-
-#~ msgid "Luís Pedro Coelho"
-#~ msgstr "Luís Pedro Coelho"
-
-#~ msgid "Bernhard Rosenkraenzer"
-#~ msgstr "Bernhard Rosenkraenzer"
