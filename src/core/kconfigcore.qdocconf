@@ -10,6 +10,8 @@ sourcedirs += . ../kconf_update ../kconfig_compiler
 
 outputformats = HTML
 
+navigation.landingpage = "KConfig"
+
 depends += \
     kde \
     qtcore \
