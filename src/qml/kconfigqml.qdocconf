@@ -32,3 +32,5 @@ qhp.KConfigQml.subprojects.classes.title = C++ Classes
 qhp.KConfigQml.subprojects.classes.indexTitle = KConfig QML C++ Classes
 qhp.KConfigQml.subprojects.classes.selectors = class fake:headerfile
 qhp.KConfigQml.subprojects.classes.sortPages = true
+
+tagfile = kconfigqml.tags
