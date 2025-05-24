@@ -70,6 +70,7 @@ void KConfigHeaderGenerator::doClassDefinition()
         createSetters(entry);
         createProperties(entry, returnType);
         createImmutableProperty(entry);
+        createDefaultValueProperty(entry, returnType);
         createGetters(entry, returnType);
         createImmutableGetters(entry);
         createDefaultValueMember(entry);
@@ -424,6 +425,22 @@ void KConfigHeaderGenerator::createImmutableProperty(const CfgEntry *entry)
     stream() << whitespace();
     stream() << "Q_PROPERTY(bool " << immutableFunction(entry->name);
     stream() << " READ " << immutableFunction(entry->name);
+    stream() << " CONSTANT)\n";
+}
+
+void KConfigHeaderGenerator::createDefaultValueProperty(const CfgEntry *entry, const QString &returnType)
+{
+    if (!cfg().generateProperties) {
+        return;
+    }
+
+    if (!((cfg().allDefaultGetters || cfg().defaultGetters.contains(entry->name)) && !entry->defaultValue.isEmpty())) {
+        return;
+    }
+
+    stream() << whitespace();
+    stream() << "Q_PROPERTY(" << returnType << ' ' << getDefaultFunction(entry->name);
+    stream() << " READ " << getDefaultFunction(entry->name);
     stream() << " CONSTANT)\n";
 }
 

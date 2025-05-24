@@ -58,6 +58,7 @@ private:
     void createProperties(const CfgEntry *entry, const QString &returnType);
     void createImmutableProperty(const CfgEntry *entry);
     void createDefaultValueMember(const CfgEntry *entry);
+    void createDefaultValueProperty(const CfgEntry *entry, const QString &returnType);
 };
 
 #endif
