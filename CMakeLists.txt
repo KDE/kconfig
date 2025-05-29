@@ -39,6 +39,10 @@ if(KCONFIG_USE_QML)
     find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml Quick)
 endif()
 
+find_package(Python3 3.9 COMPONENTS Interpreter Development)
+find_package(Shiboken6)
+find_package(PySide6)
+
 # shall we use DBus?
 # enabled per default on Linux & BSD systems
 set(USE_DBUS_DEFAULT OFF)
@@ -67,6 +71,9 @@ add_subdirectory(src)
 if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
+
+include(ECMGeneratePythonBindings)
+add_subdirectory(python)
 
 include (ECMPoQmTools)
 ecm_install_po_files_as_qm(poqm)

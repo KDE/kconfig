@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<typesystem package="KConfigCore">
+    <load-typesystem name="typesystem_core.xml" generate="no"/>
+
+   <object-type name="KAuthorized">
+        <enum-type name="GenericRestriction" />
+        <enum-type name="GenericAction" />
+    </object-type>
+    <value-type name="KConfigBase" qt-register-metatype="yes">
+        <enum-type name="WriteConfigFlag" flags="WriteConfigFlags" />
+        <enum-type name="AccessMode" />
+    </value-type>
+    <value-type name="KConfigGroup">
+    </value-type>
+
+</typesystem>
