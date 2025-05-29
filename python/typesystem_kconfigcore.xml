@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<typesystem package="KConfigCore">
+    <load-typesystem name="typesystem_core.xml" generate="no"/>
+
+    <object-type name="KAuthorized">
+        <enum-type name="GenericAction" />
+        <enum-type name="GenericRestriction" />
+    </object-type>
+    <object-type name="KConfig" disable-wrapper="yes">
+        <enum-type name="OpenFlag" flags="OpenFlags" />
+    </object-type>
+    <object-type name="KConfigBase" disable-wrapper="yes">
+        <enum-type name="AccessMode" />
+        <enum-type name="WriteConfigFlag" flags="WriteConfigFlags" />
+    </object-type>
+    <object-type name="KConfigGroup" disable-wrapper="yes" />
+    <object-type name="KConfigSkeletonItem" disable-wrapper="yes" />
+    <object-type name="KConfigWatcher" />
+    <object-type name="KCoreConfigSkeleton">
+        <object-type name="ItemBool" />
+        <object-type name="ItemDateTime" />
+        <object-type name="ItemDouble" />
+        <object-type name="ItemEnum">
+            <object-type name="Choice" />
+        </object-type>
+        <object-type name="ItemInt" />
+        <object-type name="ItemIntList" />
+        <object-type name="ItemLongLong" />
+        <object-type name="ItemPassword" />
+        <object-type name="ItemPath" />
+        <object-type name="ItemPathList" />
+        <object-type name="ItemPoint" />
+        <object-type name="ItemPointF" />
+        <object-type name="ItemProperty" />
+        <object-type name="ItemRect" />
+        <object-type name="ItemRectF" />
+        <object-type name="ItemSize" />
+        <object-type name="ItemSizeF" />
+        <object-type name="ItemString">
+            <enum-type name="Type" />
+        </object-type>
+        <object-type name="ItemStringList" />
+        <object-type name="ItemUInt" />
+        <object-type name="ItemULongLong" />
+        <object-type name="ItemUrl" />
+        <object-type name="ItemUrlList" />
+    </object-type>
+    <value-type name="KDesktopFileAction" />
+    <object-type name="KEMailSettings">
+        <enum-type name="Setting" />
+    </object-type>
+    <object-type name="KPropertySkeletonItem" />
+    <object-type name="KSharedConfig" disable-wrapper="yes" />
+</typesystem>
