@@ -55,9 +55,10 @@ static QBasicMutex s_globalFilesMutex;
 Q_GLOBAL_STATIC_WITH_ARGS(QString, sGlobalFileName, (QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals")))
 
 using ParseCacheKey = std::pair<QStringList, QString>;
+using ParseCacheTimestamp = QList<qint64>;
 struct ParseCacheValue {
     KEntryMap entries;
-    QDateTime parseTime;
+    ParseCacheTimestamp timestamp;
 };
 QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>> sGlobalParse;
 
@@ -714,17 +715,16 @@ void KConfigPrivate::parseGlobalFiles()
 
     Q_ASSERT(entryMap.empty());
 
+    ParseCacheTimestamp timestamp;
+    timestamp.reserve(globalFiles.count());
+    for (const auto &file : globalFiles) {
+        timestamp << QFileInfo(file).lastModified(QTimeZone::UTC).toMSecsSinceEpoch();
+    }
+
     const ParseCacheKey key = {globalFiles, locale};
     auto data = sGlobalParse.localData().object(key);
-    QDateTime newest;
-    for (const auto &file : globalFiles) {
-        const auto fileDate = QFileInfo(file).lastModified(QTimeZone::UTC);
-        if (fileDate > newest) {
-            newest = fileDate;
-        }
-    }
     if (data) {
-        if (data->parseTime < newest) {
+        if (data->timestamp != timestamp) {
             data = nullptr;
         } else {
             entryMap = data->entries;
@@ -746,7 +746,7 @@ void KConfigPrivate::parseGlobalFiles()
             break;
         }
     }
-    sGlobalParse.localData().insert(key, new ParseCacheValue({entryMap, newest}));
+    sGlobalParse.localData().insert(key, new ParseCacheValue({entryMap, timestamp}));
 }
 
 #ifdef Q_OS_WIN
