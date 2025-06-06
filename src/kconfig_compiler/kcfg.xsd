@@ -180,6 +180,7 @@
             <xsd:enumeration value="Bool"/>
             <xsd:enumeration value="Double"/>
             <xsd:enumeration value="DateTime"/>
+            <xsd:enumeration value="Time"/>
             <xsd:enumeration value="LongLong"/>
             <xsd:enumeration value="ULongLong"/>
             <xsd:enumeration value="IntList"/>

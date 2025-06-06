@@ -377,6 +377,8 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         }
         return date;
     }
+    case QMetaType::QTime:
+        return QTime::fromString(QString::fromUtf8(value));
     case QMetaType::QColor:
     case QMetaType::QFont:
         qCWarning(KCONFIG_CORE_LOG) << "KConfigGroup::readEntry was passed GUI type '" << aDefault.typeName()
@@ -979,6 +981,10 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
 
         writeEntry(key, list, flags);
         return;
+    }
+    case QMetaType::QTime: {
+        data = value.toTime().toString().toUtf8();
+        break;
     }
     case QMetaType::QDateTime: {
         const QDateTime rDateTime = value.toDateTime();

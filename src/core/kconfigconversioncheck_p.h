@@ -97,6 +97,7 @@ QVConversions(QColor, unsupported, supported);
 QVConversions(QFont, supported, supported);
 QVConversions(QDateTime, unsupported, supported);
 QVConversions(QDate, unsupported, supported);
+QVConversions(QTime, unsupported, supported);
 QVConversions(QSize, unsupported, supported);
 QVConversions(QRect, unsupported, supported);
 QVConversions(QPoint, unsupported, supported);

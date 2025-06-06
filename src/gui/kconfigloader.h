@@ -67,6 +67,7 @@ class ConfigLoaderPrivate;
  * \li bools
  * \li colors
  * \li datetimes
+ * \li times
  * \li enumerations
  * \li fonts
  * \li ints
