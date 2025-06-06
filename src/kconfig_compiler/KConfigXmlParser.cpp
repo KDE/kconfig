@@ -21,6 +21,7 @@
 #include <QList>
 #include <QStringList>
 #include <QTextStream>
+#include <QTime>
 #include <iostream>
 // TODO: Move preprocessDefault to Header / CPP implementation.
 // it makes no sense for a parser to process those values and generate code.
@@ -100,6 +101,11 @@ static void preProcessDefault(QString &defaultValue,
             }
         }
         defaultValue = QLatin1String("default") + name;
+    } else if (type == QLatin1String("Time")) {
+        if (!defaultValue.isEmpty()) {
+            const QTime time = QTime::fromString(defaultValue);
+            defaultValue = QStringLiteral("QTime(%1, %2, %3)").arg(time.hour()).arg(time.minute()).arg(time.second());
+        }
     }
 }
 

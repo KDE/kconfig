@@ -83,6 +83,8 @@ static CompilerTestSet testCases = {"test1.cpp",
                                     "test_param_minmax.h",
                                     "test_subgroups.cpp",
                                     "test_subgroups.h",
+                                    "test_time.cpp",
+                                    "test_time.h",
                                     nullptr};
 
 static CompilerTestSet testCasesToRun = {"Test1",
@@ -135,6 +137,7 @@ static CompilerTestSet testCasesToRun = {"Test1",
                                          "test_signal_cmake",
                                          "test_emptyentries_cmake",
                                          "test_subgroups_cmake",
+                                         "test_time_cmake",
                                          nullptr};
 
 #if 0

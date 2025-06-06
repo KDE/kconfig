@@ -1096,6 +1096,28 @@ public:
     };
 
     /*!
+     * \class KCoreConfigSkeleton::ItemTime
+     * \inmodule KConfigGui
+     * \since 6.16
+     *
+     * Class for handling a QTime preferences item.
+     */
+    class KCONFIGCORE_EXPORT ItemTime : public KConfigSkeletonGenericItem<QTime>
+    {
+    public:
+        /*! */
+        ItemTime(const QString &_group, const QString &_key, QTime &reference, QTime defaultValue = QTime());
+
+        void readConfig(KConfig *config) override;
+
+        void setProperty(const QVariant &p) override;
+
+        bool isEqual(const QVariant &p) const override;
+
+        QVariant property() const override;
+    };
+
+    /*!
      * \class KCoreConfigSkeleton::ItemStringList
      * \inmodule KConfigGui
      *
@@ -1570,6 +1592,25 @@ public:
      * Returns the created item
      */
     ItemDateTime *addItemDateTime(const QString &name, QDateTime &reference, const QDateTime &defaultValue = QDateTime(), const QString &key = QString());
+
+    /*!
+     * Register an item of type QTime.
+     *
+     * \a name Name used to identify this setting. Names must be unique.
+     *
+     * \a reference Pointer to the variable, which is set by readConfig()
+     * calls and read by save() calls.
+     *
+     * \a defaultValue Default value, which is used when the config file
+     * does not yet contain the key of this item.
+     *
+     * \a key Key used in config file. If \a key is a null string, \a name is used as key.
+     *
+     * Returns the created item
+     *
+     * \since 6.16
+     */
+    ItemTime *addItemTime(const QString &name, QTime &reference, QTime defaultValue = QTime(), const QString &key = QString());
 
     /*!
      * Register an item of type QStringList.

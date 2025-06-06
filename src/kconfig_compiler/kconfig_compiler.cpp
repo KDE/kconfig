@@ -234,6 +234,8 @@ QString param(const QString &t)
         return QStringLiteral("double");
     } else if (type == QLatin1String("datetime")) {
         return QStringLiteral("const QDateTime &");
+    } else if (type == QLatin1String("time")) {
+        return QStringLiteral("QTime");
     } else if (type == QLatin1String("longlong")) {
         return QStringLiteral("qint64");
     } else if (type == QLatin1String("ulonglong")) {
@@ -294,6 +296,8 @@ QString cppType(const QString &t)
         return QStringLiteral("double");
     } else if (type == QLatin1String("datetime")) {
         return QStringLiteral("QDateTime");
+    } else if (type == QLatin1String("time")) {
+        return QStringLiteral("QTime");
     } else if (type == QLatin1String("longlong")) {
         return QStringLiteral("qint64");
     } else if (type == QLatin1String("ulonglong")) {
@@ -351,6 +355,8 @@ QString defaultValue(const QString &t)
         return QStringLiteral("0.0");
     } else if (type == QLatin1String("datetime")) {
         return QStringLiteral("QDateTime()");
+    } else if (type == QLatin1String("time")) {
+        return QStringLiteral("QTime()");
     } else if (type == QLatin1String("longlong")) {
         return QStringLiteral("0");
     } else if (type == QLatin1String("ulonglong")) {

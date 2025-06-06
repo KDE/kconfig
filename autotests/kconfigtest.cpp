@@ -75,6 +75,7 @@ static const QDateTime s_date_time_tz = [] {
     dt.setTimeZone(QTimeZone("EST"));
     return dt;
 }();
+static const QTime s_time_entry(21, 42, 37);
 static const QStringList s_stringlist_entry{QStringLiteral("Hello,"), QStringLiteral("World")};
 static const QStringList s_stringlist_empty_entry{};
 static const QStringList s_stringlist_just_empty_element{QString{}};
@@ -170,6 +171,7 @@ void KConfigTest::initTestCase()
     cg.writeEntry("dateTimeWithMSEntry", s_date_time_with_ms_entry);
     cg.writeEntry("dateTimeUtc", s_date_time_utc);
     cg.writeEntry("dateTimeTz", s_date_time_tz);
+    cg.writeEntry("timeEntry", s_time_entry);
 
     KConfigGroup ct = cg;
     cg = KConfigGroup(&ct, QStringLiteral("Nested Group 1"));
@@ -612,6 +614,7 @@ void KConfigTest::testComplex()
     QCOMPARE(sc3.readEntry("dateTimeTz", QDateTime()).timeZone(), s_date_time_tz.timeZone());
     QCOMPARE(sc3.readEntry("dateTimeUtc", QDateTime()).timeRepresentation().id(), s_date_time_utc.timeRepresentation().id());
     QCOMPARE(sc3.readEntry("dateTimeEntry", QDate()), s_date_time_entry.date());
+    QCOMPARE(sc3.readEntry("timeEntry", QTime()), s_time_entry);
 }
 
 void KConfigTest::testEnums()
@@ -683,6 +686,7 @@ void KConfigTest::testInvalid()
     QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
     QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
     QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
     QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
     // 2 element list
@@ -691,6 +695,7 @@ void KConfigTest::testInvalid()
 
     QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
     QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
     QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
     // 3 element list
@@ -701,6 +706,7 @@ void KConfigTest::testInvalid()
     QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
     QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
     QVERIFY(sc3.readEntry("badList", QDate()) == QDate()); // out of bounds
+    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
     QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
     // 4 element list
@@ -710,6 +716,7 @@ void KConfigTest::testInvalid()
     QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
     QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
     QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
     QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
     // 5 element list
@@ -721,6 +728,7 @@ void KConfigTest::testInvalid()
     QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
     QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
     QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
+    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
     QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
 
     // 6 element list
@@ -730,6 +738,7 @@ void KConfigTest::testInvalid()
     QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
     QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
     QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
+    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
 }
 
 void KConfigTest::testChangeGroup()

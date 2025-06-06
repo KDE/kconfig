@@ -1050,6 +1050,35 @@ QVariant KCoreConfigSkeleton::ItemDateTime::property() const
     return QVariant(mReference);
 }
 
+KCoreConfigSkeleton::ItemTime::ItemTime(const QString &_group, const QString &_key, QTime &reference, QTime defaultValue)
+    : KConfigSkeletonGenericItem<QTime>(_group, _key, reference, defaultValue)
+{
+}
+
+void KCoreConfigSkeleton::ItemTime::readConfig(KConfig *config)
+{
+    KConfigGroup cg = configGroup(config);
+    mReference = cg.readEntry(mKey, mDefault);
+    mLoadedValue = mReference;
+
+    readImmutability(cg);
+}
+
+void KCoreConfigSkeleton::ItemTime::setProperty(const QVariant &p)
+{
+    mReference = p.toTime();
+}
+
+bool KCoreConfigSkeleton::ItemTime::isEqual(const QVariant &v) const
+{
+    return mReference == v.toTime();
+}
+
+QVariant KCoreConfigSkeleton::ItemTime::property() const
+{
+    return QVariant(mReference);
+}
+
 KCoreConfigSkeleton::ItemStringList::ItemStringList(const QString &_group, const QString &_key, QStringList &reference, const QStringList &defaultValue)
     : KConfigSkeletonGenericItem<QStringList>(_group, _key, reference, defaultValue)
 {
@@ -1527,6 +1556,14 @@ KCoreConfigSkeleton::addItemDateTime(const QString &name, QDateTime &reference, 
 {
     KCoreConfigSkeleton::ItemDateTime *item;
     item = new KCoreConfigSkeleton::ItemDateTime(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
+    addItem(item, name);
+    return item;
+}
+
+KCoreConfigSkeleton::ItemTime *KCoreConfigSkeleton::addItemTime(const QString &name, QTime &reference, QTime defaultValue, const QString &key)
+{
+    KCoreConfigSkeleton::ItemTime *item;
+    item = new KCoreConfigSkeleton::ItemTime(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
     addItem(item, name);
     return item;
 }

@@ -32,6 +32,7 @@ public:
         qDeleteAll(ints);
         qDeleteAll(uints);
         qDeleteAll(urls);
+        qDeleteAll(times);
         qDeleteAll(dateTimes);
         qDeleteAll(doubles);
         qDeleteAll(intlists);
@@ -106,6 +107,13 @@ public:
     {
         QDateTime *v = new QDateTime;
         dateTimes.append(v);
+        return v;
+    }
+
+    QTime *newTime()
+    {
+        QTime *v = new QTime;
+        times.append(v);
         return v;
     }
 
@@ -215,6 +223,7 @@ public:
     QList<quint32 *> uints;
     QList<QUrl *> urls;
     QList<QDateTime *> dateTimes;
+    QList<QTime *> times;
     QList<double *> doubles;
     QList<QList<qint32> *> intlists;
     QList<qint64 *> longlongs;
