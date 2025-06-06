@@ -86,5 +86,8 @@
                 <entry name="DefaultULongLongItem" type="ULongLong">
                         <default>9223372036854775806</default>
                 </entry>
+                <entry name="DefaultTimeItem" type="Time">
+                        <default>21:42:32</default>
+                </entry>
         </group>
 </kcfg>

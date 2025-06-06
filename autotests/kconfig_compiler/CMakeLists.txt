@@ -83,6 +83,7 @@ kconfig_compiler_test(test_subgroups MAIN test_subgroups_main.cpp CLASS_NAME Tes
 kconfig_compiler_test(test_dpointer MAIN test_dpointer_main.cpp CLASS_NAME TestDPointer SINGLETON MUTATORS MEMBER_VARIABLES dpointer ITEM_ACCESSORS SET_USER_TEXTS)
 kconfig_compiler_test(test_signal MAIN test_signal_main.cpp CLASS_NAME TestSignal SINGLETON MUTATORS MEMBER_VARIABLES private GENERATE_MOC)
 kconfig_compiler_test(test_notifiers MAIN test_notifiers_main.cpp CLASS_NAME TestNotifiers MUTATORS GLOBAL_ENUMS NOTIFIERS)
+kconfig_compiler_test(test_time MAIN test_time_main.cpp CLASS_NAME TestTime MUTATORS)
 
 ########### next target ###############
 

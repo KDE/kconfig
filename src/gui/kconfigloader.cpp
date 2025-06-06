@@ -178,6 +178,8 @@ void ConfigLoaderHandler::addItem()
         item = m_config->addItemColor(m_name, *d->newColor(), QColor(m_default), m_key);
     } else if (m_type == QLatin1String("datetime")) {
         item = m_config->addItemDateTime(m_name, *d->newDateTime(), QDateTime::fromString(m_default), m_key);
+    } else if (m_type == QLatin1String("time")) {
+        item = m_config->addItemTime(m_name, *d->newTime(), QTime::fromString(m_default), m_key);
     } else if (m_type == QLatin1String("enum")) {
         m_key = (m_key.isEmpty()) ? m_name : m_key;
 

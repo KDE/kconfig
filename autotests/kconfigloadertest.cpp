@@ -231,6 +231,13 @@ void ConfigLoaderTest::ulongLongDefaultValue()
     QVERIFY(typeItem->isEqual(Q_UINT64_C(9223372036854775806)));
 }
 
+void ConfigLoaderTest::timeDefaultValue()
+{
+    GET_CONFIG_ITEM_VALUE(KCoreConfigSkeleton::ItemTime *, QStringLiteral("DefaultTimeItem"));
+
+    QVERIFY(typeItem->isEqual(QTime(21, 42, 32)));
+}
+
 QTEST_MAIN(ConfigLoaderTest)
 
 #include "moc_kconfigloadertest.cpp"
