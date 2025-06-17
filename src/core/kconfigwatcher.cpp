@@ -20,6 +20,7 @@
 
 #include <QDebug>
 #include <QHash>
+#include <QPointer>
 #include <QThreadStorage>
 
 class KConfigWatcherPrivate
@@ -105,6 +106,7 @@ void KConfigWatcher::onConfigChangeNotification(const QHash<QString, QByteArrayL
 
     d->m_config->reparseConfiguration();
 
+    QPointer guard(this);
     for (auto it = changes.constBegin(); it != changes.constEnd(); it++) {
         KConfigGroup group = d->m_config->group(QString()); // top level group
         const auto parts = it.key().split(QLatin1Char('\x1d')); // magic char, see KConfig
@@ -112,6 +114,9 @@ void KConfigWatcher::onConfigChangeNotification(const QHash<QString, QByteArrayL
             group = group.group(groupName);
         }
         Q_EMIT configChanged(group, it.value());
+        if (!guard) {
+            return;
+        }
     }
 }
 
