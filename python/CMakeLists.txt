@@ -8,8 +8,20 @@ set(typesystem_file ${CMAKE_CURRENT_SOURCE_DIR}/typesystem_kconfigcore.xml)
 
 set(generated_sources
     ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kconfigcore_module_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kauthorized_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kconfigbase_wrapper.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kconfiggroup_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kconfigskeletonitem_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kconfigwatcher_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kcoreconfigskeleton_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kcoreconfigskeleton_itemdouble_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kcoreconfigskeleton_itemenum_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kcoreconfigskeleton_itemenum_choice_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kcoreconfigskeleton_itemstring_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kdesktopfileaction_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kemailsettings_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/kpropertyskeletonitem_wrapper.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/KConfigCore/ksharedconfig_wrapper.cpp
 )
 
 ecm_generate_python_bindings(

@@ -2,15 +2,29 @@
 <typesystem package="KConfigCore">
     <load-typesystem name="typesystem_core.xml" generate="no"/>
 
-   <object-type name="KAuthorized">
+    <object-type name="KAuthorized">
         <enum-type name="GenericRestriction" />
         <enum-type name="GenericAction" />
     </object-type>
-    <value-type name="KConfigBase" qt-register-metatype="yes">
+    <object-type name="KConfigBase" disable-wrapper="yes">
         <enum-type name="WriteConfigFlag" flags="WriteConfigFlags" />
         <enum-type name="AccessMode" />
-    </value-type>
-    <value-type name="KConfigGroup">
-    </value-type>
+    </object-type>
+    <object-type name="KConfigGroup" disable-wrapper="yes" />
+    <object-type name="KConfigSkeletonItem" disable-wrapper="yes" />
+    <object-type name="KConfigWatcher" />
+    <object-type name="KCoreConfigSkeleton">
+        <object-type name="ItemDouble" />
+        <object-type name="ItemEnum">
+            <object-type name="Choice" />
+        </object-type>
+        <object-type name="ItemString" />
+    </object-type>
+    <object-type name="KDesktopFileAction" />
+    <object-type name="KEMailSettings">
+        <enum-type name="Setting" />
+    </object-type>
+    <object-type name="KPropertySkeletonItem" />
+    <object-type name="KSharedConfig" />
 
 </typesystem>

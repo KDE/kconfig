@@ -5,4 +5,10 @@
 
 #include <KAuthorized>
 #include <KConfig>
+#include <KConfigBase>
 #include <KConfigGroup>
+#include <KConfigWatcher>
+#include <KCoreConfigSkeleton>
+#include <KDesktopFileAction>
+#include <KEMailSettings>
+#include <KSharedConfig>
