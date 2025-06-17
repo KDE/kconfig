@@ -6,6 +6,9 @@
         <enum-type name="GenericRestriction" />
         <enum-type name="GenericAction" />
     </object-type>
+    <object-type name="KConfig" disable-wrapper="yes">
+        <enum-type name="OpenFlag" flags="OpenFlags" />
+    </object-type>
     <object-type name="KConfigBase" disable-wrapper="yes">
         <enum-type name="WriteConfigFlag" flags="WriteConfigFlags" />
         <enum-type name="AccessMode" />
@@ -18,13 +21,14 @@
         <object-type name="ItemEnum">
             <object-type name="Choice" />
         </object-type>
-        <object-type name="ItemString" />
+        <object-type name="ItemString">
+            <enum-type name="Type" />
+        </object-type>
     </object-type>
-    <object-type name="KDesktopFileAction" />
+    <value-type name="KDesktopFileAction" />
     <object-type name="KEMailSettings">
         <enum-type name="Setting" />
     </object-type>
     <object-type name="KPropertySkeletonItem" />
-    <object-type name="KSharedConfig" />
-
+    <object-type name="KSharedConfig" disable-wrapper="yes" />
 </typesystem>
