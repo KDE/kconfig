@@ -11,33 +11,65 @@
 
 #include <KConfig>
 #include <KConfigGroup>
+
 #include <QCommandLineParser>
 #include <QCoreApplication>
+
 #include <stdio.h>
 
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
 
+    // clang-format off
     QCommandLineParser parser;
+
     parser.addHelpOption();
-    parser.addOption(
-        QCommandLineOption(QStringLiteral("file"), QCoreApplication::translate("main", "Use <file> instead of global config"), QStringLiteral("file")));
+
+    parser.addOption(QCommandLineOption(
+        QStringLiteral("file"),
+        QCoreApplication::translate("main", "Use <file> instead of global config"),
+        QStringLiteral("file")
+    ));
+
     parser.addOption(
         QCommandLineOption(QStringLiteral("group"),
-                           QCoreApplication::translate("main", "Group to look in. Use \"<default>\" for the root group, or use repeatedly for nested groups."),
-                           QStringLiteral("group"),
-                           QStringLiteral("KDE")));
-    parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
+        QCoreApplication::translate(
+            "main", "Group to look in. Use \"<default>\" for the root group, or use repeatedly for nested groups."
+        ),
+        QStringLiteral("group"),
+        QStringLiteral("KDE")
+    ));
+
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("key"),
+        QCoreApplication::translate("main", "Key to look for"),
+        QStringLiteral("key")
+    ));
+
     parser.addOption(
         QCommandLineOption(QStringLiteral("type"),
-                           QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"),
-                           QStringLiteral("type")));
-    parser.addOption(QCommandLineOption(QStringLiteral("delete"), QCoreApplication::translate("main", "Delete the designated key if enabled")));
-    parser.addOption(QCommandLineOption(QStringLiteral("notify"), QCoreApplication::translate("notify", "Notify applications of the change")));
-    parser.addPositionalArgument(QStringLiteral("value"), QCoreApplication::translate("main", "The value to write. Mandatory, on a shell use '' for empty"));
+        QCoreApplication::translate("main", "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a string"),
+        QStringLiteral("type")
+    ));
+
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("delete"),
+        QCoreApplication::translate("main", "Delete the designated key if enabled")
+    ));
+
+    parser.addOption(
+        QCommandLineOption(QStringLiteral("notify"),
+        QCoreApplication::translate("notify", "Notify applications of the change")
+    ));
+
+    parser.addPositionalArgument(
+        QStringLiteral("value"),
+        QCoreApplication::translate("main", "The value to write. Mandatory, on a shell use '' for empty")
+    );
 
     parser.process(app);
+    // clang-format on
 
     const QStringList groups = parser.values(QStringLiteral("group"));
     QString key = parser.value(QStringLiteral("key"));
