@@ -97,7 +97,7 @@ void KWindowStateSaver::timerEvent(QTimerEvent *event)
 bool KWindowStateSaver::eventFilter(QObject *watched, QEvent *event)
 {
     // QEvent::PlatformSurface would give us a valid window, but if there are
-    // intial resizings (explicitly or via layout constraints) those would then
+    // initial resizings (explicitly or via layout constraints) those would then
     // already overwrite our restored values. So wait until all that is done
     // and only restore afterwards.
     if (event->type() == QEvent::ShowToParent && !d->window) {
