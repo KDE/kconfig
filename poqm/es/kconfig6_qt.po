@@ -989,17 +989,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Archivo(s) de donde leer las instrucciones de actualización"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Directorio en el que generar los archivos [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "directorio"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Mostrar la licencia del software."

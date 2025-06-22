@@ -1173,17 +1173,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файл(ҳо)е ки дастурамали навсозӣ аз он(ҳо) иҷро мешаванд"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Ҷузвадон барои эҷодкунии файлҳо дар [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "ҷузвадон"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Намоиш додани иҷозатномаи нармафзор."

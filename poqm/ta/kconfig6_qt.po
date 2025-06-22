@@ -986,17 +986,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "புதுப்பிப்பதற்கான வழிமுறைகளை எந்த கோப்பு(கள்)-இலிருந்து படிக்க வேண்டும்"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "எந்த அடைவில் கோப்புகளை உருவாக்க வேண்டும் [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "அடைவு"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "நிரலின் உரிமத்தை காட்டு."

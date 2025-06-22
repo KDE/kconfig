@@ -985,17 +985,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要讀入更新說明指令的檔案"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "產生檔案的目錄 [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "目錄"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "顯示軟體授權。"

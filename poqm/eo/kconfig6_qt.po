@@ -988,17 +988,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Dosiero(j) por legi ĝisdatigajn instrukciojn"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Dosierujo en kiu generi dosierojn [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "dosierujo"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Montri programlicencon."

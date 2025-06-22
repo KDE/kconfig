@@ -978,17 +978,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "अद्यतननिर्देशान् पठितुं सञ्चिका(सञ्चिकाः)"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "[.] इत्यस्मिन् सञ्चिकाः जनयितुं निर्देशिका ।"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "निर्देशिका"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "सॉफ्टवेयर अनुज्ञापत्रं प्रदर्शयन्तु।"

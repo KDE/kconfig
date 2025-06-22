@@ -1160,17 +1160,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Faidhle/Faidhlichean gus stiùireadh an ùrachaidh a leughadh uapa"
 
-#: kconfig_compiler/kconfig_compiler.cpp:726
+#: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Am pasgan sa thèid na faidhlichean a ghintinn ann [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:727
+#: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
 msgstr "pasgan"
 
-#: kconfig_compiler/kconfig_compiler.cpp:731
+#: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Seall ceadachas a' bhathair-bhog"
