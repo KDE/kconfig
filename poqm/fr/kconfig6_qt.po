@@ -263,12 +263,12 @@ msgstr "&Remplacer..."
 #: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr "Zoomer jusqu'à la taille &actuelle"
+msgstr "Zoomer jusqu'à la t&aille réelle"
 
 #: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr "Afficher le document dans sa taille courante"
+msgstr "Afficher le document à sa taille réelle"
 
 #: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
@@ -826,7 +826,7 @@ msgstr "Effacer"
 #: gui/kstandardshortcut.cpp:343
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr "Zoomer jusqu'à la taille actuelle"
+msgstr "Zoomer jusqu'à la taille réelle"
 
 #: gui/kstandardshortcut.cpp:349
 msgctxt "KStandardShortcut|@action"
