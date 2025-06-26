@@ -38,7 +38,7 @@ ecm_add_tests(
     ksharedconfig_in_global_object.cpp
     dbussanitizertest.cpp
     NAME_PREFIX kconfigcore-
-    LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent
+    LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent Qt6::CorePrivate
 )
 
 add_dependencies(test_kconf_update kconf_update)
