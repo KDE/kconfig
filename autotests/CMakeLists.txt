@@ -13,6 +13,10 @@ if(NOT Qt6Concurrent_FOUND)
     return()
 endif()
 
+if (Qt6_VERSION VERSION_GREATER_EQUAL "6.10.0")
+    find_package(Qt6CorePrivate ${Qt6_VERSION} EXACT CONFIG REQUIRED)
+endif()
+
 # compile KEntryMap into the test since it's not exported
 ecm_add_test(
   kentrymaptest.cpp
