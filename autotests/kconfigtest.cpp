@@ -1555,7 +1555,7 @@ void KConfigTest::testLocaleConfigWithOverrideLanguage()
 {
     // simulate usage of language override (kxmlgui);
     // we need to create a new QSystemLocale to make Qt update the locale
-    qputenv("LANGUAGE", "ca");
+    qputenv("LANGUAGE", "ca:de_DE");
     QSystemLocale newSystemLocale{};
 
     // Initialize the testdata

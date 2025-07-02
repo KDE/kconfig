@@ -75,8 +75,8 @@ static QString getDefaultLocaleName()
         // If the default locale hasn't been changed then
         // On Windows and Apple OSs, we cannot use QLocale::system() if an application-specific
         // language was set by kxmlgui because Qt ignores LANGUAGE on Windows and Apple OSs.
-        if (const auto languages = qEnvironmentVariable("LANGUAGE").split(u':', Qt::SkipEmptyParts); !languages.isEmpty()) {
-            return languages.front();
+        if (const auto firstLanguage = qEnvironmentVariable("LANGUAGE").section(u':', 0, 0, QString::SectionSkipEmpty); !firstLanguage.isEmpty()) {
+            return firstLanguage;
         }
         // Also prefer the configured display language over the system language
         if (const auto languages = QLocale::system().uiLanguages(); !languages.isEmpty()) {
