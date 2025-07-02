@@ -68,7 +68,7 @@ KEntryMapConstIterator KEntryMap::constFindEntry(const QString &group, QAnyStrin
     return find(theKey);
 }
 
-bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByteArray &value, KEntryMap::EntryOptions options)
+bool KEntryMap::setEntry(const QString &group, QAnyStringView key, const QByteArray &value, KEntryMap::EntryOptions options)
 {
     KEntryKey k;
     KEntry e;
@@ -114,7 +114,7 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
             return false; // this group is immutable, so we cannot change this entry.
         }
 
-        k = KEntryKey(group, key);
+        k = KEntryKey(group, key.toString().toUtf8());
         newKey = true;
     }
 
@@ -175,7 +175,7 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
             insert_or_assign(nonDefaultKey, e);
         }
         if (!(options & EntryLocalized)) {
-            KEntryKey theKey(group, key, true, false);
+            KEntryKey theKey(group, key.toString().toUtf8(), true, false);
             // qDebug() << "non-localized entry, remove localized one:" << theKey;
             erase(theKey);
             if (k.bDefault) {
@@ -189,7 +189,7 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
     // qDebug() << k << "was already set to" << e.mValue;
     if (!(options & EntryLocalized)) {
         // qDebug() << "unchanged non-localized entry, remove localized one.";
-        KEntryKey theKey(group, key, true, false);
+        KEntryKeyView theKey(group, key, true, false);
         bool ret = false;
         iterator cit = find(theKey);
         if (cit != end()) {
@@ -221,7 +221,7 @@ QString KEntryMap::getEntry(const QString &group, QAnyStringView key, const QStr
 
     if (it != cend() && !it->second.bDeleted) {
         if (!it->second.mValue.isNull()) {
-            const QByteArray data = it->second.mValue;
+            const QByteArrayView data = it->second.mValue;
             theValue = QString::fromUtf8(data.constData(), data.length());
             if (expand) {
                 *expand = it->second.bExpand;

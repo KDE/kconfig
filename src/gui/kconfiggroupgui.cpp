@@ -22,11 +22,10 @@
  * Returns true if something was handled (even if output was set to clear or default)
  *          or false if nothing was handled (e.g., Core type)
  */
-static bool readEntryGui(const QByteArray &data, const char *key, const QVariant &input, QVariant &output)
+static bool readEntryGui(const QByteArray &data, QAnyStringView key, const QVariant &input, QVariant &output)
 {
     const auto errString = [&]() {
-        return QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed")
-            .arg(QLatin1String(key), QLatin1String(input.typeName()), QLatin1String(data.constData()));
+        return QStringLiteral("\"%1\" - conversion from \"%3\" to %2 failed").arg(key, QLatin1String(input.typeName()), QLatin1String(data.constData()));
     };
 
     // set in case of failure
@@ -128,7 +127,7 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
  * Returns true if something was handled (even if an empty value was written)
  *          or false if nothing was handled (e.g., Core type)
  */
-static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &prop, KConfigGroup::WriteConfigFlags pFlags)
+static bool writeEntryGui(KConfigGroup *cg, QAnyStringView key, const QVariant &prop, KConfigGroup::WriteConfigFlags pFlags)
 {
     switch (static_cast<QMetaType::Type>(prop.userType())) {
     case QMetaType::QColor: {

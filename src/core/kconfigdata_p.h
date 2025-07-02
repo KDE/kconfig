@@ -297,12 +297,7 @@ public:
     /*
      * Returns true if the entry gets dirtied or false in other case
      */
-    bool setEntry(const QString &group, const QByteArray &key, const QByteArray &value, EntryOptions options);
-
-    void setEntry(const QString &group, const QByteArray &key, const QString &value, EntryOptions options)
-    {
-        setEntry(group, key, value.toUtf8(), options);
-    }
+    bool setEntry(const QString &group, QAnyStringView key, const QByteArray &value, EntryOptions options);
 
     QString getEntry(const QString &group,
                      QAnyStringView key,

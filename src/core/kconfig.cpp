@@ -986,7 +986,7 @@ bool KConfigPrivate::canWriteEntry(const QString &group, QAnyStringView key, boo
     return true;
 }
 
-void KConfigPrivate::putData(const QString &group, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand)
+void KConfigPrivate::putData(const QString &group, QAnyStringView key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand)
 {
     KEntryMap::EntryOptions options = convertToOptions(flags);
 

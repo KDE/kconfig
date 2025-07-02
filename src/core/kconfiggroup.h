@@ -18,10 +18,17 @@
 #include <QExplicitlySharedDataPointer>
 #include <QStringList>
 #include <QVariant>
+#include <qanystringview.h>
 
 class KConfig;
 class KConfigGroupPrivate;
 class KSharedConfig;
+
+#ifdef KCONFIGCORE_BUILD_REMOVED_API
+#define KCONFIGCORE_REMOVED_SINCE(major, minor) KCONFIGCORE_ENABLE_DEPRECATED_SINCE(major, minor)
+#else
+#define KCONFIGCORE_REMOVED_SINCE(major, minor) 0
+#endif
 
 /*!
  * \class KConfigGroup
@@ -217,19 +224,7 @@ public:
      * \sa writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
-    T readEntry(const QString &key, const T &aDefault) const
-    {
-        return readEntry(key.toUtf8().constData(), aDefault);
-    }
-    /*!
-     * \overload
-     *
-     * Overload for readEntry<T>(const QString&, const T&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
-    template<typename T>
-    T readEntry(const char *key, const T &aDefault) const;
+    T readEntry(QAnyStringView key, const T &aDefault) const;
 
     /*!
      * Reads the value of an entry specified by \a key in the current group
@@ -242,12 +237,11 @@ public:
      *
      * \sa writeEntry(), deleteEntry(), hasKey()
      */
+    QVariant readEntry(QAnyStringView key, const QVariant &aDefault) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     QVariant readEntry(const QString &key, const QVariant &aDefault) const;
-    /*!
-     * Overload for readEntry(const QString&, const QVariant&) const
-     * \a key name of key, encoded in UTF-8
-     */
     QVariant readEntry(const char *key, const QVariant &aDefault) const;
+#endif
 
     /*!
      * Reads the string value of an entry specified by \a key in the current group
@@ -261,49 +255,48 @@ public:
      * Returns the value for this key, or \a aDefault if the key was not found
      *
      * \sa readPathEntry(), writeEntry(), deleteEntry(), hasKey()
+     *
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
      */
+    QString readEntry(QAnyStringView key, const QString &aDefault) const;
+
+    /*!
+     * \overload
+     *
+     * Overload for readEntry(QAnyStringView, const QString&) const
+     *
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
+     */
+    QString readEntry(QAnyStringView key, const char *aDefault = nullptr) const;
+
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     QString readEntry(const QString &key, const QString &aDefault) const;
-    /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     QString readEntry(const char *key, const QString &aDefault) const;
-
-    /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QString&) const
-     */
     QString readEntry(const QString &key, const char *aDefault = nullptr) const;
-    /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     QString readEntry(const char *key, const char *aDefault = nullptr) const;
+#endif
 
     /*!
+     * Reads a list of variant value from the config object
      * \sa readEntry()
+     *
+     * \a key the key to search for
      *
      * \warning This function doesn't convert the items returned
      *          to any type. It's actually a list of QVariant::String's. If you
      *          want the items converted to a specific type use
      *          readEntry(const char*, const QList<T>&) const
+     *
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
      */
+    QVariantList readEntry(QAnyStringView key, const QVariantList &aDefault) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     QVariantList readEntry(const QString &key, const QVariantList &aDefault) const;
-    /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QVariantList&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     QVariantList readEntry(const char *key, const QVariantList &aDefault) const;
+#endif
 
     /*!
      * Reads a list of strings from the config object
@@ -315,16 +308,15 @@ public:
      * Returns the list, or \a aDefault if \a key does not exist
      *
      * \sa readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
+     *
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
      */
+    QStringList readEntry(QAnyStringView key, const QStringList &aDefault) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     QStringList readEntry(const QString &key, const QStringList &aDefault) const;
-    /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QStringList&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     QStringList readEntry(const char *key, const QStringList &aDefault) const;
+#endif
 
     /*!
      * Reads a list of values from the config object
@@ -338,19 +330,7 @@ public:
      * \sa readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
-    QList<T> readEntry(const QString &key, const QList<T> &aDefault) const
-    {
-        return readEntry(key.toUtf8().constData(), aDefault);
-    }
-    /*!
-     * \overload
-     *
-     * Overload for readEntry<T>(const QString&, const QList<T>&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
-    template<typename T>
-    QList<T> readEntry(const char *key, const QList<T> &aDefault) const;
+    QList<T> readEntry(QAnyStringView key, const QList<T> &aDefault) const;
 
     /*!
      * Reads a list of strings from the config object with semicolons separating
@@ -362,15 +342,16 @@ public:
      *
      * Returns the list, or \a aDefault if \a pKey does not exist
      *
-     * \sa readEntry(const QString&, const QStringList&)
-     */
-    QStringList readXdgListEntry(const QString &pKey, const QStringList &aDefault = QStringList()) const;
-    /*!
-     * Overload for readXdgListEntry(const QString&, const QStringList&) const
+     * \sa readEntry(QAnyStringView, const QStringList&)
      *
-     * \a key name of key, encoded in UTF-8
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
      */
-    QStringList readXdgListEntry(const char *key, const QStringList &aDefault = QStringList()) const;
+    QStringList readXdgListEntry(QAnyStringView pKey, const QStringList &aDefault = {}) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
+    QStringList readXdgListEntry(const QString &pKey, const QStringList &aDefault = {}) const;
+    QStringList readXdgListEntry(const char *key, const QStringList &aDefault = {}) const;
+#endif
 
     /*!
      * Reads a path
@@ -384,14 +365,15 @@ public:
      * \a aDefault A default value returned if the key was not found.
      *
      * Returns The value for this key. Can be QString() if \a aDefault is null.
-     */
-    QString readPathEntry(const QString &pKey, const QString &aDefault) const;
-    /*!
-     * Overload for readPathEntry(const QString&, const QString&) const
      *
-     * \a key name of key, encoded in UTF-8
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
      */
+    QString readPathEntry(QAnyStringView pKey, const QString &aDefault) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
+    QString readPathEntry(const QString &pKey, const QString &aDefault) const;
     QString readPathEntry(const char *key, const QString &aDefault) const;
+#endif
 
     /*!
      * Reads a list of paths
@@ -405,14 +387,15 @@ public:
      * \a aDefault a default value returned if the key was not found
      *
      * Returns the list, or \a aDefault if the key does not exist
-     */
-    QStringList readPathEntry(const QString &pKey, const QStringList &aDefault) const;
-    /*!
-     * Overload for readPathEntry(const QString&, const QStringList&) const
      *
-     * \a key name of key, encoded in UTF-8
+     * \note In KConfig versions prior to 6.17, this function took QString and const char *,
+     * not QAnyStringView.
      */
+    QStringList readPathEntry(QAnyStringView pKey, const QStringList &aDefault) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
+    QStringList readPathEntry(const QString &pKey, const QStringList &aDefault) const;
     QStringList readPathEntry(const char *key, const QStringList &aDefault) const;
+#endif
 
     /*!
      * Reads an untranslated string entry
@@ -425,15 +408,10 @@ public:
      *
      * Returns the value for this key, or \a aDefault if the key does not exist
      */
-    QString readEntryUntranslated(const QString &pKey, const QString &aDefault = QString()) const;
-    /*!
-     * \overload
-     *
-     * Overload for readEntryUntranslated(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
+    QString readEntryUntranslated(QAnyStringView pKey, const QString &aDefault = QString()) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     QString readEntryUntranslated(const char *key, const QString &aDefault = QString()) const;
+#endif
 
     /*!
      * Writes a value to the configuration object.
@@ -446,59 +424,44 @@ public:
      *
      * \sa readEntry(), writeXdgListEntry(), deleteEntry()
      */
+    void writeEntry(QAnyStringView key, const QVariant &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeEntry(const QString &key, const QVariant &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * \a key name of key, encoded in UTF-8
-     */
     void writeEntry(const char *key, const QVariant &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * \overload
      *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * Overload for writeEntry(QAnyStringView, const QVariant&, WriteConfigFlags)
      */
+    void writeEntry(QAnyStringView key, const QString &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeEntry(const QString &key, const QString &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writeEntry(const char *key, const QString &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * \overload
      *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * Overload for writeEntry(QAnyStringView, const QVariant&, WriteConfigFlags)
      */
+    void writeEntry(QAnyStringView key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeEntry(const QString &key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writeEntry(const char *key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * \overload
      *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
+    void writeEntry(QAnyStringView key, const char *value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeEntry(const QString &key, const char *value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writeEntry(const char *key, const char *value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * \overload
@@ -508,47 +471,29 @@ public:
      * \a key name of key, encoded in UTF-8
      */
     template<typename T>
-    void writeEntry(const char *key, const T &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     */
-    template<typename T>
-    void writeEntry(const QString &key, const T &value, WriteConfigFlags pFlags = Normal)
-    {
-        writeEntry(key.toUtf8().constData(), value, pFlags);
-    }
+    void writeEntry(QAnyStringView key, const T &value, WriteConfigFlags pFlags = Normal);
 
     /*!
      * \overload
      *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
+    void writeEntry(QAnyStringView key, const QStringList &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeEntry(const QString &key, const QStringList &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writeEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * \overload
      *
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
+    void writeEntry(QAnyStringView key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeEntry(const QString &key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writeEntry(const char *key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * \overload
@@ -556,19 +501,7 @@ public:
      * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     template<typename T>
-    void writeEntry(const QString &key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
-    {
-        writeEntry(key.toUtf8().constData(), value, pFlags);
-    }
-    /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
-    template<typename T>
-    void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal);
+    void writeEntry(QAnyStringView key, const QList<T> &value, WriteConfigFlags pFlags = Normal);
 
     /*!
      * Writes a list of strings to the config object, following XDG
@@ -582,15 +515,11 @@ public:
      *
      * \sa writeEntry(), readXdgListEntry()
      */
+    void writeXdgListEntry(QAnyStringView pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writeXdgListEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writeXdgListEntry(const QString&, const QStringList&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writeXdgListEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * Writes a file path to the configuration
@@ -607,15 +536,11 @@ public:
      *
      * \sa writeEntry(), readPathEntry()
      */
+    void writePathEntry(QAnyStringView pKey, const QString &path, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writePathEntry(const QString &pKey, const QString &path, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writePathEntry(const QString&, const QString&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writePathEntry(const char *Key, const QString &path, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * Writes a list of paths to the configuration
@@ -632,15 +557,11 @@ public:
      *
      * \sa writeEntry(), readPathEntry()
      */
+    void writePathEntry(QAnyStringView pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void writePathEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for writePathEntry(const QString&, const QStringList&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void writePathEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * Deletes the entry specified by \a pKey in the current group
@@ -653,15 +574,11 @@ public:
      *
      * \sa deleteGroup(), readEntry(), writeEntry()
      */
+    void deleteEntry(QAnyStringView pKey, WriteConfigFlags pFlags = Normal);
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void deleteEntry(const QString &pKey, WriteConfigFlags pFlags = Normal);
-    /*!
-     * \overload
-     *
-     * Overload for deleteEntry(const QString&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void deleteEntry(const char *key, WriteConfigFlags pFlags = Normal);
+#endif
 
     /*!
      * Checks whether the key has an entry in this group
@@ -679,15 +596,11 @@ public:
      *
      * \sa readEntry()
      */
+    bool hasKey(QAnyStringView key) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     bool hasKey(const QString &key) const;
-    /*!
-     * \overload
-     *
-     * Overload for hasKey(const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     bool hasKey(const char *key) const;
+#endif
 
     /*!
      * Whether this group may be changed
@@ -707,15 +620,11 @@ public:
      * Returns \c false if the key may be changed using this configuration
      *         group object, \c true otherwise
      */
+    bool isEntryImmutable(QAnyStringView key) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     bool isEntryImmutable(const QString &key) const;
-    /*!
-     * \overload
-     *
-     * Overload for isEntryImmutable(const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     bool isEntryImmutable(const char *key) const;
+#endif
 
     /*!
      * Reverts an entry to the default settings.
@@ -733,14 +642,11 @@ public:
      *
      * \a key The key of the entry to revert.
      */
+    void revertToDefault(QAnyStringView key, WriteConfigFlags pFlag = WriteConfigFlags());
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     void revertToDefault(const QString &key, WriteConfigFlags pFlag = WriteConfigFlags());
-
-    /*!
-     * Overload for revertToDefault(const QString&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     void revertToDefault(const char *key, WriteConfigFlags pFlag = WriteConfigFlags());
+#endif
 
     /*!
      * Whether a default is specified for an entry in either the
@@ -770,15 +676,11 @@ public:
      * Returns \c true if the global or system settings files specify a default
      *          for \a key in this group, \c false otherwise
      */
+    bool hasDefault(QAnyStringView key) const;
+#if KCONFIGCORE_REMOVED_SINCE(6, 17)
     bool hasDefault(const QString &key) const;
-    /*!
-     * \overload
-     *
-     * Overload for hasDefault(const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
-     */
     bool hasDefault(const char *key) const;
+#endif
 
     /*!
      * Returns a map (tree) of entries for all entries in this group
@@ -818,7 +720,12 @@ private:
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);
 
-    KCONFIGCORE_NO_EXPORT void moveValue(const char *key, KConfigGroup &other, WriteConfigFlags pFlags);
+    /*!
+     * \internal
+     */
+    static QVariant convertToQVariant(QAnyStringView pKey, const QByteArray &value, const QVariant &aDefault);
+
+    KCONFIGCORE_NO_EXPORT void moveValue(QAnyStringView key, KConfigGroup &other, WriteConfigFlags pFlags);
 
     // exported for usage by KServices' KService & KServiceAction
     friend class KServicePrivate; // XXX yeah, ugly^5
@@ -843,7 +750,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
  */
 #define KCONFIGGROUP_DECLARE_ENUM_QOBJECT(Class, Enum)                                                                                                         \
     template<>                                                                                                                                                 \
-    Class::Enum KConfigGroup::readEntry(const char *key, const Class::Enum &def) const                                                                         \
+    Class::Enum KConfigGroup::readEntry(QAnyStringView key, const Class::Enum &def) const                                                                      \
     {                                                                                                                                                          \
         const QMetaObject *M_obj = &Class::staticMetaObject;                                                                                                   \
         const int M_index = M_obj->indexOfEnumerator(#Enum);                                                                                                   \
@@ -854,7 +761,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
         return static_cast<Class::Enum>(M_enum.keyToValue(M_data.constData()));                                                                                \
     }                                                                                                                                                          \
     template<>                                                                                                                                                 \
-    void KConfigGroup::writeEntry(const char *key, const Class::Enum &value, KConfigBase::WriteConfigFlags flags)                                              \
+    void KConfigGroup::writeEntry(QAnyStringView key, const Class::Enum &value, KConfigBase::WriteConfigFlags flags)                                           \
     {                                                                                                                                                          \
         const QMetaObject *M_obj = &Class::staticMetaObject;                                                                                                   \
         const int M_index = M_obj->indexOfEnumerator(#Enum);                                                                                                   \
@@ -872,7 +779,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
  */
 #define KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(Class, Flags)                                                                                                       \
     template<>                                                                                                                                                 \
-    Class::Flags KConfigGroup::readEntry(const char *key, const Class::Flags &def) const                                                                       \
+    Class::Flags KConfigGroup::readEntry(QAnyStringView key, const Class::Flags &def) const                                                                    \
     {                                                                                                                                                          \
         const QMetaObject *M_obj = &Class::staticMetaObject;                                                                                                   \
         const int M_index = M_obj->indexOfEnumerator(#Flags);                                                                                                  \
@@ -883,7 +790,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
         return static_cast<Class::Flags>(M_enum.keysToValue(M_data.constData()));                                                                              \
     }                                                                                                                                                          \
     template<>                                                                                                                                                 \
-    void KConfigGroup::writeEntry(const char *key, const Class::Flags &value, KConfigBase::WriteConfigFlags flags)                                             \
+    void KConfigGroup::writeEntry(QAnyStringView key, const Class::Flags &value, KConfigBase::WriteConfigFlags flags)                                          \
     {                                                                                                                                                          \
         const QMetaObject *M_obj = &Class::staticMetaObject;                                                                                                   \
         const int M_index = M_obj->indexOfEnumerator(#Flags);                                                                                                  \
@@ -896,14 +803,14 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
 #include "kconfigconversioncheck_p.h"
 
 template<typename T>
-T KConfigGroup::readEntry(const char *key, const T &defaultValue) const
+T KConfigGroup::readEntry(QAnyStringView key, const T &defaultValue) const
 {
     KConfigConversionCheck::to_QVariant<T>();
     return qvariant_cast<T>(readEntry(key, QVariant::fromValue(defaultValue)));
 }
 
 template<typename T>
-QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) const
+QList<T> KConfigGroup::readEntry(QAnyStringView key, const QList<T> &defaultValue) const
 {
     KConfigConversionCheck::to_QVariant<T>();
     KConfigConversionCheck::to_QString<T>();
@@ -925,14 +832,14 @@ QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) 
 }
 
 template<typename T>
-void KConfigGroup::writeEntry(const char *key, const T &value, WriteConfigFlags pFlags)
+void KConfigGroup::writeEntry(QAnyStringView key, const T &value, WriteConfigFlags pFlags)
 {
     KConfigConversionCheck::to_QVariant<T>();
     writeEntry(key, QVariant::fromValue(value), pFlags);
 }
 
 template<typename T>
-void KConfigGroup::writeEntry(const char *key, const QList<T> &list, WriteConfigFlags pFlags)
+void KConfigGroup::writeEntry(QAnyStringView key, const QList<T> &list, WriteConfigFlags pFlags)
 {
     KConfigConversionCheck::to_QVariant<T>();
     KConfigConversionCheck::to_QString<T>();

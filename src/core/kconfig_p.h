@@ -37,8 +37,8 @@ public:
     QByteArray lookupData(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const;
     KEntry lookupInternalEntry(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags) const;
 
-    void putData(const QString &groupName, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
-    void setEntryData(const QString &groupName, const char *key, const QByteArray &value, KEntryMap::EntryOptions flags)
+    void putData(const QString &groupName, QAnyStringView key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
+    void setEntryData(const QString &groupName, QAnyStringView key, const QByteArray &value, KEntryMap::EntryOptions flags)
     {
         if (entryMap.setEntry(groupName, key, value, flags)) {
             bDirty = true;
