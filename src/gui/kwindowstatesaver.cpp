@@ -7,6 +7,7 @@
 #include "ksharedconfig.h"
 #include "kwindowconfig.h"
 
+#include <QTimer>
 #include <QWindow>
 
 class KWindowStateSaverPrivate
@@ -31,10 +32,12 @@ void KWindowStateSaverPrivate::init(KWindowStateSaver *q)
     KWindowConfig::restoreWindowPosition(window, configGroup);
 
     const auto saveSize = [q, this]() {
-        KWindowConfig::saveWindowSize(window, configGroup);
-        if (!timerId) {
-            timerId = q->startTimer(std::chrono::seconds(30));
-        }
+        QTimer::singleShot(50, [q, this]() {
+            KWindowConfig::saveWindowSize(window, configGroup);
+            if (!timerId) {
+                timerId = q->startTimer(std::chrono::seconds(30));
+            }
+        });
     };
     const auto savePosition = [q, this]() {
         KWindowConfig::saveWindowPosition(window, configGroup);
@@ -43,7 +46,6 @@ void KWindowStateSaverPrivate::init(KWindowStateSaver *q)
         }
     };
 
-    QObject::connect(window, &QWindow::windowStateChanged, q, saveSize);
     QObject::connect(window, &QWindow::widthChanged, q, saveSize);
     QObject::connect(window, &QWindow::heightChanged, q, saveSize);
     QObject::connect(window, &QWindow::xChanged, q, savePosition);
