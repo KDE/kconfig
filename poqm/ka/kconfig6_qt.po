@@ -28,7 +28,7 @@ msgstr "%1: კონფიგურაციის ფაილი ჩაწე
 #: core/kemailsettings.cpp:139
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr "ნაგულისხმები"
+msgstr "ნაგულისხმევი"
 
 #: gui/kstandardactions.cpp:49
 msgctxt "go back|"
@@ -1015,7 +1015,7 @@ msgstr "მოსაძებნი გასაღები"
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
-msgstr "ნაგულისხმები მნიშვნელობა"
+msgstr "ნაგულისხმევი მნიშვნელობა"
 
 #: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
