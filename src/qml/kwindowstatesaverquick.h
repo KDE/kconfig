@@ -6,6 +6,21 @@
 
 #include <QQmlEngine>
 
+class PropertyObject : public QObject
+{
+    Q_OBJECT
+public:
+    PropertyObject(QObject *sender, const QString &configGroupName, const QString &property, QObject *parent = nullptr);
+
+private Q_SLOTS:
+    void propertyChanged();
+
+private:
+    QPointer<QObject> m_sender;
+    QString m_configGroupName;
+    QString m_propertyName;
+};
+
 /*!
  * \qmltype WindowStateSaver
  * \inqmlmodule org.kde.config
@@ -43,6 +58,13 @@ class KWindowStateSaverQuick : public QObject, public QQmlParserStatus
      */
     Q_PROPERTY(QString configGroupName READ configGroupName WRITE setConfigGroupName NOTIFY configGroupNameChanged REQUIRED)
 
+    /*!
+     * \qmlproperty Array extraProperties
+     *
+     * A list of extra properties of the ApplicationWindow we want to store in the state
+     */
+    Q_PROPERTY(QStringList extraProperties READ extraProperties WRITE setExtraProperties NOTIFY extraPropertiesChanged)
+
 public:
     void classBegin() override;
     void componentComplete() override;
@@ -50,11 +72,18 @@ public:
     void setConfigGroupName(const QString &name);
     QString configGroupName() const;
 
+    // TODO: perhaps is better a QQmlListProperty?
+    QStringList extraProperties() const;
+    void setExtraProperties(const QStringList &properties);
+
 Q_SIGNALS:
     void configGroupNameChanged();
+    void extraPropertiesChanged();
 
 private:
     QString m_configGroupName;
+    QStringList m_extraProperties;
+    std::unordered_map<QString, std::unique_ptr<PropertyObject>> m_propertyObjects;
 };
 
 #endif
