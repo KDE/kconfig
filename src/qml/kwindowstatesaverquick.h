@@ -6,19 +6,52 @@
 
 #include <QQmlEngine>
 
-class PropertyObject : public QObject
+class PropertyObject : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_NAMED_ELEMENT(PropertyStateSaver)
+    Q_INTERFACES(QQmlParserStatus)
+
+    Q_PROPERTY(QObject *target READ target WRITE setTarget NOTIFY targetChanged)
+    Q_PROPERTY(QString configGroupName READ configGroupName WRITE setConfigGroupName NOTIFY configGroupNameChanged)
+    Q_PROPERTY(QString configKey READ configKey WRITE setConfigKey NOTIFY configKeyChanged)
+    Q_PROPERTY(QString property READ property WRITE setProperty NOTIFY propertyChanged)
+
 public:
-    PropertyObject(QObject *sender, const QString &configGroupName, const QString &property, QObject *parent = nullptr);
+    PropertyObject(QObject *parent = nullptr);
+
+    void classBegin() override;
+    void componentComplete() override;
+
+    QObject *target() const;
+    void setTarget(QObject *target);
+
+    QString configGroupName() const;
+    void setConfigGroupName(const QString &group);
+
+    QString configKey() const;
+    void setConfigKey(const QString &key);
+
+    QString property() const;
+    void setProperty(const QString &property);
 
 private Q_SLOTS:
+    void onPropertyChanged();
+
+Q_SIGNALS:
+    void targetChanged();
+    void configGroupNameChanged();
+    void configKeyChanged();
     void propertyChanged();
 
 private:
-    QPointer<QObject> m_sender;
+    void reconnect();
+
+    QPointer<QObject> m_target;
     QString m_configGroupName;
     QString m_propertyName;
+    QString m_keyName;
 };
 
 /*!
@@ -63,7 +96,8 @@ class KWindowStateSaverQuick : public QObject, public QQmlParserStatus
      *
      * A list of extra properties of the ApplicationWindow we want to store in the state
      */
-    Q_PROPERTY(QStringList extraProperties READ extraProperties WRITE setExtraProperties NOTIFY extraPropertiesChanged)
+    Q_PROPERTY(QQmlListProperty<PropertyObject> extraProperties READ extraProperties)
+
 
 public:
     void classBegin() override;
@@ -72,18 +106,20 @@ public:
     void setConfigGroupName(const QString &name);
     QString configGroupName() const;
 
-    // TODO: perhaps is better a QQmlListProperty?
-    QStringList extraProperties() const;
-    void setExtraProperties(const QStringList &properties);
+    QQmlListProperty<PropertyObject> extraProperties();
 
 Q_SIGNALS:
     void configGroupNameChanged();
-    void extraPropertiesChanged();
 
 private:
+    static void extraProperties_append(QQmlListProperty<PropertyObject> *prop, PropertyObject *object);
+    static qsizetype extraProperties_count(QQmlListProperty<PropertyObject> *prop);
+    static PropertyObject *extraProperties_at(QQmlListProperty<PropertyObject> *prop, qsizetype index);
+    static void extraProperties_clear(QQmlListProperty<PropertyObject> *prop);
+
     QString m_configGroupName;
-    QStringList m_extraProperties;
-    std::unordered_map<QString, std::unique_ptr<PropertyObject>> m_propertyObjects;
+    QQmlListProperty<PropertyObject> m_extraProperties;
+    QList<PropertyObject *> m_propertyObjects;
 };
 
 #endif

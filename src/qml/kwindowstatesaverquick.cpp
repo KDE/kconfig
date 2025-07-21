@@ -11,48 +11,144 @@
 #include <KSharedConfig>
 #include <KWindowStateSaver>
 
-PropertyObject::PropertyObject(QObject *sender, const QString &configGroupName, const QString &property, QObject *parent)
+PropertyObject::PropertyObject(QObject *parent)
     : QObject(parent)
-    , m_sender(sender)
-    , m_configGroupName(configGroupName)
-    , m_propertyName(property)
 {
-    const QQmlProperty prop(sender, property);
+}
+
+void PropertyObject::classBegin()
+{
+}
+
+void PropertyObject::componentComplete()
+{
+    const auto windowStateSaver = qobject_cast<KWindowStateSaverQuick *>(parent());
+    if (!windowStateSaver) {
+        qCWarning(KCONFIG_QML_LOG) << "PropertyStateSaver can only be a child of WindowStateSaver";
+        return;
+    }
+}
+
+void PropertyObject::onPropertyChanged()
+{
+
+    //const QVariant newProperty = m_target->property(m_propertyName.toLatin1().data());
+    const QQmlProperty prop(m_target, m_propertyName);
+    KConfigGroup cg(KSharedConfig::openStateConfig(), m_configGroupName);
+    cg.writeEntry(m_keyName, prop.read());
+}
+
+
+QObject *PropertyObject::target() const
+{
+    return m_target;
+}
+
+void PropertyObject::setTarget(QObject *target)
+{
+    if (m_target == target) {
+        return;
+    }
+
+    if (m_target) {
+        disconnect(m_target, nullptr, this, nullptr);
+    }
+
+    m_target = target;
+
+    reconnect();
+    Q_EMIT targetChanged();
+}
+
+QString PropertyObject::configGroupName() const
+{
+    return m_configGroupName;
+}
+
+void PropertyObject::setConfigGroupName(const QString &group)
+{
+    if (m_configGroupName == group) {
+        return;
+    }
+
+    m_configGroupName = group;
+
+    reconnect();
+    Q_EMIT configGroupNameChanged();
+}
+
+QString PropertyObject::configKey() const
+{
+    return m_keyName;
+}
+
+void PropertyObject::setConfigKey(const QString &key)
+{
+    if (m_keyName == key) {
+        return;
+    }
+
+    m_keyName = key;
+
+    reconnect();
+    Q_EMIT configKeyChanged();
+}
+
+QString PropertyObject::property() const
+{
+    return m_propertyName;
+}
+
+void PropertyObject::setProperty(const QString &property)
+{
+    if (m_propertyName == property) {
+        return;
+    }
+
+    m_propertyName = property;
+
+    reconnect();
+    Q_EMIT propertyChanged();
+}
+
+void PropertyObject::reconnect()
+{
+    if (!m_target || m_configGroupName.isEmpty() || m_propertyName.isEmpty() || m_keyName.isEmpty()) {
+        return;
+    }
+
+    disconnect(m_target, nullptr, this, nullptr);
+
+    const QQmlProperty prop(m_target, m_propertyName);
     if (prop.isValid()) {
-        prop.connectNotifySignal(this, SLOT(propertyChanged()));
+        prop.connectNotifySignal(this, SLOT(onPropertyChanged()));
 
         KConfigGroup cg(KSharedConfig::openStateConfig(), m_configGroupName);
 
-        if (cg.hasKey(m_propertyName)) {
+        if (cg.hasKey(m_keyName)) {
             QVariant var = prop.read();
-
             switch (var.typeId()) {
             case QMetaType::Int:
-                prop.write(cg.readEntry(m_propertyName, 0));
+                prop.write(cg.readEntry(m_keyName, 0));
                 break;
             case QMetaType::Double:
-                prop.write(cg.readEntry(m_propertyName, 0.0));
+                prop.write(cg.readEntry(m_keyName, 0.0));
                 break;
             case QMetaType::QString:
-                prop.write(cg.readEntry(m_propertyName, QString()));
+                prop.write(cg.readEntry(m_keyName, QString()));
                 break;
             case QMetaType::QStringList:
-                prop.write(cg.readEntry(m_propertyName, QStringList()));
+                prop.write(cg.readEntry(m_keyName, QStringList()));
                 break;
             case QMetaType::QByteArray:
-                prop.write(cg.readEntry(m_propertyName, QByteArray()));
+                prop.write(cg.readEntry(m_keyName, QByteArray()));
                 break;
             }
         }
     }
 }
 
-void PropertyObject::propertyChanged()
-{
-    const QVariant newProperty = m_sender->property(m_propertyName.toLatin1().data());
-    KConfigGroup cg(KSharedConfig::openStateConfig(), m_configGroupName);
-    cg.writeEntry(m_propertyName, newProperty);
-}
+
 
 void KWindowStateSaverQuick::classBegin()
 {
@@ -96,31 +192,59 @@ QString KWindowStateSaverQuick::configGroupName() const
     return m_configGroupName;
 }
 
-QStringList KWindowStateSaverQuick::extraProperties() const
+QQmlListProperty<PropertyObject> KWindowStateSaverQuick::extraProperties()
 {
-    return m_extraProperties;
+    return QQmlListProperty<PropertyObject>(this, //
+                                        nullptr,
+                                        extraProperties_append,
+                                        extraProperties_count,
+                                        extraProperties_at,
+                                        extraProperties_clear);
 }
 
-void KWindowStateSaverQuick::setExtraProperties(const QStringList &properties)
+
+void KWindowStateSaverQuick::extraProperties_append(QQmlListProperty<PropertyObject> *prop, PropertyObject *object)
 {
-    if (m_extraProperties == properties) {
+    KWindowStateSaverQuick *saver = static_cast<KWindowStateSaverQuick *>(prop->object);
+    if (!saver) {
         return;
     }
 
-    m_propertyObjects.clear();
+    saver->m_propertyObjects.append(object);
+}
 
-    m_extraProperties = properties;
-
-    const auto parentItem = qobject_cast<QQuickItem *>(parent());
-    const auto window = parentItem ? qobject_cast<QWindow *>(parentItem->window()) : nullptr;
-
-    if (window && !m_extraProperties.isEmpty()) {
-        for (const QString &propName : std::as_const(m_extraProperties)) {
-            m_propertyObjects[propName] = std::make_unique<PropertyObject>(window, m_configGroupName, propName);
-        }
+qsizetype KWindowStateSaverQuick::extraProperties_count(QQmlListProperty<PropertyObject> *prop)
+{
+    KWindowStateSaverQuick *saver = static_cast<KWindowStateSaverQuick *>(prop->object);
+    if (!saver) {
+        return 0;
     }
 
-    Q_EMIT extraPropertiesChanged();
+    return saver->m_propertyObjects.count();
+}
+
+PropertyObject *KWindowStateSaverQuick::extraProperties_at(QQmlListProperty<PropertyObject> *prop, qsizetype index)
+{
+    KWindowStateSaverQuick *saver = static_cast<KWindowStateSaverQuick *>(prop->object);
+    if (!saver) {
+        return nullptr;
+    }
+
+    if (index < 0 || index >= saver->m_propertyObjects.count()) {
+        return nullptr;
+    }
+
+    return saver->m_propertyObjects[index];
+}
+
+void KWindowStateSaverQuick::extraProperties_clear(QQmlListProperty<PropertyObject> *prop)
+{
+    KWindowStateSaverQuick *saver = static_cast<KWindowStateSaverQuick *>(prop->object);
+    if (!saver) {
+        return;
+    }
+
+    saver->m_propertyObjects.clear();
 }
 
 #include "moc_kwindowstatesaverquick.cpp"
