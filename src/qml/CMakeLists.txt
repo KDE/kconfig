@@ -15,6 +15,7 @@ set_target_properties(KF6ConfigQml PROPERTIES
 target_sources(KF6ConfigQml PRIVATE
     kconfigpropertymap.cpp
     kwindowstatesaverquick.cpp
+    propertystatesaver.cpp
     types.cpp
 )
 
