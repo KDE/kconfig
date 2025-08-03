@@ -6,12 +6,12 @@
 # tahmar1900 <tahmar1900@gmail.com>, 2008.
 # Diego Iastrubni <elcuco@kde.org>, 2008, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023, 2024 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023, 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-01-29 08:31+0200\n"
+"PO-Revision-Date: 2025-08-02 21:12+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.12.0\n"
+"X-Generator: Lokalize 25.04.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:959
@@ -1006,7 +1006,7 @@ msgstr "הצגת רשיונות תוכנה."
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
-msgstr "להשתמש ב־<file> (קובץ) במקום בהגדרות כלליות"
+msgstr "להשתמש ב־<file> (קובץ) במקום בהגדרות מקיפות"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
