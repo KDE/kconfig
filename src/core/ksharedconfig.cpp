@@ -78,7 +78,7 @@ namespace
         return fileName;
     }
 
-    QString newPath = xdgStateHome + "/"_L1 + fileName; // intentionally not const so it can be move returned
+    QString newPath = xdgStateHome + '/'_L1 + fileName; // intentionally not const so it can be move returned
     QString oldPath = QStandardPaths::locate(QStandardPaths::AppDataLocation, fileName);
     if (oldPath.isEmpty()) { // nothing to migrate
         return newPath;
