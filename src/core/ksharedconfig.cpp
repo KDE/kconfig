@@ -69,7 +69,6 @@ namespace
     // https://gitlab.freedesktop.org/xdg/xdg-specs/-/blob/master/basedir/basedir-spec.xml
     // TODO KF7: refactor openStateConfig so it always opens from XDG_STATE_HOME instead of the legacy when on an XDG platform
 
-#if !defined(Q_OS_WINDOWS) && !defined(Q_OS_ANDROID) && !defined(Q_OS_MACOS)
     if (QFileInfo(fileName).isAbsolute()) {
         return fileName;
     }
@@ -108,9 +107,6 @@ namespace
     }
 
     return newPath;
-#else
-    return fileName;
-#endif
 }
 } // namespace
 
@@ -171,10 +167,7 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
         fileName = QCoreApplication::applicationName() + QLatin1String("staterc");
     }
 
-    // TODO KF7: Use QStandardPaths::GenericStateLocation.
-    return openConfig(migrateStateRc(fileName),
-                      SimpleConfig,
-                      QStandardPaths::AppDataLocation /* only used on !XDG platform, on XDG we resolve an absolute path (unless there are problems) */);
+    return openConfig(migrateStateRc(fileName), SimpleConfig, QStandardPaths::GenericStateLocation);
 }
 
 KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
