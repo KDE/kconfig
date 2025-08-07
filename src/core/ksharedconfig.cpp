@@ -74,7 +74,7 @@ namespace
         return fileName;
     }
 
-    static auto xdgStateHome = qEnvironmentVariable("XDG_STATE_HOME", QDir::homePath() + "/.local/state"_L1);
+    const QString xdgStateHome = QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation);
     if (fileName.startsWith(xdgStateHome)) [[unlikely]] {
         return fileName;
     }
@@ -171,6 +171,7 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
         fileName = QCoreApplication::applicationName() + QLatin1String("staterc");
     }
 
+    // TODO KF7: Use QStandardPaths::GenericStateLocation.
     return openConfig(migrateStateRc(fileName),
                       SimpleConfig,
                       QStandardPaths::AppDataLocation /* only used on !XDG platform, on XDG we resolve an absolute path (unless there are problems) */);
