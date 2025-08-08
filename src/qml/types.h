@@ -7,6 +7,7 @@
 #include <QQmlEngine>
 
 #include <kauthorized.h>
+#include <kconfigskeleton.h>
 #include <kcoreconfigskeleton.h>
 
 /*!
@@ -27,6 +28,12 @@ struct KCoreConfigSkeletonForeign {
     Q_GADGET
     QML_ANONYMOUS
     QML_FOREIGN(KCoreConfigSkeleton)
+};
+
+struct KConfigSkeletonForeign {
+    Q_GADGET
+    QML_ANONYMOUS
+    QML_FOREIGN(KConfigSkeleton)
 };
 
 #endif
