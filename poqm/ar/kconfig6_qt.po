@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-28 15:38+0300\n"
-"PO-Revision-Date: 2025-08-05 12:39+0400\n"
+"PO-Revision-Date: 2025-08-09 19:43+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -108,7 +108,7 @@ msgstr "ا&عكس"
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr "اعكس التغييرات غير المحفوظة المجراة على المستند"
+msgstr "اعكس التغييرات غير المحفوظة المنجزة على المستند"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
@@ -970,8 +970,8 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
-"بالنسبة لاختبارات الوحدة فقط: لا تكتب الإدخالات المنجزة، بحيث يتم تنفيذ "
-"البرامج النصية مرة أخرى مع كل إعادة تشغيل"
+"بالنسبة لاختبارات الوحدة فقط: لا تكتب الإدخالات المنجزة، حتى تُنفذ البرامج "
+"النصية مرة أخرى مع كل إعادة تشغيل"
 
 #: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
