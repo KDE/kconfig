@@ -1,3 +1,4 @@
+// SPDX-FileCopyrightText: 2025 Marco Martin <notmart@gmail.com>
 // SPDX-FileCopyrightText: 2024 Joshua Goins <josh@redstrate.com>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
