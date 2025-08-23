@@ -112,7 +112,7 @@ void KConfigHeaderGenerator::doClassDefinition()
 void KConfigHeaderGenerator::createHeaders()
 {
     addHeaders(cfg().headerIncludes);
-    if (cfg().headerIncludes.size()) {
+    if (!cfg().headerIncludes.isEmpty()) {
         stream() << '\n';
     }
 
@@ -138,7 +138,7 @@ void KConfigHeaderGenerator::createHeaders()
     stream() << '\n';
 
     addHeaders(parseResult.includes);
-    if (parseResult.includes.size()) {
+    if (!parseResult.includes.isEmpty()) {
         stream() << '\n';
     }
 }
@@ -224,7 +224,7 @@ void KConfigHeaderGenerator::implementValueEnums(const CfgEntry *entry, const QS
 
 void KConfigHeaderGenerator::implementEnums()
 {
-    if (!parseResult.entries.size()) {
+    if (parseResult.entries.isEmpty()) {
         return;
     }
 
