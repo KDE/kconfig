@@ -161,7 +161,9 @@ QAction *_kgui_createInternal(StandardAction id, QObject *parent)
     }
 
     if (pAction && parent && parent->inherits("KActionCollection")) {
-        QMetaObject::invokeMethod(parent, "addAction", Q_ARG(QString, pAction->objectName()), Q_ARG(QAction *, pAction));
+        // clang-format off
+        QMetaObject::invokeMethod(parent, "addAction", Q_ARG(QString, pAction->objectName()), Q_ARG(QAction*, pAction));
+        // clang-format on
     }
 
     return pAction;
