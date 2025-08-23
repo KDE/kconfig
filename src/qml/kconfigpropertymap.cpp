@@ -12,8 +12,6 @@
 #include <QJSValue>
 #include <QPointer>
 
-#include <functional>
-
 class KConfigPropertyMapPrivate
 {
 public:
@@ -85,7 +83,7 @@ QVariant KConfigPropertyMap::updateValue(const QString &key, const QVariant &inp
 
 bool KConfigPropertyMap::isImmutable(const QString &key) const
 {
-    KConfigSkeletonItem *item = d->config.data()->findItem(key);
+    KConfigSkeletonItem *item = d->config->findItem(key);
     if (item) {
         return item->isImmutable();
     }
@@ -99,7 +97,7 @@ void KConfigPropertyMapPrivate::loadConfig(KConfigPropertyMapPrivate::LoadConfig
         return;
     }
 
-    const auto &items = config.data()->items();
+    const auto &items = config->items();
     for (KConfigSkeletonItem *item : items) {
         q->insert(item->key() + QStringLiteral("Default"), item->getDefault());
         q->insert(item->key(), item->property());
@@ -115,19 +113,18 @@ void KConfigPropertyMapPrivate::writeConfig()
         return;
     }
 
-    const auto lstItems = config.data()->items();
+    const auto lstItems = config->items();
     for (KConfigSkeletonItem *item : lstItems) {
         item->setWriteFlags(notify ? KConfigBase::Notify : KConfigBase::Normal);
         item->setProperty(q->value(item->key()));
     }
     // Internally sync the config. This way we ensure the config file is written, even if the process crashed
-    config.data()->save();
+    config->save();
 }
 
 void KConfigPropertyMapPrivate::writeConfigValue(const QString &key, const QVariant &value)
 {
-    KConfigSkeletonItem *item = config.data()->findItem(key);
-    if (item) {
+    if (KConfigSkeletonItem *item = config->findItem(key)) {
         updatingConfigValue = true;
         item->setWriteFlags(notify ? KConfigBase::Notify : KConfigBase::Normal);
         item->setProperty(value);
