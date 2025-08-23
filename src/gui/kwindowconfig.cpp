@@ -40,7 +40,9 @@ static QScreen *findScreenByName(const QWindow *window, const QString screenName
     if (screenName == window->screen()->name()) {
         return window->screen();
     }
-    for (QScreen *s : window->screen()->virtualSiblings()) {
+
+    const auto virtualSiblings = window->screen()->virtualSiblings();
+    for (QScreen *s : virtualSiblings) {
         if (s->name() == screenName) {
             return s;
         }
