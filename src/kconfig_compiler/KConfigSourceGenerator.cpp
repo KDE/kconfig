@@ -11,6 +11,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+// clazy:excludeall=use-static-qregularexpression
+
 #include "KConfigSourceGenerator.h"
 
 #include <QRegularExpression>
