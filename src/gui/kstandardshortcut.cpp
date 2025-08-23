@@ -65,6 +65,7 @@ struct KStandardShortcutInfo {
 */
 // STUFF WILL BREAK IF YOU DON'T READ THIS!!!
 // Read the comments of the big enum in kstandardshortcut.h before you change anything!
+// clazy:exclude-next-line=non-pod-global-static
 static KStandardShortcutInfo g_infoStandardShortcut[] = {
     // Group File,
     {AccelNone, nullptr, {nullptr, nullptr}, 0, 0, QList<QKeySequence>(), false, Category::InvalidCategory},
