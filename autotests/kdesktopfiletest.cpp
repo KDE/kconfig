@@ -305,7 +305,7 @@ void KDesktopFileTest::testLocateLocal()
 void KDesktopFileTest::testWritePrimaryGroupFirst()
 {
     QTemporaryFile tmpFile(QDir::tempPath() + QStringLiteral("/testWritePrimaryGroupFirstXXXXXX.desktop"));
-    tmpFile.open();
+    QVERIFY(tmpFile.open());
     KDesktopFile df(tmpFile.fileName());
 
     df.actionGroup(QStringLiteral("AnAction")).writeEntry("Exec", "testapp --an-action");

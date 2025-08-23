@@ -19,7 +19,7 @@ private Q_SLOTS:
 
         engine.loadFromModule("org.kde.kconfig.test15", "Test15Qml");
 
-        QVERIFY(engine.rootObjects().size());
+        QVERIFY(!engine.rootObjects().isEmpty());
     }
 };
 

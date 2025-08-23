@@ -11,9 +11,9 @@
 #include <QStandardPaths>
 #include <QTest>
 
+// clazy:excludeall=non-pod-global-static
 static const QString s_test_subdir{QStringLiteral("kconfigtest_subdir/")};
 static const QString s_kconfig_test_subdir(s_test_subdir + QLatin1String("kconfigtest"));
-
 static const QString s_string_entry1(QStringLiteral("hello"));
 
 class KConfigBenchmark : public QObject
@@ -77,7 +77,6 @@ void KConfigBenchmark::testReadEntry()
 void KConfigBenchmark::testKConfigGroupKeyList()
 {
     QStringList keyList;
-    const QString defaultEntry = QStringLiteral("Default");
 
     KConfig sc(s_kconfig_test_subdir);
     KConfigGroup cg(&sc, QStringLiteral("Main"));
