@@ -104,7 +104,7 @@ msgstr "Apega la selecció"
 #: gui/kstandardshortcut.cpp:94
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
-msgstr "Tria-ho tot"
+msgstr "Selecciona-ho tot"
 
 #: gui/kstandardshortcut.cpp:95
 msgctxt "KStandardShortcut|@action"
