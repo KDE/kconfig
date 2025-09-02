@@ -95,12 +95,46 @@ static bool readEntryGui(const QByteArray &data, const char *key, const QVariant
     }
 
     case QMetaType::QFont: {
-        QVariant tmp = QString::fromUtf8(data.constData(), data.length());
-        if (tmp.canConvert<QFont>()) {
-            output = tmp;
-        } else {
-            qCritical() << qPrintable(errString());
+        const auto tmpString = QString::fromUtf8(data.constData(), data.length());
+
+        // try to handle that we have font features...
+        // see writeEntryGui below
+        // we add some separator and assume we have a new entry if that is found
+        // that tries to be compatible with old versions that will just parse up to that separator
+        if (tmpString.contains(QLatin1String("@@@"))) {
+            // first part is the font
+            const QStringList rawFontAndFeaturesList = tmpString.split(QStringLiteral("@@@"), Qt::SkipEmptyParts);
+            if (!rawFontAndFeaturesList.isEmpty()) {
+                if (QVariant tmp(rawFontAndFeaturesList.first()); tmp.canConvert<QFont>()) {
+                    QFont font = tmp.value<QFont>();
+
+                    // add features, first entry was the font
+                    for (QStringList::size_type i = 1; i < rawFontAndFeaturesList.size(); ++i) {
+                        const auto parts = rawFontAndFeaturesList.at(i).split(QStringLiteral("="), Qt::SkipEmptyParts);
+                        if (parts.length() == 2) {
+                            const auto tag = QFont::Tag::fromString(parts[0]);
+                            bool ok = false;
+                            const int number = parts[1].toInt(&ok);
+                            if (tag.has_value() && ok) {
+                                font.setFeature(tag.value(), number);
+                            }
+                        }
+                    }
+
+                    output = font;
+                    return true;
+                }
+            }
         }
+
+        // fallback to just eat the full string as font
+        if (QVariant tmp(tmpString); tmp.canConvert<QFont>()) {
+            output = tmp;
+            return true;
+        }
+
+        // some conversion error
+        qCritical() << qPrintable(errString());
         return true;
     }
     case QMetaType::QPixmap:
@@ -166,7 +200,22 @@ static bool writeEntryGui(KConfigGroup *cg, const char *key, const QVariant &pro
                 || f.styleName() == QLatin1String("Roman"))) { /* clang-format on */
             f.setStyleName(QString());
         }
-        cg->writeEntry(key, f.toString().toUtf8(), pFlags);
+
+        QByteArray fullFontValue = f.toString().toUtf8();
+
+        // add font features, after some separator to allow that old versions still can read at
+        // least the font part as it will just stop at that
+        const auto tags = f.featureTags();
+        for (const auto &tag : tags) {
+            const QByteArray name = tag.toString();
+            const quint32 value = f.featureValue(tag);
+            fullFontValue.append("@@@");
+            fullFontValue.append(name);
+            fullFontValue.append("=");
+            fullFontValue.append(QByteArray::number(value));
+        }
+
+        cg->writeEntry(key, fullFontValue, pFlags);
         return true;
     }
     case QMetaType::QPixmap:
