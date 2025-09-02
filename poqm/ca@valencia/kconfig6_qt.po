@@ -224,7 +224,7 @@ msgstr "&Neteja"
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr "Selecciona-ho &tot"
+msgstr "Tria-ho &tot"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
@@ -309,7 +309,7 @@ msgstr "&Zoom…"
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr "Selecciona el nivell de zoom"
+msgstr "Tria el nivell de zoom"
 
 #: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
