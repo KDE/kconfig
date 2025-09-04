@@ -11,10 +11,10 @@
 
 #include <QSignalSpy>
 #include <QStandardPaths>
+#include <QTemporaryDir>
 #include <QTemporaryFile>
 #include <QTest>
 #include <kdesktopfile.h>
-#include <qtemporarydir.h>
 
 #include <kauthorized.h>
 #include <kconfiggroup.h>
@@ -2034,7 +2034,7 @@ void KConfigTest::testXdgListEntry()
 }
 
 #include <QThreadPool>
-#include <qtconcurrentrun.h>
+#include <QtConcurrentRun>
 
 // To find multithreading bugs: valgrind --tool=helgrind --track-lockorders=no ./kconfigtest testThreads
 void KConfigTest::testThreads()

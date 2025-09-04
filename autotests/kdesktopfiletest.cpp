@@ -5,10 +5,10 @@
 */
 #include "kdesktopfiletest.h"
 #include "helper.h"
+#include <QTemporaryFile>
 #include <kconfiggroup.h>
 #include <kdesktopfileaction.h>
 #include <ksharedconfig.h>
-#include <qtemporaryfile.h>
 
 #include "kdesktopfile.h"
 

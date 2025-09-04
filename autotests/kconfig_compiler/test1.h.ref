@@ -7,7 +7,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 
-#include <qdir.h>
+#include <QDir>
 
 class Test1 : public KConfigSkeleton
 {

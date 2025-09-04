@@ -10,9 +10,9 @@
 #include "kconfigcompiler_test.h"
 #include <QDir>
 #include <QProcess>
+#include <QStandardPaths>
 #include <QString>
 #include <QTest>
-#include <qstandardpaths.h>
 
 // QT5 TODO QTEST_GUILESS_MAIN(KConfigCompiler_Test)
 QTEST_MAIN(KConfigCompiler_Test)

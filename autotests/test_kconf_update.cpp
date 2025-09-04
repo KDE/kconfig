@@ -12,10 +12,10 @@
 #include <QDir>
 #include <QFile>
 #include <QProcess>
+#include <QStandardPaths>
+#include <QTemporaryFile>
+#include <QTest>
 #include <qglobal.h>
-#include <qstandardpaths.h>
-#include <qtemporaryfile.h>
-#include <qtest.h>
 #include <qtestcase.h>
 
 QTEST_GUILESS_MAIN(TestKConfUpdate)
