@@ -68,6 +68,26 @@ static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseSensitive;
 static const Qt::CaseSensitivity sPathCaseSensitivity = Qt::CaseInsensitive;
 #endif
 
+static QString getDefaultLocaleName()
+{
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+    if (QLocale() == QLocale::system()) {
+        // If the default locale hasn't been changed then
+        // On Windows and Apple OSs, we cannot use QLocale::system() if an application-specific
+        // language was set by kxmlgui because Qt ignores LANGUAGE on Windows and Apple OSs.
+        if (const auto firstLanguage = qEnvironmentVariable("LANGUAGE").section(u':', 0, 0, QString::SectionSkipEmpty); !firstLanguage.isEmpty()) {
+            return firstLanguage;
+        }
+        // Also prefer the configured display language over the system language
+        if (const auto languages = QLocale::system().uiLanguages(); !languages.isEmpty()) {
+            // uiLanguages() uses dashes as separator, but KConfig assumes underscores
+            return languages.value(0).replace(u'-', u'_');
+        }
+    }
+#endif
+    return QLocale().name();
+}
+
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
     : openFlags(flags)
     , resourceType(resourceType)
@@ -118,7 +138,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::Standar
     //        mappingsRegistered = true;
     //    }
 
-    setLocale(QLocale().name());
+    setLocale(getDefaultLocaleName());
 }
 
 bool KConfigPrivate::lockLocal()

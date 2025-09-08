@@ -13,6 +13,10 @@ if(NOT Qt6Concurrent_FOUND)
     return()
 endif()
 
+if (Qt6_VERSION VERSION_GREATER_EQUAL "6.10.0")
+    find_package(Qt6CorePrivate ${Qt6_VERSION} EXACT CONFIG REQUIRED)
+endif()
+
 # compile KEntryMap into the test since it's not exported
 ecm_add_test(
   kentrymaptest.cpp
@@ -38,7 +42,7 @@ ecm_add_tests(
     ksharedconfig_in_global_object.cpp
     dbussanitizertest.cpp
     NAME_PREFIX kconfigcore-
-    LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent
+    LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent Qt6::CorePrivate
 )
 
 add_dependencies(test_kconf_update kconf_update)

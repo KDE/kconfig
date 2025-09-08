@@ -21,12 +21,16 @@
 #include <kconfigwatcher.h>
 #include <ksharedconfig.h>
 
+#include <private/qlocale_p.h> // QSystemLocale
+
 #ifdef Q_OS_UNIX
 #include <utime.h>
 #endif
 #ifndef Q_OS_WIN
 #include <unistd.h> // getuid
 #endif
+
+using namespace Qt::StringLiterals;
 
 KCONFIGGROUP_DECLARE_ENUM_QOBJECT(KConfigTest, Testing)
 KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(KConfigTest, Flags)
@@ -1541,6 +1545,43 @@ void KConfigTest::testLocaleConfig()
     QCOMPARE(cg2.readEntry("foostring"), QStringLiteral("nice"));
     QCOMPARE(cg2.readEntry("foostring", "ugly"), QStringLiteral("nice"));
     QCOMPARE(cg2.readEntry("foobool"), QStringLiteral("true"));
+    QCOMPARE(cg2.readEntry("foobool", false), true);
+
+    // Clean up after the testcase
+    QFile::remove(file);
+}
+
+void KConfigTest::testLocaleConfigWithOverrideLanguage()
+{
+    // simulate usage of language override (kxmlgui);
+    // we need to create a new QSystemLocale to make Qt update the locale
+    qputenv("LANGUAGE", "ca:de_DE");
+    QSystemLocale newSystemLocale{};
+
+    // Initialize the testdata
+    QDir().mkpath(m_testConfigDir);
+    const QString file = m_testConfigDir + QLatin1String("/localized.test");
+    QFile::remove(file);
+    QFile f(file);
+    QVERIFY(f.open(QIODevice::WriteOnly));
+    QTextStream ts(&f);
+    ts << "[Test]\n";
+    ts << "foo=4\n";
+    ts << "foo[ca]=5\n";
+    ts << "foostring=primary\n";
+    ts << "foostring[ca]=nice\n";
+    ts << "foobool=primary\n";
+    ts << "foobool[ca]=true\n";
+    f.close();
+
+    // Load the testdata
+    QVERIFY(QFile::exists(file));
+    KConfig config(file);
+    QVERIFY(config.locale().startsWith("ca"_L1));
+
+    KConfigGroup cg2(&config, QStringLiteral("Test"));
+    QCOMPARE(cg2.readEntry("foo", 3), 5);
+    QCOMPARE(cg2.readEntry("foostring"), QStringLiteral("nice"));
     QCOMPARE(cg2.readEntry("foobool", false), true);
 
     // Clean up after the testcase

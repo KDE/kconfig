@@ -78,6 +78,7 @@ private Q_SLOTS:
     void testSharedConfig();
     void testOptionOrder();
     void testLocaleConfig();
+    void testLocaleConfigWithOverrideLanguage();
     void testDirtyAfterRevert();
     void testKdeGlobals();
     void testLocalDeletion();
