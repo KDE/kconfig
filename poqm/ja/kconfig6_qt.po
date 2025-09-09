@@ -17,7 +17,7 @@ msgstr ""
 "X-Qt-Contexts: true\n"
 "X-Generator: Lokalize 24.12.2\n"
 
-#: core/kconfig.cpp:959
+#: core/kconfig.cpp:979
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "システム管理者に連絡してください。"
