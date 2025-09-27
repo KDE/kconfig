@@ -32,16 +32,6 @@ using namespace Qt::StringLiterals;
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
 
-static QByteArray lookup(QByteArrayView fragment, QHash<QByteArrayView, QByteArray> *cache)
-{
-    auto it = cache->constFind(fragment);
-    if (it != cache->constEnd()) {
-        return it.value();
-    }
-
-    return cache->insert(fragment, fragment.toByteArray()).value();
-}
-
 QString KConfigIniBackend::warningProlog(const QFile &file, int line)
 {
     // %2 then %1 i.e. int before QString, so that the QString is last
@@ -71,17 +61,17 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
         return file.exists() ? ParseOpenError : ParseOk;
     }
 
+    if (file.size() == 0) {
+        return ParseOk;
+    }
+
     QList<QString> immutableGroups;
 
     bool fileOptionImmutable = false;
     bool groupOptionImmutable = false;
     bool groupSkip = false;
 
-    int lineNo = 0;
-    // on systems using \r\n as end of line, \r will be taken care of by
-    // trim() below
-    QByteArray buffer = file.readAll();
-    QByteArrayView contents(buffer.data(), buffer.size());
+    uint lineNo = 0;
 
     const int langIdx = currentLocale.indexOf('_');
     const QByteArray currentLanguage = langIdx >= 0 ? currentLocale.left(langIdx) : currentLocale;
@@ -90,23 +80,59 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     bool bDefault = options & ParseDefaults;
     bool allowExecutableValues = options & ParseExpansions;
 
-    // Reduce memory overhead by making use of implicit sharing
-    // This assumes that config files contain only a small amount of
-    // different fragments which are repeated often.
-    // This is often the case, especially sub groups will all have
-    // the same list of keys and similar values as well.
-    QHash<QByteArrayView, QByteArray> cache;
-    cache.reserve(4096);
+    const uint MAX_ERRORS = 100;
+    uint errorCount = 0;
 
-    while (!contents.isEmpty()) {
-        QByteArrayView line;
-        if (const auto idx = contents.indexOf('\n'); idx < 0) {
-            line = contents;
-            contents = {};
+    QDataStream stream(&file);
+    const qint64 readBufferSize = std::min(file.size(), qint64(128 * 1024) /* 128 KB */);
+    const uint maximumSizeWithoutNewLine = 1.5 * 1024 * 1024; // 1.5 MB
+    bool newLineFound = false;
+
+    QByteArray readBuffer(readBufferSize, Qt::Uninitialized);
+    QByteArray buffer;
+    QByteArray leftOverBuffer;
+
+    while ((!stream.atEnd() || !leftOverBuffer.isEmpty()) && errorCount < MAX_ERRORS) {
+        buffer = leftOverBuffer;
+
+        int n = buffer.indexOf('\n');
+        if (n != -1) {
+            leftOverBuffer = buffer.sliced(n + 1);
+            buffer = buffer.sliced(0, n);
+
+        } else if (!stream.atEnd()) {
+            while (!stream.atEnd()) {
+                int len = stream.readRawData(readBuffer.data(), readBufferSize);
+                if (len == -1) {
+                    qCWarning(KCONFIG_CORE_LOG) << "Couldn't read." << filePath() << "after line" << lineNo;
+                    return ParseOpenError;
+                }
+
+                QByteArrayView readBufferView(readBuffer.data(), len);
+                auto n = readBufferView.indexOf('\n');
+                if (n != -1) {
+                    // found '\n' at position n
+                    buffer += readBufferView.sliced(0, n);
+                    leftOverBuffer = readBufferView.sliced(n+1).toByteArray();
+                    newLineFound = true;
+                    break;
+                } else {
+                    // stream is atEnd or the \n was at the edge of the readBuffer
+                    buffer += readBufferView;
+                    leftOverBuffer = {};
+
+                    if (!newLineFound && buffer.length() > maximumSizeWithoutNewLine) {
+                        qCWarning(KCONFIG_CORE_LOG) << "Couldn't find a single line in " << filePath() << " after reading" << (maximumSizeWithoutNewLine)
+                                                    << "bytes.";
+                        return ParseOpenError;
+                    }
+                }
+            }
         } else {
-            line = contents.left(idx);
-            contents = contents.mid(idx + 1);
+            leftOverBuffer = {};
         }
+
+        QByteArrayView line = buffer;
         line = line.trimmed();
         ++lineNo;
 
@@ -198,6 +224,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
             while ((start = aKey.lastIndexOf('[')) >= 0) {
                 int end = aKey.indexOf(']', start);
                 if (end < 0) {
+                    errorCount++;
                     qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (missing ']')";
                     goto next_line;
                 } else if (end > start + 1 && aKey.at(start + 1) == '$') { // found option(s)
@@ -227,6 +254,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     }
                 } else { // found a locale
                     if (!locale.isNull()) {
+                        errorCount++;
                         qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (second locale!?)";
                         goto next_line;
                     }
@@ -236,6 +264,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 aKey.truncate(start);
             }
             if (eqpos < 0) { // Do this here after [$d] was checked
+                errorCount++;
                 qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (missing '=')";
                 continue;
             }
@@ -265,19 +294,26 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     entryOptions |= KEntryMap::EntryLocalizedCountry;
                 }
             }
-            printableToString(line, file, lineNo);
+            if (!printableToString(line, file, lineNo)) {
+                errorCount++;
+            }
             if (entryOptions & KEntryMap::EntryRawKey) {
                 QByteArray rawKey;
                 rawKey.reserve(aKey.length() + locale.length() + 2);
                 rawKey.append(aKey);
                 rawKey.append('[').append(locale).append(']');
-                entryMap.setEntry(currentGroup, rawKey, lookup(line, &cache), entryOptions);
+                entryMap.setEntry(currentGroup, rawKey, line.toByteArray(), entryOptions);
             } else {
-                entryMap.setEntry(currentGroup, lookup(aKey, &cache), lookup(line, &cache), entryOptions);
+                entryMap.setEntry(currentGroup, aKey.toByteArray(), line.toByteArray(), entryOptions);
             }
         }
     next_line:
         continue;
+    }
+
+    if (errorCount > MAX_ERRORS) {
+        qCWarning(KCONFIG_CORE_LOG) << "Too many errors in file" << filePath();
+        return ParseOpenError;
     }
 
     // now make sure immutable groups are marked immutable
@@ -877,10 +913,10 @@ char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line
     return char(ret);
 }
 
-void KConfigIniBackend::printableToString(QByteArrayView &aString, const QFile &file, int line)
+bool KConfigIniBackend::printableToString(QByteArrayView &aString, const QFile &file, int line)
 {
     if (aString.isEmpty() || aString.indexOf('\\') == -1) {
-        return;
+        return true;
     }
     aString = aString.trimmed();
     int l = aString.size();
@@ -938,10 +974,12 @@ void KConfigIniBackend::printableToString(QByteArrayView &aString, const QFile &
             default:
                 *r = '\\';
                 qCWarning(KCONFIG_CORE_LOG).noquote() << warningProlog(file, line) << QStringLiteral("Invalid escape sequence: «\\%1»").arg(str[i]);
+                return false;
             }
         }
     }
     aString.truncate(r - aString.constData());
+    return true;
 }
 
 QString KConfigIniBackend::filePath() const

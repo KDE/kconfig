@@ -87,7 +87,7 @@ private:
     };
     // Warning: this modifies data in-place. Other QByteArrayView objects referencing the same buffer
     // fragment will get their data modified too.
-    static void printableToString(QByteArrayView &aString, const QFile &file, int line);
+    static bool printableToString(QByteArrayView &aString, const QFile &file, int line);
     static QByteArray stringToPrintable(const QByteArray &aString, StringType type);
     static char charFromHex(const char *str, const QFile &file, int line);
     static QString warningProlog(const QFile &file, int line);
