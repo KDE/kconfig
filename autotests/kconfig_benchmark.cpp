@@ -23,6 +23,7 @@ class KConfigBenchmark : public QObject
 private Q_SLOTS:
     void initTestCase();
 
+    void testParsing();
     void testHasKey();
     void testReadEntry();
     void testKConfigGroupKeyList();
@@ -37,6 +38,39 @@ void KConfigBenchmark::initTestCase()
     KConfigGroup cg(&sc, QStringLiteral("Main"));
     cg.deleteGroup();
     cg.writeEntry("UsedEntry", s_string_entry1);
+}
+
+void KConfigBenchmark::testParsing()
+{
+    QString fileName =
+        QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + s_test_subdir + QLatin1String("pathtest.ini");
+    qputenv("WITHSLASH", "/a/");
+    {
+        QFile file(fileName);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
+        QTextStream out(&file);
+        out << "[Test Group]\n"
+            << "homePath=$HOME/foo\n"
+            << "homePath2=file://$HOME/foo\n"
+            << "withSlash=$WITHSLASH/foo\n"
+            << "withSlash2=$WITHSLASH\n"
+            << "withBraces[$e]=file://${HOME}/foo\n"
+            << "URL[$e]=file://${HOME}/foo\n"
+            << "hostname[$e]=$(hostname)\n"
+            << "escapes=aaa,bb/b,ccc\\,ccc\n"
+            << "\n\n"
+            << "noeol=foo" // no EOL
+            ;
+    }
+
+    QStringList groups;
+    QBENCHMARK {
+        KConfig sc(fileName, KConfig::SimpleConfig);
+        groups = sc.groupList();
+    }
+
+    const auto expected = QStringList{QStringLiteral("Test Group")};
+    QCOMPARE(groups, expected);
 }
 
 void KConfigBenchmark::testHasKey()
