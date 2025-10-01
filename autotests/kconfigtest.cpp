@@ -775,12 +775,22 @@ void KConfigTest::testDeleteEntry()
     KConfig sc(configFile);
     KConfigGroup group(&sc, QStringLiteral("Hello"));
 
+    QVERIFY(!sc.isDirty());
     group.deleteEntry("DelKey");
+    QVERIFY(sc.isDirty());
     QCOMPARE(group.readEntry("DelKey", QStringLiteral("Fietsbel")), QStringLiteral("Fietsbel"));
 
     QVERIFY(group.sync());
     Q_ASSERT(!readLines(configFile).contains("DelKey=ToBeDeleted\n"));
     QCOMPARE(group.readEntry("DelKey", QStringLiteral("still deleted")), QStringLiteral("still deleted"));
+
+    // deleting a deleted key again should not mark it as dirty
+    group.deleteEntry("DelKey");
+    QVERIFY(!sc.isDirty());
+
+    // and neither should deleting an unknown key
+    group.deleteEntry("DoesNotExist");
+    QVERIFY(!sc.isDirty());
 }
 
 void KConfigTest::testDelete()
