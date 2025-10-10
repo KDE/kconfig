@@ -42,16 +42,18 @@ static QByteArray lookup(QByteArrayView fragment, QHash<QByteArrayView, QByteArr
     return cache->insert(fragment, fragment.toByteArray()).value();
 }
 
-QString KConfigIniBackend::warningProlog(const QFile &file, int line)
+namespace
+{
+QString warningProlog(const auto &deviceInterface, int line)
 {
     // %2 then %1 i.e. int before QString, so that the QString is last
     // This avoids a wrong substitution if the fileName itself contains %1
-    return QStringLiteral("KConfigIni: In file %2, line %1:").arg(line).arg(file.fileName());
+    return QStringLiteral("KConfigIni: In file %2, line %1:").arg(line).arg(deviceInterface->id());
 }
+} // anonymous namespace
 
-KConfigIniBackend::KConfigIniBackend()
-{
-}
+KConfigIniBackend::KConfigIniBackend(std::unique_ptr<KConfigIniBackendAbstractDevice> deviceInterface)
+    : mDeviceInterface(std::move(deviceInterface)) { };
 
 KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options)
 {
@@ -62,13 +64,17 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
 // merge changes in the on-disk file with the changes in the KConfig object.
 KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options, bool merging)
 {
-    if (filePath().isEmpty()) {
+    if (!mDeviceInterface->canOpenDevice()) {
         return ParseOk;
     }
 
-    QFile file(filePath());
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return file.exists() ? ParseOpenError : ParseOk;
+    auto openResult = mDeviceInterface->open();
+    if (openResult.shouldHaveDevice && !openResult.device) {
+        return ParseOpenError;
+    }
+    auto file = std::move(openResult.device);
+    if (!file) {
+        return ParseOk;
     }
 
     QList<QString> immutableGroups;
@@ -80,7 +86,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     int lineNo = 0;
     // on systems using \r\n as end of line, \r will be taken care of by
     // trim() below
-    QByteArray buffer = file.readAll();
+    QByteArray buffer = file->readAll();
     QByteArrayView contents(buffer.data(), buffer.size());
 
     const int langIdx = currentLocale.indexOf('_');
@@ -125,7 +131,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 end = start;
                 for (;;) {
                     if (end == line.length()) {
-                        qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid group header.";
+                        qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, lineNo) << "Invalid group header.";
                         // XXX maybe reset the current group here?
                         goto next_line;
                     }
@@ -149,7 +155,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                         newGroup += '\x1d';
                     }
                     QByteArrayView namePart = line.mid(start, end - start);
-                    printableToString(namePart, file, lineNo);
+                    printableToString(namePart, *file.get(), lineNo);
                     newGroup += namePart.toByteArray();
                 }
             } while ((start = end + 2) <= line.length() && line.at(end + 1) == '[');
@@ -184,7 +190,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 line = line.trimmed();
             }
             if (aKey.isEmpty()) {
-                qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (empty key)";
+                qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, lineNo) << "Invalid entry (empty key)";
                 continue;
             }
 
@@ -198,7 +204,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
             while ((start = aKey.lastIndexOf('[')) >= 0) {
                 int end = aKey.indexOf(']', start);
                 if (end < 0) {
-                    qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (missing ']')";
+                    qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, lineNo) << "Invalid entry (missing ']')";
                     goto next_line;
                 } else if (end > start + 1 && aKey.at(start + 1) == '$') { // found option(s)
                     int i = start + 2;
@@ -217,7 +223,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                         case 'd':
                             entryOptions |= KEntryMap::EntryDeleted;
                             aKey.truncate(start);
-                            printableToString(aKey, file, lineNo);
+                            printableToString(aKey, *file.get(), lineNo);
                             entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);
                             goto next_line;
                         default:
@@ -227,7 +233,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     }
                 } else { // found a locale
                     if (!locale.isNull()) {
-                        qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (second locale!?)";
+                        qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, lineNo) << "Invalid entry (second locale!?)";
                         goto next_line;
                     }
 
@@ -236,10 +242,10 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 aKey.truncate(start);
             }
             if (eqpos < 0) { // Do this here after [$d] was checked
-                qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, lineNo) << "Invalid entry (missing '=')";
+                qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, lineNo) << "Invalid entry (missing '=')";
                 continue;
             }
-            printableToString(aKey, file, lineNo);
+            printableToString(aKey, *file.get(), lineNo);
             if (!locale.isEmpty()) {
                 if (locale != currentLocale && locale != currentLanguage) {
                     // backward compatibility. C == en_US
@@ -265,7 +271,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     entryOptions |= KEntryMap::EntryLocalizedCountry;
                 }
             }
-            printableToString(line, file, lineNo);
+            printableToString(line, *file.get(), lineNo);
             if (entryOptions & KEntryMap::EntryRawKey) {
                 QByteArray rawKey;
                 rawKey.reserve(aKey.length() + locale.length() + 2);
@@ -402,7 +408,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
 
 bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options)
 {
-    Q_ASSERT(!filePath().isEmpty());
+    Q_ASSERT(mDeviceInterface->canOpenDevice());
 
     KEntryMap writeMap;
     const bool bGlobal = options & WriteGlobal;
@@ -449,153 +455,29 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
         }
     }
 
-    // now writeMap should contain only entries to be written
-    // so write it out to disk
-
-    // check if file exists
-    QFile::Permissions fileMode = filePath().startsWith(u"/etc/xdg/"_s) ? QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther //
-                                                                        : QFile::ReadUser | QFile::WriteUser;
-
-    bool createNew = true;
-
-    QFileInfo fi(filePath());
-    if (fi.exists()) {
-#ifdef Q_OS_WIN
-        // TODO: getuid does not exist on windows, use GetSecurityInfo and GetTokenInformation instead
-        createNew = false;
-#else
-        if (fi.ownerId() == ::getuid()) {
-            // Preserve file mode if file exists and is owned by user.
-            fileMode = fi.permissions();
-        } else {
-            // File is not owned by user:
-            // Don't create new file but write to existing file instead.
-            createNew = false;
-        }
-#endif
-    }
-
-    if (createNew) {
-        QSaveFile file(filePath());
-        if (!file.open(QIODevice::WriteOnly)) {
-#ifdef Q_OS_ANDROID
-            // HACK: when we are dealing with content:// URIs, QSaveFile has to rely on DirectWrite.
-            // Otherwise this method returns a false and we're done.
-            file.setDirectWriteFallback(true);
-            if (!file.open(QIODevice::WriteOnly)) {
-                qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << filePath() << ". Error:" << file.errorString();
-                return false;
-            }
-#else
-            qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << filePath() << ". Error:" << file.errorString();
-            return false;
-#endif
-        }
-
-        file.setTextModeEnabled(true); // to get eol translation
-        writeEntries(locale, file, writeMap);
-
-        if (!file.size() && (fileMode == (QFile::ReadUser | QFile::WriteUser))) {
-            // File is empty and doesn't have special permissions: delete it.
-            file.cancelWriting();
-
-            if (fi.exists()) {
-                // also remove the old file in case it existed. this can happen
-                // when we delete all the entries in an existing config file.
-                // if we don't do this, then deletions and revertToDefault's
-                // will mysteriously fail
-                QFile::remove(filePath());
-            }
-        } else {
-            // Normal case: Close the file
-            if (file.commit()) {
-                QFile::setPermissions(filePath(), fileMode);
-                return true;
-            }
-            // Couldn't write. Disk full?
-            qCWarning(KCONFIG_CORE_LOG) << "Couldn't write" << filePath() << ". Disk full?";
-            return false;
-        }
-    } else {
-        QFile f(filePath());
-
-        // Open existing file. *DON'T* create it if it suddenly does not exist!
-        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::ExistingOnly)) {
-            return false;
-        }
-
-        f.setTextModeEnabled(true);
-        writeEntries(locale, f, writeMap);
-    }
-    return true;
+    return mDeviceInterface->writeTheThing([this, &locale, &writeMap](auto &device) {
+        writeEntries(locale, device, writeMap);
+    });
 }
 
 bool KConfigIniBackend::isWritable() const
 {
-    const QString filePath = this->filePath();
-    if (filePath.isEmpty()) {
-        return false;
-    }
-
-    QFileInfo file(filePath);
-    if (file.exists()) {
-        return file.isWritable();
-    }
-
-    // If the file does not exist, check if the deepest existing dir is writable
-    QFileInfo dir(file.absolutePath());
-    while (!dir.exists()) {
-        QString parent = dir.absolutePath(); // Go up. Can't use cdUp() on non-existing dirs.
-        if (parent == dir.filePath()) {
-            // no parent
-            return false;
-        }
-        dir.setFile(parent);
-    }
-    return dir.isDir() && dir.isWritable();
+    return mDeviceInterface->canWriteToDevice();
 }
 
 QString KConfigIniBackend::nonWritableErrorMessage() const
 {
-    return tr("Configuration file \"%1\" not writable.\n").arg(filePath());
+    return tr("Configuration file \"%1\" not writable.\n").arg(mDeviceInterface->id());
 }
 
 void KConfigIniBackend::createEnclosing()
 {
-    const QString file = filePath();
-    if (file.isEmpty()) {
-        return; // nothing to do
-    }
-
-    // Create the containing dir, maybe it wasn't there
-    QDir().mkpath(QFileInfo(file).absolutePath());
-}
-
-void KConfigIniBackend::setFilePath(const QString &path)
-{
-    if (path.isEmpty()) {
-        return;
-    }
-
-    Q_ASSERT(QDir::isAbsolutePath(path));
-
-    const QFileInfo info(path);
-    if (info.exists()) {
-        setLocalFilePath(info.canonicalFilePath());
-        return;
-    }
-
-    if (QString filePath = info.dir().canonicalPath(); !filePath.isEmpty()) {
-        filePath += QLatin1Char('/') + info.fileName();
-        setLocalFilePath(filePath);
-    } else {
-        setLocalFilePath(path);
-    }
+    mDeviceInterface->createEnclosingEntity();
 }
 
 KConfigBase::AccessMode KConfigIniBackend::accessMode() const
 {
-    if (filePath().isEmpty()) {
+    if (!mDeviceInterface->canOpenDevice()) {
         return KConfigBase::NoAccess;
     }
 
@@ -608,14 +490,13 @@ KConfigBase::AccessMode KConfigIniBackend::accessMode() const
 
 bool KConfigIniBackend::lock()
 {
-    Q_ASSERT(!filePath().isEmpty());
+    Q_ASSERT(mDeviceInterface->canOpenDevice());
 
     m_mutex.lock();
 
     // Default staleLockTime is 30 seconds. Set it lower since KConfig is not expected to hold the
     // lock for long. The tryLockTimeout is set to staleLockTime*2+buffer, to cover the case when
     // the file modification date is in the future, and the fallback to prevent blocking forever.
-    constexpr std::chrono::milliseconds staleLockTime = std::chrono::seconds{20};
     constexpr std::chrono::milliseconds tryLockTimeout = std::chrono::seconds{45};
 
     if (!lockFile) {
@@ -631,9 +512,8 @@ bool KConfigIniBackend::lock()
             lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
         }
 #else
-        lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
+        lockFile = mDeviceInterface->lockFile();
 #endif
-        lockFile->setStaleLockTime(staleLockTime);
     }
 
     if (!lockFile->tryLock(tryLockTimeout)) {
@@ -853,7 +733,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
     return result;
 }
 
-char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line)
+char KConfigIniBackend::charFromHex(const char *str, const QIODevice &file, int line)
 {
     unsigned char ret = 0;
     for (int i = 0; i < 2; i++) {
@@ -869,15 +749,15 @@ char KConfigIniBackend::charFromHex(const char *str, const QFile &file, int line
         } else {
             QByteArray e(str, 2);
             e.prepend("\\x");
-            qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, line) << "Invalid hex character " << c << " in \\x<nn>-type escape sequence \"" << e.constData()
-                                        << "\".";
+            qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, line) << "Invalid hex character " << c << " in \\x<nn>-type escape sequence \""
+                                        << e.constData() << "\".";
             return 'x';
         }
     }
     return char(ret);
 }
 
-void KConfigIniBackend::printableToString(QByteArrayView &aString, const QFile &file, int line)
+void KConfigIniBackend::printableToString(QByteArrayView &aString, const QIODevice &file, int line)
 {
     if (aString.isEmpty() || aString.indexOf('\\') == -1) {
         return;
@@ -937,26 +817,29 @@ void KConfigIniBackend::printableToString(QByteArrayView &aString, const QFile &
                 break;
             default:
                 *r = '\\';
-                qCWarning(KCONFIG_CORE_LOG).noquote() << warningProlog(file, line) << QStringLiteral("Invalid escape sequence: «\\%1»").arg(str[i]);
+                qCWarning(KCONFIG_CORE_LOG).noquote() << warningProlog(mDeviceInterface, line) << QStringLiteral("Invalid escape sequence: «\\%1»").arg(str[i]);
             }
         }
     }
     aString.truncate(r - aString.constData());
 }
 
-QString KConfigIniBackend::filePath() const
-{
-    return mLocalFilePath;
-}
-
-void KConfigIniBackend::setLocalFilePath(const QString &file)
-{
-    mLocalFilePath = file;
-}
-
 void KConfigIniBackend::setPrimaryGroup(const QString &group)
 {
     mPrimaryGroup = group;
+}
+
+bool KConfigIniBackend::hasOpenableDeviceInterface() const
+{
+    return mDeviceInterface->canOpenDevice();
+}
+
+QString KConfigIniBackend::backingDevicePath() const
+{
+    if (dynamic_cast<KConfigIniBackendPathDevice *>(mDeviceInterface.get())) {
+        return mDeviceInterface->id();
+    }
+    return {};
 }
 
 #include "moc_kconfigini_p.cpp"
