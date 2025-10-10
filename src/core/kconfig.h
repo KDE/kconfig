@@ -132,6 +132,10 @@ public:
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
+    explicit KConfig(const std::shared_ptr<QIODevice> &device,
+                     OpenFlags mode = FullConfig,
+                     QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
     /*!
      * Creates a KConfig object using the specified backend. If the backend can not

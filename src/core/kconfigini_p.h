@@ -21,6 +21,8 @@
 
 #include <memory>
 
+#include "kconfiginibackendreader_p.h"
+
 class QIODevice;
 class KEntryMap;
 
@@ -31,11 +33,11 @@ class KConfigIniBackend
     Q_DISABLE_COPY(KConfigIniBackend)
 
 private:
-    std::unique_ptr<QLockFile> lockFile;
+    std::unique_ptr<AbstractLockFile> lockFile;
     QMutex m_mutex;
 
 public:
-    KConfigIniBackend();
+    explicit KConfigIniBackend(std::unique_ptr<KConfigIniBackendAbstractDevice> deviceInterface);
 
     /* Allows the behaviour of parseConfig() to be tuned */
     enum ParseOption {
@@ -71,13 +73,19 @@ public:
     QString nonWritableErrorMessage() const;
     KConfigBase::AccessMode accessMode() const;
     void createEnclosing();
-    void setFilePath(const QString &path);
     bool lock();
     void unlock();
     bool isLocked() const;
-
-    /* the absolute path to the object */
-    QString filePath() const;
+    void setDeviceInterface(std::unique_ptr<KConfigIniBackendAbstractDevice> deviceInterface)
+    {
+        mDeviceInterface = std::move(deviceInterface);
+    }
+    [[nodiscard]] bool hasOpenableDeviceInterface() const;
+    [[nodiscard]] QString backingDevicePath() const;
+    [[nodiscard]] QString name() const
+    {
+        return mDeviceInterface->id();
+    }
 
 private:
     enum StringType {
@@ -87,17 +95,14 @@ private:
     };
     // Warning: this modifies data in-place. Other QByteArrayView objects referencing the same buffer
     // fragment will get their data modified too.
-    static bool printableToString(QByteArrayView &aString, const QFile &file, int line);
+    static bool printableToString(QByteArrayView &aString, const KConfigIniBackendAbstractDevice *device, int line);
     static QByteArray stringToPrintable(const QByteArray &aString, StringType type);
-    static char charFromHex(const char *str, const QFile &file, int line);
-    static QString warningProlog(const QFile &file, int line);
+    [[nodiscard]] static char charFromHex(const char *str, const KConfigIniBackendAbstractDevice *device, int line);
 
     void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map);
     void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool primaryGroup, bool &firstEntry);
 
-    void setLocalFilePath(const QString &file);
-
-    QString mLocalFilePath;
+    std::unique_ptr<KConfigIniBackendAbstractDevice> mDeviceInterface;
     QString mPrimaryGroup;
 };
 

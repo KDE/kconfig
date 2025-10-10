@@ -41,6 +41,7 @@ ecm_add_tests(
     test_kconf_update.cpp
     ksharedconfig_in_global_object.cpp
     dbussanitizertest.cpp
+    qiodevicetest.cpp
     NAME_PREFIX kconfigcore-
     LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent Qt6::CorePrivate
 )
