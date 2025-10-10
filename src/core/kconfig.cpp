@@ -91,6 +91,7 @@ static QString getDefaultLocaleName()
 KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
     : openFlags(flags)
     , resourceType(resourceType)
+    , mBackend(std::make_unique<KConfigIniBackendNullDevice>())
     , bDirty(false)
     , bReadDefaults(false)
     , bFileImmutable(false)
@@ -265,6 +266,16 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
     d_ptr->changeFileName(file); // set the local file name
 
     // read initial information off disk
+    reparseConfiguration();
+}
+
+KConfig::KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
+    : d_ptr(new KConfigPrivate(mode, resourceType))
+{
+    d_ptr->mBackend.setDeviceInterface(std::make_unique<KConfigIniBackendQIODevice>(device));
+    d_ptr->configState = d_ptr->mBackend.accessMode();
+
+    // read initial information off device
     reparseConfiguration();
 }
 
@@ -474,8 +485,7 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            KConfigIniBackend tmp;
-            tmp.setFilePath(*sGlobalFileName);
+            KConfigIniBackend tmp(std::make_unique<KConfigIniBackendPathDevice>(*sGlobalFileName));
             if (d->configState == ReadWrite && !tmp.lock()) {
                 qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
 
@@ -583,7 +593,7 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
 QString KConfig::name() const
 {
     Q_D(const KConfig);
-    return d->fileName;
+    return d->fileName.isEmpty() ? d->mBackend.name() : d->fileName;
 }
 
 KConfig::OpenFlags KConfig::openFlags() const
@@ -662,7 +672,7 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    mBackend.setFilePath(file);
+    mBackend.setDeviceInterface(std::make_unique<KConfigIniBackendPathDevice>(file));
 
     configState = mBackend.accessMode();
 }
@@ -760,8 +770,7 @@ void KConfigPrivate::parseGlobalFiles()
             parseOpts |= KConfigIniBackend::ParseDefaults;
         }
 
-        KConfigIniBackend backend;
-        backend.setFilePath(file);
+        KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
         if (backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
             break;
         }
@@ -785,7 +794,8 @@ void KConfigPrivate::parseWindowsDefaults()
 void KConfigPrivate::parseConfigFiles()
 {
     // can only read the file if there is a backend and a file name
-    if (!fileName.isEmpty()) {
+    if (mBackend.hasOpenableDeviceInterface()) {
+        const auto backingDevicePath = mBackend.backingDevicePath();
         bFileImmutable = false;
 
         QList<QString> files;
@@ -811,8 +821,8 @@ void KConfigPrivate::parseConfigFiles()
                     }
                 }
             }
-        } else {
-            files << mBackend.filePath();
+        } else if (!backingDevicePath.isEmpty()) {
+            files << backingDevicePath;
         }
         if (!isSimple()) {
             files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
@@ -822,7 +832,7 @@ void KConfigPrivate::parseConfigFiles()
 
         const QByteArray utf8Locale = locale.toUtf8();
         for (const QString &file : std::as_const(files)) {
-            if (file.compare(mBackend.filePath(), sPathCaseSensitivity) == 0) {
+            if (file.compare(backingDevicePath, sPathCaseSensitivity) == 0) {
                 switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
                 case KConfigIniBackend::ParseOk:
                     break;
@@ -834,8 +844,7 @@ void KConfigPrivate::parseConfigFiles()
                     break;
                 }
             } else {
-                KConfigIniBackend backend;
-                backend.setFilePath(file);
+                KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
                 constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
                 bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
             }
