@@ -37,7 +37,7 @@ public:
      * \value Persistent Save this entry when saving the config object.
      * \value Global Save the entry to the global KDE config file instead of the application specific config file.
      * \value Add the locale tag to the key when writing it.
-     * \value[since 5.51] Notify remote KConfigWatchers of changes (requires DBus support). Imlies Persistent.
+     * \value[since 5.51] Notify remote KConfigWatchers of changes (requires DBus support). Implies Persistent.
      * \value Normal Save the entry to the application specific config file without a locale tag. This is the default.
      */
     enum WriteConfigFlag {
