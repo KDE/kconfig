@@ -22,7 +22,7 @@ private Q_SLOTS:
 
         auto hkcuPath = QFINDTESTDATA("registry_test_hkcu.reg");
         QVERIFY(hkcuPath.length() > 0);
-        QVERIFY(QProcess::execute(QStringLiteral("reg"), {QStringLiteral("import"), hkcuPath}) == 0);
+        QCOMPARE(QProcess::execute(QStringLiteral("reg"), {QStringLiteral("import"), hkcuPath}), 0);
         QFile::remove(QStringLiteral("registry_test_hkcu.reg"));
 
         auto hklmPath = QFINDTESTDATA("registry_test_hklm.reg");

@@ -187,7 +187,7 @@ void KConfigCompiler_Test::testBaselineComparison()
         appendFileDiff(fileRef.fileName(), file.fileName());
     }
 
-    QVERIFY(content == contentRef);
+    QCOMPARE(content, contentRef);
 }
 
 void KConfigCompiler_Test::testRunning_data()

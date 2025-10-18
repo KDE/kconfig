@@ -103,33 +103,33 @@ void KConfigTest::testInvalid()
     sc3.writeEntry(QStringLiteral("badList"), list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 
     // 2 element list
     list << 2;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 
     // 3 element list
     list << 303;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor()); // out of bounds
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor()); // out of bounds
 
     // 4 element list
     list << 4;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor()); // out of bounds
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor()); // out of bounds
 
     list[2] = -3;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor()); // out of bounds
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor()); // out of bounds
 
     // 5 element list
     list[2] = 3;
@@ -137,14 +137,14 @@ void KConfigTest::testInvalid()
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 
     // 6 element list
     list << 6;
     sc3.writeEntry("badList", list);
     QVERIFY(sc.sync());
 
-    QVERIFY(sc3.readEntry("badList", QColor()) == QColor());
+    QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 }
 
 #include "moc_kconfigguitest.cpp"

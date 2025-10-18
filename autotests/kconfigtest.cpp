@@ -492,7 +492,7 @@ void KConfigTest::testLists()
 
     QCOMPARE(sc3.readEntry("listOfIntsEntry1"), QString::fromLatin1("1,2,3,4"));
     QList<int> expectedIntList = s_int_listentry1;
-    QVERIFY(sc3.readEntry("listOfIntsEntry1", QList<int>()) == expectedIntList);
+    QCOMPARE(sc3.readEntry("listOfIntsEntry1", QList<int>()), expectedIntList);
 
     QCOMPARE(QVariant(sc3.readEntry("variantListEntry", s_variantlist_entry)).toStringList(), QVariant(s_variantlist_entry).toStringList());
 
@@ -637,7 +637,7 @@ void KConfigTest::testEnums()
     QVERIFY(sc3.readEntry("enum-100", Ones) != Tens);
 
     QCOMPARE(sc3.readEntry("flags-bit0"), QStringLiteral("bit0"));
-    QVERIFY(sc3.readEntry("flags-bit0", Flags()) == bit0);
+    QCOMPARE(sc3.readEntry("flags-bit0", Flags()), bit0);
 
     int eid = staticMetaObject.indexOfEnumerator("Flags");
     QVERIFY(eid != -1);
@@ -645,7 +645,7 @@ void KConfigTest::testEnums()
     Flags bitfield = bit0 | bit1;
 
     QCOMPARE(sc3.readEntry("flags-bit0-bit1"), QString::fromLatin1(me.valueToKeys(bitfield)));
-    QVERIFY(sc3.readEntry("flags-bit0-bit1", Flags()) == bitfield);
+    QCOMPARE(sc3.readEntry("flags-bit0-bit1", Flags()), bitfield);
 }
 
 void KConfigTest::testEntryMap()
@@ -686,63 +686,63 @@ void KConfigTest::testInvalid()
     list << 1;
     sc3.writeEntry(QStringLiteral("badList"), list);
 
-    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
-    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
-    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
-    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
-    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
-    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
+    QCOMPARE(sc3.readEntry("badList", QPoint()), QPoint());
+    QCOMPARE(sc3.readEntry("badList", QRect()), QRect());
+    QCOMPARE(sc3.readEntry("badList", QSize()), QSize());
+    QCOMPARE(sc3.readEntry("badList", QDate()), QDate());
+    QCOMPARE(sc3.readEntry("badList", QTime()), QTime());
+    QCOMPARE(sc3.readEntry("badList", QDateTime()), QDateTime());
 
     // 2 element list
     list << 2;
     sc3.writeEntry("badList", list);
 
-    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
-    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
-    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
-    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
+    QCOMPARE(sc3.readEntry("badList", QRect()), QRect());
+    QCOMPARE(sc3.readEntry("badList", QDate()), QDate());
+    QCOMPARE(sc3.readEntry("badList", QTime()), QTime());
+    QCOMPARE(sc3.readEntry("badList", QDateTime()), QDateTime());
 
     // 3 element list
     list << 303;
     sc3.writeEntry("badList", list);
 
-    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
-    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
-    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
-    QVERIFY(sc3.readEntry("badList", QDate()) == QDate()); // out of bounds
-    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
-    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
+    QCOMPARE(sc3.readEntry("badList", QPoint()), QPoint());
+    QCOMPARE(sc3.readEntry("badList", QRect()), QRect());
+    QCOMPARE(sc3.readEntry("badList", QSize()), QSize());
+    QCOMPARE(sc3.readEntry("badList", QDate()), QDate()); // out of bounds
+    QCOMPARE(sc3.readEntry("badList", QTime()), QTime());
+    QCOMPARE(sc3.readEntry("badList", QDateTime()), QDateTime());
 
     // 4 element list
     list << 4;
     sc3.writeEntry("badList", list);
 
-    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
-    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
-    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
-    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
-    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
+    QCOMPARE(sc3.readEntry("badList", QPoint()), QPoint());
+    QCOMPARE(sc3.readEntry("badList", QSize()), QSize());
+    QCOMPARE(sc3.readEntry("badList", QDate()), QDate());
+    QCOMPARE(sc3.readEntry("badList", QTime()), QTime());
+    QCOMPARE(sc3.readEntry("badList", QDateTime()), QDateTime());
 
     // 5 element list
     list[2] = 3;
     list << 5;
     sc3.writeEntry("badList", list);
 
-    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
-    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
-    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
-    QVERIFY(sc3.readEntry("badList", QDate()) == QDate());
-    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
-    QVERIFY(sc3.readEntry("badList", QDateTime()) == QDateTime());
+    QCOMPARE(sc3.readEntry("badList", QPoint()), QPoint());
+    QCOMPARE(sc3.readEntry("badList", QRect()), QRect());
+    QCOMPARE(sc3.readEntry("badList", QSize()), QSize());
+    QCOMPARE(sc3.readEntry("badList", QDate()), QDate());
+    QCOMPARE(sc3.readEntry("badList", QTime()), QTime());
+    QCOMPARE(sc3.readEntry("badList", QDateTime()), QDateTime());
 
     // 6 element list
     list << 6;
     sc3.writeEntry("badList", list);
 
-    QVERIFY(sc3.readEntry("badList", QPoint()) == QPoint());
-    QVERIFY(sc3.readEntry("badList", QRect()) == QRect());
-    QVERIFY(sc3.readEntry("badList", QSize()) == QSize());
-    QVERIFY(sc3.readEntry("badList", QTime()) == QTime());
+    QCOMPARE(sc3.readEntry("badList", QPoint()), QPoint());
+    QCOMPARE(sc3.readEntry("badList", QRect()), QRect());
+    QCOMPARE(sc3.readEntry("badList", QSize()), QSize());
+    QCOMPARE(sc3.readEntry("badList", QTime()), QTime());
 }
 
 void KConfigTest::testChangeGroup()
@@ -1334,7 +1334,7 @@ void KConfigTest::testReparent()
 
     QVERIFY(!parent.hasGroup(name));
 
-    QVERIFY(group.entryMap() == originalMap);
+    QCOMPARE(group.entryMap(), originalMap);
 
     group.reparent(&parent); // see if it can be made a sub-group of another group
     QVERIFY(parent.hasGroup(name));
