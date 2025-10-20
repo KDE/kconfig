@@ -24,12 +24,12 @@ class KCONFIGCORE_EXPORT KDesktopFileAction
 {
 public:
     /*!
-     * Construct an empty KDesktopFileAction. Needed so the Action can be stored in containers that require type T to be
+     * Constructs an empty KDesktopFileAction. Needed so the Action can be stored in containers that require type T to be
      * default constructible (e.g. QVariant).
      */
     explicit KDesktopFileAction();
     /*!
-     * Construct a KDesktopFileAction with all required properties
+     * Constructs a KDesktopFileAction with all required properties
      */
     explicit KDesktopFileAction(const QString &name, const QString &text, const QString &icon, const QString &exec, const QString &desktopFilePath);
 
@@ -40,35 +40,35 @@ public:
     ~KDesktopFileAction();
 
     /*!
-     * Returns the action's internal name
+     * Returns the action's internal name.
      * For instance Actions=Setup;... and the group [Desktop Action Setup]
      * define an action with the name "Setup".
      */
     QString actionsKey() const;
 
     /*!
-     * Returns the path of the desktop file this action was loaded from
+     * Returns the path of the desktop file this action was loaded from.
      */
     QString desktopFilePath() const;
 
     /*!
-     * Returns the action's Name, as defined by the Name key in the desktop action group
+     * Returns the action's name, as defined by the Name key in the desktop action group.
      */
     QString name() const;
 
     /*!
-     * Returns the action's icon, as defined by the Icon key in the desktop action group
+     * Returns the action's icon, as defined by the Icon key in the desktop action group.
      */
     QString icon() const;
 
     /*!
-     * Returns the action's exec command, as defined by the Exec key in the desktop action group
+     * Returns the action's exec command, as defined by the Exec key in the desktop action group.
      */
     QString exec() const;
 
     /*!
      * Returns whether the action is a separator.
-     * This is \c true when the Actions key contains "_SEPARATOR_".
+     * This is \c true when actionsKey contains "_SEPARATOR_".
      */
     bool isSeparator() const;
 
