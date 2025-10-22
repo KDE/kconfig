@@ -611,8 +611,15 @@ bool KConfigIniBackend::lock()
     Q_ASSERT(!filePath().isEmpty());
 
     m_mutex.lock();
-#ifdef Q_OS_ANDROID
+
+    // Default staleLockTime is 30 seconds. Set it lower since KConfig is not expected to hold the
+    // lock for long. The tryLockTimeout is set to staleLockTime*2+buffer, to cover the case when
+    // the file modification date is in the future, and the fallback to prevent blocking forever.
+    constexpr std::chrono::milliseconds staleLockTime = std::chrono::seconds{20};
+    constexpr std::chrono::milliseconds tryLockTimeout = std::chrono::seconds{45};
+
     if (!lockFile) {
+#ifdef Q_OS_ANDROID
         // handle content Uris properly
         if (filePath().startsWith(QLatin1String("content://"))) {
             // we can't create file at an arbitrary location, so use internal storage to create one
@@ -623,14 +630,14 @@ bool KConfigIniBackend::lock()
         } else {
             lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
         }
-    }
 #else
-    if (!lockFile) {
         lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
-    }
 #endif
+        lockFile->setStaleLockTime(staleLockTime);
+    }
 
-    if (!lockFile->lock()) {
+    if (!lockFile->tryLock(tryLockTimeout)) {
+        qCWarning(KCONFIG_CORE_LOG) << "Failed to lock file" << lockFile->fileName() << "with error" << int(lockFile->error());
         m_mutex.unlock();
     }
 
@@ -639,8 +646,7 @@ bool KConfigIniBackend::lock()
 
 void KConfigIniBackend::unlock()
 {
-    lockFile->unlock();
-    lockFile = nullptr;
+    lockFile.reset();
     m_mutex.unlock();
 }
 
