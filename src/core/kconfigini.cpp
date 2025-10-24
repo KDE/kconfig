@@ -66,6 +66,19 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
         return ParseOk;
     }
 
+    // We've had repeated problems with huge config files causing havoc. Refuse to load them.
+    // Should you have legitimate interest in loading such a huge config please raise a discussion about it.
+    constexpr auto MiB = 1024 * 1024;
+    constexpr auto maxSize = 4 * MiB;
+    if (QFileInfo(filePath()).size() > maxSize) {
+        if (qEnvironmentVariableIsSet("KCONFIG_FORCE_LOAD")) {
+            qCWarning(KCONFIG_CORE_LOG) << "KConfigIni: config is incredibly large; performance may suffer substantially" << filePath();
+        } else {
+            qCWarning(KCONFIG_CORE_LOG) << "KConfigIni: Refusing to parse file" << filePath() << "because it is too large.";
+            return ParseOpenError;
+        }
+    }
+
     QFile file(filePath());
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return file.exists() ? ParseOpenError : ParseOk;
