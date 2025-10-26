@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2024 Joshua Goins <josh@redstrate.com>
-// SPDX-License-Identifier: LGPL-2.0-or-later
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef KWINDOWSTATESAVER_QUICK_H
 #define KWINDOWSTATESAVER_QUICK_H

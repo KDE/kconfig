@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2010 Martin Blumenstingl <darklight.xdarklight@googlemail.com>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KCONFIGLOADERTEST_H

@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: 1999 Pietro Iglio <iglio@kde.org>
     SPDX-FileCopyrightText: 1999 Preston Brown <pbrown@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "kdesktopfile.h"

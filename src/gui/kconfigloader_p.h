@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2007-2008 Aaron Seigo <aseigo@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KCONFIGLOADER_P_H

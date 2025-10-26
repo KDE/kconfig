@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: 2001, 2002, 2003 Cornelius Schumacher <schumacher@kde.org>
     SPDX-FileCopyrightText: 2003 Waldo Bastian <bastian@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KCONFIGSKELETON_H

@@ -4,7 +4,7 @@
     SPDX-FileCopyrightText: 2000 Nicolas Hadacek <haadcek@kde.org>
     SPDX-FileCopyrightText: 2001, 2002 Ellis Whitehead <ellis@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "kstandardshortcut.h"

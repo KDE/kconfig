@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2023 Nicolas Fella <nicolas.fella@gmx.de>
-// SPDX-License-Identifier: LGPL-2.0-or-later
+// SPDX-License-Identifier: LGPL-2.1-or-later
 
 #ifndef KCONFIGTYPES_H
 #define KCONFIGTYPES_H

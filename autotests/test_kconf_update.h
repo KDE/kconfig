@@ -2,7 +2,7 @@
     SPDX-FileCopyrightText: 2010 Canonical Ltd
     SPDX-FileContributor: Aurélien Gâteau <aurelien.gateau@canonical.com>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 #ifndef TEST_KCONF_UPDATE_H
 #define TEST_KCONF_UPDATE_H

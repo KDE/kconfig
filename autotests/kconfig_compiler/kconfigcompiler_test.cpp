@@ -4,7 +4,7 @@
     SPDX-FileCopyrightText: 2005 Duncan Mac-Vicar <duncan@kde.org>
     SPDX-FileCopyrightText: 2009 Pino Toscano <pino@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "kconfigcompiler_test.h"

@@ -2,7 +2,7 @@
     This file is part of the KDE libraries
     SPDX-FileCopyrightText: 2007 Thiago Macieira <thiago@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "kconfiggui_export.h"

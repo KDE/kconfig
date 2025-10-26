@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: 2022 g10 Code GmbH
     SPDX-FileContributor: Andre Heinecke <aheinecke@gnupg.com>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 #include "kconfigdata_p.h"
 

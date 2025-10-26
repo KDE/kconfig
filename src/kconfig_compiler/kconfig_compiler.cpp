@@ -7,7 +7,7 @@
     SPDX-FileCopyrightText: 2006 Michaël Larouche <michael.larouche@kdemail.net>
     SPDX-FileCopyrightText: 2008 Allen Winter <winter@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include <QCommandLineOption>

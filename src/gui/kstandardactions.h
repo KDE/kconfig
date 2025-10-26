@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: 1999, 2000 Kurt Granroth <granroth@kde.org>
     SPDX-FileCopyrightText: 2001, 2002 Ellis Whitehead <ellis@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-only
+    SPDX-License-Identifier: LGPL-2.1-only
 */
 #ifndef KGUISTANDARDACTION_H
 #define KGUISTANDARDACTION_H

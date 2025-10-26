@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: 2000, 2001 Cornelius Schumacher <schumacher@kde.org>
     SPDX-FileCopyrightText: 2003 Waldo Bastian <bastian@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "kcoreconfigskeleton.h"

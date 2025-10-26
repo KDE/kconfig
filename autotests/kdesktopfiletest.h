@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2006 David Faure <faure@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KDESKTOPFILETEST_H

@@ -3,7 +3,7 @@
    SPDX-FileCopyrightText: 2012 David Faure <faure@kde.org>
    SPDX-FileCopyrightText: 2024 Harald Sitter <sitter@kde.org>
 
-   SPDX-License-Identifier: LGPL-2.0-or-later
+   SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include <QTest>

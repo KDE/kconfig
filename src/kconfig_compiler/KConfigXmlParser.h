@@ -8,7 +8,7 @@
     SPDX-FileCopyrightText: 2008 Allen Winter <winter@kde.org>
     SPDX-FileCopyrightText: 2020 Tomaz Cananbrava <tcanabrava@kde.org>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KCONFIGXMLPARSER_H

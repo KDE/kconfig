@@ -1,7 +1,7 @@
 /*  This file is part of the KDE libraries
     SPDX-FileCopyrightText: 2007 Thomas Braxton <kde.braxton@gmail.com>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KENTRYMAPTEST_H

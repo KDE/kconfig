@@ -3,7 +3,7 @@
     SPDX-FileCopyrightText: 2020 David Edmundson <davidedmundson@kde.org>
     SPDX-FileCopyrightText: 2021 Alexander Lohnau <alexander.lohnau@gmx.de>
 
-    SPDX-License-Identifier: LGPL-2.0-or-later
+    SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #include "kconfigpropertymap.h"

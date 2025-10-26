@@ -4,7 +4,7 @@
    SPDX-FileCopyrightText: 1999 Preston Brown <pbrown@kde.org>
    SPDX-FileCopyrightText: 1997 Matthias Kalle Dalheimer <kalle@kde.org>
 
-   SPDX-License-Identifier: LGPL-2.0-or-later
+   SPDX-License-Identifier: LGPL-2.1-or-later
 */
 
 #ifndef KCONFIGINI_P_H
