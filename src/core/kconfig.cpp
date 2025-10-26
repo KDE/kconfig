@@ -809,7 +809,7 @@ void KConfigPrivate::parseConfigFiles()
             files = getGlobalFiles();
         } else {
             if (QDir::isAbsolutePath(fileName)) {
-                const QString canonicalFile = QFileInfo(fileName).canonicalFilePath();
+                const QString canonicalFile = QFileInfo(backingDevicePath).canonicalFilePath();
                 if (!canonicalFile.isEmpty()) { // empty if it doesn't exist
                     files << canonicalFile;
                 }
