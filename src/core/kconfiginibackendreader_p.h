@@ -146,6 +146,7 @@ public:
 
     [[nodiscard]] bool writeTheThing(const std::function<void(QIODevice &)> &write) override
     {
+        Q_UNUSED(write)
         return false;
     }
 

@@ -733,7 +733,7 @@ QByteArray KConfigIniBackend::stringToPrintable(const QByteArray &aString, Strin
     return result;
 }
 
-char KConfigIniBackend::charFromHex(const char *str, const QIODevice &file, int line)
+char KConfigIniBackend::charFromHex(const char *str, int line)
 {
     unsigned char ret = 0;
     for (int i = 0; i < 2; i++) {
@@ -808,7 +808,7 @@ void KConfigIniBackend::printableToString(QByteArrayView &aString, const QIODevi
                 break;
             case 'x':
                 if (i + 2 < l) {
-                    *r = charFromHex(str + i + 1, file, line);
+                    *r = charFromHex(str + i + 1, line);
                     i += 2;
                 } else {
                     *r = 'x';

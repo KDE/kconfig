@@ -97,7 +97,7 @@ private:
     // fragment will get their data modified too.
     void printableToString(QByteArrayView &aString, const QIODevice &file, int line);
     static QByteArray stringToPrintable(const QByteArray &aString, StringType type);
-    [[nodiscard]] char charFromHex(const char *str, const QIODevice &file, int line);
+    [[nodiscard]] char charFromHex(const char *str, int line);
 
     void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map);
     void writeEntries(const QByteArray &locale, QIODevice &file, const KEntryMap &map, bool defaultGroup, bool primaryGroup, bool &firstEntry);
