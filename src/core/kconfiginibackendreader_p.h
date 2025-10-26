@@ -338,6 +338,9 @@ public:
         }
 
         Q_ASSERT(QDir::isAbsolutePath(path));
+        if (!QDir::isAbsolutePath(path)) {
+            qWarning() << "setFilePath" << path;
+        }
 
         const QFileInfo info(path);
         if (info.exists()) {
