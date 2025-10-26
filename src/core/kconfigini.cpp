@@ -155,7 +155,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                         newGroup += '\x1d';
                     }
                     QByteArrayView namePart = line.mid(start, end - start);
-                    printableToString(namePart, *file.get(), lineNo);
+                    printableToString(namePart, lineNo);
                     newGroup += namePart.toByteArray();
                 }
             } while ((start = end + 2) <= line.length() && line.at(end + 1) == '[');
@@ -223,7 +223,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                         case 'd':
                             entryOptions |= KEntryMap::EntryDeleted;
                             aKey.truncate(start);
-                            printableToString(aKey, *file.get(), lineNo);
+                            printableToString(aKey, lineNo);
                             entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);
                             goto next_line;
                         default:
@@ -245,7 +245,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 qCWarning(KCONFIG_CORE_LOG) << warningProlog(mDeviceInterface, lineNo) << "Invalid entry (missing '=')";
                 continue;
             }
-            printableToString(aKey, *file.get(), lineNo);
+            printableToString(aKey, lineNo);
             if (!locale.isEmpty()) {
                 if (locale != currentLocale && locale != currentLanguage) {
                     // backward compatibility. C == en_US
@@ -271,7 +271,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     entryOptions |= KEntryMap::EntryLocalizedCountry;
                 }
             }
-            printableToString(line, *file.get(), lineNo);
+            printableToString(line, lineNo);
             if (entryOptions & KEntryMap::EntryRawKey) {
                 QByteArray rawKey;
                 rawKey.reserve(aKey.length() + locale.length() + 2);
@@ -757,7 +757,7 @@ char KConfigIniBackend::charFromHex(const char *str, int line)
     return char(ret);
 }
 
-void KConfigIniBackend::printableToString(QByteArrayView &aString, const QIODevice &file, int line)
+void KConfigIniBackend::printableToString(QByteArrayView &aString, int line)
 {
     if (aString.isEmpty() || aString.indexOf('\\') == -1) {
         return;

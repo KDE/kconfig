@@ -95,7 +95,7 @@ private:
     };
     // Warning: this modifies data in-place. Other QByteArrayView objects referencing the same buffer
     // fragment will get their data modified too.
-    void printableToString(QByteArrayView &aString, const QIODevice &file, int line);
+    void printableToString(QByteArrayView &aString, int line);
     static QByteArray stringToPrintable(const QByteArray &aString, StringType type);
     [[nodiscard]] char charFromHex(const char *str, int line);
 
