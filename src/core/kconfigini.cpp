@@ -455,7 +455,7 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
         }
     }
 
-    return mDeviceInterface->writeTheThing([this, &locale, &writeMap](auto &device) {
+    return mDeviceInterface->writeToDevice([this, &locale, &writeMap](auto &device) {
         writeEntries(locale, device, writeMap);
     });
 }
