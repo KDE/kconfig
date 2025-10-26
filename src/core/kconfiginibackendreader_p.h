@@ -120,7 +120,7 @@ public:
     [[nodiscard]] virtual qint64 deviceSize() const = 0;
     [[nodiscard]] virtual bool canOpenDevice() const = 0;
     [[nodiscard]] virtual bool canWriteToDevice() const = 0;
-    [[nodiscard]] virtual bool writeTheThing(const std::function<void(QIODevice &)> &write) = 0;
+    [[nodiscard]] virtual bool writeToDevice(const std::function<void(QIODevice &)> &write) = 0;
     [[nodiscard]] virtual OpenResult open() = 0;
     [[nodiscard]] virtual std::unique_ptr<AbstractLockFile> lockFile() = 0;
     virtual void createEnclosingEntity() = 0;
@@ -150,7 +150,7 @@ public:
         return false;
     }
 
-    [[nodiscard]] bool writeTheThing(const std::function<void(QIODevice &)> &write) override
+    [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override
     {
         Q_UNUSED(write)
         return false;
@@ -228,7 +228,7 @@ public:
         return dir.isDir() && dir.isWritable();
     }
 
-    [[nodiscard]] bool writeTheThing(const std::function<void(QIODevice &)> &write) override
+    [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override
     {
         // check if file exists
         QFile::Permissions fileMode = filePath().startsWith(u"/etc/xdg/"_s) ? QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther //
@@ -420,7 +420,7 @@ public:
         return m_device->isWritable();
     }
 
-    [[nodiscard]] bool writeTheThing(const std::function<void(QIODevice &)> &write) override
+    [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override
     {
         m_device->setTextModeEnabled(true);
         write(*m_device);
