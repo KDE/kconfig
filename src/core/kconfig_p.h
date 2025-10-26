@@ -70,7 +70,9 @@ public:
 protected:
     KConfigIniBackend mBackend;
 
-    KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation type);
+    KConfigPrivate(KConfig::OpenFlags flags,
+                   QStandardPaths::StandardLocation type,
+                   std::unique_ptr<KConfigIniBackendAbstractDevice> backend = std::make_unique<KConfigIniBackendNullDevice>());
 
     virtual ~KConfigPrivate()
     {
