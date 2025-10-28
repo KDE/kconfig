@@ -151,16 +151,16 @@ void KConfigSkeletonTest::testDefaults()
 void KConfigSkeletonTest::testKConfigDirty()
 {
     itemBool->setValue(true);
-    itemBool->writeConfig(s->sharedConfig().data());
-    QVERIFY(s->sharedConfig()->isDirty());
+    itemBool->writeConfig(s->config());
+    QVERIFY(s->config()->isDirty());
     s->save();
-    QVERIFY(!s->sharedConfig()->isDirty());
+    QVERIFY(!s->config()->isDirty());
 
     itemBool->setValue(false);
-    itemBool->writeConfig(s->sharedConfig().data());
-    QVERIFY(s->sharedConfig()->isDirty());
+    itemBool->writeConfig(s->config());
+    QVERIFY(s->config()->isDirty());
     s->save();
-    QVERIFY(!s->sharedConfig()->isDirty());
+    QVERIFY(!s->config()->isDirty());
 }
 
 void KConfigSkeletonTest::testSaveRead()

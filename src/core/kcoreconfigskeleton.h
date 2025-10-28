@@ -1218,6 +1218,8 @@ public:
      */
     explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
+    explicit KCoreConfigSkeleton(const std::shared_ptr<KConfig> &config, QObject *parent = nullptr);
+
     ~KCoreConfigSkeleton() override;
 
     /*!
