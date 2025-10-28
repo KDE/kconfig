@@ -347,6 +347,8 @@ void KConfigHeaderGenerator::createConstructor()
         } else {
             stream() << " KSharedConfig::Ptr config" << (parseResult.parameters.isEmpty() ? " = KSharedConfig::openConfig()" : ", ");
         }
+    } else if (cfg().cfgSimpleConfig) {
+        stream() << " const std::shared_ptr<KConfig> &config";
     }
     if (cfg().forceStringFilename && parseResult.cfgStateConfig) {
         std::cerr << "One can not use ForceStringFilename and use the stateConfig attribute, consider "
@@ -366,7 +368,7 @@ void KConfigHeaderGenerator::createConstructor()
     }
 
     if (cfg().parentInConstructor) {
-        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty()) {
+        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty() || cfg().cfgSimpleConfig) {
             stream() << ",";
         }
         stream() << " QObject *parent = nullptr";

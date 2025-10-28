@@ -64,7 +64,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
 // merge changes in the on-disk file with the changes in the KConfig object.
 KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &currentLocale, KEntryMap &entryMap, ParseOptions options, bool merging)
 {
-    if (!mDeviceInterface->canOpenDevice()) {
+    if (!mDeviceInterface->isDeviceReadable()) {
         return ParseOk;
     }
 
@@ -408,7 +408,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
 
 bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMap, WriteOptions options)
 {
-    Q_ASSERT(mDeviceInterface->canOpenDevice());
+    Q_ASSERT(mDeviceInterface->isDeviceReadable());
 
     KEntryMap writeMap;
     const bool bGlobal = options & WriteGlobal;
@@ -477,7 +477,7 @@ void KConfigIniBackend::createEnclosing()
 
 KConfigBase::AccessMode KConfigIniBackend::accessMode() const
 {
-    if (!mDeviceInterface->canOpenDevice()) {
+    if (!mDeviceInterface->isDeviceReadable()) {
         return KConfigBase::NoAccess;
     }
 
@@ -490,7 +490,7 @@ KConfigBase::AccessMode KConfigIniBackend::accessMode() const
 
 bool KConfigIniBackend::lock()
 {
-    Q_ASSERT(mDeviceInterface->canOpenDevice());
+    Q_ASSERT(mDeviceInterface->isDeviceReadable());
 
     m_mutex.lock();
 
@@ -831,7 +831,7 @@ void KConfigIniBackend::setPrimaryGroup(const QString &group)
 
 bool KConfigIniBackend::hasOpenableDeviceInterface() const
 {
-    return mDeviceInterface->canOpenDevice();
+    return mDeviceInterface->isDeviceReadable();
 }
 
 QString KConfigIniBackend::backingDevicePath() const

@@ -25,7 +25,8 @@ public:
     }
     QString mCurrentGroup;
 
-    KSharedConfig::Ptr mConfig; // pointer to KConfig object
+    KSharedConfig::Ptr mConfig; // pointer to KConfig
+    std::shared_ptr<KConfig> config;
 
     KConfigSkeletonItem::List mItems;
     KConfigSkeletonItem::Dict mItemDict;
