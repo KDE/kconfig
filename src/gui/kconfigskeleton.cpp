@@ -25,6 +25,11 @@ KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key
 {
 }
 
+KConfigSkeleton::KConfigSkeleton(std::shared_ptr<KConfig> config, QObject *parent)
+    : KCoreConfigSkeleton(config, parent)
+{
+}
+
 void KConfigSkeleton::ItemColor::readConfig(KConfig *config)
 {
     KConfigGroup cg = configGroup(config);

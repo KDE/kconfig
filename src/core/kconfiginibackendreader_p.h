@@ -118,7 +118,7 @@ public:
     // The local file path for path based devices or a pseudo name for all others.
     [[nodiscard]] virtual QString id() const = 0;
     [[nodiscard]] virtual qint64 deviceSize() const = 0;
-    [[nodiscard]] virtual bool canOpenDevice() const = 0;
+    [[nodiscard]] virtual bool isDeviceReadable() const = 0;
     [[nodiscard]] virtual bool canWriteToDevice() const = 0;
     [[nodiscard]] virtual bool writeToDevice(const std::function<void(QIODevice &)> &write) = 0;
     [[nodiscard]] virtual OpenResult open() = 0;
@@ -140,7 +140,7 @@ public:
         return 0;
     }
 
-    [[nodiscard]] bool canOpenDevice() const override
+    [[nodiscard]] bool isDeviceReadable() const override
     {
         return false;
     }
@@ -189,7 +189,7 @@ public:
         return m_localFilePath;
     }
 
-    [[nodiscard]] bool canOpenDevice() const override
+    [[nodiscard]] bool isDeviceReadable() const override
     {
         return !m_localFilePath.isEmpty();
     }
@@ -410,14 +410,14 @@ public:
         return u"((QIODevice))"_s;
     }
 
-    [[nodiscard]] bool canOpenDevice() const override
+    [[nodiscard]] bool isDeviceReadable() const override
     {
-        return m_device->isReadable();
+        return m_device->isOpen() && m_device->isReadable();
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
     {
-        return m_device->isWritable();
+        return m_device->isOpen() && m_device->isWritable();
     }
 
     [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override
