@@ -81,8 +81,6 @@ class Test14 : public KConfigSkeleton
     // kamoso
     QUrl mPicturesDir;
     double mBrightness;
-
-  private:
 };
 
 #endif

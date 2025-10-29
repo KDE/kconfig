@@ -37,8 +37,6 @@ class TestTranslationQt : public KConfigSkeleton
 
     // General
     bool mAutoSave;
-
-  private:
 };
 
 }

@@ -58,8 +58,6 @@ class Test10 : public KConfigSkeleton
     // Foo
     QUrl mFooBar;
     QList<QUrl> mBarFoo;
-
-  private:
 };
 
 #endif

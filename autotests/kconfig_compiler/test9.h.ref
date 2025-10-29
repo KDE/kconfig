@@ -100,8 +100,6 @@ class Test9 : public KConfigSkeleton
     QStringList mMyStringList;
     QStringList mMyPathList;
     QStringList mMyPathsList2;
-
-  private:
 };
 
 #endif

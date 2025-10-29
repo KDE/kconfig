@@ -43,8 +43,6 @@ class QMakeBuilderSettings : public KConfigSkeleton
 
     // test_group
     QString mTest_entry;
-
-  private:
 };
 
 #endif

@@ -72,8 +72,6 @@ class TestPropertiesMinMax : public KConfigSkeleton
 
     // Something
     int mBar;
-
-  private:
 };
 
 #endif

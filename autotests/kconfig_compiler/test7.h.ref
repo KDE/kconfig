@@ -110,8 +110,6 @@ class Test7 : public KConfigSkeleton
     // Bar$(Number)
     QString mFooBar;
     int mAge;
-
-  private:
 };
 
 #endif

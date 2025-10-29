@@ -94,8 +94,6 @@ class TestSubgroups : public KConfigSkeleton
 
     // SimpleGroup
     bool mFoobar;
-
-  private:
 };
 
 #endif

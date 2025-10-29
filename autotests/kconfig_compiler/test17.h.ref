@@ -105,8 +105,6 @@ class Test17 : public KConfigSkeleton
     static QUrl defaultPicturesDirValue_helper();
     double mBrightness;
     static double defaultBrightnessValue_helper();
-
-  private:
 };
 
 #endif

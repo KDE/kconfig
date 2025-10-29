@@ -96,8 +96,6 @@ class TestTime : public KConfigSkeleton
     QTime mFirstTime;
     QTime mSecondTime;
     QTime mThirdTime;
-
-  private:
 };
 
 #endif

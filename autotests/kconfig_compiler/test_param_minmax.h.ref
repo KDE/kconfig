@@ -56,8 +56,6 @@ class TestParamMinMax : public KConfigSkeleton
 
     // Something
     double mFoo[6];
-
-  private:
 };
 
 #endif

@@ -80,8 +80,6 @@ class Test8c : public KConfigSkeleton
     // Group
     QFont mFont;
     QFont mTitleFont;
-
-  private:
 };
 
 #endif

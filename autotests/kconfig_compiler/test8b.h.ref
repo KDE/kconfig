@@ -111,8 +111,6 @@ class Test8b : public Test8a
     // Group8b2
     bool mFooBoo;
     uint mPort;
-
-  private:
 };
 
 #endif

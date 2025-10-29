@@ -37,8 +37,6 @@ class TestTranslationKde : public KConfigSkeleton
 
     // General
     bool mAutoSave;
-
-  private:
 };
 
 }

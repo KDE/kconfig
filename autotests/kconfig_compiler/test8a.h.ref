@@ -70,8 +70,6 @@ class Test8a : public KConfigSkeleton
     // Group
     QFont mFont;
     QFont mTitleFont;
-
-  private:
 };
 
 #endif

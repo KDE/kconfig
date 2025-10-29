@@ -101,8 +101,6 @@ class Test16 : public KConfigSkeleton
     QUrl mPicturesDir;
     double mBrightness;
     bool mStartsWithUppercase;
-
-  private:
 };
 
 #endif

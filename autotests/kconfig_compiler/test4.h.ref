@@ -217,8 +217,6 @@ class Test4 : public KConfigSkeleton
     QString mColorString[11];
     QString mFooBar;
     int mAge;
-
-  private:
 };
 
 #endif

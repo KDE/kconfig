@@ -151,8 +151,6 @@ class Test5 : public KConfigSkeleton
     int mMouseAction[3];
     QString mFooBar;
     int mAge;
-
-  private:
 };
 
 #endif

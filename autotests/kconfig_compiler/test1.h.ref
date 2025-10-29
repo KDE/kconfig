@@ -262,8 +262,6 @@ class Test1 : public KConfigSkeleton
     QStringList mMyStringList;
     QStringList mMyStringListHidden;
     int mMyNumber;
-
-  private:
 };
 
 #endif

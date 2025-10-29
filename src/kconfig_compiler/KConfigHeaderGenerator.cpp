@@ -664,7 +664,9 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
         }
     }
 
-    stream() << "\n  private:\n";
+    if (cfg().itemAccessors || parseResult.hasNonModifySignals) {
+        stream() << "\n  private:\n";
+    }
     if (cfg().itemAccessors) {
         for (const auto *entry : std::as_const(parseResult.entries)) {
             const QString declType =

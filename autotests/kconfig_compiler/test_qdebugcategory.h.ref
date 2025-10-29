@@ -112,8 +112,6 @@ class TestQCategory : public KConfigSkeleton
     // Bar$(Number)
     QString mFooBar;
     int mAge;
-
-  private:
 };
 
 #endif

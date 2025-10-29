@@ -35,8 +35,6 @@ class Test12 : public KConfigSkeleton
 
     // muon
     QList<QUrl> mRnRSource;
-
-  private:
 };
 
 #endif
