@@ -39,12 +39,14 @@ function(kconfig_compiler_test ARG_NAME)
     KCONFIG_ADD_KCFG_FILES(${ARG_NAME} "${ARG_KCFGC}" ${_moc})
     target_link_libraries(${ARG_NAME} Qt6::Test Qt6::Qml KF6::ConfigGui)
 
+    message( "ARG_UNPARSED_ARGUMENTS:" "${ARG_UNPARSED_ARGUMENTS}")
     ecm_add_test(TEST_NAME ${ARG_NAME}_cmake ${ARG_MAIN} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
     get_filename_component(_kcfg_we "${ARG_KCFG}" NAME_WE)
     configure_file("${ARG_KCFG}" "${_kcfg_we}_cmake.kcfg" COPYONLY)
     kconfig_target_kcfg_file(${ARG_NAME}_cmake FILE "${CMAKE_CURRENT_BINARY_DIR}/${_kcfg_we}_cmake.kcfg" CLASS_NAME "${ARG_CLASS_NAME}" ${_moc} ${ARG_UNPARSED_ARGUMENTS})
     target_link_libraries(${ARG_NAME}_cmake Qt6::Test Qt6::Qml KF6::ConfigGui)
     add_dependencies(${ARG_NAME}_cmake ${ARG_NAME})
+
 endfunction()
 
 kconfig_compiler_test(Test1 PARENT_IN_CONSTRUCTOR MUTATORS)

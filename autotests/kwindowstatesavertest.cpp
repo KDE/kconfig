@@ -39,7 +39,7 @@ void KWindowStateSaverTest::testTopLevelDialog()
         dlg.show();
         QTest::qWait(10); // give the window time to show up, so we simulate a user-triggered resize
         dlg.resize(dlgSize);
-        QTest::qWait(500); // give the state saver time to trigger
+        QTest::qWait(100); // give the state saver time to trigger
         QCOMPARE(dlg.size(), dlgSize);
     }
 
@@ -70,7 +70,7 @@ void KWindowStateSaverTest::testSubDialog()
         dlg->show();
         QTest::qWait(10); // give the window time to show up, so we simulate a user-triggered resize
         dlg->resize(dlgSize);
-        QTest::qWait(500); // give the state saver time to trigger
+        QTest::qWait(100); // give the state saver time to trigger
         QCOMPARE(dlg->size(), dlgSize);
         delete dlg;
     }

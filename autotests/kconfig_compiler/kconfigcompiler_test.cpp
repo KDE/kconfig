@@ -14,8 +14,7 @@
 #include <QString>
 #include <QTest>
 
-// QT5 TODO QTEST_GUILESS_MAIN(KConfigCompiler_Test)
-QTEST_MAIN(KConfigCompiler_Test)
+QTEST_GUILESS_MAIN(KConfigCompiler_Test)
 
 typedef const char *CompilerTestSet[];
 
