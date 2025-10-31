@@ -13,16 +13,6 @@
 #include "kconfigdata_p.h"
 #include "kconfiginibackendreader_p.h"
 
-#include <QDateTime>
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QFileInfo>
-#include <QLockFile>
-#include <QSaveFile>
-#include <QStandardPaths>
-#include <qplatformdefs.h>
-
 using namespace Qt::StringLiterals;
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
@@ -33,8 +23,7 @@ QString warningProlog(const KConfigIniBackendAbstractDevice *device, int line)
 {
     // %2 then %1 i.e. int before QString, so that the QString is last
     // This avoids a wrong substitution if the fileName itself contains %1
-
-    return QStringLiteral("KConfigIni: In file %2, line %1:").arg(line).arg(device->id());
+    return u"KConfigIni: In file %2, line %1:"_s.arg(line).arg(device->id());
 }
 } // anonymous namespace
 
@@ -78,7 +67,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     const int langIdx = currentLocale.indexOf('_');
     const QByteArray currentLanguage = langIdx >= 0 ? currentLocale.left(langIdx) : currentLocale;
 
-    QString currentGroup = QStringLiteral("<default>");
+    QString currentGroup = u"<default>"_s;
     bool bDefault = options & ParseDefaults;
     bool allowExecutableValues = options & ParseExpansions;
 
@@ -334,7 +323,7 @@ void KConfigIniBackend::writeEntries(const QByteArray &locale, QIODevice &file, 
     bool groupIsImmutable = false;
     for (const auto &[key, entry] : map) {
         // Either process the default group or all others
-        if ((key.mGroup != QStringLiteral("<default>")) == defaultGroup) {
+        if ((key.mGroup != u"<default>"_s) == defaultGroup) {
             continue; // skip
         }
         // Either process the primary group or all others
@@ -526,33 +515,15 @@ bool KConfigIniBackend::lock()
 {
     Q_ASSERT(mDeviceInterface->isDeviceReadable());
 
-    m_mutex.lock();
-
     // Default staleLockTime is 30 seconds. Set it lower since KConfig is not expected to hold the
     // lock for long. The tryLockTimeout is set to staleLockTime*2+buffer, to cover the case when
     // the file modification date is in the future, and the fallback to prevent blocking forever.
     constexpr std::chrono::milliseconds tryLockTimeout = std::chrono::seconds{45};
 
-    if (!lockFile) {
-#ifdef Q_OS_ANDROID
-        // handle content Uris properly
-        if (filePath().startsWith(QLatin1String("content://"))) {
-            // we can't create file at an arbitrary location, so use internal storage to create one
-
-            // NOTE: filename can be the same, but because this lock is short lived we may never have a collision
-            lockFile = std::make_unique<QLockFile>(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/")
-                                                   + QFileInfo(filePath()).fileName() + QLatin1String(".lock"));
-        } else {
-            lockFile = std::make_unique<QLockFile>(filePath() + QLatin1String(".lock"));
-        }
-#else
-        lockFile = mDeviceInterface->lockFile();
-#endif
-    }
+    lockFile = mDeviceInterface->lockFile();
 
     if (!lockFile->tryLock(tryLockTimeout)) {
         qCWarning(KCONFIG_CORE_LOG) << "Failed to lock file" << lockFile->fileName() << "with error" << int(lockFile->error());
-        m_mutex.unlock();
     }
 
     return lockFile->isLocked();
@@ -561,7 +532,6 @@ bool KConfigIniBackend::lock()
 void KConfigIniBackend::unlock()
 {
     lockFile.reset();
-    m_mutex.unlock();
 }
 
 bool KConfigIniBackend::isLocked() const
