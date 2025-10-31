@@ -1218,6 +1218,13 @@ public:
      */
     explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
+    /*!
+     * Constructor
+     *
+     * \a config backing configuration object to use
+     *
+     * \since 6.20
+     */
     explicit KCoreConfigSkeleton(const std::shared_ptr<KConfig> &config, QObject *parent = nullptr);
 
     ~KCoreConfigSkeleton() override;
