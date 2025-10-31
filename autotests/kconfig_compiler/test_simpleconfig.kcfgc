@@ -3,4 +3,4 @@ ClassName=TestSimpleConfig
 File=test_simpleconfig.kcfg
 ParentInConstructor=true
 Mutators=true
-SimpleConfig=true
+KconfigConstructor=true
