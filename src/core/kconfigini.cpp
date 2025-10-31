@@ -22,12 +22,6 @@
 #include <QStandardPaths>
 #include <qplatformdefs.h>
 
-#ifndef Q_OS_WIN
-#include <unistd.h> // getuid, close
-#endif
-#include <fcntl.h> // open
-#include <sys/types.h> // uid_t
-
 using namespace Qt::StringLiterals;
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
