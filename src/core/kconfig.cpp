@@ -271,8 +271,11 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
     reparseConfiguration();
 }
 
-KConfig::KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode, QStandardPaths::StandardLocation resourceType)
-    : d_ptr(new KConfigPrivate(mode, resourceType, std::make_unique<KConfigIniBackendQIODevice>(device)))
+KConfig::KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode)
+    : d_ptr(new KConfigPrivate(mode,
+                               QStandardPaths::StandardLocation::GenericConfigLocation // a default location type
+                               ,
+                               std::make_unique<KConfigIniBackendQIODevice>(device)))
 {
     d_ptr->configState = d_ptr->mBackend.accessMode();
 

@@ -15,11 +15,9 @@
 
 #include <kconfigcore_export.h>
 
-#include <QByteArray>
-#include <QList>
+#include <QIODevice>
 #include <QStandardPaths>
 #include <QString>
-#include <QVariant>
 
 class KConfigGroup;
 class KConfigPrivate;
@@ -123,18 +121,28 @@ public:
      * \a mode How global settings should affect the configuration
      *                     options exposed by this KConfig object
      *
-     * \a type The standard directory to look for the configuration
-     *                     file in
-     *
      * \sa KSharedConfig::openConfig()
      */
     explicit KConfig(const QString &file = QString(),
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
-    explicit KConfig(const std::shared_ptr<QIODevice> &device,
-                     OpenFlags mode = FullConfig,
-                     QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
+    /*!
+     * Creates a KConfig object to manipulate a configuration stored in \a device.
+     *
+     * \a mode determines whether the user or global settings will be allowed
+     * to influence the values returned by this object.  See OpenFlags for
+     * more details.
+     *
+     * \a device The device storing the configuration. If must be opened and have the required
+     *                     QIODeviceBase::OpenMode depending if we need to only read or also write to the device.
+     *
+     * \a mode How global settings should affect the configuration
+     *                     options exposed by this KConfig object. Defaults to SimpleConfig contrary to the other constructor.
+     *
+     * \since 6.21
+     */
+    explicit KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode = SimpleConfig);
 
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
     /*!
