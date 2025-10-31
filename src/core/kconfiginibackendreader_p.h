@@ -11,8 +11,17 @@
 #include <QLockFile>
 #include <QSaveFile>
 
+#ifdef Q_OS_ANDROID
+#include <QStandardPaths>
+#endif
+
 #include <chrono>
 #include <qtpreprocessorsupport.h>
+
+#ifndef Q_OS_WIN
+#include <unistd.h> // getuid
+#endif
+#include <sys/types.h> // uid_t
 
 #include "kconfig_core_log_settings.h"
 
