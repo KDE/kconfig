@@ -31,7 +31,7 @@
 #        GENERATE_MOC
 #        QML_REGISTRATION
 #        QML_UNCREATABLE
-#        SIMPLE_CONFIG
+#        KCONFIG_CONSTRUCTOR
 #    Single value arguments are:
 #        FILE
 #        CLASS_NAME
@@ -190,7 +190,7 @@ function(kconfig_target_kcfg_file ARG_TARGET)
         GENERATE_MOC
         QML_REGISTRATION
         QML_UNCREATABLE
-        SIMPLE_CONFIG
+        KCONFIG_CONSTRUCTOR
     )
     set(_single_arguments
         FILE
