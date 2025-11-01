@@ -100,6 +100,17 @@ static const QString s_test_subdir{QStringLiteral("kconfigtest_subdir/")};
 static const QString s_kconfig_test_subdir(s_test_subdir + QLatin1String("kconfigtest"));
 static const QString s_kconfig_test_illegal_object_path(s_test_subdir + QLatin1String("kconfig-test"));
 
+static const std::chrono::nanoseconds s_nanoseconds_entry{1};
+static const std::chrono::microseconds s_microseconds_entry{2};
+static const std::chrono::milliseconds s_milliseconds_entry{3};
+static const std::chrono::seconds s_seconds_entry{4};
+static const std::chrono::minutes s_minutes_entry{5};
+static const std::chrono::hours s_hours_entry{6};
+static const std::chrono::days s_days_entry{7};
+static const std::chrono::weeks s_weeks_entry{8};
+static const std::chrono::years s_years_entry{9};
+static const std::chrono::months s_months_entry{10};
+
 #ifndef Q_OS_WIN
 void initLocale()
 {
@@ -217,6 +228,18 @@ void KConfigTest::initTestCase()
     cg.writeEntry("flags-bit0", Flags(bit0));
     cg.writeEntry("flags-bit0-bit1", Flags(bit0 | bit1));
 #endif
+
+    cg = KConfigGroup(&sc, QStringLiteral("Chrono Types"));
+    cg.writeEntry("nanosecondsEntry", s_nanoseconds_entry);
+    cg.writeEntry("microsecondsEntry", s_microseconds_entry);
+    cg.writeEntry("millisecondsEntry", s_milliseconds_entry);
+    cg.writeEntry("secondsEntry", s_seconds_entry);
+    cg.writeEntry("minutesEntry", s_minutes_entry);
+    cg.writeEntry("hoursEntry", s_hours_entry);
+    cg.writeEntry("daysEntry", s_days_entry);
+    cg.writeEntry("weeksEntry", s_weeks_entry);
+    cg.writeEntry("yearsEntry", s_years_entry);
+    cg.writeEntry("monthsEntry", s_months_entry);
 
     cg = KConfigGroup(&sc, QStringLiteral("ParentGroup"));
     KConfigGroup cg1(&cg, QStringLiteral("SubGroup1"));
@@ -2226,6 +2249,25 @@ void KConfigTest::testKAuthorizeEnums()
 
     QVERIFY(!KAuthorized::authorize((KAuthorized::GenericRestriction)0));
     QVERIFY(!KAuthorized::authorizeAction((KAuthorized::GenericAction)0));
+}
+
+void KConfigTest::testChrono()
+{
+    using namespace std::chrono_literals;
+
+    KConfig sc2(s_kconfig_test_subdir);
+    KConfigGroup sc3(&sc2, QStringLiteral("Chrono Types"));
+
+    QCOMPARE(sc3.readEntry("nanosecondsEntry", 0ns), s_nanoseconds_entry);
+    QCOMPARE(sc3.readEntry("microsecondsEntry", 0us), s_microseconds_entry);
+    QCOMPARE(sc3.readEntry("millisecondsEntry", 0ms), s_milliseconds_entry);
+    QCOMPARE(sc3.readEntry("secondsEntry", 0s), s_seconds_entry);
+    QCOMPARE(sc3.readEntry("minutesEntry", 0min), s_minutes_entry);
+    QCOMPARE(sc3.readEntry("hoursEntry", 0h), s_hours_entry);
+    QCOMPARE(sc3.readEntry("daysEntry", std::chrono::days(0)), s_days_entry);
+    QCOMPARE(sc3.readEntry("weeksEntry", std::chrono::weeks(0)), s_weeks_entry);
+    QCOMPARE(sc3.readEntry("yearsEntry", std::chrono::years(0)), s_years_entry);
+    QCOMPARE(sc3.readEntry("monthsEntry", std::chrono::months(0)), s_months_entry);
 }
 
 void KConfigTest::testKdeglobalsVsDefault()

@@ -353,6 +353,27 @@ public:
     QList<T> readEntry(const char *key, const QList<T> &aDefault) const;
 
     /*!
+     * \overload
+     *
+     * Overload for readEntry(const QString&, std::chrono::duration<Rep, Period>)
+     *
+     * \a key name of key, encoded in UTF-8
+     *
+     * \since 6.22
+     */
+    template<typename Rep, typename Period>
+    std::chrono::duration<Rep, Period> readEntry(const char *key, std::chrono::duration<Rep, Period> defaultValue) const;
+
+    /*!
+     * Reads a std::chrono duration from the config object with the given \a key. If the config
+     * contains no specified \a key, the \a value will be returned instead.
+     *
+     * \since 6.22
+     */
+    template<typename Rep, typename Period>
+    std::chrono::duration<Rep, Period> readEntry(const QString &key, std::chrono::duration<Rep, Period> defaultValue) const;
+
+    /*!
      * Reads a list of strings from the config object with semicolons separating
      * them (i.e. following desktop entry spec separator semantics).
      *
@@ -569,6 +590,27 @@ public:
      */
     template<typename T>
     void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal);
+
+    /*!
+     * \overload
+     *
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     *
+     * \since 6.22
+     */
+    template<typename Rep, typename Period>
+    void writeEntry(const QString &key, std::chrono::duration<Rep, Period> value, WriteConfigFlags pFlags = Normal);
+
+    /*!
+     * \overload
+     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     *
+     * \a key name of key, encoded in UTF-8
+     *
+     * \since 6.22
+     */
+    template<typename Rep, typename Period>
+    void writeEntry(const char *key, std::chrono::duration<Rep, Period> value, WriteConfigFlags pFlags = Normal);
 
     /*!
      * Writes a list of strings to the config object, following XDG
@@ -924,6 +966,18 @@ QList<T> KConfigGroup::readEntry(const char *key, const QList<T> &defaultValue) 
     return list;
 }
 
+template<typename Rep, typename Period>
+std::chrono::duration<Rep, Period> KConfigGroup::readEntry(const char *key, std::chrono::duration<Rep, Period> value) const
+{
+    return std::chrono::duration<Rep, Period>(readEntry(key, value.count()));
+}
+
+template<typename Rep, typename Period>
+std::chrono::duration<Rep, Period> KConfigGroup::readEntry(const QString &key, std::chrono::duration<Rep, Period> value) const
+{
+    return std::chrono::duration<Rep, Period>(readEntry(key, value.count()));
+}
+
 template<typename T>
 void KConfigGroup::writeEntry(const char *key, const T &value, WriteConfigFlags pFlags)
 {
@@ -942,6 +996,18 @@ void KConfigGroup::writeEntry(const char *key, const QList<T> &list, WriteConfig
     }
 
     writeEntry(key, data, pFlags);
+}
+
+template<typename Rep, typename Period>
+void KConfigGroup::writeEntry(const QString &key, std::chrono::duration<Rep, Period> value, WriteConfigFlags pFlags)
+{
+    writeEntry(key, value.count(), pFlags);
+}
+
+template<typename Rep, typename Period>
+void KConfigGroup::writeEntry(const char *key, std::chrono::duration<Rep, Period> value, WriteConfigFlags pFlags)
+{
+    writeEntry(key, value.count(), pFlags);
 }
 
 #endif // KCONFIGGROUP_H
