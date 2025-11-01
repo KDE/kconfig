@@ -110,6 +110,16 @@ QVConversions(QVariantList, unsupported, supported);
 QVConversions(QUrl, supported, supported);
 QVConversions(QList<QUrl>, unsupported, supported);
 QVConversions(QUuid, supported, supported);
+QVConversions(std::chrono::nanoseconds, unsupported, supported);
+QVConversions(std::chrono::microseconds, unsupported, supported);
+QVConversions(std::chrono::milliseconds, unsupported, supported);
+QVConversions(std::chrono::seconds, unsupported, supported);
+QVConversions(std::chrono::minutes, unsupported, supported);
+QVConversions(std::chrono::hours, unsupported, supported);
+QVConversions(std::chrono::days, unsupported, supported);
+QVConversions(std::chrono::weeks, unsupported, supported);
+QVConversions(std::chrono::years, unsupported, supported);
+QVConversions(std::chrono::months, unsupported, supported);
 }
 
 #endif

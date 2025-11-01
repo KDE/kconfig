@@ -231,7 +231,8 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     // if a type handler is added here you must add a QVConversions definition
     // to kconfigconversioncheck_p.h, or KConfigConversionCheck::to_QVariant will not allow
     // readEntry<T> to convert to QVariant.
-    switch (static_cast<QMetaType::Type>(aDefault.userType())) {
+    const int metaTypeId = aDefault.typeId();
+    switch (static_cast<QMetaType::Type>(metaTypeId)) {
     case QMetaType::UnknownType:
         return QVariant();
     case QMetaType::QString:
@@ -390,6 +391,88 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
 
     default:
         break;
+    }
+
+    if (metaTypeId == qMetaTypeId<std::chrono::nanoseconds>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::nanoseconds(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::microseconds>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::microseconds(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::milliseconds>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::milliseconds(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::seconds>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::seconds(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::minutes>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::minutes(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::hours>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::hours(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::days>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::days(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::weeks>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::weeks(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::years>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::years(count));
+        }
+    } else if (metaTypeId == qMetaTypeId<std::chrono::months>()) {
+        bool ok;
+        const int count = value.toInt(&ok);
+        if (!ok) {
+            return QVariant();
+        } else {
+            return QVariant::fromValue(std::chrono::months(count));
+        }
     }
 
     qCWarning(KCONFIG_CORE_LOG) << "unhandled type " << aDefault.typeName();
@@ -895,7 +978,8 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
     // if a type handler is added here you must add a QVConversions definition
     // to kconfigconversioncheck_p.h, or KConfigConversionCheck::to_QVariant will not allow
     // writeEntry<T> to convert to QVariant.
-    switch (static_cast<QMetaType::Type>(value.userType())) {
+    const int metaTypeId = value.typeId();
+    switch (static_cast<QMetaType::Type>(metaTypeId)) {
     case QMetaType::UnknownType:
         data = "";
         break;
@@ -1019,7 +1103,29 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
         data = QUrl(value.toUrl()).toString().toUtf8();
         break;
     default:
-        qCWarning(KCONFIG_CORE_LOG) << "KConfigGroup::writeEntry - unhandled type" << value.typeName() << "in group" << name();
+        if (metaTypeId == qMetaTypeId<std::chrono::nanoseconds>()) {
+            data = QByteArray::number(value.value<std::chrono::nanoseconds>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::microseconds>()) {
+            data = QByteArray::number(value.value<std::chrono::microseconds>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::milliseconds>()) {
+            data = QByteArray::number(value.value<std::chrono::milliseconds>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::seconds>()) {
+            data = QByteArray::number(value.value<std::chrono::seconds>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::minutes>()) {
+            data = QByteArray::number(value.value<std::chrono::minutes>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::hours>()) {
+            data = QByteArray::number(value.value<std::chrono::hours>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::days>()) {
+            data = QByteArray::number(value.value<std::chrono::days>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::weeks>()) {
+            data = QByteArray::number(value.value<std::chrono::weeks>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::years>()) {
+            data = QByteArray::number(value.value<std::chrono::years>().count());
+        } else if (metaTypeId == qMetaTypeId<std::chrono::months>()) {
+            data = QByteArray::number(value.value<std::chrono::months>().count());
+        } else {
+            qCWarning(KCONFIG_CORE_LOG) << "KConfigGroup::writeEntry - unhandled type" << value.typeName() << "in group" << name();
+        }
     }
 
     writeEntry(key, data, flags);
