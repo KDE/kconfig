@@ -91,6 +91,7 @@ private Q_SLOTS:
     void testThreads();
 
     void testKdeglobalsVsDefault();
+    void testChrono();
 
     // should be last
     void testSyncOnExit();
