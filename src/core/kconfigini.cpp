@@ -71,6 +71,47 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
         return file.exists() ? ParseOpenError : ParseOk;
     }
 
+    // get file size, don't try to parse empty files
+    const qint64 fileSize = file.size();
+    if (fileSize <= 0) {
+        return ParseOk;
+    }
+
+    // read the content in chunks, if we see 0 bytes, abort with parse error
+    QByteArray buffer;
+    qint64 readBytes = 0;
+    const qint64 readChunkSize = qMin(fileSize, 256 * 1024);
+    while (true) {
+        // make more space and try to read in the data
+        Q_ASSERT(buffer.size() == readBytes);
+        buffer.resize(buffer.size() + readChunkSize);
+        const qint64 newlyReadBytes = file.read(buffer.data() + readBytes, readChunkSize);
+
+        // -1 is the error case, abort
+        if (newlyReadBytes < 0) {
+            // we have atm no extra error
+            qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, -1) << "Read error, aborting parsing.";
+            return ParseOpenError;
+        }
+
+        // scan new bytes for 0 bytes, that means corrupted file or some random binary as input
+        // see bug 510966 & 481702
+        if (QByteArrayView(buffer.data() + readBytes, newlyReadBytes).contains(0)) {
+            // we have atm no extra error
+            qCWarning(KCONFIG_CORE_LOG) << warningProlog(file, -1) << "Found null byte, aborting parsing.";
+            return ParseOpenError;
+        }
+
+        // adjust readBytes and buffer size to read bytes
+        readBytes += newlyReadBytes;
+        buffer.resize(readBytes);
+
+        // 0 means end of file
+        if (newlyReadBytes == 0) {
+            break;
+        }
+    }
+
     QList<QString> immutableGroups;
 
     bool fileOptionImmutable = false;
@@ -78,9 +119,9 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     bool groupSkip = false;
 
     int lineNo = 0;
+
     // on systems using \r\n as end of line, \r will be taken care of by
     // trim() below
-    QByteArray buffer = file.readAll();
     QByteArrayView contents(buffer.data(), buffer.size());
 
     const int langIdx = currentLocale.indexOf('_');
