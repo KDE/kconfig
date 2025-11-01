@@ -25,7 +25,8 @@ public:
     }
     QString mCurrentGroup;
 
-    KSharedConfig::Ptr mConfig; // pointer to KConfig
+    // store the backind config only should be set
+    KSharedConfig::Ptr mConfig;
     std::shared_ptr<KConfig> config;
 
     KConfigSkeletonItem::List mItems;
