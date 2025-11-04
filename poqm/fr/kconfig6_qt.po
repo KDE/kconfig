@@ -1057,7 +1057,7 @@ msgid ""
 "string"
 msgstr ""
 "Type de la variable. Utiliser « bool » pour une variable booléenne, sinon "
-"elle sera considérée comme une chaîne"
+"elle sera considérée comme une chaine"
 
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
