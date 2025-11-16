@@ -79,5 +79,5 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
     headerExtension = codegenConfig.value(QStringLiteral("HeaderExtension"), QStringLiteral("h")).toString();
     qmlRegistration = codegenConfig.value(QStringLiteral("QmlRegistration")).toBool();
     qmlUncreatable = codegenConfig.value(QStringLiteral("QmlUncreatable")).toBool();
-    cfgSimpleConfig = codegenConfig.value(QStringLiteral("KconfigConstructor")).toBool();
+    kConfigConstructor = codegenConfig.value(QStringLiteral("KconfigConstructor")).toBool();
 }
