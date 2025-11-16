@@ -347,7 +347,7 @@ void KConfigHeaderGenerator::createConstructor()
         } else {
             stream() << " KSharedConfig::Ptr config" << (parseResult.parameters.isEmpty() ? " = KSharedConfig::openConfig()" : ", ");
         }
-    } else if (cfg().cfgSimpleConfig) {
+    } else if (cfg().kConfigConstructor) {
         stream() << " const std::shared_ptr<KConfig> &config";
     }
     if (cfg().forceStringFilename && parseResult.cfgStateConfig) {
@@ -368,7 +368,7 @@ void KConfigHeaderGenerator::createConstructor()
     }
 
     if (cfg().parentInConstructor) {
-        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty() || cfg().cfgSimpleConfig) {
+        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty() || cfg().kConfigConstructor) {
             stream() << ",";
         }
         stream() << " QObject *parent = nullptr";

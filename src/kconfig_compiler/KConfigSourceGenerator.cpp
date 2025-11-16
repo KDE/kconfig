@@ -191,7 +191,7 @@ void KConfigSourceGenerator::createSingletonImplementation()
                 stream() << "KSharedConfig::openStateConfig(" << arg << ")";
             } else if (isString) {
                 stream() << "KSharedConfig::openConfig(" << arg << ")";
-            } else if (cfg().cfgSimpleConfig) {
+            } else if (cfg().kConfigConstructor) {
                 stream() << arg << ")";
             } else {
                 stream() << "std::move(" << arg << ")";
@@ -233,7 +233,7 @@ void KConfigSourceGenerator::createConstructorParameterList()
             stream() << " const QString& config";
         }
         stream() << (parseResult.parameters.isEmpty() ? "" : ",");
-    } else if (cfg().cfgSimpleConfig) {
+    } else if (cfg().kConfigConstructor) {
         stream() << " const std::shared_ptr<KConfig> &config" << (parseResult.parameters.isEmpty() ? "" : ",");
     }
 
@@ -245,7 +245,7 @@ void KConfigSourceGenerator::createConstructorParameterList()
     }
 
     if (cfg().parentInConstructor) {
-        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty() || cfg().cfgSimpleConfig) {
+        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty() || cfg().kConfigConstructor) {
             stream() << ",";
         }
         stream() << " QObject *parent";
@@ -259,7 +259,7 @@ void KConfigSourceGenerator::createParentConstructorCall()
         stream() << " KSharedConfig::openStateConfig(QStringLiteral( \"" << parseResult.cfgFileName << "\") ";
     } else if (!parseResult.cfgFileName.isEmpty()) {
         stream() << " QStringLiteral( \"" << parseResult.cfgFileName << "\" ";
-    } else if (cfg().cfgSimpleConfig) {
+    } else if (cfg().kConfigConstructor) {
         stream() << "config";
     }
     if (parseResult.cfgFileNameArg) {
