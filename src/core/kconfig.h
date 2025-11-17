@@ -121,6 +121,9 @@ public:
      * \a mode How global settings should affect the configuration
      *                     options exposed by this KConfig object
      *
+     * \a type The standard directory to look for the configuration
+     *                     file in
+     *
      * \sa KSharedConfig::openConfig()
      */
     explicit KConfig(const QString &file = QString(),

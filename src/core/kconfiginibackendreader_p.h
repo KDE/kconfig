@@ -126,7 +126,6 @@ public:
 
     // The local file path for path based devices or a pseudo name for all others.
     [[nodiscard]] virtual QString id() const = 0;
-    [[nodiscard]] virtual qint64 deviceSize() const = 0;
     [[nodiscard]] virtual bool isDeviceReadable() const = 0;
     [[nodiscard]] virtual bool canWriteToDevice() const = 0;
     [[nodiscard]] virtual bool writeToDevice(const std::function<void(QIODevice &)> &write) = 0;
@@ -142,11 +141,6 @@ public:
     [[nodiscard]] QString id() const override
     {
         return u"((NullDevice))"_s;
-    }
-
-    [[nodiscard]] qint64 deviceSize() const override
-    {
-        return 0;
     }
 
     [[nodiscard]] bool isDeviceReadable() const override
@@ -201,15 +195,6 @@ public:
     [[nodiscard]] bool isDeviceReadable() const override
     {
         return !m_localFilePath.isEmpty();
-    }
-
-    [[nodiscard]] qint64 deviceSize() const override
-    {
-        QFileInfo file(m_localFilePath);
-        if (file.exists()) {
-            return file.size();
-        }
-        return 0;
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
@@ -404,14 +389,6 @@ public:
     KConfigIniBackendQIODevice(const std::shared_ptr<QIODevice> &device)
         : m_device(device)
     {
-    }
-
-    [[nodiscard]] qint64 deviceSize() const override
-    {
-        if (m_device->open(QIODevice::ReadOnly)) {
-            return m_device->size();
-        }
-        return 0;
     }
 
     [[nodiscard]] QString id() const override

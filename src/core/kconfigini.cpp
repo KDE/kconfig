@@ -52,7 +52,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
         return ParseOk;
     }
 
-    if (mDeviceInterface->deviceSize() == 0) {
+    if (file->size() == 0) {
         return ParseOk;
     }
 
@@ -75,7 +75,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     uint errorCount = 0;
 
     QDataStream stream(file.get());
-    const qint64 readBufferSize = std::min(mDeviceInterface->deviceSize(), qint64(128 * 1024) /* 128 KB */);
+    const qint64 readBufferSize = std::min(file->size(), qint64(128 * 1024) /* 128 KB */);
     const uint maximumSizeWithoutNewLine = 1.5 * 1024 * 1024; // 1.5 MB
     bool newLineFound = false;
 
