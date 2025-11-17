@@ -13,7 +13,7 @@
 
 #include <QDebug>
 
-#include "test_simpleconfig.h"
+#include "test_kconfigconstructor.h"
 
 int main(int argc, char **argv)
 {
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     buffer->seek(0);
     std::shared_ptr<KConfig> config = std::make_shared<KConfig>(buffer);
 
-    TestSimpleConfig t(config);
+    TestKConfigConstructor t(config);
 
     bool ok = t.myString() == QLatin1String("The String");
 
