@@ -3,4 +3,4 @@ ClassName=TestKConfigConstructor
 File=test_kconfigconstructor.kcfg
 ParentInConstructor=true
 Mutators=true
-KconfigConstructor=true
+KConfigConstructor=true
