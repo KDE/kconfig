@@ -1223,7 +1223,7 @@ public:
      *
      * \a config backing configuration object to use
      *
-     * \since 6.20
+     * \since 6.21
      */
     explicit KCoreConfigSkeleton(std::unique_ptr<KConfig> config, QObject *parent = nullptr);
 
