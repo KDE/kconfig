@@ -52,8 +52,6 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-include(CMakeParseArguments)
-
 function(KCONFIG_ADD_KCFG_FILES _target_or_source_var)
     set(options GENERATE_MOC USE_RELATIVE_PATH)
     cmake_parse_arguments(ARG "${options}" "" "" ${ARGN})
