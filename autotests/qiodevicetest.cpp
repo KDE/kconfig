@@ -90,13 +90,20 @@ private Q_SLOTS:
         QCOMPARE(extra.readEntry("testKG"), QStringLiteral("1"));
 
         auto buffer = std::make_shared<QBuffer>();
-        QVERIFY(buffer->open(QIODevice::ReadOnly | QIODevice::Text));
+        QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
         {
             KConfig config(buffer, KConfig::OpenFlag::CascadeConfig);
             config.addConfigSources({extrafile.fileName()});
             QVERIFY(config.hasGroup(u"Extra"_s));
-            config.group(u"Extra"_s).writeEntry("testKG", "1");
+            QCOMPARE(config.group(u"Extra"_s).readEntry("testKG"), u"1"_s);
+
+            config.group(u"Extra"_s).writeEntry("testKG", "2");
+            QCOMPARE(config.group(u"Extra"_s).readEntry("testKG"), u"2"_s);
         }
+        buffer->seek(0);
+        QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=2\n");
+        extrafile.seek(0);
+        QCOMPARE(extrafile.size(), 0);
 
         QVERIFY(extrafile.remove());
     }
