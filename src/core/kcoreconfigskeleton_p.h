@@ -27,7 +27,7 @@ public:
 
     // store the backend config only should be set
     KSharedConfig::Ptr mConfig;
-    std::shared_ptr<KConfig> config;
+    std::unique_ptr<KConfig> config;
 
     KConfigSkeletonItem::List mItems;
     KConfigSkeletonItem::Dict mItemDict;

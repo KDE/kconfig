@@ -1251,15 +1251,15 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *pa
     , d(new KCoreConfigSkeletonPrivate)
 {
     // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
-    d->mConfig = std::move(pConfig);
+    d->mConfig = pConfig;
 }
 
-KCoreConfigSkeleton::KCoreConfigSkeleton(const std::shared_ptr<KConfig> &config, QObject *parent)
+KCoreConfigSkeleton::KCoreConfigSkeleton(std::unique_ptr<KConfig> config, QObject *parent)
     : QObject(parent)
     , d(new KCoreConfigSkeletonPrivate)
 {
     // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
-    d->config = config;
+    d->config = std::move(config);
 }
 
 KCoreConfigSkeleton::~KCoreConfigSkeleton()

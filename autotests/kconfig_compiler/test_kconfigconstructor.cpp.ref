@@ -3,8 +3,8 @@
 
 #include "test_kconfigconstructor.h"
 
-TestKConfigConstructor::TestKConfigConstructor( const std::shared_ptr<KConfig> &config, QObject *parent )
-  : KConfigSkeleton(config)
+TestKConfigConstructor::TestKConfigConstructor( std::unique_ptr<KConfig> config, QObject *parent )
+  : KConfigSkeleton(std::move(config))
 {
   setParent(parent);
   setCurrentGroup( QStringLiteral( "MyOptions" ) );

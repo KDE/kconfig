@@ -1225,7 +1225,7 @@ public:
      *
      * \since 6.20
      */
-    explicit KCoreConfigSkeleton(const std::shared_ptr<KConfig> &config, QObject *parent = nullptr);
+    explicit KCoreConfigSkeleton(std::unique_ptr<KConfig> config, QObject *parent = nullptr);
 
     ~KCoreConfigSkeleton() override;
 

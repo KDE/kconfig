@@ -313,7 +313,7 @@ The following options are read from the kcfgc file:
   \row
   \li KConfigConstructor=\<bool\>
   \li If set to true the generated code will have an alternative constructor directly from
-      const std::shared_ptr<KConfig> instead of KSharedConfigPtr.
+      const std::unique_ptr<KConfig> instead of KSharedConfigPtr.
   \li false
   \li 6.21
 

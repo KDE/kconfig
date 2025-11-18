@@ -12,7 +12,7 @@ class TestKConfigConstructor : public KConfigSkeleton
 {
   public:
 
-    TestKConfigConstructor( const std::shared_ptr<KConfig> &config, QObject *parent = nullptr );
+    TestKConfigConstructor( std::unique_ptr<KConfig> config, QObject *parent = nullptr );
     ~TestKConfigConstructor() override;
 
     /**

@@ -234,7 +234,7 @@ void KConfigSourceGenerator::createConstructorParameterList()
         }
         stream() << (parseResult.parameters.isEmpty() ? "" : ",");
     } else if (cfg().kConfigConstructor) {
-        stream() << " const std::shared_ptr<KConfig> &config" << (parseResult.parameters.isEmpty() ? "" : ",");
+        stream() << " std::unique_ptr<KConfig> config" << (parseResult.parameters.isEmpty() ? "" : ",");
     }
 
     for (auto it = parseResult.parameters.cbegin(); it != parseResult.parameters.cend(); ++it) {
@@ -260,7 +260,7 @@ void KConfigSourceGenerator::createParentConstructorCall()
     } else if (!parseResult.cfgFileName.isEmpty()) {
         stream() << " QStringLiteral( \"" << parseResult.cfgFileName << "\" ";
     } else if (cfg().kConfigConstructor) {
-        stream() << "config";
+        stream() << "std::move(config)";
     }
     if (parseResult.cfgFileNameArg) {
         if (!cfg().forceStringFilename) {

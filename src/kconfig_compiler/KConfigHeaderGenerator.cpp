@@ -348,7 +348,7 @@ void KConfigHeaderGenerator::createConstructor()
             stream() << " KSharedConfig::Ptr config" << (parseResult.parameters.isEmpty() ? " = KSharedConfig::openConfig()" : ", ");
         }
     } else if (cfg().kConfigConstructor) {
-        stream() << " const std::shared_ptr<KConfig> &config";
+        stream() << " std::unique_ptr<KConfig> config";
     }
     if (cfg().forceStringFilename && parseResult.cfgStateConfig) {
         std::cerr << "One can not use ForceStringFilename and use the stateConfig attribute, consider "
