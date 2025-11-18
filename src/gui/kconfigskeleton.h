@@ -82,7 +82,14 @@ public:
      */
     explicit KConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
-    explicit KConfigSkeleton(std::shared_ptr<KConfig> config, QObject *parent = nullptr);
+    /*!
+     * Constructor
+     *
+     * \a config configuration object to use.
+     *
+     * \since 6.21
+     */
+    explicit KConfigSkeleton(std::unique_ptr<KConfig> config, QObject *parent = nullptr);
 
     /*!
      * Register an item of type QColor.

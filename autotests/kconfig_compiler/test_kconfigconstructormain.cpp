@@ -29,9 +29,7 @@ int main(int argc, char **argv)
         group.writeEntry(QStringLiteral("MyString"), QStringLiteral("The String"));
     }
     buffer->seek(0);
-    std::shared_ptr<KConfig> config = std::make_shared<KConfig>(buffer);
-
-    TestKConfigConstructor t(config);
+    TestKConfigConstructor t(std::make_unique<KConfig>(buffer));
 
     bool ok = t.myString() == QLatin1String("The String");
 
