@@ -254,7 +254,15 @@ function(kconfig_target_kcfg_file ARG_TARGET)
 
     get_filename_component(_basename ${_filepath} NAME_WE)
     set(_output "${CMAKE_CURRENT_BINARY_DIR}/${_basename}.kcfgc")
-    file(WRITE ${_output} "${_content}")
+    # avoid rebuilding due to new timestamp if there was no change on generation,
+    # once CMake min. 3.18 is required, replace with
+    # file(CONFIGURE OUTPUT "${_output}" CONTENT "${_content}" @ONLY)
+    set(_output_work "${_output}.work")
+    file(WRITE ${_output_work} "${_content}")
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${_output_work}" "${_output}"
+    )
+    file(REMOVE "${_output_work}")
 
     configure_file(${_filepath} "${CMAKE_CURRENT_BINARY_DIR}/${_filename}" COPYONLY)
 
