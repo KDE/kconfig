@@ -17,6 +17,8 @@ if (Qt6_VERSION VERSION_GREATER_EQUAL "6.10.0")
     find_package(Qt6CorePrivate ${Qt6_VERSION} EXACT CONFIG REQUIRED)
 endif()
 
+set(ECM_TEST_NAME_PREFIX "kconfigcore-")
+
 # compile KEntryMap into the test since it's not exported
 ecm_add_test(
   kentrymaptest.cpp
@@ -28,11 +30,11 @@ target_include_directories(kentrymaptest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../
 
 qt_add_resources(sharedconfigresources sharedconfigresources.qrc)
 
-ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME kconfigcore-ksharedconfigtest LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent)
+ecm_add_test(ksharedconfigtest.cpp ${sharedconfigresources} TEST_NAME ksharedconfigtest LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent)
 
 # test for fallback to :/kconfig/xxxx config resource
 qt_add_resources(fallbackconfigresources fallbackconfigresources.qrc)
-ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME kconfigcore-fallbackconfigresourcestest LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent)
+ecm_add_test(fallbackconfigresourcestest.cpp ${fallbackconfigresources} TEST_NAME fallbackconfigresourcestest LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent)
 
 ecm_add_tests(
     kconfignokdehometest.cpp
@@ -41,19 +43,20 @@ ecm_add_tests(
     test_kconf_update.cpp
     ksharedconfig_in_global_object.cpp
     dbussanitizertest.cpp
-    NAME_PREFIX kconfigcore-
     LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent Qt6::CorePrivate
 )
 
 add_dependencies(test_kconf_update kconf_update)
 
 if(TARGET Qt6::Gui)
+
+set(ECM_TEST_NAME_PREFIX "kconfiggui-")
+
 ecm_add_tests(
     kconfigguitest.cpp
     kconfigloadertest.cpp
     kconfigskeletontest.cpp
     kstandardshortcuttest.cpp
-    NAME_PREFIX kconfiggui-
     LINK_LIBRARIES KF6::ConfigGui Qt6::Test
 )
 
@@ -64,7 +67,6 @@ ecm_add_test(
     ../src/gui/kstandardshortcutwatcher.cpp
     LINK_LIBRARIES KF6::ConfigCore Qt6::Gui Qt6::Test
     TEST_NAME kstandardshortcutwatchertest
-    NAME_PREFIX kconfiggui-
 )
 target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF6ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
 target_compile_definitions(kstandardshortcutwatchertest PRIVATE "-DKCONFIGGUI_STATIC_DEFINE")

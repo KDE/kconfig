@@ -4,6 +4,8 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include(ECMMarkAsTest)
 include(${CMAKE_SOURCE_DIR}/KF6ConfigMacros.cmake)
 
+set(ECM_TEST_NAME_PREFIX "kconfigcompiler-")
+
 macro(GEN_KCFG_TEST_SOURCE _testName _srcs)
     KCONFIG_ADD_KCFG_FILES(${_srcs} ${_testName}.kcfgc ${ARGN})
 endmacro()
@@ -95,7 +97,7 @@ gen_kcfg_test_source(signals_test_no_singleton_dpointer kconfigcompiler_test_sig
 gen_kcfg_test_source(signals_test_singleton_itemaccessors kconfigcompiler_test_signals_SRCS GENERATE_MOC)
 
 ecm_add_test(${kconfigcompiler_test_signals_SRCS}
-    TEST_NAME kconfigcompiler-signals-test
+    TEST_NAME signals-test
     LINK_LIBRARIES Qt6::Test KF6::ConfigGui
 )
 
@@ -122,7 +124,7 @@ ecm_add_test(${test_param_minmax_SRCS}
 ########### next target ###############
 
 ecm_add_test(kconfigcompiler_test.cpp
-    TEST_NAME kconfigcompiler-basic-test
+    TEST_NAME basic-test
     LINK_LIBRARIES Qt6::Test
 )
 
