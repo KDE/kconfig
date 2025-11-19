@@ -1295,6 +1295,7 @@ KSharedConfig::Ptr KCoreConfigSkeleton::sharedConfig() const
 void KCoreConfigSkeleton::setSharedConfig(KSharedConfig::Ptr pConfig)
 {
     d->mConfig = std::move(pConfig);
+    d->config.reset();
 }
 
 KConfigSkeletonItem::List KCoreConfigSkeleton::items() const
@@ -1327,14 +1328,14 @@ void KCoreConfigSkeleton::setDefaults()
 
 void KCoreConfigSkeleton::load()
 {
-    auto config = d->config ? d->config.get() : d->mConfig.data();
+    auto config = this->config();
     config->reparseConfiguration();
     read();
 }
 
 void KCoreConfigSkeleton::read()
 {
-    auto config = d->config ? d->config.get() : d->mConfig.data();
+    auto config = this->config();
     for (auto *skelItem : std::as_const(d->mItems)) {
         skelItem->readConfig(config);
     }
@@ -1357,7 +1358,7 @@ bool KCoreConfigSkeleton::isSaveNeeded() const
 
 bool KCoreConfigSkeleton::save()
 {
-    auto config = d->config ? d->config.get() : d->mConfig.data();
+    auto config = this->config();
     // qDebug();
     for (auto *skelItem : std::as_const(d->mItems)) {
         skelItem->writeConfig(config);
@@ -1410,7 +1411,7 @@ void KCoreConfigSkeleton::addItem(KConfigSkeletonItem *item, const QString &name
 
     item->setName(name.isEmpty() ? item->key() : name);
     d->mItemDict.insert(item->name(), item);
-    auto config = d->config ? d->config.get() : d->mConfig.data();
+    auto config = this->config();
     item->readDefault(config);
     item->readConfig(config);
 }

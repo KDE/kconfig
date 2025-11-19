@@ -82,6 +82,6 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
     kConfigConstructor =
         // from cmake, due to Camelisation can't keep KC intact
         codegenConfig.value(QStringLiteral("KconfigConstructor")).toBool() ||
-        // for huaman beings
+        // for human beings
         codegenConfig.value(QStringLiteral("KConfigConstructor")).toBool();
 }
