@@ -85,10 +85,14 @@ private Q_SLOTS:
             QVERIFY(glob.sync());
         }
 
-        KConfig globRead(extrafile.fileName());
-        const KConfigGroup extra(&globRead, QStringLiteral("General"));
-        QCOMPARE(extra.readEntry("testKG"), QStringLiteral("1"));
+        {
+            // check preconditions
+            KConfig globRead(extrafile.fileName());
+            const KConfigGroup extra(&globRead, QStringLiteral("General"));
+            QCOMPARE(extra.readEntry("testKG"), QStringLiteral("1"));
+        }
 
+        // When using a QBuffer as QIODevice
         auto buffer = std::make_shared<QBuffer>();
         QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
         {
@@ -102,8 +106,10 @@ private Q_SLOTS:
         }
         buffer->seek(0);
         QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=2\n");
-        extrafile.seek(0);
-        QCOMPARE(extrafile.size(), 0);
+
+        QFile extraConfigSource(extrafile.fileName());
+        QVERIFY(extraConfigSource.open(QIODevice::ReadOnly));
+        QCOMPARE(extraConfigSource.readAll(), "[Extra]\ntestKG=1\n");
 
         QVERIFY(extrafile.remove());
     }
