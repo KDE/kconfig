@@ -6,7 +6,7 @@
 #    relative path to the file.
 #    <target> must not be an alias.
 #
-#  kconfig_target_kcfg_file(<target> FILE <kcfg file> CLASS_NAME <classname> ...)
+#  kconfig_target_kcfg_file(<target> FILE <kcfg file> CLASS_NAME <classname> ...)  (since 6.2)
 #    Add a kcfg file to a target without having a kcfgc file. The kcfgc file will
 #    be generated from the function arguments. Arguments correspond to the
 #    similarly names fields from the kcfgc file.
