@@ -595,6 +595,7 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
 }
 
 // TODO KF7 remove, expose QIODevice instead
+// have a separate static funtion for relative filename config files
 QString KConfig::name() const
 {
     Q_D(const KConfig);
