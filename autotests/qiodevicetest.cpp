@@ -109,7 +109,8 @@ private Q_SLOTS:
 
         QFile extraConfigSource(extrafile.fileName());
         QVERIFY(extraConfigSource.open(QIODevice::ReadOnly));
-        QCOMPARE(extraConfigSource.readAll(), "[Extra]\ntestKG=1\n");
+        QTextStream stream(extraConfigSource.readAll());
+        QCOMPARE(stream.readAll(), u"[Extra]\ntestKG=1\n"_s);
 
         QVERIFY(extrafile.remove());
     }
