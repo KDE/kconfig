@@ -25,7 +25,7 @@ public:
     }
     QString mCurrentGroup;
 
-    // store the backend config only should be set
+    // store the backend config only one should be set
     KSharedConfig::Ptr mConfig;
     std::unique_ptr<KConfig> config;
 

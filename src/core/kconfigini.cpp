@@ -285,11 +285,9 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     entryOptions |= KEntryMap::EntryLocalizedCountry;
                 }
             }
-
             if (!printableToString(line, mDeviceInterface.get(), lineNo)) {
                 errorCount++;
             }
-
             if (entryOptions & KEntryMap::EntryRawKey) {
                 QByteArray rawKey;
                 rawKey.reserve(aKey.length() + locale.length() + 2);

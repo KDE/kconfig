@@ -837,7 +837,6 @@ void KConfigPrivate::parseConfigFiles()
         files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
     }
 
-    //        qDebug() << "parsing local files" << files;
     const QByteArray utf8Locale = locale.toUtf8();
     for (const QString &file : std::as_const(files)) {
         if (file.compare(backingDevicePath, sPathCaseSensitivity) == 0) {
