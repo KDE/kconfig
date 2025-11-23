@@ -1678,6 +1678,13 @@ public:
     void setSharedConfig(KSharedConfig::Ptr pConfig);
 
     /*!
+     * Set the \a config object used for reading and writing the settings.
+     *
+     * \since 6.21
+     */
+    void setConfig(std::unique_ptr<KConfig> config);
+
+    /*!
      * Return list of items managed by this KCoreConfigSkeleton object.
      */
     KConfigSkeletonItem::List items() const;

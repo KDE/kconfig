@@ -1298,6 +1298,12 @@ void KCoreConfigSkeleton::setSharedConfig(KSharedConfig::Ptr pConfig)
     d->config.reset();
 }
 
+void KCoreConfigSkeleton::setConfig(std::unique_ptr<KConfig> config)
+{
+    d->config = std::move(config);
+    d->mConfig.reset();
+}
+
 KConfigSkeletonItem::List KCoreConfigSkeleton::items() const
 {
     return d->mItems;
