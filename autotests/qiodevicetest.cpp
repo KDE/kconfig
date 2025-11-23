@@ -115,6 +115,40 @@ private Q_SLOTS:
 
         QVERIFY(extrafile.remove());
     }
+
+    void testFileToBuffer()
+    {
+        QTemporaryFile file;
+        file.setAutoRemove(false);
+        QVERIFY(file.open());
+        file.close();
+        {
+            KConfig glob(file.fileName());
+            KConfigGroup extra(&glob, QStringLiteral("Extra"));
+            extra.writeEntry("testKG", "1");
+            QVERIFY(glob.sync());
+        }
+
+        KConfig glob(file.fileName());
+
+        auto buffer = std::make_shared<QBuffer>();
+        QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
+        KConfig config(buffer, KConfig::OpenFlag::SimpleConfig);
+        glob.copyTo(&config);
+
+        QVERIFY(config.isDirty());
+        {
+            const KConfigGroup extra(&config, QStringLiteral("Extra"));
+            QCOMPARE(extra.readEntry("testKG"), QStringLiteral("1"));
+        }
+
+        QCOMPARE(buffer->size(), 0);
+        config.sync();
+        QVERIFY(!config.isDirty());
+
+        buffer->seek(0);
+        QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=1\n");
+    }
 };
 
 QTEST_MAIN(QIODeviceTest)

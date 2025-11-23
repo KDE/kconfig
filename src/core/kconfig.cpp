@@ -594,6 +594,20 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
     return config;
 }
 
+void *KConfig::copyTo(KConfig *config) const
+{
+    Q_D(const KConfig);
+    config->d_func()->entryMap = d->entryMap;
+    config->d_func()->bFileImmutable = false;
+
+    for (auto &[_, entry] : config->d_func()->entryMap) {
+        entry.bDirty = true;
+    }
+    config->d_ptr->bDirty = true;
+
+    return config;
+}
+
 // TODO KF7 remove, expose QIODevice instead
 // have a separate static funtion for relative filename config files
 QString KConfig::name() const

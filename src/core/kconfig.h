@@ -243,6 +243,16 @@ public:
     KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
 
     /*!
+     * Copies all entries from this config object to a the passed \a config
+     * object.
+     *
+     * \a config copy to the given KConfig object
+     *
+     * \since 6.21
+     */
+    void *copyTo(KConfig *config) const;
+
+    /*!
      * Ensures that the configuration file contains a certain update.
      *
      * If the configuration file does not contain the update \a id
