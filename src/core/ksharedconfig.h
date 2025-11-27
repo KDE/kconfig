@@ -75,8 +75,8 @@ public:
      *
      * If an absolute path is specified for \a fileName, that file will be used
      * as the store for the configuration settings. If a non-absolute path
-     * is provided, the file will be looked for in the standard data directory
-     * (QStandardPaths::AppDataLocation). If no path is provided, a default
+     * is provided, the file will be looked for in the standard state directory
+     * (QStandardPaths::GenericStateLocation). If no path is provided, a default
      * configuration file will be used based on the name of the main
      * application component.
      *
