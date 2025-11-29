@@ -185,7 +185,7 @@ void KConfigSkeletonTest::testKconfigQIODevice()
     QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
     auto config = std::make_unique<KConfig>(buffer, KConfig::OpenFlag::SimpleConfig);
 
-    s = new KConfigSkeleton(std::move(config));
+    s = new KConfigSkeleton(std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr);
     s->setCurrentGroup(QStringLiteral("MyGroup"));
     itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
     s->addItemColor(QStringLiteral("MySetting2"), mMyColor, s_default_setting2);

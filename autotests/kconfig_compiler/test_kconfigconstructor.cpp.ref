@@ -4,7 +4,7 @@
 #include "test_kconfigconstructor.h"
 
 TestKConfigConstructor::TestKConfigConstructor( std::unique_ptr<KConfig> config, QObject *parent )
-  : KConfigSkeleton(std::move(config))
+  : KConfigSkeleton(std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr)
 {
   setParent(parent);
   setCurrentGroup( QStringLiteral( "MyOptions" ) );

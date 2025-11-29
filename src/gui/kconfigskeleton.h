@@ -87,9 +87,11 @@ public:
      *
      * \a config configuration object to use.
      *
+     * \a value must be KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr
+     *
      * \since 6.21
      */
-    explicit KConfigSkeleton(std::unique_ptr<KConfig> config, QObject *parent = nullptr);
+    explicit KConfigSkeleton(std::unique_ptr<KConfig> config, KCoreConfigSkeleton::DisambiguateConstructor value, QObject *parent = nullptr);
 
     /*!
      * Register an item of type QColor.

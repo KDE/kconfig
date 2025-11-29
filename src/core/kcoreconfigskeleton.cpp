@@ -1250,15 +1250,14 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *pa
     : QObject(parent)
     , d(new KCoreConfigSkeletonPrivate)
 {
-    // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
     d->mConfig = std::move(pConfig);
 }
 
-KCoreConfigSkeleton::KCoreConfigSkeleton(std::unique_ptr<KConfig> config, QObject *parent)
+KCoreConfigSkeleton::KCoreConfigSkeleton(std::unique_ptr<KConfig> config, KCoreConfigSkeleton::DisambiguateConstructor value, QObject *parent)
     : QObject(parent)
     , d(new KCoreConfigSkeletonPrivate)
 {
-    // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
+    Q_UNUSED(value)
     d->config = std::move(config);
 }
 
