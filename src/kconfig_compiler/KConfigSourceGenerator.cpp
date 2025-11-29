@@ -226,15 +226,15 @@ void KConfigSourceGenerator::createPreamble()
 
 void KConfigSourceGenerator::createConstructorParameterList()
 {
-    if (parseResult.cfgFileNameArg) {
+    if (cfg().kConfigConstructor) {
+        stream() << " std::unique_ptr<KConfig> config" << (parseResult.parameters.isEmpty() ? "" : ",");
+    } else if (parseResult.cfgFileNameArg) {
         if (!cfg().forceStringFilename) {
             stream() << " KSharedConfig::Ptr config";
         } else {
             stream() << " const QString& config";
         }
         stream() << (parseResult.parameters.isEmpty() ? "" : ",");
-    } else if (cfg().kConfigConstructor) {
-        stream() << " std::unique_ptr<KConfig> config" << (parseResult.parameters.isEmpty() ? "" : ",");
     }
 
     for (auto it = parseResult.parameters.cbegin(); it != parseResult.parameters.cend(); ++it) {
@@ -255,22 +255,23 @@ void KConfigSourceGenerator::createConstructorParameterList()
 void KConfigSourceGenerator::createParentConstructorCall()
 {
     stream() << cfg().inherits << "(";
-    if (parseResult.cfgStateConfig) {
-        stream() << " KSharedConfig::openStateConfig(QStringLiteral( \"" << parseResult.cfgFileName << "\") ";
-    } else if (!parseResult.cfgFileName.isEmpty()) {
-        stream() << " QStringLiteral( \"" << parseResult.cfgFileName << "\" ";
-    } else if (cfg().kConfigConstructor) {
-        stream() << "std::move(config)";
-    }
-    if (parseResult.cfgFileNameArg) {
-        if (!cfg().forceStringFilename) {
-            stream() << " std::move( config ) ";
-        } else {
-            stream() << " config ";
+    if (cfg().kConfigConstructor) {
+        stream() << "std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr";
+    } else {
+        if (parseResult.cfgStateConfig) {
+            stream() << " KSharedConfig::openStateConfig(QStringLiteral( \"" << parseResult.cfgFileName << "\") ";
+        } else if (!parseResult.cfgFileName.isEmpty()) {
+            stream() << " QStringLiteral( \"" << parseResult.cfgFileName << "\" ";
+        } else if (parseResult.cfgFileNameArg && !cfg().kConfigConstructor) {
+            if (!cfg().forceStringFilename) {
+                stream() << " std::move( config ) ";
+            } else {
+                stream() << " config ";
+            }
         }
-    }
-    if (parseResult.cfgStateConfig || !parseResult.cfgFileName.isEmpty()) {
-        stream() << ") ";
+        if (parseResult.cfgStateConfig || !parseResult.cfgFileName.isEmpty()) {
+            stream() << ") ";
+        }
     }
     stream() << ")\n";
 }
