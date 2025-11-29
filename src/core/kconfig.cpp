@@ -462,7 +462,7 @@ bool KConfig::sync()
 
         // lock the local file
         if (d->configState == ReadWrite && !d->lockLocal()) {
-            qCWarning(KCONFIG_CORE_LOG) << "couldn't lock local file";
+            qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock local file:" << d->mBackend.backingDevicePath();
             return false;
         }
 
@@ -491,7 +491,7 @@ bool KConfig::sync()
         if (d->wantGlobals() && writeGlobals) {
             KConfigIniBackend tmp(std::make_unique<KConfigIniBackendPathDevice>(*sGlobalFileName));
             if (d->configState == ReadWrite && !tmp.lock()) {
-                qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock global file:" << d->mBackend.backingDevicePath();
 
                 // unlock the local config if we're returning early
                 if (d->mBackend.isLocked()) {
@@ -511,6 +511,7 @@ bool KConfig::sync()
 
         if (writeLocals) {
             if (!d->mBackend.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write to config:" << d->mBackend.backingDevicePath();
                 d->bDirty = true;
             }
         }
