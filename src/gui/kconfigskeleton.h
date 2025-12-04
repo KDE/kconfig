@@ -89,7 +89,7 @@ public:
      *
      * \a value must be KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr
      *
-     * \since 6.21
+     * \since 6.22
      */
     explicit KConfigSkeleton(std::unique_ptr<KConfig> config, KCoreConfigSkeleton::DisambiguateConstructor value, QObject *parent = nullptr);
 

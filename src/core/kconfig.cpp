@@ -595,18 +595,17 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
     return config;
 }
 
-void *KConfig::copyTo(KConfig *config) const
+void KConfig::copyFrom(const KConfig &config) const
 {
     Q_D(const KConfig);
-    config->d_func()->entryMap = d->entryMap;
-    config->d_func()->bFileImmutable = false;
+    d_ptr->entryMap = config.d_func()->entryMap;
+    d_ptr->bFileImmutable = false;
 
-    for (auto &[_, entry] : config->d_func()->entryMap) {
+    for (auto &[_, entry] : d_ptr->entryMap) {
         entry.bDirty = true;
     }
-    config->d_ptr->bDirty = true;
-
-    return config;
+    d_ptr->bDirty = true;
+    ;
 }
 
 // TODO KF7 remove, expose QIODevice instead

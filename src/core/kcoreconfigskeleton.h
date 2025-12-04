@@ -1235,7 +1235,7 @@ public:
      *
      * \a value must be DisambiguateConstructor::IsStdUniqPtr
      *
-     * \since 6.21
+     * \since 6.22
      */
     explicit KCoreConfigSkeleton(std::unique_ptr<KConfig> config, DisambiguateConstructor value, QObject *parent = nullptr);
 
@@ -1692,7 +1692,7 @@ public:
     /*!
      * Set the \a config object used for reading and writing the settings.
      *
-     * \since 6.21
+     * \since 6.22
      */
     void setConfig(std::unique_ptr<KConfig> config);
 

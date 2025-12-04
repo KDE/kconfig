@@ -134,7 +134,7 @@ private Q_SLOTS:
         auto buffer = std::make_shared<QBuffer>();
         QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
         KConfig config(buffer, KConfig::OpenFlag::SimpleConfig);
-        glob.copyTo(&config);
+        config.copyFrom(glob);
 
         QVERIFY(config.isDirty());
         {

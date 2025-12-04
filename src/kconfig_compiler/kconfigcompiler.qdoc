@@ -315,7 +315,7 @@ The following options are read from the kcfgc file:
   \li If set to true the generated code will have an alternative constructor directly from
       const std::unique_ptr<KConfig> instead of KSharedConfigPtr.
   \li false
-  \li 6.21
+  \li 6.22
 
 \endtable
 

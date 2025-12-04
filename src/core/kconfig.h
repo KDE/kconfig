@@ -143,7 +143,7 @@ public:
      * \a mode How global settings should affect the configuration
      *                     options exposed by this KConfig object. Defaults to SimpleConfig contrary to the other constructor.
      *
-     * \since 6.21
+     * \since 6.22
      */
     explicit KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode = SimpleConfig);
 
@@ -243,14 +243,14 @@ public:
     KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
 
     /*!
-     * Copies all entries from this config object to a the passed \a config
-     * object.
+     * Copies all entries from the passed in \a config  object to this
+     * config.
      *
-     * \a config copy to the given KConfig object
+     * \a config to copy entries from
      *
-     * \since 6.21
+     * \since 6.22
      */
-    void *copyTo(KConfig *config) const;
+    void copyFrom(const KConfig &config) const;
 
     /*!
      * Ensures that the configuration file contains a certain update.
