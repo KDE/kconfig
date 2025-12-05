@@ -121,7 +121,18 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      Category::Edit},
 
     {Find, "Find", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find", "@action"), CTRL(F), 0, QList<QKeySequence>(), false, Category::Edit},
-    {FindNext, "FindNext", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Next", "@action"), Qt::Key_F3, 0, QList<QKeySequence>(), false, Category::Edit},
+    {FindNext,
+     "FindNext",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Next", "@action"),
+#if defined(Q_OS_MACOS)
+     CTRL(G),
+#else
+     Qt::Key_F3,
+#endif
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Edit},
     {FindPrev, "FindPrev", QT_TRANSLATE_NOOP3("KStandardShortcut", "Find Prev", "@action"), SHIFT(F3), 0, QList<QKeySequence>(), false, Category::Edit},
     {Replace, "Replace", QT_TRANSLATE_NOOP3("KStandardShortcut", "Replace", "@action"), CTRL(R), 0, QList<QKeySequence>(), false, Category::Edit},
 
