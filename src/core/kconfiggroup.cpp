@@ -258,7 +258,9 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     case QMetaType::Int:
     case QMetaType::UInt:
     case QMetaType::LongLong:
-    case QMetaType::ULongLong: {
+    case QMetaType::ULongLong:
+    case QMetaType::Long:
+    case QMetaType::ULong: {
         QVariant tmp = value;
         if (!tmp.convert(aDefault.metaType())) {
             tmp = aDefault;
@@ -910,6 +912,8 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
     case QMetaType::Bool:
     case QMetaType::LongLong:
     case QMetaType::ULongLong:
+    case QMetaType::Long:
+    case QMetaType::ULong:
         data = value.toString().toUtf8();
         break;
     case QMetaType::QVariantList:
