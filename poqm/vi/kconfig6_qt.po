@@ -813,287 +813,287 @@ msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "Tìm"
 
-#: gui/kstandardshortcut.cpp:124
+#: gui/kstandardshortcut.cpp:126
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "Tìm về sau"
 
-#: gui/kstandardshortcut.cpp:125
+#: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "Tìm về trước"
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "Thay thế"
 
-#: gui/kstandardshortcut.cpp:131
+#: gui/kstandardshortcut.cpp:142
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "Nhà"
 
-#: gui/kstandardshortcut.cpp:139
+#: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "Đầu"
 
-#: gui/kstandardshortcut.cpp:151
+#: gui/kstandardshortcut.cpp:162
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "Cuối"
 
-#: gui/kstandardshortcut.cpp:161
+#: gui/kstandardshortcut.cpp:172
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "Trước"
 
-#: gui/kstandardshortcut.cpp:164
+#: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "Sau"
 
-#: gui/kstandardshortcut.cpp:171
+#: gui/kstandardshortcut.cpp:182
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "Lên"
 
-#: gui/kstandardshortcut.cpp:172
+#: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "Lùi"
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "Tiến"
 
-#: gui/kstandardshortcut.cpp:183
+#: gui/kstandardshortcut.cpp:194
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "Tải lại"
 
-#: gui/kstandardshortcut.cpp:192
+#: gui/kstandardshortcut.cpp:203
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "Đầu dòng"
 
-#: gui/kstandardshortcut.cpp:204
+#: gui/kstandardshortcut.cpp:215
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "Cuối dòng"
 
-#: gui/kstandardshortcut.cpp:214
+#: gui/kstandardshortcut.cpp:225
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "Đi đến dòng"
 
-#: gui/kstandardshortcut.cpp:217
+#: gui/kstandardshortcut.cpp:228
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "Lùi từng từ"
 
-#: gui/kstandardshortcut.cpp:229
+#: gui/kstandardshortcut.cpp:240
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "Tiến từng từ"
 
-#: gui/kstandardshortcut.cpp:242
+#: gui/kstandardshortcut.cpp:253
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "Thêm dấu nhớ"
 
-#: gui/kstandardshortcut.cpp:248
+#: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "Phóng to"
 
-#: gui/kstandardshortcut.cpp:249
+#: gui/kstandardshortcut.cpp:260
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "Thu nhỏ"
 
-#: gui/kstandardshortcut.cpp:252
+#: gui/kstandardshortcut.cpp:263
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "Chế độ toàn màn hình"
 
-#: gui/kstandardshortcut.cpp:263
+#: gui/kstandardshortcut.cpp:274
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "Hiện thanh trình đơn"
 
-#: gui/kstandardshortcut.cpp:266
+#: gui/kstandardshortcut.cpp:277
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "Kích hoạt thẻ sau"
 
-#: gui/kstandardshortcut.cpp:274
+#: gui/kstandardshortcut.cpp:285
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "Kích hoạt thẻ trước"
 
-#: gui/kstandardshortcut.cpp:282
+#: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: gui/kstandardshortcut.cpp:283
+#: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "Đây là cái gì"
 
-#: gui/kstandardshortcut.cpp:288
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "Hoàn tất văn bản"
 
-#: gui/kstandardshortcut.cpp:296
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr "Phần khớp hoàn tất trước"
 
-#: gui/kstandardshortcut.cpp:304
+#: gui/kstandardshortcut.cpp:315
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr "Phần khớp hoàn tất sau"
 
-#: gui/kstandardshortcut.cpp:312
+#: gui/kstandardshortcut.cpp:323
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr "Hoàn tất chuỗi con"
 
-#: gui/kstandardshortcut.cpp:321
+#: gui/kstandardshortcut.cpp:332
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "Mục trước trong danh sách"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "Mục sau trong danh sách"
 
-#: gui/kstandardshortcut.cpp:336
+#: gui/kstandardshortcut.cpp:347
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "Mở gần đây"
 
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "Lưu thành"
 
-#: gui/kstandardshortcut.cpp:338
+#: gui/kstandardshortcut.cpp:349
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "Hoàn nguyên"
 
-#: gui/kstandardshortcut.cpp:339
+#: gui/kstandardshortcut.cpp:350
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "Xem thử bản in"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:351
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "Thư"
 
-#: gui/kstandardshortcut.cpp:341
+#: gui/kstandardshortcut.cpp:352
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "Làm trống"
 
-#: gui/kstandardshortcut.cpp:344
+#: gui/kstandardshortcut.cpp:355
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "Thu phóng về kích cỡ thật"
 
-#: gui/kstandardshortcut.cpp:350
+#: gui/kstandardshortcut.cpp:361
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "Vừa trang"
 
-#: gui/kstandardshortcut.cpp:351
+#: gui/kstandardshortcut.cpp:362
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "Vừa bề rộng"
 
-#: gui/kstandardshortcut.cpp:352
+#: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "Vừa bề cao"
 
-#: gui/kstandardshortcut.cpp:353
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "Thu phóng"
 
-#: gui/kstandardshortcut.cpp:354
+#: gui/kstandardshortcut.cpp:365
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "Đi đến"
 
-#: gui/kstandardshortcut.cpp:355
+#: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "Đi đến trang"
 
-#: gui/kstandardshortcut.cpp:358
+#: gui/kstandardshortcut.cpp:369
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "Tài liệu trước"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:377
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "Tài liệu sau"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "Sửa dấu nhớ"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:391
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "Đánh vần"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:392
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "Hiện thanh công cụ"
 
-#: gui/kstandardshortcut.cpp:382
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "Hiện thanh trạng thái"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "Kết buộc phím"
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "Cấu hình ứng dụng"
 
-#: gui/kstandardshortcut.cpp:401
+#: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "Cấu hình thanh công cụ"
 
-#: gui/kstandardshortcut.cpp:409
+#: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "Cấu hình thông báo"
 
-#: gui/kstandardshortcut.cpp:415
+#: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "Báo lỗi"
 
-#: gui/kstandardshortcut.cpp:418
+#: gui/kstandardshortcut.cpp:429
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Language..."
@@ -1101,53 +1101,53 @@ msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr "Cấu hình ngôn ngữ..."
 
-#: gui/kstandardshortcut.cpp:424
+#: gui/kstandardshortcut.cpp:435
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "Về ứng dụng"
 
-#: gui/kstandardshortcut.cpp:425
+#: gui/kstandardshortcut.cpp:436
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "Về KDE"
 
-#: gui/kstandardshortcut.cpp:428
+#: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "Xoá"
 
-#: gui/kstandardshortcut.cpp:429
+#: gui/kstandardshortcut.cpp:440
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "Đổi tên"
 
-#: gui/kstandardshortcut.cpp:432
+#: gui/kstandardshortcut.cpp:443
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "Chuyển vào thùng rác"
 
-#: gui/kstandardshortcut.cpp:438
+#: gui/kstandardshortcut.cpp:449
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "Quyên góp"
 
-#: gui/kstandardshortcut.cpp:441
+#: gui/kstandardshortcut.cpp:452
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "Hiện/ẩn tệp ẩn"
 
-#: gui/kstandardshortcut.cpp:449
+#: gui/kstandardshortcut.cpp:460
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Tạo thư mục"
 
-#: gui/kstandardshortcut.cpp:457
+#: gui/kstandardshortcut.cpp:468
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:465
+#: gui/kstandardshortcut.cpp:476
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr ""

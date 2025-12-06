@@ -624,342 +624,342 @@ msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:124
+#: gui/kstandardshortcut.cpp:126
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:125
+#: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:131
+#: gui/kstandardshortcut.cpp:142
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:139
+#: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:151
+#: gui/kstandardshortcut.cpp:162
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:161
+#: gui/kstandardshortcut.cpp:172
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:164
+#: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:171
+#: gui/kstandardshortcut.cpp:182
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:172
+#: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:183
+#: gui/kstandardshortcut.cpp:194
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:192
+#: gui/kstandardshortcut.cpp:203
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:204
+#: gui/kstandardshortcut.cpp:215
 #, fuzzy
 #| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "Grŵp i edrych ynddi"
 
-#: gui/kstandardshortcut.cpp:214
+#: gui/kstandardshortcut.cpp:225
 #, fuzzy
 #| msgid "Group to look in"
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "Grŵp i edrych ynddi"
 
-#: gui/kstandardshortcut.cpp:217
+#: gui/kstandardshortcut.cpp:228
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:229
+#: gui/kstandardshortcut.cpp:240
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:242
+#: gui/kstandardshortcut.cpp:253
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:248
+#: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:249
+#: gui/kstandardshortcut.cpp:260
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:252
+#: gui/kstandardshortcut.cpp:263
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:263
+#: gui/kstandardshortcut.cpp:274
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:266
+#: gui/kstandardshortcut.cpp:277
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:274
+#: gui/kstandardshortcut.cpp:285
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:282
+#: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:283
+#: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:288
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:296
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:304
+#: gui/kstandardshortcut.cpp:315
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:312
+#: gui/kstandardshortcut.cpp:323
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:321
+#: gui/kstandardshortcut.cpp:332
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:336
+#: gui/kstandardshortcut.cpp:347
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:338
+#: gui/kstandardshortcut.cpp:349
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:339
+#: gui/kstandardshortcut.cpp:350
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:351
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:341
+#: gui/kstandardshortcut.cpp:352
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:344
+#: gui/kstandardshortcut.cpp:355
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:350
+#: gui/kstandardshortcut.cpp:361
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:351
+#: gui/kstandardshortcut.cpp:362
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:352
+#: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:353
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:354
+#: gui/kstandardshortcut.cpp:365
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:355
+#: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:358
+#: gui/kstandardshortcut.cpp:369
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:377
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:391
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:392
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:382
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:401
+#: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:409
+#: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:415
+#: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:418
+#: gui/kstandardshortcut.cpp:429
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:424
+#: gui/kstandardshortcut.cpp:435
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:425
+#: gui/kstandardshortcut.cpp:436
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:428
+#: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:429
+#: gui/kstandardshortcut.cpp:440
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:432
+#: gui/kstandardshortcut.cpp:443
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:438
+#: gui/kstandardshortcut.cpp:449
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:441
+#: gui/kstandardshortcut.cpp:452
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:449
+#: gui/kstandardshortcut.cpp:460
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:457
+#: gui/kstandardshortcut.cpp:468
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:465
+#: gui/kstandardshortcut.cpp:476
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr ""

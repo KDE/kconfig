@@ -623,338 +623,338 @@ msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "איתור"
 
-#: gui/kstandardshortcut.cpp:124
+#: gui/kstandardshortcut.cpp:126
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "איתור הבא"
 
-#: gui/kstandardshortcut.cpp:125
+#: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "איתור הקודם"
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "החלפה"
 
-#: gui/kstandardshortcut.cpp:131
+#: gui/kstandardshortcut.cpp:142
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "בית"
 
-#: gui/kstandardshortcut.cpp:139
+#: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "התחלה"
 
-#: gui/kstandardshortcut.cpp:151
+#: gui/kstandardshortcut.cpp:162
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "סיום"
 
-#: gui/kstandardshortcut.cpp:161
+#: gui/kstandardshortcut.cpp:172
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "קודם"
 
-#: gui/kstandardshortcut.cpp:164
+#: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "הבא"
 
-#: gui/kstandardshortcut.cpp:171
+#: gui/kstandardshortcut.cpp:182
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "למעלה"
 
-#: gui/kstandardshortcut.cpp:172
+#: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "חזרה"
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "קדימה"
 
-#: gui/kstandardshortcut.cpp:183
+#: gui/kstandardshortcut.cpp:194
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "ריענון"
 
-#: gui/kstandardshortcut.cpp:192
+#: gui/kstandardshortcut.cpp:203
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "התחלת השורה"
 
-#: gui/kstandardshortcut.cpp:204
+#: gui/kstandardshortcut.cpp:215
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "סוף השורה"
 
-#: gui/kstandardshortcut.cpp:214
+#: gui/kstandardshortcut.cpp:225
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "מעבר לשורה"
 
-#: gui/kstandardshortcut.cpp:217
+#: gui/kstandardshortcut.cpp:228
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "מילה אחורה"
 
-#: gui/kstandardshortcut.cpp:229
+#: gui/kstandardshortcut.cpp:240
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "מילה קדימה"
 
-#: gui/kstandardshortcut.cpp:242
+#: gui/kstandardshortcut.cpp:253
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "הוספת סימנייה"
 
-#: gui/kstandardshortcut.cpp:248
+#: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "התקרבות"
 
-#: gui/kstandardshortcut.cpp:249
+#: gui/kstandardshortcut.cpp:260
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "התרחקות"
 
-#: gui/kstandardshortcut.cpp:252
+#: gui/kstandardshortcut.cpp:263
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "מצב מסך מלא"
 
-#: gui/kstandardshortcut.cpp:263
+#: gui/kstandardshortcut.cpp:274
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "הצגת סרגל תפריטים"
 
-#: gui/kstandardshortcut.cpp:266
+#: gui/kstandardshortcut.cpp:277
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "הפעלת הלשונית הבאה"
 
-#: gui/kstandardshortcut.cpp:274
+#: gui/kstandardshortcut.cpp:285
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "הפעלת הלשונית הקודמת"
 
-#: gui/kstandardshortcut.cpp:282
+#: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "עזרה"
 
-#: gui/kstandardshortcut.cpp:283
+#: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "מה זה"
 
-#: gui/kstandardshortcut.cpp:288
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "השלמת טקסט"
 
-#: gui/kstandardshortcut.cpp:296
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr "התאמת ההשלמה הקודמת"
 
-#: gui/kstandardshortcut.cpp:304
+#: gui/kstandardshortcut.cpp:315
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr "התאמת ההשלמה הבאה"
 
-#: gui/kstandardshortcut.cpp:312
+#: gui/kstandardshortcut.cpp:323
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr "השלמת תת־מחרוזת"
 
-#: gui/kstandardshortcut.cpp:321
+#: gui/kstandardshortcut.cpp:332
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "הפריט הקודם ברשימה"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "הפריט הבא ברשימה"
 
-#: gui/kstandardshortcut.cpp:336
+#: gui/kstandardshortcut.cpp:347
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "פתיחת האחרונים"
 
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "שמירה בשם"
 
-#: gui/kstandardshortcut.cpp:338
+#: gui/kstandardshortcut.cpp:349
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "שחזור"
 
-#: gui/kstandardshortcut.cpp:339
+#: gui/kstandardshortcut.cpp:350
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "הצגה מקדימה להדפסה"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:351
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "דואר"
 
-#: gui/kstandardshortcut.cpp:341
+#: gui/kstandardshortcut.cpp:352
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "פינוי"
 
-#: gui/kstandardshortcut.cpp:344
+#: gui/kstandardshortcut.cpp:355
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "תקריב מקורי"
 
-#: gui/kstandardshortcut.cpp:350
+#: gui/kstandardshortcut.cpp:361
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "התאמה לעמוד"
 
-#: gui/kstandardshortcut.cpp:351
+#: gui/kstandardshortcut.cpp:362
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "התאמה לרוחב"
 
-#: gui/kstandardshortcut.cpp:352
+#: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "התאמה לגובה"
 
-#: gui/kstandardshortcut.cpp:353
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "תקריב"
 
-#: gui/kstandardshortcut.cpp:354
+#: gui/kstandardshortcut.cpp:365
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "קפיצה"
 
-#: gui/kstandardshortcut.cpp:355
+#: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "קפיצה לעמוד"
 
-#: gui/kstandardshortcut.cpp:358
+#: gui/kstandardshortcut.cpp:369
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "מסמך אחורה"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:377
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "מסמך קדימה"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "עריכת סימניות"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:391
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "איות"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:392
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "הצגת סרגל כלים"
 
-#: gui/kstandardshortcut.cpp:382
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "הצגת סרגל מצב"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "איגוד מקשים"
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "הגדרת יישום"
 
-#: gui/kstandardshortcut.cpp:401
+#: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "הגדרת סרגלי כלים"
 
-#: gui/kstandardshortcut.cpp:409
+#: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "הגדרת התראות"
 
-#: gui/kstandardshortcut.cpp:415
+#: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "דיווח על תקלה"
 
-#: gui/kstandardshortcut.cpp:418
+#: gui/kstandardshortcut.cpp:429
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr "הגדרת שפה…"
 
-#: gui/kstandardshortcut.cpp:424
+#: gui/kstandardshortcut.cpp:435
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "על היישום"
 
-#: gui/kstandardshortcut.cpp:425
+#: gui/kstandardshortcut.cpp:436
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "על KDE"
 
-#: gui/kstandardshortcut.cpp:428
+#: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "מחיקה"
 
-#: gui/kstandardshortcut.cpp:429
+#: gui/kstandardshortcut.cpp:440
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "שינוי שם"
 
-#: gui/kstandardshortcut.cpp:432
+#: gui/kstandardshortcut.cpp:443
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "העברה לאשפה"
 
-#: gui/kstandardshortcut.cpp:438
+#: gui/kstandardshortcut.cpp:449
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "תרומה"
 
-#: gui/kstandardshortcut.cpp:441
+#: gui/kstandardshortcut.cpp:452
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "הצגת/הסתרת קבצים מוסתרים"
 
-#: gui/kstandardshortcut.cpp:449
+#: gui/kstandardshortcut.cpp:460
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "יצירת תיקייה"
 
-#: gui/kstandardshortcut.cpp:457
+#: gui/kstandardshortcut.cpp:468
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr "פתיחת התפריט הראשי"
 
-#: gui/kstandardshortcut.cpp:465
+#: gui/kstandardshortcut.cpp:476
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "פתיחת תפריט ההקשר"

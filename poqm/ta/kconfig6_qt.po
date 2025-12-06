@@ -621,338 +621,338 @@ msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "தேடு"
 
-#: gui/kstandardshortcut.cpp:124
+#: gui/kstandardshortcut.cpp:126
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "அடுத்ததை தேடு"
 
-#: gui/kstandardshortcut.cpp:125
+#: gui/kstandardshortcut.cpp:136
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "முந்தையதை தேடு"
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "மாற்று"
 
-#: gui/kstandardshortcut.cpp:131
+#: gui/kstandardshortcut.cpp:142
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "முகப்பு"
 
-#: gui/kstandardshortcut.cpp:139
+#: gui/kstandardshortcut.cpp:150
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "தொடக்கம்"
 
-#: gui/kstandardshortcut.cpp:151
+#: gui/kstandardshortcut.cpp:162
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "முடிவு"
 
-#: gui/kstandardshortcut.cpp:161
+#: gui/kstandardshortcut.cpp:172
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "முந்தையது"
 
-#: gui/kstandardshortcut.cpp:164
+#: gui/kstandardshortcut.cpp:175
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "அடுத்தது"
 
-#: gui/kstandardshortcut.cpp:171
+#: gui/kstandardshortcut.cpp:182
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "மேலே"
 
-#: gui/kstandardshortcut.cpp:172
+#: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "பின்னே"
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "முன்னே"
 
-#: gui/kstandardshortcut.cpp:183
+#: gui/kstandardshortcut.cpp:194
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "மீளேற்று"
 
-#: gui/kstandardshortcut.cpp:192
+#: gui/kstandardshortcut.cpp:203
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "வரியின் தொடக்கம்"
 
-#: gui/kstandardshortcut.cpp:204
+#: gui/kstandardshortcut.cpp:215
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "வரியின் முடிவு"
 
-#: gui/kstandardshortcut.cpp:214
+#: gui/kstandardshortcut.cpp:225
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "வரிக்கு செல்"
 
-#: gui/kstandardshortcut.cpp:217
+#: gui/kstandardshortcut.cpp:228
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "ஒரு சொல் பின்செல்"
 
-#: gui/kstandardshortcut.cpp:229
+#: gui/kstandardshortcut.cpp:240
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "ஒரு சொல் முன்செல்"
 
-#: gui/kstandardshortcut.cpp:242
+#: gui/kstandardshortcut.cpp:253
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "நினைவுக்குறியை சேர்"
 
-#: gui/kstandardshortcut.cpp:248
+#: gui/kstandardshortcut.cpp:259
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "பெரிதாக்கு"
 
-#: gui/kstandardshortcut.cpp:249
+#: gui/kstandardshortcut.cpp:260
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "சிறிதாக்கு"
 
-#: gui/kstandardshortcut.cpp:252
+#: gui/kstandardshortcut.cpp:263
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "முழுத்திரை பயன்முறை"
 
-#: gui/kstandardshortcut.cpp:263
+#: gui/kstandardshortcut.cpp:274
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "பட்டிப் பட்டையை காட்டு"
 
-#: gui/kstandardshortcut.cpp:266
+#: gui/kstandardshortcut.cpp:277
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "அடுத்த கீற்றை செயல்படுத்து"
 
-#: gui/kstandardshortcut.cpp:274
+#: gui/kstandardshortcut.cpp:285
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "முந்தைய கீற்றை செயல்படுத்து"
 
-#: gui/kstandardshortcut.cpp:282
+#: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "உதவி"
 
-#: gui/kstandardshortcut.cpp:283
+#: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "இது என்ன"
 
-#: gui/kstandardshortcut.cpp:288
+#: gui/kstandardshortcut.cpp:299
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "உரையை நிரப்புதல்"
 
-#: gui/kstandardshortcut.cpp:296
+#: gui/kstandardshortcut.cpp:307
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr "முந்தைய பொருத்தமான நிறைவு"
 
-#: gui/kstandardshortcut.cpp:304
+#: gui/kstandardshortcut.cpp:315
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr "அடுத்த பொருத்தமான நிறைவு"
 
-#: gui/kstandardshortcut.cpp:312
+#: gui/kstandardshortcut.cpp:323
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr "துணைச்சரத்தை நிரப்புதல்"
 
-#: gui/kstandardshortcut.cpp:321
+#: gui/kstandardshortcut.cpp:332
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "பட்டியலில் முந்தைய உருப்படி"
 
-#: gui/kstandardshortcut.cpp:329
+#: gui/kstandardshortcut.cpp:340
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "பட்டியலில் அடுத்த உருப்படி"
 
-#: gui/kstandardshortcut.cpp:336
+#: gui/kstandardshortcut.cpp:347
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "சமீபமானவற்றை திற"
 
-#: gui/kstandardshortcut.cpp:337
+#: gui/kstandardshortcut.cpp:348
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "இவ்வாறு சேமி"
 
-#: gui/kstandardshortcut.cpp:338
+#: gui/kstandardshortcut.cpp:349
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "மீட்டமை"
 
-#: gui/kstandardshortcut.cpp:339
+#: gui/kstandardshortcut.cpp:350
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "அச்சின் முன்னோட்டம்"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:351
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "அஞ்சலிடு"
 
-#: gui/kstandardshortcut.cpp:341
+#: gui/kstandardshortcut.cpp:352
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "காலியாக்கு"
 
-#: gui/kstandardshortcut.cpp:344
+#: gui/kstandardshortcut.cpp:355
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "உண்மையான அளவில் காட்டு"
 
-#: gui/kstandardshortcut.cpp:350
+#: gui/kstandardshortcut.cpp:361
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "பக்கத்துடன் பொருத்து"
 
-#: gui/kstandardshortcut.cpp:351
+#: gui/kstandardshortcut.cpp:362
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "பக்க அகலத்துடன் பொருத்து"
 
-#: gui/kstandardshortcut.cpp:352
+#: gui/kstandardshortcut.cpp:363
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "பக்க உயரத்துடன் பொருத்து"
 
-#: gui/kstandardshortcut.cpp:353
+#: gui/kstandardshortcut.cpp:364
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "உருப்பெருக்கம்"
 
-#: gui/kstandardshortcut.cpp:354
+#: gui/kstandardshortcut.cpp:365
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "வரிக்கு செல்"
 
-#: gui/kstandardshortcut.cpp:355
+#: gui/kstandardshortcut.cpp:366
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "பக்கத்திற்கு செல்"
 
-#: gui/kstandardshortcut.cpp:358
+#: gui/kstandardshortcut.cpp:369
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "ஆவணத்தில் பின்செல்"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:377
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "ஆவணத்தில் முன்செல்"
 
-#: gui/kstandardshortcut.cpp:374
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "நினைவுக்குறிகளை திருத்து"
 
-#: gui/kstandardshortcut.cpp:380
+#: gui/kstandardshortcut.cpp:391
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "எழுத்தாக்கம்"
 
-#: gui/kstandardshortcut.cpp:381
+#: gui/kstandardshortcut.cpp:392
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "கருவிப்பட்டையை காட்டு"
 
-#: gui/kstandardshortcut.cpp:382
+#: gui/kstandardshortcut.cpp:393
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "நிலைப்பட்டையை காட்டு"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "விசைச்சுருக்குவழிகள்"
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "செயலியை அமை"
 
-#: gui/kstandardshortcut.cpp:401
+#: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "கருவிப்பட்டைகளை அமை"
 
-#: gui/kstandardshortcut.cpp:409
+#: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "அறிவிப்புகளை அமை"
 
-#: gui/kstandardshortcut.cpp:415
+#: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "பிழையை தெரிவி"
 
-#: gui/kstandardshortcut.cpp:418
+#: gui/kstandardshortcut.cpp:429
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr "மொழியை அமை…"
 
-#: gui/kstandardshortcut.cpp:424
+#: gui/kstandardshortcut.cpp:435
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "செயலியை பற்றி"
 
-#: gui/kstandardshortcut.cpp:425
+#: gui/kstandardshortcut.cpp:436
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "கே.டீ.யீ. பற்றி"
 
-#: gui/kstandardshortcut.cpp:428
+#: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "நீக்கு"
 
-#: gui/kstandardshortcut.cpp:429
+#: gui/kstandardshortcut.cpp:440
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "மறுபெயரிடு"
 
-#: gui/kstandardshortcut.cpp:432
+#: gui/kstandardshortcut.cpp:443
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "அகற்றிடத்துக்கு நகர்த்து"
 
-#: gui/kstandardshortcut.cpp:438
+#: gui/kstandardshortcut.cpp:449
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "நன்கொடை அளியுங்கள்"
 
-#: gui/kstandardshortcut.cpp:441
+#: gui/kstandardshortcut.cpp:452
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "மறைந்துள்ள கோப்புகளை காட்டு/மறை"
 
-#: gui/kstandardshortcut.cpp:449
+#: gui/kstandardshortcut.cpp:460
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "அடைவை உருவாக்கு"
 
-#: gui/kstandardshortcut.cpp:457
+#: gui/kstandardshortcut.cpp:468
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr "பிரதானப் பட்டியைத் திற"
 
-#: gui/kstandardshortcut.cpp:465
+#: gui/kstandardshortcut.cpp:476
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "வலது-க்ளிக் பட்டியை திற"
