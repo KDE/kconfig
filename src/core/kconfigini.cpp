@@ -86,11 +86,14 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     QDataStream stream(&file);
     const qint64 readBufferSize = std::min(file.size(), qint64(128 * 1024) /* 128 KB */);
     const uint maximumSizeWithoutNewLine = 1.5 * 1024 * 1024; // 1.5 MB
+    const uint defaultgroupNameBufferSize = 512; // should be a rather big fit for common group names
     bool newLineFound = false;
 
     QByteArray readBuffer(readBufferSize, Qt::Uninitialized);
     QByteArray buffer;
     QByteArray leftOverBuffer;
+    QByteArray groupNameBuffer; // reused allocated buffer to read group names, each processed into QString afterwards
+    groupNameBuffer.reserve(defaultgroupNameBufferSize);
 
     while ((!stream.atEnd() || !leftOverBuffer.isEmpty()) && errorCount < MAX_ERRORS) {
         buffer = leftOverBuffer;
@@ -144,7 +147,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
         if (line.at(0) == '[') { // found a group
             groupOptionImmutable = fileOptionImmutable;
 
-            QByteArray newGroup;
+            groupNameBuffer.resize(0); // drop content, but keep allocated capacity
             int start = 1;
             int end = 0;
             do {
@@ -165,21 +168,21 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     && start + 2 == end
                     && line.at(start) == '$'
                     && line.at(start + 1) == 'i') { /* clang-format on */
-                    if (newGroup.isEmpty()) {
+                    if (groupNameBuffer.isEmpty()) {
                         fileOptionImmutable = !kde_kiosk_exception;
                     } else {
                         groupOptionImmutable = !kde_kiosk_exception;
                     }
                 } else {
-                    if (!newGroup.isEmpty()) {
-                        newGroup += '\x1d';
+                    if (!groupNameBuffer.isEmpty()) {
+                        groupNameBuffer += '\x1d';
                     }
                     QByteArrayView namePart = line.mid(start, end - start);
                     printableToString(namePart, file, lineNo);
-                    newGroup += namePart.toByteArray();
+                    groupNameBuffer.append(namePart);
                 }
             } while ((start = end + 2) <= line.length() && line.at(end + 1) == '[');
-            currentGroup = QString::fromUtf8(newGroup);
+            currentGroup = QString::fromUtf8(groupNameBuffer);
 
             groupSkip = entryMap.getEntryOption(currentGroup, {}, {}, KEntryMap::EntryImmutable);
 
