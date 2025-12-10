@@ -117,6 +117,7 @@ private:
 #ifdef Q_OS_WIN
     void parseWindowsDefaults();
 #endif
+    void probeLocalFileImmutability();
     void parseConfigFiles();
     void initCustomized(KConfig *);
     bool lockLocal();

@@ -52,6 +52,7 @@ private Q_SLOTS:
     void testCascadingWithLocale();
     void testMerge();
     void testImmutable();
+    void testImmutableSkipsDefaults();
     void testGroupEscape();
     void testRevertAllEntries();
     void testChangeGroup();

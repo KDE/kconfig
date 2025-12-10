@@ -1088,6 +1088,55 @@ void KConfigTest::testImmutable()
     QVERIFY(cg2.isImmutable());
 }
 
+void KConfigTest::testImmutableSkipsDefaults()
+{
+    const QString configFilePath = m_testConfigDir + QLatin1String("/immutabledefaults");
+    const QString defaultsFilePath = m_testConfigDir + QLatin1String("/immutabledefaults_base");
+
+    QFile::remove(configFilePath);
+    QFile::remove(defaultsFilePath);
+
+    {
+        QFile defaultsFile(defaultsFilePath);
+        QVERIFY(defaultsFile.open(QIODevice::WriteOnly | QIODevice::Text));
+        QTextStream out(&defaultsFile);
+        out << "[Defaults]\n"
+            << "baseOnly=fromDefaults\n";
+    }
+
+    {
+        QFile file(configFilePath);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
+        QTextStream out(&file);
+        out << "[Defaults]\n"
+            << "userKey=userValue\n";
+    }
+
+    KConfig config(s_test_subdir + QLatin1String("immutabledefaults"));
+    config.addConfigSources(QStringList{defaultsFilePath});
+    config.reparseConfiguration();
+
+    KConfigGroup defaultsGroup = config.group(QStringLiteral("Defaults"));
+    QCOMPARE(defaultsGroup.readEntry("baseOnly", QString()), QStringLiteral("fromDefaults"));
+    QCOMPARE(defaultsGroup.readEntry("userKey", QString()), QStringLiteral("userValue"));
+
+    {
+        QFile file(configFilePath);
+        QVERIFY(file.open(QIODevice::WriteOnly | QIODevice::Text));
+        QTextStream out(&file);
+        out << "[$i]\n"
+            << "[Defaults]\n"
+            << "userKey=userValue\n";
+    }
+
+    config.reparseConfiguration();
+    QVERIFY(config.isImmutable());
+
+    defaultsGroup = config.group(QStringLiteral("Defaults"));
+    QCOMPARE(defaultsGroup.readEntry("userKey", QString()), QStringLiteral("userValue"));
+    QCOMPARE(defaultsGroup.readEntry("baseOnly", QStringLiteral("missing")), QStringLiteral("missing"));
+}
+
 void KConfigTest::testOptionOrder()
 {
     {

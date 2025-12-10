@@ -688,15 +688,21 @@ void KConfig::reparseConfiguration()
         s_globalFiles()->clear();
     }
 
+    d->probeLocalFileImmutability();
+
     // Parse all desired files from the least to the most specific.
-    if (d->wantGlobals()) {
+    if (d->wantGlobals() && !d->bFileImmutable) {
         d->parseGlobalFiles();
+    } else if (d->wantGlobals()) {
+        qCDebug(KCONFIG_CORE_LOG) << "Skipping global defaults for" << d->fileName << "due to immutability";
     }
 
 #ifdef Q_OS_WIN
     // Parse the windows registry defaults if desired
-    if (d->openFlags & ~KConfig::SimpleConfig) {
+    if (!d->bFileImmutable && (d->openFlags & ~KConfig::SimpleConfig)) {
         d->parseWindowsDefaults();
+    } else if ((d->openFlags & ~KConfig::SimpleConfig)) {
+        qCDebug(KCONFIG_CORE_LOG) << "Skipping Windows defaults for" << d->fileName << "due to immutability";
     }
 #endif
 
@@ -782,67 +788,110 @@ void KConfigPrivate::parseWindowsDefaults()
 }
 #endif
 
+void KConfigPrivate::probeLocalFileImmutability()
+{
+    if (bFileImmutable || fileName.isEmpty()) {
+        return;
+    }
+
+    bool needsProbe = wantDefaults() || wantGlobals();
+#ifdef Q_OS_WIN
+    needsProbe = needsProbe || (openFlags & ~KConfig::SimpleConfig);
+#endif
+    if (!needsProbe && !extraFiles.isEmpty() && !isSimple()) {
+        needsProbe = true;
+    }
+
+    if (!needsProbe) {
+        return;
+    }
+
+    qCDebug(KCONFIG_CORE_LOG) << "Probing immutability for" << fileName;
+
+    KConfigIniBackend backend;
+    backend.setFilePath(mBackend.filePath());
+    if (backend.filePath().isEmpty()) {
+        return;
+    }
+
+    const QByteArray utf8Locale = locale.toUtf8();
+    KEntryMap scratch;
+    if (backend.parseConfig(utf8Locale, scratch, KConfigIniBackend::ParseExpansions) == KConfigIniBackend::ParseImmutable) {
+        bFileImmutable = true;
+        qCDebug(KCONFIG_CORE_LOG) << "Detected [$i] in" << fileName << "before cascading";
+    }
+}
+
 void KConfigPrivate::parseConfigFiles()
 {
-    // can only read the file if there is a backend and a file name
-    if (!fileName.isEmpty()) {
-        bFileImmutable = false;
+    if (fileName.isEmpty()) {
+        return;
+    }
 
-        QList<QString> files;
-        if (wantDefaults()) {
-            if (bSuppressGlobal) {
-                files = getGlobalFiles();
-            } else {
-                if (QDir::isAbsolutePath(fileName)) {
-                    const QString canonicalFile = QFileInfo(fileName).canonicalFilePath();
-                    if (!canonicalFile.isEmpty()) { // empty if it doesn't exist
-                        files << canonicalFile;
-                    }
-                } else {
-                    const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
-                    for (const QString &f : localFilesPath) {
-                        files.prepend(QFileInfo(f).canonicalFilePath());
-                    }
-
-                    // allow fallback to config files bundled in resources
-                    const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
-                    if (QFile::exists(resourceFile)) {
-                        files.prepend(resourceFile);
-                    }
-                }
-            }
+    QList<QString> files;
+    const bool allowCascade = wantDefaults() && !bFileImmutable;
+    if (allowCascade) {
+        if (bSuppressGlobal) {
+            files = getGlobalFiles();
         } else {
-            files << mBackend.filePath();
-        }
-        if (!isSimple()) {
-            files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
-        }
-
-        //        qDebug() << "parsing local files" << files;
-
-        const QByteArray utf8Locale = locale.toUtf8();
-        for (const QString &file : std::as_const(files)) {
-            if (file.compare(mBackend.filePath(), sPathCaseSensitivity) == 0) {
-                switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
-                case KConfigIniBackend::ParseOk:
-                    break;
-                case KConfigIniBackend::ParseImmutable:
-                    bFileImmutable = true;
-                    break;
-                case KConfigIniBackend::ParseOpenError:
-                    configState = KConfigBase::NoAccess;
-                    break;
+            if (QDir::isAbsolutePath(fileName)) {
+                const QString canonicalFile = QFileInfo(fileName).canonicalFilePath();
+                if (!canonicalFile.isEmpty()) { // empty if it doesn't exist
+                    files << canonicalFile;
                 }
             } else {
-                KConfigIniBackend backend;
-                backend.setFilePath(file);
-                constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
-                bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
-            }
+                const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
+                for (const QString &f : localFilesPath) {
+                    files.prepend(QFileInfo(f).canonicalFilePath());
+                }
 
-            if (bFileImmutable) {
+                const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
+                if (QFile::exists(resourceFile)) {
+                    files.prepend(resourceFile);
+                }
+            }
+        }
+    } else {
+        if (wantDefaults() && bFileImmutable) {
+            qCDebug(KCONFIG_CORE_LOG) << "Cascade disabled for" << fileName << "because file is immutable";
+        }
+        files << mBackend.filePath();
+    }
+
+    if (!isSimple() && !bFileImmutable) {
+        files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
+    } else if (!extraFiles.isEmpty() && bFileImmutable) {
+        qCDebug(KCONFIG_CORE_LOG) << "Ignoring" << extraFiles.size() << "additional config sources for" << fileName << "due to immutability";
+    }
+
+    const QByteArray utf8Locale = locale.toUtf8();
+    for (const QString &file : std::as_const(files)) {
+        qCDebug(KCONFIG_CORE_LOG) << "Parsing config source" << file;
+        if (file.compare(mBackend.filePath(), sPathCaseSensitivity) == 0) {
+            switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
+            case KConfigIniBackend::ParseOk:
+                break;
+            case KConfigIniBackend::ParseImmutable:
+                bFileImmutable = true;
+                qCDebug(KCONFIG_CORE_LOG) << "Marked" << fileName << "immutable while parsing primary file";
+                break;
+            case KConfigIniBackend::ParseOpenError:
+                configState = KConfigBase::NoAccess;
                 break;
             }
+        } else {
+            KConfigIniBackend backend;
+            backend.setFilePath(file);
+            constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
+            bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
+            if (bFileImmutable) {
+                qCWarning(KCONFIG_CORE_LOG) << file << "marked entire file immutable during cascade parsing";
+            }
+        }
+
+        if (bFileImmutable) {
+            qCDebug(KCONFIG_CORE_LOG) << "Stopping parse after" << file << "due to immutability";
+            break;
         }
     }
 }
