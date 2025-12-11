@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2025-09-14 08:42-0300\n"
+"PO-Revision-Date: 2025-12-10 05:18-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:979
@@ -497,7 +497,7 @@ msgstr "O que é is&to?"
 #: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr "&Relatar erro…"
+msgstr "&Relatar bug…"
 
 #: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
@@ -903,7 +903,7 @@ msgstr "Configurar notificações"
 #: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr "Relatar erro"
+msgstr "Relatar bug"
 
 #: gui/kstandardshortcut.cpp:429
 msgctxt "KStandardShortcut|@action"
