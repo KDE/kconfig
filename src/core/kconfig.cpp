@@ -88,9 +88,12 @@ static QString getDefaultLocaleName()
     return QLocale().name();
 }
 
-KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags, QStandardPaths::StandardLocation resourceType)
+KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
+                               QStandardPaths::StandardLocation resourceType,
+                               std::unique_ptr<KConfigIniBackendAbstractDevice> backend)
     : openFlags(flags)
     , resourceType(resourceType)
+    , mBackend(std::move(backend))
     , bDirty(false)
     , bReadDefaults(false)
     , bFileImmutable(false)
@@ -268,6 +271,18 @@ KConfig::KConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLo
     reparseConfiguration();
 }
 
+KConfig::KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode)
+    : d_ptr(new KConfigPrivate(mode,
+                               QStandardPaths::StandardLocation::GenericConfigLocation // a default location type
+                               ,
+                               std::make_unique<KConfigIniBackendQIODevice>(device)))
+{
+    d_ptr->configState = d_ptr->mBackend.accessMode();
+
+    // read initial information off device
+    reparseConfiguration();
+}
+
 #if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 3)
 KConfig::KConfig(const QString &file, const QString &backend, QStandardPaths::StandardLocation resourceType)
     : d_ptr(new KConfigPrivate(SimpleConfig, resourceType))
@@ -431,7 +446,7 @@ bool KConfig::sync()
 {
     Q_D(KConfig);
 
-    if (isImmutable() || name().isEmpty()) {
+    if (isImmutable() || !d->mBackend.isWritable()) {
         // can't write to an immutable or anonymous file.
         return false;
     }
@@ -447,7 +462,7 @@ bool KConfig::sync()
 
         // lock the local file
         if (d->configState == ReadWrite && !d->lockLocal()) {
-            qCWarning(KCONFIG_CORE_LOG) << "couldn't lock local file";
+            qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock local file:" << d->mBackend.backingDevicePath();
             return false;
         }
 
@@ -474,10 +489,9 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            KConfigIniBackend tmp;
-            tmp.setFilePath(*sGlobalFileName);
+            KConfigIniBackend tmp(std::make_unique<KConfigIniBackendPathDevice>(*sGlobalFileName));
             if (d->configState == ReadWrite && !tmp.lock()) {
-                qCWarning(KCONFIG_CORE_LOG) << "couldn't lock global file";
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock global file:" << d->mBackend.backingDevicePath();
 
                 // unlock the local config if we're returning early
                 if (d->mBackend.isLocked()) {
@@ -497,6 +511,7 @@ bool KConfig::sync()
 
         if (writeLocals) {
             if (!d->mBackend.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write to config:" << d->mBackend.backingDevicePath();
                 d->bDirty = true;
             }
         }
@@ -580,10 +595,24 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
     return config;
 }
 
+void KConfig::copyFrom(const KConfig &config) const
+{
+    Q_D(const KConfig);
+    d_ptr->entryMap = config.d_func()->entryMap;
+    d_ptr->bFileImmutable = false;
+
+    for (auto &[_, entry] : d_ptr->entryMap) {
+        entry.bDirty = true;
+    }
+    d_ptr->bDirty = true;
+}
+
+// TODO KF7 remove, expose QIODevice instead
+// have a separate static funtion for relative filename config files
 QString KConfig::name() const
 {
     Q_D(const KConfig);
-    return d->fileName;
+    return d->fileName.isEmpty() ? d->mBackend.name() : d->fileName;
 }
 
 KConfig::OpenFlags KConfig::openFlags() const
@@ -662,7 +691,7 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    mBackend.setFilePath(file);
+    mBackend.setDeviceInterface(std::make_unique<KConfigIniBackendPathDevice>(file));
 
     configState = mBackend.accessMode();
 }
@@ -670,7 +699,7 @@ void KConfigPrivate::changeFileName(const QString &name)
 void KConfig::reparseConfiguration()
 {
     Q_D(KConfig);
-    if (d->fileName.isEmpty()) {
+    if (!d->mBackend.hasOpenableDeviceInterface()) {
         return;
     }
 
@@ -760,8 +789,7 @@ void KConfigPrivate::parseGlobalFiles()
             parseOpts |= KConfigIniBackend::ParseDefaults;
         }
 
-        KConfigIniBackend backend;
-        backend.setFilePath(file);
+        KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
         if (backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
             break;
         }
@@ -785,65 +813,69 @@ void KConfigPrivate::parseWindowsDefaults()
 void KConfigPrivate::parseConfigFiles()
 {
     // can only read the file if there is a backend and a file name
-    if (!fileName.isEmpty()) {
-        bFileImmutable = false;
+    if (!mBackend.hasOpenableDeviceInterface()) {
+        return;
+    }
 
-        QList<QString> files;
-        if (wantDefaults()) {
-            if (bSuppressGlobal) {
-                files = getGlobalFiles();
-            } else {
-                if (QDir::isAbsolutePath(fileName)) {
-                    const QString canonicalFile = QFileInfo(fileName).canonicalFilePath();
-                    if (!canonicalFile.isEmpty()) { // empty if it doesn't exist
-                        files << canonicalFile;
-                    }
-                } else {
-                    const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
-                    for (const QString &f : localFilesPath) {
-                        files.prepend(QFileInfo(f).canonicalFilePath());
-                    }
+    const auto backingDevicePath = mBackend.backingDevicePath();
+    bFileImmutable = false;
 
-                    // allow fallback to config files bundled in resources
-                    const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
-                    if (QFile::exists(resourceFile)) {
-                        files.prepend(resourceFile);
-                    }
-                }
-            }
+    QList<QString> files;
+    if (wantDefaults()) {
+        if (bSuppressGlobal) {
+            files = getGlobalFiles();
         } else {
-            files << mBackend.filePath();
-        }
-        if (!isSimple()) {
-            files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
-        }
-
-        //        qDebug() << "parsing local files" << files;
-
-        const QByteArray utf8Locale = locale.toUtf8();
-        for (const QString &file : std::as_const(files)) {
-            if (file.compare(mBackend.filePath(), sPathCaseSensitivity) == 0) {
-                switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
-                case KConfigIniBackend::ParseOk:
-                    break;
-                case KConfigIniBackend::ParseImmutable:
-                    bFileImmutable = true;
-                    break;
-                case KConfigIniBackend::ParseOpenError:
-                    configState = KConfigBase::NoAccess;
-                    break;
+            if (QDir::isAbsolutePath(fileName)) {
+                const QString canonicalFile = QFileInfo(backingDevicePath).canonicalFilePath();
+                if (!canonicalFile.isEmpty()) { // empty if it doesn't exist
+                    files << canonicalFile;
                 }
             } else {
-                KConfigIniBackend backend;
-                backend.setFilePath(file);
-                constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
-                bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
-            }
+                const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
+                for (const QString &f : localFilesPath) {
+                    files.prepend(QFileInfo(f).canonicalFilePath());
+                }
 
-            if (bFileImmutable) {
+                // allow fallback to config files bundled in resources
+                const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
+                if (QFile::exists(resourceFile)) {
+                    files.prepend(resourceFile);
+                }
+            }
+        }
+    } else if (!backingDevicePath.isEmpty()) {
+        files << backingDevicePath;
+    }
+    if (!isSimple()) {
+        files = QList<QString>(extraFiles.cbegin(), extraFiles.cend()) + files;
+    }
+
+    const QByteArray utf8Locale = locale.toUtf8();
+    for (const QString &file : std::as_const(files)) {
+        if (file.compare(backingDevicePath, sPathCaseSensitivity) == 0) {
+            switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
+            case KConfigIniBackend::ParseOk:
+                break;
+            case KConfigIniBackend::ParseImmutable:
+                bFileImmutable = true;
+                break;
+            case KConfigIniBackend::ParseOpenError:
+                configState = KConfigBase::NoAccess;
                 break;
             }
+        } else {
+            KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
+            constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
+            bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
         }
+
+        if (bFileImmutable) {
+            break;
+        }
+    }
+
+    if (backingDevicePath.isEmpty() && !bFileImmutable) {
+        bFileImmutable = mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions) == KConfigIniBackend::ParseImmutable;
     }
 }
 
