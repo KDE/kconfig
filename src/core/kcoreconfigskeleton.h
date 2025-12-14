@@ -1218,6 +1218,27 @@ public:
      */
     explicit KCoreConfigSkeleton(KSharedConfig::Ptr config, QObject *parent = nullptr);
 
+    /*!
+     * It is added to disambiguate with the other constructor otherwise ambiguate in case of default nullptr
+     *   KCoreConfigSkeleton(nullptr) or KCoreConfigSkeleton(nullptr)
+     */
+    // TODO KF7: add a KCoreConfigSkeleton(QObject *parent = nullptr) constructor to allow users to opt out the ambiguity
+    enum DisambiguateConstructor {
+        IsStdUniqPtr = 0,
+    };
+    Q_ENUM(DisambiguateConstructor)
+
+    /*!
+     * Constructor
+     *
+     * \a config backing configuration object to use
+     *
+     * \a value must be DisambiguateConstructor::IsStdUniqPtr
+     *
+     * \since 6.22
+     */
+    explicit KCoreConfigSkeleton(std::unique_ptr<KConfig> config, DisambiguateConstructor value, QObject *parent = nullptr);
+
     ~KCoreConfigSkeleton() override;
 
     /*!
@@ -1649,6 +1670,8 @@ public:
 
     /*!
      * Return the KConfig object used for reading and writing the settings.
+     *
+     * Regardless of the constructor used.
      */
     KConfig *config();
 
@@ -1659,6 +1682,11 @@ public:
 
     /*!
      * Return the KConfig object used for reading and writing the settings.
+     *
+     * May return null if the std::unique_ptrt<KConfig> constructor was used.
+     *
+     * \sa config()
+     *
      * \since 5.0
      */
     KSharedConfig::Ptr sharedConfig() const;
@@ -1667,6 +1695,13 @@ public:
      * Set the KSharedConfig object used for reading and writing the settings.
      */
     void setSharedConfig(KSharedConfig::Ptr pConfig);
+
+    /*!
+     * Set the \a config object used for reading and writing the settings.
+     *
+     * \since 6.22
+     */
+    void setConfig(std::unique_ptr<KConfig> config);
 
     /*!
      * Return list of items managed by this KCoreConfigSkeleton object.
