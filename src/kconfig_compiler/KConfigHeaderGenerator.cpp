@@ -339,7 +339,9 @@ void KConfigHeaderGenerator::createConstructor()
     }
 
     stream() << whitespace() << "" << cfg().className << "(";
-    if (parseResult.cfgFileNameArg) {
+    if (cfg().kConfigConstructor) {
+        stream() << " std::unique_ptr<KConfig> config";
+    } else if (parseResult.cfgFileNameArg) {
         if (cfg().forceStringFilename) {
             stream() << " const QString &cfgfilename" << (parseResult.parameters.isEmpty() ? " = QString()" : ", ");
         } else if (parseResult.cfgStateConfig) {
@@ -366,7 +368,7 @@ void KConfigHeaderGenerator::createConstructor()
     }
 
     if (cfg().parentInConstructor) {
-        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty()) {
+        if (parseResult.cfgFileNameArg || !parseResult.parameters.isEmpty() || cfg().kConfigConstructor) {
             stream() << ",";
         }
         stream() << " QObject *parent = nullptr";
