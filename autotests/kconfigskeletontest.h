@@ -22,6 +22,7 @@ private Q_SLOTS:
     void testClear();
     void testKConfigDirty();
     void testSaveRead();
+    void testKconfigQIODevice();
 
 private:
     KConfigSkeleton *s;

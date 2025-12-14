@@ -25,6 +25,12 @@ KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key
 {
 }
 
+KConfigSkeleton::KConfigSkeleton(std::unique_ptr<KConfig> config, KCoreConfigSkeleton::DisambiguateConstructor value, QObject *parent)
+    : KCoreConfigSkeleton(std::move(config), DisambiguateConstructor::IsStdUniqPtr, parent)
+{
+    Q_UNUSED(value)
+}
+
 void KConfigSkeleton::ItemColor::readConfig(KConfig *config)
 {
     KConfigGroup cg = configGroup(config);

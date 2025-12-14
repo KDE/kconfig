@@ -6,9 +6,11 @@
 
 #include "kconfigskeletontest.h"
 
+#include <kconfig.h>
+
+#include <QBuffer>
 #include <QFont>
 #include <QtTestGui>
-#include <kconfig.h>
 
 QTEST_MAIN(KConfigSkeletonTest)
 
@@ -151,16 +153,16 @@ void KConfigSkeletonTest::testDefaults()
 void KConfigSkeletonTest::testKConfigDirty()
 {
     itemBool->setValue(true);
-    itemBool->writeConfig(s->sharedConfig().data());
-    QVERIFY(s->sharedConfig()->isDirty());
+    itemBool->writeConfig(s->config());
+    QVERIFY(s->config()->isDirty());
     s->save();
-    QVERIFY(!s->sharedConfig()->isDirty());
+    QVERIFY(!s->config()->isDirty());
 
     itemBool->setValue(false);
-    itemBool->writeConfig(s->sharedConfig().data());
-    QVERIFY(s->sharedConfig()->isDirty());
+    itemBool->writeConfig(s->config());
+    QVERIFY(s->config()->isDirty());
     s->save();
-    QVERIFY(!s->sharedConfig()->isDirty());
+    QVERIFY(!s->config()->isDirty());
 }
 
 void KConfigSkeletonTest::testSaveRead()
@@ -175,6 +177,50 @@ void KConfigSkeletonTest::testSaveRead()
 
     s->read();
     QCOMPARE(mMyBool, false);
+}
+
+void KConfigSkeletonTest::testKconfigQIODevice()
+{
+    auto buffer = std::make_shared<QBuffer>();
+    QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
+    auto config = std::make_unique<KConfig>(buffer, KConfig::OpenFlag::SimpleConfig);
+
+    s = new KConfigSkeleton(std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr);
+    s->setCurrentGroup(QStringLiteral("MyGroup"));
+    itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
+    s->addItemColor(QStringLiteral("MySetting2"), mMyColor, s_default_setting2);
+
+    s->setCurrentGroup(QStringLiteral("MyOtherGroup"));
+    s->addItemFont(QStringLiteral("MySetting3"), mMyFont, defaultSetting3());
+    s->addItemString(QStringLiteral("MySetting4"), mMyString, s_default_setting4);
+
+    QCOMPARE(mMyBool, s_default_setting1);
+    QCOMPARE(mMyColor, s_default_setting2);
+    QCOMPARE(mMyFont, defaultSetting3());
+    QCOMPARE(mMyString, s_default_setting4);
+
+    QVERIFY(s->isDefaults());
+    QVERIFY(!s->isSaveNeeded());
+
+    buffer->seek(0);
+    QCOMPARE(buffer->size(), 0);
+
+    s->save();
+
+    // all values are default, nothing is written
+    buffer->seek(0);
+    QCOMPARE(buffer->size(), 0);
+
+    // sets a value will make the kconfig dirty
+    itemBool->setValue(!itemBool->value());
+
+    s->save();
+
+    buffer->seek(0);
+
+    auto iniData = QString::fromUtf8(buffer->readAll());
+    iniData.remove(QLatin1Char('\r'));
+    QCOMPARE(iniData.toUtf8(), "[MyGroup]\nMySetting1=true\n");
 }
 
 #include "moc_kconfigskeletontest.cpp"

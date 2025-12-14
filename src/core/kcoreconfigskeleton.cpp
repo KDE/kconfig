@@ -1243,15 +1243,22 @@ KCoreConfigSkeleton::KCoreConfigSkeleton(const QString &configname, QObject *par
 {
     // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
 
-    d->mConfig = KSharedConfig::openConfig(configname, KConfig::FullConfig);
+    d->mSharedConfig = KSharedConfig::openConfig(configname, KConfig::FullConfig);
 }
 
 KCoreConfigSkeleton::KCoreConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
     : QObject(parent)
     , d(new KCoreConfigSkeletonPrivate)
 {
-    // qDebug() << "Creating KCoreConfigSkeleton (" << (void *)this << ")";
-    d->mConfig = std::move(pConfig);
+    d->mSharedConfig = std::move(pConfig);
+}
+
+KCoreConfigSkeleton::KCoreConfigSkeleton(std::unique_ptr<KConfig> config, KCoreConfigSkeleton::DisambiguateConstructor value, QObject *parent)
+    : QObject(parent)
+    , d(new KCoreConfigSkeletonPrivate)
+{
+    Q_UNUSED(value)
+    d->config = std::move(config);
 }
 
 KCoreConfigSkeleton::~KCoreConfigSkeleton()
@@ -1271,22 +1278,29 @@ QString KCoreConfigSkeleton::currentGroup() const
 
 KConfig *KCoreConfigSkeleton::config()
 {
-    return d->mConfig.data();
+    return d->config ? d->config.get() : d->mSharedConfig.data();
 }
 
 const KConfig *KCoreConfigSkeleton::config() const
 {
-    return d->mConfig.data();
+    return d->config ? d->config.get() : d->mSharedConfig.data();
 }
 
 KSharedConfig::Ptr KCoreConfigSkeleton::sharedConfig() const
 {
-    return d->mConfig;
+    return d->mSharedConfig;
 }
 
 void KCoreConfigSkeleton::setSharedConfig(KSharedConfig::Ptr pConfig)
 {
-    d->mConfig = std::move(pConfig);
+    d->mSharedConfig = std::move(pConfig);
+    d->config.reset();
+}
+
+void KCoreConfigSkeleton::setConfig(std::unique_ptr<KConfig> config)
+{
+    d->config = std::move(config);
+    d->mSharedConfig.reset();
 }
 
 KConfigSkeletonItem::List KCoreConfigSkeleton::items() const
@@ -1319,14 +1333,16 @@ void KCoreConfigSkeleton::setDefaults()
 
 void KCoreConfigSkeleton::load()
 {
-    d->mConfig->reparseConfiguration();
+    auto config = this->config();
+    config->reparseConfiguration();
     read();
 }
 
 void KCoreConfigSkeleton::read()
 {
+    auto config = this->config();
     for (auto *skelItem : std::as_const(d->mItems)) {
-        skelItem->readConfig(d->mConfig.data());
+        skelItem->readConfig(config);
     }
     usrRead();
 }
@@ -1347,17 +1363,18 @@ bool KCoreConfigSkeleton::isSaveNeeded() const
 
 bool KCoreConfigSkeleton::save()
 {
+    auto config = this->config();
     // qDebug();
     for (auto *skelItem : std::as_const(d->mItems)) {
-        skelItem->writeConfig(d->mConfig.data());
+        skelItem->writeConfig(config);
     }
 
     if (!usrSave()) {
         return false;
     }
 
-    if (d->mConfig->isDirty()) {
-        if (!d->mConfig->sync()) {
+    if (config->isDirty()) {
+        if (!config->sync()) {
             return false;
         }
         Q_EMIT configChanged();
@@ -1399,8 +1416,9 @@ void KCoreConfigSkeleton::addItem(KConfigSkeletonItem *item, const QString &name
 
     item->setName(name.isEmpty() ? item->key() : name);
     d->mItemDict.insert(item->name(), item);
-    item->readDefault(d->mConfig.data());
-    item->readConfig(d->mConfig.data());
+    auto config = this->config();
+    item->readDefault(config);
+    item->readConfig(config);
 }
 
 void KCoreConfigSkeleton::removeItem(const QString &name)
