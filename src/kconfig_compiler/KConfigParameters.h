@@ -39,6 +39,7 @@ public:
     QString visibility;
     bool parentInConstructor; // The class has the optional parent parameter in its constructor
     bool forceStringFilename;
+    bool kConfigConstructor; // the input config is just a Kconfig and does need to be a KSharedConfig::Ptr
     bool singleton; // The class will be a singleton
     bool staticAccessors; // provide or not static accessors
     bool customAddons;

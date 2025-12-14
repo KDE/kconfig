@@ -85,6 +85,8 @@ static CompilerTestSet testCases = {"test1.cpp",
                                     "test_subgroups.h",
                                     "test_time.cpp",
                                     "test_time.h",
+                                    "test_kconfigconstructor.cpp",
+                                    "test_kconfigconstructor.h",
                                     nullptr};
 
 static CompilerTestSet testCasesToRun = {"Test1",
@@ -138,6 +140,7 @@ static CompilerTestSet testCasesToRun = {"Test1",
                                          "test_emptyentries_cmake",
                                          "test_subgroups_cmake",
                                          "test_time_cmake",
+                                         "test_kconfigconstructor_cmake",
                                          nullptr};
 
 #if 0
