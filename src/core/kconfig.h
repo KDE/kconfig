@@ -15,11 +15,9 @@
 
 #include <kconfigcore_export.h>
 
-#include <QByteArray>
-#include <QList>
+#include <QIODevice>
 #include <QStandardPaths>
 #include <QString>
-#include <QVariant>
 
 class KConfigGroup;
 class KConfigPrivate;
@@ -132,6 +130,23 @@ public:
                      OpenFlags mode = FullConfig,
                      QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
 
+    /*!
+     * Creates a KConfig object to manipulate a configuration stored in \a device.
+     *
+     * \a mode determines whether the user or global settings will be allowed
+     * to influence the values returned by this object.  See OpenFlags for
+     * more details.
+     *
+     * \a device The device storing the configuration. If must be opened and have the required
+     *                     QIODeviceBase::OpenMode depending if we need to only read or also write to the device.
+     *
+     * \a mode How global settings should affect the configuration
+     *                     options exposed by this KConfig object. Defaults to SimpleConfig contrary to the other constructor.
+     *
+     * \since 6.23
+     */
+    explicit KConfig(const std::shared_ptr<QIODevice> &device, OpenFlags mode = SimpleConfig);
+
 #if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 3)
     /*!
      * Creates a KConfig object using the specified backend. If the backend can not
@@ -226,6 +241,16 @@ public:
      * Returns \a config if it was set, otherwise a new KConfig object
      */
     KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
+
+    /*!
+     * Copies all entries from the passed in \a config  object to this
+     * config.
+     *
+     * \a config to copy entries from
+     *
+     * \since 6.23
+     */
+    void copyFrom(const KConfig &config) const;
 
     /*!
      * Ensures that the configuration file contains a certain update.
