@@ -79,4 +79,9 @@ KConfigParameters::KConfigParameters(const QString &codegenFilename)
     headerExtension = codegenConfig.value(QStringLiteral("HeaderExtension"), QStringLiteral("h")).toString();
     qmlRegistration = codegenConfig.value(QStringLiteral("QmlRegistration")).toBool();
     qmlUncreatable = codegenConfig.value(QStringLiteral("QmlUncreatable")).toBool();
+    kConfigConstructor =
+        // from cmake, due to Camelisation can't keep KC intact
+        codegenConfig.value(QStringLiteral("KconfigConstructor")).toBool() ||
+        // for human beings
+        codegenConfig.value(QStringLiteral("KConfigConstructor")).toBool();
 }
