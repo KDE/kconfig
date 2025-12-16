@@ -32,9 +32,9 @@ if(KCONFIG_USE_GUI)
     find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
 endif()
 
-option(KCONFIG_USE_QML "Build components using Qt6Qml" ON)
+option(USE_QML "Build components using Qt6Qml" ON)
 
-if(KCONFIG_USE_QML)
+if(USE_QML)
     include(ECMQmlModule)
     find_package(Qt6 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml Quick)
 endif()
