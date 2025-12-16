@@ -14,7 +14,7 @@ if(@KCONFIG_USE_DBUS@)
     find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
 endif()
 
-if(@KCONFIG_USE_QML@)
+if(@USE_QML@)
     find_dependency(Qt6Qml "@REQUIRED_QT_VERSION@")
 endif()
 
