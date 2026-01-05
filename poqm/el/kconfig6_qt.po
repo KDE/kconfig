@@ -24,12 +24,12 @@ msgstr ""
 "X-Generator: Lokalize 24.08.0\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:979
+#: core/kconfig.cpp:1011
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Επικοινωνήστε με τον διαχειριστή του συστήματός σας."
 
-#: core/kconfigini.cpp:599
+#: core/kconfigini.cpp:494
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
