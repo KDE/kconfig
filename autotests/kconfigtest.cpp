@@ -1844,6 +1844,7 @@ void KConfigTest::testAnonymousConfig()
     QCOMPARE(general.readEntry("testKG"), QString()); // no kdeglobals merging
     general.writeEntry("Foo", "Bar");
     QCOMPARE(general.readEntry("Foo"), QStringLiteral("Bar"));
+    QVERIFY(!general.sync());
 }
 
 void KConfigTest::testQByteArrayUtf8()

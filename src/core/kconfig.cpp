@@ -99,7 +99,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
     , bFileImmutable(false)
     , bForceGlobal(false)
     , bSuppressGlobal(false)
-    , configState(KConfigBase::NoAccess)
+    , configState(mBackend.accessMode())
 {
     const bool isTestMode = QStandardPaths::isTestModeEnabled();
     // If sGlobalFileName was initialised and testMode has been toggled,

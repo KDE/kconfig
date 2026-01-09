@@ -145,7 +145,7 @@ public:
 
     [[nodiscard]] bool isDeviceReadable() const override
     {
-        return false;
+        return true;
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
