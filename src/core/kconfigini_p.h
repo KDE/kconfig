@@ -82,10 +82,6 @@ public:
     }
     [[nodiscard]] bool hasOpenableDeviceInterface() const;
     [[nodiscard]] QString backingDevicePath() const;
-    [[nodiscard]] QString name() const
-    {
-        return mDeviceInterface->id();
-    }
 
 private:
     enum StringType {

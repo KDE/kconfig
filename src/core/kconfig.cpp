@@ -521,7 +521,7 @@ bool KConfig::sync()
     }
 
     // Notifying absolute paths is not supported and also makes no sense.
-    const bool isAbsolutePath = name().at(0) == QLatin1Char('/');
+    const bool isAbsolutePath = !name().isEmpty() && name().at(0) == QLatin1Char('/');
     if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
         d->notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + name()));
     }
@@ -612,7 +612,7 @@ void KConfig::copyFrom(const KConfig &config) const
 QString KConfig::name() const
 {
     Q_D(const KConfig);
-    return d->fileName.isEmpty() ? d->mBackend.name() : d->fileName;
+    return d->fileName;
 }
 
 KConfig::OpenFlags KConfig::openFlags() const
@@ -843,7 +843,8 @@ void KConfigPrivate::parseConfigFiles()
                 }
             }
         }
-    } else if (!backingDevicePath.isEmpty()) {
+    } else {
+        // this also handles anonymous config case (backingDevicePath == "") and not file QIODevice case
         files << backingDevicePath;
     }
     if (!isSimple()) {
@@ -872,10 +873,6 @@ void KConfigPrivate::parseConfigFiles()
         if (bFileImmutable) {
             break;
         }
-    }
-
-    if (backingDevicePath.isEmpty() && !bFileImmutable) {
-        bFileImmutable = mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions) == KConfigIniBackend::ParseImmutable;
     }
 }
 
