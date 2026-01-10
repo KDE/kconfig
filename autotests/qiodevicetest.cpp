@@ -60,7 +60,6 @@ private Q_SLOTS:
         KConfig globRead(QStringLiteral("kdeglobals"));
         const KConfigGroup general(&globRead, QStringLiteral("General"));
         QCOMPARE(general.readEntry("testKG"), QStringLiteral("1"));
-        qDebug() << "globRead" << globRead.name();
 
         auto buffer = std::make_shared<QBuffer>();
         QVERIFY(buffer->open(QIODevice::ReadOnly | QIODevice::Text));
@@ -143,11 +142,38 @@ private Q_SLOTS:
         }
 
         QCOMPARE(buffer->size(), 0);
-        config.sync();
+        QVERIFY(config.sync());
         QVERIFY(!config.isDirty());
 
         buffer->seek(0);
         QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=1\n");
+    }
+
+    void testQFile()
+    {
+        QTemporaryFile file;
+        file.setAutoRemove(false);
+        QVERIFY(file.open());
+        file.close();
+
+        auto backingFile = std::make_shared<QFile>(file.fileName());
+        QVERIFY(backingFile->open(QIODevice::ReadWrite | QIODevice::Text));
+        KConfig config(backingFile, KConfig::OpenFlag::SimpleConfig);
+
+        KConfigGroup group(&config, QStringLiteral("Extra"));
+        group.writeEntry("testKG", "1");
+        QVERIFY(config.isDirty());
+        {
+            const KConfigGroup extra(&config, QStringLiteral("Extra"));
+            QCOMPARE(extra.readEntry("testKG"), QStringLiteral("1"));
+        }
+
+        QCOMPARE(backingFile->size(), 0);
+        QVERIFY(config.sync());
+        QVERIFY(!config.isDirty());
+
+        backingFile->seek(0);
+        QCOMPARE(backingFile->readAll(), "[Extra]\ntestKG=1\n");
     }
 };
 
