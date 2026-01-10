@@ -17,8 +17,10 @@
 #include <fcntl.h>
 
 #include "kconfiggroup.h"
+#include "kconfiginibackendreader_p.h"
 
 #include <QBasicMutex>
+#include <QBuffer>
 #include <QByteArray>
 #include <QCache>
 #include <QCoreApplication>
@@ -675,6 +677,12 @@ void KConfigPrivate::changeFileName(const QString &name)
         } else {
             // anonymous config
             openFlags = KConfig::SimpleConfig;
+
+            const auto buffer = std::make_shared<QBuffer>();
+            buffer->open(QIODevice::ReadWrite);
+            auto device = std::make_unique<KConfigIniBackendQIODevice>(std::move(buffer));
+            changeDevice(std::move(device));
+
             return;
         }
     } else if (QDir::isAbsolutePath(fileName)) {
@@ -691,7 +699,12 @@ void KConfigPrivate::changeFileName(const QString &name)
 
     bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    mBackend.setDeviceInterface(std::make_unique<KConfigIniBackendPathDevice>(file));
+    changeDevice(std::make_unique<KConfigIniBackendPathDevice>(file));
+}
+
+void KConfigPrivate::changeDevice(std::unique_ptr<KConfigIniBackendAbstractDevice> device)
+{
+    mBackend.setDeviceInterface(std::move(device));
 
     configState = mBackend.accessMode();
 }

@@ -21,6 +21,7 @@ private Q_SLOTS:
     void testReadWrite();
     void testReadWriteSync();
     void testQrcFile();
+    void testGroupConfig();
 
 #if !defined(Q_OS_WINDOWS) && !defined(Q_OS_ANDROID) && !defined(Q_OS_OSX) // m_stateDirPath is only applicable on XDG systems
     void testState()
@@ -113,6 +114,21 @@ void KSharedConfigTest::testUnicity()
     KSharedConfig::Ptr cfg1 = KSharedConfig::openConfig();
     KSharedConfig::Ptr cfg2 = KSharedConfig::openConfig();
     QCOMPARE(cfg1.data(), cfg2.data());
+}
+
+void KSharedConfigTest::testGroupConfig()
+{
+    QTest::failOnWarning();
+
+    // anonymous config
+    auto config = KSharedConfig::openConfig(QString(), KConfig::SimpleConfig);
+    config->group(u"test"_s).writeEntry(u"test"_s, 1);
+    QCOMPARE(config->group(u"test"_s).readEntry(u"test"_s, 0), 1);
+    QVERIFY(config->sync());
+    QCOMPARE(config->group(u"test"_s).readEntry(u"test"_s, 0), 1);
+
+    auto config2 = KSharedConfig::openConfig(QString(), KConfig::SimpleConfig);
+    QCOMPARE(config2->group(u"test"_s).readEntry(u"test"_s, 0), 0);
 }
 
 void KSharedConfigTest::testReadWrite()

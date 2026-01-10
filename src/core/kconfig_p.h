@@ -30,6 +30,7 @@ public:
     QStandardPaths::StandardLocation resourceType;
 
     void changeFileName(const QString &fileName);
+    void changeDevice(std::unique_ptr<KConfigIniBackendAbstractDevice> device);
 
     // functions for KConfigGroup
     bool canWriteEntry(const QString &group, QAnyStringView key, bool isDefault = false) const;
