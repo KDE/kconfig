@@ -49,7 +49,7 @@ class KConfigPrivate;
  * KSharedConfig provides a set of open methods as counterparts for the
  * KConfig constructors.
  *
- * See \l {https://techbase.kde.org/index.php?title=Development/Tutorials/KConfig}{the techbase HOWTO on KConfig}
+ * See \l {https://develop.kde.org/docs/features/configuration/introduction/}{Introduction to KConfig}
  *
  * \sa KSharedConfig, KConfigGroup
  */
