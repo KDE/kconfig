@@ -175,6 +175,49 @@ private Q_SLOTS:
         backingFile->seek(0);
         QCOMPARE(backingFile->readAll(), "[Extra]\ntestKG=1\n");
     }
+
+    void testAutoOpen()
+    {
+        QTest::failOnWarning();
+
+        // auto open the buffer
+        auto buffer = std::make_shared<QBuffer>();
+        {
+            // test QIODevice auto-opening
+            KConfig config(buffer, KConfig::OpenFlag::SimpleConfig);
+            config.group(u"Test"_s).writeEntry("key", "value");
+            QVERIFY(config.sync());
+        }
+
+#ifdef Q_OS_UNIX
+        QTemporaryFile file;
+        file.setAutoRemove(false);
+        QVERIFY(file.open());
+        file.close();
+
+        auto backingFile = std::make_shared<QFile>(file.fileName());
+
+        // make the file not accessible
+        QVERIFY(backingFile->setPermissions(QFile::Permissions{}));
+        QVERIFY(!backingFile->isReadable());
+
+        KConfig config(backingFile, KConfig::OpenFlag::SimpleConfig);
+        config.group(u"Test"_s).writeEntry("key", "value");
+
+        // we can't sync
+        QVERIFY(!config.sync());
+
+        // then make the file accessible
+        QVERIFY(backingFile->setPermissions(QFile::ReadOwner | QFile::WriteOwner));
+        QVERIFY(config.sync());
+
+        // Final check
+        backingFile->seek(0);
+        QCOMPARE(backingFile->readAll(), "[Test]\nkey=value\n");
+
+        QVERIFY(backingFile->remove());
+#endif
+    }
 };
 
 QTEST_MAIN(QIODeviceTest)

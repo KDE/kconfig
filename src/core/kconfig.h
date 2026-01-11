@@ -137,8 +137,7 @@ public:
      * to influence the values returned by this object.  See OpenFlags for
      * more details.
      *
-     * \a device The device storing the configuration. If must be opened and have the required
-     *                     QIODeviceBase::OpenMode depending if we need to only read or also write to the device.
+     * \a device The device storing the configuration. It can be auto-opened in ReadWrite mode if not opened.
      *
      * \a mode How global settings should affect the configuration
      *                     options exposed by this KConfig object. Defaults to SimpleConfig contrary to the other constructor.
