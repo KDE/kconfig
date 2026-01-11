@@ -74,17 +74,28 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     const uint MAX_ERRORS = 100;
     uint errorCount = 0;
 
-    QDataStream stream(file.get());
-    const qint64 readBufferSize = std::min(file->size(), qint64(128 * 1024) /* 128 KB */);
+    const qint64 initialBufferSize = std::min(file->size(), qint64(128 * 1024) /* 128 KB */);
     const uint maximumSizeWithoutNewLine = 1.5 * 1024 * 1024; // 1.5 MB
     const uint defaultgroupNameBufferSize = 512; // should be a rather big fit for common group names
-    bool newLineFound = false;
 
-    QByteArray readBuffer(readBufferSize, Qt::Uninitialized);
-    QByteArray buffer;
-    QByteArray leftOverBuffer;
     QByteArray groupNameBuffer; // reused allocated buffer to read group names, each processed into QString afterwards
     groupNameBuffer.reserve(defaultgroupNameBufferSize);
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+    QByteArray buffer(initialBufferSize, Qt::Uninitialized);
+    while (!file->atEnd() && errorCount < MAX_ERRORS) {
+        auto res = file->readLineInto(&buffer, maximumSizeWithoutNewLine);
+        if (!res) {
+            qCWarning(KCONFIG_CORE_LOG) << "Couldn't find a single line in " << mDeviceInterface->id() << " after reading" << (maximumSizeWithoutNewLine)
+                                        << "bytes.";
+        }
+#else
+    QDataStream stream(file.get());
+    bool newLineFound = false;
+
+    QByteArray readBuffer(initialBufferSize, Qt::Uninitialized);
+    QByteArray buffer;
+    QByteArray leftOverBuffer;
 
     while ((!stream.atEnd() || !leftOverBuffer.isEmpty()) && errorCount < MAX_ERRORS) {
         buffer = leftOverBuffer;
@@ -96,7 +107,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
 
         } else if (!stream.atEnd()) {
             while (!stream.atEnd()) {
-                int len = stream.readRawData(readBuffer.data(), readBufferSize);
+                int len = stream.readRawData(readBuffer.data(), initialBufferSize);
                 if (len == -1) {
                     qCWarning(KCONFIG_CORE_LOG) << "Couldn't read." << mDeviceInterface->id() << "after line" << lineNo;
                     return ParseOpenError;
@@ -107,7 +118,7 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                 if (n != -1) {
                     // found '\n' at position n
                     buffer += readBufferView.sliced(0, n);
-                    leftOverBuffer = readBufferView.sliced(n+1).toByteArray();
+                    leftOverBuffer = readBufferView.sliced(n + 1).toByteArray();
                     newLineFound = true;
                     break;
                 } else {
@@ -122,10 +133,11 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                     }
                 }
             }
+
         } else {
             leftOverBuffer = {};
         }
-
+#endif
         QByteArrayView line = buffer;
         line = line.trimmed();
         ++lineNo;
