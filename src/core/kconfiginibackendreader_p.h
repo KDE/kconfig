@@ -398,16 +398,25 @@ public:
 
     [[nodiscard]] bool isDeviceReadable() const override
     {
-        return m_device->isOpen() && m_device->isReadable();
+        if (!m_device->isOpen() && !tryOpen()) {
+            return false;
+        }
+        return m_device->isReadable();
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
     {
-        return m_device->isOpen() && m_device->isWritable();
+        if (!m_device->isOpen() && !tryOpen()) {
+            return false;
+        }
+        return m_device->isWritable();
     }
 
     [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override
     {
+        if (!canWriteToDevice()) {
+            return false;
+        }
         m_device->setTextModeEnabled(true);
         write(*m_device);
         return true;
@@ -415,12 +424,20 @@ public:
 
     [[nodiscard]] OpenResult open() override
     {
+        if (!isDeviceReadable()) {
+            return {.shouldHaveDevice = false, .device = nullptr};
+        }
         return {.shouldHaveDevice = true, .device = m_device};
     }
 
     [[nodiscard]] std::unique_ptr<AbstractLockFile> lockFile() override
     {
         return std::make_unique<FakeLockFile>();
+    }
+
+    [[nodiscard]] bool tryOpen() const
+    {
+        return m_device->open(QIODevice::ReadWrite);
     }
 
     void createEnclosingEntity() override
