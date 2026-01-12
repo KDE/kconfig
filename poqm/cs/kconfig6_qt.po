@@ -18,7 +18,7 @@ msgstr ""
 "X-Source-Language: en_US\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:1011
+#: core/kconfig.cpp:1008
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Prosím kontaktujte svého správce systému."

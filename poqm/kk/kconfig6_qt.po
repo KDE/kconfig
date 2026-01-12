@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:1011
+#: core/kconfig.cpp:1008
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr ""
