@@ -18,6 +18,7 @@
 #include "dbussanitizer_p.h"
 #endif
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QHash>
 #include <QPointer>
@@ -41,7 +42,7 @@ KConfigWatcher::Ptr KConfigWatcher::create(const KSharedConfig::Ptr &config)
 
         watcherList.localData().insert(c, watcher.toWeakRef());
 
-        QObject::connect(watcher.data(), &QObject::destroyed, [c]() {
+        QObject::connect(watcher.data(), &QObject::destroyed, qApp, [c]() {
             watcherList.localData().remove(c);
         });
     }
