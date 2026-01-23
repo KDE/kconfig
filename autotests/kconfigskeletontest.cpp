@@ -185,27 +185,27 @@ void KConfigSkeletonTest::testKconfigQIODevice()
     QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
     auto config = std::make_unique<KConfig>(buffer, KConfig::OpenFlag::SimpleConfig);
 
-    s = new KConfigSkeleton(std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr);
-    s->setCurrentGroup(QStringLiteral("MyGroup"));
-    itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
-    s->addItemColor(QStringLiteral("MySetting2"), mMyColor, s_default_setting2);
+    auto sIODevice = std::make_unique<KConfigSkeleton>(std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr);
+    sIODevice->setCurrentGroup(QStringLiteral("MyGroup"));
+    itemBool = sIODevice->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
+    sIODevice->addItemColor(QStringLiteral("MySetting2"), mMyColor, s_default_setting2);
 
-    s->setCurrentGroup(QStringLiteral("MyOtherGroup"));
-    s->addItemFont(QStringLiteral("MySetting3"), mMyFont, defaultSetting3());
-    s->addItemString(QStringLiteral("MySetting4"), mMyString, s_default_setting4);
+    sIODevice->setCurrentGroup(QStringLiteral("MyOtherGroup"));
+    sIODevice->addItemFont(QStringLiteral("MySetting3"), mMyFont, defaultSetting3());
+    sIODevice->addItemString(QStringLiteral("MySetting4"), mMyString, s_default_setting4);
 
     QCOMPARE(mMyBool, s_default_setting1);
     QCOMPARE(mMyColor, s_default_setting2);
     QCOMPARE(mMyFont, defaultSetting3());
     QCOMPARE(mMyString, s_default_setting4);
 
-    QVERIFY(s->isDefaults());
-    QVERIFY(!s->isSaveNeeded());
+    QVERIFY(sIODevice->isDefaults());
+    QVERIFY(!sIODevice->isSaveNeeded());
 
     buffer->seek(0);
     QCOMPARE(buffer->size(), 0);
 
-    s->save();
+    sIODevice->save();
 
     // all values are default, nothing is written
     buffer->seek(0);
@@ -214,7 +214,7 @@ void KConfigSkeletonTest::testKconfigQIODevice()
     // sets a value will make the kconfig dirty
     itemBool->setValue(!itemBool->value());
 
-    s->save();
+    sIODevice->save();
 
     buffer->seek(0);
 
