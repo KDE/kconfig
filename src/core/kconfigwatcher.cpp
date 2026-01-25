@@ -42,7 +42,9 @@ KConfigWatcher::Ptr KConfigWatcher::create(const KSharedConfig::Ptr &config)
         watcherList.localData().insert(c, watcher.toWeakRef());
 
         QObject::connect(watcher.data(), &QObject::destroyed, [c]() {
-            watcherList.localData().remove(c);
+            if (watcherList.hasLocalData()) {
+                watcherList.localData().remove(c);
+            }
         });
     }
     return watcherList.localData().value(c).toStrongRef();
