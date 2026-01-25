@@ -185,6 +185,9 @@ void KConfigSkeletonTest::testKconfigQIODevice()
     QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
     auto config = std::make_unique<KConfig>(buffer, KConfig::OpenFlag::SimpleConfig);
 
+    // cleanup the instance created in init
+    delete s;
+
     s = new KConfigSkeleton(std::move(config), KCoreConfigSkeleton::DisambiguateConstructor::IsStdUniqPtr);
     s->setCurrentGroup(QStringLiteral("MyGroup"));
     itemBool = s->addItemBool(QStringLiteral("MySetting1"), mMyBool, s_default_setting1);
