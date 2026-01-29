@@ -58,6 +58,7 @@ struct KStandardShortcutInfo {
 #define ALT(x) QKeyCombination(Qt::ALT | Qt::Key_##x).toCombined()
 #define ALTSHIFT(x) QKeyCombination(Qt::ALT | Qt::SHIFT | Qt::Key_##x).toCombined()
 #define CTRLMETA(x) QKeyCombination(Qt::CTRL | Qt::META | Qt::Key_##x).toCombined()
+#define META(x) QKeyCombination(Qt::META | Qt::Key_##x).toCombined()
 
 /* Array of predefined KStandardShortcutInfo objects, which cover all
     the "standard" accelerators. Each enum value from StandardShortcut
@@ -180,11 +181,26 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      Category::Navigation},
 
     {Up, "Up", QT_TRANSLATE_NOOP3("KStandardShortcut", "Up", "@action"), ALT(Up), 0, QList<QKeySequence>(), false, Category::Navigation},
-    {Back, "Back", QT_TRANSLATE_NOOP3("KStandardShortcut", "Back", "@action"), ALT(Left), Qt::Key_Back, QList<QKeySequence>(), false, Category::Navigation},
+    {Back,
+     "Back",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Back", "@action"),
+#if defined(Q_OS_MACOS)
+     0,
+#else
+     ALT(Left),
+#endif
+     Qt::Key_Back,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
     {Forward,
      "Forward",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Forward", "@action"),
+#if defined(Q_OS_MACOS)
+     0,
+#else
      ALT(Right),
+#endif
      Qt::Key_Forward,
      QList<QKeySequence>(),
      false,
@@ -222,7 +238,18 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      QList<QKeySequence>(),
      false,
      Category::Navigation},
-    {GotoLine, "GotoLine", QT_TRANSLATE_NOOP3("KStandardShortcut", "Go to Line", "@action"), CTRL(G), 0, QList<QKeySequence>(), false, Category::Navigation},
+    {GotoLine,
+     "GotoLine",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Go to Line", "@action"),
+#if defined(Q_OS_MACOS)
+     META(G), // Ctrl+G on macos
+#else
+     CTRL(G),
+#endif
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
     {BackwardWord,
      "BackwardWord",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Backward Word", "@action"),
@@ -305,7 +332,11 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {PrevCompletion,
      "PrevCompletion",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Previous Completion Match", "@action"),
+#if defined(Q_OS_MACOS)
+     0,
+#else
      CTRL(Up),
+#endif
      0,
      QList<QKeySequence>(),
      false,
@@ -313,7 +344,11 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
     {NextCompletion,
      "NextCompletion",
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Next Completion Match", "@action"),
+#if defined(Q_OS_MACOS)
+     0,
+#else
      CTRL(Down),
+#endif
      0,
      QList<QKeySequence>(),
      false,
