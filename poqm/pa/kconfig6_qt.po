@@ -727,372 +727,372 @@ msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "ਮੁੱਖ ਮੇਨੂ ਖੋਲ੍ਹੋ"
 
-#: gui/kstandardshortcut.cpp:72
+#: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
 msgstr "ਖੋਲ੍ਹੋ"
 
-#: gui/kstandardshortcut.cpp:73
+#: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "New"
 msgstr "ਨਵਾਂ"
 
-#: gui/kstandardshortcut.cpp:74
+#: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
 msgstr "ਬੰਦ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:75
+#: gui/kstandardshortcut.cpp:76
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
 msgstr "ਸੰਭਾਲੋ"
 
-#: gui/kstandardshortcut.cpp:76
+#: gui/kstandardshortcut.cpp:77
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
 msgstr "ਪਰਿੰਟ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:77
+#: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
 msgstr "ਬਾਹਰ"
 
-#: gui/kstandardshortcut.cpp:80
+#: gui/kstandardshortcut.cpp:81
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
 msgstr "ਵਾਪਿਸ"
 
-#: gui/kstandardshortcut.cpp:81
+#: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
 msgstr "ਪਰਤਾਓ"
 
-#: gui/kstandardshortcut.cpp:84
+#: gui/kstandardshortcut.cpp:85
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
 msgstr "ਕੱਟੋ"
 
-#: gui/kstandardshortcut.cpp:85
+#: gui/kstandardshortcut.cpp:86
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
 msgstr "ਕਾਪੀ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:86
+#: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
 msgstr "ਚੇਪੋ"
 
-#: gui/kstandardshortcut.cpp:89
+#: gui/kstandardshortcut.cpp:90
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
 msgstr "ਚੋਣ ਕੀਤੀ ਨੂੰ ਚੇਪੋ"
 
-#: gui/kstandardshortcut.cpp:96
+#: gui/kstandardshortcut.cpp:97
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
 msgstr "ਸਭ ਚੁਣੋ"
 
-#: gui/kstandardshortcut.cpp:97
+#: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
 msgstr "ਅਣ-ਚੁਣੇ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:100
+#: gui/kstandardshortcut.cpp:101
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
 msgstr "ਅੱਖਰ ਪਿੱਛੇ ਵੱਲ ਹਟਾਓ"
 
-#: gui/kstandardshortcut.cpp:112
+#: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
 msgstr "ਅੱਖਰ ਅੱਗੇ ਵੱਲ ਹਟਾਓ"
 
-#: gui/kstandardshortcut.cpp:123
+#: gui/kstandardshortcut.cpp:124
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "ਖੋਜੋ"
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:127
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "ਅੱਗੇ ਖੋਜੋ"
 
-#: gui/kstandardshortcut.cpp:136
+#: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "ਪਿੱਛੇ ਖੋਜੋ"
 
-#: gui/kstandardshortcut.cpp:137
+#: gui/kstandardshortcut.cpp:138
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "ਤਬਦੀਲ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:142
+#: gui/kstandardshortcut.cpp:143
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "ਘਰ"
 
-#: gui/kstandardshortcut.cpp:150
+#: gui/kstandardshortcut.cpp:151
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "ਸ਼ੁਰੂ"
 
-#: gui/kstandardshortcut.cpp:162
+#: gui/kstandardshortcut.cpp:163
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "ਅੰਤ"
 
-#: gui/kstandardshortcut.cpp:172
+#: gui/kstandardshortcut.cpp:173
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "ਦਰਜਾ"
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:176
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "ਅੱਗੇ"
 
-#: gui/kstandardshortcut.cpp:182
+#: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "ਉੱਤੇ"
 
-#: gui/kstandardshortcut.cpp:183
+#: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
-#: gui/kstandardshortcut.cpp:186
+#: gui/kstandardshortcut.cpp:198
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "ਅੱਗੇ"
 
-#: gui/kstandardshortcut.cpp:194
+#: gui/kstandardshortcut.cpp:210
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "ਮੁੜ-ਲੋਡ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:203
+#: gui/kstandardshortcut.cpp:219
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "ਲਾਈਨ ਦੇ ਸ਼ੁਰੂ ਉੱਤੇ"
 
-#: gui/kstandardshortcut.cpp:215
+#: gui/kstandardshortcut.cpp:231
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "ਲਾਈਨ ਦੇ ਅੰਤ ਉੱਤੇ"
 
-#: gui/kstandardshortcut.cpp:225
+#: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "ਲਾਈਨ ਉੱਤੇ ਜਾਓ"
 
-#: gui/kstandardshortcut.cpp:228
+#: gui/kstandardshortcut.cpp:255
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "ਸ਼ਬਦ ਪਿੱਛੇ"
 
-#: gui/kstandardshortcut.cpp:240
+#: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "ਸ਼ਬਦ ਅੱਗੇ"
 
-#: gui/kstandardshortcut.cpp:253
+#: gui/kstandardshortcut.cpp:280
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "ਬੁੱਕਮਾਰਕ ਜੋੜੋ"
 
-#: gui/kstandardshortcut.cpp:259
+#: gui/kstandardshortcut.cpp:286
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "ਜ਼ੂਮ ਇਨ"
 
-#: gui/kstandardshortcut.cpp:260
+#: gui/kstandardshortcut.cpp:287
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "ਜ਼ੂਮ ਆਉਟ"
 
-#: gui/kstandardshortcut.cpp:263
+#: gui/kstandardshortcut.cpp:290
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਮੋਡ"
 
-#: gui/kstandardshortcut.cpp:274
+#: gui/kstandardshortcut.cpp:301
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "ਮੇਨੂ ਪੱਟੀ ਵੇਖਾਓ"
 
-#: gui/kstandardshortcut.cpp:277
+#: gui/kstandardshortcut.cpp:304
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "ਅਗਲੀ ਟੈਬ ਨੂੰ ਸਰਗਰਮ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:285
+#: gui/kstandardshortcut.cpp:312
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "ਪਿਛਲੀ ਟੈਬ ਨੂੰ ਸਰਗਰਮ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:293
+#: gui/kstandardshortcut.cpp:320
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "ਮਦਦ"
 
-#: gui/kstandardshortcut.cpp:294
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "ਇਹ ਕੀ ਹੈ"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:326
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "ਲਿਖਤ ਪੂਰਤੀ"
 
-#: gui/kstandardshortcut.cpp:307
+#: gui/kstandardshortcut.cpp:334
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:315
+#: gui/kstandardshortcut.cpp:346
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:323
+#: gui/kstandardshortcut.cpp:358
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr ""
 
-#: gui/kstandardshortcut.cpp:332
+#: gui/kstandardshortcut.cpp:367
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "ਸੂਚੀ ਵਿੱਚ ਪਿਛਲੀ ਆਈਟਮ"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:375
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "ਸੂਚੀ ਵਿੱਚ ਅਗਲੀ ਆਈਟਮ"
 
-#: gui/kstandardshortcut.cpp:347
+#: gui/kstandardshortcut.cpp:382
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "ਸੱਜਰੇ ਖੋਲ੍ਹੋ"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "ਇੰਝ ਸੰਭਾਲੋ"
 
-#: gui/kstandardshortcut.cpp:349
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "ਪਰਤਾਓ"
 
-#: gui/kstandardshortcut.cpp:350
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "ਪਰਿੰਟ ਝਲਕ"
 
-#: gui/kstandardshortcut.cpp:351
+#: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "ਮੇਲ"
 
-#: gui/kstandardshortcut.cpp:352
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "ਸਾਫ਼ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:355
+#: gui/kstandardshortcut.cpp:390
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "ਅਸਲੀ ਆਕਾਰ ਲਈ ਜ਼ੂਮ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:361
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "ਸਫ਼ੇ ਲਈ ਫਿੱਟ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "ਚੌੜਾਈ ਲਈ ਫਿੱਟ"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:398
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "ਉਚਾਈ ਲਈ ਫਿੱਟ"
 
-#: gui/kstandardshortcut.cpp:364
+#: gui/kstandardshortcut.cpp:399
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "ਜ਼ੂਮ"
 
-#: gui/kstandardshortcut.cpp:365
+#: gui/kstandardshortcut.cpp:400
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "ਜਾਓ"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:401
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ"
 
-#: gui/kstandardshortcut.cpp:369
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "ਡੌਕੂਮੈਂਟ ਪਿੱਛੇ"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "ਡੌਕੂਮੈਂਟ ਅੱਗੇ"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "ਬੁੱਕਮਾਰਕ ਨੂੰ ਸੋਧੋ"
 
-#: gui/kstandardshortcut.cpp:391
+#: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "ਸ਼ਬਦ-ਜੋੜ"
 
-#: gui/kstandardshortcut.cpp:392
+#: gui/kstandardshortcut.cpp:427
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "ਟੂਲਬਾਰ ਵੇਖਾਓ"
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:428
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "ਹਾਲਤ-ਪੱਟੀ ਵੇਖਾਓ"
 
-#: gui/kstandardshortcut.cpp:396
+#: gui/kstandardshortcut.cpp:431
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "ਸਵਿੱਚ ਬਾਈਡਿੰਗ"
 
-#: gui/kstandardshortcut.cpp:404
+#: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਸੰਰਚਨਾ"
 
-#: gui/kstandardshortcut.cpp:412
+#: gui/kstandardshortcut.cpp:447
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "ਟੂਲਬਾਰਾਂ ਦੀ ਸੰਰਚਨਾ"
 
-#: gui/kstandardshortcut.cpp:420
+#: gui/kstandardshortcut.cpp:455
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨਾਂ ਦੀ ਸੰਰਚਨਾ"
 
-#: gui/kstandardshortcut.cpp:426
+#: gui/kstandardshortcut.cpp:461
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "ਬੱਗ ਰਿਪੋਰਟ ਦਿਓ"
 
-#: gui/kstandardshortcut.cpp:429
+#: gui/kstandardshortcut.cpp:464
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Configure Language..."
@@ -1100,53 +1100,53 @@ msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr "ਭਾਸ਼ਾ ਦੀ ਸੰਰਚਨਾ…"
 
-#: gui/kstandardshortcut.cpp:435
+#: gui/kstandardshortcut.cpp:470
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਬਾਰੇ"
 
-#: gui/kstandardshortcut.cpp:436
+#: gui/kstandardshortcut.cpp:471
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "ਕੇਡੀਈ ਬਾਰੇ"
 
-#: gui/kstandardshortcut.cpp:439
+#: gui/kstandardshortcut.cpp:474
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
-#: gui/kstandardshortcut.cpp:440
+#: gui/kstandardshortcut.cpp:475
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "ਨਾਂ ਬਦਲੋ"
 
-#: gui/kstandardshortcut.cpp:443
+#: gui/kstandardshortcut.cpp:478
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "ਰੱਦੀ ਵਿੱਚ ਭੇਜੋ"
 
-#: gui/kstandardshortcut.cpp:449
+#: gui/kstandardshortcut.cpp:484
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "ਦਾਨ ਕਰੋ"
 
-#: gui/kstandardshortcut.cpp:452
+#: gui/kstandardshortcut.cpp:487
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "ਲੁਕਵੀਆਂ ਫਾਇਲਾਂ ਨੂੰ ਵੇਖਾਓ/ਓਹਲੇ"
 
-#: gui/kstandardshortcut.cpp:460
+#: gui/kstandardshortcut.cpp:495
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "ਫੋਲਡਰ ਬਣਾਓ"
 
-#: gui/kstandardshortcut.cpp:468
+#: gui/kstandardshortcut.cpp:503
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr "ਮੁੱਖ ਮੇਨੂ ਖੋਲ੍ਹੋ"
 
-#: gui/kstandardshortcut.cpp:476
+#: gui/kstandardshortcut.cpp:511
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "ਪਰਸੰਗ ਮੇਨੂ ਖੋਲ੍ਹੋ"

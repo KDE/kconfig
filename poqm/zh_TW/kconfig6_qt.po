@@ -536,423 +536,423 @@ msgctxt "KStandardActions|"
 msgid "Open &Menu"
 msgstr "開啟選單(&M)"
 
-#: gui/kstandardshortcut.cpp:72
+#: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
 msgstr "開啟"
 
-#: gui/kstandardshortcut.cpp:73
+#: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "New"
 msgstr "新增"
 
-#: gui/kstandardshortcut.cpp:74
+#: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
 msgstr "關閉"
 
-#: gui/kstandardshortcut.cpp:75
+#: gui/kstandardshortcut.cpp:76
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
 msgstr "儲存"
 
-#: gui/kstandardshortcut.cpp:76
+#: gui/kstandardshortcut.cpp:77
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
 msgstr "列印"
 
-#: gui/kstandardshortcut.cpp:77
+#: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
 msgstr "離開"
 
-#: gui/kstandardshortcut.cpp:80
+#: gui/kstandardshortcut.cpp:81
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
 msgstr "復原"
 
-#: gui/kstandardshortcut.cpp:81
+#: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
 msgstr "重做"
 
-#: gui/kstandardshortcut.cpp:84
+#: gui/kstandardshortcut.cpp:85
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
 msgstr "剪下"
 
-#: gui/kstandardshortcut.cpp:85
+#: gui/kstandardshortcut.cpp:86
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
 msgstr "複製"
 
-#: gui/kstandardshortcut.cpp:86
+#: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
 msgstr "貼上"
 
-#: gui/kstandardshortcut.cpp:89
+#: gui/kstandardshortcut.cpp:90
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
 msgstr "貼上選擇區"
 
-#: gui/kstandardshortcut.cpp:96
+#: gui/kstandardshortcut.cpp:97
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
 msgstr "全部選取"
 
-#: gui/kstandardshortcut.cpp:97
+#: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
 msgstr "取消選擇"
 
-#: gui/kstandardshortcut.cpp:100
+#: gui/kstandardshortcut.cpp:101
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
 msgstr "向後刪字"
 
-#: gui/kstandardshortcut.cpp:112
+#: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
 msgstr "向前刪字"
 
-#: gui/kstandardshortcut.cpp:123
+#: gui/kstandardshortcut.cpp:124
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
 msgstr "尋找"
 
-#: gui/kstandardshortcut.cpp:126
+#: gui/kstandardshortcut.cpp:127
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
 msgstr "尋找下一個"
 
-#: gui/kstandardshortcut.cpp:136
+#: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
 msgstr "尋找上一個"
 
-#: gui/kstandardshortcut.cpp:137
+#: gui/kstandardshortcut.cpp:138
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
 msgstr "取代"
 
-#: gui/kstandardshortcut.cpp:142
+#: gui/kstandardshortcut.cpp:143
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
 msgstr "首頁"
 
-#: gui/kstandardshortcut.cpp:150
+#: gui/kstandardshortcut.cpp:151
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
 msgstr "開始"
 
-#: gui/kstandardshortcut.cpp:162
+#: gui/kstandardshortcut.cpp:163
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
 msgstr "結束"
 
-#: gui/kstandardshortcut.cpp:172
+#: gui/kstandardshortcut.cpp:173
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
 msgstr "上一個"
 
-#: gui/kstandardshortcut.cpp:175
+#: gui/kstandardshortcut.cpp:176
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
 msgstr "下一個"
 
-#: gui/kstandardshortcut.cpp:182
+#: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
 msgstr "向上"
 
-#: gui/kstandardshortcut.cpp:183
+#: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
 msgstr "返回"
 
-#: gui/kstandardshortcut.cpp:186
+#: gui/kstandardshortcut.cpp:198
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
 msgstr "往前"
 
-#: gui/kstandardshortcut.cpp:194
+#: gui/kstandardshortcut.cpp:210
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
 msgstr "重新載入"
 
-#: gui/kstandardshortcut.cpp:203
+#: gui/kstandardshortcut.cpp:219
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
 msgstr "行開頭"
 
-#: gui/kstandardshortcut.cpp:215
+#: gui/kstandardshortcut.cpp:231
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
 msgstr "行結尾"
 
-#: gui/kstandardshortcut.cpp:225
+#: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
 msgstr "跳至行號"
 
-#: gui/kstandardshortcut.cpp:228
+#: gui/kstandardshortcut.cpp:255
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
 msgstr "返回一個詞語"
 
-#: gui/kstandardshortcut.cpp:240
+#: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
 msgstr "往前一個詞語"
 
-#: gui/kstandardshortcut.cpp:253
+#: gui/kstandardshortcut.cpp:280
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
 msgstr "加入書籤"
 
-#: gui/kstandardshortcut.cpp:259
+#: gui/kstandardshortcut.cpp:286
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
 msgstr "放大"
 
-#: gui/kstandardshortcut.cpp:260
+#: gui/kstandardshortcut.cpp:287
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
 msgstr "縮小"
 
-#: gui/kstandardshortcut.cpp:263
+#: gui/kstandardshortcut.cpp:290
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
 msgstr "全螢幕模式"
 
-#: gui/kstandardshortcut.cpp:274
+#: gui/kstandardshortcut.cpp:301
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
 msgstr "顯示選單列"
 
-#: gui/kstandardshortcut.cpp:277
+#: gui/kstandardshortcut.cpp:304
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
 msgstr "跳到下一個分頁"
 
-#: gui/kstandardshortcut.cpp:285
+#: gui/kstandardshortcut.cpp:312
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
 msgstr "跳到前一個分頁"
 
-#: gui/kstandardshortcut.cpp:293
+#: gui/kstandardshortcut.cpp:320
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
 msgstr "說明"
 
-#: gui/kstandardshortcut.cpp:294
+#: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
 msgstr "這是什麼"
 
-#: gui/kstandardshortcut.cpp:299
+#: gui/kstandardshortcut.cpp:326
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
 msgstr "文字補完"
 
-#: gui/kstandardshortcut.cpp:307
+#: gui/kstandardshortcut.cpp:334
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
 msgstr "上一個完成符合"
 
-#: gui/kstandardshortcut.cpp:315
+#: gui/kstandardshortcut.cpp:346
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
 msgstr "下一個完成符合"
 
-#: gui/kstandardshortcut.cpp:323
+#: gui/kstandardshortcut.cpp:358
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
 msgstr "子字串完成"
 
-#: gui/kstandardshortcut.cpp:332
+#: gui/kstandardshortcut.cpp:367
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
 msgstr "上一個清單中的項目"
 
-#: gui/kstandardshortcut.cpp:340
+#: gui/kstandardshortcut.cpp:375
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
 msgstr "下一個清單中的項目"
 
-#: gui/kstandardshortcut.cpp:347
+#: gui/kstandardshortcut.cpp:382
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
 msgstr "開啟最近的"
 
-#: gui/kstandardshortcut.cpp:348
+#: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
 msgstr "另存為"
 
-#: gui/kstandardshortcut.cpp:349
+#: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
 msgstr "回復"
 
-#: gui/kstandardshortcut.cpp:350
+#: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
 msgstr "預覽列印"
 
-#: gui/kstandardshortcut.cpp:351
+#: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
 msgstr "郵件"
 
-#: gui/kstandardshortcut.cpp:352
+#: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
 msgstr "清除"
 
-#: gui/kstandardshortcut.cpp:355
+#: gui/kstandardshortcut.cpp:390
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
 msgstr "縮放到實際大小"
 
-#: gui/kstandardshortcut.cpp:361
+#: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
 msgstr "調整成適合頁面大小"
 
-#: gui/kstandardshortcut.cpp:362
+#: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
 msgstr "調整成適合頁面寬度"
 
-#: gui/kstandardshortcut.cpp:363
+#: gui/kstandardshortcut.cpp:398
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
 msgstr "調整成適合頁面高度"
 
-#: gui/kstandardshortcut.cpp:364
+#: gui/kstandardshortcut.cpp:399
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
 msgstr "縮放"
 
-#: gui/kstandardshortcut.cpp:365
+#: gui/kstandardshortcut.cpp:400
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
 msgstr "跳至"
 
-#: gui/kstandardshortcut.cpp:366
+#: gui/kstandardshortcut.cpp:401
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
 msgstr "移至頁面"
 
-#: gui/kstandardshortcut.cpp:369
+#: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
 msgstr "文件返回"
 
-#: gui/kstandardshortcut.cpp:377
+#: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
 msgstr "文件向前"
 
-#: gui/kstandardshortcut.cpp:385
+#: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
 msgstr "編輯書籤"
 
-#: gui/kstandardshortcut.cpp:391
+#: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
 msgstr "拼字"
 
-#: gui/kstandardshortcut.cpp:392
+#: gui/kstandardshortcut.cpp:427
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
 msgstr "顯示工具列"
 
-#: gui/kstandardshortcut.cpp:393
+#: gui/kstandardshortcut.cpp:428
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
 msgstr "顯示狀態列"
 
-#: gui/kstandardshortcut.cpp:396
+#: gui/kstandardshortcut.cpp:431
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
 msgstr "按鍵組合"
 
-#: gui/kstandardshortcut.cpp:404
+#: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
 msgstr "設定應用程式"
 
-#: gui/kstandardshortcut.cpp:412
+#: gui/kstandardshortcut.cpp:447
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
 msgstr "設定工具列"
 
-#: gui/kstandardshortcut.cpp:420
+#: gui/kstandardshortcut.cpp:455
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
 msgstr "設定通知"
 
-#: gui/kstandardshortcut.cpp:426
+#: gui/kstandardshortcut.cpp:461
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
 msgstr "回報問題"
 
-#: gui/kstandardshortcut.cpp:429
+#: gui/kstandardshortcut.cpp:464
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
 msgstr "設定語言…"
 
-#: gui/kstandardshortcut.cpp:435
+#: gui/kstandardshortcut.cpp:470
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
 msgstr "關於應用程式"
 
-#: gui/kstandardshortcut.cpp:436
+#: gui/kstandardshortcut.cpp:471
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
 msgstr "關於 KDE"
 
-#: gui/kstandardshortcut.cpp:439
+#: gui/kstandardshortcut.cpp:474
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
 msgstr "刪除"
 
-#: gui/kstandardshortcut.cpp:440
+#: gui/kstandardshortcut.cpp:475
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
 msgstr "重新命名"
 
-#: gui/kstandardshortcut.cpp:443
+#: gui/kstandardshortcut.cpp:478
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
 msgstr "移到垃圾桶"
 
-#: gui/kstandardshortcut.cpp:449
+#: gui/kstandardshortcut.cpp:484
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
 msgstr "捐獻"
 
-#: gui/kstandardshortcut.cpp:452
+#: gui/kstandardshortcut.cpp:487
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
 msgstr "顯示/隱藏已隱藏的檔案"
 
-#: gui/kstandardshortcut.cpp:460
+#: gui/kstandardshortcut.cpp:495
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "建立資料夾"
 
-#: gui/kstandardshortcut.cpp:468
+#: gui/kstandardshortcut.cpp:503
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
 msgstr "開啟主選單"
 
-#: gui/kstandardshortcut.cpp:476
+#: gui/kstandardshortcut.cpp:511
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
 msgstr "開啟內文選單"
