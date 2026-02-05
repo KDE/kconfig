@@ -30,11 +30,15 @@ class KSharedConfig;
  * \brief A class for one specific group in a KConfig object.
  *
  * If you want to access the top-level entries of a KConfig
- * object, which are not associated with any group, use an
- * empty group name.
+ * object which are not associated with any group, use an
+ * empty group name. For example:
  *
- * A KConfigGroup will be read-only if it is constructed from a
- * const config object or from another read-only group.
+ * \code
+ * auto config = KSharedConfig::openConfig();
+ * auto globalGroup = KConfigGroup(config, QString());
+ * \endcode
+ *
+ * A KConfigGroup will be read-only if it is constructed from a const config object or from another read-only group.
  */
 class KCONFIGCORE_EXPORT KConfigGroup : public KConfigBase
 {
@@ -47,17 +51,29 @@ public:
     KConfigGroup();
 
     /*!
-     * Construct a config group corresponding to \a group in \a master.
+     * Constructs a config group corresponding to \a group in \a master.
      *
      * This allows the creation of subgroups by passing another
-     * group as \a master.
+     * group as \a master. For example:
      *
-     * \a group name of group
+     * \code
+     * auto generalGroup = KConfigGroup(config, "General");
+     * auto preferencesGroup = KConfigGroup(&generalGroup, "Preferences");
+     * preferencesGroup.writeEntry("SomeKey", true);
+     * \endcode
+     *
+     * Will render the following in the configuration file:
+     *
+     * \badcode
+     * [General][Preferences]
+     * SomeKey=true
+     * \endcode
      */
     KConfigGroup(KConfigBase *master, const QString &group);
 
+    // TODO: Actually enforce silently ignoring attempts to write.
     /*!
-     * Construct a read-only config group.
+     * Constructs a read-only config group by passing a const config object.
      *
      * A read-only group will silently ignore any attempts to write to it.
      *
@@ -67,8 +83,7 @@ public:
     KConfigGroup(const KConfigBase *master, const QString &group);
 
     /*!
-     * \overload
-     * Overload for KConfigGroup(const KConfigBase*,const QString&)
+     * \overload KConfigGroup(const KConfigBase*,const QString&)
      */
     KConfigGroup(const QExplicitlySharedDataPointer<KSharedConfig> &master, const QString &group);
 
@@ -78,13 +93,11 @@ public:
     ~KConfigGroup() override;
 
     /*!
-     * Whether the group is valid.
+     * Returns whether the group is valid.
      *
      * A group is invalid if it was constructed without arguments.
      *
      * You should not call any functions on an invalid group.
-     *
-     * Returns \c true if the group is valid, \c false if it is invalid.
      */
     bool isValid() const;
 
@@ -96,81 +109,61 @@ public:
     QString name() const;
 
     /*!
-     * Check whether the containing KConfig object actually contains a
+     * Returns whether the containing KConfig object actually contains a
      * group with this name.
      */
     bool exists() const;
 
-    /*!
-     * \reimp
-     *
-     * Syncs the parent config.
-     */
+    /*! \reimp */
     bool sync() override;
 
+    /*! \reimp */
     void markAsClean() override;
 
+    /*! \reimp */
     AccessMode accessMode() const override;
 
     /*!
-     * Return the config object that this group belongs to
+     * Returns the config object that this group belongs to.
      */
     KConfig *config();
     /*!
-     * Return the config object that this group belongs to
+     * Returns the read-only config object that this group belongs to.
      */
     const KConfig *config() const;
 
     /*!
-     * Copies the entries in this group to another configuration object
-     *
-     * \note \a other can be either another group or a different file.
-     *
-     * \a other  the configuration object to copy this group's entries to
-     *
-     * \a pFlags the flags to use when writing the entries to the
-     *               other configuration object
-     *
+     * Copies the entries in this group to \a other configuration object with the given \a pFlags.
+     * \note The \a other config object can be either another group or a different file.
      * \since 4.1
      */
     void copyTo(KConfigBase *other, WriteConfigFlags pFlags = Normal) const;
 
     /*!
-     * Changes the configuration object that this group belongs to
-     *
-     * If \a parent is already the parent of this group, this method will have
+     * Changes the configuration object that this group belongs to to \a parent with the given \a pFlags.
+     * \note If \a parent is already the parent of this group, this method will have
      * no effect.
-     *
-     * \a parent the config object to place this group under
-     *
-     * \a pFlags the flags to use in determining which storage source to
-     *               write the data to
-     *
      * \since 4.1
      */
     void reparent(KConfigBase *parent, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Moves the key-value pairs from one config group to the other.
-     * In case the entries do not exist the key is ignored.
+     * Moves the key-value pairs with specific \a keys from one config group to the \a other with the given \a pFlags.
      *
+     * In case the entries do not exist the key is ignored.
      * \since 5.88
      */
     void moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Moves the key-value pairs from one config group to the other.
-     *
+     * Moves the key-value pairs from one config group to the \a other with the given \a pFlags.
      * \since 6.3
      */
     void moveValuesTo(KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Returns the group that this group belongs to
-     *
-     * Returns the parent group, or an invalid group if this is a top-level
-     *          group
-     *
+     * Returns the parent group that this group belongs to,
+     * or an invalid group if this is a top-level group.
      * \since 4.1
      */
     KConfigGroup parent() const;
@@ -178,25 +171,24 @@ public:
     QStringList groupList() const override;
 
     /*!
-     * Returns a list of keys this group contains
+     * Returns a list of keys this group contains.
      */
     QStringList keyList() const;
 
     /*!
-     * Delete all entries in the entire group
-     *
-     * \a pFlags flags passed to KConfig::deleteGroup
-     *
+     * Delete all entries in the entire group with the given \a pFlags.
      * \sa deleteEntry()
      */
     void deleteGroup(WriteConfigFlags pFlags = Normal);
     using KConfigBase::deleteGroup;
 
     /*!
-     * Reads the value of an entry specified by \a pKey in the current group
+     * Reads the value of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
      *
-     * This template method makes it possible to write
-     *    QString foo = readEntry("...", QString("default"));
+     * This template method makes it possible to write:
+     * \code
+     * QString foo = readEntry("...", QString("default"));
+     * \endcode
      * and the same with all other types supported by QVariant.
      *
      * The return type of the method is simply the same as the type of the default value.
@@ -208,12 +200,6 @@ public:
      * StringList, List, Font, Point, PointF, Rect, RectF, Size, SizeF, Color, Int, UInt, Bool,
      * Double, LongLong, ULongLong, DateTime and Date.
      *
-     * \a key The key to search for
-     *
-     * \a aDefault A default value returned if the key was not found
-     *
-     * Returns the value for this key, or \a aDefault.
-     *
      * \sa writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
@@ -222,119 +208,75 @@ public:
         return readEntry(key.toUtf8().constData(), aDefault);
     }
     /*!
-     * \overload
-     *
-     * Overload for readEntry<T>(const QString&, const T&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry<T>(const QString&, const T&) const
+     * The \a key name will be encoded in UTF-8.
      */
     template<typename T>
     T readEntry(const char *key, const T &aDefault) const;
 
     /*!
-     * Reads the value of an entry specified by \a key in the current group
-     *
-     * \a key the key to search for
-     *
-     * \a aDefault a default value returned if the key was not found
-     *
-     * Returns the value for this key, or \a aDefault if the key was not found
-     *
+     * Reads the value of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
      * \sa writeEntry(), deleteEntry(), hasKey()
      */
     QVariant readEntry(const QString &key, const QVariant &aDefault) const;
     /*!
-     * Overload for readEntry(const QString&, const QVariant&) const
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry(const QString&, const QVariant&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QVariant readEntry(const char *key, const QVariant &aDefault) const;
 
     /*!
-     * Reads the string value of an entry specified by \a key in the current group
+     * Reads the string value of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
      *
-     * If you want to read a path, please use readPathEntry().
-     *
-     * \a key the key to search for
-     *
-     * \a aDefault a default value returned if the key was not found
-     *
-     * Returns the value for this key, or \a aDefault if the key was not found
-     *
+     * If you want to read a path, use readPathEntry().
      * \sa readPathEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     QString readEntry(const QString &key, const QString &aDefault) const;
     /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry(const QString&, const QString&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QString readEntry(const char *key, const QString &aDefault) const;
 
     /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QString&) const
+     * \overload readEntry(const QString&, const QString&) const
      */
     QString readEntry(const QString &key, const char *aDefault = nullptr) const;
     /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry(const QString&, const QString&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QString readEntry(const char *key, const char *aDefault = nullptr) const;
 
     /*!
+     * \overload
      * \sa readEntry()
      *
      * \warning This function doesn't convert the items returned
-     *          to any type. It's actually a list of QVariant::String's. If you
+     *          to any type. It's actually a list of QVariant strings. If you
      *          want the items converted to a specific type use
      *          readEntry(const char*, const QList<T>&) const
      */
     QVariantList readEntry(const QString &key, const QVariantList &aDefault) const;
     /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QVariantList&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry(const QString&, const QVariantList&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QVariantList readEntry(const char *key, const QVariantList &aDefault) const;
 
     /*!
-     * Reads a list of strings from the config object
-     *
-     * \a key The key to search for
-     *
-     * \a aDefault The default value to use if the key does not exist
-     *
-     * Returns the list, or \a aDefault if \a key does not exist
-     *
+     * Reads the string list values of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
      * \sa readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     QStringList readEntry(const QString &key, const QStringList &aDefault) const;
     /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, const QStringList&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry(const QString&, const QStringList&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QStringList readEntry(const char *key, const QStringList &aDefault) const;
 
     /*!
-     * Reads a list of values from the config object
-     *
-     * \a key the key to search for
-     *
-     * \a aDefault the default value to use if the key does not exist
-     *
-     * Returns the list, or \a aDefault if \a key does not exist
-     *
+     * Reads a list of values of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
      * \sa readXdgListEntry(), writeEntry(), deleteEntry(), hasKey()
      */
     template<typename T>
@@ -343,116 +285,72 @@ public:
         return readEntry(key.toUtf8().constData(), aDefault);
     }
     /*!
-     * \overload
-     *
-     * Overload for readEntry<T>(const QString&, const QList<T>&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntry<T>(const QString&, const QList<T>&) const
+     * The \a key name will be encoded in UTF-8.
      */
     template<typename T>
     QList<T> readEntry(const char *key, const QList<T> &aDefault) const;
 
     /*!
-     * \overload
-     *
-     * Overload for readEntry(const QString&, std::chrono::duration<Rep, Period>)
-     *
-     * \a key name of key, encoded in UTF-8
-     *
+     * \overload readEntry(const QString&, std::chrono::duration<Rep, Period>)
+     * The \a key name will be encoded in UTF-8.
      * \since 6.22
      */
     template<typename Rep, typename Period>
     std::chrono::duration<Rep, Period> readEntry(const char *key, std::chrono::duration<Rep, Period> defaultValue) const;
 
     /*!
-     * Reads a std::chrono duration from the config object with the given \a key. If the config
-     * contains no specified \a key, the \a value will be returned instead.
-     *
+     * Reads a std::chrono duration of an entry specified by \a key in the current group, returning the \a defaultValue if the key is not found.
      * \since 6.22
      */
     template<typename Rep, typename Period>
     std::chrono::duration<Rep, Period> readEntry(const QString &key, std::chrono::duration<Rep, Period> defaultValue) const;
 
     /*!
-     * Reads a list of strings from the config object with semicolons separating
-     * them (i.e. following desktop entry spec separator semantics).
+     * Reads the list of strings of an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found.
      *
-     * \a pKey the key to search for
-     *
-     * \a aDefault the default value to use if the key does not exist
-     *
-     * Returns the list, or \a aDefault if \a pKey does not exist
-     *
+     * The returned string list will be semicolon separated
+     * following desktop entry spec separator semantics.
      * \sa readEntry(const QString&, const QStringList&)
      */
     QStringList readXdgListEntry(const QString &pKey, const QStringList &aDefault = QStringList()) const;
     /*!
-     * Overload for readXdgListEntry(const QString&, const QStringList&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     *\overload readXdgListEntry(const QString&, const QStringList&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QStringList readXdgListEntry(const char *key, const QStringList &aDefault = QStringList()) const;
 
     /*!
-     * Reads a path
+     * Reads the path value of an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found. If \a aDefault is null, an empty QString() is returned.
      *
-     * Read the value of an entry specified by \a pKey in the current group
-     * and interpret it as a path. This means, dollar expansion is activated
-     * for this value, so that e.g. $HOME gets expanded.
-     *
-     * \a pKey The key to search for.
-     *
-     * \a aDefault A default value returned if the key was not found.
-     *
-     * Returns The value for this key. Can be QString() if \a aDefault is null.
+     * Dollar expansion is activated for this value, so that for example $HOME gets expanded.
      */
     QString readPathEntry(const QString &pKey, const QString &aDefault) const;
     /*!
-     * Overload for readPathEntry(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readPathEntry(const QString&, const QString&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QString readPathEntry(const char *key, const QString &aDefault) const;
 
     /*!
-     * Reads a list of paths
+     * Reads the list of paths of an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found.
      *
-     * Read the value of an entry specified by \a pKey in the current group
-     * and interpret it as a list of paths. This means, dollar expansion is activated
-     * for this value, so that e.g. $HOME gets expanded.
-     *
-     * \a pKey the key to search for
-     *
-     * \a aDefault a default value returned if the key was not found
-     *
-     * Returns the list, or \a aDefault if the key does not exist
+     * Dollar expansion is activated for this value, so that for example $HOME gets expanded.
      */
     QStringList readPathEntry(const QString &pKey, const QStringList &aDefault) const;
     /*!
-     * Overload for readPathEntry(const QString&, const QStringList&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readPathEntry(const QString&, const QStringList&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QStringList readPathEntry(const char *key, const QStringList &aDefault) const;
 
     /*!
-     * Reads an untranslated string entry
-     *
-     * You should not normally need to use this.
-     *
-     * \a pKey the key to search for
-     *
-     * \a aDefault a default value returned if the key was not found
-     *
-     * Returns the value for this key, or \a aDefault if the key does not exist
+     * Reads the untranslated string for an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found.
      */
     QString readEntryUntranslated(const QString &pKey, const QString &aDefault = QString()) const;
     /*!
-     * \overload
-     *
-     * Overload for readEntryUntranslated(const QString&, const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload readEntryUntranslated(const QString&, const QString&) const
+     * The \a key name will be encoded in UTF-8.
      */
     QString readEntryUntranslated(const char *key, const QString &aDefault = QString()) const;
 
@@ -655,7 +553,7 @@ public:
      *
      * Overload for writePathEntry(const QString&, const QString&, WriteConfigFlags)
      *
-     * \a key name of key, encoded in UTF-8
+     * \a Key name of key, encoded in UTF-8
      */
     void writePathEntry(const char *Key, const QString &path, WriteConfigFlags pFlags = Normal);
 
@@ -762,7 +660,7 @@ public:
     /*!
      * Reverts an entry to the default settings.
      *
-     * Reverts the entry with key \a key in the current group in the
+     * Reverts the entry with key \a key with the given \a pFlag in the current group in the
      * application specific config file to either the system wide (default)
      * value or the value specified in the global KDE config file.
      *
@@ -772,8 +670,6 @@ public:
      * \note This is not the same as deleting the key, as instead the
      * global setting will be copied to the configuration file that this
      * object manipulates.
-     *
-     * \a key The key of the entry to revert.
      */
     void revertToDefault(const QString &key, WriteConfigFlags pFlag = WriteConfigFlags());
 
@@ -874,8 +770,8 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
 /*!
  * \macro KCONFIGGROUP_DECLARE_ENUM_QOBJECT(Class, Enum)
  * \relates KConfigGroup
- * To add support for your own enums in KConfig, you can declare them with Q_ENUM()
- * in a QObject subclass (which will make moc generate the code to turn the
+ * To add support for your own enum \a Enum in KConfig, you can declare them with Q_ENUM()
+ * in a QObject subclass \a Class (which will make moc generate the code to turn the
  * enum into a string and vice-versa), and then (in the cpp code)
  * use the macro
  * \code
@@ -909,7 +805,7 @@ Q_DECLARE_TYPEINFO(KConfigGroup, Q_RELOCATABLE_TYPE);
 /*!
  * \macro KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(Class, Flags)
  * \relates KConfigGroup
- * Similar to KCONFIGGROUP_DECLARE_ENUM_QOBJECT but for flags declared with Q_FLAG()
+ * Similar to KCONFIGGROUP_DECLARE_ENUM_QOBJECT for adding your own \a Flags in KConfig but for flags declared with Q_FLAG() for a QObject subclass \a Class.
  * (where multiple values can be set at the same time)
  */
 #define KCONFIGGROUP_DECLARE_FLAGS_QOBJECT(Class, Flags)                                                                                                       \
