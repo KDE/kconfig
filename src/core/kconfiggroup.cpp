@@ -553,7 +553,13 @@ KConfigGroup KConfigGroup::parent() const
 void KConfigGroup::deleteGroup(WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::deleteGroup", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::deleteGroup", "deleting a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7.";
+#else
+        return;
+#endif
+    }
 
     config()->deleteGroup(d->fullName(), flags);
 }
@@ -809,7 +815,13 @@ QStringList KConfigGroup::readPathEntry(const char *key, const QStringList &aDef
 void KConfigGroup::writeEntry(const char *key, const QString &value, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name() << "key:" << key;
+#else
+        return;
+#endif
+    }
 
     writeEntry(key, value.toUtf8(), flags);
 }
@@ -822,7 +834,14 @@ void KConfigGroup::writeEntry(const QString &key, const QString &value, WriteCon
 void KConfigGroup::writeEntry(const QString &key, const char *value, WriteConfigFlags pFlags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     writeEntry(key.toUtf8().constData(), QVariant(QString::fromLatin1(value)), pFlags);
 }
@@ -835,7 +854,14 @@ void KConfigGroup::writeEntry(const char *key, const char *value, WriteConfigFla
 void KConfigGroup::writeEntry(const char *key, const QByteArray &value, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     config()->d_func()->putData(d->fullName(), key, value.isNull() ? QByteArray("") : value, flags);
 }
@@ -848,7 +874,14 @@ void KConfigGroup::writeEntry(const QString &key, const QByteArray &value, Write
 void KConfigGroup::writeEntry(const char *key, const QStringList &list, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     QList<QByteArray> balist;
     balist.reserve(list.count());
@@ -868,7 +901,14 @@ void KConfigGroup::writeEntry(const QString &key, const QStringList &list, Write
 void KConfigGroup::writeEntry(const char *key, const QVariantList &list, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     QList<QByteArray> data;
     data.reserve(list.count());
@@ -887,7 +927,14 @@ void KConfigGroup::writeEntry(const char *key, const QVariantList &list, WriteCo
 void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     if (writeEntryGui(this, key, value, flags)) {
         return; // GUI type that was handled
@@ -1047,7 +1094,14 @@ void KConfigGroup::writeXdgListEntry(const QString &key, const QStringList &valu
 void KConfigGroup::writeXdgListEntry(const char *key, const QStringList &list, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writeXdgListEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writeXdgListEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     QString value;
     value.reserve(4096);
@@ -1070,7 +1124,14 @@ void KConfigGroup::writePathEntry(const QString &pKey, const QString &path, Writ
 void KConfigGroup::writePathEntry(const char *pKey, const QString &path, WriteConfigFlags pFlags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writePathEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writePathEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << pKey;
+#else
+        return;
+#endif
+    }
 
     config()->d_func()->putData(d->fullName(), pKey, translatePath(path).toUtf8(), pFlags, true);
 }
@@ -1083,7 +1144,14 @@ void KConfigGroup::writePathEntry(const QString &pKey, const QStringList &value,
 void KConfigGroup::writePathEntry(const char *pKey, const QStringList &value, WriteConfigFlags pFlags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::writePathEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::writePathEntry", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << pKey;
+#else
+        return;
+#endif
+    }
 
     QList<QByteArray> list;
     list.reserve(value.length());
@@ -1097,7 +1165,14 @@ void KConfigGroup::writePathEntry(const char *pKey, const QStringList &value, Wr
 void KConfigGroup::deleteEntry(const char *key, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::deleteEntry", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::deleteEntry", "deleting from a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     config()->d_func()->putData(d->fullName(), key, QByteArray(), flags);
 }
@@ -1110,7 +1185,14 @@ void KConfigGroup::deleteEntry(const QString &key, WriteConfigFlags flags)
 void KConfigGroup::revertToDefault(const char *key, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::revertToDefault", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::revertToDefault", "writing to a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Key:" << key;
+#else
+        return;
+#endif
+    }
 
     config()->d_func()->revertEntry(d->fullName(), key, flags);
 }
@@ -1196,7 +1278,14 @@ bool KConfigGroup::hasGroupImpl(const QString &b) const
 void KConfigGroup::deleteGroupImpl(const QString &b, WriteConfigFlags flags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::deleteGroupImpl", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::deleteGroupImpl", "deleting from a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name()
+                                    << ", Subgroup:" << b;
+#else
+        return;
+#endif
+    }
 
     config()->deleteGroup(d->fullName(b), flags);
 }
@@ -1230,7 +1319,13 @@ void KConfigGroup::copyTo(KConfigBase *other, WriteConfigFlags pFlags) const
 void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::reparent", "accessing an invalid group");
-    Q_ASSERT_X(!d->bConst, "KConfigGroup::reparent", "reparenting a read-only group");
+    if (d->bConst) {
+#if KCONFIG_VERSION < QT_VERSION_CHECK(6, 240, 0)
+        qCWarning(KCONFIG_CORE_LOG) << Q_FUNC_INFO << "called on read-only group, accidentally works, will be no-op in KF7. Group:" << name();
+#else
+        return;
+#endif
+    }
     Q_ASSERT_X(!d->bImmutable, "KConfigGroup::reparent", "reparenting an immutable group");
     Q_ASSERT(parent != nullptr);
 
