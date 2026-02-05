@@ -1699,8 +1699,8 @@ public:
     KConfigSkeletonItem *findItem(const QString &name) const;
 
     /*!
-     * Specifies whether this object should reflect the actual values (\a b = true)
-     * or the default values.
+     * Changes the state of this object to reflect the default values (\a b = true)
+     * or replaces the default values with the current values (\a b = false).
      *
      * This method is implemented by usrUseDefaults(), which can be overridden
      * in derived classes if you have special requirements and can call
@@ -1735,15 +1735,12 @@ Q_SIGNALS:
 
 protected:
     /*!
-     * Replaces the default values with the actual values (\a b = false) or replaces the actual values with the default values (\a b = true)
-     * vice versa. Called from useDefaults().
+     * Changes the state of this object to reflect the default values (\a b = true)
+     * or replaces the default values with the current values (\a b = false).
+     *
+     * Called from useDefaults().
      *
      * Implemented by subclasses that use special defaults.
-     *
-     * NOTE: CONTRADICTORY ORIGINAL
-     * \a b \c true to make this object reflect the default values,
-     *          \c false to make it reflect the actual values.
-     * NOTE: CONTRADICTORY ORIGINAL
      *
      * Returns the state prior to this call.
      */
