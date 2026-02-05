@@ -77,9 +77,9 @@ public:
     Q_ENUM(GenericAction)
 
     /*!
-     * Returns whether the user is permitted to perform a certain action.
+     * Returns whether the user is permitted to perform a certain \a action.
      *
-     * All settings are read from the "[KDE Action Restrictions]" group.
+     * All settings are read from the \c {[KDE Action Restrictions]} group.
      * For example, if kdeglobals contains
      * \badcode
      * [KDE Action Restrictions][$i]
@@ -100,8 +100,6 @@ public:
      * name with "action/", for example "action/file_new".  This is what
      * authorizeAction() does.
      *
-     * \a action The name of the action.
-     *
      * Returns \c true if the action is authorized, \c false otherwise.
      *
      * \sa authorizeAction()
@@ -109,10 +107,10 @@ public:
     Q_INVOKABLE static bool authorize(const QString &action);
 
     /*!
-     * Returns whether the user is permitted to perform a common action.
+     * Returns whether the user is permitted to perform a common \a action.
      *
      * The enum values lower cased represent the action that is
-     * passed in to \a authorize(QString)
+     * passed in to KAuthorized::authorize(const QString &action).
      *
      * \overload
      * \since 5.88
@@ -120,7 +118,7 @@ public:
     Q_INVOKABLE static bool authorize(GenericRestriction action);
 
     /*!
-     * Returns whether the user is permitted to perform a certain action.
+     * Returns whether the user is permitted to perform a certain \a action.
      *
      * This behaves like authorize(), except that "action/" is prepended to
      * \a action.  So if kdeglobals contains
@@ -137,8 +135,6 @@ public:
      * KXMLGui-based applications should not normally need to call this
      * function, as KActionCollection will do it automatically.
      *
-     * \a action The name of a QAction action.
-     *
      * Returns \c true if the QAction is authorized, \c false
      *                otherwise.
      * \since 5.24
@@ -148,7 +144,7 @@ public:
     Q_INVOKABLE static bool authorizeAction(const QString &action);
 
     /*!
-     * Overload to authorize common actions.
+     * Overload to authorize a common \a action.
      *
      * \overload
      * \since 5.88
@@ -156,7 +152,7 @@ public:
     Q_INVOKABLE static bool authorizeAction(GenericAction action);
 
     /*!
-     * Returns whether the user is permitted to use a certain control module.
+     * Returns whether the user is permitted to use a certain control module with the given \a pluginId.
      *
      * All settings are read from the "[KDE Control Module Restrictions]"
      * group.  For example, if kdeglobals contains
@@ -169,8 +165,6 @@ public:
      * KAuthorized::authorizeControlModule("kcm_desktop-settings");
      * \endcode
      * will return \c false.
-     *
-     * \a pluginId The desktop menu ID for the control module.
      *
      * Returns \c true if access to the module is authorized, \c false otherwise.
      */
