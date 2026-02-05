@@ -21,7 +21,9 @@ class KConfigWatcherPrivate;
  * \class KConfigWatcher
  * \inmodule KConfigCore
  *
- * \brief Notifies when another client has updated this config file with the Notify flag set.
+ * \brief Watches for configuration changes.
+ *
+ * The configChanged(const KConfigGroup &group, const QByteArrayList &names) signal is emitted whenever another client has updated this config file with the KConfigBase::Notify flag.
  * \since 5.51
  */
 class KCONFIGCORE_EXPORT KConfigWatcher : public QObject
@@ -34,28 +36,26 @@ public:
     typedef QSharedPointer<KConfigWatcher> Ptr;
 
     /*!
-     * Instantiate a ConfigWatcher for a given config
+     * Instantiate a ConfigWatcher for a given \a config
      *
-     * \note any additional config sources should be set before this point.
+     * \note Any additional config sources should be set before this point.
      */
     static Ptr create(const KSharedConfig::Ptr &config);
 
     ~KConfigWatcher() override;
 
     /*!
-     * Returns the config being watched
+     * Returns the config being watched.
      * \since 5.66
      */
     KSharedConfig::Ptr config() const;
 
 Q_SIGNALS:
     /*!
-     * Emitted when a config group has changed
-     * The config will be reloaded before this signal is emitted
+     * \fn void KSharedConfig::configChanged(KConfigGroup &group, QByteArrayList &names)
+     * \brief Emitted when a config \a group has changed, passing the list of \a names that have changed within that group.
      *
-     * \a group the config group that has changed
-     *
-     * \a names a list of entries that have changed within that group (UTF-8 encoded)
+     * The config will be reloaded before this signal is emitted.
      */
     void configChanged(const KConfigGroup &group, const QByteArrayList &names);
 
