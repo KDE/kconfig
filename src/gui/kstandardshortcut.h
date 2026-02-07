@@ -127,8 +127,18 @@ namespace KStandardShortcut
  * \value [since 5.26] Donate Open donation page on kde.org.
  * \value [since 5.70] ShowHideHiddenFiles Toggle showing or hiding hidden files
  * \value [since 5.74] CreateFolder Create a folder.
- * \value [since 6.0] OpenMainMenu Open a main menu like the menu bar or a hamburger menu. Necessary for accessibility.  * \value [since 6.0] OpenContextMenu
- * Open a context menu for the object with keyboard focus. Necessary for accessibility.  */
+ * \value [since 6.0] OpenMainMenu Open a main menu like the menu bar or a hamburger menu. Necessary for accessibility.
+ * \value [since 6.0] OpenContextMenu Open a context menu for the object with keyboard focus. Necessary for accessibility.
+ * \value [since 6.24] Tab1 Activate tab 1
+ * \value [since 6.24] Tab2 Activate tab 2
+ * \value [since 6.24] Tab3 Activate tab 3
+ * \value [since 6.24] Tab4 Activate tab 4
+ * \value [since 6.24] Tab5 Activate tab 5
+ * \value [since 6.24] Tab6 Activate tab 6
+ * \value [since 6.24] Tab7 Activate tab 7
+ * \value [since 6.24] Tab8 Activate tab 8
+ * \value [since 6.24] TabLast Activate Last Tab
+ */
 enum StandardShortcut {
     // C++ requires that the value of an enum symbol be one more than the previous one.
     // This means that everything will be well-ordered from here on.
@@ -226,6 +236,16 @@ enum StandardShortcut {
     CreateFolder,
     OpenMainMenu,
     OpenContextMenu,
+
+    Tab1,
+    Tab2,
+    Tab3,
+    Tab4,
+    Tab5,
+    Tab6,
+    Tab7,
+    Tab8,
+    TabLast,
     // Insert new items here!
 
     StandardShortcutCount, // number of standard shortcuts
@@ -546,6 +566,23 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &tabNext();
  * Returns the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &tabPrev();
+
+/*!
+ * Returns the shortcut of the accelerator for activating Tab N
+ * Default: Alt-N
+ *
+ * N needs to be between 1 and 8.
+ *
+ * \since 6.24
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &tabActivate(int n);
+/*!
+ * Returns the shortcut of the accelerator for activating the last Tab available
+ * Default: Alt-9
+ *
+ * \since 6.24
+ */
+KCONFIGGUI_EXPORT const QList<QKeySequence> &tabLast();
 
 /*!
  * Full Screen Mode. Default: Ctrl+Shift+F

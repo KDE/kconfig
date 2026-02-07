@@ -18,6 +18,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QKeySequence>
+#include <qassert.h>
 
 namespace KStandardShortcut
 {
@@ -312,6 +313,78 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
      QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Previous Tab", "@action"),
      CTRL(PageUp),
      CTRL(BracketLeft),
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab1,
+     "Activate Tab 1",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 1", "@action"),
+     ALT(1),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab2,
+     "Activate Tab 2",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 2", "@action"),
+     ALT(2),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab3,
+     "Activate Tab 3",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 3", "@action"),
+     ALT(3),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab4,
+     "Activate Tab 4",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 4", "@action"),
+     ALT(4),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab5,
+     "Activate Tab 5",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 5", "@action"),
+     ALT(5),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab6,
+     "Activate Tab 6",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 6", "@action"),
+     ALT(6),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab7,
+     "Activate Tab 7",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 7", "@action"),
+     ALT(7),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {Tab8,
+     "Activate Tab 8",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Tab 8", "@action"),
+     ALT(8),
+     0,
+     QList<QKeySequence>(),
+     false,
+     Category::Navigation},
+    {TabLast,
+     "Activate Last Tab",
+     QT_TRANSLATE_NOOP3("KStandardShortcut", "Activate Last Tab", "@action"),
+     ALT(9),
+     0,
      QList<QKeySequence>(),
      false,
      Category::Navigation},
@@ -821,6 +894,35 @@ const QList<QKeySequence> &tabPrev()
 {
     return shortcut(TabPrev);
 }
+const QList<QKeySequence> &tabActivate(int n)
+{
+    Q_ASSERT(n > 0 && n < 9);
+    switch (n) {
+    case 1:
+        return shortcut(Tab1);
+    case 2:
+        return shortcut(Tab2);
+    case 3:
+        return shortcut(Tab3);
+    case 4:
+        return shortcut(Tab4);
+    case 5:
+        return shortcut(Tab5);
+    case 6:
+        return shortcut(Tab6);
+    case 7:
+        return shortcut(Tab7);
+    case 8:
+        return shortcut(Tab8);
+    default:
+        Q_UNREACHABLE();
+    }
+}
+const QList<QKeySequence> &tabLast()
+{
+    return shortcut(TabLast);
+}
+
 const QList<QKeySequence> &fullScreen()
 {
     return shortcut(FullScreen);
