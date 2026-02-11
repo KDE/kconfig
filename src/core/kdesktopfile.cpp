@@ -316,7 +316,12 @@ QList<KDesktopFileAction> KDesktopFile::actions() const
     const QStringList actionKeys = readActions();
     for (const QString &actionKey : actionKeys) {
         const KConfigGroup grp = actionGroup(actionKey);
-        desktopFileActions << KDesktopFileAction(actionKey, grp.readEntry("Name"), grp.readEntry("Icon"), grp.readEntry("Exec"), fileName());
+        const QString name = grp.readEntry("Name");
+        if (name.isEmpty()) {
+            qCWarning(KCONFIG_CORE_LOG) << "Skipping Action" << actionKey << "due to empty Name field in file" << fileName();
+            continue;
+        }
+        desktopFileActions << KDesktopFileAction(actionKey, name, grp.readEntry("Icon"), grp.readEntry("Exec"), fileName());
     }
     return desktopFileActions;
 }
