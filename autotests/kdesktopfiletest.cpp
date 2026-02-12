@@ -145,7 +145,7 @@ void KDesktopFileTest::testActionGroup()
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           // make sure escaping of ';' using "\;" works
-          "Actions=encrypt;semi\\;colon;decrypt;\n"
+          "Actions=encrypt;semi\\;colon;decrypt;noname;missing;\n"
           "[Desktop Action encrypt]\n"
           "Name=Encrypt file\n"
           "[Desktop Action decrypt]\n"
@@ -153,18 +153,27 @@ void KDesktopFileTest::testActionGroup()
           // no escaping needed in group header
           "[Desktop Action semi;colon]\n"
           "Name=With semicolon\n"
+          // has no name, so ignore it
+          "[Desktop Action noname]\n"
+          "Exec=ls\n"
+          // missing has no entry at all
           "\n";
     file.close();
     QVERIFY(QFile::exists(fileName));
     KDesktopFile df(fileName);
     QCOMPARE(df.readType(), QString());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
-    QCOMPARE(df.readActions(), (QStringList{QStringLiteral("encrypt"), QStringLiteral("semi;colon"), QStringLiteral("decrypt")}));
+    QCOMPARE(
+        df.readActions(),
+        (QStringList{QStringLiteral("encrypt"), QStringLiteral("semi;colon"), QStringLiteral("decrypt"), QStringLiteral("noname"), QStringLiteral("missing")}));
     QCOMPARE(df.hasActionGroup(QStringLiteral("encrypt")), true);
     QCOMPARE(df.hasActionGroup(QStringLiteral("semi;colon")), true);
     QCOMPARE(df.hasActionGroup(QStringLiteral("decrypt")), true);
+    QCOMPARE(df.hasActionGroup(QStringLiteral("noname")), true);
+    QCOMPARE(df.hasActionGroup(QStringLiteral("missing")), false);
     QCOMPARE(df.hasActionGroup(QStringLiteral("doesnotexist")), false);
 
+    // "noname" and "missing" should not be on this list
     const auto actions = df.actions();
     QCOMPARE(actions.size(), 3);
     QVERIFY(std::all_of(actions.begin(), actions.end(), [&fileName](const KDesktopFileAction &action) {
