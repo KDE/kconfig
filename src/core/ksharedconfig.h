@@ -28,6 +28,29 @@
  * synchronizing the instances of KConfig for the same filename between threads,
  * using KConfig::reparseConfiguration() after a manual change notification, just like you have
  * to do between processes.
+ *
+ * Load a specific configuration file:
+ * \code
+ * KSharedConfigPtr config = KSharedConfig::openConfig("/etc/kderc");
+ * \endcode
+ *
+ * Load the configuration for an application stored in \c ~/.config/appname/appnamerc:
+ * \code
+ * KSharedConfigPtr config = KSharedConfig::openConfig("appnamerc", KConfig::SimpleConfig, QStandardPaths::AppConfigLocation);
+ * \endcode
+ * The \c appname should match the name set via QCoreApplication::setApplicationName or the component argument of KAboutData::KAboutData.
+ *
+ * Load the configuration for an application \c ~/.config/appnamerc:
+ * \code
+ * KSharedConfigPtr config = KSharedConfig::openConfig("appnamerc");
+ * \endcode
+ *
+ * Load the user-specific data files for an application in \c ~/.local/share/appname/appnamerc:
+ * \code
+ * KSharedConfigPtr config = KSharedConfig::openConfig("appnamerc", KConfig::NoGlobals, QStandardPaths::AppDataLocation);
+ * \endcode
+ *
+ * \sa KSharedConfig, KConfigGroup, {https://develop.kde.org/docs/features/configuration/introduction/}{Introduction to KConfig}
  */
 class KCONFIGCORE_EXPORT KSharedConfig : public KConfig, public QSharedData // krazy:exclude=dpointer (only for refcounting)
 {
@@ -48,21 +71,14 @@ public:
      * is provided, the file will be looked for in the standard directory
      * specified by \a type. If no path is provided, a default
      * configuration file will be used based on the name of the main
-     * application component.
+     * application component as defined in QCoreApplication::setApplicationName
+     * or the component name of KAboutData::KAboutData, plus rc.
+     * For example: "appnamerc".
      *
-     * \a mode determines whether the user or global settings will be allowed
-     * to influence the values returned by this object.  See KConfig::OpenFlags for
-     * more details.
+     * The \a mode determines whether the user or global settings will be allowed
+     * to influence the values returned by this object.
      *
-     * \a fileName The configuration file to open. If empty, it will be determined
-     *                     automatically (from --config on the command line, otherwise
-     *                     from the application name + "rc")
-     *
-     * \a mode How global settings should affect the configuration options exposed by this KConfig object
-     *
-     * \a type The standard directory to look for the configuration file in (see QStandardPaths)
-     *
-     * \sa KConfig
+     * \sa KConfig, KConfig::OpenFlags, QStandardPaths
      */
     static KSharedConfig::Ptr
     openConfig(const QString &fileName = QString(), OpenFlags mode = FullConfig, QStandardPaths::StandardLocation type = QStandardPaths::GenericConfigLocation);
@@ -78,10 +94,9 @@ public:
      * is provided, the file will be looked for in the standard state directory
      * (QStandardPaths::GenericStateLocation). If no path is provided, a default
      * configuration file will be used based on the name of the main
-     * application component.
-     *
-     * \a fileName the configuration file to open. If empty, it will be determined
-     *                 automatically from the application name + "staterc"
+     * application component as defined in QCoreApplication::setApplicationName
+     * or the component name of KAboutData::KAboutData, plus rc.
+     * For example: "appnamerc".
      *
      * \since 5.67
      *
