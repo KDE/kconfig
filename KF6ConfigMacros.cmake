@@ -67,11 +67,11 @@ function(KCONFIG_ADD_KCFG_FILES _target_or_source_var)
     set(sources)
     foreach(_current_FILE ${ARG_UNPARSED_ARGUMENTS})
         get_filename_component(_tmp_FILE ${_current_FILE} ABSOLUTE)
-        get_filename_component(_abs_PATH ${_tmp_FILE} PATH)
+        get_filename_component(_abs_PATH ${_tmp_FILE} DIRECTORY)
 
         if(ARG_USE_RELATIVE_PATH) # Process relative path only if the option was set
             # Get relative path
-            get_filename_component(_rel_PATH ${_current_FILE} PATH)
+            get_filename_component(_rel_PATH ${_current_FILE} DIRECTORY)
 
             if(IS_ABSOLUTE ${_rel_PATH})
                 # We got an absolute path
