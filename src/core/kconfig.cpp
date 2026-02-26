@@ -126,21 +126,6 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
         }
     }
 
-    //    if (!mappingsRegistered) {
-    //        KEntryMap tmp;
-    //        if (!etc_kderc.isEmpty()) {
-    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(etc_kderc, QLatin1String("INI"));
-    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseDefaults);
-    //        }
-    //        const QString kde5rc(QDir::home().filePath(".kde5rc"));
-    //        if (KStandardDirs::checkAccess(kde5rc, R_OK)) {
-    //            QExplicitlySharedDataPointer<KConfigBackend> backend = KConfigBackend::create(kde5rc, QLatin1String("INI"));
-    //            backend->parseConfig( "en_US", tmp, KConfigBackend::ParseOptions());
-    //        }
-    //        KConfigBackend::registerMappings(tmp);
-    //        mappingsRegistered = true;
-    //    }
-
     setLocale(getDefaultLocaleName());
 }
 
