@@ -14,6 +14,9 @@
  *
  * Functions exactly as KWindowStateSaver in C++, as it's a small wrapper around it.
  *
+ * The generated file containing the position and size of the application will be stored under \c ~/.local/state/appnamerc,
+ * where \c appname derives from the QCoreApplication::setApplicationName or the component name in KAboutData::KAboutData.
+ *
  * \code
  * import org.kde.config as KConfig
  *
@@ -23,7 +26,7 @@
  *     title: i18n("My Window")
  *
  *     KConfig.WindowStateSaver {
- *         configGroupName: "Main"
+ *         configGroupName: "MainWindow"
  *     }
  * }
  * \endcode
