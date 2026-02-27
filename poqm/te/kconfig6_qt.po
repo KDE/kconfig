@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:1008
+#: core/kconfig.cpp:993
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "దయచేసి మీ సిస్టమ్ నిర్వాహకుడిని సంప్రదించండి."
