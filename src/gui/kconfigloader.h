@@ -90,80 +90,57 @@ class ConfigLoaderPrivate;
  * \li ulonglongs
  * \li url lists
  * \endlist
+ *
+ * \sa {https://doc.qt.io/qt-6/quiloader.html}{QUiLoader}, {https://develop.kde.org/docs/features/configuration/kconfig_xt/}{Using KConfigXT}, {https://doc.qt.io/qt-6/designer-using-a-ui-file.html}{Using a Designer UI File in Your C++ Application}
  **/
 class KCONFIGGUI_EXPORT KConfigLoader : public KConfigSkeleton
 {
 public:
     /*!
      * Creates a KConfigSkeleton populated using the definition found in
-     * the XML data passed in.
-     *
-     * \a configFile path to the configuration file to use
-     *
-     * \a xml the xml data; must be valid KConfigXT data
-     *
-     * \a parent optional QObject parent
+     * the desired \a configFile and KConfigXT \a xml data passed in, as a child of \a parent.
      **/
     KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
     /*!
      * Creates a KConfigSkeleton populated using the definition found in
-     * the XML data passed in.
-     *
-     * \a config the configuration object to use
-     *
-     * \a xml the xml data; must be valid KConfigXT data
-     *
-     * \a parent optional QObject parent
+     * the desired \a config object and KConfigXT \a xml data passed in, as a child of \a parent.
      **/
     KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent = nullptr);
 
     /*!
      * Creates a KConfigSkeleton populated using the definition found in
-     * the XML data passed in.
-     *
-     * \a config the group to use as the root for configuration items
-     *
-     * \a xml the xml data; must be valid KConfigXT data
-     *
-     * \a parent optional QObject parent
+     * the desired \a config group to be used as the root for configuration items,
+     * and KConfigXT \a xml data passed in, as a child of \a parent.
      **/
     KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
     ~KConfigLoader() override;
 
     /*!
-     * Finds the item for the given group and key.
+     * Finds the item for the given \a group and \a key in the config file.
      *
-     * \a group the group in the config file to look in
-     *
-     * \a key the configuration key to find
-     *
-     * Returns the associated KConfigSkeletonItem, or \c nullptr if none
+     * Returns the associated KConfigSkeletonItem, or \c nullptr if none.
      */
     KConfigSkeletonItem *findItem(const QString &group, const QString &key) const;
 
     /*!
-     * Finds an item by its name
+     * Finds an item by its \a name.
      */
     KConfigSkeletonItem *findItemByName(const QString &name) const;
 
     /*!
-     * Returns the property (variantized value) of the named item
+     * Returns the property of the item with the given \a name as a variant.
      */
     QVariant property(const QString &name) const;
 
     /*!
-     * Check to see if a group exists
-     *
-     * \a group the name of the group to check for
-     *
-     * Returns \c true if the group exists, or false if it does not
+     * Returns whether a \a group exists.
      */
     bool hasGroup(const QString &group) const;
 
     /*!
-     * Returns the list of groups defined by the XML
+     * Returns the list of groups defined by the KConfigXT XML data.
      */
     QStringList groupList() const;
 
