@@ -30,7 +30,7 @@ class KDesktopFilePrivate : public KConfigPrivate
 {
 public:
     KDesktopFilePrivate(QStandardPaths::StandardLocation resourceType, const QString &fileName)
-        : KConfigPrivate(KConfig::NoGlobals, resourceType)
+        : KConfigPrivate(KConfig::SimpleConfig, resourceType)
     {
         changeFileName(fileName);
 
