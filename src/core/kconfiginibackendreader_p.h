@@ -132,7 +132,6 @@ public:
     [[nodiscard]] virtual OpenResult open() = 0;
     [[nodiscard]] virtual std::unique_ptr<AbstractLockFile> lockFile() = 0;
     virtual void createEnclosingEntity() = 0;
-    virtual void setFilePath(const QString &path) = 0;
 };
 
 class KConfigIniBackendNullDevice : public KConfigIniBackendAbstractDevice
@@ -172,45 +171,47 @@ public:
     void createEnclosingEntity() override
     {
     }
-
-    void setFilePath(const QString &path) override
-    {
-        Q_UNUSED(path)
-    }
 };
 
 class KConfigIniBackendPathDevice : public KConfigIniBackendAbstractDevice
 {
 public:
-    explicit KConfigIniBackendPathDevice(const QString &path)
+    explicit KConfigIniBackendPathDevice(const QFileInfo &info)
+        : m_fileInfo(info)
     {
-        setFilePath(path);
+        Q_ASSERT_X(m_fileInfo.isAbsolute(), "KConfigIniBackendPathDevice", "File path must be absolute");
+        Q_ASSERT_X(!m_fileInfo.filePath().isEmpty(), "KConfigIniBackendPathDevice", "File path must not be empty");
     }
 
     [[nodiscard]] QString id() const override
     {
-        return m_localFilePath;
+        if (m_fileInfo.exists()) {
+            return m_fileInfo.canonicalFilePath();
+        }
+
+        // The canonical filepath is empty when the file does not exist. Try to approximate it.
+        if (const QString dirPath = m_fileInfo.dir().canonicalPath(); !dirPath.isEmpty()) {
+            const QString filePath = dirPath + QLatin1Char('/') + m_fileInfo.fileName();
+            return filePath;
+        }
+
+        // If that doesn't work either then we have no recourse but to return the possibly non-canonical path.
+        return m_fileInfo.filePath();
     }
 
     [[nodiscard]] bool isDeviceReadable() const override
     {
-        return !m_localFilePath.isEmpty();
+        return m_fileInfo.exists();
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
     {
-        const QString filePath = m_localFilePath;
-        if (filePath.isEmpty()) {
-            return false;
-        }
-
-        QFileInfo file(filePath);
-        if (file.exists()) {
-            return file.isWritable();
+        if (m_fileInfo.exists()) {
+            return m_fileInfo.isWritable();
         }
 
         // If the file does not exist, check if the deepest existing dir is writable
-        QFileInfo dir(file.absolutePath());
+        QFileInfo dir(m_fileInfo.absolutePath());
         while (!dir.exists()) {
             QString parent = dir.absolutePath(); // Go up. Can't use cdUp() on non-existing dirs.
             if (parent == dir.filePath()) {
@@ -224,21 +225,25 @@ public:
 
     [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override
     {
+        // After writing our file properties may have changed. Ensure we have the latest data in cache.
+        auto refreshFileInfo = qScopeGuard([this]() {
+            m_fileInfo.refresh();
+        });
+
         // check if file exists
-        QFile::Permissions fileMode = filePath().startsWith(u"/etc/xdg/"_s) ? QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther //
-                                                                            : QFile::ReadUser | QFile::WriteUser;
+        QFile::Permissions fileMode = id().startsWith(u"/etc/xdg/"_s) ? QFile::ReadUser | QFile::WriteUser | QFile::ReadGroup | QFile::ReadOther //
+                                                                      : QFile::ReadUser | QFile::WriteUser;
 
         bool createNew = true;
 
-        QFileInfo fi(filePath());
-        if (fi.exists()) {
+        if (m_fileInfo.exists()) {
 #ifdef Q_OS_WIN
             // TODO: getuid does not exist on windows, use GetSecurityInfo and GetTokenInformation instead
             createNew = false;
 #else
-            if (fi.ownerId() == ::getuid()) {
+            if (m_fileInfo.ownerId() == ::getuid()) {
                 // Preserve file mode if file exists and is owned by user.
-                fileMode = fi.permissions();
+                fileMode = m_fileInfo.permissions();
             } else {
                 // File is not owned by user:
                 // Don't create new file but write to existing file instead.
@@ -248,18 +253,18 @@ public:
         }
 
         if (createNew) {
-            QSaveFile file(filePath());
+            QSaveFile file(m_fileInfo.filePath());
             if (!file.open(QIODevice::WriteOnly)) {
 #ifdef Q_OS_ANDROID
                 // HACK: when we are dealing with content:// URIs, QSaveFile has to rely on DirectWrite.
                 // Otherwise this method returns a false and we're done.
                 file.setDirectWriteFallback(true);
                 if (!file.open(QIODevice::WriteOnly)) {
-                    qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << filePath() << ". Error:" << file.errorString();
+                    qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << m_fileInfo.filePath() << ". Error:" << file.errorString();
                     return false;
                 }
 #else
-                qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << filePath() << ". Error:" << file.errorString();
+                qWarning(KCONFIG_CORE_LOG) << "Couldn't create a new file:" << m_fileInfo.filePath() << ". Error:" << file.errorString();
                 return false;
 #endif
             }
@@ -271,25 +276,25 @@ public:
                 // File is empty and doesn't have special permissions: delete it.
                 file.cancelWriting();
 
-                if (fi.exists()) {
+                if (m_fileInfo.exists()) {
                     // also remove the old file in case it existed. this can happen
                     // when we delete all the entries in an existing config file.
                     // if we don't do this, then deletions and revertToDefault's
                     // will mysteriously fail
-                    QFile::remove(filePath());
+                    QFile::remove(m_fileInfo.filePath());
                 }
             } else {
                 // Normal case: Close the file
                 if (file.commit()) {
-                    QFile::setPermissions(filePath(), fileMode);
+                    QFile::setPermissions(m_fileInfo.filePath(), fileMode);
                     return true;
                 }
                 // Couldn't write. Disk full?
-                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write" << filePath() << ". Disk full?";
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write" << m_fileInfo.filePath() << ". Disk full?";
                 return false;
             }
         } else {
-            QFile f(filePath());
+            QFile f(m_fileInfo.filePath());
 
             // Open existing file. *DON'T* create it if it suddenly does not exist!
             if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::ExistingOnly)) {
@@ -305,7 +310,7 @@ public:
 
     [[nodiscard]] OpenResult open() override
     {
-        auto file = std::make_unique<QFile>(m_localFilePath);
+        auto file = std::make_unique<QFile>(m_fileInfo.filePath());
         if (!file->open(QIODevice::ReadOnly | QIODevice::Text)) {
             return {.shouldHaveDevice = file->exists(), .device = nullptr};
         }
@@ -314,7 +319,7 @@ public:
 
     void createEnclosingEntity() override
     {
-        const QString file = m_localFilePath;
+        const QString file = m_fileInfo.filePath();
         if (file.isEmpty()) {
             return; // nothing to do
         }
@@ -325,62 +330,25 @@ public:
         }
     }
 
-    void setFilePath(const QString &path) override
-    {
-        if (path.isEmpty()) {
-            return;
-        }
-
-        Q_ASSERT(QDir::isAbsolutePath(path));
-        if (!QDir::isAbsolutePath(path)) {
-            qWarning() << "setFilePath" << path;
-        }
-
-        const QFileInfo info(path);
-        if (info.exists()) {
-            setLocalFilePath(info.canonicalFilePath());
-            return;
-        }
-
-        if (QString filePath = info.dir().canonicalPath(); !filePath.isEmpty()) {
-            filePath += QLatin1Char('/') + info.fileName();
-            setLocalFilePath(filePath);
-        } else {
-            setLocalFilePath(path);
-        }
-    }
-
     [[nodiscard]] std::unique_ptr<AbstractLockFile> lockFile() override
     {
 #ifdef Q_OS_ANDROID
         // handle content Uris properly
-        if (filePath().startsWith(QLatin1String("content://"))) {
+        if (m_fileInfo.filePath().startsWith(QLatin1String("content://"))) {
             // we can't create file at an arbitrary location, so use internal storage to create one
 
             // NOTE: filename can be the same, but because this lock is short lived we may never have a collision
             return std::make_unique<RealLockFile>(std::make_unique<QLockFile>(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)
-                                                                              + QLatin1String("/") + QFileInfo(filePath()).fileName()
-                                                                              + QLatin1String(".lock")));
+                                                                              + QLatin1String("/") + m_fileInfo.fileName() + QLatin1String(".lock")));
         }
-        return std::make_unique<RealLockFile>(std::make_unique<QLockFile>(filePath() + QLatin1String(".lock")));
+        return std::make_unique<RealLockFile>(std::make_unique<QLockFile>(m_fileInfo.filePath() + QLatin1String(".lock")));
 #else
-        return std::make_unique<RealLockFile>(std::make_unique<QLockFile>(filePath() + QLatin1String(".lock")));
+        return std::make_unique<RealLockFile>(std::make_unique<QLockFile>(m_fileInfo.filePath() + QLatin1String(".lock")));
 #endif
     }
 
 private:
-    /* the absolute path to the object */
-    [[nodiscard]] QString filePath() const
-    {
-        return m_localFilePath;
-    }
-
-    void setLocalFilePath(const QString &file)
-    {
-        m_localFilePath = file;
-    }
-
-    QString m_localFilePath;
+    QFileInfo m_fileInfo;
 };
 
 class KConfigIniBackendQIODevice : public KConfigIniBackendAbstractDevice
@@ -424,11 +392,6 @@ public:
     }
 
     void createEnclosingEntity() override
-    {
-        // nothing to do
-    }
-
-    void setFilePath([[maybe_unused]] const QString &path) override
     {
         // nothing to do
     }

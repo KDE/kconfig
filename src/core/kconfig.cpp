@@ -474,7 +474,7 @@ bool KConfig::sync()
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
-            KConfigIniBackend tmp(std::make_unique<KConfigIniBackendPathDevice>(*sGlobalFileName));
+            KConfigIniBackend tmp(std::make_unique<KConfigIniBackendPathDevice>(QFileInfo(*sGlobalFileName)));
             if (d->configState == ReadWrite && !tmp.lock()) {
                 qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock global file:" << d->mBackend.backingDevicePath();
 
@@ -648,35 +648,35 @@ void KConfigPrivate::changeFileName(const QString &name)
 {
     fileName = name;
 
-    QString file;
+    QFileInfo info;
     if (name.isEmpty()) {
         if (wantDefaults()) { // accessing default app-specific config "appnamerc"
             fileName = KConfig::mainConfigName();
-            file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+            info = QFileInfo(QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName);
         } else if (wantGlobals()) { // accessing "kdeglobals" by specifying no filename and NoCascade - XXX used anywhere?
             resourceType = QStandardPaths::GenericConfigLocation;
             fileName = QStringLiteral("kdeglobals");
-            file = *sGlobalFileName;
+            info = QFileInfo(*sGlobalFileName);
         } else {
             // anonymous config
             openFlags = KConfig::SimpleConfig;
             return;
         }
     } else if (QDir::isAbsolutePath(fileName)) {
-        fileName = QFileInfo(fileName).canonicalFilePath();
+        info = QFileInfo(fileName);
+        fileName = info.canonicalFilePath();
         if (fileName.isEmpty()) { // file doesn't exist (yet)
             fileName = name;
         }
-        file = fileName;
     } else {
-        file = QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName;
+        info = QFileInfo(QStandardPaths::writableLocation(resourceType) + QLatin1Char('/') + fileName);
     }
 
-    Q_ASSERT(!file.isEmpty());
+    Q_ASSERT(!info.filePath().isEmpty());
 
-    bSuppressGlobal = (file.compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
+    bSuppressGlobal = (info.filePath().compare(*sGlobalFileName, sPathCaseSensitivity) == 0);
 
-    mBackend.setDeviceInterface(std::make_unique<KConfigIniBackendPathDevice>(file));
+    mBackend.setDeviceInterface(std::make_unique<KConfigIniBackendPathDevice>(info));
 
     configState = mBackend.accessMode();
 }
@@ -774,7 +774,7 @@ void KConfigPrivate::parseGlobalFiles()
             parseOpts |= KConfigIniBackend::ParseDefaults;
         }
 
-        KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
+        KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(QFileInfo(file)));
         if (backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
             break;
         }
@@ -805,6 +805,7 @@ void KConfigPrivate::parseConfigFiles()
 
     QList<QString> files;
     if (wantDefaults()) {
+        qDebug() << "parsing defaults for" << fileName;
         if (bSuppressGlobal) {
             files = getGlobalFiles();
         } else {
@@ -848,7 +849,7 @@ void KConfigPrivate::parseConfigFiles()
                 break;
             }
         } else {
-            KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
+            KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(QFileInfo(file)));
             constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
             bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
         }
