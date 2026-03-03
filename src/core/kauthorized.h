@@ -23,9 +23,13 @@ class QJSEngine;
 /*!
  * \class KAuthorized
  * \inmodule KConfigCore
+ * \brief used for checking whether actions are allowed by a user.
  *
- * \brief The functions in this namespace provide the core of the Kiosk action
+ * The functions in this namespace provide the core of the Kiosk action
  * restriction system; the KIO and KXMLGui frameworks build on this.
+ *
+ * KDE's Kiosk settings allow to control whether a user is allowed
+ * to perform actions such as opening files or running shell commands.
  *
  * The relevant settings are read from the application's KSharedConfig
  * instance, so actions can be disabled on a per-application or global
@@ -112,7 +116,7 @@ public:
      * The enum values lower cased represent the action that is
      * passed in to KAuthorized::authorize(const QString &action).
      *
-     * \overload
+     * \overload KAuthorized::authorize(const QString &action)
      * \since 5.88
      */
     Q_INVOKABLE static bool authorize(GenericRestriction action);
@@ -146,7 +150,7 @@ public:
     /*!
      * Overload to authorize a common \a action.
      *
-     * \overload
+     * \overload KAuthorized::authorizeAction(const QString &action)
      * \since 5.88
      */
     Q_INVOKABLE static bool authorizeAction(GenericAction action);
