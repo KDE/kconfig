@@ -8,6 +8,9 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <QProcess>
+#include <QSettings>
+
+using namespace Qt::Literals;
 
 class RegistryTest : public QObject
 {
@@ -75,7 +78,9 @@ private Q_SLOTS:
 
     void testFileName()
     {
-        QCOMPARE(KSharedConfig::openConfig(QStringLiteral("named_config"))->group(QStringLiteral("<default>")).readEntry("value", 1), 1);
+        QCOMPARE(KSharedConfig::openConfig(QStringLiteral("named_config"))->group(QStringLiteral("<default>")).readEntry("value", 0), 1);
+        // trailing "rc" is removed from file name
+        QCOMPARE(KSharedConfig::openConfig(QStringLiteral("named_configrc"))->group(QStringLiteral("<default>")).readEntry("value", 0), 1);
     }
 
     void testHierarchy()
@@ -90,6 +95,16 @@ private Q_SLOTS:
 
         KConfigGroup immutableGroup(config, QStringLiteral("inherit_immutable_group"));
         QCOMPARE(immutableGroup.readEntry("test_value", 0), 0);
+    }
+
+    void testNotExistingRegistryKeyIsNotCreated()
+    {
+        KSharedConfig::openConfig(u"does_not_exist"_s);
+        QSettings settings(u"HKEY_CURRENT_USER\\SOFTWARE"_s, QSettings::NativeFormat);
+        QVERIFY(settings.childGroups().contains(u"KDE"_s));
+        settings.beginGroup(u"KDE"_s);
+        const QStringList allKeys = settings.allKeys();
+        QVERIFY(!settings.childGroups().contains(u"does_not_exist"_s));
     }
 };
 

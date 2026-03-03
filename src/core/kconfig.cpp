@@ -788,9 +788,7 @@ void KConfigPrivate::parseWindowsDefaults()
     if (fileName.isEmpty() || QCoreApplication::organizationName().isEmpty()) {
         return;
     }
-    auto registryKey =
-        QStringLiteral("SOFTWARE\\%1\\%2")
-            .arg(QCoreApplication::organizationName(), fileName.endsWith(QStringLiteral("rc")) ? fileName.left(fileName.length() - 2) : fileName);
+    const QString registryKey = QCoreApplication::organizationName() + u'/' + (fileName.endsWith(QStringLiteral("rc")) ? fileName.chopped(2) : fileName);
     WindowsRegistry::parse(registryKey, entryMap);
 }
 #endif

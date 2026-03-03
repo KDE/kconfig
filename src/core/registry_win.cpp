@@ -61,8 +61,9 @@ static void parseRegSubkeys(const QString &baseGroup, QSettings &settings, KEntr
 
 static void parseRegistry(const QString &regKey, KEntryMap &entryMap, Registry registry)
 {
-    QString registryPath = (registry == HKCU ? QStringLiteral("HKEY_CURRENT_USER\\") : QStringLiteral("HKEY_LOCAL_MACHINE\\")) + regKey;
-    QSettings settings(registryPath, QSettings::NativeFormat);
+    QSettings settings((registry == HKCU ? QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE") : QStringLiteral("HKEY_LOCAL_MACHINE\\SOFTWARE")),
+                       QSettings::NativeFormat);
+    settings.beginGroup(regKey);
     parseRegSubkeys(QStringLiteral("<default>"), settings, entryMap, false);
 }
 
