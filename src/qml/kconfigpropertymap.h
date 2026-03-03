@@ -24,7 +24,7 @@ class KConfigPropertyMapPrivate;
  * \inmodule KConfigQml
  *
  * \brief An object that (optionally) automatically saves changes in a
- * property map to a configuration object (e.g. a KConfig file).
+ * property map to a configuration object (such as a KConfig file).
  * \since 5.89
  */
 class KCONFIGQML_EXPORT KConfigPropertyMap : public QQmlPropertyMap
@@ -40,32 +40,26 @@ public:
     ~KConfigPropertyMap() override;
 
     /*!
-     * Whether notifications on config changes are enabled. Disabled by default.
+     * Returns whether notifications on config changes are enabled.
      *
-     * Returns \c true if writes send (dbus) notifications
-     *
+     * Disabled by default.
      * \sa KConfigBase::Notify
      */
     bool isNotify() const;
 
     /*!
-     * Enable or disable notifications on config changes.
-     *
-     * \a notify whether to send notifications
-     *
+     * Enables or disables notifications upon config changes.
      * \sa KConfigBase::Notify
      */
     void setNotify(bool notify);
 
     /*!
-     * Whether the value at the given key is immutable
-     *
-     * Returns \c true if the value is immutable, \c false if it isn't or it doesn't exist
+     * Returns whether the value at the given key is immutable.
      */
     Q_INVOKABLE bool isImmutable(const QString &key) const;
 
     /*!
-     * Saves the state of the property map on disk.
+     * Saves the state of the property map to disk.
      */
     Q_INVOKABLE void writeConfig();
 
