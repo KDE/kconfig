@@ -785,7 +785,7 @@ void KConfigPrivate::parseGlobalFiles()
 #ifdef Q_OS_WIN
 void KConfigPrivate::parseWindowsDefaults()
 {
-    if (fileName.isEmpty() || QCoreApplication::organizationName().isEmpty()) {
+    if (QCoreApplication::organizationName().isEmpty() || fileName.isEmpty() || QFileInfo(fileName).isAbsolute()) {
         return;
     }
     const QString registryKey = QCoreApplication::organizationName() + u'/' + (fileName.endsWith(QStringLiteral("rc")) ? fileName.chopped(2) : fileName);
