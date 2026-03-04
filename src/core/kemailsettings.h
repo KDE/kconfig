@@ -20,9 +20,8 @@ class KEMailSettingsPrivate;
  *
  * \brief Access to e-mail settings.
  *
- * This is just a small class to facilitate accessing e-mail settings in
- * a sane way, and allowing any program to manage multiple e-mail
- * profiles effortlessly
+ * Facilitates accessing e-mail settings
+ * and allows any program to manage multiple e-mail profiles.
  *
  * The default profile is automatically selected in the constructor.
  **/
@@ -31,16 +30,12 @@ class KCONFIGCORE_EXPORT KEMailSettings
     Q_DECLARE_TR_FUNCTIONS(KEMailSettings)
 public:
     /*!
-     * The list of settings that I thought of when I wrote this
-     * class.
-     *
      * \value ClientProgram
      * \value ClientTerminal
      * \value RealName
      * \value EmailAddress
      * \value ReplyToAddress
      * \value Organization
-     *
      * \sa getSetting()
      * \sa setSetting()
      **/
@@ -54,8 +49,7 @@ public:
     };
 
     /*!
-     * Default constructor, just sets things up and sets the default profile
-     * as the current profile
+     * Constructs a new KEMailSettings with the default profile.
      **/
     KEMailSettings();
 
@@ -70,9 +64,7 @@ public:
     QStringList profiles() const;
 
     /*!
-     * Change the current profile.
-     *
-     * \a s the name of the new profile
+     * Sets the current profile to the new name \a s.
      **/
     void setProfile(const QString &s);
 
@@ -82,28 +74,19 @@ public:
     QString defaultProfileName() const;
 
     /*!
-     * Sets a new default.
-     *
-     * \a def the new default
+     * Sets a new default profile \a def.
      **/
     void setDefault(const QString &def);
 
     /*!
-     * Get one of the predefined "basic" settings.
-     *
-     * \a s the setting to get
-     *
-     * Returns the value of the setting, or QString() if not
-     *         set
+     * Returns a setting \a s from the predefined "basic" settings, or QString() if unset.
+     * \sa Setting
      **/
     QString getSetting(KEMailSettings::Setting s) const;
 
     /*!
-     * Set one of the predefined "basic" settings.
-     *
-     * \a s the setting to set
-     *
-     * \a v the new value of the setting, or QString() to unset
+     * Sets the setting \a s from the predefined "basic" settings to the new value \a v.
+     * \sa Setting
      **/
     void setSetting(KEMailSettings::Setting s, const QString &v);
 
