@@ -52,6 +52,7 @@ int main(int argc, char **argv)
     parser.addOption(QCommandLineOption(QStringLiteral("key"), QCoreApplication::translate("main", "Key to look for"), QStringLiteral("key")));
     parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
     parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
+    parser.addOption(QCommandLineOption(QStringLiteral("dump"), QCoreApplication::translate("main", "Dump all entries")));
 
     parser.process(app);
 
@@ -61,7 +62,7 @@ int main(int argc, char **argv)
     QString dflt = parser.value(QStringLiteral("default"));
     QString type = parser.value(QStringLiteral("type")).toLower();
 
-    if (key.isNull() || !parser.positionalArguments().isEmpty()) {
+    if ((key.isNull() || !parser.positionalArguments().isEmpty()) && !parser.isSet(QStringLiteral("dump"))) {
         parser.showHelp(1);
     }
 
@@ -88,6 +89,29 @@ int main(int argc, char **argv)
             return 2;
         }
         cfgGroup = cfgGroup.group(grp);
+    }
+
+    if (parser.isSet(QStringLiteral("dump"))) {
+        const QStringList groups = konfig->groupList();
+        for (const QString &groupName : groups) {
+            const KConfigGroup group = konfig->group(groupName);
+
+            fprintf(stdout, "Group: %s\n", qPrintable(groupName));
+
+            const auto entries = group.entryMap();
+
+            for (const auto [key, value] : entries.asKeyValueRange()) {
+                fprintf(stdout, "  %s: %s\n", qPrintable(key), value.toStdString().c_str());
+            }
+
+            fprintf(stdout, "\n");
+        }
+
+        if (configMustDeleted) {
+            delete konfig;
+        }
+
+        return 0;
     }
 
     if (type == QLatin1String{"bool"}) {
