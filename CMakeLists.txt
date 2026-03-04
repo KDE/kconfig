@@ -68,6 +68,10 @@ if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
 
+if(BUILD_FUZZERS)
+    add_subdirectory(autotests/ossfuzz)
+endif()
+
 include (ECMPoQmTools)
 ecm_install_po_files_as_qm(poqm)
 
