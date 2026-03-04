@@ -199,7 +199,7 @@ QString KConfigPrivate::expandString(const QString &value)
             // the next character is not $
             QStringView aVarName;
             if (aValue.at(nEndPos) == QLatin1Char('{')) {
-                while ((nEndPos <= aValue.length()) && (aValue[nEndPos] != QLatin1Char('}'))) {
+                while ((nEndPos < aValue.length()) && (aValue[nEndPos] != QLatin1Char('}'))) {
                     ++nEndPos;
                 }
                 ++nEndPos;

@@ -44,6 +44,7 @@ ecm_add_tests(
     ksharedconfig_in_global_object.cpp
     dbussanitizertest.cpp
     qiodevicetest.cpp
+    parsetest.cpp
     LINK_LIBRARIES KF6::ConfigCore Qt6::Test Qt6::Concurrent Qt6::CorePrivate
 )
 
