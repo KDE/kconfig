@@ -140,7 +140,7 @@ public:
     bool hasGroup(const QString &group) const;
 
     /*!
-     * Returns the list of groups defined by the KConfigXT XML data.
+     * Returns the list of groups defined by the KConfigXT schema.
      */
     QStringList groupList() const;
 
