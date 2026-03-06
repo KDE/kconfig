@@ -213,8 +213,7 @@ public:
      * on it.
      *
      * \code
-     * KConfig* newConfig;
-     * newConfig = config.copyTo("newconfrc");
+     * KConfig *newConfig = config.copyTo("newconfrc");
      * newConfig->sync();
      * \endcode
      *
