@@ -23,7 +23,7 @@ class QJSEngine;
 /*!
  * \class KAuthorized
  * \inmodule KConfigCore
- * \brief used for checking whether actions are allowed by a user.
+ * \brief Used for checking whether actions are allowed for a user.
  *
  * The functions in this namespace provide the core of the Kiosk action
  * restriction system; the KIO and KXMLGui frameworks build on this.

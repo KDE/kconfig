@@ -27,7 +27,7 @@ class KWindowStateSaverPrivate;
  * \list
  * \li Create a new instance of KWindowStateSaver for every window that should have its
  * state persisted
- * \li Pass it the window or widget
+ * \li Pass it the window
  * \li Pass it the config group the state should be stored in
  * \endlist
  *

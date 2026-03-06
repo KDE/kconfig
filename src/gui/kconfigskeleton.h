@@ -71,7 +71,7 @@ public:
      * Constructs a configuration skeleton with the given \a configname
      * as a child of \a parent.
      *
-     * If no name is given, the default config file
+     * If no name is given, the default config
      * as returned by KSharedConfig::openConfig() is used.
      */
     explicit KConfigSkeleton(const QString &configname = QString(), QObject *parent = nullptr);
