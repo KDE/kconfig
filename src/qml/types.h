@@ -11,7 +11,7 @@
 #include <kcoreconfigskeleton.h>
 
 /*!
- * \qmltype KAuthorized
+ * \qmlsingletontype KAuthorized
  * \inqmlmodule org.kde.config
  * \nativetype KAuthorized
  * \brief Singleton used for checking whether actions are allowed by a user.
