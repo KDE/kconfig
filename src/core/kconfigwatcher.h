@@ -52,7 +52,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * \fn void KSharedConfig::configChanged(KConfigGroup &group, QByteArrayList &names)
      * \brief Emitted when a config \a group has changed, passing the list of \a names that have changed within that group.
      *
      * The config will be reloaded before this signal is emitted.
