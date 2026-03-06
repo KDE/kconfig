@@ -114,13 +114,10 @@ public:
      */
     bool exists() const;
 
-    /*! \reimp */
     bool sync() override;
 
-    /*! \reimp */
     void markAsClean() override;
 
-    /*! \reimp */
     AccessMode accessMode() const override;
 
     /*!
