@@ -308,9 +308,6 @@ public:
 
     /*!
      * Reads the list of strings of an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found.
-     *
-     * The returned string list will be semicolon separated
-     * following desktop entry spec separator semantics.
      * \sa readEntry(const QString&, const QStringList&)
      */
     QStringList readXdgListEntry(const QString &pKey, const QStringList &aDefault = QStringList()) const;
