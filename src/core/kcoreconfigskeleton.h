@@ -1703,7 +1703,6 @@ public Q_SLOTS:
 Q_SIGNALS:
     /*!
      * This signal is emitted when the configuration changes.
-     * \sa KConfigWatcher
      * \sa KConfigBase::WriteConfigFlags
      */
     void configChanged();
