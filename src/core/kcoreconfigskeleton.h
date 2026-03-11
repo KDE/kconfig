@@ -150,6 +150,8 @@ public:
     /*!
      * Sets the write \a flags to be used when writing the configuration.
      * \since 5.58
+     * \sa KConfigBase::WriteConfigFlags
+     * \sa KConfigWatcher
      */
     void setWriteFlags(KConfigBase::WriteConfigFlags flags);
 

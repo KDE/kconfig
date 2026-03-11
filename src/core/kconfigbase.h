@@ -44,6 +44,9 @@ public:
      *        Notifies remote KConfigWatchers of changes (requires DBus support). Implies Persistent.
      * \value Normal
      *        Save the entry to the application specific config file without a locale tag. This is the default.
+     * \sa KConfigGroup
+     * \sa KConfigWatcher
+     * \sa KConfigSkeletonItem::setWriteFlags()
      */
     enum WriteConfigFlag {
         Persistent = 0x01,

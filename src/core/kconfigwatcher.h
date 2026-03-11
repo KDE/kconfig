@@ -24,7 +24,22 @@ class KConfigWatcherPrivate;
  * \brief Watches for configuration changes.
  *
  * The configChanged(const KConfigGroup &group, const QByteArrayList &names) signal is emitted whenever another client has updated this config file with the KConfigBase::Notify flag.
+ *
+ * \code
+ * KConfigWatcher::Ptr watcher = KConfigWatcher::create(config);
+ * QObject::connect(watcher.data(), &KConfigWatcher::configChanged, [=](){
+ *     qInfo() << "Some config changed!";
+ * });
+ * // ...
+ * generalGroup.writeEntry("SomeKey", "SomeValue", KConfigBase::Notify);
+ * generalGroup.config()->reparseConfiguration();
+ * \endcode
+ *
  * \since 5.51
+ * \sa KSharedConfig::Ptr
+ * \sa KConfigBase::WriteConfigFlags
+ * \sa KConfigSkeletonItem::setWriteFlags()
+ * \sa KConfigGroup
  */
 class KCONFIGCORE_EXPORT KConfigWatcher : public QObject
 {
