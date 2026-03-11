@@ -98,20 +98,25 @@ class KCONFIGGUI_EXPORT KConfigLoader : public KConfigSkeleton
 public:
     /*!
      * Creates a KConfigSkeleton populated using the definition found in
-     * the desired \a configFile and KConfigXT \a xml data passed in, as a child of \a parent.
+     * the desired KConfigXT \a xml data, as a child of \a parent.
+     *
+     * This will in turn be stored in \a configFile.
      **/
     KConfigLoader(const QString &configFile, QIODevice *xml, QObject *parent = nullptr);
 
     /*!
      * Creates a KConfigSkeleton populated using the definition found in
-     * the desired \a config object and KConfigXT \a xml data passed in, as a child of \a parent.
+     * the desired KConfigXT \a xml data, as a child of \a parent.
+     *
+     * This will in turn be stored in \a config object.
      **/
     KConfigLoader(KSharedConfigPtr config, QIODevice *xml, QObject *parent = nullptr);
 
     /*!
      * Creates a KConfigSkeleton populated using the definition found in
-     * the desired \a config group to be used as the root for configuration items,
-     * and KConfigXT \a xml data passed in, as a child of \a parent.
+     * the desired KConfigXT \a xml data, as a child of \a parent.
+     *
+     * This will in turn be stored in the \a config group to be used as the root for configuration items.
      **/
     KConfigLoader(const KConfigGroup &config, QIODevice *xml, QObject *parent = nullptr);
 
