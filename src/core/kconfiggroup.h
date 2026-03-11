@@ -533,6 +533,8 @@ public:
 
     /*!
      * Returns whether this group may be changed.
+     * \sa KAuthorized
+     * \sa {https://develop.kde.org/docs/administration/kiosk/}{Kiosk - Simple configuration management for large deployment}
      */
     bool isImmutable() const override;
 
@@ -541,6 +543,8 @@ public:
      *
      * If isImmutable() returns \c true, then this method will return
      * \c true for all inputs.
+     * \sa KAuthorized
+     * \sa {https://develop.kde.org/docs/administration/kiosk/}{Kiosk - Simple configuration management for large deployment}
      */
     bool isEntryImmutable(const QString &key) const;
     /*!
