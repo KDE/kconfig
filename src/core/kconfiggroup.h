@@ -349,83 +349,58 @@ public:
     QString readEntryUntranslated(const char *key, const QString &aDefault = QString()) const;
 
     /*!
-     * Writes a value to the configuration object.
+     * Writes \a key and \a value to the configuration object with the given \a pFlags.
      *
-     * \a key the key to write to
-     *
-     * \a value the value to write
-     *
-     * \a pFlags the flags to use when writing this entry
-     *
+     * Changes to the file will only be synced with
+     * KConfig::reparseConfiguration() or KConfigBase::sync().
      * \sa readEntry(), writeXdgListEntry(), deleteEntry()
      */
     void writeEntry(const QString &key, const QVariant &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const char *key, const QVariant &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const QString &key, const QString &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const char *key, const QString &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     void writeEntry(const QString &key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const char *key, const QByteArray &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     void writeEntry(const QString &key, const char *value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const char *key, const char *value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     template<typename T>
     void writeEntry(const char *key, const T &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     template<typename T>
     void writeEntry(const QString &key, const T &value, WriteConfigFlags pFlags = Normal)
@@ -434,39 +409,27 @@ public:
     }
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     void writeEntry(const QString &key, const QStringList &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     void writeEntry(const QString &key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeEntry(const char *key, const QVariantList &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      */
     template<typename T>
     void writeEntry(const QString &key, const QList<T> &value, WriteConfigFlags pFlags = Normal)
@@ -474,192 +437,126 @@ public:
         writeEntry(key.toUtf8().constData(), value, pFlags);
     }
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     template<typename T>
     void writeEntry(const char *key, const QList<T> &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     *
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
      * \since 6.22
      */
     template<typename Rep, typename Period>
     void writeEntry(const QString &key, std::chrono::duration<Rep, Period> value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * \overload
-     * Overload for writeEntry(const QString&, const QVariant&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
-     *
+     * \overload writeEntry(const QString&, const QVariant&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      * \since 6.22
      */
     template<typename Rep, typename Period>
     void writeEntry(const char *key, std::chrono::duration<Rep, Period> value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Writes a list of strings to the config object, following XDG
-     * desktop entry spec separator semantics
-     *
-     * \a pKey the key to write to
-     *
-     * \a value the list to write
-     *
-     * \a pFlags the flags to use when writing this entry
-     *
+     * Writes \a pKey and \a value to the configuration object with the given \a pFlags,
+     * where the \a value matches a list of strings following the XDG desktop entry specification.
      * \sa writeEntry(), readXdgListEntry()
      */
     void writeXdgListEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writeXdgListEntry(const QString&, const QStringList&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writeXdgListEntry(const QString&, const QStringList&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writeXdgListEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Writes a file path to the configuration
+     * Writes \a pKey and \a value to the configuration object with the given \a pFlags,
+     * where the \a value matches a file path.
      *
-     * If the path is located under $HOME, the user's home directory
-     * is replaced with $HOME in the persistent storage.
-     * The path should therefore be read back with readPathEntry()
+     * If the path includes the absolute name for $HOME, the user's home directory
+     * is replaced with "$HOME" in the persistent storage.
      *
-     * \a pKey the key to write to
-     *
-     * \a path the path to write
-     *
-     * \a pFlags the flags to use when writing this entry
-     *
+     * The path should therefore be read back with readPathEntry().
      * \sa writeEntry(), readPathEntry()
      */
     void writePathEntry(const QString &pKey, const QString &path, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writePathEntry(const QString&, const QString&, WriteConfigFlags)
-     *
-     * \a Key name of key, encoded in UTF-8
+     * \overload writePathEntry(const QString&, const QString&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writePathEntry(const char *Key, const QString &path, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Writes a list of paths to the configuration
+     * Writes \a pKey and \a value to the configuration object with the given \a pFlags,
+     * where the \a value matches a file path.
      *
-     * If any of the paths are located under $HOME, the user's home directory
-     * is replaced with $HOME in the persistent storage.
-     * The paths should therefore be read back with readPathEntry()
+     * If the path includes the absolute name for $HOME, the user's home directory
+     * is replaced with "$HOME" in the persistent storage.
      *
-     * \a pKey the key to write to
-     *
-     * \a value the list to write
-     *
-     * \a pFlags the flags to use when writing this entry
-     *
+     * The path should therefore be read back with readPathEntry().
      * \sa writeEntry(), readPathEntry()
      */
     void writePathEntry(const QString &pKey, const QStringList &value, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for writePathEntry(const QString&, const QStringList&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload writePathEntry(const QString&, const QStringList&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void writePathEntry(const char *key, const QStringList &value, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Deletes the entry specified by \a pKey in the current group
+     * Deletes the entry specified by \a pKey in the current group with the given \a pFlags.
      *
      * This also hides system wide defaults.
-     *
-     * \a pKey the key to delete
-     *
-     * \a pFlags the flags to use when deleting this entry
-     *
      * \sa deleteGroup(), readEntry(), writeEntry()
      */
     void deleteEntry(const QString &pKey, WriteConfigFlags pFlags = Normal);
     /*!
-     * \overload
-     *
-     * Overload for deleteEntry(const QString&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload deleteEntry(const QString&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void deleteEntry(const char *key, WriteConfigFlags pFlags = Normal);
 
     /*!
-     * Checks whether the key has an entry in this group
-     *
-     * Use this to determine if a key is not specified for the current
-     * group (hasKey() returns false).
+     * Returns whether the \a key exists in this group in any of the configuration sources.
      *
      * If this returns \c false for a key, readEntry() (and its variants)
      * will return the default value passed to them.
-     *
-     * \a key the key to search for
-     *
-     * Returns \c true if the key is defined in this group by any of the
-     *         configuration sources, \c false otherwise
-     *
      * \sa readEntry()
      */
     bool hasKey(const QString &key) const;
     /*!
-     * \overload
-     *
-     * Overload for hasKey(const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload hasKey(const QString&) const
+     * The \a key will be encoded in UTF-8.
      */
     bool hasKey(const char *key) const;
 
     /*!
-     * Whether this group may be changed
-     *
-     * Returns \c false if the group may be changed, \c true otherwise
+     * Returns whether this group may be changed.
      */
     bool isImmutable() const override;
 
     /*!
-     * Checks if it is possible to change the given entry
+     * Returns whether it is possible to change the given entry \a key.
      *
      * If isImmutable() returns \c true, then this method will return
      * \c true for all inputs.
-     *
-     * \a key the key to check
-     *
-     * Returns \c false if the key may be changed using this configuration
-     *         group object, \c true otherwise
      */
     bool isEntryImmutable(const QString &key) const;
     /*!
-     * \overload
-     *
-     * Overload for isEntryImmutable(const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload isEntryImmutable(const QString&) const
+     * The \a key will be encoded in UTF-8.
      */
     bool isEntryImmutable(const char *key) const;
 
     /*!
-     * Reverts an entry to the default settings.
+     * Reverts an entry \a key to the default settings with the given \a pFlag in the current group.
      *
-     * Reverts the entry with key \a key with the given \a pFlag in the current group in the
-     * application specific config file to either the system wide (default)
+     * The default settings will be either the system wide (default)
      * value or the value specified in the global KDE config file.
      *
      * To revert entries in the global KDE config file, the global KDE config
-     * file should be opened explicitly in a separate config object.
+     * file should be opened \e explicitly in a \e separate config object.
      *
      * \note This is not the same as deleting the key, as instead the
      * global setting will be copied to the configuration file that this
@@ -668,18 +565,17 @@ public:
     void revertToDefault(const QString &key, WriteConfigFlags pFlag = WriteConfigFlags());
 
     /*!
-     * Overload for revertToDefault(const QString&, WriteConfigFlags)
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload revertToDefault(const QString&, WriteConfigFlags)
+     * The \a key will be encoded in UTF-8.
      */
     void revertToDefault(const char *key, WriteConfigFlags pFlag = WriteConfigFlags());
 
     /*!
-     * Whether a default is specified for an entry in either the
-     * system wide configuration file or the global KDE config file
+     * Returns whether a default is specified for an entry \a key in either the
+     * system wide configuration file or the global KDE config file.
      *
      * If an application computes a default value at runtime for
-     * a certain entry, e.g. like:
+     * a certain entry, like:
      * \code
      * QColor computedDefault = qApp->palette().color(QPalette::Active, QPalette::Text);
      * QColor color = group.readEntry(key, computedDefault);
@@ -696,29 +592,19 @@ public:
      * This ensures that as long as the entry is not modified to differ from
      * the computed default, the application will keep using the computed default
      * and will follow changes the computed default makes over time.
-     *
-     * \a key the key of the entry to check
-     *
-     * Returns \c true if the global or system settings files specify a default
-     *          for \a key in this group, \c false otherwise
      */
     bool hasDefault(const QString &key) const;
     /*!
-     * \overload
-     *
-     * Overload for hasDefault(const QString&) const
-     *
-     * \a key name of key, encoded in UTF-8
+     * \overload hasDefault(const QString&) const
+     * The \a key will be encoded in UTF-8.
      */
     bool hasDefault(const char *key) const;
 
     /*!
-     * Returns a map (tree) of entries for all entries in this group
+     * Returns a map (tree) of entries for all entries in this group.
      *
      * Only the actual entry string is returned, none of the
      * other internal data should be included.
-     *
-     * Returns a map of entries in this group, indexed by key
      */
     QMap<QString, QString> entryMap() const;
 
