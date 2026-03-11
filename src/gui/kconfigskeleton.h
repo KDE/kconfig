@@ -100,9 +100,11 @@ public:
 
     /*!
      * Registers a QColor item with the given \a name,
-     * the initial value \a reference to hold in the item that is set by read() calls
-     * and read by save() calls, and the \a defaultValue for the item used
+     * the initial value \a reference to hold in the item, and the \a defaultValue for the item used
      * when the config file does not yet contain the \a key of this item.
+     *
+     * The \a reference should be a pointer to the variable that is set by read() calls
+     * and read by save() calls.
      *
      * If \a key is a null string, \a name is used as key.
      */
@@ -110,9 +112,11 @@ public:
 
     /*!
      * Registers a QFont item with the given \a name,
-     * the initial value \a reference to hold in the item that is set by read() calls
-     * and read by save() calls, and the \a defaultValue for the item used
+     * the initial value \a reference to hold in the item, and the \a defaultValue for the item used
      * when the config file does not yet contain the \a key of this item.
+     *
+     * The \a reference should be a pointer to the variable that is set by read() calls
+     * and read by save() calls.
      *
      * If \a key is a null string, \a name is used as key.
      */
