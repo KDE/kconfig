@@ -50,7 +50,9 @@ bool KConfigPrivate::mappingsRegistered = false;
 // For caching purposes
 static bool s_wasTestModeEnabled = false;
 
-Q_GLOBAL_STATIC(QStringList, s_globalFiles) // For caching purposes.
+static bool s_globalFilesAreInitialized = false;
+Q_GLOBAL_STATIC(QStringList, s_globalSystemFiles) // For caching purposes.
+Q_GLOBAL_STATIC(QStringList, s_globalUserFiles) // For caching purposes.
 static QBasicMutex s_globalFilesMutex;
 Q_GLOBAL_STATIC_WITH_ARGS(QString, sGlobalFileName, (QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1String("/kdeglobals")))
 
@@ -59,6 +61,7 @@ using ParseCacheTimestamp = QList<qint64>;
 struct ParseCacheValue {
     KEntryMap entries;
     ParseCacheTimestamp timestamp;
+    bool fileIsImmutable;
 };
 QThreadStorage<QCache<ParseCacheKey, ParseCacheValue>> sGlobalParse;
 
@@ -99,6 +102,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
     , bFileImmutable(false)
     , bForceGlobal(false)
     , bSuppressGlobal(false)
+    , bGlobalFileImmutable(false)
     , configState(KConfigBase::NoAccess)
 {
     const bool isTestMode = QStandardPaths::isTestModeEnabled();
@@ -699,13 +703,14 @@ void KConfig::reparseConfiguration()
 
     {
         QMutexLocker locker(&s_globalFilesMutex);
-        s_globalFiles()->clear();
+        s_globalSystemFiles()->clear();
+        s_globalUserFiles()->clear();
+        s_globalFilesAreInitialized = false;
     }
 
     // Parse all desired files from the least to the most specific.
-    if (d->wantGlobals()) {
-        d->parseGlobalFiles();
-    }
+    d->parseGlobalSystemFiles();
+    d->parseSystemConfigFiles();
 
 #ifdef Q_OS_WIN
     // Parse the windows registry defaults if desired
@@ -714,60 +719,116 @@ void KConfig::reparseConfiguration()
     }
 #endif
 
-    d->parseConfigFiles();
+    d->parseGlobalUserFiles();
+    d->parseUserConfigFiles();
 }
 
-QStringList KConfigPrivate::getGlobalFiles() const
+void KConfigPrivate::ensureGlobalFilesAreInitialized() const
 {
     QMutexLocker locker(&s_globalFilesMutex);
-    if (s_globalFiles()->isEmpty()) {
+    if (!s_globalFilesAreInitialized) {
+        const QString writableLocation = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
         const QStringList paths1 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("kdeglobals"));
         const QStringList paths2 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("system.kdeglobals"));
 
         const bool useEtcKderc = !etc_kderc.isEmpty();
-        s_globalFiles()->reserve(paths1.size() + paths2.size() + (useEtcKderc ? 1 : 0));
-
-        for (const QString &dir1 : paths1) {
-            s_globalFiles()->push_front(dir1);
-        }
-        for (const QString &dir2 : paths2) {
-            s_globalFiles()->push_front(dir2);
-        }
+        const bool writableInPaths1 = !paths1.isEmpty() && paths1.front().startsWith(writableLocation);
+        const bool writableInPaths2 = !paths2.isEmpty() && paths2.front().startsWith(writableLocation);
+        const int globalSystemFilesCount = int(useEtcKderc) + (paths1.size() - int(writableInPaths1)) + (paths2.size() - int(writableInPaths2));
+        s_globalSystemFiles()->reserve(globalSystemFilesCount);
+        s_globalUserFiles()->reserve(int(writableInPaths1) + int(writableInPaths2));
 
         if (useEtcKderc) {
-            s_globalFiles()->push_front(etc_kderc);
+            s_globalSystemFiles()->push_back(etc_kderc);
         }
-    }
 
-    return *s_globalFiles();
+        for (int i = paths2.size() - 1, lastToCopy = writableInPaths2 ? 1 : 0; i >= lastToCopy; --i) {
+            s_globalSystemFiles()->push_back(paths2[i]);
+        }
+        if (writableInPaths2) {
+            s_globalUserFiles()->push_back(paths2.front());
+        }
+
+        for (int i = paths1.size() - 1, lastToCopy = writableInPaths1 ? 1 : 0; i >= lastToCopy; --i) {
+            s_globalSystemFiles()->push_back(paths1[i]);
+        }
+        if (writableInPaths1) {
+            s_globalUserFiles()->push_back(paths1.front());
+        }
+
+        s_globalFilesAreInitialized = true;
+    }
 }
 
-void KConfigPrivate::parseGlobalFiles()
+QStringList KConfigPrivate::getGlobalSystemFiles() const
 {
-    const QStringList globalFiles = getGlobalFiles();
+    ensureGlobalFilesAreInitialized();
+
+    QMutexLocker locker(&s_globalFilesMutex);
+    return *s_globalSystemFiles();
+}
+
+QStringList KConfigPrivate::getGlobalUserFiles() const
+{
+    ensureGlobalFilesAreInitialized();
+
+    QMutexLocker locker(&s_globalFilesMutex);
+    return *s_globalUserFiles();
+}
+
+void KConfigPrivate::parseGlobalSystemFiles()
+{
+    bGlobalFileImmutable = false;
+
+    if (!wantGlobals() || !wantDefaults()) {
+        return;
+    }
+
+    const QStringList globalSystemFiles = getGlobalSystemFiles();
     //    qDebug() << "parsing global files" << globalFiles;
 
     Q_ASSERT(entryMap.empty());
 
     ParseCacheTimestamp timestamp;
-    timestamp.reserve(globalFiles.count());
-    for (const auto &file : globalFiles) {
+    timestamp.reserve(globalSystemFiles.count());
+    for (const auto &file : globalSystemFiles) {
         timestamp << QFileInfo(file).lastModified(QTimeZone::UTC).toMSecsSinceEpoch();
     }
 
-    const ParseCacheKey key = {globalFiles, locale};
+    const ParseCacheKey key = {globalSystemFiles, locale};
     auto data = sGlobalParse.localData().object(key);
     if (data) {
         if (data->timestamp != timestamp) {
             data = nullptr;
         } else {
             entryMap = data->entries;
+            bGlobalFileImmutable = data->fileIsImmutable;
             return;
         }
     }
 
     const QByteArray utf8Locale = locale.toUtf8();
-    for (const QString &file : globalFiles) {
+    for (const QString &file : globalSystemFiles) {
+        KConfigIniBackend::ParseOptions parseOpts = KConfigIniBackend::ParseGlobal | KConfigIniBackend::ParseExpansions | KConfigIniBackend::ParseDefaults;
+        KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
+        if (backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable) {
+            bGlobalFileImmutable = true;
+            break;
+        }
+    }
+    sGlobalParse.localData().insert(key, new ParseCacheValue({entryMap, timestamp, bGlobalFileImmutable}));
+}
+
+void KConfigPrivate::parseGlobalUserFiles()
+{
+    if (bGlobalFileImmutable || !wantGlobals()) {
+        return;
+    }
+
+    const QStringList globalUserFiles = getGlobalUserFiles();
+
+    const QByteArray utf8Locale = locale.toUtf8();
+    for (const QString &file : globalUserFiles) {
         KConfigIniBackend::ParseOptions parseOpts = KConfigIniBackend::ParseGlobal | KConfigIniBackend::ParseExpansions;
 
         if (file.compare(*sGlobalFileName, sPathCaseSensitivity) != 0) {
@@ -779,7 +840,6 @@ void KConfigPrivate::parseGlobalFiles()
             break;
         }
     }
-    sGlobalParse.localData().insert(key, new ParseCacheValue({entryMap, timestamp}));
 }
 
 #ifdef Q_OS_WIN
@@ -793,7 +853,7 @@ void KConfigPrivate::parseWindowsDefaults()
 }
 #endif
 
-void KConfigPrivate::parseConfigFiles()
+void KConfigPrivate::parseSystemConfigFiles()
 {
     // can only read the file if there is a backend and a file name
     if (!mBackend.hasOpenableDeviceInterface()) {
@@ -804,9 +864,46 @@ void KConfigPrivate::parseConfigFiles()
     bFileImmutable = false;
 
     QList<QString> files;
+    if (wantDefaults() && !bSuppressGlobal && !QDir::isAbsolutePath(fileName)) {
+        const QString writableLocation = QStandardPaths::writableLocation(resourceType);
+        QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
+        if (!localFilesPath.isEmpty() && localFilesPath.front().startsWith(writableLocation)) {
+            localFilesPath.removeFirst();
+        }
+        for (const QString &f : localFilesPath) {
+            files.prepend(QFileInfo(f).canonicalFilePath());
+        }
+        // allow fallback to config files bundled in resources
+        const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
+        if (QFile::exists(resourceFile)) {
+            files.prepend(resourceFile);
+        }
+    }
+
+    const QByteArray utf8Locale = locale.toUtf8();
+    for (const QString &file : std::as_const(files)) {
+        KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
+        constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
+        bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
+        if (bFileImmutable) {
+            break;
+        }
+    }
+}
+
+void KConfigPrivate::parseUserConfigFiles()
+{
+    // can only read the file if there is a backend and a file name
+    if (!mBackend.hasOpenableDeviceInterface()) {
+        return;
+    }
+
+    const auto backingDevicePath = mBackend.backingDevicePath();
+
+    QList<QString> files;
     if (wantDefaults()) {
         if (bSuppressGlobal) {
-            files = getGlobalFiles();
+            files = getGlobalSystemFiles() + getGlobalUserFiles();
         } else {
             if (QDir::isAbsolutePath(fileName)) {
                 const QString canonicalFile = QFileInfo(backingDevicePath).canonicalFilePath();
@@ -814,15 +911,10 @@ void KConfigPrivate::parseConfigFiles()
                     files << canonicalFile;
                 }
             } else {
-                const QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
-                for (const QString &f : localFilesPath) {
-                    files.prepend(QFileInfo(f).canonicalFilePath());
-                }
-
-                // allow fallback to config files bundled in resources
-                const QString resourceFile(QStringLiteral(":/kconfig/") + fileName);
-                if (QFile::exists(resourceFile)) {
-                    files.prepend(resourceFile);
+                const QString writableLocation = QStandardPaths::writableLocation(resourceType);
+                const QString localFilePath = QStandardPaths::locate(resourceType, fileName);
+                if (localFilePath.startsWith(writableLocation)) {
+                    files << QFileInfo(localFilePath).canonicalFilePath();
                 }
             }
         }
@@ -836,6 +928,9 @@ void KConfigPrivate::parseConfigFiles()
 
     const QByteArray utf8Locale = locale.toUtf8();
     for (const QString &file : std::as_const(files)) {
+        if (bFileImmutable) {
+            break;
+        }
         if (file.compare(backingDevicePath, sPathCaseSensitivity) == 0) {
             switch (mBackend.parseConfig(utf8Locale, entryMap, KConfigIniBackend::ParseExpansions)) {
             case KConfigIniBackend::ParseOk:
@@ -851,10 +946,6 @@ void KConfigPrivate::parseConfigFiles()
             KConfigIniBackend backend(std::make_unique<KConfigIniBackendPathDevice>(file));
             constexpr auto parseOpts = KConfigIniBackend::ParseDefaults | KConfigIniBackend::ParseExpansions;
             bFileImmutable = backend.parseConfig(utf8Locale, entryMap, parseOpts) == KConfigIniBackend::ParseImmutable;
-        }
-
-        if (bFileImmutable) {
-            break;
         }
     }
 }

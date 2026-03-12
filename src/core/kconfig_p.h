@@ -84,6 +84,7 @@ private:
     bool bFileImmutable : 1;
     bool bForceGlobal : 1;
     bool bSuppressGlobal : 1;
+    bool bGlobalFileImmutable : 1;
 
     static bool mappingsRegistered;
 
@@ -114,12 +115,16 @@ private:
     }
 
     bool setLocale(const QString &aLocale);
-    QStringList getGlobalFiles() const;
-    void parseGlobalFiles();
+    void ensureGlobalFilesAreInitialized() const;
+    QStringList getGlobalSystemFiles() const;
+    QStringList getGlobalUserFiles() const;
+    void parseGlobalSystemFiles();
+    void parseGlobalUserFiles();
+    void parseSystemConfigFiles();
 #ifdef Q_OS_WIN
     void parseWindowsDefaults();
 #endif
-    void parseConfigFiles();
+    void parseUserConfigFiles();
     void initCustomized(KConfig *);
     bool lockLocal();
 };

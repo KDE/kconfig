@@ -2298,4 +2298,126 @@ void KConfigTest::testKdeglobalsVsDefault()
     QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), QStringLiteral("defaultcpp"));
 }
 
+static bool writeTextFile(const QString &fileName, const QLatin1StringView &content)
+{
+    if (!QDir().mkpath(QFileInfo(fileName).path())) {
+        qWarning() << "Failed to make path" << QFileInfo(fileName).path();
+        return false;
+    }
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Failed to open file" << fileName << "for writing";
+        return false;
+    }
+    QTextStream out(&file);
+    out << content;
+
+    return true;
+}
+
+void KConfigTest::testSystemAndUserConfig()
+{
+#ifndef Q_XDG_PLATFORM
+    QSKIP("This test relies on XDG_CONFIG_DIRS, which only has effect on Unix.");
+#endif
+
+    QTemporaryDir systemDir;
+    const QByteArray oldConfigDirs = qgetenv("XDG_CONFIG_DIRS");
+    qputenv("XDG_CONFIG_DIRS", qPrintable(systemDir.path()));
+
+    const QString systemConfigDir = systemDir.path() + u'/';
+    const QString userConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/';
+    const QString testSubDir = QString::fromLatin1(QTest::currentTestFunction()) + u'/';
+    const QString configFileName = testSubDir + u"appnamerc"_s;
+    QVERIFY(writeTextFile(systemConfigDir + "system.kdeglobals"_L1,
+                          "[General]\n"_L1
+                          "system_system_kdeglobals[$i]=1\n"_L1
+                          "system_kdeglobals=1\n"_L1
+                          "system_appnamerc=1\n"_L1
+                          "user_system_kdeglobals=1\n"_L1
+                          "user_kdeglobals=1\n"_L1
+                          "user_appnamerc=1\n"_L1));
+    QVERIFY(writeTextFile(systemConfigDir + "kdeglobals"_L1,
+                          "[General]\n"_L1
+                          "system_system_kdeglobals=2\n"_L1
+                          "system_kdeglobals[$i]=2\n"_L1
+                          "system_appnamerc=2\n"_L1
+                          "user_system_kdeglobals=2\n"_L1
+                          "user_kdeglobals=2\n"_L1
+                          "user_appnamerc=2\n"_L1));
+    QVERIFY(writeTextFile(systemConfigDir + configFileName,
+                          "[General]\n"_L1
+                          "system_system_kdeglobals=3\n"_L1
+                          "system_kdeglobals=3\n"_L1
+                          "system_appnamerc[$i]=3\n"_L1
+                          "user_system_kdeglobals=3\n"_L1
+                          "user_kdeglobals=3\n"_L1
+                          "user_appnamerc=3\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + "system.kdeglobals"_L1,
+                          "[General]\n"_L1
+                          "system_system_kdeglobals=4\n"_L1
+                          "system_kdeglobals=4\n"_L1
+                          "system_appnamerc=4\n"_L1
+                          "user_system_kdeglobals[$i]=4\n"_L1
+                          "user_kdeglobals=4\n"_L1
+                          "user_appnamerc=4\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + "kdeglobals"_L1,
+                          "[General]\n"_L1
+                          "system_system_kdeglobals=5\n"_L1
+                          "system_kdeglobals=5\n"_L1
+                          "system_appnamerc=5\n"_L1
+                          "user_system_kdeglobals=5\n"_L1
+                          "user_kdeglobals[$i]=5\n"_L1
+                          "user_appnamerc=5\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + configFileName,
+                          "[General]\n"_L1
+                          "system_system_kdeglobals=6\n"_L1
+                          "system_kdeglobals=6\n"_L1
+                          "system_appnamerc=6\n"_L1
+                          "user_system_kdeglobals=6\n"_L1
+                          "user_kdeglobals=6\n"_L1
+                          "user_appnamerc=6\n"_L1));
+    {
+        KConfig config(configFileName);
+        KConfigGroup group(&config, u"General"_s);
+        QCOMPARE(group.readEntry("system_system_kdeglobals", 0), 1);
+        QCOMPARE(group.readEntry("system_kdeglobals", 0), 2);
+        QCOMPARE(group.readEntry("system_appnamerc", 0), 3);
+        QCOMPARE(group.readEntry("user_system_kdeglobals", 0), 4);
+        QCOMPARE(group.readEntry("user_kdeglobals", 0), 5);
+        QCOMPARE(group.readEntry("user_appnamerc", 0), 6);
+    }
+    {
+        KConfig config(configFileName, KConfig::NoGlobals);
+        KConfigGroup group(&config, u"General"_s);
+        QCOMPARE(group.readEntry("system_system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("system_appnamerc", 0), 3);
+        QCOMPARE(group.readEntry("user_system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("user_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("user_appnamerc", 0), 6);
+    }
+    {
+        KConfig config(configFileName, KConfig::NoCascade);
+        KConfigGroup group(&config, u"General"_s);
+        QCOMPARE(group.readEntry("system_system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("system_appnamerc", 0), 6);
+        QCOMPARE(group.readEntry("user_system_kdeglobals", 0), 4);
+        QCOMPARE(group.readEntry("user_kdeglobals", 0), 5);
+        QCOMPARE(group.readEntry("user_appnamerc", 0), 6);
+    }
+    {
+        KConfig config(configFileName, KConfig::SimpleConfig);
+        KConfigGroup group(&config, u"General"_s);
+        QCOMPARE(group.readEntry("system_system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("system_appnamerc", 0), 6);
+        QCOMPARE(group.readEntry("user_system_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("user_kdeglobals", 0), 6);
+        QCOMPARE(group.readEntry("user_appnamerc", 0), 6);
+    }
+    qputenv("XDG_CONFIG_DIRS", oldConfigDirs);
+}
+
 #include "moc_kconfigtest.cpp"
