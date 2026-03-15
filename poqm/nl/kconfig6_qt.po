@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2025-01-29 22:55+0100\n"
+"PO-Revision-Date: 2026-03-14 11:44+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: core/kconfig.cpp:991
 msgctxt "KConfig|"
@@ -1026,7 +1026,7 @@ msgstr "Variabeletype"
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
 msgid "Dump all entries"
-msgstr ""
+msgstr "Dump alle items"
 
 #: kreadconfig/kreadconfig.cpp:85 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"

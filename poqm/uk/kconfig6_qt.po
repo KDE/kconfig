@@ -3,11 +3,11 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
+# Yuri Chornoivan <yurchor@ukr.net>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
-"PO-Revision-Date: 2025-01-29 09:56+0200\n"
+"PO-Revision-Date: 2026-03-14 13:32+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1032,7 +1032,7 @@ msgstr "Тип змінної"
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
 msgid "Dump all entries"
-msgstr ""
+msgstr "Створити дамп усіх записів"
 
 #: kreadconfig/kreadconfig.cpp:85 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
