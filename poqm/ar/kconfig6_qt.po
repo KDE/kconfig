@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014, 2017, 2018.
 # Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2024.
 msgid ""
@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-28 15:38+0300\n"
-"PO-Revision-Date: 2025-08-09 19:43+0400\n"
+"PO-Revision-Date: 2026-03-15 09:33+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -1030,7 +1030,7 @@ msgstr "نوع المتغيّر"
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
 msgid "Dump all entries"
-msgstr ""
+msgstr "أفرغ كل المدخلات"
 
 #: kreadconfig/kreadconfig.cpp:85 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"

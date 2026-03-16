@@ -1024,7 +1024,7 @@ msgstr "变量类型"
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
 msgid "Dump all entries"
-msgstr ""
+msgstr "转储所有条目"
 
 #: kreadconfig/kreadconfig.cpp:85 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
