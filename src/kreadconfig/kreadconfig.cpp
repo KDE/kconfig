@@ -53,6 +53,7 @@ int main(int argc, char **argv)
     parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
     parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
     parser.addOption(QCommandLineOption(QStringLiteral("dump"), QCoreApplication::translate("main", "Dump all entries")));
+    parser.addOption(QCommandLineOption(QStringLiteral("with-globals"), QCoreApplication::translate("main", "Read globals")));
 
     parser.process(app);
 
@@ -61,6 +62,7 @@ int main(int argc, char **argv)
     QString file = parser.value(QStringLiteral("file"));
     QString dflt = parser.value(QStringLiteral("default"));
     QString type = parser.value(QStringLiteral("type")).toLower();
+    const bool withGlobals = parser.isSet(QStringLiteral("with-globals"));
 
     if ((key.isNull() || !parser.positionalArguments().isEmpty()) && !parser.isSet(QStringLiteral("dump"))) {
         parser.showHelp(1);
@@ -73,7 +75,7 @@ int main(int argc, char **argv)
     if (file.isEmpty()) {
         konfig = KSharedConfig::openConfig().data();
     } else {
-        konfig = new KConfig(file, KConfig::NoGlobals);
+        konfig = new KConfig(file, withGlobals ? KConfig::FullConfig : KConfig::NoGlobals);
         configMustDeleted = true;
     }
     KConfigGroup cfgGroup = konfig->group(QString());
