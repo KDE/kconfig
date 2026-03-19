@@ -16,7 +16,8 @@ depends += \
     kde \
     qtcore \
     kconfiggui \
-    kconfigqml
+    kconfigqml \
+    kcoreaddons
 
 qhp.projects            = KConfigCore
 
