@@ -145,7 +145,7 @@ void KDesktopFileTest::testActionGroup()
     QTextStream ts(&file);
     ts << "[Desktop Entry]\n"
           // make sure escaping of ';' using "\;" works
-          "Actions=encrypt;semi\\;colon;decrypt;noname;missing;\n"
+          "Actions=encrypt;_SEPARATOR_;semi\\;colon;decrypt;noname;missing;\n"
           "[Desktop Action encrypt]\n"
           "Name=Encrypt file\n"
           "[Desktop Action decrypt]\n"
@@ -163,9 +163,14 @@ void KDesktopFileTest::testActionGroup()
     KDesktopFile df(fileName);
     QCOMPARE(df.readType(), QString());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
-    QCOMPARE(
-        df.readActions(),
-        (QStringList{QStringLiteral("encrypt"), QStringLiteral("semi;colon"), QStringLiteral("decrypt"), QStringLiteral("noname"), QStringLiteral("missing")}));
+    QCOMPARE(df.readActions(),
+             (QStringList{QStringLiteral("encrypt"),
+                          QStringLiteral("_SEPARATOR_"),
+                          QStringLiteral("semi;colon"),
+                          QStringLiteral("decrypt"),
+                          QStringLiteral("noname"),
+                          QStringLiteral("missing")}));
+
     QCOMPARE(df.hasActionGroup(QStringLiteral("encrypt")), true);
     QCOMPARE(df.hasActionGroup(QStringLiteral("semi;colon")), true);
     QCOMPARE(df.hasActionGroup(QStringLiteral("decrypt")), true);
@@ -175,17 +180,18 @@ void KDesktopFileTest::testActionGroup()
 
     // "noname" and "missing" should not be on this list
     const auto actions = df.actions();
-    QCOMPARE(actions.size(), 3);
+    QCOMPARE(actions.size(), 4);
     QVERIFY(std::all_of(actions.begin(), actions.end(), [&fileName](const KDesktopFileAction &action) {
         return action.desktopFilePath() == fileName;
     }));
     QCOMPARE(actions.at(0).actionsKey(), QStringLiteral("encrypt"));
     QCOMPARE(actions.at(0).name(), QStringLiteral("Encrypt file"));
-    QCOMPARE(actions.at(1).actionsKey(), QStringLiteral("semi;colon"));
-    QCOMPARE(actions.at(1).name(), QStringLiteral("With semicolon"));
-    QCOMPARE(actions.at(2).name(), QStringLiteral("Decrypt file"));
-    QCOMPARE(actions.at(2).actionsKey(), QStringLiteral("decrypt"));
-    QCOMPARE(actions.at(2).name(), QStringLiteral("Decrypt file"));
+    QCOMPARE(actions.at(1).isSeparator(), true);
+    QCOMPARE(actions.at(2).actionsKey(), QStringLiteral("semi;colon"));
+    QCOMPARE(actions.at(2).name(), QStringLiteral("With semicolon"));
+    QCOMPARE(actions.at(3).name(), QStringLiteral("Decrypt file"));
+    QCOMPARE(actions.at(3).actionsKey(), QStringLiteral("decrypt"));
+    QCOMPARE(actions.at(3).name(), QStringLiteral("Decrypt file"));
 }
 
 void KDesktopFileTest::testIsAuthorizedDesktopFile()
