@@ -317,7 +317,7 @@ QList<KDesktopFileAction> KDesktopFile::actions() const
     for (const QString &actionKey : actionKeys) {
         const KConfigGroup grp = actionGroup(actionKey);
         const QString name = grp.readEntry("Name");
-        if (name.isEmpty()) {
+        if (name.isEmpty() && actionKey != QLatin1String("_SEPARATOR_")) {
             qCWarning(KCONFIG_CORE_LOG) << "Skipping Action" << actionKey << "due to empty Name field in file" << fileName();
             continue;
         }
