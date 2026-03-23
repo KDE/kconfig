@@ -81,7 +81,6 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
     QByteArray groupNameBuffer; // reused allocated buffer to read group names, each processed into QString afterwards
     groupNameBuffer.reserve(defaultgroupNameBufferSize);
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
     QByteArray buffer(initialBufferSize, Qt::Uninitialized);
     while (!file->atEnd() && errorCount < MAX_ERRORS) {
         auto res = file->readLineInto(&buffer, maximumSizeWithoutNewLine);
@@ -89,55 +88,6 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
             qCWarning(KCONFIG_CORE_LOG) << "Couldn't find a single line in " << mDeviceInterface->id() << " after reading" << (maximumSizeWithoutNewLine)
                                         << "bytes.";
         }
-#else
-    QDataStream stream(file.get());
-    bool newLineFound = false;
-
-    QByteArray readBuffer(initialBufferSize, Qt::Uninitialized);
-    QByteArray buffer;
-    QByteArray leftOverBuffer;
-
-    while ((!stream.atEnd() || !leftOverBuffer.isEmpty()) && errorCount < MAX_ERRORS) {
-        buffer = leftOverBuffer;
-
-        int n = buffer.indexOf('\n');
-        if (n != -1) {
-            leftOverBuffer = buffer.sliced(n + 1);
-            buffer = buffer.sliced(0, n);
-
-        } else if (!stream.atEnd()) {
-            while (!stream.atEnd()) {
-                int len = stream.readRawData(readBuffer.data(), initialBufferSize);
-                if (len == -1) {
-                    qCWarning(KCONFIG_CORE_LOG) << "Couldn't read." << mDeviceInterface->id() << "after line" << lineNo;
-                    return ParseOpenError;
-                }
-
-                QByteArrayView readBufferView(readBuffer.data(), len);
-                auto n = readBufferView.indexOf('\n');
-                if (n != -1) {
-                    // found '\n' at position n
-                    buffer += readBufferView.sliced(0, n);
-                    leftOverBuffer = readBufferView.sliced(n + 1).toByteArray();
-                    newLineFound = true;
-                    break;
-                } else {
-                    // stream is atEnd or the \n was at the edge of the readBuffer
-                    buffer += readBufferView;
-                    leftOverBuffer = {};
-
-                    if (!newLineFound && buffer.length() > maximumSizeWithoutNewLine) {
-                        qCWarning(KCONFIG_CORE_LOG) << "Couldn't find a single line in " << mDeviceInterface->id() << " after reading"
-                                                    << (maximumSizeWithoutNewLine) << "bytes.";
-                        return ParseOpenError;
-                    }
-                }
-            }
-
-        } else {
-            leftOverBuffer = {};
-        }
-#endif
         QByteArrayView line = buffer;
         line = line.trimmed();
         ++lineNo;
