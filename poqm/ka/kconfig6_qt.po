@@ -1027,7 +1027,14 @@ msgctxt "main|"
 msgid "Dump all entries"
 msgstr "ყველა ჩანაწერის დამპი"
 
-#: kreadconfig/kreadconfig.cpp:85 kreadconfig/kwriteconfig.cpp:71
+#: kreadconfig/kreadconfig.cpp:58
+msgctxt "main|"
+msgid ""
+"Include globals; by default, the global config files are not read if a file "
+"is specified"
+msgstr ""
+
+#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
