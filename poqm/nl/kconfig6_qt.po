@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-03-14 11:44+0100\n"
+"PO-Revision-Date: 2026-03-31 12:28+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1034,6 +1034,8 @@ msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr ""
+"Neem globale variabelen mee; standaard worden de globale "
+"configuratiebestanden niet gelezen als er een bestand is gespecificeerd"
 
 #: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
