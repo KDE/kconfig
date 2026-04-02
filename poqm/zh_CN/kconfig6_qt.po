@@ -1031,7 +1031,7 @@ msgctxt "main|"
 msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
-msgstr ""
+msgstr "包括全局配置；默认情况下，如果制定了配置文件，则不读取全局配置文件"
 
 #: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
