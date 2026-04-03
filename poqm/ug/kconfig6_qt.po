@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-04-01 08:39-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
@@ -17,952 +17,953 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
+"X-Generator: Poedit 3.8\n"
 
 #: core/kconfig.cpp:991
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
-msgstr ""
+msgstr "سىستېما باشقۇرغۇچىسى بىلەن ئالاقىلىشىڭ."
 
 #: core/kconfigini.cpp:456
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
-msgstr ""
+msgstr "«%1» سەپلىمە ھۆججەت يېزىشچان ئەمەس.\n"
 
 #: core/kemailsettings.cpp:128 core/kemailsettings.cpp:131
 #: core/kemailsettings.cpp:139
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr ""
+msgstr "كۆڭۈلدىكى"
 
 #: gui/kstandardactions.cpp:49
 msgctxt "go back|"
 msgid "&Back"
-msgstr ""
+msgstr "قايت(&B)"
 
 #: gui/kstandardactions.cpp:56
 msgctxt "go forward|"
 msgid "&Forward"
-msgstr ""
+msgstr "ئالدىغا(&F)"
 
 #: gui/kstandardactions.cpp:63
 msgctxt "home page|"
 msgid "&Home"
-msgstr ""
+msgstr "باش قىسقۇچ(&H)"
 
 #: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "&New"
-msgstr ""
+msgstr "يېڭى(&N)"
 
 #: gui/kstandardactions_p.h:64
 msgctxt "KStandardActions|"
 msgid "Create new document"
-msgstr ""
+msgstr "يېڭى پۈتۈك قۇر"
 
 #: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr ""
+msgstr "ئاچ(&O)…"
 
 #: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "Open an existing document"
-msgstr ""
+msgstr "مەۋجۇت پۈتۈكنى ئاچ"
 
 #: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr ""
+msgstr "يېقىنقىنى ئاچ(&R)"
 
 #: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr ""
+msgstr "يېقىندا ئاچقان بىر پۈتۈكنى ئاچىدۇ"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr ""
+msgstr "ساقلا(&S)"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "Save document"
-msgstr ""
+msgstr "پۈتۈك ساقلا"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save &As…"
-msgstr ""
+msgstr "باشقا ئاتتا ساقلا(&A)…"
 
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr ""
+msgstr "پۈتۈكنى يېڭى بىر ئاتتا ساقلايدۇ"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Re&vert"
-msgstr ""
+msgstr "ئەسلىگە قايتۇر(&V)"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
 msgid "Revert unsaved changes made to document"
-msgstr ""
+msgstr "ساقلانمىغان ھۆججەتكە ئېلىپ بارغان ئۆزگەرتىشلەرنى ئەسلىگە قايتۇرىدۇ"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "&Close"
-msgstr ""
+msgstr "ياپ(&C)"
 
 #: gui/kstandardactions_p.h:70
 msgctxt "KStandardActions|"
 msgid "Close document"
-msgstr ""
+msgstr "پۈتۈكنى ياپىدۇ"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "&Print…"
-msgstr ""
+msgstr "باس(&P)…"
 
 #: gui/kstandardactions_p.h:71
 msgctxt "KStandardActions|"
 msgid "Print document"
-msgstr ""
+msgstr "پۈتۈكنى باس"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Print Previe&w"
-msgstr ""
+msgstr "بېسىشنى ئالدىن كۆزەت(&W)"
 
 #: gui/kstandardactions_p.h:72
 msgctxt "KStandardActions|"
 msgid "Show a print preview of document"
-msgstr ""
+msgstr "پۈتۈكنىڭ ئالدىن كۆزىتىشىنى كۆرسەت"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "&Mail…"
-msgstr ""
+msgstr "خەت(&M)…"
 
 #: gui/kstandardactions_p.h:73
 msgctxt "KStandardActions|"
 msgid "Send document by mail"
-msgstr ""
+msgstr "پۈتۈكنى ئېلخەتتە يوللا"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "&Quit"
-msgstr ""
+msgstr "چېكىن(&Q)"
 
 #: gui/kstandardactions_p.h:74
 msgctxt "KStandardActions|"
 msgid "Quit application"
-msgstr ""
+msgstr "پىروگراممىدىن چېكىنىدۇ"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "&Undo"
-msgstr ""
+msgstr "يېنىۋال(&U)"
 
 #: gui/kstandardactions_p.h:76
 msgctxt "KStandardActions|"
 msgid "Undo last action"
-msgstr ""
+msgstr "ئەڭ ئاخىرقى مەشغۇلاتتىن يېنىۋالىدۇ"
 
 #: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Re&do"
-msgstr ""
+msgstr "قايتىلا(&D)"
 
 #: gui/kstandardactions_p.h:77
 msgctxt "KStandardActions|"
 msgid "Redo last undone action"
-msgstr ""
+msgstr "ئاخىرقى يېنىۋالغان مەشغۇلاتنى قايتىلايدۇ"
 
 #: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cu&t"
-msgstr ""
+msgstr "كەس(&T)"
 
 #: gui/kstandardactions_p.h:78
 msgctxt "KStandardActions|"
 msgid "Cut selection to clipboard"
-msgstr ""
+msgstr "تاللىغاننى چاپلاش تاختىسىغا كەس"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "&Copy"
-msgstr ""
+msgstr "كۆچۈر(&C)"
 
 #: gui/kstandardactions_p.h:79
 msgctxt "KStandardActions|"
 msgid "Copy selection to clipboard"
-msgstr ""
+msgstr "تاللىغاننى چاپلاش تاختىسىغا كۆچۈر"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "&Paste"
-msgstr ""
+msgstr "چاپلا(&P)"
 
 #: gui/kstandardactions_p.h:80
 msgctxt "KStandardActions|"
 msgid "Paste clipboard content"
-msgstr ""
+msgstr "چاپلاش تاختىسىدىكى مەزمۇننى چاپلا"
 
 #: gui/kstandardactions_p.h:81
 msgctxt "KStandardActions|"
 msgid "C&lear"
-msgstr ""
+msgstr "تازىلا(&L)"
 
 #: gui/kstandardactions_p.h:82
 msgctxt "KStandardActions|"
 msgid "Select &All"
-msgstr ""
+msgstr "ھەممىنى تاللا(&A)"
 
 #: gui/kstandardactions_p.h:83
 msgctxt "KStandardActions|"
 msgid "Dese&lect"
-msgstr ""
+msgstr "ئەكسىچە تاللا(&L)"
 
 #: gui/kstandardactions_p.h:84
 msgctxt "KStandardActions|"
 msgid "&Find…"
-msgstr ""
+msgstr "ئىزدە(&F)…"
 
 #: gui/kstandardactions_p.h:85
 msgctxt "KStandardActions|"
 msgid "Find &Next"
-msgstr ""
+msgstr "كېيىنكىنى ئىزدە(&N)"
 
 #: gui/kstandardactions_p.h:86
 msgctxt "KStandardActions|"
 msgid "Find Pre&vious"
-msgstr ""
+msgstr "ئالدىنقىنى ئىزدە(&V)"
 
 #: gui/kstandardactions_p.h:87
 msgctxt "KStandardActions|"
 msgid "&Replace…"
-msgstr ""
+msgstr "ئالماشتۇر(&R)…"
 
 #: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "Zoom to &Actual Size"
-msgstr ""
+msgstr "ئەسلى چوڭلۇقىغا قايتۇر(&A)"
 
 #: gui/kstandardactions_p.h:89
 msgctxt "KStandardActions|"
 msgid "View document at its actual size"
-msgstr ""
+msgstr "پۈتۈكنى ئەسلى چوڭلۇقىغا كۆرسەت"
 
 #: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "&Fit to Page"
-msgstr ""
+msgstr "بەتكە تولدۇر(&F)"
 
 #: gui/kstandardactions_p.h:90
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page in window"
-msgstr ""
+msgstr "بەتنى كۆزنەككە ماسلاشتۇر"
 
 #: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Width"
-msgstr ""
+msgstr "بەت كەڭلىكىگە تولدۇر(&W)"
 
 #: gui/kstandardactions_p.h:91
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page width in window"
-msgstr ""
+msgstr "بەت كەڭلىكىنى كۆزنەككە ماسلاشتۇر"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Fit to Page &Height"
-msgstr ""
+msgstr "بەت ئېگىزلىكىگە تولدۇر(&H)"
 
 #: gui/kstandardactions_p.h:92
 msgctxt "KStandardActions|"
 msgid "Zoom to fit page height in window"
-msgstr ""
+msgstr "بەت ئېگىزلىكىنى كۆزنەككە ماسلاشتۇر"
 
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr ""
+msgstr "چوڭايت(&I)"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr ""
+msgstr "كىچىكلەت(&O)"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "&Zoom…"
-msgstr ""
+msgstr "نىسبەت(&Z)…"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
 msgid "Select zoom level"
-msgstr ""
+msgstr "نىسبەت دەرىجىسى تاللىنىدۇ"
 
 #: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr ""
+msgstr "يېڭىلا(&R)"
 
 #: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr ""
+msgstr "پۈتۈكنى يېڭىلا"
 
 #: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "&Up"
-msgstr ""
+msgstr "يۇقىرىغا (&U)"
 
 #: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
 msgid "Go up"
-msgstr ""
+msgstr "يۇقىرىغا يۆتكەل"
 
 #: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "&Previous Page"
-msgstr ""
+msgstr "ئالدىنقى بەت(&P)"
 
 #: gui/kstandardactions_p.h:103
 msgctxt "KStandardActions|"
 msgid "Go to previous page"
-msgstr ""
+msgstr "ئالدىنقى بەتكە يۆتكەل"
 
 #: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "&Next Page"
-msgstr ""
+msgstr "كېيىنكى بەت(&N)"
 
 #: gui/kstandardactions_p.h:104
 msgctxt "KStandardActions|"
 msgid "Go to next page"
-msgstr ""
+msgstr "كېيىنكى بەتكە يۆتكەل"
 
 #: gui/kstandardactions_p.h:105
 msgctxt "KStandardActions|"
 msgid "&Go To…"
-msgstr ""
+msgstr "يۆتكەل(&G)…"
 
 #: gui/kstandardactions_p.h:106
 msgctxt "KStandardActions|"
 msgid "&Go to Page…"
-msgstr ""
+msgstr "بەتكە يۆتكەل(&G)…"
 
 #: gui/kstandardactions_p.h:107
 msgctxt "KStandardActions|"
 msgid "&Go to Line…"
-msgstr ""
+msgstr "قۇرغا يۆتكەل(&G)…"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "&First Page"
-msgstr ""
+msgstr "بىرىنچى بەت(&F)"
 
 #: gui/kstandardactions_p.h:108
 msgctxt "KStandardActions|"
 msgid "Go to first page"
-msgstr ""
+msgstr "بىرىنچى بەتكە يۆتكەل"
 
 #: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "&Last Page"
-msgstr ""
+msgstr "ئاخىرقى بەت(&L)"
 
 #: gui/kstandardactions_p.h:109
 msgctxt "KStandardActions|"
 msgid "Go to last page"
-msgstr ""
+msgstr "ئاخىرقى بەتكە يۆتكەل"
 
 #: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "&Back"
-msgstr ""
+msgstr "قايت(&B)"
 
 #: gui/kstandardactions_p.h:110
 msgctxt "KStandardActions|"
 msgid "Go back in document"
-msgstr ""
+msgstr "پۈتۈكتە ئارقىغا يان"
 
 #: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr ""
+msgstr "ئالدىغا(&F)"
 
 #: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "Go forward in document"
-msgstr ""
+msgstr "پۈتۈكتە ئالدىغا ئىلگىرىلە"
 
 #: gui/kstandardactions_p.h:113
 msgctxt "KStandardActions|"
 msgid "&Add Bookmark"
-msgstr ""
+msgstr "خەتكۈش قوش(&A)"
 
 #: gui/kstandardactions_p.h:114
 msgctxt "KStandardActions|"
 msgid "&Edit Bookmarks…"
-msgstr ""
+msgstr "خەتكۈش تەھرىر(&E)…"
 
 #: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "&Spelling…"
-msgstr ""
+msgstr "ئىملا تەكشۈر(&S)…"
 
 #: gui/kstandardactions_p.h:116
 msgctxt "KStandardActions|"
 msgid "Check spelling in document"
-msgstr ""
+msgstr "پۈتۈكتە ئىملا تەكشۈر"
 
 #: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show &Menubar"
-msgstr ""
+msgstr "تىزىملىك بالدىقىنى كۆرسەت(&M)"
 
 #: gui/kstandardactions_p.h:118
 msgctxt "KStandardActions|"
 msgid "Show or hide menubar"
-msgstr ""
+msgstr "تىزىملىك بالداقنى كۆرسەت ياكى يوشۇر"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show &Toolbar"
-msgstr ""
+msgstr "قورال بالداق كۆرسەت(&T)"
 
 #: gui/kstandardactions_p.h:119
 msgctxt "KStandardActions|"
 msgid "Show or hide toolbar"
-msgstr ""
+msgstr "قورال بالداقنى كۆرسىتىدۇ ياكى يوشۇرىدۇ"
 
 #: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show St&atusbar"
-msgstr ""
+msgstr "ھالەت بالدىقىنى كۆرسەت(&A)"
 
 #: gui/kstandardactions_p.h:120
 msgctxt "KStandardActions|"
 msgid "Show or hide statusbar"
-msgstr ""
+msgstr "ھالەت بالدىقىنى كۆرسىتىدۇ ياكى يوشۇرىدۇ"
 
 #: gui/kstandardactions_p.h:121
 msgctxt "KStandardActions|"
 msgid "F&ull Screen Mode"
-msgstr ""
+msgstr "پۈتۈن ئېكران ھالىتى(&U)"
 
 #: gui/kstandardactions_p.h:122
 msgctxt "KStandardActions|"
 msgid "Configure Keyboard S&hortcuts…"
-msgstr ""
+msgstr "ھەرپتاختا تېزلەتمىسىنى سەپلە(&H)…"
 
 #: gui/kstandardactions_p.h:123
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&Configure %1…"
-msgstr ""
+msgstr "%1 نى سەپلە(&C)…"
 
 #: gui/kstandardactions_p.h:124
 msgctxt "KStandardActions|"
 msgid "Configure Tool&bars…"
-msgstr ""
+msgstr "قورال بالداق سەپلە(&B)…"
 
 #: gui/kstandardactions_p.h:125
 msgctxt "KStandardActions|"
 msgid "Configure &Notifications…"
-msgstr ""
+msgstr "ئۇقتۇرۇش سەپلە(&N)…"
 
 #: gui/kstandardactions_p.h:129
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr ""
+msgstr "%1 قوللانما(&H)"
 
 #: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr ""
+msgstr "بۇ نېمە؟(&T)"
 
 #: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
 msgid "&Report Bug…"
-msgstr ""
+msgstr "كەمتۈك مەلۇم قىل(&R)…"
 
 #: gui/kstandardactions_p.h:132
 msgctxt "KStandardActions|"
 msgid "Configure &Language…"
-msgstr ""
+msgstr "تىل سەپلە(&L)…"
 
 #: gui/kstandardactions_p.h:133
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr ""
+msgstr "%1 ھەققىدە(&A)"
 
 #: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr ""
+msgstr "ك د ئې(&KDE) ھەققىدە"
 
 #: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
 msgid "&Delete"
-msgstr ""
+msgstr "ئۆچۈر(&D)"
 
 #: gui/kstandardactions_p.h:136
 msgctxt "KStandardActions|"
 msgid "&Rename…"
-msgstr ""
+msgstr "ئات ئۆزگەرت(&R)…"
 
 #: gui/kstandardactions_p.h:137
 msgctxt "KStandardActions|"
 msgid "&Move to Trash"
-msgstr ""
+msgstr "ئەخلەتخانىغا يۆتكە(&M)"
 
 #: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr ""
+msgstr "ئىئانە(&D)"
 
 #: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
 msgid "Open &Menu"
-msgstr ""
+msgstr "تىزىملىك ئاچ(&M)"
 
 #: gui/kstandardshortcut.cpp:73
 msgctxt "KStandardShortcut|@action"
 msgid "Open"
-msgstr ""
+msgstr "ئاچ"
 
 #: gui/kstandardshortcut.cpp:74
 msgctxt "KStandardShortcut|@action"
 msgid "New"
-msgstr ""
+msgstr "يېڭى"
 
 #: gui/kstandardshortcut.cpp:75
 msgctxt "KStandardShortcut|@action"
 msgid "Close"
-msgstr ""
+msgstr "ياپ"
 
 #: gui/kstandardshortcut.cpp:76
 msgctxt "KStandardShortcut|@action"
 msgid "Save"
-msgstr ""
+msgstr "ساقلا"
 
 #: gui/kstandardshortcut.cpp:77
 msgctxt "KStandardShortcut|@action"
 msgid "Print"
-msgstr ""
+msgstr "باس"
 
 #: gui/kstandardshortcut.cpp:78
 msgctxt "KStandardShortcut|@action"
 msgid "Quit"
-msgstr ""
+msgstr "چىكىن"
 
 #: gui/kstandardshortcut.cpp:81
 msgctxt "KStandardShortcut|@action"
 msgid "Undo"
-msgstr ""
+msgstr "يېنىۋال"
 
 #: gui/kstandardshortcut.cpp:82
 msgctxt "KStandardShortcut|@action"
 msgid "Redo"
-msgstr ""
+msgstr "قايتىلا"
 
 #: gui/kstandardshortcut.cpp:85
 msgctxt "KStandardShortcut|@action"
 msgid "Cut"
-msgstr ""
+msgstr "كەس"
 
 #: gui/kstandardshortcut.cpp:86
 msgctxt "KStandardShortcut|@action"
 msgid "Copy"
-msgstr ""
+msgstr "كۆچۈر"
 
 #: gui/kstandardshortcut.cpp:87
 msgctxt "KStandardShortcut|@action"
 msgid "Paste"
-msgstr ""
+msgstr "چاپلا"
 
 #: gui/kstandardshortcut.cpp:90
 msgctxt "KStandardShortcut|@action"
 msgid "Paste Selection"
-msgstr ""
+msgstr "تاللانغاننى چاپلا"
 
 #: gui/kstandardshortcut.cpp:97
 msgctxt "KStandardShortcut|@action"
 msgid "Select All"
-msgstr ""
+msgstr "ھەممىنى تاللا"
 
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
-msgstr ""
+msgstr "ئەكسىچە تاللا"
 
 #: gui/kstandardshortcut.cpp:101
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Backwards"
-msgstr ""
+msgstr "كەينىدىكى بىر سۆزنى ئۆچۈر"
 
 #: gui/kstandardshortcut.cpp:113
 msgctxt "KStandardShortcut|@action"
 msgid "Delete Word Forward"
-msgstr ""
+msgstr "ئالدىدىكى بىر سۆزنى ئۆچۈر"
 
 #: gui/kstandardshortcut.cpp:124
 msgctxt "KStandardShortcut|@action"
 msgid "Find"
-msgstr ""
+msgstr "ئىزدە"
 
 #: gui/kstandardshortcut.cpp:127
 msgctxt "KStandardShortcut|@action"
 msgid "Find Next"
-msgstr ""
+msgstr "كېيىنكىنى ئىزدە"
 
 #: gui/kstandardshortcut.cpp:137
 msgctxt "KStandardShortcut|@action"
 msgid "Find Prev"
-msgstr ""
+msgstr "ئالدىنقىنى ئىزدە"
 
 #: gui/kstandardshortcut.cpp:138
 msgctxt "KStandardShortcut|@action"
 msgid "Replace"
-msgstr ""
+msgstr "ئالماشتۇر"
 
 #: gui/kstandardshortcut.cpp:143
 msgctxt "KStandardShortcut|@action Go to main page"
 msgid "Home"
-msgstr ""
+msgstr "باش بەت"
 
 #: gui/kstandardshortcut.cpp:151
 msgctxt "KStandardShortcut|@action Beginning of document"
 msgid "Begin"
-msgstr ""
+msgstr "باشلا"
 
 #: gui/kstandardshortcut.cpp:163
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
-msgstr ""
+msgstr "تامام"
 
 #: gui/kstandardshortcut.cpp:173
 msgctxt "KStandardShortcut|@action"
 msgid "Prior"
-msgstr ""
+msgstr "ئالدى"
 
 #: gui/kstandardshortcut.cpp:176
 msgctxt "KStandardShortcut|@action Opposite to Prior"
 msgid "Next"
-msgstr ""
+msgstr "كېيىنكى"
 
 #: gui/kstandardshortcut.cpp:183
 msgctxt "KStandardShortcut|@action"
 msgid "Up"
-msgstr ""
+msgstr "ئۈستى"
 
 #: gui/kstandardshortcut.cpp:186
 msgctxt "KStandardShortcut|@action"
 msgid "Back"
-msgstr ""
+msgstr "قايت"
 
 #: gui/kstandardshortcut.cpp:198
 msgctxt "KStandardShortcut|@action"
 msgid "Forward"
-msgstr ""
+msgstr "ئالدىغا"
 
 #: gui/kstandardshortcut.cpp:210
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr ""
+msgstr "قايتا يۈكلە"
 
 #: gui/kstandardshortcut.cpp:219
 msgctxt "KStandardShortcut|@action"
 msgid "Beginning of Line"
-msgstr ""
+msgstr "قۇرنىڭ بېشى"
 
 #: gui/kstandardshortcut.cpp:231
 msgctxt "KStandardShortcut|@action"
 msgid "End of Line"
-msgstr ""
+msgstr "قۇر ئاخىرى"
 
 #: gui/kstandardshortcut.cpp:243
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr ""
+msgstr "قۇرغا يۆتكەل"
 
 #: gui/kstandardshortcut.cpp:255
 msgctxt "KStandardShortcut|@action"
 msgid "Backward Word"
-msgstr ""
+msgstr "ئالدىدىكى سۆز"
 
 #: gui/kstandardshortcut.cpp:267
 msgctxt "KStandardShortcut|@action"
 msgid "Forward Word"
-msgstr ""
+msgstr "كەينىدىكى سۆز"
 
 #: gui/kstandardshortcut.cpp:280
 msgctxt "KStandardShortcut|@action"
 msgid "Add Bookmark"
-msgstr ""
+msgstr "خەتكۈش قوش"
 
 #: gui/kstandardshortcut.cpp:286
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
-msgstr ""
+msgstr "چوڭايت"
 
 #: gui/kstandardshortcut.cpp:287
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
-msgstr ""
+msgstr "كىچىكلىتىش"
 
 #: gui/kstandardshortcut.cpp:290
 msgctxt "KStandardShortcut|@action"
 msgid "Full Screen Mode"
-msgstr ""
+msgstr "پۈتۈن ئېكران ھالىتى"
 
 #: gui/kstandardshortcut.cpp:301
 msgctxt "KStandardShortcut|@action"
 msgid "Show Menu Bar"
-msgstr ""
+msgstr "تىزىملىك بالدىقىنى كۆرسەت"
 
 #: gui/kstandardshortcut.cpp:304
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Next Tab"
-msgstr ""
+msgstr "كېيىنكى بەتكۈچنى ئاكتىپلا"
 
 #: gui/kstandardshortcut.cpp:312
 msgctxt "KStandardShortcut|@action"
 msgid "Activate Previous Tab"
-msgstr ""
+msgstr "ئالدىنقى بەتكۈچنى ئاكتىپلا"
 
 #: gui/kstandardshortcut.cpp:320
 msgctxt "KStandardShortcut|@action"
 msgid "Help"
-msgstr ""
+msgstr "ياردەم"
 
 #: gui/kstandardshortcut.cpp:321
 msgctxt "KStandardShortcut|@action"
 msgid "What's This"
-msgstr ""
+msgstr "بۇ نېمە"
 
 #: gui/kstandardshortcut.cpp:326
 msgctxt "KStandardShortcut|@action"
 msgid "Text Completion"
-msgstr ""
+msgstr "تېكىست تاماملاش"
 
 #: gui/kstandardshortcut.cpp:334
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Completion Match"
-msgstr ""
+msgstr "ئالدىنقى تاماملاشقا ماس كەلگىنى"
 
 #: gui/kstandardshortcut.cpp:346
 msgctxt "KStandardShortcut|@action"
 msgid "Next Completion Match"
-msgstr ""
+msgstr "كېيىنكى تاماملاشقا ماس كەلگىنى"
 
 #: gui/kstandardshortcut.cpp:358
 msgctxt "KStandardShortcut|@action"
 msgid "Substring Completion"
-msgstr ""
+msgstr "ھەرپ تىزما تاماملاش"
 
 #: gui/kstandardshortcut.cpp:367
 msgctxt "KStandardShortcut|@action"
 msgid "Previous Item in List"
-msgstr ""
+msgstr "تىزىملىكتىكى ئالدىنقى تۈر"
 
 #: gui/kstandardshortcut.cpp:375
 msgctxt "KStandardShortcut|@action"
 msgid "Next Item in List"
-msgstr ""
+msgstr "تىزىملىكتىكى كېيىنكى تۈر"
 
 #: gui/kstandardshortcut.cpp:382
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr ""
+msgstr "يېقىنقىنى ئاچ"
 
 #: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
 msgid "Save As"
-msgstr ""
+msgstr "باشقا ئاتتا ساقلا"
 
 #: gui/kstandardshortcut.cpp:384
 msgctxt "KStandardShortcut|@action"
 msgid "Revert"
-msgstr ""
+msgstr "ئەسلىگە ياندۇر"
 
 #: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr ""
+msgstr "بېسىشنى ئالدىن كۆر"
 
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr ""
+msgstr "خەت"
 
 #: gui/kstandardshortcut.cpp:387
 msgctxt "KStandardShortcut|@action"
 msgid "Clear"
-msgstr ""
+msgstr "تازىلا"
 
 #: gui/kstandardshortcut.cpp:390
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom to Actual Size"
-msgstr ""
+msgstr "ئەسلى چوڭلۇقىغا قايتۇر"
 
 #: gui/kstandardshortcut.cpp:396
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Page"
-msgstr ""
+msgstr "بەتكە ماسلاشتۇر"
 
 #: gui/kstandardshortcut.cpp:397
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Width"
-msgstr ""
+msgstr "كەڭلىككە ماسلاشتۇر"
 
 #: gui/kstandardshortcut.cpp:398
 msgctxt "KStandardShortcut|@action"
 msgid "Fit To Height"
-msgstr ""
+msgstr "ئېگىزلىككە ماسلاشتۇر"
 
 #: gui/kstandardshortcut.cpp:399
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom"
-msgstr ""
+msgstr "نىسبەت"
 
 #: gui/kstandardshortcut.cpp:400
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
-msgstr ""
+msgstr "يۆتكەل"
 
 #: gui/kstandardshortcut.cpp:401
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
-msgstr ""
+msgstr "بەتكە يۆتكەل"
 
 #: gui/kstandardshortcut.cpp:404
 msgctxt "KStandardShortcut|@action"
 msgid "Document Back"
-msgstr ""
+msgstr "پۈتۈك ئالدىغا"
 
 #: gui/kstandardshortcut.cpp:412
 msgctxt "KStandardShortcut|@action"
 msgid "Document Forward"
-msgstr ""
+msgstr "پۈتۈك كەينىگە"
 
 #: gui/kstandardshortcut.cpp:420
 msgctxt "KStandardShortcut|@action"
 msgid "Edit Bookmarks"
-msgstr ""
+msgstr "خەتكۈش تەھرىر"
 
 #: gui/kstandardshortcut.cpp:426
 msgctxt "KStandardShortcut|@action"
 msgid "Spelling"
-msgstr ""
+msgstr "ئىملا تەكشۈر"
 
 #: gui/kstandardshortcut.cpp:427
 msgctxt "KStandardShortcut|@action"
 msgid "Show Toolbar"
-msgstr ""
+msgstr "قورال بالداقنى كۆرسەت"
 
 #: gui/kstandardshortcut.cpp:428
 msgctxt "KStandardShortcut|@action"
 msgid "Show Statusbar"
-msgstr ""
+msgstr "ھالەت بالدىقىنى كۆرسەت"
 
 #: gui/kstandardshortcut.cpp:431
 msgctxt "KStandardShortcut|@action"
 msgid "Key Bindings"
-msgstr ""
+msgstr "كۇنۇپكا باغلىنىشى"
 
 #: gui/kstandardshortcut.cpp:439
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Application"
-msgstr ""
+msgstr "پىروگرامما سەپلە"
 
 #: gui/kstandardshortcut.cpp:447
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
-msgstr ""
+msgstr "قورال بالداق سەپلىمە"
 
 #: gui/kstandardshortcut.cpp:455
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
-msgstr ""
+msgstr "ئۇقتۇرۇش سەپلەش"
 
 #: gui/kstandardshortcut.cpp:461
 msgctxt "KStandardShortcut|@action"
 msgid "Report Bug"
-msgstr ""
+msgstr "كەمتۈك مەلۇم قىل"
 
 #: gui/kstandardshortcut.cpp:464
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Language…"
-msgstr ""
+msgstr "تىل سەپلە…"
 
 #: gui/kstandardshortcut.cpp:470
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr ""
+msgstr "پىروگرامما ھەققىدە"
 
 #: gui/kstandardshortcut.cpp:471
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr ""
+msgstr "KDE ھەققىدە"
 
 #: gui/kstandardshortcut.cpp:474
 msgctxt "KStandardShortcut|@action"
 msgid "Delete"
-msgstr ""
+msgstr "ئۆچۈر"
 
 #: gui/kstandardshortcut.cpp:475
 msgctxt "KStandardShortcut|@action"
 msgid "Rename"
-msgstr ""
+msgstr "ئات ئۆزگەرت"
 
 #: gui/kstandardshortcut.cpp:478
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr ""
+msgstr "ئەخلەتخانىغا يۆتكە"
 
 #: gui/kstandardshortcut.cpp:484
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr ""
+msgstr "ئىئانە"
 
 #: gui/kstandardshortcut.cpp:487
 msgctxt "KStandardShortcut|@action"
 msgid "Show/Hide Hidden Files"
-msgstr ""
+msgstr "يوشۇرۇن ھۆججەتنى كۆرسەت/يوشۇر"
 
 #: gui/kstandardshortcut.cpp:495
 msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
-msgstr ""
+msgstr "قىسقۇچ قۇر"
 
 #: gui/kstandardshortcut.cpp:503
 msgctxt ""
 "KStandardShortcut|@action referring to the menu bar or a hamburger menu"
 msgid "Open Main Menu"
-msgstr ""
+msgstr "ئاساسىي تىزىملىكنى ئاچ"
 
 #: gui/kstandardshortcut.cpp:511
 msgctxt "KStandardShortcut|@action"
 msgid "Open Context Menu"
-msgstr ""
+msgstr "مەزمۇن تىزىملىكىنى ئاچ"
 
 #: kconf_update/kconf_update.cpp:368
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
-msgstr ""
+msgstr "ئىشلەتكۈچى سەپلىمە ھۆججىتىنى يېڭىلاشقا ئىشلىتىدىغان KDE قورالى"
 
 #: kconf_update/kconf_update.cpp:370
 msgctxt "main|"
 msgid "Keep output results from scripts"
-msgstr ""
+msgstr "قوليازمىنىڭ چىقىرىش نەتىجىسىنى ساقلاپ قالىدۇ"
 
 #: kconf_update/kconf_update.cpp:373
 msgctxt "main|"
@@ -970,52 +971,49 @@ msgid ""
 "For unit tests only: do not write the done entries, so that with every re-"
 "run, the scripts are executed again"
 msgstr ""
+"بۆلەك سىناش ئۈچۈنلا: تاماملانغان تۈرنى يازماڭ، ھەر قېتىم قايتا ئىجرا "
+"قىلغاندا، قوليازما قايتا ئىجرا قىلىنىدۇ"
 
 #: kconf_update/kconf_update.cpp:375
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
-msgstr ""
+msgstr "سەپلىمە ھۆججەتنىڭ ئۆزىنى يېڭىلاش زۆرۈر ياكى ئەمەسلىكىنى تەكشۈرىدۇ"
 
 #: kconf_update/kconf_update.cpp:378
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
-msgstr ""
+msgstr "يېڭىلاش بۇيرۇقىنى ئوقۇپ ئەكىرىدىغان ھۆججەت"
 
 #: kconfig_compiler/kconfig_compiler.cpp:732
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
-msgstr ""
+msgstr "ھۆججەت قۇرىدىغان قىسقۇچ، پىچىمى [.]"
 
 #: kconfig_compiler/kconfig_compiler.cpp:733
 msgctxt "main|"
 msgid "directory"
-msgstr ""
+msgstr "مۇندەرىجە"
 
 #: kconfig_compiler/kconfig_compiler.cpp:737
 msgctxt "main|"
 msgid "Display software license."
-msgstr ""
+msgstr "يۇمشاق دېتال ئىجازەتنامىسىنى كۆرسىتىدۇ."
 
 #: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
-#, fuzzy
-#| msgid "Use <file> instead of global config"
 msgctxt "main|"
 msgid "Use <file> instead of global config"
-msgstr "ئومۇمىي سەپلىمە ئورنىغا <ھۆججەت> نى ئىشلەت"
+msgstr "ئومۇمىيەت سەپلىمە ئورنىغا <file> نى ئىشلەت"
 
 #: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
-#, fuzzy
-#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
 msgid ""
 "Group to look in. Use \"<default>\" for the root group, or use repeatedly "
 "for nested groups."
 msgstr ""
-"كۆرمەكچى بولغان گۇرۇپپا. قەۋەتلەنگەن گۇرۇپپىلارغا قايتا-قايتا ئىشلىتىڭ."
+"كۆرمەكچى بولغان گۇرۇپپا. غول گۇرۇپپىغا «<default>» يەنى كۆڭۈلدىكىنى "
+"ئىشلىتىدۇ، سىڭدۈرمە گۇرۇپپىغا قايتا-قايتا ئىشلىتىلىدۇ."
 
 #: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
-#, fuzzy
-#| msgid "Key to look for"
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "ئىزدەيدىغان ئاچقۇچلۇق سۆز"
@@ -1023,12 +1021,12 @@ msgstr "ئىزدەيدىغان ئاچقۇچلۇق سۆز"
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
-msgstr ""
+msgstr "كۆڭۈلدىكى قىممەت"
 
 #: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
-msgstr ""
+msgstr "ئۆزگەرگۈچىنىڭ تۈرى"
 
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
@@ -1046,36 +1044,33 @@ msgstr ""
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
+"گۇرۇپپا ئاتى بوش قالمايدۇ، غول گۇرۇپپىغا «<default>» يەنى كۆڭۈلدىكى "
+"ئىشلىتىلىدۇ"
 
 #: kreadconfig/kwriteconfig.cpp:34
-#, fuzzy
-#| msgid ""
-#| "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as "
-#| "a string"
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
 "string"
 msgstr ""
-"ئۆزگەرگۈچى تىپى. \"bool\"  نى بۇلېئان قىممىتى قىلىپ ئىشلىتىدۇ ئۇنداق بولمىسا "
-"ھەرپ تىزىقى سۈپىتىدە ئىشلىتىدۇ."
+"ئۆزگەرگۈچى تۈرى. «bool» نى بۇلېئان قىممىتى قىلىپ ئىشلىتىدۇ ئۇنداق بولمىسا "
+"ھەرپ تىزىقى سۈپىتىدە ئىشلىتىدۇ"
 
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr ""
+msgstr "ئەگەر قوزغىتىلسا بەلگىلەن قىممەتنى ئۆچۈرىدۇ"
 
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
 msgid "Notify applications of the change"
-msgstr ""
+msgstr "ئۆزگىرىشنى پىروگراممىغا ئۇقتۇرىدۇ"
 
 #: kreadconfig/kwriteconfig.cpp:38
-#, fuzzy
-#| msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr "يازىدىغان قىممەت. shell دا بوشلۇقنى چوقۇم ئىشلىتىدۇ"
+msgstr ""
+"يازىدىغان قىممەت. تولدۇرۇش زۆرۈر، shell دە بوش قىممەتكە '' نى ئىشلىتىدۇ"
 
 #~ msgid "KWriteConfig"
 #~ msgstr "KWriteConfig"
