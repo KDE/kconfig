@@ -1,7 +1,7 @@
 # Translation for kconfig5_qt.po to Euskara/Basque (eu).
 # Copyright (C) 2017-2026 This file is copyright:
 # This file is distributed under the same license as the original file.
-# SPDX-FileCopyrightText: 2023, 2024, 2025, 2026 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2023-2026 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Osoitz <oelkoro@gmail.com>, 2017.
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-03-14 12:50+0100\n"
+"PO-Revision-Date: 2026-04-26 12:18+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.04.0\n"
 
 #: core/kconfig.cpp:991
 msgctxt "KConfig|"
@@ -1042,6 +1042,8 @@ msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr ""
+"Globalak barne; era lehenetsian, fitxategi bat zehazten bada, konfigurazio "
+"fitxategi globalak ez dira irakurtzen"
 
 #: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
