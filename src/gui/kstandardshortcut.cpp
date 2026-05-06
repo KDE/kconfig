@@ -568,7 +568,7 @@ void initialize(StandardShortcut id)
 
     if (cg.hasKey(info->name)) {
         QString s = cg.readEntry(info->name);
-        if (s != QLatin1String("none")) {
+        if (!s.isEmpty() && s != QLatin1String("none")) {
             info->cut = QKeySequence::listFromString(s);
             sanitizeShortcutList(&info->cut);
         } else {
