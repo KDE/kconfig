@@ -1,14 +1,14 @@
 # translation of kwriteconfig.po to Polish
 # Copyright (C) 2003, 2008 Free Software Foundation, Inc.
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2008.
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# SPDX-FileCopyrightText: 2014-2018, 2020-2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2022-07-31 10:01+0200\n"
+"PO-Revision-Date: 2026-05-09 15:59+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 26.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:961
@@ -420,12 +420,12 @@ msgstr "Ustawienia języka..."
 #: gui/kstandardshortcut.cpp:372
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr "O programie"
+msgstr "Opis aplikacji"
 
 #: gui/kstandardshortcut.cpp:373
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr "O KDE"
+msgstr "Opis KDE"
 
 #: gui/kstandardshortcut.cpp:376
 msgctxt "KStandardShortcut|@action"
@@ -445,7 +445,7 @@ msgstr "Wyrzuć do kosza"
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr "Darowizna"
+msgstr "Wpłać darowiznę"
 
 #: gui/kstandardshortcut.cpp:389
 msgctxt "KStandardShortcut|@action"
