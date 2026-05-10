@@ -1,14 +1,14 @@
 # translation of kwriteconfig.po to Polish
 # Copyright (C) 2003, 2008 Free Software Foundation, Inc.
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2008.
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# SPDX-FileCopyrightText: 2014-2018, 2020-2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-04-04 18:47+0200\n"
+"PO-Revision-Date: 2026-05-09 15:59+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 26.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:991
@@ -482,12 +482,12 @@ msgstr "Ustawie&nia powiadomień…"
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr "Podrę&cznik %1"
+msgstr "Prze&czytaj o obsłudze %1"
 
 #: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
 msgid "What's &This?"
-msgstr "Co to jes&t?"
+msgstr "&Wyjaśnij, co wskażę"
 
 #: gui/kstandardactions_p.h:131
 msgctxt "KStandardActions|"
@@ -503,12 +503,12 @@ msgstr "Ustawienia &języka…"
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "&About %1"
-msgstr "O progr&amie %1"
+msgstr "Przeczyt&aj o %1"
 
 #: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "O &KDE"
+msgstr "Przeczytaj o &KDE"
 
 #: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
@@ -528,7 +528,7 @@ msgstr "Wyrzuć do &kosza"
 #: gui/kstandardactions_p.h:138
 msgctxt "KStandardActions|"
 msgid "&Donate"
-msgstr "&Darowizna"
+msgstr "Wpłać &darowiznę"
 
 #: gui/kstandardactions_p.h:139
 msgctxt "KStandardActions|"
@@ -908,12 +908,12 @@ msgstr "Ustawienia języka…"
 #: gui/kstandardshortcut.cpp:470
 msgctxt "KStandardShortcut|@action"
 msgid "About Application"
-msgstr "O programie"
+msgstr "Opis aplikacji"
 
 #: gui/kstandardshortcut.cpp:471
 msgctxt "KStandardShortcut|@action"
 msgid "About KDE"
-msgstr "O KDE"
+msgstr "Opis KDE"
 
 #: gui/kstandardshortcut.cpp:474
 msgctxt "KStandardShortcut|@action"
@@ -933,7 +933,7 @@ msgstr "Wyrzuć do kosza"
 #: gui/kstandardshortcut.cpp:484
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr "Darowizna"
+msgstr "Wpłać darowiznę"
 
 #: gui/kstandardshortcut.cpp:487
 msgctxt "KStandardShortcut|@action"
