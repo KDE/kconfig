@@ -63,6 +63,8 @@ private Q_SLOTS:
     void testQByteArrayUtf8();
     void testQStringUtf8_data();
     void testQStringUtf8();
+    void testInvalidEscapeDoesNotLeakTailBytes();
+    void testEntryMapPreservesEmbeddedNull();
 
     void testMoveValuesTo();
     void testMoveAllValuesTo();

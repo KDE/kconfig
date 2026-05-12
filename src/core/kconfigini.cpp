@@ -730,8 +730,9 @@ bool KConfigIniBackend::printableToString(QByteArrayView &aString, const KConfig
         return true;
     }
     aString = aString.trimmed();
-    int l = aString.size();
-    char *r = const_cast<char *>(aString.data());
+    const int l = aString.size();
+    char *const data = const_cast<char *>(aString.data());
+    char *r = data;
     char *str = r;
 
     for (int i = 0; i < l; i++, r++) {
@@ -784,12 +785,13 @@ bool KConfigIniBackend::printableToString(QByteArrayView &aString, const KConfig
                 break;
             default:
                 *r = '\\';
+                aString.truncate(r - data + 1);
                 qCWarning(KCONFIG_CORE_LOG).noquote() << warningProlog(device, line) << QStringLiteral("Invalid escape sequence: «\\%1»").arg(str[i]);
                 return false;
             }
         }
     }
-    aString.truncate(r - aString.constData());
+    aString.truncate(r - data);
     return true;
 }
 

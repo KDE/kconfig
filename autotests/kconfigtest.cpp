@@ -1937,6 +1937,35 @@ void KConfigTest::testQStringUtf8()
     QCOMPARE(value, general2.readEntry("key", QByteArray()));
 }
 
+void KConfigTest::testInvalidEscapeDoesNotLeakTailBytes()
+{
+    QTemporaryFile file;
+    QVERIFY(file.open());
+    QVERIFY(file.write("[General]\nkey=A\\sB\\qTAIL\n") > 0);
+    file.close();
+
+    KConfig config(file.fileName(), KConfig::SimpleConfig);
+    const QString value = config.group(QStringLiteral("General")).readEntry("key", QString());
+
+    QCOMPARE(value, QStringLiteral("A B\\"));
+}
+
+void KConfigTest::testEntryMapPreservesEmbeddedNull()
+{
+    QTemporaryFile file;
+    QVERIFY(file.open());
+    QVERIFY(file.write("[General]\nkey=A\\x00B\n") > 0);
+    file.close();
+
+    KConfig config(file.fileName(), KConfig::SimpleConfig);
+    const QString value = config.entryMap(QStringLiteral("General")).value(QStringLiteral("key"));
+
+    QCOMPARE(value.size(), 3);
+    QCOMPARE(value.at(0), QChar(u'A'));
+    QCOMPARE(value.at(1), QChar(u'\0'));
+    QCOMPARE(value.at(2), QChar(u'B'));
+}
+
 void KConfigTest::testNewlines()
 {
     // test that kconfig always uses the native line endings
