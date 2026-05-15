@@ -88,6 +88,8 @@ kconfig_compiler_test(test_notifiers MAIN test_notifiers_main.cpp CLASS_NAME Tes
 kconfig_compiler_test(test_time MAIN test_time_main.cpp CLASS_NAME TestTime MUTATORS)
 kconfig_compiler_test(test_kconfigconstructor MAIN test_kconfigconstructormain.cpp CLASS_NAME TestKConfigConstructor PARENT_IN_CONSTRUCTOR MUTATORS KCONFIG_CONSTRUCTOR)
 
+kconfig_compiler_test(Test18 NOTIFIERS GENERATE_MOC)
+
 ########### next target ###############
 
 set(kconfigcompiler_test_signals_SRCS kconfigcompiler_test_signals.cpp)

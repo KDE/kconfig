@@ -28,26 +28,27 @@
 
 static void preProcessDefault(QString &defaultValue,
                               const QString &name,
-                              const QString &type,
+                              const QString &_type,
                               const CfgEntry::Choices &cfgChoices,
                               QString &code,
                               const KConfigParameters &cfg)
 {
-    if (type == QLatin1String("String") && !defaultValue.isEmpty()) {
+    const QString type = _type.toLower();
+    if (type == QLatin1String("string") && !defaultValue.isEmpty()) {
         defaultValue = literalString(defaultValue);
 
-    } else if (type == QLatin1String("Path") && !defaultValue.isEmpty()) {
+    } else if (type == QLatin1String("path") && !defaultValue.isEmpty()) {
         defaultValue = literalString(defaultValue);
-    } else if (type == QLatin1String("Url") && !defaultValue.isEmpty()) {
+    } else if (type == QLatin1String("url") && !defaultValue.isEmpty()) {
         // Use fromUserInput in order to support absolute paths and absolute urls, like KDE4's KUrl(QString) did.
         defaultValue = QLatin1String("QUrl::fromUserInput( %1)").arg(literalString(defaultValue));
-    } else if ((type == QLatin1String("UrlList") || type == QLatin1String("StringList") || type == QLatin1String("PathList")) && !defaultValue.isEmpty()) {
+    } else if ((type == QLatin1String("urllist") || type == QLatin1String("stringlist") || type == QLatin1String("pathlist")) && !defaultValue.isEmpty()) {
         QTextStream cpp(&code, QIODevice::WriteOnly | QIODevice::Append);
         if (!code.isEmpty()) {
             cpp << '\n';
         }
 
-        if (type == QLatin1String("UrlList")) {
+        if (type == QLatin1String("urllist")) {
             cpp << "  QList<QUrl> default" << name << ";\n";
         } else {
             cpp << "  QStringList default" << name << ";\n";
@@ -55,18 +56,18 @@ static void preProcessDefault(QString &defaultValue,
         const QStringList defaults = defaultValue.split(QLatin1Char(','));
         for (const auto &val : defaults) {
             cpp << "  default" << name << ".append( ";
-            if (type == QLatin1String("UrlList")) {
+            if (type == QLatin1String("urllist")) {
                 cpp << "QUrl::fromUserInput(";
             }
             cpp << "QString::fromUtf8( \"" << val << "\" ) ";
-            if (type == QLatin1String("UrlList")) {
+            if (type == QLatin1String("urllist")) {
                 cpp << ") ";
             }
             cpp << ");\n";
         }
         defaultValue = QLatin1String("default") + name;
 
-    } else if (type == QLatin1String("Color") && !defaultValue.isEmpty()) {
+    } else if (type == QLatin1String("color") && !defaultValue.isEmpty()) {
         static const QRegularExpression colorRe(QRegularExpression::anchoredPattern(QStringLiteral("\\d+,\\s*\\d+,\\s*\\d+(,\\s*\\d+)?")));
 
         if (colorRe.match(defaultValue).hasMatch()) {
@@ -75,7 +76,7 @@ static void preProcessDefault(QString &defaultValue,
             defaultValue = QLatin1String("QColor( \"%1\" )").arg(defaultValue);
         }
 
-    } else if (type == QLatin1String("Enum")) {
+    } else if (type == QLatin1String("enum")) {
         for (const auto &choice : cfgChoices.choices) {
             if (choice.name == defaultValue) {
                 if (cfg.globalEnums && cfgChoices.name().isEmpty()) {
@@ -87,7 +88,7 @@ static void preProcessDefault(QString &defaultValue,
             }
         }
 
-    } else if (type == QLatin1String("IntList")) {
+    } else if (type == QLatin1String("intlist")) {
         QTextStream cpp(&code, QIODevice::WriteOnly | QIODevice::Append);
         if (!code.isEmpty()) {
             cpp << '\n';
@@ -101,7 +102,7 @@ static void preProcessDefault(QString &defaultValue,
             }
         }
         defaultValue = QLatin1String("default") + name;
-    } else if (type == QLatin1String("Time")) {
+    } else if (type == QLatin1String("time")) {
         if (!defaultValue.isEmpty()) {
             const QTime time = QTime::fromString(defaultValue);
             defaultValue = QStringLiteral("QTime(%1, %2, %3)").arg(time.hour()).arg(time.minute()).arg(time.second());

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name="muondatasourcesrc"/>
+  <group name="kamoso">
+    <entry name="size" type="int" >
+      <default>13</default>
+    </entry>
+    <entry name="foos" type="stringList" >
+      <default>Foo,Bar</default>
+    </entry>
+    <entry name="picturesDir" type="url" >
+     <default>Bar</default>
+    </entry>
+    <entry name="brightness" type="string" >
+      <default>Foo</default>
+    </entry>
+  </group>
+</kcfg>

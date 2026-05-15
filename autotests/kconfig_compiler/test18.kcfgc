@@ -1,0 +1,7 @@
+ClassName=Test18
+GenerateProperties=true
+Mutators=brightness
+File=test18.kcfg
+QmlRegistration=true
+Singleton=true
+DefaultValueGetters=true
