@@ -26,6 +26,7 @@ private Q_SLOTS:
     void testLocateLocal_data();
     void testLocateLocal();
     void testWritePrimaryGroupFirst();
+    void testSubstituteUidAdminAccountFallback();
 };
 
 #endif /* KDESKTOPFILETEST_H */

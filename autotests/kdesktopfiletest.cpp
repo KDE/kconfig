@@ -26,6 +26,8 @@ void KDesktopFileTest::initTestCase()
 
     KConfigGroup actionRestrictions(KSharedConfig::openConfig(), QStringLiteral("KDE Action Restrictions"));
     actionRestrictions.writeEntry("someBlockedAction", false);
+    actionRestrictions.writeEntry("user/restrictedadmin", false);
+    actionRestrictions.writeEntry("user/root", false);
 }
 
 void KDesktopFileTest::testRead()
@@ -331,6 +333,49 @@ void KDesktopFileTest::testWritePrimaryGroupFirst()
     auto lines = readLinesFrom(tmpFile.fileName());
     QCOMPARE(lines.at(0), "[Desktop Entry]\n");
     QVERIFY(lines.contains("[Desktop Action AnAction]\n"));
+}
+
+void KDesktopFileTest::testSubstituteUidAdminAccountFallback()
+{
+    // When X-KDE-SubstituteUID is true and X-KDE-Username is absent, the
+    // ADMIN_ACCOUNT environment variable controls which username is passed to
+    // KAuthorized::authorize().
+
+    QTemporaryFile file(QDir::tempPath() + QStringLiteral("/testSubstituteUidXXXXXX.desktop"));
+    QVERIFY(file.open());
+    QTextStream ts(&file);
+    ts << "[Desktop Entry]\n"
+          "Type=Application\n"
+          "Name=Privileged App\n"
+          "Exec=ls\n"
+          "X-KDE-SubstituteUID=true\n"
+          "\n";
+    file.close();
+
+    // "user/restrictedadmin" is blocked in initTestCase via KDE Action Restrictions.
+
+    // When ADMIN_ACCOUNT names a blocked user, tryExec() must return false.
+    qputenv("ADMIN_ACCOUNT", "restrictedadmin");
+    {
+        KDesktopFile df(file.fileName());
+        QCOMPARE(df.tryExec(), false);
+    }
+
+    // When ADMIN_ACCOUNT names a user that is not restricted, tryExec() must
+    // return true.
+    qputenv("ADMIN_ACCOUNT", "anotheradmin");
+    {
+        KDesktopFile df(file.fileName());
+        QCOMPARE(df.tryExec(), true);
+    }
+
+    // When ADMIN_ACCOUNT is unset, "root" is the default.  "user/root" is
+    // blocked in initTestCase, so tryExec() must return false.
+    qunsetenv("ADMIN_ACCOUNT");
+    {
+        KDesktopFile df(file.fileName());
+        QCOMPARE(df.tryExec(), false);
+    }
 }
 
 #include "moc_kdesktopfiletest.cpp"
