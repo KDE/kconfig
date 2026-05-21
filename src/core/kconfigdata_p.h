@@ -260,8 +260,9 @@ QDebug operator<<(QDebug dbg, const KEntry &entry);
  * with the group name.
  *
  */
-class KEntryMap : public std::map<KEntryKey, KEntry, KEntryKeyCompare>
+class KEntryMap final : private std::map<KEntryKey, KEntry, KEntryKeyCompare>
 {
+    using super_t = std::map<KEntryKey, KEntry, KEntryKeyCompare>;
 public:
     enum SearchFlag {
         SearchDefaults = 1,
@@ -282,6 +283,19 @@ public:
         EntryLocalized = (SearchLocalized << 16),
     };
     Q_DECLARE_FLAGS(EntryOptions, EntryOption)
+
+    using super_t::begin;
+    using super_t::end;
+    using super_t::cbegin;
+    using super_t::cend;
+    using super_t::empty;
+    using super_t::clear;
+    using super_t::iterator;
+    using super_t::const_iterator;
+    using super_t::operator[];
+    using super_t::size;
+    using super_t::erase;
+    using super_t::find;
 
     iterator findExactEntry(const QString &group, QAnyStringView key = QAnyStringView(), SearchFlags flags = SearchFlags());
 
