@@ -276,7 +276,7 @@ bool KDesktopFile::tryExec() const
     if (d->desktopGroup.readEntry("X-KDE-SubstituteUID", false)) {
         QString user = d->desktopGroup.readEntry("X-KDE-Username", QString());
         if (user.isEmpty()) {
-            user = qEnvironmentVariable("ADMIN_ACCOUNT"), QStringLiteral("root");
+            user = qEnvironmentVariable("ADMIN_ACCOUNT", QStringLiteral("root"));
         }
         if (!KAuthorized::authorize(QLatin1String("user/") + user)) {
             return false;
