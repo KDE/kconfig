@@ -12,10 +12,6 @@ if(@KCONFIG_USE_GUI@)
     find_dependency(Qt6Gui "@REQUIRED_QT_VERSION@")
 endif()
 
-if(NOT @BUILD_SHARED_LIBS@)
-    find_dependency(Qt6Xml @REQUIRED_QT_VERSION@)
-endif()
-
 if(@KCONFIG_USE_DBUS@)
     find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
 endif()
