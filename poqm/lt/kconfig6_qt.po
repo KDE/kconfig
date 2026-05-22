@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2025-09-09 23:44+0300\n"
+"PO-Revision-Date: 2026-05-21 17:02+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: core/kconfig.cpp:991
 msgctxt "KConfig|"
@@ -1031,7 +1031,7 @@ msgstr "Kintamojo tipas"
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
 msgid "Dump all entries"
-msgstr ""
+msgstr "Sukurti visų įrašų išklotinę"
 
 #: kreadconfig/kreadconfig.cpp:58
 msgctxt "main|"
@@ -1039,6 +1039,8 @@ msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr ""
+"Įtraukti visuotines reikšmes; pagal numatymą, visuotiniai konfigūracijos "
+"failai nėra skaitomi, jei yra nurodomas failas"
 
 #: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
