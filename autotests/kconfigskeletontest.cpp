@@ -12,6 +12,8 @@
 #include <QFont>
 #include <QtTestGui>
 
+using namespace Qt::Literals;
+
 QTEST_MAIN(KConfigSkeletonTest)
 
 // clazy:excludeall=non-pod-global-static
@@ -221,6 +223,62 @@ void KConfigSkeletonTest::testKconfigQIODevice()
     auto iniData = QString::fromUtf8(buffer->readAll());
     iniData.remove(QLatin1Char('\r'));
     QCOMPARE(iniData.toUtf8(), "[MyGroup]\nMySetting1=true\n");
+}
+
+void KConfigSkeletonTest::testReadDefaults()
+{
+    KConfigSkeleton skeleton(QStringLiteral("kconfigskeletondefaultstestrc"));
+
+    // prepare the defaults file
+    const QString defaultsFile = QLatin1String("kconfigskeletondefaultstestrc.defaults");
+    const QString defaultsFilePath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + defaultsFile;
+    QFile::remove(defaultsFile);
+    KConfig defaults(defaultsFile, KConfig::SimpleConfig);
+
+    KConfigGroup group = defaults.group(QStringLiteral("MyOtherGroup"));
+    group.writeEntry("MySetting4", "Bla");
+    QVERIFY(group.sync());
+
+    group = defaults.group(QStringLiteral("MyGroup"));
+    group.writeEntry("MySetting2", QColor(255, 0, 0));
+    QVERIFY(group.sync());
+
+    skeleton.config()->addConfigSources(QStringList{defaultsFilePath});
+
+    // build the skeleton
+    bool theBool = false;
+    QColor theColor;
+    QString theString;
+
+    skeleton.setCurrentGroup(QStringLiteral("MyGroup"));
+    auto itemBool = skeleton.addItemBool(QStringLiteral("MySetting1"), theBool, s_default_setting1);
+    auto itemColor = skeleton.addItemColor(QStringLiteral("MySetting2"), theColor, s_default_setting2);
+
+    skeleton.setCurrentGroup(QStringLiteral("MyOtherGroup"));
+    skeleton.addItemString(QStringLiteral("MySetting4"), theString, s_default_setting4);
+
+    // verify initial values
+    QCOMPARE(theBool, false);
+    QCOMPARE(theColor, QColor(255, 0, 0));
+    QCOMPARE(theString, u"Bla"_s);
+
+    // set some user values
+    itemBool->setValue(true);
+    itemColor->setValue(QColor(0, 244, 0));
+    QCOMPARE(theBool, true);
+    QCOMPARE(theColor, QColor(0, 244, 0));
+
+    // verify that default values are read
+    skeleton.useDefaults(true);
+    QCOMPARE(theBool, false);
+    QCOMPARE(theString, u"Bla"_s);
+    QCOMPARE(theColor, QColor(255, 0, 0));
+    skeleton.useDefaults(false);
+
+    // verify that user values are used again
+    QCOMPARE(theBool, true);
+    QCOMPARE(theString, u"Bla"_s);
+    QCOMPARE(theColor, QColor(0, 244, 0));
 }
 
 #include "moc_kconfigskeletontest.cpp"
