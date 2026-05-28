@@ -56,6 +56,10 @@ public:
     std::function<bool()> mIsDefaultImpl;
     std::function<bool()> mIsSaveNeededImpl;
     std::function<QVariant()> mGetDefaultImpl;
+
+    // the build-in default value passed via the constructor, i.e. not from any file
+    // TODO KF7 move to KConfigSkeletonGenericItem
+    QVariant mBuiltinDefault;
 };
 
 class KPropertySkeletonItemPrivate : public KConfigSkeletonItemPrivate

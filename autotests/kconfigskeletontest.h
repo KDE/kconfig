@@ -25,6 +25,7 @@ private Q_SLOTS:
     void testKconfigQIODevice();
     void testReadDefaults();
     void testAddItem();
+    void testDeleteEntry();
 
 private:
     KConfigSkeleton *s;

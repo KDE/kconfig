@@ -296,4 +296,107 @@ void KConfigSkeletonTest::testAddItem()
     QCOMPARE(paths, expectedPaths);
 }
 
+void KConfigSkeletonTest::testDeleteEntry()
+{
+    // prepare the defaults file
+    const QString defaultsFile = QLatin1String("kconfigskeletondeletetestrc.defaults");
+    const QString defaultsFilePath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + defaultsFile;
+    QFile::remove(defaultsFile);
+    KConfig defaults(defaultsFile, KConfig::SimpleConfig);
+
+    KConfigGroup group = defaults.group(u"Main"_s);
+    group.writePathEntry("MyPath", u"/foo/bar"_s);
+    group.writeEntry("MyString", u"Yo"_s);
+    group.writeEntry("MyInt", 41);
+    group.writeEntry("MyPaths", QStringList{u"/foo"_s, u"/bar"_s});
+    group.writeEntry("MyUrls", QStringList(u"https://linux.kde.org"_s));
+    group.writeEntry("MyStrings", QStringList(u"a"_s));
+    group.writeEntry("MyInts", {1, 2, 3});
+    group.writeEntry("MyEnum", u"hello"_s);
+    group.writeEntry("MyColor", QColor(234, 234, 234));
+    group.writeEntry("MyFont", QFont(u"Comic Sans"_s));
+    QVERIFY(group.sync());
+
+    // prepare user file with deleted entry
+    const QString userFile = QLatin1String("kconfigskeletondeletetestrc");
+    const QString userFilePath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + userFile;
+    QFile::remove(userFilePath);
+    KConfig c(userFile);
+    c.addConfigSources(QStringList{defaultsFilePath});
+    auto g = c.group(u"Main"_s);
+    g.deleteEntry("MyPath");
+    g.deleteEntry("MyString");
+    g.deleteEntry("MyInt");
+    g.deleteEntry("MyPaths");
+    g.deleteEntry("MyUrls");
+    g.deleteEntry("MyStrings");
+    g.deleteEntry("MyInts");
+    g.deleteEntry("MyEnum");
+    g.deleteEntry("MyColor");
+    g.deleteEntry("MyFont");
+    c.sync();
+
+    // build skeleton
+    KConfigSkeleton skeleton(QStringLiteral("kconfigskeletondeletetestrc"));
+    skeleton.config()->addConfigSources(QStringList{defaultsFilePath});
+
+    QString myPath;
+    QString myString;
+    int myInt;
+    QStringList myPaths;
+    QList<QUrl> myUrls;
+    QStringList myStrings;
+    QList<int> myInts;
+    int myEnum;
+    QColor myColor;
+    QFont myFont;
+
+    skeleton.setCurrentGroup(u"Main"_s);
+
+    skeleton.addItemPath(u"MyPath"_s, myPath);
+    skeleton.addItemString(u"MyString"_s, myString, u"Hello"_s);
+    skeleton.addItemInt(u"MyInt"_s, myInt, 42);
+    skeleton.addItemPathList(u"MyPaths"_s, myPaths, {u"/foo/yo"_s});
+    skeleton.addItemUrlList(u"MyUrls"_s, myUrls, {QUrl(u"https://kde.org"_s)});
+    skeleton.addItemStringList(u"MyStrings"_s, myStrings, QStringList{u"a"_s, u"b"_s, u"c"_s});
+    skeleton.addItemIntList(u"MyInts"_s, myInts, {13, 42});
+    skeleton.addItemColor(u"MyColor"_s, myColor, QColor(3, 2, 1));
+    skeleton.addItemFont(u"MyFont"_s, myFont, QFont(u"Helvetica"_s));
+
+    QList<KCoreConfigSkeleton::ItemEnum::Choice> choices = {
+        {
+            .name = u"Hello"_s,
+            .label = QString(),
+            .toolTip = QString(),
+            .whatsThis = QString(),
+            .value = u"hello"_s,
+        },
+        {
+            .name = u"Servus"_s,
+            .label = QString(),
+            .toolTip = QString(),
+            .whatsThis = QString(),
+            .value = u"servus"_s,
+        },
+    };
+    auto itemEnum = new KCoreConfigSkeleton::ItemEnum(u"Main"_s, u"MyEnum"_s, myEnum, choices, 1);
+    skeleton.addItem(itemEnum);
+
+    // verify that the value is actually deleted
+    QCOMPARE(myPath, QString());
+    QCOMPARE(myString, u"Hello"_s);
+    QCOMPARE(myInt, 42);
+    QStringList expectedPaths = {u"/foo/yo"_s};
+    QCOMPARE(myPaths, expectedPaths);
+    QList<QUrl> expectedUrls = {QUrl(u"https://kde.org"_s)};
+    QCOMPARE(myUrls, expectedUrls);
+    QStringList expectedStrings = QStringList{u"a"_s, u"b"_s, u"c"_s};
+    QCOMPARE(myStrings, expectedStrings);
+    QList<int> expectedInts = {13, 42};
+    QCOMPARE(myInts, expectedInts);
+    QCOMPARE(myEnum, 1);
+    QCOMPARE(myColor, QColor(3, 2, 1));
+    QCOMPARE(myFont, QFont(u"Helvetica"_s));
+}
+
 #include "moc_kconfigskeletontest.cpp"

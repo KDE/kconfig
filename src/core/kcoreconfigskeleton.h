@@ -415,7 +415,7 @@ public:
 
 protected:
     T &mReference; // Stores the value for this item
-    T mDefault; // The default value for this item
+    T mDefault; // The default value for this item. May be set from system-wide files or the build-in default value from the constructor
     T mLoadedValue;
 };
 

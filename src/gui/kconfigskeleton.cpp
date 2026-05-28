@@ -23,6 +23,7 @@ KConfigSkeleton::KConfigSkeleton(KSharedConfig::Ptr pConfig, QObject *parent)
 KConfigSkeleton::ItemColor::ItemColor(const QString &_group, const QString &_key, QColor &reference, const QColor &defaultValue)
     : KConfigSkeletonGenericItem<QColor>(_group, _key, reference, defaultValue)
 {
+    d_ptr->mBuiltinDefault = defaultValue;
 }
 
 KConfigSkeleton::KConfigSkeleton(std::unique_ptr<KConfig> config, KCoreConfigSkeleton::DisambiguateConstructor value, QObject *parent)
@@ -35,7 +36,7 @@ void KConfigSkeleton::ItemColor::readConfig(KConfig *config)
 {
     KConfigGroup cg = configGroup(config);
 
-    mReference = cg.readEntry(mKey, mDefault);
+    mReference = cg.readEntry(mKey, d_ptr->mBuiltinDefault.value<QColor>());
     mLoadedValue = mReference;
 
     readImmutability(cg);
@@ -59,13 +60,14 @@ QVariant KConfigSkeleton::ItemColor::property() const
 KConfigSkeleton::ItemFont::ItemFont(const QString &_group, const QString &_key, QFont &reference, const QFont &defaultValue)
     : KConfigSkeletonGenericItem<QFont>(_group, _key, reference, defaultValue)
 {
+    d_ptr->mBuiltinDefault = defaultValue;
 }
 
 void KConfigSkeleton::ItemFont::readConfig(KConfig *config)
 {
     KConfigGroup cg = configGroup(config);
 
-    mReference = cg.readEntry(mKey, mDefault);
+    mReference = cg.readEntry(mKey, d_ptr->mBuiltinDefault.value<QFont>());
     mLoadedValue = mReference;
 
     readImmutability(cg);
