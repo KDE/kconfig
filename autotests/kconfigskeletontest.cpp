@@ -281,4 +281,19 @@ void KConfigSkeletonTest::testReadDefaults()
     QCOMPARE(theColor, QColor(0, 244, 0));
 }
 
+void KConfigSkeletonTest::testAddItem()
+{
+    KConfigSkeleton skel;
+
+    QList<QUrl> urls;
+    QStringList paths;
+
+    skel.addItemUrlList(u"foo"_s, urls, {QUrl(u"https://kde.org"_s)});
+    skel.addItemPathList(u"paths"_s, paths, {u"/foo"_s, u"/bar"_s});
+
+    QCOMPARE(urls, {QUrl(u"https://kde.org"_s)});
+    QStringList expectedPaths = {u"/foo"_s, u"/bar"_s};
+    QCOMPARE(paths, expectedPaths);
+}
+
 #include "moc_kconfigskeletontest.cpp"

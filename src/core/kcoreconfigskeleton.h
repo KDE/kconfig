@@ -1618,6 +1618,33 @@ public:
     ItemIntList *addItemIntList(const QString &name, QList<int> &reference, const QList<int> &defaultValue = QList<int>(), const QString &key = QString());
 
     /*!
+     * Registers an int list item with a unique \a name by passing a
+     * \a reference pointer to the variable and the given \a defaultValue for
+     * the \a key used in the config file.
+     *
+     * If \a key is a null string, \a name is used as key.
+     *
+     * Returns the created item.
+     *
+     * \since 6.27
+     */
+    ItemPathList *
+    addItemPathList(const QString &name, QList<QString> &reference, const QList<QString> &defaultValue = QList<QString>(), const QString &key = QString());
+
+    /*!
+     * Registers an int list item with a unique \a name by passing a
+     * \a reference pointer to the variable and the given \a defaultValue for
+     * the \a key used in the config file.
+     *
+     * If \a key is a null string, \a name is used as key.
+     *
+     * Returns the created item.
+     *
+     * \since 6.27
+     */
+    ItemUrlList *addItemUrlList(const QString &name, QList<QUrl> &reference, const QList<QUrl> &defaultValue = QList<QUrl>(), const QString &key = QString());
+
+    /*!
      * Returns the KConfig object used for reading and writing the settings.
      */
     KConfig *config();

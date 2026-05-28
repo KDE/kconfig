@@ -1604,6 +1604,24 @@ KCoreConfigSkeleton::addItemIntList(const QString &name, QList<int> &reference, 
     return item;
 }
 
+KCoreConfigSkeleton::ItemPathList *
+KCoreConfigSkeleton::addItemPathList(const QString &name, QList<QString> &reference, const QList<QString> &defaultValue, const QString &key)
+{
+    KCoreConfigSkeleton::ItemPathList *item;
+    item = new KCoreConfigSkeleton::ItemPathList(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
+    addItem(item, name);
+    return item;
+}
+
+KCoreConfigSkeleton::ItemUrlList *
+KCoreConfigSkeleton::addItemUrlList(const QString &name, QList<QUrl> &reference, const QList<QUrl> &defaultValue, const QString &key)
+{
+    KCoreConfigSkeleton::ItemUrlList *item;
+    item = new KCoreConfigSkeleton::ItemUrlList(d->mCurrentGroup, key.isNull() ? name : key, reference, defaultValue);
+    addItem(item, name);
+    return item;
+}
+
 bool KCoreConfigSkeleton::isImmutable(const QString &name) const
 {
     KConfigSkeletonItem *item = findItem(name);
