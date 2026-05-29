@@ -1,0 +1,8 @@
+ClassName=Test19
+GenerateProperties=true
+Mutators=brightness
+File=test19.kcfg
+QmlRegistration=true
+Singleton=true
+DefaultValueGetters=true
+NameSpace=Foo

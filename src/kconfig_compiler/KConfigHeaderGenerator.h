@@ -47,6 +47,7 @@ private:
 
     void createConstructor();
     void createDestructor();
+    void createQtForwardDeclarations();
     void createForwardDeclarations();
     void createSingleton();
     void createSignals();

@@ -28,6 +28,8 @@ void KConfigHeaderGenerator::start()
     startHeaderGuards();
     createHeaders();
 
+    createQtForwardDeclarations();
+
     beginNamespaces();
 
     createForwardDeclarations();
@@ -381,16 +383,19 @@ void KConfigHeaderGenerator::createDestructor()
     stream() << whitespace() << "~" << cfg().className << "() override;\n\n";
 }
 
+void KConfigHeaderGenerator::createQtForwardDeclarations()
+{
+    if (cfg().qmlRegistration && cfg().singleton) {
+        stream() << "class QQmlEngine;\n";
+        stream() << "class QJSEngine;\n\n";
+    }
+}
+
 void KConfigHeaderGenerator::createForwardDeclarations()
 {
     // Private class declaration
     if (cfg().dpointer) {
         stream() << "class " << cfg().className << "Private;\n\n";
-    }
-
-    if (cfg().qmlRegistration && cfg().singleton) {
-        stream() << "class QQmlEngine;\n";
-        stream() << "class QJSEngine;\n\n";
     }
 }
 
