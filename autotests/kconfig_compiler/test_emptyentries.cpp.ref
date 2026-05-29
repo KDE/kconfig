@@ -11,8 +11,8 @@
 class QMakeBuilderSettingsHelper
 {
   public:
-    QMakeBuilderSettingsHelper() : q(nullptr) {}
-    ~QMakeBuilderSettingsHelper() { delete q; q = nullptr; }
+    QMakeBuilderSettingsHelper() noexcept : q(nullptr) {}
+    ~QMakeBuilderSettingsHelper() noexcept { delete q; q = nullptr; }
     QMakeBuilderSettingsHelper(const QMakeBuilderSettingsHelper&) = delete;
     QMakeBuilderSettingsHelper& operator=(const QMakeBuilderSettingsHelper&) = delete;
     QMakeBuilderSettings *q;

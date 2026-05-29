@@ -10,8 +10,8 @@
 class Test18Helper
 {
   public:
-    Test18Helper() : q(nullptr) {}
-    ~Test18Helper() { delete q; q = nullptr; }
+    Test18Helper() noexcept : q(nullptr) {}
+    ~Test18Helper() noexcept { delete q; q = nullptr; }
     Test18Helper(const Test18Helper&) = delete;
     Test18Helper& operator=(const Test18Helper&) = delete;
     Test18 *q;

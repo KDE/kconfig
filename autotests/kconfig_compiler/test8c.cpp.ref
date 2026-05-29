@@ -11,8 +11,8 @@
 class Test8cHelper
 {
   public:
-    Test8cHelper() : q(nullptr) {}
-    ~Test8cHelper() { delete q; q = nullptr; }
+    Test8cHelper() noexcept : q(nullptr) {}
+    ~Test8cHelper() noexcept { delete q; q = nullptr; }
     Test8cHelper(const Test8cHelper&) = delete;
     Test8cHelper& operator=(const Test8cHelper&) = delete;
     Test8c *q;

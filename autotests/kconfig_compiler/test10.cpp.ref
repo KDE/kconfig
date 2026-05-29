@@ -9,8 +9,8 @@
 class Test10Helper
 {
   public:
-    Test10Helper() : q(nullptr) {}
-    ~Test10Helper() { delete q; q = nullptr; }
+    Test10Helper() noexcept : q(nullptr) {}
+    ~Test10Helper() noexcept { delete q; q = nullptr; }
     Test10Helper(const Test10Helper&) = delete;
     Test10Helper& operator=(const Test10Helper&) = delete;
     Test10 *q;

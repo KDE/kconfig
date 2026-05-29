@@ -334,13 +334,13 @@ public:
         , mDefault(defaultValue)
         , mLoadedValue(defaultValue)
     {
-        setIsDefaultImpl([this] {
+        setIsDefaultImpl([this]() noexcept {
             return mReference == mDefault;
         });
-        setIsSaveNeededImpl([this] {
+        setIsSaveNeededImpl([this]() noexcept {
             return mReference != mLoadedValue;
         });
-        setGetDefaultImpl([this] {
+        setGetDefaultImpl([this]() noexcept {
             return QVariant::fromValue(mDefault);
         });
     }

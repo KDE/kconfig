@@ -146,8 +146,8 @@ void KConfigSourceGenerator::createSingletonImplementation()
     stream() << "class " << cfg().className << "Helper\n";
     stream() << '{' << '\n';
     stream() << "  public:\n";
-    stream() << "    " << cfg().className << "Helper() : q(nullptr) {}\n";
-    stream() << "    ~" << cfg().className << "Helper() { delete q; q = nullptr; }\n";
+    stream() << "    " << cfg().className << "Helper() noexcept : q(nullptr) {}\n";
+    stream() << "    ~" << cfg().className << "Helper() noexcept { delete q; q = nullptr; }\n";
     stream() << "    " << cfg().className << "Helper(const " << cfg().className << "Helper&) = delete;\n";
     stream() << "    " << cfg().className << "Helper& operator=(const " << cfg().className << "Helper&) = delete;\n";
     stream() << "    " << cfg().className << " *q;\n";

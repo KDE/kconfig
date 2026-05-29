@@ -9,8 +9,8 @@
 class Test4Helper
 {
   public:
-    Test4Helper() : q(nullptr) {}
-    ~Test4Helper() { delete q; q = nullptr; }
+    Test4Helper() noexcept : q(nullptr) {}
+    ~Test4Helper() noexcept { delete q; q = nullptr; }
     Test4Helper(const Test4Helper&) = delete;
     Test4Helper& operator=(const Test4Helper&) = delete;
     Test4 *q;

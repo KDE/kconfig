@@ -14,8 +14,8 @@ namespace Foo {
 class Test19Helper
 {
   public:
-    Test19Helper() : q(nullptr) {}
-    ~Test19Helper() { delete q; q = nullptr; }
+    Test19Helper() noexcept : q(nullptr) {}
+    ~Test19Helper() noexcept { delete q; q = nullptr; }
     Test19Helper(const Test19Helper&) = delete;
     Test19Helper& operator=(const Test19Helper&) = delete;
     Test19 *q;

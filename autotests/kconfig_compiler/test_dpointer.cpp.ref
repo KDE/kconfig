@@ -48,8 +48,8 @@ class TestDPointerPrivate
 class TestDPointerHelper
 {
   public:
-    TestDPointerHelper() : q(nullptr) {}
-    ~TestDPointerHelper() { delete q; q = nullptr; }
+    TestDPointerHelper() noexcept : q(nullptr) {}
+    ~TestDPointerHelper() noexcept { delete q; q = nullptr; }
     TestDPointerHelper(const TestDPointerHelper&) = delete;
     TestDPointerHelper& operator=(const TestDPointerHelper&) = delete;
     TestDPointer *q;

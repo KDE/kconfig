@@ -75,7 +75,7 @@ struct TestSettersArg {
         : obj(object)
     {
         // we can also call static methods using object->foo() so this works for all four cases
-        getter = [object]() {
+        getter = [object]() noexcept {
             return object->foo();
         };
         defaultGetter = [object]() {
