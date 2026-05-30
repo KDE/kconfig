@@ -7,7 +7,6 @@
 
 #include "kstandardactions.h"
 #include "kstandardactions_p.h"
-#include "moc_kstandardactions_p.cpp"
 
 #include <KStandardShortcutWatcher>
 #include <QGuiApplication>
