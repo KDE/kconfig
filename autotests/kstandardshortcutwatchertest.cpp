@@ -72,7 +72,7 @@ void KStandardShortcutWatcherTest::testDataUpdated()
 
 void KStandardShortcutWatcherTest::testRemovedShortcut()
 {
-#ifdef Q_OS_WIN
+#ifndef WITH_QTDBUS
     QSKIP("KConfig is built without DBus on Windows");
 #endif
     static const auto shandardShortcut = KStandardShortcut::Help;
