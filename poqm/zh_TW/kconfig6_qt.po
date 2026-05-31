@@ -38,17 +38,17 @@ msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "預設"
 
-#: gui/kstandardactions.cpp:49
+#: gui/kstandardactions.cpp:48
 msgctxt "go back|"
 msgid "&Back"
 msgstr "返回(&B)"
 
-#: gui/kstandardactions.cpp:56
+#: gui/kstandardactions.cpp:55
 msgctxt "go forward|"
 msgid "&Forward"
 msgstr "往前(&F)"
 
-#: gui/kstandardactions.cpp:63
+#: gui/kstandardactions.cpp:62
 msgctxt "home page|"
 msgid "&Home"
 msgstr "首頁(&H)"

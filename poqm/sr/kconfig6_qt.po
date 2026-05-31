@@ -36,7 +36,7 @@ msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "Подразумевано"
 
-#: gui/kstandardactions.cpp:49
+#: gui/kstandardactions.cpp:48
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Back"
@@ -44,7 +44,7 @@ msgctxt "go back|"
 msgid "&Back"
 msgstr "Назад"
 
-#: gui/kstandardactions.cpp:56
+#: gui/kstandardactions.cpp:55
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action"
 #| msgid "Forward"
@@ -52,7 +52,7 @@ msgctxt "go forward|"
 msgid "&Forward"
 msgstr "Напред"
 
-#: gui/kstandardactions.cpp:63
+#: gui/kstandardactions.cpp:62
 #, fuzzy
 #| msgctxt "KStandardShortcut|@action Go to main page"
 #| msgid "Home"

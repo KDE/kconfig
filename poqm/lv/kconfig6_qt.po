@@ -39,17 +39,17 @@ msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "Noklusējums"
 
-#: gui/kstandardactions.cpp:49
+#: gui/kstandardactions.cpp:48
 msgctxt "go back|"
 msgid "&Back"
 msgstr "&Atpakaļ"
 
-#: gui/kstandardactions.cpp:56
+#: gui/kstandardactions.cpp:55
 msgctxt "go forward|"
 msgid "&Forward"
 msgstr "&Uz priekšu"
 
-#: gui/kstandardactions.cpp:63
+#: gui/kstandardactions.cpp:62
 msgctxt "home page|"
 msgid "&Home"
 msgstr "&Mājas"

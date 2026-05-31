@@ -30,17 +30,17 @@ msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "मूलभूतम्‌"
 
-#: gui/kstandardactions.cpp:49
+#: gui/kstandardactions.cpp:48
 msgctxt "go back|"
 msgid "&Back"
 msgstr "&पृष्ठभागः"
 
-#: gui/kstandardactions.cpp:56
+#: gui/kstandardactions.cpp:55
 msgctxt "go forward|"
 msgid "&Forward"
 msgstr "&अग्रतः"
 
-#: gui/kstandardactions.cpp:63
+#: gui/kstandardactions.cpp:62
 msgctxt "home page|"
 msgid "&Home"
 msgstr "&गृहम्‌"

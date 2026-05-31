@@ -30,17 +30,17 @@ msgctxt "KEMailSettings|"
 msgid "Default"
 msgstr "ნაგულისხმევი"
 
-#: gui/kstandardactions.cpp:49
+#: gui/kstandardactions.cpp:48
 msgctxt "go back|"
 msgid "&Back"
 msgstr "&უკან"
 
-#: gui/kstandardactions.cpp:56
+#: gui/kstandardactions.cpp:55
 msgctxt "go forward|"
 msgid "&Forward"
 msgstr "&წინ"
 
-#: gui/kstandardactions.cpp:63
+#: gui/kstandardactions.cpp:62
 msgctxt "home page|"
 msgid "&Home"
 msgstr "&საწყისი"
