@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-04-01 08:39-0400\n"
+"PO-Revision-Date: 2026-05-30 17:10-0400\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: core/kconfig.cpp:991
 msgctxt "KConfig|"
@@ -79,7 +79,7 @@ msgstr "يېقىنقىنى ئاچ(&R)"
 #: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open a document which was recently opened"
-msgstr "يېقىندا ئاچقان بىر پۈتۈكنى ئاچىدۇ"
+msgstr "يېقىندا ئاچقان بىر پۈتۈكنى ئاچ"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
@@ -99,7 +99,7 @@ msgstr "باشقا ئاتتا ساقلا(&A)…"
 #: gui/kstandardactions_p.h:68
 msgctxt "KStandardActions|"
 msgid "Save document under a new name"
-msgstr "پۈتۈكنى يېڭى بىر ئاتتا ساقلايدۇ"
+msgstr "پۈتۈكنى يېڭى ئاتتا ساقلا"
 
 #: gui/kstandardactions_p.h:69
 msgctxt "KStandardActions|"
@@ -289,12 +289,12 @@ msgstr "بەت ئېگىزلىكىنى كۆزنەككە ماسلاشتۇر"
 #: gui/kstandardactions_p.h:93
 msgctxt "KStandardActions|"
 msgid "Zoom &In"
-msgstr "چوڭايت(&I)"
+msgstr "يېقىنلات(&I)"
 
 #: gui/kstandardactions_p.h:94
 msgctxt "KStandardActions|"
 msgid "Zoom &Out"
-msgstr "كىچىكلەت(&O)"
+msgstr "يىراقلات(&O)"
 
 #: gui/kstandardactions_p.h:95
 msgctxt "KStandardActions|"
@@ -507,7 +507,7 @@ msgstr "%1 ھەققىدە(&A)"
 #: gui/kstandardactions_p.h:134
 msgctxt "KStandardActions|"
 msgid "About &KDE"
-msgstr "ك د ئې(&KDE) ھەققىدە"
+msgstr "&KDE ھەققىدە"
 
 #: gui/kstandardactions_p.h:135
 msgctxt "KStandardActions|"
@@ -602,7 +602,7 @@ msgstr "ھەممىنى تاللا"
 #: gui/kstandardshortcut.cpp:98
 msgctxt "KStandardShortcut|@action"
 msgid "Deselect"
-msgstr "ئەكسىچە تاللا"
+msgstr "تاللىما"
 
 #: gui/kstandardshortcut.cpp:101
 msgctxt "KStandardShortcut|@action"
@@ -647,7 +647,7 @@ msgstr "باشلا"
 #: gui/kstandardshortcut.cpp:163
 msgctxt "KStandardShortcut|@action End of document"
 msgid "End"
-msgstr "تامام"
+msgstr "ئاخىر"
 
 #: gui/kstandardshortcut.cpp:173
 msgctxt "KStandardShortcut|@action"
@@ -712,12 +712,12 @@ msgstr "خەتكۈش قوش"
 #: gui/kstandardshortcut.cpp:286
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom In"
-msgstr "چوڭايت"
+msgstr "يېقىنلات"
 
 #: gui/kstandardshortcut.cpp:287
 msgctxt "KStandardShortcut|@action"
 msgid "Zoom Out"
-msgstr "كىچىكلىتىش"
+msgstr "يىراقلات"
 
 #: gui/kstandardshortcut.cpp:290
 msgctxt "KStandardShortcut|@action"
@@ -797,7 +797,7 @@ msgstr "ئەسلىگە ياندۇر"
 #: gui/kstandardshortcut.cpp:385
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr "بېسىشنى ئالدىن كۆر"
+msgstr "بېسىشنى ئالدىن كۆزەت"
 
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
@@ -887,12 +887,12 @@ msgstr "پىروگرامما سەپلە"
 #: gui/kstandardshortcut.cpp:447
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Toolbars"
-msgstr "قورال بالداق سەپلىمە"
+msgstr "قورال بالداق سەپلە"
 
 #: gui/kstandardshortcut.cpp:455
 msgctxt "KStandardShortcut|@action"
 msgid "Configure Notifications"
-msgstr "ئۇقتۇرۇش سەپلەش"
+msgstr "ئۇقتۇرۇش سەپلە"
 
 #: gui/kstandardshortcut.cpp:461
 msgctxt "KStandardShortcut|@action"

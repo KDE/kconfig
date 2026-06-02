@@ -3,13 +3,13 @@
 # Roman Paholík <wizzardsk@gmail.com>, 2014, 2015, 2016, 2022, 2023.
 # Mthw <jari_45@hotmail.com>, 2019.
 # SPDX-FileCopyrightText: 2019, 2020, 2024 Matej Mrenica <matejm98mthw@gmail.com>
-# SPDX-FileCopyrightText: 2025 Lucia Mrenica <lucia.mrenica@gmail.com>
+# SPDX-FileCopyrightText: 2025-2026 Lucia Mrenica <lucia.mrenica@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2025-03-23 12:09+0100\n"
+"PO-Revision-Date: 2026-06-01 20:01+0200\n"
 "Last-Translator: Lucia Mrenica <lucia.mrenica@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 26.04.1\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:991
@@ -85,7 +85,7 @@ msgstr "Otvoriť dokument, ktorý bol nedávno otvorený"
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
 msgid "&Save"
-msgstr "1Uložiť"
+msgstr "Uložiť"
 
 #: gui/kstandardactions_p.h:67
 msgctxt "KStandardActions|"
