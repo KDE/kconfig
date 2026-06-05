@@ -413,7 +413,7 @@ bool KConfigIniBackend::writeConfig(const QByteArray &locale, KEntryMap &entryMa
     }
 
     for (auto &[key, entry] : entryMap) {
-        if (!key.mKey.isEmpty() && !entry.bDirty) { // not dirty, doesn't overwrite entry in writeMap. skips default entries, too.
+        if (!key.mKey.isEmpty() && !entry.bDirty && !entry.bDeleted) { // not dirty, doesn't overwrite entry in writeMap. skips default entries, too.
             continue;
         }
 
