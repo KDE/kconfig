@@ -1997,6 +1997,11 @@ void KConfigTest::testMoveValuesTo()
     QFile targetReadFile(targetFile.fileName());
     QVERIFY(targetReadFile.open(QFile::ReadOnly));
     QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
+
+    // we shall not crash if one of the groups is not valid, see bug 520556
+    KConfigGroup invalid;
+    invalid.moveValuesTo({"test1", "test_empty", "does_not_exist", "my_path", "GlobalKey"}, targetGroup);
+    grp.moveValuesTo({"test1", "test_empty", "does_not_exist", "my_path", "GlobalKey"}, invalid);
 }
 
 void KConfigTest::testMoveValuesToWithNestedGroup()

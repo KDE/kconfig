@@ -1243,6 +1243,9 @@ void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
 
 void KConfigGroup::moveValue(const char *key, KConfigGroup &other, WriteConfigFlags pFlags)
 {
+    Q_ASSERT(isValid());
+    Q_ASSERT(other.isValid());
+
     const QString groupName = d->fullName();
     const auto entry = config()->d_ptr->lookupInternalEntry(groupName, key, KEntryMap::SearchLocalized);
 
@@ -1264,8 +1267,9 @@ void KConfigGroup::moveValue(const char *key, KConfigGroup &other, WriteConfigFl
 
 void KConfigGroup::moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags)
 {
-    Q_ASSERT(isValid());
-    Q_ASSERT(other.isValid());
+    if (!isValid() || !other.isValid()) {
+        return;
+    }
 
     for (const auto key : keys) {
         moveValue(key, other, pFlags);
@@ -1274,8 +1278,9 @@ void KConfigGroup::moveValuesTo(const QList<const char *> &keys, KConfigGroup &o
 
 void KConfigGroup::moveValuesTo(KConfigGroup &other, WriteConfigFlags pFlags)
 {
-    Q_ASSERT(isValid());
-    Q_ASSERT(other.isValid());
+    if (!isValid() || !other.isValid()) {
+        return;
+    }
 
     const QStringList keys = keyList();
     for (const QString &key : keys) {
