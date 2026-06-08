@@ -9,6 +9,8 @@
 #include <QFile>
 #include <QLocale>
 
+#include <optional>
+
 /**
  * @brief Helper to store the current default QLocale and resetting to it in the dtor.
  **/
@@ -26,6 +28,41 @@ public:
 
 private:
     QLocale m_defaultLocale;
+};
+
+/*!
+ * RAII-style helper to set an environment variable for a test which is automatically reset after the test.
+ */
+class EnvironmentVariableOverride
+{
+public:
+    EnvironmentVariableOverride(const char *varName, QByteArrayView value)
+        : mVarName{varName}
+    {
+        if (mVarName.isEmpty()) {
+            return;
+        }
+        if (qEnvironmentVariableIsSet(mVarName.constData())) {
+            mOldValue = qgetenv(mVarName.constData());
+        }
+        qputenv(mVarName.constData(), value);
+    }
+
+    ~EnvironmentVariableOverride()
+    {
+        if (mVarName.isEmpty()) {
+            return;
+        }
+        if (mOldValue.has_value()) {
+            qputenv(mVarName.constData(), mOldValue.value());
+        } else {
+            qunsetenv(mVarName.constData());
+        }
+    }
+
+private:
+    QByteArray mVarName;
+    std::optional<QByteArray> mOldValue;
 };
 
 static QList<QByteArray> readLinesFrom(const QString &path)
