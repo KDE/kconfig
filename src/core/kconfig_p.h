@@ -114,12 +114,16 @@ private:
     }
 
     bool setLocale(const QString &aLocale);
-    QStringList getGlobalFiles() const;
-    void parseGlobalFiles();
+    void ensureGlobalFilesAreInitialized() const;
+    QStringList getGlobalSystemFiles() const;
+    QStringList getGlobalUserFiles() const;
+    KConfigIniBackend::ParseInfo parseGlobalSystemFiles();
+    void parseGlobalUserFiles();
+    void parseSystemConfigFiles();
 #ifdef Q_OS_WIN
     void parseWindowsDefaults();
 #endif
-    void parseConfigFiles();
+    void parseUserConfigFiles();
     void initCustomized(KConfig *);
     bool lockLocal();
 };

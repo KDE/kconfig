@@ -2508,8 +2508,8 @@ void KConfigTest::testSystemAndUserConfig()
     KConfig config(configFileName);
     KConfigGroup group(&config, u"General"_s);
     QCOMPARE(group.readEntry("system_system_kdeglobals", 0), 1);
-    QCOMPARE(group.readEntry("system_kdeglobals", 0), 4); // FIXME: should be 2
-    QCOMPARE(group.readEntry("system_appnamerc", 0), 4); // FIXME: should be 3
+    QCOMPARE(group.readEntry("system_kdeglobals", 0), 2);
+    QCOMPARE(group.readEntry("system_appnamerc", 0), 3);
     QCOMPARE(group.readEntry("user_system_kdeglobals", 0), 4);
     QCOMPARE(group.readEntry("user_kdeglobals", 0), 5);
     QCOMPARE(group.readEntry("user_appnamerc", 0), 6);
