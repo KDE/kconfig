@@ -15,6 +15,7 @@ static const QByteArray key1{"A Key"};
 static const QByteArray key2{"Another Key"};
 static const QByteArray value1{"A value"};
 static const QByteArray value2{"A different value"};
+static const QByteArray value3{"Yet another value"};
 
 QTEST_MAIN(KEntryMapTest)
 
@@ -183,6 +184,30 @@ void KEntryMapTest::testImmutable()
 
     map.setEntry(group1, key1, value1, EntryOptions()); // should be ignored since the group is immutable
     QCOMPARE(map.constFindEntry(group1, key1), map.cend());
+
+    map.clear();
+
+    map.setEntry(group1, key1, value1, EntryImmutable);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.bImmutable, true);
+
+    map.setEntry(group1, key1, value2, EntryDefault);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.mValue, value1); // verify the value didn't change
+    QCOMPARE(map.constFindEntry(group1, key1, SearchDefaults)->second.mValue, value2); // but the default was changed
+
+    map.clear();
+
+    map.setEntry(group1, key1, value1, EntryDefault);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.mValue, value1);
+    QCOMPARE(map.constFindEntry(group1, key1, SearchDefaults)->second.mValue, value1);
+
+    map.setEntry(group1, key1, value2, EntryImmutable);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.bImmutable, true);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.mValue, value2);
+    QCOMPARE(map.constFindEntry(group1, key1, SearchDefaults)->second.mValue, value1); // verify the default didn't change
+
+    map.setEntry(group1, key1, value3, EntryDefault);
+    QCOMPARE(map.constFindEntry(group1, key1)->second.mValue, value2); // verify the value didn't change
+    QCOMPARE(map.constFindEntry(group1, key1, SearchDefaults)->second.mValue, value3); // but the default was changed
 }
 
 void KEntryMapTest::testLocale()

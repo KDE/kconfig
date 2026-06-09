@@ -93,6 +93,9 @@ private Q_SLOTS:
     void testKdeglobalsVsDefault();
     void testChrono();
 
+    // overwrites the kdeglobals file created by initTestCase()
+    void testImmutableVsDefault();
+
     // should be last
     void testSyncOnExit();
 

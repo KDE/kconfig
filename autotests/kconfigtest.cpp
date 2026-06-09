@@ -121,6 +121,23 @@ void initLocale()
 Q_CONSTRUCTOR_FUNCTION(initLocale)
 #endif
 
+static bool writeTextFile(const QString &fileName, const QLatin1StringView &content)
+{
+    if (!QDir().mkpath(QFileInfo(fileName).path())) {
+        qWarning() << "Failed to make path" << QFileInfo(fileName).path();
+        return false;
+    }
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Failed to open file" << fileName << "for writing";
+        return false;
+    }
+    QTextStream out(&file);
+    out << content;
+
+    return true;
+}
+
 void KConfigTest::initTestCase()
 {
     // ensure we don't use files in the real config directory
@@ -2296,6 +2313,37 @@ void KConfigTest::testKdeglobalsVsDefault()
     local.sync();
     local.reparseConfiguration();
     QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), QStringLiteral("defaultcpp"));
+}
+
+void KConfigTest::testImmutableVsDefault()
+{
+    QTemporaryDir systemDir;
+    EnvironmentVariableOverride xdgConfigDirsOverride{"XDG_CONFIG_DIRS", qPrintable(systemDir.path())};
+
+    const QString systemConfigDir = systemDir.path() + u'/';
+    const QString userConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/';
+    const QString testSubDir = QString::fromLatin1(QTest::currentTestFunction()) + u'/';
+    const QString configFileName = testSubDir + u"appnamerc"_s;
+
+    QVERIFY(writeTextFile(systemConfigDir + configFileName,
+                          "[ImmutableKdeglobals]\n"_L1
+                          "user_kdeglobals_immutable_with_default=1\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + "kdeglobals"_L1,
+                          "[ImmutableKdeglobals]\n"_L1
+                          "user_kdeglobals_immutable_without_default[$i]=2\n"_L1
+                          "user_kdeglobals_immutable_with_default[$i]=2\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + configFileName,
+                          "[ImmutableKdeglobals]\n"_L1
+                          "user_kdeglobals_immutable_without_default=3\n"_L1
+                          "user_kdeglobals_immutable_with_default=3\n"_L1));
+
+    KConfig config(configFileName);
+    KConfigGroup group(&config, u"ImmutableKdeglobals"_s);
+    QCOMPARE(group.readEntry("user_kdeglobals_immutable_without_default", 0), 2);
+    QCOMPARE(group.readEntry("user_kdeglobals_immutable_with_default", 0), 2);
+
+    QFile::remove(userConfigDir + "kdeglobals"_L1);
+    QDir(userConfigDir + testSubDir).removeRecursively();
 }
 
 #include "moc_kconfigtest.cpp"
