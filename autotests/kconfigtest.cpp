@@ -2361,4 +2361,35 @@ void KConfigTest::testKdeglobalsVsDefault()
     QCOMPARE(generalLocal.readEntry("testRestore", "defaultcpp"), QStringLiteral("defaultcpp"));
 }
 
+void KConfigTest::testImmutableVsDefault()
+{
+    QTemporaryDir systemDir;
+    EnvironmentVariableOverride xdgConfigDirsOverride{"XDG_CONFIG_DIRS", qPrintable(systemDir.path())};
+
+    const QString systemConfigDir = systemDir.path() + u'/';
+    const QString userConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/';
+    const QString testSubDir = QString::fromLatin1(QTest::currentTestFunction()) + u'/';
+    const QString configFileName = testSubDir + u"appnamerc"_s;
+
+    QVERIFY(writeTextFile(systemConfigDir + configFileName,
+                          "[ImmutableKdeglobals]\n"_L1
+                          "user_kdeglobals_immutable_with_default=1\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + "kdeglobals"_L1,
+                          "[ImmutableKdeglobals]\n"_L1
+                          "user_kdeglobals_immutable_without_default[$i]=2\n"_L1
+                          "user_kdeglobals_immutable_with_default[$i]=2\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + configFileName,
+                          "[ImmutableKdeglobals]\n"_L1
+                          "user_kdeglobals_immutable_without_default=3\n"_L1
+                          "user_kdeglobals_immutable_with_default=3\n"_L1));
+
+    KConfig config(configFileName);
+    KConfigGroup group(&config, u"ImmutableKdeglobals"_s);
+    QCOMPARE(group.readEntry("user_kdeglobals_immutable_without_default", 0), 2);
+    QCOMPARE(group.readEntry("user_kdeglobals_immutable_with_default", 0), 2);
+
+    QFile::remove(userConfigDir + "kdeglobals"_L1);
+    QDir(userConfigDir + testSubDir).removeRecursively();
+}
+
 #include "moc_kconfigtest.cpp"
