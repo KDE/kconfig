@@ -154,9 +154,8 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
         // qDebug() << "inserting" << k << "=" << value;
         insert_or_assign(k, e);
         if (k.bDefault) {
-            k.bDefault = false;
-            // qDebug() << "also inserting" << k << "=" << value;
-            insert_or_assign(k, e);
+            const EntryOptions optionsWithoutDefault = EntryOptions(options).setFlag(EntryDefault, false);
+            setEntry(group, key, value, optionsWithoutDefault);
         }
         // TODO check for presence of unlocalized key
         return true;
@@ -176,9 +175,8 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
         // qDebug() << "changing" << k << "from" << it->second.mValue << "to" << value << e;
         it->second = e;
         if (k.bDefault) {
-            KEntryKey nonDefaultKey(k);
-            nonDefaultKey.bDefault = false;
-            insert_or_assign(nonDefaultKey, e);
+            const EntryOptions optionsWithoutDefault = EntryOptions(options).setFlag(EntryDefault, false);
+            setEntry(group, key, value, optionsWithoutDefault);
         }
         if (!(options & EntryLocalized)) {
             KEntryKey theKey(group, key, true, false);
