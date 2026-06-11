@@ -53,6 +53,7 @@ int main(int argc, char **argv)
     parser.addOption(QCommandLineOption(QStringLiteral("default"), QCoreApplication::translate("main", "Default value"), QStringLiteral("value")));
     parser.addOption(QCommandLineOption(QStringLiteral("type"), QCoreApplication::translate("main", "Type of variable"), QStringLiteral("type")));
     parser.addOption(QCommandLineOption(QStringLiteral("dump"), QCoreApplication::translate("main", "Dump all entries")));
+    parser.addOption(QCommandLineOption(QStringLiteral("dump-defaults"), QCoreApplication::translate("main", "Dump default values of all entries")));
     parser.addOption(
         QCommandLineOption(QStringLiteral("include-globals"),
                            QCoreApplication::translate("main", "Include globals; by default, the global config files are not read if a file is specified")));
@@ -64,9 +65,11 @@ int main(int argc, char **argv)
     QString file = parser.value(QStringLiteral("file"));
     QString dflt = parser.value(QStringLiteral("default"));
     QString type = parser.value(QStringLiteral("type")).toLower();
+    const bool dumpDefaults = parser.isSet(QStringLiteral("dump-defaults"));
+    const bool dumpEntries = !dumpDefaults && parser.isSet(QStringLiteral("dump"));
     const bool includeGlobals = parser.isSet(QStringLiteral("include-globals"));
 
-    if ((key.isNull() || !parser.positionalArguments().isEmpty()) && !parser.isSet(QStringLiteral("dump"))) {
+    if ((key.isNull() || !parser.positionalArguments().isEmpty()) && !dumpEntries && !dumpDefaults) {
         parser.showHelp(1);
     }
 
@@ -95,7 +98,10 @@ int main(int argc, char **argv)
         cfgGroup = cfgGroup.group(grp);
     }
 
-    if (parser.isSet(QStringLiteral("dump"))) {
+    if (dumpEntries || dumpDefaults) {
+        if (dumpDefaults) {
+            konfig->setReadDefaults(true);
+        }
         QStringList groups = konfig->groupList();
         groups.sort();
         for (const QString &groupName : groups) {
@@ -107,7 +113,9 @@ int main(int argc, char **argv)
             keys.sort();
 
             for (const QString &key : keys) {
-                fprintf(stdout, "  %s: %s\n", qPrintable(key), group.readEntry(key).toStdString().c_str());
+                if (dumpEntries || (dumpDefaults && group.hasDefault(key))) {
+                    fprintf(stdout, "  %s: %s\n", qPrintable(key), group.readEntry(key).toStdString().c_str());
+                }
             }
 
             fprintf(stdout, "\n");
