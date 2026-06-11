@@ -96,16 +96,18 @@ int main(int argc, char **argv)
     }
 
     if (parser.isSet(QStringLiteral("dump"))) {
-        const QStringList groups = konfig->groupList();
+        QStringList groups = konfig->groupList();
+        groups.sort();
         for (const QString &groupName : groups) {
             const KConfigGroup group = konfig->group(groupName);
 
             fprintf(stdout, "Group: %s\n", qPrintable(groupName));
 
-            const auto entries = group.entryMap();
+            QStringList keys = group.keyList();
+            keys.sort();
 
-            for (const auto [key, value] : entries.asKeyValueRange()) {
-                fprintf(stdout, "  %s: %s\n", qPrintable(key), value.toStdString().c_str());
+            for (const QString &key : keys) {
+                fprintf(stdout, "  %s: %s\n", qPrintable(key), group.readEntry(key).toStdString().c_str());
             }
 
             fprintf(stdout, "\n");
