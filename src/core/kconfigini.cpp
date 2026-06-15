@@ -199,6 +199,9 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
                             break;
                         case 'd':
                             entryOptions |= KEntryMap::EntryDeleted;
+                            if (bDefault) {
+                                entryOptions |= KEntryMap::EntryDefault;
+                            }
                             aKey.truncate(start);
                             printableToString(aKey, mDeviceInterface.get(), lineNo);
                             entryMap.setEntry(currentGroup, aKey.toByteArray(), QByteArray(), entryOptions);

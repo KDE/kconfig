@@ -121,6 +121,23 @@ void initLocale()
 Q_CONSTRUCTOR_FUNCTION(initLocale)
 #endif
 
+static bool writeTextFile(const QString &fileName, const QLatin1StringView &content)
+{
+    if (!QDir().mkpath(QFileInfo(fileName).path())) {
+        qWarning() << "Failed to make path" << QFileInfo(fileName).path();
+        return false;
+    }
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Failed to open file" << fileName << "for writing";
+        return false;
+    }
+    QTextStream out(&file);
+    out << content;
+
+    return true;
+}
+
 void KConfigTest::initTestCase()
 {
     // ensure we don't use files in the real config directory
@@ -892,6 +909,39 @@ void KConfigTest::testDelete()
     for (const QByteArray &item : listLines2) {
         QVERIFY(!item.contains("ipod"));
     }
+}
+
+void KConfigTest::testDeleteDefaults()
+{
+    const QString userConfigDir = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/';
+    const QString configFile = s_test_subdir + QString::fromLatin1(QTest::currentTestFunction());
+    const QString defaults1File = configFile + QLatin1String(".defaults1");
+    const QString defaults2File = configFile + QLatin1String(".defaults2");
+
+    QVERIFY(writeTextFile(userConfigDir + defaults1File,
+                          "[any group]\n"_L1
+                          "entry=Default\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + defaults2File,
+                          "[any group]\n"_L1
+                          "entry[$d]\n"_L1));
+    QVERIFY(writeTextFile(userConfigDir + configFile,
+                          "[any group]\n"_L1
+                          "entry=Value\n"_L1));
+
+    KConfig config(configFile, KConfig::NoGlobals);
+    config.addConfigSources(QStringList{userConfigDir + defaults1File, userConfigDir + defaults2File});
+
+    KConfigGroup group = config.group(u"any group"_s);
+
+    config.setReadDefaults(true);
+    QCOMPARE(group.readEntry("entry", QString()), QString());
+
+    config.setReadDefaults(false);
+    QVERIFY(!group.hasDefault("entry"));
+    QCOMPARE(group.readEntry("entry", QString()), u"Value"_s);
+
+    group.revertToDefault("entry");
+    QCOMPARE(group.readEntry("entry", QString()), QString());
 }
 
 void KConfigTest::testDefaultGroup()
