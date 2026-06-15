@@ -1,0 +1,1062 @@
+# SPDX-FileCopyrightText: 2026 Kisaragi Hiu <mail@kisaragi-hiu.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2026-06-08 01:54+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Taiwanese Hokkien <zh-l10n@lists.slat.org>\n"
+"Language: nan_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 26.07.70\n"
+
+#: core/kconfig.cpp:993
+msgctxt "KConfig|"
+msgid "Please contact your system administrator."
+msgstr "請 kā 你的系統管理者聯絡。"
+
+#: core/kconfigini.cpp:456
+#, qt-format
+msgctxt "KConfigIniBackend|"
+msgid "Configuration file \"%1\" not writable.\n"
+msgstr "設定檔案 \"%1\" 無法度寫入。\n"
+
+#: core/kemailsettings.cpp:128 core/kemailsettings.cpp:131
+#: core/kemailsettings.cpp:139
+msgctxt "KEMailSettings|"
+msgid "Default"
+msgstr "預設"
+
+#: gui/kstandardactions.cpp:48
+msgctxt "go back|"
+msgid "&Back"
+msgstr "轉去(&B)"
+
+#: gui/kstandardactions.cpp:55
+msgctxt "go forward|"
+msgid "&Forward"
+msgstr "向前(&F)"
+
+#: gui/kstandardactions.cpp:62
+msgctxt "home page|"
+msgid "&Home"
+msgstr "頭頁(&H)"
+
+#: gui/kstandardactions_p.h:64
+msgctxt "KStandardActions|"
+msgid "&New"
+msgstr "建立(&N)"
+
+#: gui/kstandardactions_p.h:64
+msgctxt "KStandardActions|"
+msgid "Create new document"
+msgstr "建立新的文件"
+
+#: gui/kstandardactions_p.h:65
+msgctxt "KStandardActions|"
+msgid "&Open…"
+msgstr "拍開(&O)…"
+
+#: gui/kstandardactions_p.h:65
+msgctxt "KStandardActions|"
+msgid "Open an existing document"
+msgstr "開現存文件"
+
+#: gui/kstandardactions_p.h:66
+msgctxt "KStandardActions|"
+msgid "Open &Recent"
+msgstr "開近來用--ê(&R)"
+
+#: gui/kstandardactions_p.h:66
+msgctxt "KStandardActions|"
+msgid "Open a document which was recently opened"
+msgstr "開最近有開過的文件"
+
+#: gui/kstandardactions_p.h:67
+msgctxt "KStandardActions|"
+msgid "&Save"
+msgstr "儲存(&S)"
+
+#: gui/kstandardactions_p.h:67
+msgctxt "KStandardActions|"
+msgid "Save document"
+msgstr "儲存文件"
+
+#: gui/kstandardactions_p.h:68
+msgctxt "KStandardActions|"
+msgid "Save &As…"
+msgstr "用別个名儲存(&A)…"
+
+#: gui/kstandardactions_p.h:68
+msgctxt "KStandardActions|"
+msgid "Save document under a new name"
+msgstr "用新的名儲存文件"
+
+#: gui/kstandardactions_p.h:69
+msgctxt "KStandardActions|"
+msgid "Re&vert"
+msgstr "回復(&V)"
+
+#: gui/kstandardactions_p.h:69
+msgctxt "KStandardActions|"
+msgid "Revert unsaved changes made to document"
+msgstr "Kā 文件猶未儲存 ê 變更回復掉"
+
+#: gui/kstandardactions_p.h:70
+msgctxt "KStandardActions|"
+msgid "&Close"
+msgstr "關(&C)"
+
+#: gui/kstandardactions_p.h:70
+msgctxt "KStandardActions|"
+msgid "Close document"
+msgstr "關掉文件"
+
+#: gui/kstandardactions_p.h:71
+msgctxt "KStandardActions|"
+msgid "&Print…"
+msgstr "列印(&P)…"
+
+#: gui/kstandardactions_p.h:71
+msgctxt "KStandardActions|"
+msgid "Print document"
+msgstr "列印文件"
+
+#: gui/kstandardactions_p.h:72
+msgctxt "KStandardActions|"
+msgid "Print Previe&w"
+msgstr "預覽列印(&W)"
+
+#: gui/kstandardactions_p.h:72
+msgctxt "KStandardActions|"
+msgid "Show a print preview of document"
+msgstr "顯示文件 ê 列印了後 ê 結果 ê 預覽"
+
+#: gui/kstandardactions_p.h:73
+msgctxt "KStandardActions|"
+msgid "&Mail…"
+msgstr "E&mail…"
+
+#: gui/kstandardactions_p.h:73
+msgctxt "KStandardActions|"
+msgid "Send document by mail"
+msgstr "用 email 傳文件"
+
+#: gui/kstandardactions_p.h:74
+msgctxt "KStandardActions|"
+msgid "&Quit"
+msgstr "離開(&Q)"
+
+#: gui/kstandardactions_p.h:74
+msgctxt "KStandardActions|"
+msgid "Quit application"
+msgstr "離開應用程式"
+
+#: gui/kstandardactions_p.h:76
+msgctxt "KStandardActions|"
+msgid "&Undo"
+msgstr "復原(&U)"
+
+#: gui/kstandardactions_p.h:76
+msgctxt "KStandardActions|"
+msgid "Undo last action"
+msgstr "復原頂改 ê 動作"
+
+#: gui/kstandardactions_p.h:77
+msgctxt "KStandardActions|"
+msgid "Re&do"
+msgstr "取消復原"
+
+#: gui/kstandardactions_p.h:77
+msgctxt "KStandardActions|"
+msgid "Redo last undone action"
+msgstr "Kah 頂改復原 ê 動作 koh 做一擺"
+
+#: gui/kstandardactions_p.h:78
+msgctxt "KStandardActions|"
+msgid "Cu&t"
+msgstr "鉸落來(&T)"
+
+#: gui/kstandardactions_p.h:78
+msgctxt "KStandardActions|"
+msgid "Cut selection to clipboard"
+msgstr "Kā 選的鉸落來到剪貼簿"
+
+#: gui/kstandardactions_p.h:79
+msgctxt "KStandardActions|"
+msgid "&Copy"
+msgstr "Khóo-pih(&C)"
+
+#: gui/kstandardactions_p.h:79
+msgctxt "KStandardActions|"
+msgid "Copy selection to clipboard"
+msgstr "Kā 選的 khóo-pih 到剪貼簿"
+
+#: gui/kstandardactions_p.h:80
+msgctxt "KStandardActions|"
+msgid "&Paste"
+msgstr "貼起去(&P)"
+
+#: gui/kstandardactions_p.h:80
+msgctxt "KStandardActions|"
+msgid "Paste clipboard content"
+msgstr "Kā 剪貼簿的內容貼起去"
+
+#: gui/kstandardactions_p.h:81
+msgctxt "KStandardActions|"
+msgid "C&lear"
+msgstr "清除(&L)"
+
+#: gui/kstandardactions_p.h:82
+msgctxt "KStandardActions|"
+msgid "Select &All"
+msgstr "全選(&A)"
+
+#: gui/kstandardactions_p.h:83
+msgctxt "KStandardActions|"
+msgid "Dese&lect"
+msgstr "䆀選(&L)"
+
+#: gui/kstandardactions_p.h:84
+msgctxt "KStandardActions|"
+msgid "&Find…"
+msgstr "揣(&F)…"
+
+#: gui/kstandardactions_p.h:85
+msgctxt "KStandardActions|"
+msgid "Find &Next"
+msgstr "揣下一个(&N)"
+
+#: gui/kstandardactions_p.h:86
+msgctxt "KStandardActions|"
+msgid "Find Pre&vious"
+msgstr "揣頂一个(&V)"
+
+#: gui/kstandardactions_p.h:87
+msgctxt "KStandardActions|"
+msgid "&Replace…"
+msgstr "取代(&R)…"
+
+#: gui/kstandardactions_p.h:89
+msgctxt "KStandardActions|"
+msgid "Zoom to &Actual Size"
+msgstr "放大到實際大細(&A)"
+
+#: gui/kstandardactions_p.h:89
+msgctxt "KStandardActions|"
+msgid "View document at its actual size"
+msgstr "用實際 ê 大細檢視文件"
+
+#: gui/kstandardactions_p.h:90
+msgctxt "KStandardActions|"
+msgid "&Fit to Page"
+msgstr "符合頁(&F)"
+
+#: gui/kstandardactions_p.h:90
+msgctxt "KStandardActions|"
+msgid "Zoom to fit page in window"
+msgstr "放大到頁符合視窗 ê 大細"
+
+#: gui/kstandardactions_p.h:91
+msgctxt "KStandardActions|"
+msgid "Fit to Page &Width"
+msgstr "符合頁寬(&W)"
+
+#: gui/kstandardactions_p.h:91
+msgctxt "KStandardActions|"
+msgid "Zoom to fit page width in window"
+msgstr "放大到頁 ê 闊度符合視窗"
+
+#: gui/kstandardactions_p.h:92
+msgctxt "KStandardActions|"
+msgid "Fit to Page &Height"
+msgstr "符合頁懸(&H)"
+
+#: gui/kstandardactions_p.h:92
+msgctxt "KStandardActions|"
+msgid "Zoom to fit page height in window"
+msgstr "放大到頁 ê 懸度符合視窗"
+
+#: gui/kstandardactions_p.h:93
+msgctxt "KStandardActions|"
+msgid "Zoom &In"
+msgstr "放大(&I)"
+
+#: gui/kstandardactions_p.h:94
+msgctxt "KStandardActions|"
+msgid "Zoom &Out"
+msgstr "縮小(&O)"
+
+#: gui/kstandardactions_p.h:95
+msgctxt "KStandardActions|"
+msgid "&Zoom…"
+msgstr "放大縮小(&Z)…"
+
+#: gui/kstandardactions_p.h:95
+msgctxt "KStandardActions|"
+msgid "Select zoom level"
+msgstr "選放大程度"
+
+#: gui/kstandardactions_p.h:96
+msgctxt "KStandardActions|"
+msgid "&Refresh"
+msgstr "重整理(&R)"
+
+#: gui/kstandardactions_p.h:96
+msgctxt "KStandardActions|"
+msgid "Refresh document"
+msgstr "重整理文件"
+
+#: gui/kstandardactions_p.h:98
+msgctxt "KStandardActions|"
+msgid "&Up"
+msgstr "往上(&U)"
+
+#: gui/kstandardactions_p.h:98
+msgctxt "KStandardActions|"
+msgid "Go up"
+msgstr "往上去"
+
+#: gui/kstandardactions_p.h:103
+msgctxt "KStandardActions|"
+msgid "&Previous Page"
+msgstr "頂一頁(&P)"
+
+#: gui/kstandardactions_p.h:103
+msgctxt "KStandardActions|"
+msgid "Go to previous page"
+msgstr "前往頂一頁"
+
+#: gui/kstandardactions_p.h:104
+msgctxt "KStandardActions|"
+msgid "&Next Page"
+msgstr "下一頁(&N)"
+
+#: gui/kstandardactions_p.h:104
+msgctxt "KStandardActions|"
+msgid "Go to next page"
+msgstr "前往下一頁"
+
+#: gui/kstandardactions_p.h:105
+msgctxt "KStandardActions|"
+msgid "&Go To…"
+msgstr "前往(&G)…"
+
+#: gui/kstandardactions_p.h:106
+msgctxt "KStandardActions|"
+msgid "&Go to Page…"
+msgstr "前往頁(&G)…"
+
+#: gui/kstandardactions_p.h:107
+msgctxt "KStandardActions|"
+msgid "&Go to Line…"
+msgstr "前往行(&O)…"
+
+#: gui/kstandardactions_p.h:108
+msgctxt "KStandardActions|"
+msgid "&First Page"
+msgstr "頭頁(&F)"
+
+#: gui/kstandardactions_p.h:108
+msgctxt "KStandardActions|"
+msgid "Go to first page"
+msgstr "前往頭頁"
+
+#: gui/kstandardactions_p.h:109
+msgctxt "KStandardActions|"
+msgid "&Last Page"
+msgstr "尾頁(&L)"
+
+#: gui/kstandardactions_p.h:109
+msgctxt "KStandardActions|"
+msgid "Go to last page"
+msgstr "前往尾頁"
+
+#: gui/kstandardactions_p.h:110
+msgctxt "KStandardActions|"
+msgid "&Back"
+msgstr "向後(&B)"
+
+#: gui/kstandardactions_p.h:110
+msgctxt "KStandardActions|"
+msgid "Go back in document"
+msgstr "佇文件內底向後"
+
+#: gui/kstandardactions_p.h:111
+msgctxt "KStandardActions|"
+msgid "&Forward"
+msgstr "向前(&F)"
+
+#: gui/kstandardactions_p.h:111
+msgctxt "KStandardActions|"
+msgid "Go forward in document"
+msgstr "佇文件內底向前"
+
+#: gui/kstandardactions_p.h:113
+msgctxt "KStandardActions|"
+msgid "&Add Bookmark"
+msgstr "添書籤(&A)"
+
+#: gui/kstandardactions_p.h:114
+msgctxt "KStandardActions|"
+msgid "&Edit Bookmarks…"
+msgstr "編輯書籤(&E)…"
+
+#: gui/kstandardactions_p.h:116
+msgctxt "KStandardActions|"
+msgid "&Spelling…"
+msgstr "檢查拼字(&S)…"
+
+#: gui/kstandardactions_p.h:116
+msgctxt "KStandardActions|"
+msgid "Check spelling in document"
+msgstr "檢查文件拼字"
+
+#: gui/kstandardactions_p.h:118
+msgctxt "KStandardActions|"
+msgid "Show &Menubar"
+msgstr "顯示選單列"
+
+#: gui/kstandardactions_p.h:118
+msgctxt "KStandardActions|"
+msgid "Show or hide menubar"
+msgstr "切換顯示選單列"
+
+#: gui/kstandardactions_p.h:119
+msgctxt "KStandardActions|"
+msgid "Show &Toolbar"
+msgstr "顯示工具列(&T)"
+
+#: gui/kstandardactions_p.h:119
+msgctxt "KStandardActions|"
+msgid "Show or hide toolbar"
+msgstr "切換顯示工具列"
+
+#: gui/kstandardactions_p.h:120
+msgctxt "KStandardActions|"
+msgid "Show St&atusbar"
+msgstr "顯示狀態列(&A)"
+
+#: gui/kstandardactions_p.h:120
+msgctxt "KStandardActions|"
+msgid "Show or hide statusbar"
+msgstr "切換顯示狀態列"
+
+#: gui/kstandardactions_p.h:121
+msgctxt "KStandardActions|"
+msgid "F&ull Screen Mode"
+msgstr "全螢幕模式(&U)"
+
+#: gui/kstandardactions_p.h:122
+msgctxt "KStandardActions|"
+msgid "Configure Keyboard S&hortcuts…"
+msgstr "設定齒盤快速齒(&H)…"
+
+#: gui/kstandardactions_p.h:123
+#, qt-format
+msgctxt "KStandardActions|"
+msgid "&Configure %1…"
+msgstr "設定 %1(&C)…"
+
+#: gui/kstandardactions_p.h:124
+msgctxt "KStandardActions|"
+msgid "Configure Tool&bars…"
+msgstr "設定工具列(&B)…"
+
+#: gui/kstandardactions_p.h:125
+msgctxt "KStandardActions|"
+msgid "Configure &Notifications…"
+msgstr "設定通知(&N)…"
+
+#: gui/kstandardactions_p.h:129
+#, qt-format
+msgctxt "KStandardActions|"
+msgid "%1 &Handbook"
+msgstr "%1 手冊(&H)"
+
+#: gui/kstandardactions_p.h:130
+msgctxt "KStandardActions|"
+msgid "What's &This?"
+msgstr "這是啥(&T)？"
+
+#: gui/kstandardactions_p.h:131
+msgctxt "KStandardActions|"
+msgid "&Report Bug…"
+msgstr "回報錯誤(&R)…"
+
+#: gui/kstandardactions_p.h:132
+msgctxt "KStandardActions|"
+msgid "Configure &Language…"
+msgstr "設定語言(&L)…"
+
+#: gui/kstandardactions_p.h:133
+#, qt-format
+msgctxt "KStandardActions|"
+msgid "&About %1"
+msgstr "%1 的紹介(&A)"
+
+#: gui/kstandardactions_p.h:134
+msgctxt "KStandardActions|"
+msgid "About &KDE"
+msgstr "KDE 的紹介(&K)"
+
+#: gui/kstandardactions_p.h:135
+msgctxt "KStandardActions|"
+msgid "&Delete"
+msgstr "刣掉(&D)"
+
+#: gui/kstandardactions_p.h:136
+msgctxt "KStandardActions|"
+msgid "&Rename…"
+msgstr "改名(&R)…"
+
+#: gui/kstandardactions_p.h:137
+msgctxt "KStandardActions|"
+msgid "&Move to Trash"
+msgstr "徙去糞埽桶(&M)"
+
+#: gui/kstandardactions_p.h:138
+msgctxt "KStandardActions|"
+msgid "&Donate"
+msgstr "寄付(&D)"
+
+#: gui/kstandardactions_p.h:139
+msgctxt "KStandardActions|"
+msgid "Open &Menu"
+msgstr "拍開選單(&M)"
+
+#: gui/kstandardshortcut.cpp:73
+msgctxt "KStandardShortcut|@action"
+msgid "Open"
+msgstr "拍開"
+
+#: gui/kstandardshortcut.cpp:74
+msgctxt "KStandardShortcut|@action"
+msgid "New"
+msgstr "建立"
+
+#: gui/kstandardshortcut.cpp:75
+msgctxt "KStandardShortcut|@action"
+msgid "Close"
+msgstr "關"
+
+#: gui/kstandardshortcut.cpp:76
+msgctxt "KStandardShortcut|@action"
+msgid "Save"
+msgstr "儲存"
+
+#: gui/kstandardshortcut.cpp:77
+msgctxt "KStandardShortcut|@action"
+msgid "Print"
+msgstr "列印"
+
+#: gui/kstandardshortcut.cpp:78
+msgctxt "KStandardShortcut|@action"
+msgid "Quit"
+msgstr "離開"
+
+#: gui/kstandardshortcut.cpp:81
+msgctxt "KStandardShortcut|@action"
+msgid "Undo"
+msgstr "復原"
+
+#: gui/kstandardshortcut.cpp:82
+msgctxt "KStandardShortcut|@action"
+msgid "Redo"
+msgstr "取消復原"
+
+#: gui/kstandardshortcut.cpp:85
+msgctxt "KStandardShortcut|@action"
+msgid "Cut"
+msgstr "鉸落來"
+
+#: gui/kstandardshortcut.cpp:86
+msgctxt "KStandardShortcut|@action"
+msgid "Copy"
+msgstr "Khóo-pih"
+
+#: gui/kstandardshortcut.cpp:87
+msgctxt "KStandardShortcut|@action"
+msgid "Paste"
+msgstr "Tah--khí-khì"
+
+#: gui/kstandardshortcut.cpp:90
+msgctxt "KStandardShortcut|@action"
+msgid "Paste Selection"
+msgstr "Kā 選擇區 Tah--khí-khì"
+
+#: gui/kstandardshortcut.cpp:97
+msgctxt "KStandardShortcut|@action"
+msgid "Select All"
+msgstr "全選"
+
+#: gui/kstandardshortcut.cpp:98
+msgctxt "KStandardShortcut|@action"
+msgid "Deselect"
+msgstr "䆀選"
+
+#: gui/kstandardshortcut.cpp:101
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Backwards"
+msgstr "刣掉頂一个詞"
+
+#: gui/kstandardshortcut.cpp:113
+msgctxt "KStandardShortcut|@action"
+msgid "Delete Word Forward"
+msgstr "刣掉下一个詞"
+
+#: gui/kstandardshortcut.cpp:124
+msgctxt "KStandardShortcut|@action"
+msgid "Find"
+msgstr "揣"
+
+#: gui/kstandardshortcut.cpp:127
+msgctxt "KStandardShortcut|@action"
+msgid "Find Next"
+msgstr "揣下一个"
+
+#: gui/kstandardshortcut.cpp:137
+msgctxt "KStandardShortcut|@action"
+msgid "Find Prev"
+msgstr "揣頂一个"
+
+#: gui/kstandardshortcut.cpp:138
+msgctxt "KStandardShortcut|@action"
+msgid "Replace"
+msgstr "取代"
+
+#: gui/kstandardshortcut.cpp:143
+msgctxt "KStandardShortcut|@action Go to main page"
+msgid "Home"
+msgstr "頭頁"
+
+#: gui/kstandardshortcut.cpp:151
+msgctxt "KStandardShortcut|@action Beginning of document"
+msgid "Begin"
+msgstr "開始"
+
+#: gui/kstandardshortcut.cpp:163
+msgctxt "KStandardShortcut|@action End of document"
+msgid "End"
+msgstr "後尾"
+
+#: gui/kstandardshortcut.cpp:173
+msgctxt "KStandardShortcut|@action"
+msgid "Prior"
+msgstr "頂一个"
+
+#: gui/kstandardshortcut.cpp:176
+msgctxt "KStandardShortcut|@action Opposite to Prior"
+msgid "Next"
+msgstr "下一个"
+
+#: gui/kstandardshortcut.cpp:183
+msgctxt "KStandardShortcut|@action"
+msgid "Up"
+msgstr "往上"
+
+#: gui/kstandardshortcut.cpp:186
+msgctxt "KStandardShortcut|@action"
+msgid "Back"
+msgstr "轉去"
+
+#: gui/kstandardshortcut.cpp:198
+msgctxt "KStandardShortcut|@action"
+msgid "Forward"
+msgstr "向前"
+
+#: gui/kstandardshortcut.cpp:210
+msgctxt "KStandardShortcut|@action"
+msgid "Reload"
+msgstr "重載入"
+
+#: gui/kstandardshortcut.cpp:219
+msgctxt "KStandardShortcut|@action"
+msgid "Beginning of Line"
+msgstr "行頭"
+
+#: gui/kstandardshortcut.cpp:231
+msgctxt "KStandardShortcut|@action"
+msgid "End of Line"
+msgstr "行尾"
+
+#: gui/kstandardshortcut.cpp:243
+msgctxt "KStandardShortcut|@action"
+msgid "Go to Line"
+msgstr "前往行"
+
+#: gui/kstandardshortcut.cpp:255
+msgctxt "KStandardShortcut|@action"
+msgid "Backward Word"
+msgstr "頂一个詞"
+
+#: gui/kstandardshortcut.cpp:267
+msgctxt "KStandardShortcut|@action"
+msgid "Forward Word"
+msgstr "下一个詞"
+
+#: gui/kstandardshortcut.cpp:280
+msgctxt "KStandardShortcut|@action"
+msgid "Add Bookmark"
+msgstr "添書籤"
+
+#: gui/kstandardshortcut.cpp:286
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom In"
+msgstr "放大"
+
+#: gui/kstandardshortcut.cpp:287
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom Out"
+msgstr "縮小"
+
+#: gui/kstandardshortcut.cpp:290
+msgctxt "KStandardShortcut|@action"
+msgid "Full Screen Mode"
+msgstr "全螢幕模式"
+
+#: gui/kstandardshortcut.cpp:301
+msgctxt "KStandardShortcut|@action"
+msgid "Show Menu Bar"
+msgstr "顯示選單列"
+
+#: gui/kstandardshortcut.cpp:304
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Next Tab"
+msgstr "切換到下一个分頁"
+
+#: gui/kstandardshortcut.cpp:312
+msgctxt "KStandardShortcut|@action"
+msgid "Activate Previous Tab"
+msgstr "切換到頂一个分頁"
+
+#: gui/kstandardshortcut.cpp:320
+msgctxt "KStandardShortcut|@action"
+msgid "Help"
+msgstr "說明"
+
+#: gui/kstandardshortcut.cpp:321
+msgctxt "KStandardShortcut|@action"
+msgid "What's This"
+msgstr "這是啥"
+
+#: gui/kstandardshortcut.cpp:326
+msgctxt "KStandardShortcut|@action"
+msgid "Text Completion"
+msgstr "文字補全"
+
+#: gui/kstandardshortcut.cpp:334
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Completion Match"
+msgstr "頂一个補全符合"
+
+#: gui/kstandardshortcut.cpp:346
+msgctxt "KStandardShortcut|@action"
+msgid "Next Completion Match"
+msgstr "下一个補全符合"
+
+#: gui/kstandardshortcut.cpp:358
+msgctxt "KStandardShortcut|@action"
+msgid "Substring Completion"
+msgstr "子字串補全"
+
+#: gui/kstandardshortcut.cpp:367
+msgctxt "KStandardShortcut|@action"
+msgid "Previous Item in List"
+msgstr "Tuann ê 頂一个項目"
+
+#: gui/kstandardshortcut.cpp:375
+msgctxt "KStandardShortcut|@action"
+msgid "Next Item in List"
+msgstr "Tuann ê 下一个項目"
+
+#: gui/kstandardshortcut.cpp:382
+msgctxt "KStandardShortcut|@action"
+msgid "Open Recent"
+msgstr "開近來用--ê"
+
+#: gui/kstandardshortcut.cpp:383
+msgctxt "KStandardShortcut|@action"
+msgid "Save As"
+msgstr "用別个名儲存"
+
+#: gui/kstandardshortcut.cpp:384
+msgctxt "KStandardShortcut|@action"
+msgid "Revert"
+msgstr "回復"
+
+#: gui/kstandardshortcut.cpp:385
+msgctxt "KStandardShortcut|@action"
+msgid "Print Preview"
+msgstr "預覽列印"
+
+#: gui/kstandardshortcut.cpp:386
+msgctxt "KStandardShortcut|@action"
+msgid "Mail"
+msgstr "Email"
+
+#: gui/kstandardshortcut.cpp:387
+msgctxt "KStandardShortcut|@action"
+msgid "Clear"
+msgstr "清除"
+
+#: gui/kstandardshortcut.cpp:390
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom to Actual Size"
+msgstr "放大到實際大細"
+
+#: gui/kstandardshortcut.cpp:396
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Page"
+msgstr "符合頁"
+
+#: gui/kstandardshortcut.cpp:397
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Width"
+msgstr "符合闊度"
+
+#: gui/kstandardshortcut.cpp:398
+msgctxt "KStandardShortcut|@action"
+msgid "Fit To Height"
+msgstr "符合懸度"
+
+#: gui/kstandardshortcut.cpp:399
+msgctxt "KStandardShortcut|@action"
+msgid "Zoom"
+msgstr "放大縮小"
+
+#: gui/kstandardshortcut.cpp:400
+msgctxt "KStandardShortcut|@action"
+msgid "Goto"
+msgstr "前往"
+
+#: gui/kstandardshortcut.cpp:401
+msgctxt "KStandardShortcut|@action"
+msgid "Goto Page"
+msgstr "前往頁"
+
+#: gui/kstandardshortcut.cpp:404
+msgctxt "KStandardShortcut|@action"
+msgid "Document Back"
+msgstr "文件退後"
+
+#: gui/kstandardshortcut.cpp:412
+msgctxt "KStandardShortcut|@action"
+msgid "Document Forward"
+msgstr "文件向前"
+
+#: gui/kstandardshortcut.cpp:420
+msgctxt "KStandardShortcut|@action"
+msgid "Edit Bookmarks"
+msgstr "編輯書籤"
+
+#: gui/kstandardshortcut.cpp:426
+msgctxt "KStandardShortcut|@action"
+msgid "Spelling"
+msgstr "檢查拼字"
+
+#: gui/kstandardshortcut.cpp:427
+msgctxt "KStandardShortcut|@action"
+msgid "Show Toolbar"
+msgstr "顯示工具列"
+
+#: gui/kstandardshortcut.cpp:428
+msgctxt "KStandardShortcut|@action"
+msgid "Show Statusbar"
+msgstr "顯示狀態列"
+
+#: gui/kstandardshortcut.cpp:431
+msgctxt "KStandardShortcut|@action"
+msgid "Key Bindings"
+msgstr "快速齒"
+
+#: gui/kstandardshortcut.cpp:439
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Application"
+msgstr "設定應用程式"
+
+#: gui/kstandardshortcut.cpp:447
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Toolbars"
+msgstr "設定工具列"
+
+#: gui/kstandardshortcut.cpp:455
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Notifications"
+msgstr "設定通知"
+
+#: gui/kstandardshortcut.cpp:461
+msgctxt "KStandardShortcut|@action"
+msgid "Report Bug"
+msgstr "回報錯誤"
+
+#: gui/kstandardshortcut.cpp:464
+msgctxt "KStandardShortcut|@action"
+msgid "Configure Language…"
+msgstr "設定語言…"
+
+#: gui/kstandardshortcut.cpp:470
+msgctxt "KStandardShortcut|@action"
+msgid "About Application"
+msgstr "應用程式 ê 紹介"
+
+#: gui/kstandardshortcut.cpp:471
+msgctxt "KStandardShortcut|@action"
+msgid "About KDE"
+msgstr "KDE 的紹介"
+
+#: gui/kstandardshortcut.cpp:474
+msgctxt "KStandardShortcut|@action"
+msgid "Delete"
+msgstr "刣掉"
+
+#: gui/kstandardshortcut.cpp:475
+msgctxt "KStandardShortcut|@action"
+msgid "Rename"
+msgstr "改名"
+
+#: gui/kstandardshortcut.cpp:478
+msgctxt "KStandardShortcut|@action"
+msgid "Move to Trash"
+msgstr "徙去糞埽桶"
+
+#: gui/kstandardshortcut.cpp:484
+msgctxt "KStandardShortcut|@action"
+msgid "Donate"
+msgstr "寄付"
+
+#: gui/kstandardshortcut.cpp:487
+msgctxt "KStandardShortcut|@action"
+msgid "Show/Hide Hidden Files"
+msgstr "顯示/藏 隱藏檔案"
+
+#: gui/kstandardshortcut.cpp:495
+msgctxt "KStandardShortcut|@action"
+msgid "Create Folder"
+msgstr "建立資料鋏仔"
+
+#: gui/kstandardshortcut.cpp:503
+msgctxt ""
+"KStandardShortcut|@action referring to the menu bar or a hamburger menu"
+msgid "Open Main Menu"
+msgstr "開主選單"
+
+#: gui/kstandardshortcut.cpp:511
+msgctxt "KStandardShortcut|@action"
+msgid "Open Context Menu"
+msgstr "開正子選單"
+
+#: kconf_update/kconf_update.cpp:368
+msgctxt "main|"
+msgid "KDE Tool for updating user configuration files"
+msgstr "更新用者設定檔案用 ê KDE 工具"
+
+#: kconf_update/kconf_update.cpp:370
+msgctxt "main|"
+msgid "Keep output results from scripts"
+msgstr "保留 uì 劇本輸出 ê 結果"
+
+#: kconf_update/kconf_update.cpp:373
+msgctxt "main|"
+msgid ""
+"For unit tests only: do not write the done entries, so that with every re-"
+"run, the scripts are executed again"
+msgstr ""
+"單位測試用：bái 寫完成 ê 項目，按呢逐擺重新執行測試 ê 時陣，劇本 mā ē 做伙重"
+"新執行"
+
+#: kconf_update/kconf_update.cpp:375
+msgctxt "main|"
+msgid "Check whether config file itself requires updating"
+msgstr "檢查設定檔案本身敢需要更新"
+
+#: kconf_update/kconf_update.cpp:378
+msgctxt "main|"
+msgid "File(s) to read update instructions from"
+msgstr "Uì 這个檔案讀更新指令"
+
+#: kconfig_compiler/kconfig_compiler.cpp:732
+msgctxt "main|"
+msgid "Directory to generate files in [.]"
+msgstr "Ài 產生檔案 kàu ê 目錄 [.]"
+
+#: kconfig_compiler/kconfig_compiler.cpp:733
+msgctxt "main|"
+msgid "directory"
+msgstr "資料鋏仔"
+
+#: kconfig_compiler/kconfig_compiler.cpp:737
+msgctxt "main|"
+msgid "Display software license."
+msgstr "顯示軟體授權。"
+
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
+msgctxt "main|"
+msgid "Use <file> instead of global config"
+msgstr "用 <file>，䆀用全域設定"
+
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
+msgctxt "main|"
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
+msgstr ""
+"佇這个群組內底揣。用 \"<default>\" 來揣根群組，猶是重復使用來揣 nested ê 群"
+"組。"
+
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
+msgctxt "main|"
+msgid "Key to look for"
+msgstr "Ài 揣 ê 鍵"
+
+#: kreadconfig/kreadconfig.cpp:53
+msgctxt "main|"
+msgid "Default value"
+msgstr "預設值"
+
+#: kreadconfig/kreadconfig.cpp:54
+msgctxt "main|"
+msgid "Type of variable"
+msgstr "變數 ê 類型"
+
+#: kreadconfig/kreadconfig.cpp:55
+msgctxt "main|"
+msgid "Dump all entries"
+msgstr "倒出所有 ê 項目"
+
+#: kreadconfig/kreadconfig.cpp:58
+msgctxt "main|"
+msgid ""
+"Include globals; by default, the global config files are not read if a file "
+"is specified"
+msgstr "包括全域設定；預設是佇有指定檔案 ê 時陣袂讀取全域設定檔案"
+
+#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr "群組名袂使是空 ê，ài 指定根群組請用 \"<default>\""
+
+#: kreadconfig/kwriteconfig.cpp:34
+msgctxt "main|"
+msgid ""
+"Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
+"string"
+msgstr "變數 ê 類型。用 \"bool\" 來指定布林值，其他 ê 值攏是當做字串"
+
+#: kreadconfig/kwriteconfig.cpp:36
+msgctxt "main|"
+msgid "Delete the designated key if enabled"
+msgstr "若啟用，刣掉指定 ê 鍵"
+
+#: kreadconfig/kwriteconfig.cpp:37
+msgctxt "notify|"
+msgid "Notify applications of the change"
+msgstr "Kā 應用程式通知變更"
+
+#: kreadconfig/kwriteconfig.cpp:38
+msgctxt "main|"
+msgid "The value to write. Mandatory, on a shell use '' for empty"
+msgstr "愛寫入 ê 值。需要提供。愛提供空 ê 值，佇 shell tshiánn siá \""
