@@ -224,13 +224,11 @@ QString KEntryMap::getEntry(const QString &group, QAnyStringView key, const QStr
     const auto it = constFindEntry(group, key, flags);
     QString theValue = defaultValue;
 
-    if (it != cend() && !it->second.bDeleted) {
-        if (!it->second.mValue.isNull()) {
-            const QByteArray data = it->second.mValue;
-            theValue = QString::fromUtf8(data.constData(), data.length());
-            if (expand) {
-                *expand = it->second.bExpand;
-            }
+    if (it != cend() && !it->second.bDeleted && !it->second.mValue.isNull()) {
+        const QByteArray data = it->second.mValue;
+        theValue = QString::fromUtf8(data.constData(), data.length());
+        if (expand) {
+            *expand = it->second.bExpand;
         }
     }
 

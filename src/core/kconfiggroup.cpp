@@ -192,7 +192,7 @@ QStringList KConfigGroupPrivate::deserializeList(const QString &data)
 static QVarLengthArray<int, 8> asIntList(QByteArrayView string)
 {
     int start = 0;
-    int next = start;
+    int next;
     QVarLengthArray<int, 8> ret;
     while ((next = string.indexOf(',', start)) != -1) {
         ret.push_back(string.sliced(start, next - start).toInt());
