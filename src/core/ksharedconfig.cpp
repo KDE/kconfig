@@ -116,11 +116,17 @@ void _k_globalMainConfigSyncAndCleanup()
         mainConfig->sync();
     }
 
-    // Free this thread's GlobalSharedConfig now, while a post routine still runs, rather
-    // than at main thread teardown which happens after leak detection. Passing nullptr
-    // deletes the held instance and clears the slot, so hasLocalData() reads false and a
-    // later openConfig() creates a fresh one.
+    // __SANITIZE_ADDRESS__ is defined by GCC, Clang 14 and later, and MSVC when building
+    // with AddressSanitizer, which includes LeakSanitizer.
+#ifdef __SANITIZE_ADDRESS__
+    // Free this thread's GlobalSharedConfig now, while a post routine still runs and the
+    // main thread is still alive. QThreadStorage would otherwise free it at thread
+    // teardown, which happens after LeakSanitizer has reported, so the instance shows up
+    // as leaked. Passing nullptr deletes the held instance and clears the slot, so
+    // hasLocalData() reads false and a later openConfig() creates a fresh one. This is
+    // only built under the sanitizer, the normal teardown is fine otherwise.
     s_storage.setLocalData(nullptr);
+#endif
 }
 
 KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
