@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-04-26 12:18+0200\n"
+"PO-Revision-Date: 2026-07-04 17:34+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.04.0\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #: core/kconfig.cpp:993
 msgctxt "KConfig|"
@@ -66,7 +66,7 @@ msgstr "Sortu dokumentu berria"
 #: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
 msgid "&Open…"
-msgstr "&Ireki..."
+msgstr "&Ireki…"
 
 #: gui/kstandardactions_p.h:65
 msgctxt "KStandardActions|"
