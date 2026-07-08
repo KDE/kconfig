@@ -89,77 +89,78 @@ class QAction;
  */
 namespace KStandardActions
 {
-/*!
- * The standard menubar and toolbar actions.
- * \omitvalue ActionNone,
- * \value New Create a new document or window.
- * \value Open Open an existing file.
- * \value OpenRecent Open a recently used document.
- * \value Save Save the current document.
- * \value SaveAs Save the current document under a different name.
- * \value Revert Revert the current document to the last saved version.
- * \value Close Close the current document.
- * \value Print Print the current document.
- * \value PrintPreview Show a print preview of the current document.
- * \value Mail Send the current document by mail.
- * \value Quit Quit the program.
- * \value Undo Undo the last operation.
- * \value Redo Redo the last operation.
- * \value Cut Cut selected area and store it in the clipboard.
- * \value Copy Copy selected area and store it in the clipboard.
- * \value Paste Paste the contents of clipboard at the current mouse or cursor.
- * \value SelectAll Select all elements in the current document.
- * \value Deselect Deselect any selected elements in the current document.
- * \value Find Initiate a 'find' request in the current document.
- * \value FindNext Find the next instance of a stored 'find'
- * \value FindPrev Find a previous instance of a stored 'find'.
- * \value Replace Find and replace matches.
- * \value ActualSize View the document at its actual size.
- * \value FitToPage Fit the document view to the size of the current window.
- * \value FitToWidth Fit the document view to the width of the current window.
- * \value FitToHeight Fit the document view to the height of the current window.
- * \value ZoomIn Zoom in the current document.
- * \value ZoomOut Zoom out the current document.
- * \value Zoom Select the current zoom level.
- * \value Redisplay Redisplay or redraw the document.
- * \value Up Move up (web style menu).
- * \value Back Move back (web style menu).
- * \value Forward Move forward (web style menu).
- * \value Home Go to the "Home" position or document.
- * \value Prior Scroll up one page.
- * \value Next Scroll down one page.
- * \value Goto Jump to some specific location in the document.
- * \value GotoPage Go to a specific page.
- * \value GotoLine Go to a specific line.
- * \value FirstPage Jump to the first page.
- * \value LastPage Jump to the last page.
- * \value DocumentBack Move back (document style menu).
- * \value DocumentForward Move forward (document style menu).
- * \value AddBookmark Add the current page to the bookmarks tree.
- * \value EditBookmarks Edit the application bookmarks.
- * \value Spelling Pop up the spell checker.
- * \value ShowMenubar Show/Hide the menubar.
- * \value ShowToolbar Show/Hide the toolbar.
- * \value ShowStatusbar Show/Hide the statusbar.
- * \value KeyBindings Display the configure key bindings dialog.
- * \value Preferences Display the preferences/options dialog.
- * \value ConfigureToolbars Display the toolbar configuration dialog.
- * \value HelpContents Display the handbook of the application.
- * \value WhatsThis Trigger the What's This cursor.
- * \value ReportBug Open up the Report Bug dialog.
- * \value AboutApp Display the application's About box.
- * \value AboutKDE Display the About KDE dialog.
- * \value ConfigureNotifications Display the notifications configuration dialog.
- * \value FullScreen Switch to/from full screen mode.
- * \value Clear Clear the content of the focus widget.
- * \value SwitchApplicationLanguage Display the Switch Application Language dialog.
- * \value DeleteFile Permanently deletes files or folders.
- * \value RenameFile Renames files or folders.
- * \value MoveToTrash Moves files or folders to the trash.
- * \value Donate Open donation page on kde.org.
- * \value HamburgerMenu Opens a menu that substitutes the menubar.
- */
-enum StandardAction {
+KCONFIGGUI_EXPORT Q_NAMESPACE
+    /*!
+     * The standard menubar and toolbar actions.
+     * \omitvalue ActionNone,
+     * \value New Create a new document or window.
+     * \value Open Open an existing file.
+     * \value OpenRecent Open a recently used document.
+     * \value Save Save the current document.
+     * \value SaveAs Save the current document under a different name.
+     * \value Revert Revert the current document to the last saved version.
+     * \value Close Close the current document.
+     * \value Print Print the current document.
+     * \value PrintPreview Show a print preview of the current document.
+     * \value Mail Send the current document by mail.
+     * \value Quit Quit the program.
+     * \value Undo Undo the last operation.
+     * \value Redo Redo the last operation.
+     * \value Cut Cut selected area and store it in the clipboard.
+     * \value Copy Copy selected area and store it in the clipboard.
+     * \value Paste Paste the contents of clipboard at the current mouse or cursor.
+     * \value SelectAll Select all elements in the current document.
+     * \value Deselect Deselect any selected elements in the current document.
+     * \value Find Initiate a 'find' request in the current document.
+     * \value FindNext Find the next instance of a stored 'find'
+     * \value FindPrev Find a previous instance of a stored 'find'.
+     * \value Replace Find and replace matches.
+     * \value ActualSize View the document at its actual size.
+     * \value FitToPage Fit the document view to the size of the current window.
+     * \value FitToWidth Fit the document view to the width of the current window.
+     * \value FitToHeight Fit the document view to the height of the current window.
+     * \value ZoomIn Zoom in the current document.
+     * \value ZoomOut Zoom out the current document.
+     * \value Zoom Select the current zoom level.
+     * \value Redisplay Redisplay or redraw the document.
+     * \value Up Move up (web style menu).
+     * \value Back Move back (web style menu).
+     * \value Forward Move forward (web style menu).
+     * \value Home Go to the "Home" position or document.
+     * \value Prior Scroll up one page.
+     * \value Next Scroll down one page.
+     * \value Goto Jump to some specific location in the document.
+     * \value GotoPage Go to a specific page.
+     * \value GotoLine Go to a specific line.
+     * \value FirstPage Jump to the first page.
+     * \value LastPage Jump to the last page.
+     * \value DocumentBack Move back (document style menu).
+     * \value DocumentForward Move forward (document style menu).
+     * \value AddBookmark Add the current page to the bookmarks tree.
+     * \value EditBookmarks Edit the application bookmarks.
+     * \value Spelling Pop up the spell checker.
+     * \value ShowMenubar Show/Hide the menubar.
+     * \value ShowToolbar Show/Hide the toolbar.
+     * \value ShowStatusbar Show/Hide the statusbar.
+     * \value KeyBindings Display the configure key bindings dialog.
+     * \value Preferences Display the preferences/options dialog.
+     * \value ConfigureToolbars Display the toolbar configuration dialog.
+     * \value HelpContents Display the handbook of the application.
+     * \value WhatsThis Trigger the What's This cursor.
+     * \value ReportBug Open up the Report Bug dialog.
+     * \value AboutApp Display the application's About box.
+     * \value AboutKDE Display the About KDE dialog.
+     * \value ConfigureNotifications Display the notifications configuration dialog.
+     * \value FullScreen Switch to/from full screen mode.
+     * \value Clear Clear the content of the focus widget.
+     * \value SwitchApplicationLanguage Display the Switch Application Language dialog.
+     * \value DeleteFile Permanently deletes files or folders.
+     * \value RenameFile Renames files or folders.
+     * \value MoveToTrash Moves files or folders to the trash.
+     * \value Donate Open donation page on kde.org.
+     * \value HamburgerMenu Opens a menu that substitutes the menubar.
+     */
+    enum StandardAction {
     ActionNone,
     // File Menu
     New,
@@ -238,6 +239,7 @@ enum StandardAction {
     HamburgerMenu
     // To keep in sync with KConfigWidgets::KStandardAction
 };
+Q_ENUM_NS(StandardAction)
 
 KCONFIGGUI_EXPORT QAction *_kgui_createInternal(StandardAction id, QObject *parent);
 
