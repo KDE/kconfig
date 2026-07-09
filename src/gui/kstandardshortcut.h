@@ -534,14 +534,14 @@ KCONFIGGUI_EXPORT const QList<QKeySequence> &gotoLine();
 KCONFIGGUI_EXPORT const QList<QKeySequence> &addBookmark();
 
 /*!
- * Next Tab. Default: Ctrl-<
+ * Next Tab. Defaults: Ctrl+PgDown, Ctrl+]
  *
  * Returns the shortcut of the standard accelerator
  */
 KCONFIGGUI_EXPORT const QList<QKeySequence> &tabNext();
 
 /*!
- * Previous Tab. Default: Ctrl->
+ * Previous Tab. Defaults: Ctrl+PgUp, Ctrl+[
  *
  * Returns the shortcut of the standard accelerator
  */
