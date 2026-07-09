@@ -187,7 +187,7 @@ class Test11 : public MyPrefs
     void setDestination( EnumDestination::type v )
     {
       if (!isDestinationImmutable())
-        mDestination = v;
+        mDestination = int(v);
     }
 
     /**
@@ -466,7 +466,7 @@ class Test11 : public MyPrefs
     void setEmailClient( MailClient v )
     {
       if (!isEmailClientImmutable())
-        mEmailClient = v;
+        mEmailClient = int(v);
     }
 
     /**
@@ -507,7 +507,7 @@ class Test11 : public MyPrefs
     void setDefaultReminderUnits( TimePeriod::Units v )
     {
       if (!isDefaultReminderUnitsImmutable())
-        mDefaultReminderUnits = v;
+        mDefaultReminderUnits = int(v);
     }
 
     /**

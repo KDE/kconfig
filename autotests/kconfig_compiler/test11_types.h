@@ -18,4 +18,10 @@ public:
     };
 };
 
+enum class FavoriteLine {
+    NeverGonnaGiveYouUp,
+    NeverGonnaLetYouDown,
+    NeverGonnaRunAroundAndDesertYou,
+};
+
 #endif

@@ -51,7 +51,7 @@ Test11a::Test11a( )
     choice.whatsThis = QCoreApplication::translate("Test11a", "Argl3 Whatsthis");
     valuesDestination.append( choice );
   }
-  mDestinationItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "Destination" ), mDestination, valuesDestination, EnumDestination::standardDestination );
+  mDestinationItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "Destination" ), mDestination, valuesDestination, int(EnumDestination::standardDestination) );
   mDestinationItem->setLabel( QCoreApplication::translate("Test11a", "New Events/Todos Should") );
   addItem( mDestinationItem, QStringLiteral( "Destination" ) );
 
@@ -104,7 +104,7 @@ Test11a::Test11a( )
     choice.label = /*: @option */ QCoreApplication::translate("Test11a", "KMail");
     valuesEmailClient.append( choice );
   }
-  mEmailClientItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "EmailClient" ), mEmailClient, valuesEmailClient, kmail );
+  mEmailClientItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "EmailClient" ), mEmailClient, valuesEmailClient, int(kmail) );
   mEmailClientItem->setLabel( /*: @label */ QCoreApplication::translate("Test11a", "Email client") );
   mEmailClientItem->setWhatsThis( /*: @info:whatsthis */ QCoreApplication::translate("Test11a", "<para>How to send email when an email alarm is triggered.<list><item>KMail: The email is sent automatically via <application>KMail</application>. <application>KMail</application> is started first if necessary.</item><item>Sendmail: The email is sent automatically. This option will only work if your system is configured to use <application>sendmail</application> or a sendmail compatible mail transport agent.</item></list></para>") );
   addItem( mEmailClientItem, QStringLiteral( "EmailClient" ) );
@@ -120,10 +120,32 @@ Test11a::Test11a( )
     choice.label = /*: @option */ QCoreApplication::translate("Test11a", "Hours/Minutes");
     valuesDefaultReminderUnits.append( choice );
   }
-  mDefaultReminderUnitsItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "RemindUnits" ), mDefaultReminderUnits, valuesDefaultReminderUnits, TimePeriod::HoursMinutes );
+  mDefaultReminderUnitsItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "RemindUnits" ), mDefaultReminderUnits, valuesDefaultReminderUnits, int(TimePeriod::HoursMinutes) );
   mDefaultReminderUnitsItem->setLabel( /*: @label */ QCoreApplication::translate("Test11a", "Reminder units") );
   mDefaultReminderUnitsItem->setWhatsThis( /*: @info:whatsthis */ QCoreApplication::translate("Test11a", "Default reminder time units in the alarm edit dialog.") );
   addItem( mDefaultReminderUnitsItem, QStringLiteral( "DefaultReminderUnits" ) );
+
+  setCurrentGroup( QStringLiteral( "Personal" ) );
+
+  QList<MyPrefs::ItemEnum::Choice> valuesFavoriteLine;
+  {
+    MyPrefs::ItemEnum::Choice choice;
+    choice.name = QStringLiteral("NeverGonnaGiveYouUp");
+    valuesFavoriteLine.append( choice );
+  }
+  {
+    MyPrefs::ItemEnum::Choice choice;
+    choice.name = QStringLiteral("NeverGonnaLetYouDown");
+    valuesFavoriteLine.append( choice );
+  }
+  {
+    MyPrefs::ItemEnum::Choice choice;
+    choice.name = QStringLiteral("NeverGonnaRunAroundAndDesertYou");
+    valuesFavoriteLine.append( choice );
+  }
+  mFavoriteLineItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "FavoriteLine" ), mFavoriteLine, valuesFavoriteLine, int(::FavoriteLine::NeverGonnaGiveYouUp) );
+  mFavoriteLineItem->setLabel( QCoreApplication::translate("Test11a", "FavoriteLine") );
+  addItem( mFavoriteLineItem, QStringLiteral( "FavoriteLine" ) );
 
   setCurrentGroup( QStringLiteral( "QueueRates" ) );
 

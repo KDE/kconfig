@@ -163,7 +163,7 @@ class Test11a : public MyPrefs
     void setDestination( EnumDestination::type v )
     {
       if (!isDestinationImmutable())
-        mDestination = v;
+        mDestination = int(v);
     }
 
     /**
@@ -410,7 +410,7 @@ class Test11a : public MyPrefs
     void setEmailClient( MailClient v )
     {
       if (!isEmailClientImmutable())
-        mEmailClient = v;
+        mEmailClient = int(v);
     }
 
     /**
@@ -443,7 +443,7 @@ class Test11a : public MyPrefs
     void setDefaultReminderUnits( TimePeriod::Units v )
     {
       if (!isDefaultReminderUnitsImmutable())
-        mDefaultReminderUnits = v;
+        mDefaultReminderUnits = int(v);
     }
 
     /**
@@ -476,6 +476,39 @@ class Test11a : public MyPrefs
     ItemEnum *defaultReminderUnitsItem()
     {
       return mDefaultReminderUnitsItem;
+    }
+
+    /**
+      Set FavoriteLine
+    */
+    void setFavoriteLine( ::FavoriteLine v )
+    {
+      if (!isFavoriteLineImmutable())
+        mFavoriteLine = int(v);
+    }
+
+    /**
+      Get FavoriteLine
+    */
+    ::FavoriteLine favoriteLine() const
+    {
+      return static_cast<::FavoriteLine>(mFavoriteLine);
+    }
+
+    /**
+      Is FavoriteLine Immutable
+    */
+    bool isFavoriteLineImmutable() const
+    {
+      return isImmutable( QStringLiteral( "FavoriteLine" ) );
+    }
+
+    /**
+      Get Item object corresponding to FavoriteLine()
+    */
+    ItemEnum *favoriteLineItem()
+    {
+      return mFavoriteLineItem;
     }
 
     /**
@@ -575,6 +608,9 @@ class Test11a : public MyPrefs
     int mDefaultReminderUnits;
     int defaultDefaultReminderUnitsValue_helper() const;
 
+    // Personal
+    int mFavoriteLine;
+
     // QueueRates
     QList<int> mQueueRate[3];
     bool mShowQueueTuner;
@@ -593,6 +629,7 @@ class Test11a : public MyPrefs
     ItemFont *mTimeBarFontItem;
     ItemEnum *mEmailClientItem;
     ItemEnum *mDefaultReminderUnitsItem;
+    ItemEnum *mFavoriteLineItem;
     ItemIntList *mQueueRateItem[3];
     ItemBool *mShowQueueTunerItem;
 };

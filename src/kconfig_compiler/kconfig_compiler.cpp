@@ -467,7 +467,14 @@ QString newInnerItem(const CfgEntry *entry, const QString &key, const QString &d
         str += QLatin1String{", values"} + entry->name;
     }
     if (!defaultValue.isEmpty()) {
-        str += QLatin1String(", ") + defaultValue;
+        str += QLatin1String(", ");
+        if (cfg.useEnumTypes && entry->type == QLatin1String("Enum")) {
+            str += QLatin1String("int(");
+        }
+        str += defaultValue;
+        if (cfg.useEnumTypes && entry->type == QLatin1String("Enum")) {
+            str += QLatin1String(")");
+        }
     }
     str += QLatin1String(" );");
 

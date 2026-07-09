@@ -100,6 +100,23 @@
    </entry>
   </group>
 
+  <!--
+    The FavoriteLine is an enum class. This checks that KConfigXT generates conversion code
+    between ints and enum classes that actually compiles when UseEnumTypes=true. At the moment
+    of writing this, the enums are stored as int values even with UseEnumTypes=true, only
+    the getters and the setters are affected by that option.
+  -->
+  <group name="Personal">
+    <entry name="FavoriteLine" type="Enum">
+      <choices name="::FavoriteLine">
+        <choice name="NeverGonnaGiveYouUp"/>
+        <choice name="NeverGonnaLetYouDown"/>
+        <choice name="NeverGonnaRunAroundAndDesertYou"/>
+      </choices>
+      <default code="true">::FavoriteLine::NeverGonnaGiveYouUp</default>
+    </entry>
+  </group>
+
   <group name="QueueRates">
     <entry name="queueRate$(QueueIndex)" type="IntList" key="EmptyingRate $(QueueIndex)">
         <!-- kconfig_compiler_kf6 really should do this for me... -->

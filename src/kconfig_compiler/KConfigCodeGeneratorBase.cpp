@@ -249,7 +249,7 @@ void KConfigCodeGeneratorBase::memberMutatorBody(const CfgEntry *e)
     // m_this call creates an `if (someTest ...) that's just to long to throw over the code.
     createIfSetLogic(e, varExpression);
     m_stream << (hasBody ? " {" : "") << '\n';
-    m_stream << whitespace() << "  " << varExpression << " = v;\n";
+    m_stream << whitespace() << "  " << varExpression << " = " << (cfg().useEnumTypes && e->type == QLatin1String("Enum") ? "int(v)" : "v") << ";\n";
 
     const auto listSignal = e->signalList;
     for (const Signal &signal : std::as_const(listSignal)) {

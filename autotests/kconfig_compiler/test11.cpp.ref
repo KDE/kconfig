@@ -52,7 +52,7 @@ Test11::Test11( QObject *parent )
     choice.whatsThis = QCoreApplication::translate("Test11", "Argl3 Whatsthis");
     valuesDestination.append( choice );
   }
-  mDestinationItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "Destination" ), mDestination, valuesDestination, EnumDestination::standardDestination );
+  mDestinationItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "Destination" ), mDestination, valuesDestination, int(EnumDestination::standardDestination) );
   mDestinationItem->setLabel( QCoreApplication::translate("Test11", "New Events/Todos Should") );
   addItem( mDestinationItem, QStringLiteral( "Destination" ) );
 
@@ -105,7 +105,7 @@ Test11::Test11( QObject *parent )
     choice.label = /*: @option */ QCoreApplication::translate("Test11", "KMail");
     valuesEmailClient.append( choice );
   }
-  mEmailClientItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "EmailClient" ), mEmailClient, valuesEmailClient, kmail );
+  mEmailClientItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "EmailClient" ), mEmailClient, valuesEmailClient, int(kmail) );
   mEmailClientItem->setLabel( /*: @label */ QCoreApplication::translate("Test11", "Email client") );
   mEmailClientItem->setWhatsThis( /*: @info:whatsthis */ QCoreApplication::translate("Test11", "<para>How to send email when an email alarm is triggered.<list><item>KMail: The email is sent automatically via <application>KMail</application>. <application>KMail</application> is started first if necessary.</item><item>Sendmail: The email is sent automatically. This option will only work if your system is configured to use <application>sendmail</application> or a sendmail compatible mail transport agent.</item></list></para>") );
   addItem( mEmailClientItem, QStringLiteral( "EmailClient" ) );
@@ -121,7 +121,7 @@ Test11::Test11( QObject *parent )
     choice.label = /*: @option */ QCoreApplication::translate("Test11", "Hours/Minutes");
     valuesDefaultReminderUnits.append( choice );
   }
-  mDefaultReminderUnitsItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "RemindUnits" ), mDefaultReminderUnits, valuesDefaultReminderUnits, TimePeriod::HoursMinutes );
+  mDefaultReminderUnitsItem = new MyPrefs::ItemEnum( currentGroup(), QStringLiteral( "RemindUnits" ), mDefaultReminderUnits, valuesDefaultReminderUnits, int(TimePeriod::HoursMinutes) );
   mDefaultReminderUnitsItem->setLabel( /*: @label */ QCoreApplication::translate("Test11", "Reminder units") );
   mDefaultReminderUnitsItem->setToolTip( /*: @info:tooltip */ QCoreApplication::translate("Test11", "Default reminder time units in the alarm edit dialog.") );
   mDefaultReminderUnitsItem->setWhatsThis( /*: @info:whatsthis */ QCoreApplication::translate("Test11", "Default reminder time units in the alarm edit dialog.") );
