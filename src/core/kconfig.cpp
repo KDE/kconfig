@@ -45,6 +45,12 @@
 #include "registry_win_p.h"
 #endif
 
+#include <qtkconfig_tracepoints_p.h>
+
+#include "private/qtrace_p.h"
+
+Q_TRACE_POINT(qtkconfig, KConfig_sync, QString file);
+
 bool KConfigPrivate::mappingsRegistered = false;
 
 // For caching purposes
@@ -433,6 +439,8 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
 bool KConfig::sync()
 {
     Q_D(KConfig);
+
+    Q_TRACE(KConfig_sync, name());
 
     if (isImmutable() || !d->mBackend.isWritable()) {
         // can't write to an immutable or anonymous file.

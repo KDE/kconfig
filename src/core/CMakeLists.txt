@@ -66,7 +66,7 @@ target_include_directories(KF6ConfigCore
 
 target_include_directories(KF6ConfigCore PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
+target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core PRIVATE Qt6::CorePrivate)
 
 if(KCONFIG_USE_DBUS)
     target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)
@@ -88,6 +88,19 @@ ecm_generate_headers(KConfigCore_HEADERS
   KConfigWatcher
 
   REQUIRED_HEADERS KConfigCore_HEADERS
+)
+
+find_package(LTTngUST REQUIRED)
+
+add_custom_target(KF6ConfigCore_sync_headers)
+
+include(QtCMakeHelpers)
+include(QtSyncQtHelpers)
+include(QtTargetHelpers)
+
+qt_internal_generate_tracepoints(KF6ConfigCore kconfig
+    SOURCES
+    kconfig.cpp
 )
 
 list(APPEND KConfigCore_HEADERS
