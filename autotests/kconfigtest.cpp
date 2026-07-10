@@ -1866,6 +1866,18 @@ void KConfigTest::testLocalDeletion()
     QVERIFY(lines.contains("[OwnTestGroup]\n"));
     QVERIFY(lines.contains("GlobalKey[$d]\n"));
 
+    // Re-parses kconfigtest to verify deletion markers ([$d])
+    {
+        KConfig mainConfig(s_kconfig_test_subdir);
+        KConfigGroup mainGroup(&mainConfig, QStringLiteral("OwnTestGroup"));
+        mainGroup.writeEntry("LocalKey", QStringLiteral("LocalValue2")); // triggers sync to re-parse the config
+        QVERIFY(mainGroup.sync());
+    }
+
+    // Check what ended up in kconfigtest
+    const QList<QByteArray> lines2 = readLines();
+    QVERIFY(lines2.contains("GlobalKey[$d]\n"));
+
     // Check what ended up in kdeglobals
     {
         KConfig globReadNoGlob(QStringLiteral("kdeglobals"), KConfig::NoGlobals);
@@ -1873,6 +1885,7 @@ void KConfigTest::testLocalDeletion()
         QCOMPARE(generalNoGlob.readEntry("GlobalKey"), QStringLiteral("DontTouchMe"));
         QCOMPARE(generalNoGlob.readEntry("GlobalWrite"), QStringLiteral("GlobalValue"));
         QVERIFY(!generalNoGlob.hasKey("LocalValue"));
+        QVERIFY(!generalNoGlob.hasKey("LocalValue2"));
         QStringList expectedGlobalKeys{QStringLiteral("GlobalKey")};
         expectedGlobalKeys.append(QStringLiteral("GlobalWrite"));
         QCOMPARE(generalNoGlob.keyList(), expectedGlobalKeys);

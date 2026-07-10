@@ -145,8 +145,9 @@ bool KEntryMap::setEntry(const QString &group, const QByteArray &key, const QByt
     }
 
     if (newKey) {
-        // if the key is new and we want to delete it that's a no-op
         if (e.bDeleted) {
+            insert_or_assign(k, e);
+            // if the key is new and we want to delete it that's a no-op, so don't mark as dirty
             return false;
         }
 
