@@ -27,7 +27,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "దయచేసి మీ సిస్టమ్ నిర్వాహకుడిని సంప్రదించండి."
 
-#: core/kconfigini.cpp:456
+#: core/kconfigini.cpp:459
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -1176,17 +1176,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "నవీకరణ సూచనలను చదవడానికి ఫైల్ (లు)"
 
-#: kconfig_compiler/kconfig_compiler.cpp:732
+#: kconfig_compiler/kconfig_compiler.cpp:739
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "[.] లో ఫైళ్ళను సృష్టించుటకు మూలవివరం"
 
-#: kconfig_compiler/kconfig_compiler.cpp:733
+#: kconfig_compiler/kconfig_compiler.cpp:740
 msgctxt "main|"
 msgid "directory"
 msgstr "మూలవివరం"
 
-#: kconfig_compiler/kconfig_compiler.cpp:737
+#: kconfig_compiler/kconfig_compiler.cpp:744
 msgctxt "main|"
 msgid "Display software license."
 msgstr "సాఫ్ట్వేర్ లైసెన్స్ను ప్రదర్శించు."

@@ -26,7 +26,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "உங்கள் கணினி நிர்வாகியை தொடர்பு கொள்ளுங்கள்."
 
-#: core/kconfigini.cpp:456
+#: core/kconfigini.cpp:459
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -986,17 +986,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "புதுப்பிப்பதற்கான வழிமுறைகளை எந்த கோப்பு(கள்)-இலிருந்து படிக்க வேண்டும்"
 
-#: kconfig_compiler/kconfig_compiler.cpp:732
+#: kconfig_compiler/kconfig_compiler.cpp:739
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "எந்த அடைவில் கோப்புகளை உருவாக்க வேண்டும் [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:733
+#: kconfig_compiler/kconfig_compiler.cpp:740
 msgctxt "main|"
 msgid "directory"
 msgstr "அடைவு"
 
-#: kconfig_compiler/kconfig_compiler.cpp:737
+#: kconfig_compiler/kconfig_compiler.cpp:744
 msgctxt "main|"
 msgid "Display software license."
 msgstr "நிரலின் உரிமத்தை காட்டு."

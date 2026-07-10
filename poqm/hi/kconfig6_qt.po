@@ -27,7 +27,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "कृपया अपने तंत्र व्यवस्थापक से संपर्क करें। "
 
-#: core/kconfigini.cpp:456
+#: core/kconfigini.cpp:459
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -1184,17 +1184,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "फ़ाइल (लों) से अद्यतन निर्देश पढ़ने के लिए "
 
-#: kconfig_compiler/kconfig_compiler.cpp:732
+#: kconfig_compiler/kconfig_compiler.cpp:739
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "फ़ाइलों को जनरेट करने के लिए डिरेक्ट्री [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:733
+#: kconfig_compiler/kconfig_compiler.cpp:740
 msgctxt "main|"
 msgid "directory"
 msgstr "डिरेक्ट्री"
 
-#: kconfig_compiler/kconfig_compiler.cpp:737
+#: kconfig_compiler/kconfig_compiler.cpp:744
 msgctxt "main|"
 msgid "Display software license."
 msgstr "सोफ्टवेयर का अनुज्ञापत्र दिखाएँ"

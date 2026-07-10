@@ -20,7 +20,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "请联系您的系统管理员。"
 
-#: core/kconfigini.cpp:456
+#: core/kconfigini.cpp:459
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -979,17 +979,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "要读取更新指令的文件"
 
-#: kconfig_compiler/kconfig_compiler.cpp:732
+#: kconfig_compiler/kconfig_compiler.cpp:739
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "用于生成文件的目录，格式为 [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:733
+#: kconfig_compiler/kconfig_compiler.cpp:740
 msgctxt "main|"
 msgid "directory"
 msgstr "目录"
 
-#: kconfig_compiler/kconfig_compiler.cpp:737
+#: kconfig_compiler/kconfig_compiler.cpp:744
 msgctxt "main|"
 msgid "Display software license."
 msgstr "显示软件许可证。"

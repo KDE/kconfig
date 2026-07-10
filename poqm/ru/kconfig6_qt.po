@@ -32,7 +32,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Обратитесь к системному администратору."
 
-#: core/kconfigini.cpp:456
+#: core/kconfigini.cpp:459
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -993,17 +993,17 @@ msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Файлы с инструкциями для обновления."
 
-#: kconfig_compiler/kconfig_compiler.cpp:732
+#: kconfig_compiler/kconfig_compiler.cpp:739
 msgctxt "main|"
 msgid "Directory to generate files in [.]"
 msgstr "Каталог, где будут созданы файлы [.]"
 
-#: kconfig_compiler/kconfig_compiler.cpp:733
+#: kconfig_compiler/kconfig_compiler.cpp:740
 msgctxt "main|"
 msgid "directory"
 msgstr "каталог"
 
-#: kconfig_compiler/kconfig_compiler.cpp:737
+#: kconfig_compiler/kconfig_compiler.cpp:744
 msgctxt "main|"
 msgid "Display software license."
 msgstr "Показать сведения о лицензии"
