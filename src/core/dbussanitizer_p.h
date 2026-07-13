@@ -3,16 +3,18 @@
 
 #pragma once
 
-#include <cctype>
-#include <locale>
-
+#include <QChar>
+#include <QLatin1Char>
 #include <QString>
 
 inline QString kconfigDBusSanitizePath(QString path)
 {
-    for (auto &character : path) {
-        if ((std::isalnum(character.toLatin1(), std::locale::classic()) == 0) && character != QLatin1Char('_') && character != QLatin1Char('/')) {
-            character = QLatin1Char('_');
+    for (auto &c : path) {
+        // Quote DBus spec: 'Each element must only contain the ASCII characters "[A-Z][a-z][0-9]_"'
+        // (and '/' is the element separator)
+        const bool isAscii = c.unicode() < 128; // note: char16_t is always unsigned
+        if (!isAscii || (!c.isLetterOrNumber() && c != QLatin1Char('_') && c != QLatin1Char('/'))) {
+            c = QLatin1Char('_');
         }
     }
     // KConfig notifying or watching on / makes no sense
