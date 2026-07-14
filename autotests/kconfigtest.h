@@ -81,6 +81,7 @@ private Q_SLOTS:
     void testLocaleConfig();
     void testLocaleConfigWithOverrideLanguage();
     void testDirtyAfterRevert();
+    void testSyncNonBlocking();
     void testKdeGlobals();
     void testLocalDeletion();
     void testNewlines();

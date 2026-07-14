@@ -175,7 +175,12 @@ public:
      */
     OpenFlags openFlags() const;
 
+    KCONFIGCORE_DEPRECATED_VERSION(6, 3, "Use syncBlocking() or syncNonBlocking()")
     bool sync() override;
+
+    bool syncBlocking();
+
+    void syncNonBlocking();
 
     /*!
      * Returns \c true if sync has any changes to write out.

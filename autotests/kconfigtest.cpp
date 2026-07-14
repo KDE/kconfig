@@ -346,6 +346,39 @@ void KConfigTest::testDirtyAfterRevert()
     QVERIFY(!sc.isDirty());
 }
 
+void KConfigTest::testSyncNonBlocking()
+{
+    KConfig sc(s_test_subdir + QLatin1String("kconfigtest_syncnonblocking"));
+    KConfigGroup cg(&sc, QStringLiteral("Hello"));
+
+    cg.writeEntry("Test", "Correct");
+    QVERIFY(sc.isDirty());
+
+    sc.syncNonBlocking();
+    QTRY_VERIFY(!sc.isDirty());
+
+    sc.reparseConfiguration();
+    QCOMPARE(cg.readEntry("Test", "Default"), QStringLiteral("Correct"));
+
+    cg.revertToDefault("Test");
+    QVERIFY(sc.isDirty());
+
+    sc.syncNonBlocking();
+    QTRY_VERIFY(!sc.isDirty());
+
+    sc.reparseConfiguration();
+    QCOMPARE(cg.readEntry("Test", "Default"), QStringLiteral("Default"));
+
+    cg.writeEntry("AsyncGlobal", "GlobalValue", KConfig::Persistent | KConfig::Global);
+    QVERIFY(sc.isDirty());
+
+    sc.syncNonBlocking();
+    QTRY_VERIFY(!sc.isDirty());
+
+    sc.reparseConfiguration();
+    QCOMPARE(cg.readEntry("AsyncGlobal", "Default"), QStringLiteral("GlobalValue"));
+}
+
 void KConfigTest::testRevertAllEntries()
 {
     // this tests the case were we revert (delete) all entries in a file,
@@ -2276,6 +2309,14 @@ void KConfigTest::testNotify()
     QCOMPARE(otherWatcherSpy.count(), 1);
     QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
+
+    watcherSpy.clear();
+    myConfigGroup.writeEntry("asyncNotify", "foo", KConfig::Persistent | KConfig::Notify);
+    config.syncNonBlocking();
+    watcherSpy.wait();
+    QCOMPARE(watcherSpy.count(), 1);
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"asyncNotify"}));
 }
 
 void KConfigTest::testNotifyIllegalObjectPath()

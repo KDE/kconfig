@@ -68,6 +68,8 @@ target_include_directories(KF6ConfigCore PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
 
+target_link_libraries(KF6ConfigCore PRIVATE Qt6::Concurrent)
+
 if(KCONFIG_USE_DBUS)
     target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)
 endif()

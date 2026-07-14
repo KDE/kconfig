@@ -27,6 +27,7 @@ include(ECMGenerateQDoc)
 set(REQUIRED_QT_VERSION 6.9.0)
 
 find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
+find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Concurrent)
 option(KCONFIG_USE_GUI "Build components using Qt6Gui" ON)
 if(KCONFIG_USE_GUI)
     find_package(Qt6 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)

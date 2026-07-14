@@ -18,6 +18,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QFutureWatcher>
 #include <QStack>
 #include <QStringList>
 
@@ -96,6 +97,10 @@ private:
     QString etc_kderc;
     KConfigBase::AccessMode configState;
 
+    QFutureWatcher<bool> syncWatcher;
+    KEntryMap syncSnapshot;
+    bool syncPending = false;
+
     bool wantGlobals() const
     {
         return openFlags & KConfig::IncludeGlobals && !bSuppressGlobal;
@@ -122,6 +127,7 @@ private:
     void parseConfigFiles();
     void initCustomized(KConfig *);
     bool lockLocal();
+    void startAsyncWrite();
 };
 
 #endif // KCONFIG_P_H
