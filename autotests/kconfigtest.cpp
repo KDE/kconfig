@@ -14,6 +14,7 @@
 #include <QTemporaryDir>
 #include <QTemporaryFile>
 #include <QTest>
+#include <QThreadPool>
 #include <kdesktopfile.h>
 
 #include <kauthorized.h>
@@ -377,6 +378,21 @@ void KConfigTest::testSyncNonBlocking()
 
     sc.reparseConfiguration();
     QCOMPARE(cg.readEntry("AsyncGlobal", "Default"), QStringLiteral("GlobalValue"));
+}
+
+void KConfigTest::testSyncNonBlockingWithoutEventLoop()
+{
+    const QString file = s_test_subdir + QLatin1String("kconfigtest_async_noloop");
+    KConfig sc(file);
+    KConfigGroup cg(&sc, QStringLiteral("Group"));
+    cg.writeEntry("key", "value");
+    sc.syncNonBlocking();
+
+    QThreadPool::globalInstance()->waitForDone();
+
+    KConfig probe(file);
+    QCOMPARE(KConfigGroup(&probe, QStringLiteral("Group")).readEntry("key", "x"), QStringLiteral("value"));
+    QVERIFY(sc.isDirty());
 }
 
 void KConfigTest::testRevertAllEntries()
@@ -2204,7 +2220,6 @@ void KConfigTest::testXdgListEntry()
     QCOMPARE(grp.readXdgListEntry("Key6", invalidList), (QStringList{QStringLiteral("1"), QStringLiteral("2;3"), QString{}}));
 }
 
-#include <QThreadPool>
 #include <QtConcurrentRun>
 
 // To find multithreading bugs: valgrind --tool=helgrind --track-lockorders=no ./kconfigtest testThreads

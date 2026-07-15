@@ -175,6 +175,23 @@ private Q_SLOTS:
         backingFile->seek(0);
         QCOMPARE(backingFile->readAll(), "[Extra]\ntestKG=1\n");
     }
+
+    void testSyncNonBlockingFallback()
+    {
+        auto buffer = std::make_shared<QBuffer>();
+        QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
+        KConfig config(buffer, KConfig::OpenFlag::SimpleConfig);
+
+        KConfigGroup group(&config, QStringLiteral("Extra"));
+        group.writeEntry("testKG", "1");
+        QVERIFY(config.isDirty());
+
+        config.syncNonBlocking();
+        QVERIFY(!config.isDirty());
+
+        buffer->seek(0);
+        QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=1\n");
+    }
 };
 
 QTEST_MAIN(QIODeviceTest)
