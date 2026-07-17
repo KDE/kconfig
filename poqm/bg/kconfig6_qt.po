@@ -1034,7 +1034,15 @@ msgctxt "main|"
 msgid "Dump all entries"
 msgstr "Извличане на всички записи"
 
-#: kreadconfig/kreadconfig.cpp:58
+#: kreadconfig/kreadconfig.cpp:56
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Dump all entries"
+msgctxt "main|"
+msgid "Dump default values of all entries"
+msgstr "Извличане на всички записи"
+
+#: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
 msgid ""
 "Include globals; by default, the global config files are not read if a file "
@@ -1043,7 +1051,7 @@ msgstr ""
 "Включване на глобални файлове; по подразбиране глобалните конфигурационни "
 "файлове не се четат, ако е посочен файл"
 
-#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
+#: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""

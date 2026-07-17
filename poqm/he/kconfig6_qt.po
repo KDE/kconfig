@@ -1037,7 +1037,15 @@ msgctxt "main|"
 msgid "Dump all entries"
 msgstr "היטל של כל הרשומות"
 
-#: kreadconfig/kreadconfig.cpp:58
+#: kreadconfig/kreadconfig.cpp:56
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Dump all entries"
+msgctxt "main|"
+msgid "Dump default values of all entries"
+msgstr "היטל של כל הרשומות"
+
+#: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
 msgid ""
 "Include globals; by default, the global config files are not read if a file "
@@ -1046,7 +1054,7 @@ msgstr ""
 "לכלול הגדרות מקיפות (globals), כברירת מחדל, קובצי ההגדרות המקיפים לא נקראים "
 "אם צוין קובץ"
 
-#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
+#: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""

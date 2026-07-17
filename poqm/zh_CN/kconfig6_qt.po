@@ -1026,14 +1026,22 @@ msgctxt "main|"
 msgid "Dump all entries"
 msgstr "转储所有条目"
 
-#: kreadconfig/kreadconfig.cpp:58
+#: kreadconfig/kreadconfig.cpp:56
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Dump all entries"
+msgctxt "main|"
+msgid "Dump default values of all entries"
+msgstr "转储所有条目"
+
+#: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
 msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr "包括全局配置；默认情况下，如果制定了配置文件，则不读取全局配置文件"
 
-#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
+#: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr "组名称不能为空，根组应使用“<default>”"

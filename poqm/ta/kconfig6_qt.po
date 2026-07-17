@@ -1035,7 +1035,15 @@ msgctxt "main|"
 msgid "Dump all entries"
 msgstr "அனைத்து பதிவுகளையும் காட்டு"
 
-#: kreadconfig/kreadconfig.cpp:58
+#: kreadconfig/kreadconfig.cpp:56
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Dump all entries"
+msgctxt "main|"
+msgid "Dump default values of all entries"
+msgstr "அனைத்து பதிவுகளையும் காட்டு"
+
+#: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
 msgid ""
 "Include globals; by default, the global config files are not read if a file "
@@ -1044,7 +1052,7 @@ msgstr ""
 "பொதுவான அமைப்புகளையும் உட்படுத்து. கோப்பின் பெயர் குறிப்பிடப்பட்டிருந்தால், பொதுவான "
 "அமைப்புகளுக்கான கோப்புகளை இந்நிரல் இயல்பாக படிக்காது."
 
-#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
+#: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""

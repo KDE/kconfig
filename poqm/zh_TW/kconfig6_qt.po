@@ -1032,14 +1032,22 @@ msgctxt "main|"
 msgid "Dump all entries"
 msgstr "傾印所有項目"
 
-#: kreadconfig/kreadconfig.cpp:58
+#: kreadconfig/kreadconfig.cpp:56
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Dump all entries"
+msgctxt "main|"
+msgid "Dump default values of all entries"
+msgstr "傾印所有項目"
+
+#: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
 msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr "包含全域項目；預設是會在有指定檔案時忽略全域設定檔案不讀取"
 
-#: kreadconfig/kreadconfig.cpp:89 kreadconfig/kwriteconfig.cpp:71
+#: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr "群組名稱不能為空，請為 root 使用者群組使用「<default>」設定"
