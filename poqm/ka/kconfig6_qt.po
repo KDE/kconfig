@@ -1028,12 +1028,9 @@ msgid "Dump all entries"
 msgstr "ყველა ჩანაწერის დამპი"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "ყველა ჩანაწერის დამპი"
+msgstr "ყველა ჩანაწერის ნაგულისხმევი მნიშვნელობების დამპი"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"

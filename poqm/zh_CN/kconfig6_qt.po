@@ -1027,12 +1027,9 @@ msgid "Dump all entries"
 msgstr "转储所有条目"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "转储所有条目"
+msgstr ""
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"

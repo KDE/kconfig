@@ -1037,8 +1037,6 @@ msgstr "Skriv ut alle oppføringar"
 
 #: kreadconfig/kreadconfig.cpp:56
 #, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
 msgstr "Skriv ut alle oppføringar"
