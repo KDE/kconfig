@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-05-21 17:02+0300\n"
+"PO-Revision-Date: 2026-07-18 22:15+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: core/kconfig.cpp:993
 msgctxt "KConfig|"
@@ -1034,12 +1034,9 @@ msgid "Dump all entries"
 msgstr "Sukurti visų įrašų išklotinę"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "Sukurti visų įrašų išklotinę"
+msgstr "Sukurti visų įrašų numatytųjų reikšmių išklotinę"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"

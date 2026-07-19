@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-07-16 11:48+0200\n"
+"PO-Revision-Date: 2026-07-18 11:31+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -1034,12 +1034,9 @@ msgid "Dump all entries"
 msgstr "Vypsat všechny záznamy"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "Vypsat všechny záznamy"
+msgstr "Vypisovat výchozí hodnoty všech záznamů"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
