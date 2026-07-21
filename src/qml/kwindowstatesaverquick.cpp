@@ -33,7 +33,7 @@ void KWindowStateSaverQuick::componentComplete()
     // If we do not set the window visible now, then our window state is
     // overwritten during QQuickWindowQmlImpl::setWindowVisibility() because
     // QQuickWindow is AutomaticVisibility by default.
-    if (window->windowState() == Qt::WindowMaximized && window->isVisible()) {
+    if (window->windowState() == Qt::WindowMaximized) {
         window->setVisibility(QWindow::Visibility::Maximized);
     }
 }
