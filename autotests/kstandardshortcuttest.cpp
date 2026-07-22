@@ -22,7 +22,7 @@ Q_CONSTRUCTOR_FUNCTION(initLocale)
 
 void KStandardShortcutTest::testShortcutDefault()
 {
-    QCOMPARE(QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::FullScreen)), QLatin1String("Ctrl+Shift+F"));
+    QCOMPARE(QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::FullScreen)), QLatin1String("Ctrl+Shift+F; F11"));
     QCOMPARE(QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::BeginningOfLine)), QLatin1String("Home"));
     QCOMPARE(QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::EndOfLine)), QLatin1String("End"));
     QCOMPARE(QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::Home)), QLatin1String("Alt+Home; Home Page"));

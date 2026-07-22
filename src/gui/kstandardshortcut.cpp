@@ -293,7 +293,7 @@ static KStandardShortcutInfo g_infoStandardShortcut[] = {
 #else
      CTRLSHIFT(F),
 #endif
-     0,
+     Qt::Key_F11,
      QList<QKeySequence>(),
      false,
      Category::View},
