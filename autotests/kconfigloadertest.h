@@ -47,6 +47,7 @@ private Q_SLOTS:
     void sizeFDefaultValue();
     void ulongLongDefaultValue();
     void timeDefaultValue();
+    void testConfigGroup();
 
 private:
     KConfigLoader *cl;

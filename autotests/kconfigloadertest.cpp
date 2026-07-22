@@ -238,6 +238,26 @@ void ConfigLoaderTest::timeDefaultValue()
     QVERIFY(typeItem->isEqual(QTime(21, 42, 32)));
 }
 
+void ConfigLoaderTest::testConfigGroup()
+{
+    QString fileName = s_testName + QLatin1String(".xml");
+    QFile configFile(QFINDTESTDATA(QString::fromLatin1("/") + fileName));
+
+    KConfig config(QStringLiteral("kconfigloadertestgroup"));
+    config.group(QStringLiteral("SubGroup")).group(QStringLiteral("kconfigloadertest")).writeEntry("DefaultIntItem", 13);
+    config.sync();
+
+    KConfigGroup group = config.group(QStringLiteral("SubGroup"));
+
+    auto loader = new KConfigLoader(group, &configFile);
+    auto item = loader->findItemByName(QStringLiteral("DefaultIntItem"));
+    auto intItem = static_cast<KConfigSkeleton::ItemInt *>(item);
+    QCOMPARE(intItem->value(), 13);
+    QCOMPARE(intItem->getDefault().toInt(), 27);
+
+    delete loader;
+}
+
 QTEST_MAIN(ConfigLoaderTest)
 
 #include "moc_kconfigloadertest.cpp"
