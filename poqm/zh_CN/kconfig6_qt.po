@@ -15,7 +15,7 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kconfig/kconfig6_qt.pot\n"
 "X-Crowdin-File-ID: 43047\n"
 
-#: core/kconfig.cpp:993
+#: core/kconfig.cpp:1081
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "请联系您的系统管理员。"
@@ -1029,7 +1029,7 @@ msgstr "转储所有条目"
 #: kreadconfig/kreadconfig.cpp:56
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr ""
+msgstr "转储所有条目的默认值"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"

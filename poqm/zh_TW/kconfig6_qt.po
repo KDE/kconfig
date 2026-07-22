@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-04-08 23:17+0900\n"
+"PO-Revision-Date: 2026-07-22 01:06+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 26.07.70\n"
+"X-Generator: Lokalize 26.11.70\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:993
+#: core/kconfig.cpp:1081
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "請聯絡您的系統管理員。"
@@ -1033,12 +1033,9 @@ msgid "Dump all entries"
 msgstr "傾印所有項目"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "傾印所有項目"
+msgstr "傾印所有項目的預設值"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
