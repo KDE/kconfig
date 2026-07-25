@@ -859,7 +859,6 @@ void KConfigPrivate::parseSystemConfigFiles()
         return;
     }
 
-    const auto backingDevicePath = mBackend.backingDevicePath();
     bFileImmutable = false;
 
     QList<QString> files;
