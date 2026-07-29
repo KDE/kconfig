@@ -132,35 +132,37 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
     setLocale(getDefaultLocaleName());
 
     QObject::connect(&syncWatcher, &QFutureWatcher<bool>::finished, [this] {
-        if (syncWatcher.result()) {
-            QHash<QString, QByteArrayList> notifyGroupsLocal;
-            QHash<QString, QByteArrayList> notifyGroupsGlobal;
-            for (const auto &[key, e] : syncSnapshot) {
-                const auto it = entryMap.find(key);
-                if (it != entryMap.end() && it->second == e) {
-                    it->second.bDirty = false;
-                }
-                if (e.bDirty && e.bNotify) {
-                    if (e.bGlobal) {
-                        notifyGroupsGlobal[key.mGroup] << key.mKey;
-                    } else {
-                        notifyGroupsLocal[key.mGroup] << key.mKey;
-                    }
-                }
-            }
+        if (!syncWatcher.result()) {
+            return;
+        }
 
-            // entries modified after the snapshot are still dirty
-            bDirty = std::any_of(entryMap.cbegin(), entryMap.cend(), [](const auto &kv) {
-                return kv.second.bDirty;
-            });
+        QHash<QString, QByteArrayList> notifyGroupsLocal;
+        QHash<QString, QByteArrayList> notifyGroupsGlobal;
+        for (const auto &[key, e] : syncSnapshot) {
+            const auto it = entryMap.find(key);
+            if (it != entryMap.end() && it->second == e) {
+                it->second.bDirty = false;
+            }
+            if (e.bDirty && e.bNotify) {
+                if (e.bGlobal) {
+                    notifyGroupsGlobal[key.mGroup] << key.mKey;
+                } else {
+                    notifyGroupsLocal[key.mGroup] << key.mKey;
+                }
+            }
+        }
 
-            const bool isAbsolutePath = !fileName.isEmpty() && fileName.at(0) == QLatin1Char('/');
-            if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
-                notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + fileName));
-            }
-            if (!notifyGroupsGlobal.isEmpty()) {
-                notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));
-            }
+        // entries modified after the snapshot are still dirty
+        bDirty = std::any_of(entryMap.cbegin(), entryMap.cend(), [](const auto &kv) {
+            return kv.second.bDirty;
+        });
+
+        const bool isAbsolutePath = !fileName.isEmpty() && fileName.at(0) == QLatin1Char('/');
+        if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
+            notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + fileName));
+        }
+        if (!notifyGroupsGlobal.isEmpty()) {
+            notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));
         }
 
         // process all pending sync requests
@@ -474,10 +476,10 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
 
 bool KConfig::sync()
 {
-    return syncBlocking();
+    return syncNow();
 }
 
-bool KConfig::syncBlocking()
+bool KConfig::syncNow()
 {
     Q_D(KConfig);
     d->syncWatcher.waitForFinished();
@@ -629,7 +631,7 @@ void KConfigPrivate::startAsyncWrite()
     }));
 }
 
-void KConfig::syncNonBlocking()
+void KConfig::syncLater()
 {
     Q_D(KConfig);
 
@@ -643,7 +645,7 @@ void KConfig::syncNonBlocking()
 
     // for QIODevice backend
     if (d->mBackend.backingDevicePath().isEmpty()) {
-        syncBlocking();
+        syncNow();
         return;
     }
 

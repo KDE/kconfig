@@ -175,12 +175,29 @@ public:
      */
     OpenFlags openFlags() const;
 
-    KCONFIGCORE_DEPRECATED_VERSION(6, 3, "Use syncBlocking() or syncNonBlocking()")
+    KCONFIGCORE_DEPRECATED_VERSION(6, 3, "Use syncNow() or syncLater()")
     bool sync() override;
 
-    bool syncBlocking();
+    /*!
+     * Writes all pending config changes to disk synchronously
+     * and returns whether it succeeded.
+     *
+     * Use this when the data must be persisted before continuing.
+     * \since 6.29
+     */
+    bool syncNow();
 
-    void syncNonBlocking();
+    /*!
+     * Writes all pending changes to disk on a background thread
+     * and returns immediately.
+     *
+     * Watchers are notified once the write completes. A failed write leaves
+     * the config dirty to be retried.
+     *
+     * Use this by default.
+     * \since 6.29
+     */
+    void syncLater();
 
     /*!
      * Returns \c true if sync has any changes to write out.

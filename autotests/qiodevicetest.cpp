@@ -186,7 +186,7 @@ private Q_SLOTS:
         group.writeEntry("testKG", "1");
         QVERIFY(config.isDirty());
 
-        config.syncNonBlocking();
+        config.syncLater();
         QVERIFY(!config.isDirty());
 
         buffer->seek(0);

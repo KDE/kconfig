@@ -355,7 +355,7 @@ void KConfigTest::testSyncNonBlocking()
     cg.writeEntry("Test", "Correct");
     QVERIFY(sc.isDirty());
 
-    sc.syncNonBlocking();
+    sc.syncLater();
     QTRY_VERIFY(!sc.isDirty());
 
     sc.reparseConfiguration();
@@ -364,7 +364,7 @@ void KConfigTest::testSyncNonBlocking()
     cg.revertToDefault("Test");
     QVERIFY(sc.isDirty());
 
-    sc.syncNonBlocking();
+    sc.syncLater();
     QTRY_VERIFY(!sc.isDirty());
 
     sc.reparseConfiguration();
@@ -373,7 +373,7 @@ void KConfigTest::testSyncNonBlocking()
     cg.writeEntry("AsyncGlobal", "GlobalValue", KConfig::Persistent | KConfig::Global);
     QVERIFY(sc.isDirty());
 
-    sc.syncNonBlocking();
+    sc.syncLater();
     QTRY_VERIFY(!sc.isDirty());
 
     sc.reparseConfiguration();
@@ -386,7 +386,7 @@ void KConfigTest::testSyncNonBlockingWithoutEventLoop()
     KConfig sc(file);
     KConfigGroup cg(&sc, QStringLiteral("Group"));
     cg.writeEntry("key", "value");
-    sc.syncNonBlocking();
+    sc.syncLater();
 
     QThreadPool::globalInstance()->waitForDone();
 
@@ -2327,7 +2327,7 @@ void KConfigTest::testNotify()
 
     watcherSpy.clear();
     myConfigGroup.writeEntry("asyncNotify", "foo", KConfig::Persistent | KConfig::Notify);
-    config.syncNonBlocking();
+    config.syncLater();
     watcherSpy.wait();
     QCOMPARE(watcherSpy.count(), 1);
     QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
