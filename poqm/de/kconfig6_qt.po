@@ -1053,7 +1053,7 @@ msgstr ""
 msgctxt "main|"
 msgid "Group name cannot be empty, use \"<default>\" for the root group"
 msgstr ""
-"Der Gruppenname darf nicht leer sein, benutzen Sie „<default>“ für die "
+"Der Gruppenname darf nicht leer sein, verwenden Sie „<default>“ für die "
 "Wurzelgruppe"
 
 #: kreadconfig/kwriteconfig.cpp:34
