@@ -1,6 +1,7 @@
 # Translation of kconfig6_qt to Norwegian Nynorsk
 #
 # Håvard Korsvoll <korsvoll@skulelinux.no>, 2004.
+# Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2015, 2016, 2018, 2020, 2022, 2023, 2024, 2025, 2026.
 # Eirik U. Birkeland <eirbir@gmail.com>, 2008.
 msgid ""
 msgstr ""
