@@ -347,7 +347,7 @@ void KConfigTest::testDirtyAfterRevert()
     QVERIFY(!sc.isDirty());
 }
 
-void KConfigTest::testSyncNonBlocking()
+void KConfigTest::testSyncLater()
 {
     KConfig sc(s_test_subdir + QLatin1String("kconfigtest_syncnonblocking"));
     KConfigGroup cg(&sc, QStringLiteral("Hello"));
@@ -380,7 +380,7 @@ void KConfigTest::testSyncNonBlocking()
     QCOMPARE(cg.readEntry("AsyncGlobal", "Default"), QStringLiteral("GlobalValue"));
 }
 
-void KConfigTest::testSyncNonBlockingWithoutEventLoop()
+void KConfigTest::testSyncLaterWithoutEventLoop()
 {
     const QString file = s_test_subdir + QLatin1String("kconfigtest_async_noloop");
     KConfig sc(file);
@@ -2332,6 +2332,34 @@ void KConfigTest::testNotify()
     QCOMPARE(watcherSpy.count(), 1);
     QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"asyncNotify"}));
+}
+
+void KConfigTest::testSyncNowAfterSyncLaterNotifiesOnce()
+{
+#if !KCONFIG_USE_DBUS
+    QSKIP("KConfig notification requires DBus");
+#endif
+
+    const QString file = s_test_subdir + QLatin1String("kconfigtest_synclater_notify");
+    KConfig config(file);
+    auto remoteConfig = KSharedConfig::openConfig(file);
+    KConfigWatcher::Ptr watcher = KConfigWatcher::create(remoteConfig);
+    QSignalSpy watcherSpy(watcher.data(), &KConfigWatcher::configChanged);
+
+    // A syncLater() drained by a blocking syncNow() must notify once and not again
+    // from the deferred finished handler.
+    KConfigGroup group(&config, QStringLiteral("TopLevelGroup"));
+    group.writeEntry("key", "foo", KConfig::Persistent | KConfig::Notify);
+    QVERIFY(config.isDirty());
+
+    config.syncLater();
+    config.syncNow();
+
+    QVERIFY(watcherSpy.wait());
+    watcherSpy.wait(500);
+    QCOMPARE(watcherSpy.count(), 1);
+    QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
+    QCOMPARE(watcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"key"}));
 }
 
 void KConfigTest::testNotifyIllegalObjectPath()

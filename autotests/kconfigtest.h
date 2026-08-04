@@ -81,13 +81,14 @@ private Q_SLOTS:
     void testLocaleConfig();
     void testLocaleConfigWithOverrideLanguage();
     void testDirtyAfterRevert();
-    void testSyncNonBlocking();
-    void testSyncNonBlockingWithoutEventLoop();
+    void testSyncLater();
+    void testSyncLaterWithoutEventLoop();
     void testKdeGlobals();
     void testLocalDeletion();
     void testNewlines();
     void testXdgListEntry();
     void testNotify();
+    void testSyncNowAfterSyncLaterNotifiesOnce();
     void testNotifyIllegalObjectPath();
     void testKAuthorizeEnums();
 

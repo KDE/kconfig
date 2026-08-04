@@ -176,7 +176,7 @@ private Q_SLOTS:
         QCOMPARE(backingFile->readAll(), "[Extra]\ntestKG=1\n");
     }
 
-    void testSyncNonBlockingFallback()
+    void testSyncLaterOnQIODevice()
     {
         auto buffer = std::make_shared<QBuffer>();
         QVERIFY(buffer->open(QIODevice::ReadWrite | QIODevice::Text));
@@ -187,8 +187,9 @@ private Q_SLOTS:
         QVERIFY(config.isDirty());
 
         config.syncLater();
-        QVERIFY(!config.isDirty());
+        QVERIFY(config.isDirty());
 
+        QTRY_VERIFY(!config.isDirty());
         buffer->seek(0);
         QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=1\n");
     }
