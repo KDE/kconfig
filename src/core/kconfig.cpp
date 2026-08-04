@@ -443,8 +443,7 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     return theMap;
 }
 
-static bool
-writeConfigToBackends(const QByteArray &locale, KEntryMap &entries, bool readWrite, bool includeGlobals, KConfigIniBackend &local, const QString &globalPath)
+static bool writeConfigToBackends(const QByteArray &locale, KEntryMap &entries, bool readWrite, bool includeGlobals, KConfigIniBackend &local)
 {
     bool writeGlobals = false;
     bool writeLocals = false;
@@ -460,6 +459,7 @@ writeConfigToBackends(const QByteArray &locale, KEntryMap &entries, bool readWri
 
     bool ok = true;
     if (includeGlobals && writeGlobals) {
+        const QString globalPath = *sGlobalFileName;
         KConfigIniBackend global(std::make_unique<KConfigIniBackendPathDevice>(globalPath));
         if (readWrite && !global.lock()) {
             qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock global file:" << globalPath;
@@ -523,7 +523,7 @@ bool KConfig::syncNow()
         }
 
         const bool readWrite = d->configState == ReadWrite;
-        d->bDirty = !writeConfigToBackends(locale().toUtf8(), d->entryMap, readWrite, d->wantGlobals(), d->mBackend, *sGlobalFileName);
+        d->bDirty = !writeConfigToBackends(locale().toUtf8(), d->entryMap, readWrite, d->wantGlobals(), d->mBackend);
     }
 
     // Notifying absolute paths is not supported and also makes no sense.
@@ -549,11 +549,10 @@ void KConfigPrivate::startAsyncWrite()
     const bool includeGlobals = wantGlobals();
 
     const QString localPath = mBackend.backingDevicePath();
-    const QString globalPath = *sGlobalFileName;
 
-    syncWatcher.setFuture(QtConcurrent::run([snapshot = std::move(copy), utf8Locale, readWrite, includeGlobals, localPath, globalPath]() mutable {
+    syncWatcher.setFuture(QtConcurrent::run([snapshot = std::move(copy), utf8Locale, readWrite, includeGlobals, localPath]() mutable {
         KConfigIniBackend local(std::make_unique<KConfigIniBackendPathDevice>(localPath));
-        return writeConfigToBackends(utf8Locale, snapshot, readWrite, includeGlobals, local, globalPath);
+        return writeConfigToBackends(utf8Locale, snapshot, readWrite, includeGlobals, local);
     }));
 }
 
