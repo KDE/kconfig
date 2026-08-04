@@ -175,7 +175,7 @@ public:
      */
     OpenFlags openFlags() const;
 
-    KCONFIGCORE_DEPRECATED_VERSION(6, 3, "Use syncNow() or syncLater()")
+    KCONFIGCORE_DEPRECATED_VERSION(6, 30, "Use syncNow() or syncLater()")
     bool sync() override;
 
     /*!
@@ -183,7 +183,7 @@ public:
      * and returns whether it succeeded.
      *
      * Use this when the data must be persisted before continuing.
-     * \since 6.29
+     * \since 6.30
      */
     bool syncNow();
 
@@ -195,7 +195,7 @@ public:
      * the config dirty to be retried.
      *
      * Use this by default.
-     * \since 6.29
+     * \since 6.30
      */
     void syncLater();
 
