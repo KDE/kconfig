@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2026-07-18 01:33+0900\n"
+"PO-Revision-Date: 2026-08-08 13:21+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Min Nan Chinese <zh-l10n@lists.slat.org>\n"
 "Language: nan_TW\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 26.07.70\n"
+"X-Generator: Lokalize 26.11.70\n"
 
 #: core/kconfig.cpp:1080
 msgctxt "KConfig|"
@@ -1028,12 +1028,9 @@ msgid "Dump all entries"
 msgstr "倒出所有 ê 項目"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "倒出所有 ê 項目"
+msgstr "倒出所有項目 ê 預設值"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
