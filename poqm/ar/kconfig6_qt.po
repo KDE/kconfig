@@ -73,7 +73,7 @@ msgstr "افتح مستندًا موجودًا"
 #: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
 msgid "Open &Recent"
-msgstr "افتح ملفاً &حديثًا"
+msgstr "افتح ملفًا &حديثًا"
 
 #: gui/kstandardactions_p.h:66
 msgctxt "KStandardActions|"
@@ -781,7 +781,7 @@ msgstr "العنصر التالي في القائمة"
 #: gui/kstandardshortcut.cpp:382
 msgctxt "KStandardShortcut|@action"
 msgid "Open Recent"
-msgstr "افتح ملفاً حديثًا"
+msgstr "افتح ملفًا حديثًا"
 
 #: gui/kstandardshortcut.cpp:383
 msgctxt "KStandardShortcut|@action"
