@@ -1033,12 +1033,9 @@ msgid "Dump all entries"
 msgstr "Vypísať všetky položky"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "Vypísať všetky položky"
+msgstr "Vypísať predvolené hodnoty všetkých položiek"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
