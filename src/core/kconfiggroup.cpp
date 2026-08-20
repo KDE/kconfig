@@ -572,15 +572,37 @@ bool KConfigGroup::exists() const
     return config()->hasGroup(d->fullName());
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 30)
 bool KConfigGroup::sync()
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::sync", "accessing an invalid group");
 
     if (!d->bConst) {
-        return config()->sync();
+        return config()->syncNow();
     }
 
     return false;
+}
+#endif
+
+bool KConfigGroup::syncNow()
+{
+    Q_ASSERT_X(isValid(), "KConfigGroup::syncNow", "accessing an invalid group");
+
+    if (!d->bConst) {
+        return config()->syncNow();
+    }
+
+    return false;
+}
+
+void KConfigGroup::syncLater()
+{
+    Q_ASSERT_X(isValid(), "KConfigGroup::syncLater", "accessing an invalid group");
+
+    if (!d->bConst) {
+        config()->syncLater();
+    }
 }
 
 QMap<QString, QString> KConfigGroup::entryMap() const

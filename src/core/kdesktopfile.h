@@ -213,7 +213,7 @@ public:
      * KDesktopFile object that will save itself to \a file.
      *
      * Actual saving to \a file happens when the returned object is
-     * destructed or when sync() is called upon it.
+     * destructed or when syncNow() is called upon it.
      */
     KDesktopFile *copyTo(const QString &file) const;
 

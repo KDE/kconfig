@@ -54,7 +54,7 @@ private Q_SLOTS:
             KConfig glob(QStringLiteral("kdeglobals"));
             KConfigGroup general(&glob, QStringLiteral("General"));
             general.writeEntry("testKG", "1");
-            QVERIFY(glob.sync());
+            QVERIFY(glob.syncNow());
         }
 
         KConfig globRead(QStringLiteral("kdeglobals"));
@@ -81,7 +81,7 @@ private Q_SLOTS:
             KConfig glob(extrafile.fileName());
             KConfigGroup extra(&glob, QStringLiteral("Extra"));
             extra.writeEntry("testKG", "1");
-            QVERIFY(glob.sync());
+            QVERIFY(glob.syncNow());
         }
 
         {
@@ -125,7 +125,7 @@ private Q_SLOTS:
             KConfig glob(file.fileName());
             KConfigGroup extra(&glob, QStringLiteral("Extra"));
             extra.writeEntry("testKG", "1");
-            QVERIFY(glob.sync());
+            QVERIFY(glob.syncNow());
         }
 
         KConfig glob(file.fileName());
@@ -142,7 +142,7 @@ private Q_SLOTS:
         }
 
         QCOMPARE(buffer->size(), 0);
-        QVERIFY(config.sync());
+        QVERIFY(config.syncNow());
         QVERIFY(!config.isDirty());
 
         buffer->seek(0);
@@ -169,7 +169,7 @@ private Q_SLOTS:
         }
 
         QCOMPARE(backingFile->size(), 0);
-        QVERIFY(config.sync());
+        QVERIFY(config.syncNow());
         QVERIFY(!config.isDirty());
 
         backingFile->seek(0);

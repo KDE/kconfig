@@ -101,11 +101,13 @@ public:
      * not overwritten. Note however, that this object is not automatically
      * updated with those changes.
      */
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 30)
     virtual bool sync() = 0;
+#endif
 
     /*!
      * Reset the dirty flags of all entries in the entry map, so the
-     * values will not be written to disk on a later call to sync().
+     * values will not be written to disk on a later call to syncNow() or syncLater().
      */
     virtual void markAsClean() = 0;
 

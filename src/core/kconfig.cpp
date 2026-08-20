@@ -305,7 +305,7 @@ KConfig::~KConfig()
     Q_D(KConfig);
     d->syncWatcher.waitForFinished();
     if (d->bDirty) {
-        sync();
+        syncNow();
     }
     delete d;
 }
@@ -492,10 +492,12 @@ static bool writeConfigToBackends(const QByteArray &locale, KEntryMap &entries, 
     return ok;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 30)
 bool KConfig::sync()
 {
     return syncNow();
 }
+#endif
 
 bool KConfig::syncNow()
 {
@@ -809,7 +811,7 @@ void KConfig::reparseConfiguration()
 
     // Don't lose pending changes
     if (!d->isReadOnly() && d->bDirty) {
-        sync();
+        syncNow();
     }
 
     d->entryMap.clear();

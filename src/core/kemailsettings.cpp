@@ -84,13 +84,13 @@ void KEMailSettings::setSetting(KEMailSettings::Setting s, const QString &v)
         break;
     }
     };
-    cg.sync();
+    cg.syncNow();
 }
 
 void KEMailSettings::setDefault(const QString &s)
 {
     p->m_pConfig->group(QStringLiteral("Defaults")).writeEntry("Profile", s);
-    p->m_pConfig->sync();
+    p->m_pConfig->syncNow();
     p->m_sDefaultProfile = s;
 }
 

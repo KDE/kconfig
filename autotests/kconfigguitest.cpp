@@ -43,14 +43,14 @@ void KConfigTest::initTestCase()
     cg.writeEntry("colorEntry3", (QList<int>() << 234 << 234 << 127));
     cg.writeEntry("colorEntry4", (QList<int>() << 235 << 235 << 100 << 125));
     cg.writeEntry("fontEntry", fontEntry());
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     KConfig sc1(QStringLiteral("kdebugrc"));
     KConfigGroup sg0(&sc1, QStringLiteral("0"));
     sg0.writeEntry("AbortFatal", false);
     sg0.writeEntry("WarnOutput", 0);
     sg0.writeEntry("FatalOutput", 0);
-    QVERIFY(sc1.sync());
+    QVERIFY(sc1.syncNow());
 
     // Qt 5.8.0 would fail the fromString(toString) roundtrip in QFont
     // if the qApp font has a styleName set.
@@ -101,48 +101,48 @@ void KConfigTest::testInvalid()
     // 1 element list
     list << 1;
     sc3.writeEntry(QStringLiteral("badList"), list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 
     // 2 element list
     list << 2;
     sc3.writeEntry("badList", list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 
     // 3 element list
     list << 303;
     sc3.writeEntry("badList", list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor()); // out of bounds
 
     // 4 element list
     list << 4;
     sc3.writeEntry("badList", list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor()); // out of bounds
 
     list[2] = -3;
     sc3.writeEntry("badList", list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor()); // out of bounds
 
     // 5 element list
     list[2] = 3;
     list << 5;
     sc3.writeEntry("badList", list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 
     // 6 element list
     list << 6;
     sc3.writeEntry("badList", list);
-    QVERIFY(sc.sync());
+    QVERIFY(sc.syncNow());
 
     QCOMPARE(sc3.readEntry("badList", QColor()), QColor());
 }

@@ -600,7 +600,7 @@ void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut)
         // kdeglobal if necessary and return.
         if (cg.hasKey(info->name)) {
             cg.deleteEntry(info->name, KConfig::Global | KConfig::Persistent | KConfig::Notify);
-            cg.sync();
+            cg.syncNow();
         }
 
         return;
@@ -609,7 +609,7 @@ void saveShortcut(StandardShortcut id, const QList<QKeySequence> &newShortcut)
     // Write the changed shortcut to kdeglobals
     sanitizeShortcutList(&info->cut);
     cg.writeEntry(info->name, QKeySequence::listToString(info->cut), KConfig::Global | KConfig::Persistent | KConfig::Notify);
-    cg.sync();
+    cg.syncNow();
 }
 
 QString name(StandardShortcut id)

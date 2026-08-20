@@ -234,7 +234,7 @@ bool KonfUpdate::updateFile(const QString &filename)
             cg.writeEntry("ctime", info.birthTime().toSecsSinceEpoch());
         }
         cg.writeEntry("mtime", info.lastModified().toSecsSinceEpoch());
-        cg.sync();
+        cg.syncNow();
     }
 
     return true;
@@ -250,7 +250,7 @@ void KonfUpdate::gotId(const QString &_id)
         if (!ids.contains(m_id)) {
             ids.append(m_id);
             cg.writeEntry("done", ids);
-            cg.sync();
+            cg.syncNow();
         }
     }
 

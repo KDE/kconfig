@@ -95,7 +95,7 @@ int main(int argc, char **argv)
     } else {
         cfgGroup.writeEntry(key, value, flags);
     }
-    konfig->sync();
+    konfig->syncNow();
     delete konfig;
     return 0;
 }

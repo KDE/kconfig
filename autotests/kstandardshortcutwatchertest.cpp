@@ -38,7 +38,7 @@ void KStandardShortcutWatcherTest::init()
 {
     KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("Shortcuts"));
     group.writeEntry("Open", QKeySequence::listToString(KStandardShortcut::hardcodedDefaultShortcut(KStandardShortcut::Open)), KConfig::Global);
-    group.sync();
+    group.syncNow();
     KStandardShortcut::initialize(KStandardShortcut::Open);
 }
 
@@ -64,7 +64,7 @@ void KStandardShortcutWatcherTest::testDataUpdated()
     // Writing manually to forego automatic update in saveShortcut()
     KConfigGroup group(KSharedConfig::openConfig(), QStringLiteral("Shortcuts"));
     group.writeEntry("Open", QKeySequence::listToString(newShortcut), KConfig::Global | KConfig::Notify);
-    group.sync();
+    group.syncNow();
     QTRY_COMPARE(signalSpy.count(), 1);
     QCOMPARE(KStandardShortcut::open(), newShortcut);
 }

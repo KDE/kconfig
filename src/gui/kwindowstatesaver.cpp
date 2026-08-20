@@ -90,7 +90,7 @@ KWindowStateSaver::~KWindowStateSaver()
 void KWindowStateSaver::timerEvent(QTimerEvent *event)
 {
     killTimer(event->timerId());
-    d->configGroup.sync();
+    d->configGroup.syncNow();
     d->timerId = 0;
 }
 
