@@ -128,6 +128,7 @@ public:
     [[nodiscard]] virtual QString id() const = 0;
     [[nodiscard]] virtual bool isDeviceReadable() const = 0;
     [[nodiscard]] virtual bool canWriteToDevice() const = 0;
+    [[nodiscard]] virtual bool supportsThreadedWrite() const = 0;
     [[nodiscard]] virtual bool writeToDevice(const std::function<void(QIODevice &)> &write) = 0;
     [[nodiscard]] virtual OpenResult open() = 0;
     [[nodiscard]] virtual std::unique_ptr<AbstractLockFile> lockFile() = 0;
@@ -149,6 +150,11 @@ public:
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
+    {
+        return false;
+    }
+
+    [[nodiscard]] bool supportsThreadedWrite() const override
     {
         return false;
     }
@@ -195,6 +201,11 @@ public:
     [[nodiscard]] bool isDeviceReadable() const override
     {
         return !m_localFilePath.isEmpty();
+    }
+
+    [[nodiscard]] bool supportsThreadedWrite() const override
+    {
+        return true;
     }
 
     [[nodiscard]] bool canWriteToDevice() const override
@@ -404,6 +415,11 @@ public:
     [[nodiscard]] bool canWriteToDevice() const override
     {
         return m_device->isOpen() && m_device->isWritable();
+    }
+
+    [[nodiscard]] bool supportsThreadedWrite() const override
+    {
+        return false;
     }
 
     [[nodiscard]] bool writeToDevice(const std::function<void(QIODevice &)> &write) override

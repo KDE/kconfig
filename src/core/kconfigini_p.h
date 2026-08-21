@@ -82,6 +82,7 @@ public:
     }
     [[nodiscard]] bool hasOpenableDeviceInterface() const;
     [[nodiscard]] QString backingDevicePath() const;
+    [[nodiscard]] bool supportsThreadedWrite() const;
 
 private:
     enum StringType {

@@ -814,4 +814,9 @@ QString KConfigIniBackend::backingDevicePath() const
     return {};
 }
 
+bool KConfigIniBackend::supportsThreadedWrite() const
+{
+    return mDeviceInterface->supportsThreadedWrite();
+}
+
 #include "moc_kconfigini_p.cpp"

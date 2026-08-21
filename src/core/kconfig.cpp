@@ -611,8 +611,7 @@ void KConfig::syncLater()
         return;
     }
 
-    // for QIODevice backend
-    if (d->mBackend.backingDevicePath().isEmpty()) {
+    if (!d->mBackend.supportsThreadedWrite()) {
         if (d->syncQueued) {
             return;
         }
