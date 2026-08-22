@@ -69,6 +69,7 @@ function(KCONFIG_ADD_KCFG_FILES _target_or_source_var)
         get_filename_component(_tmp_FILE ${_current_FILE} ABSOLUTE)
         get_filename_component(_abs_PATH ${_tmp_FILE} DIRECTORY)
 
+        set(_rel_PATH)
         if(ARG_USE_RELATIVE_PATH) # Process relative path only if the option was set
             # Get relative path
             get_filename_component(_rel_PATH ${_current_FILE} DIRECTORY)

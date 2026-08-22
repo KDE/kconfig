@@ -33,6 +33,8 @@ function(kconfig_compiler_test ARG_NAME)
 
     if(${ARG_GENERATE_MOC})
         set(_moc GENERATE_MOC)
+    else()
+        set(_moc)
     endif()
 
     # execute the tests in ${CMAKE_CURRENT_BINARY_DIR} to ensure we can easily find the generated files
