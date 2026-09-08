@@ -586,6 +586,15 @@ void KConfigTest::testPath()
 
     const auto val = QStringList{QStringLiteral("aaa"), QStringLiteral("bb/b"), QStringLiteral("ccc,ccc")};
     QCOMPARE(group.readPathEntry(QStringLiteral("escapes"), QStringList()), val);
+
+    group.writeEntry("empty", QString());
+    QVERIFY(group.hasKey("empty"));
+
+    group.writePathEntry("emptyPath", QString());
+    QVERIFY(group.hasKey("emptyPath"));
+
+    group.writePathEntry("emptyPathList", QStringList());
+    QVERIFY(group.hasKey("emptyPathList"));
 }
 
 void KConfigTest::testPersistenceOfExpandFlagForPath()
