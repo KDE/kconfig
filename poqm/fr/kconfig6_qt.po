@@ -323,12 +323,12 @@ msgstr "Sélectionner le niveau de zoom"
 #: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "&Refresh"
-msgstr "&Rafraîchir"
+msgstr "&Rafraichir"
 
 #: gui/kstandardactions_p.h:96
 msgctxt "KStandardActions|"
 msgid "Refresh document"
-msgstr "Rafraîchir le document"
+msgstr "Rafraichir le document"
 
 #: gui/kstandardactions_p.h:98
 msgctxt "KStandardActions|"
