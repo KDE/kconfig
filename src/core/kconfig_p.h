@@ -18,6 +18,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QReadWriteLock>
 #include <QStack>
 #include <QStringList>
 
@@ -40,9 +41,11 @@ public:
     void putData(const QString &groupName, const char *key, const QByteArray &value, KConfigBase::WriteConfigFlags flags, bool expand = false);
     void setEntryData(const QString &groupName, const char *key, const QByteArray &value, KEntryMap::EntryOptions flags)
     {
+        entryMapLock.lockForWrite();
         if (entryMap.setEntry(groupName, key, value, flags)) {
             bDirty = true;
         }
+        entryMapLock.unlock();
     }
     void revertEntry(const QString &group, QAnyStringView key, KConfigBase::WriteConfigFlags flags);
     /*
@@ -88,6 +91,8 @@ private:
     static bool mappingsRegistered;
 
     KEntryMap entryMap;
+    // lockForRead() must be callable also from const members
+    mutable QReadWriteLock entryMapLock;
     QString backendType;
     QStack<QString> extraFiles;
 

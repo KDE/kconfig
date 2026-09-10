@@ -150,6 +150,11 @@ void KConfigPrivate::copyGroup(const QString &source, const QString &destination
     KEntryMap &otherMap = otherGroup->config()->d_ptr->entryMap;
     const bool sameName = (destination == source);
 
+    if (otherGroup->config()->d_ptr != this) {
+        otherGroup->config()->d_ptr->entryMapLock.lockForWrite();
+    }
+    entryMapLock.lockForRead();
+
     // we keep this bool outside the for loop so that if
     // the group is empty, we don't end up marking the other config
     // as dirty erroneously
@@ -184,6 +189,10 @@ void KConfigPrivate::copyGroup(const QString &source, const QString &destination
 
         otherMap[newKey] = entry;
     });
+    entryMapLock.unlock();
+    if (otherGroup->config()->d_ptr != this) {
+        otherGroup->config()->d_ptr->entryMapLock.unlock();
+    }
 
     if (dirtied) {
         otherGroup->config()->d_ptr->bDirty = true;
@@ -329,12 +338,14 @@ QStringList KConfig::groupList() const
     Q_D(const KConfig);
     QSet<QStringView> groups;
 
+    d->entryMapLock.lockForRead();
     for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
         const QString &group = entryMapIt->first.mGroup;
         if (isNonDeletedKey(entryMapIt) && !group.isEmpty() && group != QStringLiteral("<default>") && group != QStringLiteral("$Version")) {
             groups.insert(QStringView(group).left(findFirstGroupEndPos(group)));
         }
     }
+    d->entryMapLock.unlock();
 
     return stringListFromStringViewCollection(groups);
 }
@@ -344,6 +355,7 @@ QStringList KConfigPrivate::groupList(const QString &groupName) const
     const QString theGroup = groupName + QLatin1Char('\x1d');
     QSet<QStringView> groups;
 
+    entryMapLock.lockForRead();
     entryMap.forEachEntryWhoseGroupStartsWith(theGroup, [&theGroup, &groups](KEntryMapConstIterator entryMapIt) {
         if (isNonDeletedKey(entryMapIt)) {
             const QString &entryGroup = entryMapIt->first.mGroup;
@@ -352,6 +364,7 @@ QStringList KConfigPrivate::groupList(const QString &groupName) const
             groups.insert(QStringView(entryGroup).mid(subgroupStartPos, subgroupEndPos - subgroupStartPos));
         }
     });
+    entryMapLock.unlock();
 
     return stringListFromStringViewCollection(groups);
 }
@@ -361,32 +374,39 @@ QSet<QString> KConfigPrivate::allSubGroups(const QString &parentGroup) const
 {
     QSet<QString> groups;
 
+    entryMapLock.lockForRead();
     entryMap.forEachEntryWhoseGroupStartsWith(parentGroup, [&parentGroup, &groups](KEntryMapConstIterator entryMapIt) {
         const KEntryKey &key = entryMapIt->first;
         if (key.mKey.isNull() && isGroupOrSubGroupMatch(entryMapIt, parentGroup)) {
             groups << key.mGroup;
         }
     });
+    entryMapLock.unlock();
 
     return groups;
 }
 
 bool KConfigPrivate::hasNonDeletedEntries(const QString &group) const
 {
-    return entryMap.anyEntryWhoseGroupStartsWith(group, [&group](KEntryMapConstIterator entryMapIt) {
+    entryMapLock.lockForRead();
+    const bool result = entryMap.anyEntryWhoseGroupStartsWith(group, [&group](KEntryMapConstIterator entryMapIt) {
         return isGroupOrSubGroupMatch(entryMapIt, group) && isNonDeletedKey(entryMapIt);
     });
+    entryMapLock.unlock();
+    return result;
 }
 
 QList<QByteArray> KConfigPrivate::keyListImpl(const QString &theGroup) const
 {
     std::set<QByteArray> tmp; // unique set, sorted for unittests
 
+    entryMapLock.lockForRead();
     entryMap.forEachEntryOfGroup(theGroup, [&tmp](KEntryMapConstIterator it) {
         if (isNonDeletedKey(it)) {
             tmp.insert(it->first.mKey);
         }
     });
+    entryMapLock.unlock();
 
     return QList<QByteArray>(tmp.begin(), tmp.end());
 }
@@ -395,6 +415,7 @@ QStringList KConfigPrivate::usedKeyList(const QString &theGroup) const
 {
     std::set<QString> tmp; // unique set, sorting as side-effect
 
+    entryMapLock.lockForRead();
     entryMap.forEachEntryOfGroup(theGroup, [&tmp](KEntryMapConstIterator it) {
         // leave the default values and deleted entries out, same as KConfig::entryMap()
         if (isSetKey(it)) {
@@ -402,6 +423,7 @@ QStringList KConfigPrivate::usedKeyList(const QString &theGroup) const
             tmp.insert(key);
         }
     });
+    entryMapLock.unlock();
 
     return QStringList(tmp.begin(), tmp.end());
 }
@@ -412,6 +434,7 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     QMap<QString, QString> theMap;
     const QString theGroup = aGroup.isEmpty() ? QStringLiteral("<default>") : aGroup;
 
+    d->entryMapLock.lockForRead();
     d->entryMap.forEachEntryOfGroup(theGroup, [&theMap](KEntryMapConstIterator it) {
         // leave the default values and deleted entries out
         if (isSetKey(it)) {
@@ -427,6 +450,7 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
             }
         }
     });
+    d->entryMapLock.unlock();
 
     return theMap;
 }
@@ -459,6 +483,7 @@ bool KConfig::sync()
         bool writeGlobals = false;
         bool writeLocals = false;
 
+        d->entryMapLock.lockForRead();
         for (const auto &[key, e] : d->entryMap) {
             if (e.bDirty) {
                 if (e.bGlobal) {
@@ -475,6 +500,7 @@ bool KConfig::sync()
             }
         }
 
+        d->entryMapLock.unlock();
         d->bDirty = false; // will revert to true if a config write fails
 
         if (d->wantGlobals() && writeGlobals) {
@@ -490,19 +516,23 @@ bool KConfig::sync()
                 d->bDirty = true;
                 return false;
             }
+            d->entryMapLock.lockForWrite();
             if (!tmp.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteGlobal)) {
                 d->bDirty = true;
             }
             if (tmp.isLocked()) {
                 tmp.unlock();
             }
+            d->entryMapLock.unlock();
         }
 
         if (writeLocals) {
+            d->entryMapLock.lockForWrite();
             if (!d->mBackend.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
                 qCWarning(KCONFIG_CORE_LOG) << "Couldn't write to config:" << d->mBackend.backingDevicePath();
                 d->bDirty = true;
             }
+            d->entryMapLock.unlock();
         }
         if (d->mBackend.isLocked()) {
             d->mBackend.unlock();
@@ -543,10 +573,12 @@ void KConfig::markAsClean()
     d->bDirty = false;
 
     // clear any dirty flags that entries might have set
+    d->entryMapLock.lockForWrite();
     for (auto &[_, entry] : d->entryMap) {
         entry.bDirty = false;
         entry.bNotify = false;
     }
+    d->entryMapLock.unlock();
 }
 
 bool KConfig::isDirty() const
@@ -575,12 +607,16 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
         config = new KConfig(QString(), SimpleConfig, d->resourceType);
     }
     config->d_func()->changeFileName(file);
+    d->entryMapLock.lockForRead();
     config->d_func()->entryMap = d->entryMap;
+    d->entryMapLock.unlock();
     config->d_func()->bFileImmutable = false;
 
+    config->d_func()->entryMapLock.lockForWrite();
     for (auto &[_, entry] : config->d_func()->entryMap) {
         entry.bDirty = true;
     }
+    config->d_func()->entryMapLock.unlock();
     config->d_ptr->bDirty = true;
 
     return config;
@@ -596,12 +632,18 @@ void KConfig::copyFrom(const KConfig &config) const
 void KConfig::copyFrom(const KConfig &config)
 {
     Q_D(KConfig);
+    config.d_func()->entryMapLock.lockForRead();
+    d->entryMapLock.lockForWrite();
     d->entryMap = config.d_func()->entryMap;
+    d->entryMapLock.unlock();
+    config.d_func()->entryMapLock.unlock();
     d->bFileImmutable = false;
 
+    d->entryMapLock.lockForWrite();
     for (auto &[_, entry] : d->entryMap) {
         entry.bDirty = true;
     }
+    d->entryMapLock.unlock();
     d->bDirty = true;
 }
 
@@ -706,6 +748,10 @@ void KConfig::reparseConfiguration()
         sync();
     }
 
+    // Hold the write lock for the entire reparse to prevent
+    // concurrent entryMap access from other threads during the
+    // clear-then-repopulate time.
+    d->entryMapLock.lockForWrite();
     d->entryMap.clear();
 
     d->bFileImmutable = false;
@@ -737,6 +783,8 @@ void KConfig::reparseConfiguration()
         d->parseGlobalUserFiles();
     }
     d->parseUserConfigFiles();
+
+    d->entryMapLock.unlock();
 }
 
 static bool isUserConfigFile(const QString &path, QStandardPaths::StandardLocation resourceType = QStandardPaths::GenericConfigLocation)
@@ -1028,7 +1076,10 @@ bool KConfig::isImmutable() const
 bool KConfig::isGroupImmutableImpl(const QString &aGroup) const
 {
     Q_D(const KConfig);
-    return isImmutable() || d->entryMap.getEntryOption(aGroup, {}, {}, KEntryMap::EntryImmutable);
+    d->entryMapLock.lockForRead();
+    const bool immutable = isImmutable() || d->entryMap.getEntryOption(aGroup, {}, {}, KEntryMap::EntryImmutable);
+    d->entryMapLock.unlock();
+    return immutable;
 }
 
 KConfigGroup KConfig::groupImpl(const QString &group)
@@ -1070,7 +1121,9 @@ void KConfig::deleteGroupImpl(const QString &aGroup, WriteConfigFlags flags)
         const QList<QByteArray> keys = d->keyListImpl(group);
         for (const QByteArray &key : keys) {
             if (d->canWriteEntry(group, key)) {
+                d->entryMapLock.lockForWrite();
                 d->entryMap.setEntry(group, key, QByteArray(), options);
+                d->entryMapLock.unlock();
                 d->bDirty = true;
             }
         }
@@ -1113,7 +1166,10 @@ bool KConfig::hasGroupImpl(const QString &aGroup) const
 
 bool KConfigPrivate::canWriteEntry(const QString &group, QAnyStringView key, bool isDefault) const
 {
-    if (bFileImmutable || entryMap.getEntryOption(group, key, KEntryMap::SearchLocalized, KEntryMap::EntryImmutable)) {
+    entryMapLock.lockForRead();
+    const bool immutable = bFileImmutable || entryMap.getEntryOption(group, key, KEntryMap::SearchLocalized, KEntryMap::EntryImmutable);
+    entryMapLock.unlock();
+    if (immutable) {
         return isDefault;
     }
     return true;
@@ -1134,7 +1190,9 @@ void KConfigPrivate::putData(const QString &group, const char *key, const QByteA
         options |= KEntryMap::EntryDeleted;
     }
 
+    entryMapLock.lockForWrite();
     bool dirtied = entryMap.setEntry(group, key, value, options);
+    entryMapLock.unlock();
     if (dirtied && (flags & KConfigBase::Persistent)) {
         bDirty = true;
     }
@@ -1144,7 +1202,9 @@ void KConfigPrivate::revertEntry(const QString &group, QAnyStringView key, KConf
 {
     KEntryMap::EntryOptions options = convertToOptions(flags);
 
+    entryMapLock.lockForWrite();
     bool dirtied = entryMap.revertEntry(group, key, options);
+    entryMapLock.unlock();
     if (dirtied) {
         bDirty = true;
     }
@@ -1160,11 +1220,15 @@ KEntry KConfigPrivate::lookupInternalEntry(const QString &group, QAnyStringView 
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
     }
+    entryMapLock.lockForRead();
     const auto it = entryMap.constFindEntry(group, key, flags);
     if (it == entryMap.cend()) {
+        entryMapLock.unlock();
         return {};
     }
-    return it->second;
+    const KEntry entry = it->second;
+    entryMapLock.unlock();
+    return entry;
 }
 
 QString KConfigPrivate::lookupData(const QString &group, QAnyStringView key, KEntryMap::SearchFlags flags, bool *expand) const
@@ -1172,7 +1236,10 @@ QString KConfigPrivate::lookupData(const QString &group, QAnyStringView key, KEn
     if (bReadDefaults) {
         flags |= KEntryMap::SearchDefaults;
     }
-    return entryMap.getEntry(group, key, QString(), flags, expand);
+    entryMapLock.lockForRead();
+    const QString result = entryMap.getEntry(group, key, QString(), flags, expand);
+    entryMapLock.unlock();
+    return result;
 }
 
 QStandardPaths::StandardLocation KConfig::locationType() const
