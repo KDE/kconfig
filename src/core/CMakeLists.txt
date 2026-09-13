@@ -74,7 +74,7 @@ endif()
 
 ecm_generate_qdoc(KF6ConfigCore kconfigcore.qdocconf)
 
-ecm_generate_headers(KConfigCore_HEADERS
+ecm_generate_headers(KConfigCore_CamelCase_HEADERS
   HEADER_NAMES
   KAuthorized
   KConfig
@@ -99,7 +99,21 @@ install(TARGETS KF6ConfigCore EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAU
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigcore_export.h
   ${KConfigCore_HEADERS}
+  ${KConfigCore_CamelCase_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore COMPONENT Devel
 )
 
 install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
+
+ecm_add_installed_library_check(KF6ConfigCore
+    PACKAGE_NAME "KF6Config"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+ecm_installed_library_check_include_strings(KF6ConfigCore
+    HEADERS ${KConfigCore_CamelCase_HEADERS}
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6ConfigCore
+    PREFIX KCONFIG
+)

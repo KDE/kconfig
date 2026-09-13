@@ -52,7 +52,7 @@ target_include_directories(KF6ConfigGui
 
 target_link_libraries(KF6ConfigGui PUBLIC Qt6::Gui KF6::ConfigCore)
 
-ecm_generate_headers(KConfigGui_HEADERS
+ecm_generate_headers(KConfigGui_CamelCase_HEADERS
   HEADER_NAMES
   KConfigGui
   KConfigLoader
@@ -83,6 +83,20 @@ install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   kstandardactions_p.h
   ${KConfigGui_HEADERS}
+  ${KConfigGui_CamelCase_HEADERS}
   kconfigguistaticinitializer.cpp
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
+)
+
+ecm_add_installed_library_check(KF6ConfigGui
+    PACKAGE_NAME "KF6Config"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+ecm_installed_library_check_include_strings(KF6ConfigGui
+    HEADERS ${KConfigGui_CamelCase_HEADERS}
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6ConfigGui
+    PREFIX KCONFIG
 )

@@ -23,6 +23,7 @@ include(ECMPoQmTools)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMGenerateQDoc)
+include(ECMInstalledLibraryCheck)
 
 set(REQUIRED_QT_VERSION 6.9.0)
 

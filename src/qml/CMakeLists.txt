@@ -45,7 +45,7 @@ target_link_libraries(KF6ConfigQml
     Qt6::Quick
 )
 
-ecm_generate_headers(KConfigQml_HEADERS
+ecm_generate_headers(KConfigQml_CamelCase_HEADERS
     HEADER_NAMES
     KConfigPropertyMap
 
@@ -60,7 +60,21 @@ install(TARGETS KF6ConfigQml EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAUL
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfigqml_export.h
   ${KConfigQml_HEADERS}
+  ${KConfigQml_CamelCase_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigQml COMPONENT Devel
 )
 
 ecm_finalize_qml_module(KF6ConfigQml DESTINATION ${KDE_INSTALL_QMLDIR} EXPORT KF6ConfigTargets)
+
+ecm_add_installed_library_check(KF6ConfigQml
+    PACKAGE_NAME "KF6Config"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+ecm_installed_library_check_include_strings(KF6ConfigQml
+    HEADERS ${KConfigQml_CamelCase_HEADERS}
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6ConfigQml
+    PREFIX KCONFIG
+)
