@@ -36,3 +36,5 @@ void Test16::itemChanged(quint64 signalFlag) {
     break;
   }
 }
+
+#include "moc_test16.cpp"

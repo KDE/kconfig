@@ -32,3 +32,5 @@ void TestPropertiesMinMax::itemChanged(quint64 signalFlag) {
     break;
   }
 }
+
+#include "moc_test_properties_minmax.cpp"

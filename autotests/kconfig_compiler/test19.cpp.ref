@@ -80,3 +80,5 @@ void Test19::itemChanged(quint64 signalFlag) {
     break;
   }
 }
+
+#include "moc_test19.cpp"
