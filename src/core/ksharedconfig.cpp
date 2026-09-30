@@ -113,7 +113,7 @@ void _k_globalMainConfigSyncAndCleanup()
     // Sync the main config while the QCoreApplication is still alive, so QLockFile can
     // still resolve the application name.
     if (KSharedConfigPtr mainConfig = globalSharedConfig()->mainConfig) {
-        mainConfig->sync();
+        mainConfig->syncNow();
     }
 
     // __SANITIZE_ADDRESS__ is defined by GCC, Clang 14 and later, and MSVC when building

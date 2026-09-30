@@ -51,7 +51,7 @@ ecm_generate_export_header(KF6ConfigCore
     USE_VERSION_HEADER
     VERSION_BASE_NAME KConfig
     DEPRECATED_BASE_VERSION 0
-    DEPRECATION_VERSIONS 6.3
+    DEPRECATION_VERSIONS 6.3 6.30
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
@@ -66,7 +66,7 @@ target_include_directories(KF6ConfigCore
 
 target_include_directories(KF6ConfigCore PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core)
+target_link_libraries(KF6ConfigCore PUBLIC Qt6::Core PRIVATE Qt6::Concurrent)
 
 if(KCONFIG_USE_DBUS)
     target_link_libraries(KF6ConfigCore PRIVATE Qt6::DBus)

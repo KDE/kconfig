@@ -237,11 +237,11 @@ void KConfigSkeletonTest::testReadDefaults()
 
     KConfigGroup group = defaults.group(QStringLiteral("MyOtherGroup"));
     group.writeEntry("MySetting4", "Bla");
-    QVERIFY(group.sync());
+    QVERIFY(group.syncNow());
 
     group = defaults.group(QStringLiteral("MyGroup"));
     group.writeEntry("MySetting2", QColor(255, 0, 0));
-    QVERIFY(group.sync());
+    QVERIFY(group.syncNow());
 
     skeleton.config()->addConfigSources(QStringList{defaultsFilePath});
 
@@ -315,7 +315,7 @@ void KConfigSkeletonTest::testDeleteEntry()
     group.writeEntry("MyEnum", u"hello"_s);
     group.writeEntry("MyColor", QColor(234, 234, 234));
     group.writeEntry("MyFont", QFont(u"Comic Sans"_s));
-    QVERIFY(group.sync());
+    QVERIFY(group.syncNow());
 
     // prepare user file with deleted entry
     const QString userFile = QLatin1String("kconfigskeletondeletetestrc");
@@ -334,7 +334,7 @@ void KConfigSkeletonTest::testDeleteEntry()
     g.deleteEntry("MyEnum");
     g.deleteEntry("MyColor");
     g.deleteEntry("MyFont");
-    c.sync();
+    c.syncNow();
 
     // build skeleton
     KConfigSkeleton skeleton(QStringLiteral("kconfigskeletondeletetestrc"));

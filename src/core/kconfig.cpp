@@ -17,6 +17,7 @@
 #include <fcntl.h>
 
 #include "kconfiggroup.h"
+#include "kconfigini_p.h"
 
 #include <QBasicMutex>
 #include <QByteArray>
@@ -40,6 +41,8 @@
 #include <QDBusMessage>
 #include <QDBusMetaType>
 #endif
+
+#include <QtConcurrentRun>
 
 #ifdef Q_OS_WIN
 #include "registry_win_p.h"
@@ -130,6 +133,18 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
     }
 
     setLocale(getDefaultLocaleName());
+
+    QObject::connect(&syncWatcher, &QFutureWatcher<bool>::finished, [this] {
+        finishSync();
+
+        // process all pending sync requests
+        if (syncPending) {
+            syncPending = false;
+            if (bDirty) {
+                startAsyncWrite();
+            }
+        }
+    });
 }
 
 bool KConfigPrivate::lockLocal()
@@ -291,8 +306,9 @@ KConfig::KConfig(KConfigPrivate &d)
 KConfig::~KConfig()
 {
     Q_D(KConfig);
+    d->syncWatcher.waitForFinished();
     if (d->bDirty) {
-        sync();
+        syncNow();
     }
     delete d;
 }
@@ -430,9 +446,67 @@ QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
     return theMap;
 }
 
+static bool writeConfigToBackend(const QByteArray &locale, KEntryMap &entries, bool readWrite, bool includeGlobals, KConfigIniBackend &local)
+{
+    bool writeGlobals = false;
+    bool writeLocals = false;
+    for (const auto &[_, e] : entries) {
+        if (e.bDirty) {
+            if (e.bGlobal) {
+                writeGlobals = true;
+            } else {
+                writeLocals = true;
+            }
+        }
+    }
+
+    bool ok = true;
+    if (includeGlobals && writeGlobals) {
+        const QString globalPath = *sGlobalFileName;
+        KConfigIniBackend global(std::make_unique<KConfigIniBackendPathDevice>(globalPath));
+        if (readWrite && !global.lock()) {
+            qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock global file:" << globalPath;
+            ok = false;
+        } else {
+            if (!global.writeConfig(locale, entries, KConfigIniBackend::WriteGlobal)) {
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write to global config:" << globalPath;
+                ok = false;
+            }
+            if (global.isLocked()) {
+                global.unlock();
+            }
+        }
+    }
+    if (writeLocals) {
+        local.createEnclosing();
+        if (readWrite && !local.lock()) {
+            qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock local file:" << local.backingDevicePath();
+            ok = false;
+        } else {
+            if (!local.writeConfig(locale, entries, KConfigIniBackend::WriteOptions())) {
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write to config:" << local.backingDevicePath();
+                ok = false;
+            }
+            if (local.isLocked()) {
+                local.unlock();
+            }
+        }
+    }
+    return ok;
+}
+
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 30)
 bool KConfig::sync()
 {
+    return syncNow();
+}
+#endif
+
+bool KConfig::syncNow()
+{
     Q_D(KConfig);
+    d->syncWatcher.waitForFinished();
+    d->finishSync();
 
     if (isImmutable() || !d->mBackend.isWritable()) {
         // can't write to an immutable or anonymous file.
@@ -443,69 +517,18 @@ bool KConfig::sync()
     QHash<QString, QByteArrayList> notifyGroupsGlobal;
 
     if (d->bDirty) {
-        const QByteArray utf8Locale(locale().toUtf8());
-
-        // Create the containing dir, maybe it wasn't there
-        d->mBackend.createEnclosing();
-
-        // lock the local file
-        if (d->configState == ReadWrite && !d->lockLocal()) {
-            qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock local file:" << d->mBackend.backingDevicePath();
-            return false;
-        }
-
-        // Rewrite global/local config only if there is a dirty entry in it.
-        bool writeGlobals = false;
-        bool writeLocals = false;
-
         for (const auto &[key, e] : d->entryMap) {
-            if (e.bDirty) {
+            if (e.bDirty && e.bNotify) {
                 if (e.bGlobal) {
-                    writeGlobals = true;
-                    if (e.bNotify) {
-                        notifyGroupsGlobal[key.mGroup] << key.mKey;
-                    }
+                    notifyGroupsGlobal[key.mGroup] << key.mKey;
                 } else {
-                    writeLocals = true;
-                    if (e.bNotify) {
-                        notifyGroupsLocal[key.mGroup] << key.mKey;
-                    }
+                    notifyGroupsLocal[key.mGroup] << key.mKey;
                 }
             }
         }
 
-        d->bDirty = false; // will revert to true if a config write fails
-
-        if (d->wantGlobals() && writeGlobals) {
-            KConfigIniBackend tmp(std::make_unique<KConfigIniBackendPathDevice>(*sGlobalFileName));
-            if (d->configState == ReadWrite && !tmp.lock()) {
-                qCWarning(KCONFIG_CORE_LOG) << "Couldn't lock global file:" << d->mBackend.backingDevicePath();
-
-                // unlock the local config if we're returning early
-                if (d->mBackend.isLocked()) {
-                    d->mBackend.unlock();
-                }
-
-                d->bDirty = true;
-                return false;
-            }
-            if (!tmp.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteGlobal)) {
-                d->bDirty = true;
-            }
-            if (tmp.isLocked()) {
-                tmp.unlock();
-            }
-        }
-
-        if (writeLocals) {
-            if (!d->mBackend.writeConfig(utf8Locale, d->entryMap, KConfigIniBackend::WriteOptions())) {
-                qCWarning(KCONFIG_CORE_LOG) << "Couldn't write to config:" << d->mBackend.backingDevicePath();
-                d->bDirty = true;
-            }
-        }
-        if (d->mBackend.isLocked()) {
-            d->mBackend.unlock();
-        }
+        const bool readWrite = d->configState == ReadWrite;
+        d->bDirty = !writeConfigToBackend(locale().toUtf8(), d->entryMap, readWrite, d->wantGlobals(), d->mBackend);
     }
 
     // Notifying absolute paths is not supported and also makes no sense.
@@ -518,6 +541,84 @@ bool KConfig::sync()
     }
 
     return !d->bDirty;
+}
+
+void KConfigPrivate::startAsyncWrite()
+{
+    syncSnapshot = entryMap;
+    KEntryMap copy = syncSnapshot;
+    completionPending = true;
+
+    const QByteArray utf8Locale = locale.toUtf8();
+    const bool readWrite = configState == KConfigBase::ReadWrite;
+    const bool includeGlobals = wantGlobals();
+
+    auto workerBackend = std::make_shared<KConfigIniBackend>(mBackend.clone());
+
+    syncWatcher.setFuture(QtConcurrent::run([snapshot = std::move(copy), utf8Locale, readWrite, includeGlobals, workerBackend]() mutable {
+        return writeConfigToBackend(utf8Locale, snapshot, readWrite, includeGlobals, *workerBackend);
+    }));
+}
+
+void KConfigPrivate::finishSync()
+{
+    if (!completionPending) {
+        return;
+    }
+    completionPending = false;
+
+    if (!syncWatcher.result()) {
+        return;
+    }
+
+    QHash<QString, QByteArrayList> notifyGroupsLocal;
+    QHash<QString, QByteArrayList> notifyGroupsGlobal;
+    for (const auto &[key, e] : syncSnapshot) {
+        const auto it = entryMap.find(key);
+        if (it != entryMap.end() && it->second == e) {
+            it->second.bDirty = false;
+        }
+        if (e.bDirty && e.bNotify) {
+            if (e.bGlobal) {
+                notifyGroupsGlobal[key.mGroup] << key.mKey;
+            } else {
+                notifyGroupsLocal[key.mGroup] << key.mKey;
+            }
+        }
+    }
+
+    // entries modified after the snapshot are still dirty
+    bDirty = std::any_of(entryMap.cbegin(), entryMap.cend(), [](const auto &kv) {
+        return kv.second.bDirty;
+    });
+
+    const bool isAbsolutePath = !fileName.isEmpty() && fileName.at(0) == QLatin1Char('/');
+    if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
+        notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + fileName));
+    }
+    if (!notifyGroupsGlobal.isEmpty()) {
+        notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));
+    }
+}
+
+void KConfig::syncLater()
+{
+    Q_D(KConfig);
+
+    if (!d->bDirty) {
+        return;
+    }
+
+    if (isImmutable() || !d->mBackend.isWritable()) {
+        return;
+    }
+
+    // defer this request. handle it after current worker finishes.
+    if (d->syncWatcher.isRunning()) {
+        d->syncPending = true;
+        return;
+    }
+    d->startAsyncWrite();
 }
 
 void KConfigPrivate::notifyClients(const QHash<QString, QByteArrayList> &changes, const QString &path)
@@ -695,7 +796,7 @@ void KConfig::reparseConfiguration()
 
     // Don't lose pending changes
     if (!d->isReadOnly() && d->bDirty) {
-        sync();
+        syncNow();
     }
 
     d->entryMap.clear();

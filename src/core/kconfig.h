@@ -175,7 +175,31 @@ public:
      */
     OpenFlags openFlags() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 30)
+    KCONFIGCORE_DEPRECATED_VERSION(6, 30, "Use syncNow() or syncLater()")
     bool sync() override;
+#endif
+
+    /*!
+     * Writes all pending config changes to disk synchronously
+     * and returns whether it succeeded.
+     *
+     * Use this when the data must be persisted before continuing.
+     * \since 6.30
+     */
+    bool syncNow();
+
+    /*!
+     * Writes all pending changes to disk on a background thread
+     * and returns immediately.
+     *
+     * Watchers are notified once the write completes. A failed write leaves
+     * the config dirty to be retried.
+     *
+     * Use this by default.
+     * \since 6.30
+     */
+    void syncLater();
 
     /*!
      * Returns \c true if sync has any changes to write out.
@@ -209,12 +233,12 @@ public:
      * If \a config is not set, creates a new KConfig object.
      *
      * The configuration will not actually be saved to \a file
-     * until the returned object is destroyed, or sync() is called
+     * until the returned object is destroyed, or syncNow() is called
      * on it.
      *
      * \code
      * KConfig *newConfig = config.copyTo("newconfrc");
-     * newConfig->sync();
+     * newConfig->syncNow();
      * \endcode
      *
      * \note Do not forget to delete the returned KConfig object if \a config was nullptr.
@@ -246,7 +270,7 @@ public:
     /*!
      * Updates the state of this object to match the persistent storage.
      * Note that if this object has pending changes, this method will
-     * call sync() first so as not to lose those changes.
+     * call syncNow() first so as not to lose those changes.
      */
     void reparseConfiguration();
 

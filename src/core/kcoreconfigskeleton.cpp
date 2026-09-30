@@ -1377,7 +1377,7 @@ bool KCoreConfigSkeleton::save()
     }
 
     if (config->isDirty()) {
-        if (!config->sync()) {
+        if (!config->syncNow()) {
             return false;
         }
         Q_EMIT configChanged();

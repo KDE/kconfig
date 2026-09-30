@@ -328,7 +328,7 @@ void KDesktopFileTest::testWritePrimaryGroupFirst()
     df.actionGroup(QStringLiteral("AnAction")).writeEntry("Exec", "testapp --an-action");
     df.desktopGroup().writeEntry("Name", "Test App");
 
-    df.sync();
+    df.syncNow();
 
     auto lines = readLinesFrom(tmpFile.fileName());
     QCOMPARE(lines.at(0), "[Desktop Entry]\n");
