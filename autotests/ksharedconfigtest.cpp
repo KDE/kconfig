@@ -28,7 +28,7 @@ private Q_SLOTS:
     {
         auto config = KSharedConfig::openStateConfig();
         config->group(u"Test"_s).writeEntry("Test", true);
-        config->sync();
+        config->syncNow();
         QVERIFY(QFile::exists(m_stateDirPath + "/"_L1 + QCoreApplication::applicationName() + "staterc"_L1));
     }
 
@@ -36,7 +36,7 @@ private Q_SLOTS:
     {
         auto config = KSharedConfig::openStateConfig(u"foobar"_s);
         config->group(u"Test"_s).writeEntry("Test", true);
-        config->sync();
+        config->syncNow();
         QVERIFY(QFile::exists(m_stateDirPath + "/foobar"_L1));
     }
 
@@ -46,7 +46,7 @@ private Q_SLOTS:
         const QString path = m_stateDirPath + "/randomsubdir/hellostate"_L1;
         auto config = KSharedConfig::openStateConfig(path);
         config->group(u"Test"_s).writeEntry("Test", true);
-        config->sync();
+        config->syncNow();
         QVERIFY(QFile::exists(path));
     }
 
@@ -64,7 +64,7 @@ private Q_SLOTS:
 
         auto config = KSharedConfig::openStateConfig();
         config->group(u"Test"_s).writeEntry("Test", true);
-        config->sync();
+        config->syncNow();
         QVERIFY(!QFile::exists(oldPath));
         QVERIFY(QFile::exists(newPath));
     }
@@ -83,7 +83,7 @@ private Q_SLOTS:
 
         auto config = KSharedConfig::openStateConfig();
         config->group(u"Test"_s).writeEntry("Test", true);
-        config->sync();
+        config->syncNow();
         QVERIFY(QFile::exists(oldPath));
         QVERIFY(QFile::exists(newPath));
     }
@@ -123,13 +123,13 @@ void KSharedConfigTest::testAnonymousConfig()
     auto config = KSharedConfig::openConfig(QString(), KConfig::SimpleConfig);
     config->group(u"test"_s).writeEntry(u"test"_s, 1);
     QCOMPARE(config->group(u"test"_s).readEntry(u"test"_s, 0), 1);
-    QVERIFY(!config->sync());
+    QVERIFY(!config->syncNow());
     QCOMPARE(config->group(u"test"_s).readEntry(u"test"_s, 0), 1);
 
     // The same config is retained for the anonymous config
     auto config2 = KSharedConfig::openConfig(QString(), KConfig::SimpleConfig);
     QCOMPARE(config2->group(u"test"_s).readEntry(u"test"_s, 0), 1);
-    QVERIFY(!config2->sync());
+    QVERIFY(!config2->syncNow());
 }
 
 void KSharedConfigTest::testReadWrite()
@@ -153,7 +153,7 @@ void KSharedConfigTest::testReadWriteSync()
         cg.writeEntry("NumKey", value);
     }
     QVERIFY(!QFile::exists(m_path));
-    QVERIFY(KSharedConfig::openConfig()->sync());
+    QVERIFY(KSharedConfig::openConfig()->syncNow());
     QVERIFY(QFile::exists(m_path));
     {
         KConfigGroup cg(KSharedConfig::openConfig(), QStringLiteral("KSharedConfigTest"));

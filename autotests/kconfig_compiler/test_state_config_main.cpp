@@ -20,7 +20,7 @@ private Q_SLOTS:
 
         // Clean the group at every start
         stateConfig->deleteGroup(QStringLiteral("General"));
-        stateConfig->sync();
+        stateConfig->syncNow();
 
         // It should have the default value
         QCOMPARE(MyStateConfig().someStateData(), 0);

@@ -114,7 +114,24 @@ public:
      */
     bool exists() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 30)
+    KCONFIGCORE_DEPRECATED_VERSION(6, 30, "Use syncNow() or syncLater()")
     bool sync() override;
+#endif
+
+    /*!
+     * Writes all pending changes in the containing config to disk synchronously
+     * and returns whether it succeeded.
+     * \since 6.30
+     */
+    bool syncNow();
+
+    /*!
+     * Writes all pending changes in the containing config to disk on a
+     * background thread and returns immediately.
+     * \since 6.30
+     */
+    void syncLater();
 
     void markAsClean() override;
 
@@ -352,7 +369,7 @@ public:
      * Writes \a key and \a value to the configuration object with the given \a pFlags.
      *
      * Changes to the file will only be synced with
-     * KConfig::reparseConfiguration() or KConfigBase::sync().
+     * KConfig::reparseConfiguration() or syncNow().
      * \sa readEntry(), writeXdgListEntry(), deleteEntry()
      */
     void writeEntry(const QString &key, const QVariant &value, WriteConfigFlags pFlags = Normal);
