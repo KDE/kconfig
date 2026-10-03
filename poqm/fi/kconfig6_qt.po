@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2018, 2020, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2018, 2020, 2022, 2023, 2024, 2025, 2026 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2014, 2015, 2016, 2017.
 # SPDX-FileCopyrightText: 2024 Lasse Liehu-Inui <lasse.liehu@iki.fi>
 msgid ""
@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2025-02-15 19:40+0200\n"
+"PO-Revision-Date: 2026-08-31 18:46+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.04.0\n"
 "X-Qt-Contexts: true\n"
 
 #: core/kconfig.cpp:1080
@@ -1029,12 +1029,12 @@ msgstr "Muuttujan tyyppi"
 #: kreadconfig/kreadconfig.cpp:55
 msgctxt "main|"
 msgid "Dump all entries"
-msgstr ""
+msgstr "Vedosta kaikki tietueet"
 
 #: kreadconfig/kreadconfig.cpp:56
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr ""
+msgstr "Vedosta kaikkien tietueiden oletusarvot"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
@@ -1042,6 +1042,8 @@ msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr ""
+"Sisällytä järjestelmänlaajuiset asetukset; oletuksena niiden "
+"asetustiedostoja ei lueta, jos tiedosto on annettu"
 
 #: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
 msgctxt "main|"
