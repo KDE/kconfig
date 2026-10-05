@@ -403,7 +403,7 @@ msgstr "Перейти назад в документе"
 #: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
 msgid "&Forward"
-msgstr "&Вперед"
+msgstr "&Вперёд"
 
 #: gui/kstandardactions_p.h:111
 msgctxt "KStandardActions|"
@@ -490,7 +490,7 @@ msgstr "Настроить &уведомления…"
 #, qt-format
 msgctxt "KStandardActions|"
 msgid "%1 &Handbook"
-msgstr "Руководство пользователя %1"
+msgstr "&Руководство пользователя %1"
 
 #: gui/kstandardactions_p.h:130
 msgctxt "KStandardActions|"
@@ -686,7 +686,7 @@ msgstr "Вперёд"
 #: gui/kstandardshortcut.cpp:271
 msgctxt "KStandardShortcut|@action"
 msgid "Reload"
-msgstr "Открыть заново"
+msgstr "Обновить"
 
 #: gui/kstandardshortcut.cpp:279
 msgctxt "KStandardShortcut|@action"
@@ -1075,7 +1075,7 @@ msgstr ""
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr "Удаление заданного ключа."
+msgstr "Удалить указанный ключ."
 
 #: kreadconfig/kwriteconfig.cpp:37
 msgctxt "notify|"
