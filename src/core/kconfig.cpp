@@ -586,16 +586,23 @@ KConfig *KConfig::copyTo(const QString &file, KConfig *config) const
     return config;
 }
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 32)
 void KConfig::copyFrom(const KConfig &config) const
 {
-    Q_D(const KConfig);
-    d_ptr->entryMap = config.d_func()->entryMap;
-    d_ptr->bFileImmutable = false;
+    const_cast<KConfig *>(this)->copyFrom(config);
+}
+#endif
 
-    for (auto &[_, entry] : d_ptr->entryMap) {
+void KConfig::copyFrom(const KConfig &config)
+{
+    Q_D(KConfig);
+    d->entryMap = config.d_func()->entryMap;
+    d->bFileImmutable = false;
+
+    for (auto &[_, entry] : d->entryMap) {
         entry.bDirty = true;
     }
-    d_ptr->bDirty = true;
+    d->bDirty = true;
 }
 
 // TODO KF7 remove, expose QIODevice instead

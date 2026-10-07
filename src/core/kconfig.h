@@ -221,12 +221,23 @@ public:
      */
     KConfig *copyTo(const QString &file, KConfig *config = nullptr) const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 32)
     /*!
      * Copies all entries from the passed \a config object to this
      * config.
      * \since 6.23
+     * \deprecated[6.32] Use the non-const overload.
      */
+    KCONFIGCORE_DEPRECATED_VERSION(6, 32, "Use the non-const overload")
     void copyFrom(const KConfig &config) const;
+#endif
+
+    /*!
+     * Copies all entries from the passed \a config object to this
+     * config.
+     * \since 6.32
+     */
+    void copyFrom(const KConfig &config);
 
     /*!
      * Ensures that the configuration file contains a certain update.
