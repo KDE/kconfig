@@ -225,8 +225,16 @@ public:
      * Copies all entries from the passed \a config object to this
      * config.
      * \since 6.23
+     * \note Do not use copying into an object can not be const.
      */
-    void copyFrom(const KConfig &config) const;
+    [[deprecated]] void copyFrom(const KConfig &config) const;
+
+    /*!
+     * Copies all entries from the passed \a config object to this
+     * config.
+     * \since 6.31
+     */
+    void copyFrom(const KConfig &config);
 
     /*!
      * Ensures that the configuration file contains a certain update.
