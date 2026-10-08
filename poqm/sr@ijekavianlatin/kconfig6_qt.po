@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: kconfig5_qt\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-09-29 12:00+0200\n"
+"PO-Revision-Date: 2026-10-07 11:45+0200\n"
 "Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
@@ -803,7 +803,7 @@ msgstr "Pregled pred štampanje"
 #: gui/kstandardshortcut.cpp:478
 msgctxt "KStandardShortcut|@action"
 msgid "Mail"
-msgstr "Pošalji poštom"
+msgstr "Pošta"
 
 #: gui/kstandardshortcut.cpp:479
 msgctxt "KStandardShortcut|@action"
@@ -933,7 +933,7 @@ msgstr "Premjesti u smeće"
 #: gui/kstandardshortcut.cpp:632
 msgctxt "KStandardShortcut|@action"
 msgid "Donate"
-msgstr "Doniraj"
+msgstr "Donacija"
 
 #: gui/kstandardshortcut.cpp:635
 msgctxt "KStandardShortcut|@action"
@@ -1059,8 +1059,8 @@ msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
 "string"
 msgstr ""
-"Tip promjenljive. Zadajte „bool“ za logičku vrijednost, u suprotnom se uzima "
-"kao niska"
+"Tip promjenljive. Zadajte „bool“ za logičke, u suprotnom se uzima kao "
+"„string“ (niska)"
 
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
@@ -1076,4 +1076,4 @@ msgstr "Obavijesti programe o izmjeni"
 #: kreadconfig/kwriteconfig.cpp:38
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
-msgstr "Vrijednost koja se upisuje. Obavezno, u školjci zadajte '' za praznu"
+msgstr "Vrijednost koja se upisuje. Obavezno, zadajte '' za praznu"
