@@ -1661,7 +1661,7 @@ void KConfigTest::testLocaleConfigWithOverrideLanguage()
     ts << "foo=4\n";
     ts << "foo[ca]=5\n";
     ts << "foostring=primary\n";
-    ts << "foostring[ca]=nice\n";
+    ts << "foostring[ca_ES]=nice\n";
     ts << "foobool=primary\n";
     ts << "foobool[ca]=true\n";
     f.close();
@@ -1669,7 +1669,7 @@ void KConfigTest::testLocaleConfigWithOverrideLanguage()
     // Load the testdata
     QVERIFY(QFile::exists(file));
     KConfig config(file);
-    QVERIFY(config.locale().startsWith("ca"_L1));
+    QCOMPARE(config.locale(), u"ca_ES"_s);
 
     KConfigGroup cg2(&config, QStringLiteral("Test"));
     QCOMPARE(cg2.readEntry("foo", 3), 5);
