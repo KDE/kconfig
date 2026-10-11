@@ -806,7 +806,7 @@ msgstr "Восстановить"
 #: gui/kstandardshortcut.cpp:473
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr "Предварительный просмотр"
+msgstr "Предварительный просмотр печати"
 
 #: gui/kstandardshortcut.cpp:478
 msgctxt "KStandardShortcut|@action"
