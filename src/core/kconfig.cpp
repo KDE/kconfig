@@ -731,17 +731,21 @@ void KConfig::reparseConfiguration()
     d->parseUserConfigFiles();
 }
 
+static bool isUserConfigFile(const QString &path, QStandardPaths::StandardLocation resourceType = QStandardPaths::GenericConfigLocation)
+{
+    return path.startsWith(QStandardPaths::writableLocation(resourceType) + u'/');
+}
+
 void KConfigPrivate::ensureGlobalFilesAreInitialized() const
 {
     QMutexLocker locker(&s_globalFilesMutex);
     if (!s_globalFilesAreInitialized) {
-        const QString writableLocation = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
         const QStringList paths1 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("kdeglobals"));
         const QStringList paths2 = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QStringLiteral("system.kdeglobals"));
 
         const bool useEtcKderc = !etc_kderc.isEmpty();
-        const bool writableInPaths1 = !paths1.isEmpty() && paths1.front().startsWith(writableLocation);
-        const bool writableInPaths2 = !paths2.isEmpty() && paths2.front().startsWith(writableLocation);
+        const bool writableInPaths1 = !paths1.isEmpty() && isUserConfigFile(paths1.front());
+        const bool writableInPaths2 = !paths2.isEmpty() && isUserConfigFile(paths2.front());
         const int globalSystemFilesCount = int(useEtcKderc) + (paths1.size() - int(writableInPaths1)) + (paths2.size() - int(writableInPaths2));
         s_globalSystemFiles()->reserve(globalSystemFilesCount);
         s_globalUserFiles()->reserve(int(writableInPaths1) + int(writableInPaths2));
@@ -863,9 +867,8 @@ void KConfigPrivate::parseSystemConfigFiles()
 
     QList<QString> files;
     if (!bSuppressGlobal && !QDir::isAbsolutePath(fileName)) {
-        const QString writableLocation = QStandardPaths::writableLocation(resourceType);
         QStringList localFilesPath = QStandardPaths::locateAll(resourceType, fileName);
-        if (!localFilesPath.isEmpty() && localFilesPath.front().startsWith(writableLocation)) {
+        if (!localFilesPath.isEmpty() && isUserConfigFile(localFilesPath.front(), resourceType)) {
             localFilesPath.removeFirst();
         }
         for (const QString &f : localFilesPath) {
@@ -909,9 +912,8 @@ void KConfigPrivate::parseUserConfigFiles()
                     files << canonicalFile;
                 }
             } else {
-                const QString writableLocation = QStandardPaths::writableLocation(resourceType);
                 const QString localFilePath = QStandardPaths::locate(resourceType, fileName);
-                if (localFilePath.startsWith(writableLocation)) {
+                if (isUserConfigFile(localFilePath, resourceType)) {
                     files << QFileInfo(localFilePath).canonicalFilePath();
                 }
             }

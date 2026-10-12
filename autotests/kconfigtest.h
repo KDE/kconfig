@@ -96,6 +96,7 @@ private Q_SLOTS:
 
     void testOpenFlags();
     void testSystemAndUserConfig();
+    void testSystemAndUserConfigWithSimilarPaths();
 
     // these tests overwrite the kdeglobals file created by initTestCase()
     void testImmutableFiles();
