@@ -13,6 +13,8 @@
 #include "kconfigdata_p.h"
 #include "kconfiginibackendreader_p.h"
 
+#include <QFileDevice>
+
 using namespace Qt::StringLiterals;
 
 KCONFIGCORE_EXPORT bool kde_kiosk_exception = false; // flag to disable kiosk restrictions
@@ -83,10 +85,15 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
 
     QByteArray buffer(initialBufferSize, Qt::Uninitialized);
     while (!file->atEnd() && errorCount < MAX_ERRORS) {
-        auto res = file->readLineInto(&buffer, maximumSizeWithoutNewLine);
+        bool res = file->readLineInto(&buffer, maximumSizeWithoutNewLine);
         if (!res) {
-            qCWarning(KCONFIG_CORE_LOG) << "Couldn't find a single line in " << mDeviceInterface->id() << " after reading" << (maximumSizeWithoutNewLine)
-                                        << "bytes.";
+            auto fileDevice = qobject_cast<QFileDevice *>(file.get());
+            if (fileDevice && fileDevice->error() != QFileDevice::NoError) {
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't read" << mDeviceInterface->id() << "after line" << lineNo << ":"
+                                            << fileDevice->errorString();
+                return ParseOpenError;
+            }
+            break;
         }
         QByteArrayView line = buffer;
         line = line.trimmed();
