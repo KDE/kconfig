@@ -88,9 +88,14 @@ KConfigIniBackend::ParseInfo KConfigIniBackend::parseConfig(const QByteArray &cu
         bool res = file->readLineInto(&buffer, maximumSizeWithoutNewLine);
         if (!res) {
             auto fileDevice = qobject_cast<QFileDevice *>(file.get());
-            if (fileDevice && fileDevice->error() != QFileDevice::NoError) {
-                qCWarning(KCONFIG_CORE_LOG) << "Couldn't read" << mDeviceInterface->id() << "after line" << lineNo << ":"
-                                            << fileDevice->errorString();
+            bool hasError = false;
+            if (fileDevice) {
+                hasError = fileDevice->error() != QFileDevice::NoError;
+            } else {
+                hasError = !file->atEnd();
+            }
+            if (hasError) {
+                qCWarning(KCONFIG_CORE_LOG) << "Couldn't read" << mDeviceInterface->id() << "after line" << lineNo << ":" << file->errorString();
                 return ParseOpenError;
             }
             break;
