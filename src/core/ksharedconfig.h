@@ -12,6 +12,10 @@
 #include <QExplicitlySharedDataPointer>
 #include <kconfig.h>
 
+#include <memory>
+
+class GlobalSharedConfig;
+
 /*!
  * \class KSharedConfig
  * \inmodule KConfigCore
@@ -112,6 +116,10 @@ private:
     const KConfigGroup groupImpl(const QString &groupName) const override;
 
     KCONFIGCORE_NO_EXPORT KSharedConfig(const QString &file, OpenFlags mode, QStandardPaths::StandardLocation resourceType);
+
+    // Only a weak reference: the per-thread cache owner may be destroyed while
+    // this config is still referenced from another thread.
+    std::weak_ptr<GlobalSharedConfig> m_global;
 };
 
 /*!

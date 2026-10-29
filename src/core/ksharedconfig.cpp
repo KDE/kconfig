@@ -12,6 +12,7 @@
 #include "kconfig_p.h"
 #include "kconfiggroup.h"
 #include <QCoreApplication>
+#include <QMutex>
 #include <QThread>
 #include <QThreadStorage>
 
@@ -20,6 +21,11 @@ using namespace Qt::StringLiterals;
 void _k_globalMainConfigSyncAndCleanup();
 
 using SharedConfigList = QList<KSharedConfig *>;
+using GlobalSharedConfigPtr = std::shared_ptr<GlobalSharedConfig>;
+
+// Serializes access to GlobalSharedConfig::configList. The list belongs to the
+// thread that created it, but entries may be destroyed from any thread.
+static QMutex s_configListMutex;
 
 class GlobalSharedConfig
 {
@@ -43,18 +49,18 @@ public:
     bool wasTestModeEnabled;
 };
 
-static QThreadStorage<GlobalSharedConfig *> s_storage;
+static QThreadStorage<GlobalSharedConfigPtr> s_storage;
 template<typename T>
-T *perThreadGlobalStatic()
+std::shared_ptr<T> perThreadGlobalStatic()
 {
     if (!s_storage.hasLocalData()) {
-        s_storage.setLocalData(new T);
+        s_storage.setLocalData(std::make_shared<T>());
     }
     return s_storage.localData();
 }
 
 // Q_GLOBAL_STATIC(GlobalSharedConfigList, globalSharedConfigList), but per thread:
-static GlobalSharedConfig *globalSharedConfig()
+static GlobalSharedConfigPtr globalSharedConfig()
 {
     return perThreadGlobalStatic<GlobalSharedConfig>();
 }
@@ -132,7 +138,7 @@ void _k_globalMainConfigSyncAndCleanup()
 KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
 {
     QString fileName(_fileName);
-    GlobalSharedConfig *global = globalSharedConfig();
+    GlobalSharedConfigPtr global = globalSharedConfig();
     if (fileName.isEmpty() && !flags.testFlag(KConfig::SimpleConfig)) {
         // Determine the config file name that KConfig will make up (see KConfigPrivate::changeFileName)
         fileName = KConfig::mainConfigName();
@@ -144,9 +150,12 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
         global->mainConfig = nullptr;
     }
 
-    for (auto *cfg : std::as_const(global->configList)) {
-        if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType) {
-            return KSharedConfigPtr(cfg);
+    {
+        QMutexLocker locker(&s_configListMutex);
+        for (auto *cfg : std::as_const(global->configList)) {
+            if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType) {
+                return KSharedConfigPtr(cfg);
+            }
         }
     }
 
@@ -184,14 +193,19 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
 
 KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
     : KConfig(fileName, flags, resType)
+    , m_global(globalSharedConfig())
 {
-    globalSharedConfig()->configList.append(this);
+    if (const auto global = m_global.lock()) {
+        QMutexLocker locker(&s_configListMutex);
+        global->configList.append(this);
+    }
 }
 
 KSharedConfig::~KSharedConfig()
 {
-    if (s_storage.hasLocalData()) {
-        globalSharedConfig()->configList.removeAll(this);
+    if (const auto global = m_global.lock()) {
+        QMutexLocker locker(&s_configListMutex);
+        global->configList.removeAll(this);
     }
 }
 

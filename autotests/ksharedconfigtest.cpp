@@ -7,6 +7,7 @@
 */
 
 #include <QTest>
+#include <QThread>
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
 
@@ -22,6 +23,7 @@ private Q_SLOTS:
     void testReadWrite();
     void testReadWriteSync();
     void testQrcFile();
+    void testCrossThreadDestruction();
 
 #if !defined(Q_OS_WINDOWS) && !defined(Q_OS_ANDROID) && !defined(Q_OS_OSX) // m_stateDirPath is only applicable on XDG systems
     void testState()
@@ -169,6 +171,28 @@ void KSharedConfigTest::testQrcFile()
 
     KConfigGroup cfg(sharedConfig, QStringLiteral("MainSection"));
     QCOMPARE(cfg.readEntry(QStringLiteral("TestEntry"), QStringLiteral("UnexpectedData")), QStringLiteral("ExpectedData"));
+}
+
+void KSharedConfigTest::testCrossThreadDestruction()
+{
+    const QString name = QStringLiteral("ksharedconfig-crossthread-testrc");
+    KSharedConfig::Ptr config = KSharedConfig::openConfig(name, KConfig::SimpleConfig);
+
+    // Release the last reference on another thread. The object was inserted in
+    // this thread's configList, but its destruction happens on the worker.
+    QThread *worker = QThread::create([config]() mutable {
+        config = KSharedConfig::Ptr();
+    });
+    worker->start();
+    config = KSharedConfig::Ptr();
+    QVERIFY(worker->wait());
+    delete worker;
+
+    // This used to return the dangling pointer left in this thread's configList.
+    KSharedConfig::Ptr reopened = KSharedConfig::openConfig(name, KConfig::SimpleConfig);
+    QVERIFY(reopened);
+    QCOMPARE(reopened->name(), name);
+    reopened->reparseConfiguration();
 }
 
 QTEST_MAIN(KSharedConfigTest)
