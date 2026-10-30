@@ -593,6 +593,7 @@ QMap<QString, QString> KConfigGroup::entryMap() const
 KConfig *KConfigGroup::config()
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::config", "accessing an invalid group");
+    d->mOwner->d_func()->assertThreadAffinity();
 
     return d->mOwner;
 }
@@ -600,6 +601,7 @@ KConfig *KConfigGroup::config()
 const KConfig *KConfigGroup::config() const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::config", "accessing an invalid group");
+    d->mOwner->d_func()->assertThreadAffinity();
 
     return d->mOwner;
 }

@@ -20,6 +20,7 @@
 #include <QFile>
 #include <QStack>
 #include <QStringList>
+#include <QThread>
 
 class KConfigPrivate
 {
@@ -28,6 +29,14 @@ class KConfigPrivate
 public:
     KConfig::OpenFlags openFlags;
     QStandardPaths::StandardLocation resourceType;
+    QThread *const thread;
+
+    void assertThreadAffinity() const
+    {
+        Q_ASSERT_X(thread == QThread::currentThread(),
+                   "KConfigGroup::readEntry/writeEntry",
+                   "accessing a KConfig from a thread other than the one that created it");
+    }
 
     void changeFileName(const QString &fileName);
 
