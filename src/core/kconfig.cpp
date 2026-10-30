@@ -97,6 +97,7 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
                                std::unique_ptr<KConfigIniBackendAbstractDevice> backend)
     : openFlags(flags)
     , resourceType(resourceType)
+    , thread(QThread::currentThread())
     , mBackend(std::move(backend))
     , bDirty(false)
     , bReadDefaults(false)
