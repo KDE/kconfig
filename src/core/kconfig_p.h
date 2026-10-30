@@ -124,7 +124,6 @@ private:
     void parseWindowsDefaults();
 #endif
     void parseUserConfigFiles();
-    void initCustomized(KConfig *);
     bool lockLocal();
 };
 
