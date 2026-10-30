@@ -7,6 +7,7 @@
 */
 
 #include <QTest>
+#include <QThread>
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
 
@@ -22,6 +23,8 @@ private Q_SLOTS:
     void testReadWrite();
     void testReadWriteSync();
     void testQrcFile();
+    void testReleaseOnOtherThread();
+    void testOpenWhileOtherThreadReleases();
 
 #if !defined(Q_OS_WINDOWS) && !defined(Q_OS_ANDROID) && !defined(Q_OS_OSX) // m_stateDirPath is only applicable on XDG systems
     void testState()
@@ -169,6 +172,41 @@ void KSharedConfigTest::testQrcFile()
 
     KConfigGroup cfg(sharedConfig, QStringLiteral("MainSection"));
     QCOMPARE(cfg.readEntry(QStringLiteral("TestEntry"), QStringLiteral("UnexpectedData")), QStringLiteral("ExpectedData"));
+}
+
+void KSharedConfigTest::testReleaseOnOtherThread()
+{
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/releaseonotherthreadrc"_L1;
+    KSharedConfig::Ptr config = KSharedConfig::openConfig(path, KConfig::SimpleConfig);
+    config->group(u"Test"_s).writeEntry("Key", 1);
+    config->sync();
+
+    // The last reference is dropped on another thread
+    std::unique_ptr<QThread> thread(QThread::create([config = std::move(config)]() mutable {
+        config.reset();
+    }));
+    thread->start();
+    QVERIFY(thread->wait());
+
+    config = KSharedConfig::openConfig(path, KConfig::SimpleConfig);
+    QCOMPARE(config->group(u"Test"_s).readEntry("Key", 0), 1);
+}
+
+void KSharedConfigTest::testOpenWhileOtherThreadReleases()
+{
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + "/openwhileotherthreadreleasesrc"_L1;
+    for (int i = 0; i < 200; ++i) {
+        KSharedConfig::Ptr config = KSharedConfig::openConfig(path, KConfig::SimpleConfig);
+        std::unique_ptr<QThread> thread(QThread::create([config = std::move(config)]() mutable {
+            config.reset();
+        }));
+        thread->start();
+        while (!thread->isFinished()) {
+            KSharedConfig::Ptr other = KSharedConfig::openConfig(path, KConfig::SimpleConfig);
+            QCOMPARE(other->name(), path);
+        }
+        QVERIFY(thread->wait());
+    }
 }
 
 QTEST_MAIN(KSharedConfigTest)

@@ -12,6 +12,8 @@
 #include "kconfig_p.h"
 #include "kconfiggroup.h"
 #include <QCoreApplication>
+#include <QHash>
+#include <QMutex>
 #include <QThread>
 #include <QThreadStorage>
 
@@ -20,6 +22,16 @@ using namespace Qt::StringLiterals;
 void _k_globalMainConfigSyncAndCleanup();
 
 using SharedConfigList = QList<KSharedConfig *>;
+
+class GlobalSharedConfig;
+
+// The thread list each config was added to. The last reference to a config can be dropped
+// on another thread, so ~KSharedConfig cannot use the current thread's list.
+struct SharedConfigRegistry {
+    QMutex mutex;
+    QHash<const KSharedConfig *, GlobalSharedConfig *> owners;
+};
+Q_GLOBAL_STATIC(SharedConfigRegistry, s_registry)
 
 class GlobalSharedConfig
 {
@@ -34,6 +46,24 @@ public:
         }
         // In other threads, QThreadStorage takes care of deleting the GlobalSharedConfigList when
         // the thread exits.
+    }
+
+    ~GlobalSharedConfig()
+    {
+        // Configs of this thread can still be referenced from other threads
+        if (SharedConfigRegistry *registry = s_registry()) {
+            QMutexLocker locker(&registry->mutex);
+            detachConfigs(registry);
+        }
+    }
+
+    // Requires the registry mutex
+    void detachConfigs(SharedConfigRegistry *registry)
+    {
+        for (const KSharedConfig *config : std::as_const(configList)) {
+            registry->owners.remove(config);
+        }
+        configList.clear();
     }
 
     SharedConfigList configList;
@@ -57,6 +87,18 @@ T *perThreadGlobalStatic()
 static GlobalSharedConfig *globalSharedConfig()
 {
     return perThreadGlobalStatic<GlobalSharedConfig>();
+}
+
+// Fails when another thread is dropping the last reference, its ~KSharedConfig then waits for the registry mutex
+static bool tryRef(KSharedConfig *config)
+{
+    int count = config->ref.loadRelaxed();
+    while (count > 0) {
+        if (config->ref.testAndSetOrdered(count, count + 1, count)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 namespace
@@ -140,13 +182,19 @@ KSharedConfigPtr KSharedConfig::openConfig(const QString &_fileName, OpenFlags f
 
     if (!global->wasTestModeEnabled && QStandardPaths::isTestModeEnabled()) {
         global->wasTestModeEnabled = true;
-        global->configList.clear();
+        {
+            QMutexLocker locker(&s_registry()->mutex);
+            global->detachConfigs(s_registry());
+        }
         global->mainConfig = nullptr;
     }
 
-    for (auto *cfg : std::as_const(global->configList)) {
-        if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType) {
-            return KSharedConfigPtr(cfg);
+    {
+        QMutexLocker locker(&s_registry()->mutex);
+        for (auto *cfg : std::as_const(global->configList)) {
+            if (cfg->name() == fileName && cfg->d_ptr->openFlags == flags && cfg->locationType() == resType && tryRef(cfg)) {
+                return KSharedConfigPtr(cfg, QAdoptSharedDataTag{});
+            }
         }
     }
 
@@ -185,13 +233,19 @@ KSharedConfig::Ptr KSharedConfig::openStateConfig(const QString &_fileName)
 KSharedConfig::KSharedConfig(const QString &fileName, OpenFlags flags, QStandardPaths::StandardLocation resType)
     : KConfig(fileName, flags, resType)
 {
-    globalSharedConfig()->configList.append(this);
+    GlobalSharedConfig *global = globalSharedConfig();
+    QMutexLocker locker(&s_registry()->mutex);
+    global->configList.append(this);
+    s_registry()->owners.insert(this, global);
 }
 
 KSharedConfig::~KSharedConfig()
 {
-    if (s_storage.hasLocalData()) {
-        globalSharedConfig()->configList.removeAll(this);
+    if (SharedConfigRegistry *registry = s_registry()) {
+        QMutexLocker locker(&registry->mutex);
+        if (GlobalSharedConfig *owner = registry->owners.take(this)) {
+            owner->configList.removeAll(this);
+        }
     }
 }
 
