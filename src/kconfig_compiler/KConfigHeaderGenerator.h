@@ -22,7 +22,6 @@
 
 class KConfigParameters;
 class CfgEntry;
-class QTextStream;
 struct ParseResult;
 
 class KConfigHeaderGenerator : public KConfigCodeGeneratorBase
