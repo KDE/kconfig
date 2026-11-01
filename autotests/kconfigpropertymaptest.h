@@ -29,6 +29,10 @@ private Q_SLOTS:
     void dateTimeDefaultValue();
     void enumDefaultValue();
     void enumDefaultValueString();
+    void enumMap();
+    void enumMapQmlAccess();
+    void enumMapIsFrozen();
+    void enumMapAfterConfigChange();
     void fontDefaultValue();
     void intDefaultValue();
     void passwordDefaultValue();

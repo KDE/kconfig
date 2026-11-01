@@ -100,6 +100,42 @@ void KConfigPropertyMapPrivate::loadConfig(KConfigPropertyMapPrivate::LoadConfig
     const auto &items = config->items();
     for (KConfigSkeletonItem *item : items) {
         q->insert(item->key() + QStringLiteral("Default"), item->getDefault());
+
+        if (auto *enumItem = dynamic_cast<KCoreConfigSkeleton::ItemEnum *>(item)) {
+            const auto choices = enumItem->choices();
+            QVariantHash enumHash;
+            enumHash.reserve(choices.size());
+            for (int i = 0; i < choices.size(); ++i) {
+                const auto &choice = choices.at(i);
+                // The property value is the choice's index, Choice value is only its on-disk representation.
+                enumHash.insert(choice.name, i);
+            }
+
+            const QString enumKey = item->key() + QLatin1String("Enum");
+            auto *enumMap = q->value(enumKey).value<QQmlPropertyMap *>();
+            // Recreate the enum map only if the keys have actually changed (unlikely but not impossible).
+            if (enumMap) {
+                QVariantHash existingEnums;
+                existingEnums.reserve(enumMap->count());
+                const QStringList existingKeys = enumMap->keys();
+                for (const QString &existingKey : existingKeys) {
+                    existingEnums.insert(existingKey, enumMap->value(existingKey));
+                }
+
+                if (existingEnums != enumHash) {
+                    delete enumMap;
+                    enumMap = nullptr;
+                }
+            }
+
+            if (!enumMap) {
+                enumMap = QQmlPropertyMap::create(q);
+                enumMap->insert(enumHash);
+                enumMap->freeze();
+                q->insert(enumKey, QVariant::fromValue(enumMap));
+            }
+        }
+
         q->insert(item->key(), item->property());
         if (option == EmitValueChanged) {
             Q_EMIT q->valueChanged(item->key(), item->property());

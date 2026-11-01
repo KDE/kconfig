@@ -12,7 +12,9 @@
 #include <KConfigPropertyMap>
 
 #include <QFile>
+#include <QJSEngine>
 #include <QJSValue>
+#include <QQmlPropertyMap>
 #include <QSignalSpy>
 #include <QStandardPaths>
 
@@ -88,6 +90,64 @@ void ConfigPropertyMapTest::enumDefaultValue()
 void ConfigPropertyMapTest::enumDefaultValueString()
 {
     CHECK_PROPERTY_VALUES("DefaultEnumItemString", 2);
+}
+
+static void checkEnumMap(const QVariant &value, const QVariantMap &expected)
+{
+    auto *enumMap = value.value<QQmlPropertyMap *>();
+    QVERIFY(enumMap);
+    QCOMPARE(enumMap->count(), expected.size());
+    for (auto it = expected.cbegin(); it != expected.cend(); ++it) {
+        QCOMPARE(enumMap->value(it.key()), it.value());
+    }
+}
+
+void ConfigPropertyMapTest::enumMap()
+{
+    const QVariantMap withValues{{QStringLiteral("One"), 0}, {QStringLiteral("Two"), 1}, {QStringLiteral("Three"), 2}, {QStringLiteral("Four"), 3}};
+    checkEnumMap(m_propertyMap->value(QStringLiteral("DefaultEnumItemEnum")), withValues);
+
+    const QVariantMap withNames{{QStringLiteral("Apples"), 0}, {QStringLiteral("Oranges"), 1}, {QStringLiteral("Coconuts"), 2}, {QStringLiteral("Grapes"), 3}};
+    checkEnumMap(m_propertyMap->value(QStringLiteral("DefaultEnumItemStringEnum")), withNames);
+
+    // Only enum entries get an additional map.
+    QVERIFY(!m_propertyMap->value(QStringLiteral("DefaultIntItemEnum")).isValid());
+}
+
+void ConfigPropertyMapTest::enumMapQmlAccess()
+{
+    QJSEngine engine;
+    const QJSValue config = engine.toScriptValue(m_propertyMap.get());
+    QVERIFY(config.isObject());
+
+    QCOMPARE(config.property(QStringLiteral("DefaultEnumItemEnum")).property(QStringLiteral("One")).toInt(), 0);
+    QCOMPARE(config.property(QStringLiteral("DefaultEnumItemStringEnum")).property(QStringLiteral("Coconuts")).toInt(), 2);
+}
+
+void ConfigPropertyMapTest::enumMapIsFrozen()
+{
+    const QVariant value = m_propertyMap->value(QStringLiteral("DefaultEnumItemEnum"));
+    QVERIFY(value.canConvert<QQmlPropertyMap *>());
+    auto *enumMap = value.value<QQmlPropertyMap *>();
+    QVERIFY(enumMap);
+
+    QJSEngine engine;
+    QJSValue jsEnumMap = engine.toScriptValue(enumMap);
+    jsEnumMap.setProperty(QStringLiteral("NotAChoice"), 42);
+
+    QVERIFY(!enumMap->value(QStringLiteral("NotAChoice")).isValid());
+    QCOMPARE(enumMap->count(), 4);
+}
+
+void ConfigPropertyMapTest::enumMapAfterConfigChange()
+{
+    QVERIFY(m_propertyMap->setProperty("DefaultEnumItem", 2));
+
+    m_propertyMap->writeConfig();
+
+    QCOMPARE(m_propertyMap->value(QStringLiteral("DefaultEnumItem")), QVariant(2));
+    const QVariantMap expected{{QStringLiteral("One"), 0}, {QStringLiteral("Two"), 1}, {QStringLiteral("Three"), 2}, {QStringLiteral("Four"), 3}};
+    checkEnumMap(m_propertyMap->value(QStringLiteral("DefaultEnumItemEnum")), expected);
 }
 
 void ConfigPropertyMapTest::fontDefaultValue()
