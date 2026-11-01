@@ -114,22 +114,22 @@ public:
      */
     bool exists() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 30)
-    KCONFIGCORE_DEPRECATED_VERSION(6, 30, "Use syncNow() or syncLater()")
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 32)
+    KCONFIGCORE_DEPRECATED_VERSION(6, 32, "Use syncNow() or syncLater()")
     bool sync() override;
 #endif
 
     /*!
      * Writes all pending changes in the containing config to disk synchronously
      * and returns whether it succeeded.
-     * \since 6.30
+     * \since 6.32
      */
     bool syncNow();
 
     /*!
      * Writes all pending changes in the containing config to disk on a
      * background thread and returns immediately.
-     * \since 6.30
+     * \since 6.32
      */
     void syncLater();
 

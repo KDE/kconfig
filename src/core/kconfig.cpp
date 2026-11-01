@@ -495,7 +495,7 @@ static bool writeConfigToBackend(const QByteArray &locale, KEntryMap &entries, b
     return ok;
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 30)
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 32)
 bool KConfig::sync()
 {
     return syncNow();
