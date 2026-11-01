@@ -101,7 +101,7 @@ public:
      * not overwritten. Note however, that this object is not automatically
      * updated with those changes.
      */
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 30)
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 32)
     virtual bool sync() = 0;
 #endif
 
