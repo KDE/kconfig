@@ -100,6 +100,28 @@ void KConfigPropertyMapPrivate::loadConfig(KConfigPropertyMapPrivate::LoadConfig
     const auto &items = config->items();
     for (KConfigSkeletonItem *item : items) {
         q->insert(item->key() + QStringLiteral("Default"), item->getDefault());
+
+        // TODO Can I check this without dynamic cast?
+        if (auto *enumItem = dynamic_cast<KCoreConfigSkeleton::ItemEnum *>(item)) {
+            const QString enumKey = item->key() + QLatin1String("Enum");
+            auto *enumMap = q->value(enumKey).value<QQmlPropertyMap *>();
+            delete enumMap;
+            enumMap = QQmlPropertyMap::create(q);
+
+            const auto choices = enumItem->choices();
+            QVariantHash enumHash;
+            enumHash.reserve(choices.size());
+            for (int i = 0; i < choices.size(); ++i) {
+                const auto &choice = choices.at(i);
+                // TODO what about "choice.value"?
+                enumHash.insert(choice.name, i);
+            }
+            enumMap->insert(enumHash);
+            // TODO what about loadConfig changing the enums?
+            enumMap->freeze();
+            q->insert(enumKey, enumHash);
+        }
+
         q->insert(item->key(), item->property());
         if (option == EmitValueChanged) {
             Q_EMIT q->valueChanged(item->key(), item->property());
