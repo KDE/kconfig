@@ -29,6 +29,7 @@
 #include <QMutexLocker>
 #include <QProcess>
 #include <QSet>
+#include <QThread>
 #include <QThreadStorage>
 #include <QTimeZone>
 
@@ -611,6 +612,13 @@ void KConfig::syncLater()
     }
 
     if (isImmutable() || !d->mBackend.isWritable()) {
+        return;
+    }
+
+    // Finishing an async write needs a running event loop in the thread that created this object
+    QThread *const thread = QThread::currentThread();
+    if (d->syncWatcher.thread() != thread || thread->loopLevel() == 0) {
+        syncNow();
         return;
     }
 

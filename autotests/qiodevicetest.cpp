@@ -8,6 +8,8 @@
 #include <KConfig>
 #include <KConfigGroup>
 
+#include "helper.h"
+
 using namespace Qt::StringLiterals;
 
 class QIODeviceTest : public QObject
@@ -186,9 +188,10 @@ private Q_SLOTS:
         group.writeEntry("testKG", "1");
         QVERIFY(config.isDirty());
 
-        config.syncLater();
-        QVERIFY(config.isDirty());
-
+        runInEventLoop([&] {
+            config.syncLater();
+            QVERIFY(config.isDirty());
+        });
         QTRY_VERIFY(!config.isDirty());
         buffer->seek(0);
         QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=1\n");

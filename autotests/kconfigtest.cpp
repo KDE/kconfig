@@ -14,6 +14,7 @@
 #include <QTemporaryDir>
 #include <QTemporaryFile>
 #include <QTest>
+#include <QThread>
 #include <QThreadPool>
 #include <kdesktopfile.h>
 
@@ -355,7 +356,10 @@ void KConfigTest::testSyncLater()
     cg.writeEntry("Test", "Correct");
     QVERIFY(sc.isDirty());
 
-    sc.syncLater();
+    runInEventLoop([&] {
+        sc.syncLater();
+        QVERIFY(sc.isDirty());
+    });
     QTRY_VERIFY(!sc.isDirty());
 
     sc.reparseConfiguration();
@@ -364,7 +368,9 @@ void KConfigTest::testSyncLater()
     cg.revertToDefault("Test");
     QVERIFY(sc.isDirty());
 
-    sc.syncLater();
+    runInEventLoop([&] {
+        sc.syncLater();
+    });
     QTRY_VERIFY(!sc.isDirty());
 
     sc.reparseConfiguration();
@@ -373,7 +379,9 @@ void KConfigTest::testSyncLater()
     cg.writeEntry("AsyncGlobal", "GlobalValue", KConfig::Persistent | KConfig::Global);
     QVERIFY(sc.isDirty());
 
-    sc.syncLater();
+    runInEventLoop([&] {
+        sc.syncLater();
+    });
     QTRY_VERIFY(!sc.isDirty());
 
     sc.reparseConfiguration();
@@ -386,13 +394,34 @@ void KConfigTest::testSyncLaterWithoutEventLoop()
     KConfig sc(file);
     KConfigGroup cg(&sc, QStringLiteral("Group"));
     cg.writeEntry("key", "value");
-    sc.syncLater();
 
-    QThreadPool::globalInstance()->waitForDone();
+    sc.syncLater();
+    QVERIFY(!sc.isDirty());
 
     KConfig probe(file);
     QCOMPARE(KConfigGroup(&probe, QStringLiteral("Group")).readEntry("key", "x"), QStringLiteral("value"));
-    QVERIFY(sc.isDirty());
+}
+
+void KConfigTest::testSyncLaterFromOtherThread()
+{
+    // Created in a thread without an event loop, so syncLater() must write synchronously
+    const QString file = s_test_subdir + QLatin1String("kconfigtest_async_otherthread");
+    std::unique_ptr<QThread> thread;
+    std::unique_ptr<KConfig> sc;
+    thread.reset(QThread::create([&] {
+        sc = std::make_unique<KConfig>(file);
+    }));
+    thread->start();
+    QVERIFY(thread->wait());
+
+    KConfigGroup(sc.get(), QStringLiteral("Group")).writeEntry("key", "value");
+    runInEventLoop([&] {
+        sc->syncLater();
+        QVERIFY(!sc->isDirty());
+    });
+
+    KConfig probe(file);
+    QCOMPARE(KConfigGroup(&probe, QStringLiteral("Group")).readEntry("key", "x"), QStringLiteral("value"));
 }
 
 void KConfigTest::testRevertAllEntries()
@@ -2336,7 +2365,9 @@ void KConfigTest::testNotify()
 
     watcherSpy.clear();
     myConfigGroup.writeEntry("asyncNotify", "foo", KConfig::Persistent | KConfig::Notify);
-    config.syncLater();
+    runInEventLoop([&] {
+        config.syncLater();
+    });
     watcherSpy.wait();
     QCOMPARE(watcherSpy.count(), 1);
     QCOMPARE(watcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
@@ -2361,8 +2392,10 @@ void KConfigTest::testSyncNowAfterSyncLaterNotifiesOnce()
     group.writeEntry("key", "foo", KConfig::Persistent | KConfig::Notify);
     QVERIFY(config.isDirty());
 
-    config.syncLater();
-    config.syncNow();
+    runInEventLoop([&] {
+        config.syncLater();
+        config.syncNow();
+    });
 
     QVERIFY(watcherSpy.wait());
     watcherSpy.wait(500);

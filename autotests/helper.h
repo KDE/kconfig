@@ -6,9 +6,12 @@
 #ifndef KCONFIG_AUTOTESTS_HELPER_H
 #define KCONFIG_AUTOTESTS_HELPER_H
 
+#include <QEventLoop>
 #include <QFile>
 #include <QLocale>
+#include <QTimer>
 
+#include <functional>
 #include <optional>
 
 /**
@@ -65,7 +68,18 @@ private:
     std::optional<QByteArray> mOldValue;
 };
 
-static QList<QByteArray> readLinesFrom(const QString &path)
+// Test functions don't run inside an event loop, but syncLater() only writes asynchronously in one
+inline void runInEventLoop(const std::function<void()> &function)
+{
+    QEventLoop loop;
+    QTimer::singleShot(0, &loop, [&] {
+        function();
+        loop.quit();
+    });
+    loop.exec();
+}
+
+inline QList<QByteArray> readLinesFrom(const QString &path)
 {
     QFile file(path);
     const bool opened = file.open(QIODevice::ReadOnly | QIODevice::Text);

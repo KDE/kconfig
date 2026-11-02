@@ -196,6 +196,11 @@ public:
      * Watchers are notified once the write completes. A failed write leaves
      * the config dirty to be retried.
      *
+     * Finishing the write needs a running event loop in the thread that
+     * created this object. If this is called from another thread, or from a
+     * thread without a running event loop (for example in a command line tool
+     * or a worker thread), the changes are written synchronously, like syncNow().
+     *
      * Use this by default.
      * \since 6.32
      */

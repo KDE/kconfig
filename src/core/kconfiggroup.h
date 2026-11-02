@@ -129,6 +129,9 @@ public:
     /*!
      * Writes all pending changes in the containing config to disk on a
      * background thread and returns immediately.
+     *
+     * Without a running event loop, this writes synchronously.
+     * See KConfig::syncLater() for details.
      * \since 6.32
      */
     void syncLater();
