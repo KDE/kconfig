@@ -99,7 +99,6 @@ private:
 
     QFutureWatcher<bool> syncWatcher;
     KEntryMap syncSnapshot;
-    bool syncPending = false;
     bool completionPending = false; // an async write's reconcile+notify hasn't run yet
 
     bool wantGlobals() const

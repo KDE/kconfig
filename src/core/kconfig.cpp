@@ -30,6 +30,7 @@
 #include <QProcess>
 #include <QSet>
 #include <QThread>
+#include <QThreadPool>
 #include <QThreadStorage>
 #include <QTimeZone>
 
@@ -138,14 +139,6 @@ KConfigPrivate::KConfigPrivate(KConfig::OpenFlags flags,
 
     QObject::connect(&syncWatcher, &QFutureWatcher<bool>::finished, [this] {
         finishSync();
-
-        // process all pending sync requests
-        if (syncPending) {
-            syncPending = false;
-            if (bDirty) {
-                startAsyncWrite();
-            }
-        }
     });
 }
 
@@ -308,7 +301,6 @@ KConfig::KConfig(KConfigPrivate &d)
 KConfig::~KConfig()
 {
     Q_D(KConfig);
-    d->syncWatcher.waitForFinished();
     if (d->bDirty) {
         syncNow();
     }
@@ -504,10 +496,22 @@ bool KConfig::sync()
 }
 #endif
 
+// One thread for all async writes, so they land in the order they were requested.
+// Never deleted, configs can still sync during static destruction.
+static QThreadPool *writerPool()
+{
+    static QThreadPool *const pool = [] {
+        auto *pool = new QThreadPool;
+        pool->setMaxThreadCount(1);
+        return pool;
+    }();
+    return pool;
+}
+
 bool KConfig::syncNow()
 {
     Q_D(KConfig);
-    d->syncWatcher.waitForFinished();
+    writerPool()->waitForDone();
     d->finishSync();
 
     if (isImmutable() || !d->mBackend.isWritable()) {
@@ -547,8 +551,17 @@ bool KConfig::syncNow()
 
 void KConfigPrivate::startAsyncWrite()
 {
+    KEntryMap copy = entryMap;
+    if (completionPending) {
+        for (auto &[key, e] : copy) {
+            const auto it = syncSnapshot.find(key);
+            if (it != syncSnapshot.end() && it->second.bDirty && it->second == e) {
+                e.bDirty = false; // already in the pending write
+            }
+        }
+    }
+    const QFuture<bool> previous = completionPending ? syncWatcher.future() : QtFuture::makeReadyValueFuture(true);
     syncSnapshot = entryMap;
-    KEntryMap copy = syncSnapshot;
     completionPending = true;
 
     const QByteArray utf8Locale = locale.toUtf8();
@@ -557,9 +570,10 @@ void KConfigPrivate::startAsyncWrite()
 
     auto workerBackend = std::make_shared<KConfigIniBackend>(mBackend.clone());
 
-    syncWatcher.setFuture(QtConcurrent::run([snapshot = std::move(copy), utf8Locale, readWrite, includeGlobals, workerBackend]() mutable {
-        return writeConfigToBackend(utf8Locale, snapshot, readWrite, includeGlobals, *workerBackend);
-    }));
+    syncWatcher.setFuture(
+        QtConcurrent::run(writerPool(), [snapshot = std::move(copy), utf8Locale, readWrite, includeGlobals, workerBackend, previous]() mutable {
+            return writeConfigToBackend(utf8Locale, snapshot, readWrite, includeGlobals, *workerBackend) && previous.result();
+        }));
 }
 
 void KConfigPrivate::finishSync()
@@ -622,11 +636,6 @@ void KConfig::syncLater()
         return;
     }
 
-    // defer this request. handle it after current worker finishes.
-    if (d->syncWatcher.isRunning()) {
-        d->syncPending = true;
-        return;
-    }
     d->startAsyncWrite();
 }
 

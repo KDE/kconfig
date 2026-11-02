@@ -424,6 +424,29 @@ void KConfigTest::testSyncLaterFromOtherThread()
     QCOMPARE(KConfigGroup(&probe, QStringLiteral("Group")).readEntry("key", "x"), QStringLiteral("value"));
 }
 
+void KConfigTest::testSyncLaterOrdering()
+{
+    // B saves a newer value after A's syncLater(), so B's value must stay
+    const QString file = s_test_subdir + QLatin1String("kconfigtest_async_order");
+    KConfig a(file, KConfig::SimpleConfig);
+    KConfig b(file, KConfig::SimpleConfig);
+
+    runInEventLoop([&] {
+        KConfigGroup(&a, QStringLiteral("Group")).writeEntry("key", "fromA");
+        a.syncLater();
+        KConfigGroup(&b, QStringLiteral("Group")).writeEntry("key", "fromB");
+        QVERIFY(b.syncNow());
+        KConfigGroup(&a, QStringLiteral("Group")).writeEntry("other", "fromA");
+        a.syncLater();
+    });
+    QTRY_VERIFY(!a.isDirty());
+
+    KConfig probe(file, KConfig::SimpleConfig);
+    const KConfigGroup group(&probe, QStringLiteral("Group"));
+    QCOMPARE(group.readEntry("key"), QStringLiteral("fromB"));
+    QCOMPARE(group.readEntry("other"), QStringLiteral("fromA"));
+}
+
 void KConfigTest::testRevertAllEntries()
 {
     // this tests the case were we revert (delete) all entries in a file,
