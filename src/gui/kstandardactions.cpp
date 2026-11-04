@@ -129,6 +129,10 @@ QAction *_kgui_createInternal(StandardAction id, QObject *parent)
             pAction->setMenuRole(QAction::AboutRole);
             break;
 
+        case AboutKDE:
+            pAction->setMenuRole(QAction::AboutQtRole);
+            break;
+
         default:
             pAction->setMenuRole(QAction::NoRole);
             break;
