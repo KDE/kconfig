@@ -572,7 +572,7 @@ bool KConfigGroup::exists() const
     return config()->hasGroup(d->fullName());
 }
 
-#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 32)
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 33)
 bool KConfigGroup::sync()
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::sync", "accessing an invalid group");

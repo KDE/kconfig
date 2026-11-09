@@ -175,8 +175,8 @@ public:
      */
     OpenFlags openFlags() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 32)
-    KCONFIGCORE_DEPRECATED_VERSION(6, 32, "Use syncNow() or syncLater()")
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 33)
+    KCONFIGCORE_DEPRECATED_VERSION(6, 33, "Use syncNow() or syncLater()")
     bool sync() override;
 #endif
 
@@ -185,7 +185,7 @@ public:
      * and returns whether it succeeded.
      *
      * Use this when the data must be persisted before continuing.
-     * \since 6.32
+     * \since 6.33
      */
     bool syncNow();
 
@@ -205,7 +205,7 @@ public:
      * or a worker thread), the changes are written synchronously, like syncNow().
      *
      * Use this by default.
-     * \since 6.32
+     * \since 6.33
      */
     void syncLater();
 

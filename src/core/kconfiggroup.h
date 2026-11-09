@@ -114,15 +114,15 @@ public:
      */
     bool exists() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 32)
-    KCONFIGCORE_DEPRECATED_VERSION(6, 32, "Use syncNow() or syncLater()")
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 33)
+    KCONFIGCORE_DEPRECATED_VERSION(6, 33, "Use syncNow() or syncLater()")
     bool sync() override;
 #endif
 
     /*!
      * Writes all pending changes in the containing config to disk synchronously
      * and returns whether it succeeded.
-     * \since 6.32
+     * \since 6.33
      */
     bool syncNow();
 
@@ -132,7 +132,7 @@ public:
      *
      * Without a running event loop, this writes synchronously.
      * See KConfig::syncLater() for details.
-     * \since 6.32
+     * \since 6.33
      */
     void syncLater();
 
