@@ -568,7 +568,7 @@ void KConfigPrivate::startAsyncWrite()
     const bool readWrite = configState == KConfigBase::ReadWrite;
     const bool includeGlobals = wantGlobals();
 
-    auto workerBackend = std::make_shared<KConfigIniBackend>(mBackend.clone());
+    auto workerBackend = std::make_shared<KConfigIniBackend>(std::make_unique<KConfigIniBackendPathDevice>(mBackend.backingDevicePath()));
 
     syncWatcher.setFuture(
         QtConcurrent::run(writerPool(), [snapshot = std::move(copy), utf8Locale, readWrite, includeGlobals, workerBackend, previous]() mutable {
@@ -631,7 +631,7 @@ void KConfig::syncLater()
 
     // Finishing an async write needs a running event loop in the thread that created this object
     QThread *const thread = QThread::currentThread();
-    if (d->syncWatcher.thread() != thread || thread->loopLevel() == 0) {
+    if (d->mBackend.backingDevicePath().isEmpty() || d->syncWatcher.thread() != thread || thread->loopLevel() == 0) {
         syncNow();
         return;
     }

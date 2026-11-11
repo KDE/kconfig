@@ -128,7 +128,6 @@ public:
     [[nodiscard]] virtual QString id() const = 0;
     [[nodiscard]] virtual bool isDeviceReadable() const = 0;
     [[nodiscard]] virtual bool canWriteToDevice() const = 0;
-    [[nodiscard]] virtual std::unique_ptr<KConfigIniBackendAbstractDevice> clone() const = 0;
     [[nodiscard]] virtual bool writeToDevice(const std::function<void(QIODevice &)> &write) = 0;
     [[nodiscard]] virtual OpenResult open() = 0;
     [[nodiscard]] virtual std::unique_ptr<AbstractLockFile> lockFile() = 0;
@@ -142,11 +141,6 @@ public:
     [[nodiscard]] QString id() const override
     {
         return u"((NullDevice))"_s;
-    }
-
-    [[nodiscard]] std::unique_ptr<KConfigIniBackendAbstractDevice> clone() const override
-    {
-        return std::make_unique<KConfigIniBackendNullDevice>();
     }
 
     [[nodiscard]] bool isDeviceReadable() const override
@@ -196,11 +190,6 @@ public:
     [[nodiscard]] QString id() const override
     {
         return m_localFilePath;
-    }
-
-    [[nodiscard]] std::unique_ptr<KConfigIniBackendAbstractDevice> clone() const override
-    {
-        return std::make_unique<KConfigIniBackendPathDevice>(m_localFilePath);
     }
 
     [[nodiscard]] bool isDeviceReadable() const override
@@ -405,11 +394,6 @@ public:
     [[nodiscard]] QString id() const override
     {
         return u"((QIODevice))"_s;
-    }
-
-    [[nodiscard]] std::unique_ptr<KConfigIniBackendAbstractDevice> clone() const override
-    {
-        return std::make_unique<KConfigIniBackendQIODevice>(m_device);
     }
 
     [[nodiscard]] bool isDeviceReadable() const override

@@ -203,6 +203,7 @@ public:
      * created this object. If this is called from another thread, or from a
      * thread without a running event loop (for example in a command line tool
      * or a worker thread), the changes are written synchronously, like syncNow().
+     * Configs backed by a QIODevice are always written synchronously.
      *
      * Use this by default.
      * \since 6.33

@@ -190,9 +190,8 @@ private Q_SLOTS:
 
         runInEventLoop([&] {
             config.syncLater();
-            QVERIFY(config.isDirty());
+            QVERIFY(!config.isDirty());
         });
-        QTRY_VERIFY(!config.isDirty());
         buffer->seek(0);
         QCOMPARE(buffer->readAll(), "[Extra]\ntestKG=1\n");
     }

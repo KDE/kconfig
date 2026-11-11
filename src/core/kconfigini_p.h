@@ -82,7 +82,6 @@ public:
     }
     [[nodiscard]] bool hasOpenableDeviceInterface() const;
     [[nodiscard]] QString backingDevicePath() const;
-    [[nodiscard]] std::unique_ptr<KConfigIniBackendAbstractDevice> clone() const;
 
 private:
     enum StringType {
