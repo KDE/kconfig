@@ -21,6 +21,13 @@
 #include <QStack>
 #include <QStringList>
 
+#ifdef Q_OS_WIN
+namespace WindowsRegistry
+{
+enum class Root;
+}
+#endif
+
 class KConfigPrivate
 {
     friend class KConfig;
@@ -121,7 +128,7 @@ private:
     void parseGlobalUserFiles();
     void parseSystemConfigFiles();
 #ifdef Q_OS_WIN
-    void parseWindowsDefaults();
+    void parseWindowsDefaults(WindowsRegistry::Root root);
 #endif
     void parseUserConfigFiles();
     bool lockLocal();

@@ -9,5 +9,10 @@
 
 namespace WindowsRegistry
 {
-void parse(const QString &regKey, KEntryMap &entryMap);
+enum class Root {
+    HKLM,
+    HKCU,
+};
+
+void parse(const QString &regKey, KEntryMap &entryMap, Root rootkey);
 }

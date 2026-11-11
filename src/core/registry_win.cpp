@@ -12,11 +12,6 @@
 
 #include <QSettings>
 
-enum Registry {
-    HKLM,
-    HKCU,
-};
-
 static void parseRegValues(const QString &groupName, QSettings &settings, KEntryMap &entryMap, bool groupImmutable)
 {
     for (auto &key : settings.childKeys()) {
@@ -59,16 +54,10 @@ static void parseRegSubkeys(const QString &baseGroup, QSettings &settings, KEntr
     }
 }
 
-static void parseRegistry(const QString &regKey, KEntryMap &entryMap, Registry registry)
+void WindowsRegistry::parse(const QString &regKey, KEntryMap &entryMap, Root root)
 {
-    QSettings settings((registry == HKCU ? QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE") : QStringLiteral("HKEY_LOCAL_MACHINE\\SOFTWARE")),
+    QSettings settings((root == Root::HKCU ? QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE") : QStringLiteral("HKEY_LOCAL_MACHINE\\SOFTWARE")),
                        QSettings::NativeFormat);
     settings.beginGroup(regKey);
     parseRegSubkeys(QStringLiteral("<default>"), settings, entryMap, false);
-}
-
-void WindowsRegistry::parse(const QString &regKey, KEntryMap &entryMap)
-{
-    parseRegistry(regKey, entryMap, HKLM);
-    parseRegistry(regKey, entryMap, HKCU);
 }

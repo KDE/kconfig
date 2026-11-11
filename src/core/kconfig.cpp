@@ -717,6 +717,13 @@ void KConfig::reparseConfiguration()
         s_globalFilesAreInitialized = false;
     }
 
+#ifdef Q_OS_WIN
+    // Parse the Windows registry defaults for the local machine if desired
+    if (d->openFlags & ~KConfig::SimpleConfig) {
+        d->parseWindowsDefaults(WindowsRegistry::Root::HKLM);
+    }
+#endif
+
     // Parse all desired files from the least to the most specific.
     bool globalConfigFileIsImmutable = false;
     if (d->wantGlobals()) {
@@ -727,9 +734,9 @@ void KConfig::reparseConfiguration()
     }
 
 #ifdef Q_OS_WIN
-    // Parse the windows registry defaults if desired
+    // Parse the Windows registry defaults for the current user if desired
     if (d->openFlags & ~KConfig::SimpleConfig) {
-        d->parseWindowsDefaults();
+        d->parseWindowsDefaults(WindowsRegistry::Root::HKCU);
     }
 #endif
 
@@ -854,13 +861,13 @@ void KConfigPrivate::parseGlobalUserFiles()
 }
 
 #ifdef Q_OS_WIN
-void KConfigPrivate::parseWindowsDefaults()
+void KConfigPrivate::parseWindowsDefaults(WindowsRegistry::Root root)
 {
     if (QCoreApplication::organizationName().isEmpty() || fileName.isEmpty() || QFileInfo(fileName).isAbsolute()) {
         return;
     }
     const QString registryKey = QCoreApplication::organizationName() + u'/' + (fileName.endsWith(QStringLiteral("rc")) ? fileName.chopped(2) : fileName);
-    WindowsRegistry::parse(registryKey, entryMap);
+    WindowsRegistry::parse(registryKey, entryMap, root);
 }
 #endif
 
