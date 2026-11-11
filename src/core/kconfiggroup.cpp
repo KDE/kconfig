@@ -605,6 +605,18 @@ void KConfigGroup::syncLater()
     }
 }
 
+void KConfigGroup::virtual_hook(int id, void *data)
+{
+    switch (id) {
+    case SyncNowHook:
+        *static_cast<bool *>(data) = syncNow();
+        break;
+    case SyncLaterHook:
+        syncLater();
+        break;
+    }
+}
+
 QMap<QString, QString> KConfigGroup::entryMap() const
 {
     Q_ASSERT_X(isValid(), "KConfigGroup::entryMap", "accessing an invalid group");

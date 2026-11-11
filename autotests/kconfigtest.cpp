@@ -447,6 +447,26 @@ void KConfigTest::testSyncLaterOrdering()
     QCOMPARE(group.readEntry("other"), QStringLiteral("fromA"));
 }
 
+void KConfigTest::testSyncThroughKConfigBase()
+{
+    KConfig sc(s_test_subdir + QLatin1String("kconfigtest_syncbase"));
+    KConfigGroup cg(&sc, QStringLiteral("Hello"));
+
+    const QList<KConfigBase *> bases{&sc, &cg};
+    for (KConfigBase *base : bases) {
+        cg.writeEntry("Test", "Now");
+        QVERIFY(base->syncNow());
+        QVERIFY(!sc.isDirty());
+
+        cg.writeEntry("Test", "Later");
+        runInEventLoop([&] {
+            base->syncLater();
+            QVERIFY(sc.isDirty());
+        });
+        QTRY_VERIFY(!sc.isDirty());
+    }
+}
+
 void KConfigTest::testRevertAllEntries()
 {
     // this tests the case were we revert (delete) all entries in a file,

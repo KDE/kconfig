@@ -94,16 +94,35 @@ public:
      */
     void deleteGroup(const QString &group, WriteConfigFlags flags = Normal);
 
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 33)
     /*!
      * Syncs the configuration object that this group belongs to.
      *
      * Unrelated concurrent changes to the same file are merged and thus
      * not overwritten. Note however, that this object is not automatically
      * updated with those changes.
+     *
+     * \deprecated[6.33] Use syncNow() or syncLater() instead.
      */
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 33)
+    KCONFIGCORE_DEPRECATED_VERSION(6, 33, "Use syncNow() or syncLater()")
     virtual bool sync() = 0;
 #endif
+
+    /*!
+     * Writes all pending config changes to disk synchronously
+     * and returns whether it succeeded.
+     * \since 6.33
+     */
+    bool syncNow();
+
+    /*!
+     * Writes all pending changes to disk on a background thread
+     * and returns immediately.
+     *
+     * See KConfig::syncLater() for details.
+     * \since 6.33
+     */
+    void syncLater();
 
     /*!
      * Reset the dirty flags of all entries in the entry map, so the
@@ -158,9 +177,15 @@ protected:
     virtual void deleteGroupImpl(const QString &groupName, WriteConfigFlags flags = Normal) = 0;
     virtual bool isGroupImmutableImpl(const QString &groupName) const = 0;
 
+    // TODO KF7: make syncNow() and syncLater() virtual and remove these
+    enum {
+        SyncNowHook = 1,
+        SyncLaterHook,
+    };
+
     /*
      * Virtual hook, used to add new "virtual" functions while maintaining
-     * binary compatibility. Unused in this class.
+     * binary compatibility.
      */
     virtual void virtual_hook(int id, void *data);
 };

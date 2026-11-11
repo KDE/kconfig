@@ -175,7 +175,7 @@ public:
      */
     OpenFlags openFlags() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 33)
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 33)
     KCONFIGCORE_DEPRECATED_VERSION(6, 33, "Use syncNow() or syncLater()")
     bool sync() override;
 #endif
@@ -396,7 +396,7 @@ protected:
 
     /*
      * Virtual hook, used to add new "virtual" functions while maintaining
-     * binary compatibility. Unused in this class.
+     * binary compatibility.
      */
     void virtual_hook(int id, void *data) override;
 

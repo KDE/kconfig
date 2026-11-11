@@ -1299,7 +1299,14 @@ QStandardPaths::StandardLocation KConfig::locationType() const
     return d->resourceType;
 }
 
-void KConfig::virtual_hook(int /*id*/, void * /*data*/)
+void KConfig::virtual_hook(int id, void *data)
 {
-    /* nothing */
+    switch (id) {
+    case SyncNowHook:
+        *static_cast<bool *>(data) = syncNow();
+        break;
+    case SyncLaterHook:
+        syncLater();
+        break;
+    }
 }

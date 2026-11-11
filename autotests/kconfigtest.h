@@ -85,6 +85,7 @@ private Q_SLOTS:
     void testSyncLaterWithoutEventLoop();
     void testSyncLaterFromOtherThread();
     void testSyncLaterOrdering();
+    void testSyncThroughKConfigBase();
     void testKdeGlobals();
     void testLocalDeletion();
     void testNewlines();

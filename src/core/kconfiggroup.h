@@ -114,7 +114,7 @@ public:
      */
     bool exists() const;
 
-#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(6, 33)
+#if KCONFIGCORE_BUILD_DEPRECATED_SINCE(6, 33)
     KCONFIGCORE_DEPRECATED_VERSION(6, 33, "Use syncNow() or syncLater()")
     bool sync() override;
 #endif
@@ -638,6 +638,7 @@ protected:
     const KConfigGroup groupImpl(const QString &groupName) const override;
     void deleteGroupImpl(const QString &groupName, WriteConfigFlags flags) override;
     bool isGroupImmutableImpl(const QString &groupName) const override;
+    void virtual_hook(int id, void *data) override;
 
 private:
     QExplicitlySharedDataPointer<KConfigGroupPrivate> d;

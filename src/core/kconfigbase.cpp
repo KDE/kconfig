@@ -38,6 +38,18 @@ bool KConfigBase::isGroupImmutable(const QString &aGroup) const
     return isGroupImmutableImpl(aGroup);
 }
 
+bool KConfigBase::syncNow()
+{
+    bool result = false;
+    virtual_hook(SyncNowHook, &result);
+    return result;
+}
+
+void KConfigBase::syncLater()
+{
+    virtual_hook(SyncLaterHook, nullptr);
+}
+
 KConfigBase::~KConfigBase()
 {
 }
