@@ -196,16 +196,12 @@ public:
      * Watchers are notified once the write completes. A failed write leaves
      * the config dirty to be retried.
      *
-     * Writes of all KConfig objects in the process, including syncNow(),
-     * land in the order they were requested.
+     * Writes of all KConfig objects in the process, including writes from
+     * syncNow(), land in the order they were requested.
      *
-     * Finishing the write needs a running event loop in the thread that
-     * created this object. If this is called from another thread, or from a
-     * thread without a running event loop (for example in a command line tool
-     * or a worker thread), the changes are written synchronously, like syncNow().
-     * Configs backed by a QIODevice are always written synchronously.
-     *
-     * Use this by default.
+     * It needs to be called from the thread that created this object, and it
+     * needs a running event loop. Otherwise it calls syncNow(). For configs
+     * backed by a QIODevice, it always calls syncNow().
      * \since 6.33
      */
     void syncLater();
