@@ -108,6 +108,7 @@ install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
 ecm_add_installed_library_check(KF6ConfigCore
     PACKAGE_NAME "KF6Config"
     PACKAGE_TARGET_NAMESPACE "KF6::"
+    QT_STRICT_MODE_LEVEL 6.12
 )
 
 ecm_installed_library_check_include_strings(KF6ConfigCore
