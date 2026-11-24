@@ -98,3 +98,8 @@ target_link_libraries(kconfig_benchmark KF6::ConfigCore Qt6::Test)
 if (WIN32)
     ecm_add_test(registrytest.cpp LINK_LIBRARIES KF6::ConfigCore Qt6::Test)
 endif()
+
+if(KCONFIG_USE_QML)
+    set(ECM_TEST_NAME_PREFIX "kconfigqml-")
+    ecm_add_test(kconfigpropertymaptest.cpp LINK_LIBRARIES KF6::ConfigQml Qt6::Test)
+endif()
