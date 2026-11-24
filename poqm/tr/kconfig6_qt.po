@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-11-18 19:19+0300\n"
+"PO-Revision-Date: 2026-11-23 18:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -38,7 +38,7 @@ msgstr "Yapılandırma dosyası “%1” yazılabilir değil.\n"
 #: core/kemailsettings.cpp:139
 msgctxt "KEMailSettings|"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: gui/kstandardactions.cpp:48
 msgctxt "go back|"
@@ -1025,7 +1025,7 @@ msgstr "Aranacak anahtar"
 #: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
-msgstr "Öntanımlı değer"
+msgstr "Varsayılan değer"
 
 #: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
@@ -1040,7 +1040,7 @@ msgstr "Tüm girdileri dök"
 #: kreadconfig/kreadconfig.cpp:56
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "Tüm girdilerin öntanımlı değerlerini dök"
+msgstr "Tüm girdilerin varsayılan değerlerini dök"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
@@ -1048,7 +1048,7 @@ msgid ""
 "Include globals; by default, the global config files are not read if a file "
 "is specified"
 msgstr ""
-"Globalleri içer; öntanımlı olarak, bir dosya belirtilmişse global "
+"Globalleri içer; varsayılan olarak, bir dosya belirtilmişse global "
 "yapılandırma dosyaları okunmazlar"
 
 #: kreadconfig/kreadconfig.cpp:92 kreadconfig/kwriteconfig.cpp:71
