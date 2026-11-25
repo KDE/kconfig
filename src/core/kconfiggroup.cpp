@@ -632,6 +632,28 @@ QString KConfigGroup::readEntryUntranslated(const char *key, const QString &aDef
     return result;
 }
 
+QVariant KConfigGroup::readEntryUntranslated(const char *key, const QVariant &aDefault) const
+{
+    Q_ASSERT_X(isValid(), "KConfigGroup::readEntry", "accessing an invalid group");
+
+    const QByteArray data = config()->d_func()->lookupData(d->fullName(), key, KEntryMap::SearchFlags());
+    if (data.isNull()) {
+        return aDefault;
+    }
+
+    QVariant value;
+    if (!readEntryGui(data, key, aDefault, value)) {
+        return convertToQVariant(key, data, aDefault);
+    }
+
+    return value;
+}
+
+QVariant KConfigGroup::readEntryUntranslated(const QString &key, const QVariant &aDefault) const
+{
+    return readEntry(key.toUtf8().constData(), aDefault);
+}
+
 QString KConfigGroup::readEntry(const char *key, const char *aDefault) const
 {
     return readEntry(key, QString::fromUtf8(aDefault));
@@ -730,20 +752,8 @@ QVariantList KConfigGroup::readEntry(const QString &key, const QVariantList &aDe
     return readEntry(key.toUtf8().constData(), aDefault);
 }
 
-QStringList KConfigGroup::readXdgListEntry(const QString &key, const QStringList &aDefault) const
+static QStringList parseXdgList(const QString &data)
 {
-    return readXdgListEntry(key.toUtf8().constData(), aDefault);
-}
-
-QStringList KConfigGroup::readXdgListEntry(const char *key, const QStringList &aDefault) const
-{
-    Q_ASSERT_X(isValid(), "KConfigGroup::readXdgListEntry", "accessing an invalid group");
-
-    const QString data = readEntry(key, QString());
-    if (data.isNull()) {
-        return aDefault;
-    }
-
     QStringList value;
     QString val;
     val.reserve(data.size());
@@ -768,6 +778,38 @@ QStringList KConfigGroup::readXdgListEntry(const char *key, const QStringList &a
         value.append(val);
     }
     return value;
+}
+
+QStringList KConfigGroup::readXdgListEntry(const QString &key, const QStringList &aDefault) const
+{
+    return readXdgListEntry(key.toUtf8().constData(), aDefault);
+}
+
+QStringList KConfigGroup::readXdgListEntry(const char *key, const QStringList &aDefault) const
+{
+    Q_ASSERT_X(isValid(), "KConfigGroup::readXdgListEntry", "accessing an invalid group");
+
+    const QString data = readEntry(key, QString());
+    if (data.isNull()) {
+        return aDefault;
+    }
+    return parseXdgList(data);
+}
+
+QStringList KConfigGroup::readXdgListEntryUntranslated(const QString &key, const QStringList &aDefault) const
+{
+    return readXdgListEntry(key.toUtf8().constData(), aDefault);
+}
+
+QStringList KConfigGroup::readXdgListEntryUntranslated(const char *key, const QStringList &aDefault) const
+{
+    Q_ASSERT_X(isValid(), "KConfigGroup::readXdgListEntry", "accessing an invalid group");
+
+    const QString data = readEntryUntranslated(key, QString());
+    if (data.isNull()) {
+        return aDefault;
+    }
+    return parseXdgList(data);
 }
 
 QString KConfigGroup::readPathEntry(const QString &pKey, const QString &aDefault) const

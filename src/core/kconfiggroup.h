@@ -315,6 +315,17 @@ public:
     QStringList readXdgListEntry(const char *key, const QStringList &aDefault = QStringList()) const;
 
     /*!
+     * Reads the untranslated list of strings of an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found.
+     * \sa readEntryUntranslated(const QString&, const QStringList&)
+     */
+    QStringList readXdgListEntryUntranslated(const QString &pKey, const QStringList &aDefault = QStringList()) const;
+    /*!
+     *\overload readXdgListEntryUntranslated(const QString&, const QStringList&) const
+     * The \a key name will be encoded in UTF-8.
+     */
+    QStringList readXdgListEntryUntranslated(const char *key, const QStringList &aDefault = QStringList()) const;
+
+    /*!
      * Reads the path value of an entry specified by \a pKey in the current group, returning \a aDefault value if the key is not found. If \a aDefault is null, an empty QString() is returned.
      *
      * Dollar expansion is activated for this value, so that for example $HOME gets expanded.
@@ -347,6 +358,35 @@ public:
      * The \a key name will be encoded in UTF-8.
      */
     QString readEntryUntranslated(const char *key, const QString &aDefault = QString()) const;
+
+    /*!
+     * Reads the untranslated value of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
+     * \sa writeEntry(), deleteEntry(), hasKey()
+     */
+    QVariant readEntryUntranslated(const QString &key, const QVariant &aDefault) const;
+    /*!
+     * \overload readEntryUntranslated(const QString &key, const QVariant &aDefault) const
+     * The \a key name will be encoded in UTF-8.
+     */
+    QVariant readEntryUntranslated(const char *key, const QVariant &aDefault) const;
+
+    /*!
+     * Reads the untranslated value of an entry specified by \a key in the current group, returning \a aDefault value if the key is not found.
+     *
+     * This does the same as readEntry function template but without localization support.
+     * \sa readEntryUntranslated, readEntry
+     */
+    template<typename T>
+    T readEntryUntranslated(const QString &key, const T &aDefault) const
+    {
+        return readEntry(key.toUtf8().constData(), aDefault);
+    }
+    /*!
+     * \overload readEntryUntranslated<T>(const QString&, const T&) const
+     * The \a key name will be encoded in UTF-8.
+     */
+    template<typename T>
+    T readEntryUntranslated(const char *key, const T &aDefault) const;
 
     /*!
      * Writes \a key and \a value to the configuration object with the given \a pFlags.
@@ -722,6 +762,13 @@ T KConfigGroup::readEntry(const char *key, const T &defaultValue) const
 {
     KConfigConversionCheck::to_QVariant<T>();
     return qvariant_cast<T>(readEntry(key, QVariant::fromValue(defaultValue)));
+}
+
+template<typename T>
+T KConfigGroup::readEntryUntranslated(const char *key, const T &defaultValue) const
+{
+    KConfigConversionCheck::to_QVariant<T>();
+    return qvariant_cast<T>(readEntryUntranslated(key, QVariant::fromValue(defaultValue)));
 }
 
 template<typename T>
