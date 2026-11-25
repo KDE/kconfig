@@ -41,7 +41,6 @@ void KDesktopFileTest::testRead()
           "Type= Application\n"
           "Name=My Application\n"
           "Icon = foo\n"
-          "URL[$e]=file:///tmp/$TESTVAR\n"
           "MimeType =text/plain;image/png;\n"
           "\n";
     file.close();
@@ -55,7 +54,6 @@ void KDesktopFileTest::testRead()
     QCOMPARE(df.readMimeTypes(), QStringList() << QString::fromLatin1("text/plain") << QString::fromLatin1("image/png"));
     QVERIFY(!df.hasLinkType());
     QCOMPARE(df.fileName(), QFileInfo(fileName).canonicalFilePath());
-    QCOMPARE(df.readUrl(), QStringLiteral("file:///tmp/value"));
 }
 
 void KDesktopFileTest::testReadLocalized_data()

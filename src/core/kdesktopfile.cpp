@@ -160,7 +160,7 @@ bool KDesktopFile::isAuthorizedDesktopFile(const QString &path)
 QString KDesktopFile::readType() const
 {
     Q_D(const KDesktopFile);
-    return d->desktopGroup.readEntry("Type", QString());
+    return d->desktopGroup.readEntryUntranslated("Type", QString());
 }
 
 QString KDesktopFile::readIcon() const
@@ -194,7 +194,7 @@ QString KDesktopFile::readPath() const
     // various expansions, like $HOME.  Note that the expansion
     // behaviour still happens if the "e" flag is set, maintaining
     // backwards compatibility.
-    return d->desktopGroup.readEntry("Path", QString());
+    return d->desktopGroup.readEntryUntranslated("Path", QString());
 }
 
 QString KDesktopFile::readUrl() const
@@ -204,7 +204,7 @@ QString KDesktopFile::readUrl() const
         return d->desktopGroup.readEntry("MountPoint", QString());
     } else {
         // NOT readPathEntry (see readPath())
-        QString url = d->desktopGroup.readEntry("URL", QString());
+        QString url = d->desktopGroup.readEntryUntranslated("URL", QString());
         if (!url.isEmpty() && !QDir::isRelativePath(url)) {
             // Handle absolute paths as such (i.e. we need to escape them)
             return QUrl::fromLocalFile(url).toString();
@@ -216,13 +216,13 @@ QString KDesktopFile::readUrl() const
 QStringList KDesktopFile::readActions() const
 {
     Q_D(const KDesktopFile);
-    return d->desktopGroup.readXdgListEntry("Actions");
+    return d->desktopGroup.readXdgListEntryUntranslated("Actions");
 }
 
 QStringList KDesktopFile::readMimeTypes() const
 {
     Q_D(const KDesktopFile);
-    return d->desktopGroup.readXdgListEntry("MimeType");
+    return d->desktopGroup.readXdgListEntryUntranslated("MimeType");
 }
 
 KConfigGroup KDesktopFile::actionGroup(const QString &group)
@@ -260,11 +260,11 @@ bool KDesktopFile::tryExec() const
     Q_D(const KDesktopFile);
     // Test for TryExec and "X-KDE-AuthorizeAction"
     // NOT readPathEntry (see readPath())
-    const QString te = d->desktopGroup.readEntry("TryExec", QString());
+    const QString te = d->desktopGroup.readEntryUntranslated("TryExec", QString());
     if (!te.isEmpty() && QStandardPaths::findExecutable(te).isEmpty()) {
         return false;
     }
-    const QStringList list = d->desktopGroup.readEntry("X-KDE-AuthorizeAction", QStringList());
+    const QStringList list = d->desktopGroup.readEntryUntranslated("X-KDE-AuthorizeAction", QStringList());
     const auto isNotAuthorized = std::any_of(list.cbegin(), list.cend(), [](const QString &action) {
         return !KAuthorized::authorize(action.trimmed());
     });
@@ -273,8 +273,8 @@ bool KDesktopFile::tryExec() const
     }
 
     // See also KService::username()
-    if (d->desktopGroup.readEntry("X-KDE-SubstituteUID", false)) {
-        QString user = d->desktopGroup.readEntry("X-KDE-Username", QString());
+    if (d->desktopGroup.readEntryUntranslated("X-KDE-SubstituteUID", false)) {
+        QString user = d->desktopGroup.readEntryUntranslated("X-KDE-Username", QString());
         if (user.isEmpty()) {
             user = qEnvironmentVariable("ADMIN_ACCOUNT", QStringLiteral("root"));
         }
@@ -307,7 +307,7 @@ QString KDesktopFile::fileName() const
 bool KDesktopFile::noDisplay() const
 {
     Q_D(const KDesktopFile);
-    return d->desktopGroup.readEntry("NoDisplay", false);
+    return d->desktopGroup.readEntryUntranslated("NoDisplay", false);
 }
 
 QList<KDesktopFileAction> KDesktopFile::actions() const
@@ -321,7 +321,7 @@ QList<KDesktopFileAction> KDesktopFile::actions() const
             qCWarning(KCONFIG_CORE_LOG) << "Skipping Action" << actionKey << "due to empty Name field in file" << fileName();
             continue;
         }
-        desktopFileActions << KDesktopFileAction(actionKey, name, grp.readEntry("Icon"), grp.readEntry("Exec"), fileName());
+        desktopFileActions << KDesktopFileAction(actionKey, name, grp.readEntry("Icon"), grp.readEntryUntranslated("Exec"), fileName());
     }
     return desktopFileActions;
 }
