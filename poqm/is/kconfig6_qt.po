@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2026-06-24 10:54+0000\n"
+"PO-Revision-Date: 2026-11-25 15:59+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -1036,12 +1036,9 @@ msgid "Dump all entries"
 msgstr "Demba öllum færslum"
 
 #: kreadconfig/kreadconfig.cpp:56
-#, fuzzy
-#| msgctxt "main|"
-#| msgid "Dump all entries"
 msgctxt "main|"
 msgid "Dump default values of all entries"
-msgstr "Demba öllum færslum"
+msgstr "Demba sjálfgefnum gildum úr öllum færslum"
 
 #: kreadconfig/kreadconfig.cpp:59
 msgctxt "main|"
