@@ -23,6 +23,7 @@ target_sources(KF6ConfigGui PRIVATE
     kconfigskeleton.cpp
     kstandardshortcut.cpp
     kstandardshortcutwatcher.cpp
+    krecentfilesmodel.cpp
     kwindowconfig.cpp
     kwindowstatesaver.cpp
     kstandardactions.cpp
@@ -51,12 +52,16 @@ target_include_directories(KF6ConfigGui
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
 
 target_link_libraries(KF6ConfigGui PUBLIC Qt6::Gui KF6::ConfigCore)
+if(KCONFIG_USE_DBUS)
+    target_link_libraries(KF6ConfigGui PRIVATE Qt6::DBus)
+endif()
 
 ecm_generate_headers(KConfigGui_CamelCase_HEADERS
   HEADER_NAMES
   KConfigGui
   KConfigLoader
   KConfigSkeleton
+  KRecentFilesModel
   KStandardShortcut
   KStandardShortcutWatcher
   KWindowConfig
